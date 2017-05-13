@@ -19,7 +19,7 @@
 #include <inttypes.h>
 
 /**
- *
+ * @brief Struttura che astrae un device GPIO.
  */
 typedef struct {
 	uint32_t*	base_address;
@@ -29,9 +29,7 @@ typedef struct {
 	uint8_t		read_offset;
 } GPIO_t;
 
-/**
- *
- */
+
 typedef enum {
 	GPIO_pin0 = 0x1,        //!< GPIO_pin0
 	GPIO_pin1 = 0x2,        //!< GPIO_pin1
@@ -72,19 +70,26 @@ typedef enum {
 } GPIO_mask;
 
 /**
+ * Metodo alternativo per la specifica di uno dei pin di un device GPIO
+ * @param i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
+ * @return  maschera di selezione del pin i-esimo
+ */
+#define GPIO_pin(i) ((uint32_t)(1<<i))
+
+/**
  * @brief GPIO_mode
  */
 typedef enum {
-	GPIO_read,//!< GPIO_read
-	GPIO_write//!< GPIO_write
+	GPIO_read,//!< GPIO_read  modalita' lettura
+	GPIO_write//!< GPIO_write modalita' scrittura
 } GPIO_mode;
 
 /**
  * @brief GPIO_value
  */
 typedef enum {
-	GPIO_reset,//!< GPIO_reset
-	GPIO_set   //!< GPIO_set
+	GPIO_reset,//!< GPIO_reset, corrisponde al valore logico '0'
+	GPIO_set   //!< GPIO_set, corrisponde al valore logico '1'
 } GPIO_value;
 
 /**
@@ -104,7 +109,7 @@ typedef enum {
  * 						il registro permette di leggere dai pin del device GPIO;
  */
 
-void gpio_init(	GPIO_t* 	gpio,
+void GPIO_init(	GPIO_t* 	gpio,
 				uint32_t	*base_address,
 				uint8_t		width,
 				uint8_t		enable_offset,
@@ -125,7 +130,7 @@ void gpio_init(	GPIO_t* 	gpio,
  * @param mask	maschera dei pin su cui agire;
  * @param mode	modalita' di funzionamento dei pin;
  */
-void gpio_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode);
+void GPIO_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode);
 
 /**
  * @brief Permette di settare il valore dei pin di un device GPIO;
@@ -140,7 +145,7 @@ void gpio_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode);
  * @param mask	maschera dei pin su cui agire;
  * @param value valore dei pin
  */
-void gpio_setValue(GPIO_t* gpio, GPIO_mask mask, GPIO_value value);
+void GPIO_setValue(GPIO_t* gpio, GPIO_mask mask, GPIO_value value);
 
 /**
  * @brief Permette di leggere il valore dei pin di un device GPIO;
@@ -156,6 +161,6 @@ void gpio_setValue(GPIO_t* gpio, GPIO_mask mask, GPIO_value value);
  * @param mask	maschera dei pin su cui agire;
  * @return
  */
-GPIO_value gpio_getValue(GPIO_t* gpio, GPIO_mask mask);
+GPIO_value GPIO_getValue(GPIO_t* gpio, GPIO_mask mask);
 
 #endif
