@@ -34,11 +34,6 @@ static int validatePair(ZyboButton_t* buttons) {
 	return 1;
 }
 
-static void configurePin(ZyboButton_t* buttons) {
-	GPIO_setMode(buttons->gpio, buttons->Button3_pin | buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_read);
-	GPIO_setValue(buttons->gpio, buttons->Button3_pin| buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_reset);
-}
-
 void ZyboButton_init(	ZyboButton_t	*buttons,
 						GPIO_t			*gpio,
 						GPIO_mask 		Button3_pin,
@@ -53,7 +48,8 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
 	buttons->Button1_pin = Button1_pin;
 	buttons->Button0_pin = Button0_pin;
 	assert(validatePair(buttons));
-	configurePin(buttons);
+	GPIO_setMode(buttons->gpio, buttons->Button3_pin | buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_read);
+	GPIO_setValue(buttons->gpio, buttons->Button3_pin| buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_reset);
 }
 
 void ZyboButton_waitWhileIdle(ZyboButton_t *buttons) {

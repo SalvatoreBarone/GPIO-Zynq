@@ -25,10 +25,6 @@ void GPIO_init(	GPIO_t* 	gpio,
 
 	assert(gpio != NULL);
 	assert(base_address != NULL);
-	assert(width <= 32);
-	assert(enable_offset>>2 <= 3);
-	assert(write_offset>>2 <= 3);
-	assert(read_offset>>2 <= 3);
 	assert(enable_offset != write_offset && enable_offset != read_offset && write_offset != read_offset);
 	gpio->base_address = base_address;
 	gpio->width = width;
@@ -37,21 +33,21 @@ void GPIO_init(	GPIO_t* 	gpio,
 	gpio->read_offset = read_offset;
 }
 
-void GPIO_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode) {
+void GPIO_setMode(GPIO_t *gpio, GPIO_mask mask, GPIO_mode mode) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);
 	uint32_t value = gpio->base_address[gpio->enable_offset>>2];
 	gpio->base_address[gpio->enable_offset>>2] = (mode == GPIO_write ?  value|mask : value&(~mask));
 }
 
-void GPIO_setValue(GPIO_t* gpio, GPIO_mask mask, GPIO_value value) {
+void GPIO_setValue(GPIO_t *gpio, GPIO_mask mask, GPIO_value value) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);
 	uint32_t actual_value = gpio->base_address[gpio->write_offset>>2];
 	gpio->base_address[gpio->write_offset>>2] = (value == GPIO_set ?  actual_value|mask : actual_value&(~mask));
 }
 
-GPIO_value GPIO_getValue(GPIO_t* gpio, GPIO_mask mask) {
+GPIO_value GPIO_getValue(GPIO_t *gpio, GPIO_mask mask) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);
 	return ((gpio->base_address[gpio->read_offset>>2] & mask) == 0 ? GPIO_reset : GPIO_set);

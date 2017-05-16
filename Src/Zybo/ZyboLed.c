@@ -33,11 +33,6 @@ static int validatePair(ZyboLed_t* leds)
 	return 1;
 }
 
-static void configurePin(ZyboLed_t* leds) {
-	GPIO_setMode(leds->gpio, leds->Led3_pin | leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_write);
-	GPIO_setValue(leds->gpio, leds->Led3_pin| leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_reset);
-}
-
 void ZyboLed_init(	ZyboLed_t	*leds,
 					GPIO_t		*gpio,
 					GPIO_mask 	Led3_pin,
@@ -52,7 +47,9 @@ void ZyboLed_init(	ZyboLed_t	*leds,
 	leds->Led1_pin = Led1_pin;
 	leds->Led0_pin = Led0_pin;
 	assert(validatePair(leds));
-	configurePin(leds);
+	GPIO_setMode(leds->gpio, leds->Led3_pin | leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_write);
+	GPIO_setValue(leds->gpio, leds->Led3_pin| leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_reset);
+
 }
 
 void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t status) {

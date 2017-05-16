@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Riferimenti per la struct HD44780_LCD_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li><a href="classes.html"><span>Indice&#160;delle&#160;strutture&#160;dati</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Campi</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per la struct HD44780_LCD_t</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile. Un oggetto di tipo <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> rappresenta un device lcd HD44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni HD44780_Init8 eHD44780_Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-terminated di caratteri. Si veda la documentazione delle funzioni HD44780_Printc e HD44780_Print. Inoltre sono presenti diverse funzioni di utilita' generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto.  
+ <a href="struct_h_d44780___l_c_d__t.html#details">Continua...</a></p>
+
+<p><code>#include &lt;<a class="el" href="hd44780_8h_source.html">hd44780.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagramma di collaborazione per HD44780_LCD_t:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_d44780___l_c_d__t__coll__graph.png" border="0" usemap="#_h_d44780___l_c_d__t_coll__map" alt="Collaboration graph"/></div>
+<map name="_h_d44780___l_c_d__t_coll__map" id="_h_d44780___l_c_d__t_coll__map">
+<area shape="rect" id="node2" href="struct_g_p_i_o__t.html" title="Struttura che astrae un device GPIO. " alt="" coords="33,5,100,32"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legenda</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Campi</h2></td></tr>
+<tr class="memitem:acb3116190992a4d8d26545c103304d27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb3116190992a4d8d26545c103304d27"></a>
+<a class="el" href="struct_g_p_i_o__t.html">GPIO_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>gpio</b></td></tr>
+<tr class="separator:acb3116190992a4d8d26545c103304d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a142ae0db638dca7ab42e2183a1311d32"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a142ae0db638dca7ab42e2183a1311d32"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>RS</b></td></tr>
+<tr class="separator:a142ae0db638dca7ab42e2183a1311d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8225e4a125a2159215dfa03372c305f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8225e4a125a2159215dfa03372c305f"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>RW</b></td></tr>
+<tr class="separator:af8225e4a125a2159215dfa03372c305f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a851ed1cefdadae2e5069d1364ae8fc9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a851ed1cefdadae2e5069d1364ae8fc9e"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>E</b></td></tr>
+<tr class="separator:a851ed1cefdadae2e5069d1364ae8fc9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1bd9ea66e1fa6d0667c3f60d2f155d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f1bd9ea66e1fa6d0667c3f60d2f155d"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data7</b></td></tr>
+<tr class="separator:a7f1bd9ea66e1fa6d0667c3f60d2f155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a787746d32e0e18dbd57202e547756b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a787746d32e0e18dbd57202e547756b"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data6</b></td></tr>
+<tr class="separator:a6a787746d32e0e18dbd57202e547756b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5ae7b6e5cd6f96a13e719cd07e3f15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff5ae7b6e5cd6f96a13e719cd07e3f15"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data5</b></td></tr>
+<tr class="separator:aff5ae7b6e5cd6f96a13e719cd07e3f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a923c685eba8920c56f33117410da2742"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a923c685eba8920c56f33117410da2742"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data4</b></td></tr>
+<tr class="separator:a923c685eba8920c56f33117410da2742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f2e7b5a4aa8b82451e021f2f5b3a89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6f2e7b5a4aa8b82451e021f2f5b3a89"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data3</b></td></tr>
+<tr class="separator:ae6f2e7b5a4aa8b82451e021f2f5b3a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb22274224118a94688f1809cda55501"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb22274224118a94688f1809cda55501"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data2</b></td></tr>
+<tr class="separator:afb22274224118a94688f1809cda55501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b310a22b76c920feb015a3a3084b125"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b310a22b76c920feb015a3a3084b125"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data1</b></td></tr>
+<tr class="separator:a9b310a22b76c920feb015a3a3084b125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1ef3393be1a14aa7b2644585e5bb08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed1ef3393be1a14aa7b2644585e5bb08"></a>
+GPIO_mask&#160;</td><td class="memItemRight" valign="bottom"><b>Data0</b></td></tr>
+<tr class="separator:aed1ef3393be1a14aa7b2644585e5bb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c5a51b8cc5de5ee2cf42b884bd1bc67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c5a51b8cc5de5ee2cf42b884bd1bc67"></a>
+HD44780_InterfaceMode_t&#160;</td><td class="memItemRight" valign="bottom"><b>iface_mode</b></td></tr>
+<tr class="separator:a7c5a51b8cc5de5ee2cf42b884bd1bc67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<div class="textblock"><p>Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile. Un oggetto di tipo <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> rappresenta un device lcd HD44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni HD44780_Init8 eHD44780_Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-terminated di caratteri. Si veda la documentazione delle funzioni HD44780_Printc e HD44780_Print. Inoltre sono presenti diverse funzioni di utilita' generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto. </p>
+</div><hr/>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
+<li><a class="el" href="hd44780_8h_source.html">hd44780.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato Mar 16 Mag 2017 14:06:12 per Zynq-7000 Driver Pack da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.8
+</small></address>
+</body>
+</html>

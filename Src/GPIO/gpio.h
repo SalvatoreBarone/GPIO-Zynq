@@ -29,7 +29,9 @@ typedef struct {
 	uint8_t		read_offset;
 } GPIO_t;
 
-
+/**
+ * @brief Maschere di selezione dei pin di un device GPIO
+ */
 typedef enum {
 	GPIO_pin0 = 0x1,        //!< GPIO_pin0
 	GPIO_pin1 = 0x2,        //!< GPIO_pin1
@@ -70,14 +72,14 @@ typedef enum {
 } GPIO_mask;
 
 /**
- * Metodo alternativo per la specifica di uno dei pin di un device GPIO
+ *@brief  Metodo alternativo per la specifica di uno dei pin di un device GPIO
  * @param i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
  * @return  maschera di selezione del pin i-esimo
  */
 #define GPIO_pin(i) ((uint32_t)(1<<i))
 
 /**
- * @brief GPIO_mode
+ * @brief GPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device GPIO
  */
 typedef enum {
 	GPIO_read,//!< GPIO_read  modalita' lettura

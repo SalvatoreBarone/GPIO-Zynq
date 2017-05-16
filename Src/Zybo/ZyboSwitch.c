@@ -32,11 +32,6 @@ static int validatePair(ZyboSwitch_t* switches) {
 	return 1;
 }
 
-static void configurePin(ZyboSwitch_t* switches) {
-	GPIO_setMode(switches->gpio, switches->Switch3_pin | switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_read);
-	GPIO_setValue(switches->gpio, switches->Switch3_pin| switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_reset);
-}
-
 void ZyboSwitch_init(	ZyboSwitch_t	*switches,
 						GPIO_t			*gpio,
 						GPIO_mask 		Switch3_pin,
@@ -51,7 +46,8 @@ void ZyboSwitch_init(	ZyboSwitch_t	*switches,
 	switches->Switch1_pin = Switch1_pin;
 	switches->Switch0_pin = Switch0_pin;
 	assert(validatePair(switches));
-	configurePin(switches);
+	GPIO_setMode(switches->gpio, switches->Switch3_pin | switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_read);
+	GPIO_setValue(switches->gpio, switches->Switch3_pin| switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_reset);
 }
 
 ZyboSwitch_status_t ZyboSwitch_getStatus(ZyboSwitch_t *switches, ZyboSwitch_mask_t mask) {
