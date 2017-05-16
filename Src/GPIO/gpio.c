@@ -47,6 +47,13 @@ void GPIO_setValue(GPIO_t *gpio, GPIO_mask mask, GPIO_value value) {
 	gpio->base_address[gpio->write_offset>>2] = (value == GPIO_set ?  actual_value|mask : actual_value&(~mask));
 }
 
+void GPIO_toggle(GPIO_t* gpio, GPIO_mask mask) {
+	assert(gpio != NULL);
+	assert(gpio->base_address != NULL);
+	uint32_t actual_value = gpio->base_address[gpio->write_offset>>2];
+	gpio->base_address[gpio->write_offset>>2] = actual_value ^ mask;
+}
+
 GPIO_value GPIO_getValue(GPIO_t *gpio, GPIO_mask mask) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);

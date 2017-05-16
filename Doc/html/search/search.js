@@ -7,14 +7,28 @@
 
 var indexSectionsWithContent =
 {
-  0: "ghz",
-  1: "ghz"
+  0: "bdeghilmrstwz",
+  1: "ghz",
+  2: "ghtz",
+  3: "ghmz",
+  4: "bdegilrsw",
+  5: "ghz",
+  6: "ghz",
+  7: "hlt",
+  8: "glz"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "classes"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "variables",
+  5: "enums",
+  6: "enumvalues",
+  7: "defines",
+  8: "groups"
 };
 
 function convertToId(search)

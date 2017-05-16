@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -38,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
       <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
       <li class="current"><a href="files.html"><span>File</span></a></li>
       <li>
@@ -61,14 +69,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_zybo_button_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_805767cd83dd00257d4810f58ca53032.html">Zybo</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">ZyboButton.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_zybo_button_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file ZyboButton.h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @author Salvatore Barone</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * @email salvator.barone@gmail.com</span></div>
@@ -103,52 +122,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef __ZYBO_BUTTON_HEADER_H__</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define __ZYBO_BUTTON_HEADER_H__</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;gpio.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gpio_8h.html">gpio.h</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ZyboButton3 = 0x8, </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ZyboButton2 = 0x4, </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    ZyboButton1 = 0x2, </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ZyboButton0 = 0x1  </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} ZyboButton_mask_t;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    ZyboButton_off, </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ZyboButton_on   </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} ZyboButton_status_t;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>      *gpio;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    GPIO_mask   Button3_pin;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    GPIO_mask   Button2_pin;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    GPIO_mask   Button1_pin;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    GPIO_mask   Button0_pin;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> ZyboButton_init(   <a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a>    *buttons,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>          *gpio,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        GPIO_mask       Button3_pin,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        GPIO_mask       Button2_pin,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        GPIO_mask       Button1_pin,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        GPIO_mask       Button0_pin);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#define ZyboButton_DebounceWait 50</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span> ZyboButton_waitWhileIdle(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">void</span> ZyboButton_waitWhileBusy(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;ZyboButton_status_t ZyboButton_getStatus(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons, ZyboButton_mask_t mask);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="struct_zybo_button__t_html"><div class="ttname"><a href="struct_zybo_button__t.html">ZyboButton_t</a></div><div class="ttdoc">Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:40</div></div>
-<div class="ttc" id="struct_g_p_i_o__t_html"><div class="ttname"><a href="struct_g_p_i_o__t.html">GPIO_t</a></div><div class="ttdoc">Struttura che astrae un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:24</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="group___zybo.html#ga4d26a5f6cad606de534ba034e0ba42dd">   28</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">   29</a></span>&#160;    <a class="code" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">ZyboButton3</a> = 0x8, </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">   30</a></span>&#160;    <a class="code" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">ZyboButton2</a> = 0x4, </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">   31</a></span>&#160;    <a class="code" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">ZyboButton1</a> = 0x2, </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">   32</a></span>&#160;    <a class="code" href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">ZyboButton0</a> = 0x1  </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <a class="code" href="group___zybo.html#ga4d26a5f6cad606de534ba034e0ba42dd">ZyboButton_mask_t</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="group___zybo.html#ga85c290bfa232cab213e69200bf78e06a">   38</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399">   39</a></span>&#160;    <a class="code" href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399">ZyboButton_off</a>, </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe">   40</a></span>&#160;    <a class="code" href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe">ZyboButton_on</a>   </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;} <a class="code" href="group___zybo.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html">   46</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html#acb3116190992a4d8d26545c103304d27">   47</a></span>&#160;    <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>      *<a class="code" href="struct_zybo_button__t.html#acb3116190992a4d8d26545c103304d27">gpio</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html#a0be2104e3b0077272dcbfee7dbdb14ee">   48</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>   <a class="code" href="struct_zybo_button__t.html#a0be2104e3b0077272dcbfee7dbdb14ee">Button3_pin</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html#a249726210aba837b00df4d2afc89965d">   49</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>   <a class="code" href="struct_zybo_button__t.html#a249726210aba837b00df4d2afc89965d">Button2_pin</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html#aa4b6f01d89a502266798176affa8f59b">   50</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>   <a class="code" href="struct_zybo_button__t.html#aa4b6f01d89a502266798176affa8f59b">Button1_pin</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="struct_zybo_button__t.html#aa079dc844a7d73e98b762cef39e9bf90">   51</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>   <a class="code" href="struct_zybo_button__t.html#aa079dc844a7d73e98b762cef39e9bf90">Button0_pin</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;} <a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___zybo.html#gaa40462223af93b0f5bdf2932400fe2a5">ZyboButton_init</a>(   <a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a>    *buttons,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>          *gpio,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>       Button3_pin,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>       Button2_pin,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                        <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>       Button1_pin,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>       Button0_pin);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group___zybo.html#ga8960eefa6a431f50d4fe2a2f8063da3f">   87</a></span>&#160;<span class="preprocessor">#define ZyboButton_DebounceWait 50</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___zybo.html#gaca30e81084e746785e395f79e9678e9a">ZyboButton_waitWhileIdle</a>(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___zybo.html#ga3840edf011b5bad6302b7efc9c6326fe">ZyboButton_waitWhileBusy</a>(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<a class="code" href="group___zybo.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> <a class="code" href="group___zybo.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(<a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons, <a class="code" href="group___zybo.html#ga4d26a5f6cad606de534ba034e0ba42dd">ZyboButton_mask_t</a> mask);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="struct_zybo_button__t_html_aa4b6f01d89a502266798176affa8f59b"><div class="ttname"><a href="struct_zybo_button__t.html#aa4b6f01d89a502266798176affa8f59b">ZyboButton_t::Button1_pin</a></div><div class="ttdeci">GPIO_mask Button1_pin</div><div class="ttdef"><b>Definition:</b> ZyboButton.h:50</div></div>
+<div class="ttc" id="struct_zybo_button__t_html"><div class="ttname"><a href="struct_zybo_button__t.html">ZyboButton_t</a></div><div class="ttdoc">Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:46</div></div>
+<div class="ttc" id="struct_zybo_button__t_html_aa079dc844a7d73e98b762cef39e9bf90"><div class="ttname"><a href="struct_zybo_button__t.html#aa079dc844a7d73e98b762cef39e9bf90">ZyboButton_t::Button0_pin</a></div><div class="ttdeci">GPIO_mask Button0_pin</div><div class="ttdef"><b>Definition:</b> ZyboButton.h:51</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html"><div class="ttname"><a href="struct_g_p_i_o__t.html">GPIO_t</a></div><div class="ttdoc">Struttura che astrae un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:29</div></div>
+<div class="ttc" id="gpio_8h_html"><div class="ttname"><a href="gpio_8h.html">gpio.h</a></div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga6d5aef8a8a54ee2f602d47252ff66595"><div class="ttname"><a href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a></div><div class="ttdeci">GPIO_mask</div><div class="ttdoc">Maschere di selezione dei pin di un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:40</div></div>
+<div class="ttc" id="group___zybo_html_gaa40462223af93b0f5bdf2932400fe2a5"><div class="ttname"><a href="group___zybo.html#gaa40462223af93b0f5bdf2932400fe2a5">ZyboButton_init</a></div><div class="ttdeci">void ZyboButton_init(ZyboButton_t *buttons, GPIO_t *gpio, GPIO_mask Button3_pin, GPIO_mask Button2_pin, GPIO_mask Button1_pin, GPIO_mask Button0_pin)</div><div class="ttdoc">Inizializza un oggetto di tipo ZyboButton_t. </div><div class="ttdef"><b>Definition:</b> ZyboButton.c:37</div></div>
+<div class="ttc" id="group___zybo_html_ga4d26a5f6cad606de534ba034e0ba42dd"><div class="ttname"><a href="group___zybo.html#ga4d26a5f6cad606de534ba034e0ba42dd">ZyboButton_mask_t</a></div><div class="ttdeci">ZyboButton_mask_t</div><div class="ttdoc">Maschere di selezione dei PushButton. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:28</div></div>
+<div class="ttc" id="group___zybo_html_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7"><div class="ttname"><a href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">ZyboButton1</a></div><div class="ttdoc">ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:31</div></div>
+<div class="ttc" id="group___zybo_html_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe"><div class="ttname"><a href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe">ZyboButton_on</a></div><div class="ttdoc">ZyboButton_on, corrisponde al valore logico &#39;1&#39;, indica che un pushbutton e&#39; attivo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:40</div></div>
+<div class="ttc" id="group___zybo_html_ga3840edf011b5bad6302b7efc9c6326fe"><div class="ttname"><a href="group___zybo.html#ga3840edf011b5bad6302b7efc9c6326fe">ZyboButton_waitWhileBusy</a></div><div class="ttdeci">void ZyboButton_waitWhileBusy(ZyboButton_t *buttons)</div><div class="ttdoc">Permettere di mettere il programma in attesa attiva finche&#39; i button restano attivi;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.c:60</div></div>
+<div class="ttc" id="struct_zybo_button__t_html_a0be2104e3b0077272dcbfee7dbdb14ee"><div class="ttname"><a href="struct_zybo_button__t.html#a0be2104e3b0077272dcbfee7dbdb14ee">ZyboButton_t::Button3_pin</a></div><div class="ttdeci">GPIO_mask Button3_pin</div><div class="ttdef"><b>Definition:</b> ZyboButton.h:48</div></div>
+<div class="ttc" id="group___zybo_html_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570"><div class="ttname"><a href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">ZyboButton0</a></div><div class="ttdoc">ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:32</div></div>
+<div class="ttc" id="group___zybo_html_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399"><div class="ttname"><a href="group___zybo.html#gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399">ZyboButton_off</a></div><div class="ttdoc">ZyboButton_off, corrisponde al valore logico &#39;0&#39;, indica che un pushbutton e&#39; inattivo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:39</div></div>
+<div class="ttc" id="group___zybo_html_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609"><div class="ttname"><a href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">ZyboButton2</a></div><div class="ttdoc">ZyboButton2, seleziona il button 2 sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:30</div></div>
+<div class="ttc" id="struct_zybo_button__t_html_acb3116190992a4d8d26545c103304d27"><div class="ttname"><a href="struct_zybo_button__t.html#acb3116190992a4d8d26545c103304d27">ZyboButton_t::gpio</a></div><div class="ttdeci">GPIO_t * gpio</div><div class="ttdef"><b>Definition:</b> ZyboButton.h:47</div></div>
+<div class="ttc" id="group___zybo_html_gaca30e81084e746785e395f79e9678e9a"><div class="ttname"><a href="group___zybo.html#gaca30e81084e746785e395f79e9678e9a">ZyboButton_waitWhileIdle</a></div><div class="ttdeci">void ZyboButton_waitWhileIdle(ZyboButton_t *buttons)</div><div class="ttdoc">Permettere di mettere il programma in attesa attiva finche&#39; i button restano inattivi;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.c:55</div></div>
+<div class="ttc" id="group___zybo_html_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8"><div class="ttname"><a href="group___zybo.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">ZyboButton3</a></div><div class="ttdoc">ZyboButton3, seleziona il button 3 sulla board Digilent Zybo;. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:29</div></div>
+<div class="ttc" id="group___zybo_html_ga85c290bfa232cab213e69200bf78e06a"><div class="ttname"><a href="group___zybo.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a></div><div class="ttdeci">ZyboButton_status_t</div><div class="ttdoc">Status di attivo/inattivo dei PushButton. </div><div class="ttdef"><b>Definition:</b> ZyboButton.h:38</div></div>
+<div class="ttc" id="group___zybo_html_ga75407539e8ba0ad3ea142496219cd083"><div class="ttname"><a href="group___zybo.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a></div><div class="ttdeci">ZyboButton_status_t ZyboButton_getStatus(ZyboButton_t *buttons, ZyboButton_mask_t mask)</div><div class="ttdoc">Permette la lettura dello stato dei button presenti sulla board. </div><div class="ttdef"><b>Definition:</b> ZyboButton.c:65</div></div>
+<div class="ttc" id="struct_zybo_button__t_html_a249726210aba837b00df4d2afc89965d"><div class="ttname"><a href="struct_zybo_button__t.html#a249726210aba837b00df4d2afc89965d">ZyboButton_t::Button2_pin</a></div><div class="ttdeci">GPIO_mask Button2_pin</div><div class="ttdef"><b>Definition:</b> ZyboButton.h:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato Mar 16 Mag 2017 14:06:12 per Zynq-7000 Driver Pack da &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_805767cd83dd00257d4810f58ca53032.html">Zybo</a></li><li class="navelem"><a class="el" href="_zybo_button_8h.html">ZyboButton.h</a></li>
+    <li class="footer">Generato Mar 16 Mag 2017 21:25:58 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -17,6 +17,12 @@
 #include "gpio.h"
 
 /**
+ * @addtogroup Zybo
+ * @{
+ */
+
+
+/**
  * @brief Maschere di selezione dei PushButton
  */
 typedef enum {
@@ -55,10 +61,17 @@ typedef struct {
  * @param Button1_pin	pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo;
  * @param Button0_pin	pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;
  *
+ * @code
  * GPIO_t gpioButton;
  * GPIO_init(&gpioButton, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);
  * ZyboButton_t buttons;
  * ZyboButton_init(&buttons, &gpioButton, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - buttons non sia un puntatore nullo;
+ * - gpio non sia un puntatore nullo
+ * - ButtonN_pin siano tutti pin differenti
  */
 void ZyboButton_init(	ZyboButton_t	*buttons,
 						GPIO_t			*gpio,
@@ -81,12 +94,18 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
  *
  * @param buttons puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  *
+ * @code
  * ZyboButton_waitWhileIdle(&buttons);
  * ZyboButton_status_t button3_status = ZyboButton_getStatus(&buttons, ZyboButton3);				// leggo lo stato ddi button 3
  * ZyboButton_status_t button2_status = ZyboButton_getStatus(&buttons, ZyboButton2);				// leggo lo stato ddi button 2
  * ZyboButton_status_t button1_status = ZyboButton_getStatus(&buttons, ZyboButton1);				// leggo lo stato ddi button 1
  * ZyboButton_status_t button0_status = ZyboButton_getStatus(&buttons, ZyboButton0);				// leggo lo stato ddi button 0
  * ZyboButton_waitWhileBusy(&buttons);
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - buttons non sia un puntatore nullo;
+ * - buttons->gpio non sia un puntatore nullo
  */
 void ZyboButton_waitWhileIdle(ZyboButton_t *buttons);
 
@@ -98,12 +117,18 @@ void ZyboButton_waitWhileIdle(ZyboButton_t *buttons);
  *
  * @param buttons puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  *
+ * @code
  * ZyboButton_waitWhileIdle(&buttons);
  * ZyboButton_status_t button3_status = ZyboButton_getStatus(&buttons, ZyboButton3);				// leggo lo stato ddi button 3
  * ZyboButton_status_t button2_status = ZyboButton_getStatus(&buttons, ZyboButton2);				// leggo lo stato ddi button 2
  * ZyboButton_status_t button1_status = ZyboButton_getStatus(&buttons, ZyboButton1);				// leggo lo stato ddi button 1
  * ZyboButton_status_t button0_status = ZyboButton_getStatus(&buttons, ZyboButton0);				// leggo lo stato ddi button 0
  * ZyboButton_waitWhileBusy(&buttons);
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - buttons non sia un puntatore nullo;
+ * - buttons->gpio non sia un puntatore nullo
  */
 void ZyboButton_waitWhileBusy(ZyboButton_t *buttons);
 
@@ -112,13 +137,21 @@ void ZyboButton_waitWhileBusy(ZyboButton_t *buttons);
  * @param buttons		puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  * @param mask   		maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione
  * @return				status status dei button
- *                      - ZyboButton_on se uno dei button selezionati e' attivo;
- *                      - ZyboButton_off altrimenti
+ * @retval 				ZyboButton_on se uno dei button selezionati e' attivo;
+ * @retval				ZyboButton_off altrimenti
  *
+ * @code
  * ZyboButton_status_t button_status = ZyboButton_getStatus(&buttons, ZyboButton3);				// leggo lo stato ddi button 3
  * ZyboLed_status_t led_status = (button_status == ZyboButton_on ? ZyboLed_on : ZyboLed_off);	// se lo stato e' attivo accendo il led 3
  * ZyboLed_setStatus(&leds, ZyboLed3, led_status);												// accendo/spengo led 3
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - buttons non sia un puntatore nullo;
+ * - buttons->gpio non sia un puntatore nullo
  */
 ZyboButton_status_t ZyboButton_getStatus(ZyboButton_t *buttons, ZyboButton_mask_t mask);
+
+/** @} */
 
 #endif

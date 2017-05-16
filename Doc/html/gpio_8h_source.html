@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -38,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
       <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
       <li class="current"><a href="files.html"><span>File</span></a></li>
       <li>
@@ -61,14 +69,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('gpio_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_23e4d12f26a49ef99fb41232b599cf4b.html">GPIO</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">gpio.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="gpio_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file gpio.h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @author: Salvatore Barone</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * @email salvator.barone@gmail.com</span></div>
@@ -107,86 +126,145 @@ var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html">   24</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    uint32_t*   base_address;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint8_t     width;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint8_t     enable_offset;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint8_t     write_offset;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint8_t     read_offset;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    GPIO_pin0 = 0x1,        </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    GPIO_pin1 = 0x2,        </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    GPIO_pin2 = 0x4,        </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    GPIO_pin3 = 0x8,        </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    GPIO_pin4 = 0x10,       </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    GPIO_pin5 = 0x20,       </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    GPIO_pin6 = 0x40,       </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    GPIO_pin7 = 0x80,       </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    GPIO_pin8 = 0x100,      </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    GPIO_pin9 = 0x200,      </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    GPIO_pin10 = 0x400,     </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    GPIO_pin11 = 0x800,     </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    GPIO_pin12 = 0x1000,    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    GPIO_pin13 = 0x2000,    </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    GPIO_pin14 = 0x4000,    </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    GPIO_pin15 = 0x8000,    </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    GPIO_pin16 = 0x10000,   </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    GPIO_pin17 = 0x20000,   </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    GPIO_pin18 = 0x40000,   </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    GPIO_pin19 = 0x80000,   </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    GPIO_pin20 = 0x100000,  </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    GPIO_pin21 = 0x200000,  </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    GPIO_pin22 = 0x400000,  </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    GPIO_pin23 = 0x800000,  </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    GPIO_pin24 = 0x1000000, </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    GPIO_pin25 = 0x2000000, </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    GPIO_pin26 = 0x4000000, </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    GPIO_pin27 = 0x8000000, </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    GPIO_pin28 = 0x10000000,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    GPIO_pin29 = 0x20000000,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    GPIO_pin30 = 0x40000000,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    GPIO_pin31 = 0x80000000,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    GPIO_byte0 = 0x000000ff,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    GPIO_byte1 = 0x0000ff00,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    GPIO_byte2 = 0x00ff0000,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    GPIO_byte3 = 0xff000000 </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} GPIO_mask;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define GPIO_pin(i) ((uint32_t)(1&lt;&lt;i))</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    GPIO_read,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    GPIO_write</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;} GPIO_mode;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    GPIO_reset,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    GPIO_set   </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;} GPIO_value;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">void</span> GPIO_init( <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>*     gpio,</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                uint32_t    *base_address,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                uint8_t     width,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                uint8_t     enable_offset,</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                uint8_t     write_offset,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                uint8_t     read_offset);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keywordtype">void</span> GPIO_setMode(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, GPIO_mask mask, GPIO_mode mode);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">void</span> GPIO_setValue(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, GPIO_mask mask, GPIO_value value);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;GPIO_value GPIO_getValue(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, GPIO_mask mask);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="struct_g_p_i_o__t_html"><div class="ttname"><a href="struct_g_p_i_o__t.html">GPIO_t</a></div><div class="ttdoc">Struttura che astrae un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:24</div></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html">   29</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html#a79c591d5fa42efdf86abd98347fece90">   30</a></span>&#160;    uint32_t*   <a class="code" href="struct_g_p_i_o__t.html#a79c591d5fa42efdf86abd98347fece90">base_address</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html#a09a2a45f731b02946ff6d3cd15c1a476">   31</a></span>&#160;    uint8_t     <a class="code" href="struct_g_p_i_o__t.html#a09a2a45f731b02946ff6d3cd15c1a476">width</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html#a14886d03a6936e5edd25a9ad27af16bd">   32</a></span>&#160;    uint8_t     <a class="code" href="struct_g_p_i_o__t.html#a14886d03a6936e5edd25a9ad27af16bd">enable_offset</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html#abb65e5db6d4ad365a7c48d00e4af1f78">   33</a></span>&#160;    uint8_t     <a class="code" href="struct_g_p_i_o__t.html#abb65e5db6d4ad365a7c48d00e4af1f78">write_offset</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48">   34</a></span>&#160;    uint8_t     <a class="code" href="struct_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48">read_offset</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adcbdf41a3086c14917c16aa16fe8dce0">   41</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adcbdf41a3086c14917c16aa16fe8dce0">GPIO_pin0</a> = 0x1,        </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47f866a19d9ff54b424a644e879ab137">   42</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47f866a19d9ff54b424a644e879ab137">GPIO_pin1</a> = 0x2,        </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af020e3ce7822bbfad6c6c259bba650f8">   43</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af020e3ce7822bbfad6c6c259bba650f8">GPIO_pin2</a> = 0x4,        </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab5034fbdfc700bfe777088325fa2a448">   44</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab5034fbdfc700bfe777088325fa2a448">GPIO_pin3</a> = 0x8,        </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a178596b752aa47edc06017af21862b10">   45</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a178596b752aa47edc06017af21862b10">GPIO_pin4</a> = 0x10,       </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595aea86e18245853475d93732bda835a658">   46</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595aea86e18245853475d93732bda835a658">GPIO_pin5</a> = 0x20,       </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a29e82f4b193ce85e5d36546030dd8cdb">   47</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a29e82f4b193ce85e5d36546030dd8cdb">GPIO_pin6</a> = 0x40,       </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a593a4b6c0c46ac236fb50fbbba6eaa94">   48</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a593a4b6c0c46ac236fb50fbbba6eaa94">GPIO_pin7</a> = 0x80,       </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a25b17f4e7b1cbf2c8cd09f7049bf8e3c">   49</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a25b17f4e7b1cbf2c8cd09f7049bf8e3c">GPIO_pin8</a> = 0x100,      </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6b95a92fcb5f5a07947ee0eb0f0b9745">   50</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6b95a92fcb5f5a07947ee0eb0f0b9745">GPIO_pin9</a> = 0x200,      </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac16a97d0cb0ab4064462b8e90f431444">   51</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac16a97d0cb0ab4064462b8e90f431444">GPIO_pin10</a> = 0x400,     </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a30f4930e20283fc8bb8897c21bbef6fe">   52</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a30f4930e20283fc8bb8897c21bbef6fe">GPIO_pin11</a> = 0x800,     </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af38edbc7a6b5ad7707b45f633879b5a6">   53</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af38edbc7a6b5ad7707b45f633879b5a6">GPIO_pin12</a> = 0x1000,    </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a7238a678f95a665e82c974cd6e64063b">   54</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a7238a678f95a665e82c974cd6e64063b">GPIO_pin13</a> = 0x2000,    </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6d0450f7184d9e30f292609fdb702021">   55</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6d0450f7184d9e30f292609fdb702021">GPIO_pin14</a> = 0x4000,    </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2331cdf16345b682aa5a4aae88b7bfd7">   56</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2331cdf16345b682aa5a4aae88b7bfd7">GPIO_pin15</a> = 0x8000,    </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47e8e2e95a483b8804336ebe8006bbdd">   57</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47e8e2e95a483b8804336ebe8006bbdd">GPIO_pin16</a> = 0x10000,   </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595afd25054cc3f6057842f12e9b461e04c5">   58</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595afd25054cc3f6057842f12e9b461e04c5">GPIO_pin17</a> = 0x20000,   </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a0695e489ab495b018a134b1f3d654b03">   59</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a0695e489ab495b018a134b1f3d654b03">GPIO_pin18</a> = 0x40000,   </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a951a5bd12a5ce5079380b66814bc7d4b">   60</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a951a5bd12a5ce5079380b66814bc7d4b">GPIO_pin19</a> = 0x80000,   </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4cac847517ef83df4ec954d0d1937a21">   61</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4cac847517ef83df4ec954d0d1937a21">GPIO_pin20</a> = 0x100000,  </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab53658c53d924fd4310b948e6f2ac9a6">   62</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab53658c53d924fd4310b948e6f2ac9a6">GPIO_pin21</a> = 0x200000,  </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ad72f6d42b4b0af56c73db6e50765f899">   63</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ad72f6d42b4b0af56c73db6e50765f899">GPIO_pin22</a> = 0x400000,  </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a325ca3d5d92005391a0b125ead02af7b">   64</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a325ca3d5d92005391a0b125ead02af7b">GPIO_pin23</a> = 0x800000,  </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4b85e0412ff080dfe5f10aeb981dad8f">   65</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4b85e0412ff080dfe5f10aeb981dad8f">GPIO_pin24</a> = 0x1000000, </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac5221e21fc0c958892c6238838b637ed">   66</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac5221e21fc0c958892c6238838b637ed">GPIO_pin25</a> = 0x2000000, </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6945a183851232023f40f47222c3dc77">   67</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6945a183851232023f40f47222c3dc77">GPIO_pin26</a> = 0x4000000, </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a39d4771a24a35c485af5db41e458dfd5">   68</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a39d4771a24a35c485af5db41e458dfd5">GPIO_pin27</a> = 0x8000000, </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a3ed32d8f1442759cabff7abda8dd9cdb">   69</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a3ed32d8f1442759cabff7abda8dd9cdb">GPIO_pin28</a> = 0x10000000,</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a751529bf657ad303e5e5c67a703138fe">   70</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a751529bf657ad303e5e5c67a703138fe">GPIO_pin29</a> = 0x20000000,</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a50add0846388b745f32ac8834f93de70">   71</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a50add0846388b745f32ac8834f93de70">GPIO_pin30</a> = 0x40000000,</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab9d0bda88540c4e7ad5610009cd64d70">   72</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab9d0bda88540c4e7ad5610009cd64d70">GPIO_pin31</a> = 0x80000000,</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a8f89521ea70b3aed4a18c33a099b98d0">   73</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a8f89521ea70b3aed4a18c33a099b98d0">GPIO_byte0</a> = 0x000000ff,</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2a36eaac21d68a35dd3b3d1f790b4431">   74</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2a36eaac21d68a35dd3b3d1f790b4431">GPIO_byte1</a> = 0x0000ff00,</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595acf385bd78e3d36725f9d82955fce5fcf">   75</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595acf385bd78e3d36725f9d82955fce5fcf">GPIO_byte2</a> = 0x00ff0000,</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adf78991a114e960df39d947c450de88c">   76</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adf78991a114e960df39d947c450de88c">GPIO_byte3</a> = 0xff000000 </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;} <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#ga8ac4b8e7e6313a8b139ef0e9f9781a0b">   84</a></span>&#160;<span class="preprocessor">#define GPIO_pin(i) ((uint32_t)(1&lt;&lt;i))</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#ga894e6ae857ed4a9aedd04fff44a6770e">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770ea3db3c7d228d9b87cc125c8974241c800">   90</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770ea3db3c7d228d9b87cc125c8974241c800">GPIO_read</a>,</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770eab1b932c1d800b09eb45b7ff5750bf73c">   91</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770eab1b932c1d800b09eb45b7ff5750bf73c">GPIO_write</a></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <a class="code" href="group___g_p_i_o.html#ga894e6ae857ed4a9aedd04fff44a6770e">GPIO_mode</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">   97</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a93cbe0e318453de590a9cb0030a840fa">   98</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a93cbe0e318453de590a9cb0030a840fa">GPIO_reset</a>,</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a39769e54aa8c4b6fbad0ef4ae88b5c44">   99</a></span>&#160;    <a class="code" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a39769e54aa8c4b6fbad0ef4ae88b5c44">GPIO_set</a>   </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;} <a class="code" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___g_p_i_o.html#gad3d8f07163fbe858774e769eb6d755db">GPIO_init</a>( <a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>*     gpio,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                uint32_t    *base_address,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                uint8_t     width,</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                uint8_t     enable_offset,</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                uint8_t     write_offset,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                uint8_t     read_offset);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___g_p_i_o.html#ga3f18ccfbb70d89cc7e2b06712dd82eb7">GPIO_setMode</a>(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask, <a class="code" href="group___g_p_i_o.html#ga894e6ae857ed4a9aedd04fff44a6770e">GPIO_mode</a> mode);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___g_p_i_o.html#ga86b232ed74eacf9aa723cb1d7917a156">GPIO_setValue</a>(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask, <a class="code" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a> value);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___g_p_i_o.html#ga2f516854e98cd048d4d1ee6f86261f8c">GPIO_toggle</a>(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<a class="code" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a> <a class="code" href="group___g_p_i_o.html#gaf388b01cd7459baae5c03c744f611724">GPIO_getValue</a>(<a class="code" href="struct_g_p_i_o__t.html">GPIO_t</a>* gpio, <a class="code" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ad72f6d42b4b0af56c73db6e50765f899"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ad72f6d42b4b0af56c73db6e50765f899">GPIO_pin22</a></div><div class="ttdoc">GPIO pin22. </div><div class="ttdef"><b>Definition:</b> gpio.h:63</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga3f18ccfbb70d89cc7e2b06712dd82eb7"><div class="ttname"><a href="group___g_p_i_o.html#ga3f18ccfbb70d89cc7e2b06712dd82eb7">GPIO_setMode</a></div><div class="ttdeci">void GPIO_setMode(GPIO_t *gpio, GPIO_mask mask, GPIO_mode mode)</div><div class="ttdoc">Permette di settare la modalita&#39; lettura/scrittura dei pin di un device GPIO;. </div><div class="ttdef"><b>Definition:</b> gpio.c:36</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595af020e3ce7822bbfad6c6c259bba650f8"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af020e3ce7822bbfad6c6c259bba650f8">GPIO_pin2</a></div><div class="ttdoc">GPIO pin2. </div><div class="ttdef"><b>Definition:</b> gpio.h:43</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a30f4930e20283fc8bb8897c21bbef6fe"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a30f4930e20283fc8bb8897c21bbef6fe">GPIO_pin11</a></div><div class="ttdoc">GPIO pin11. </div><div class="ttdef"><b>Definition:</b> gpio.h:52</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a593a4b6c0c46ac236fb50fbbba6eaa94"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a593a4b6c0c46ac236fb50fbbba6eaa94">GPIO_pin7</a></div><div class="ttdoc">GPIO pin7. </div><div class="ttdef"><b>Definition:</b> gpio.h:48</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a47f866a19d9ff54b424a644e879ab137"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47f866a19d9ff54b424a644e879ab137">GPIO_pin1</a></div><div class="ttdoc">GPIO pin1. </div><div class="ttdef"><b>Definition:</b> gpio.h:42</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gad3d8f07163fbe858774e769eb6d755db"><div class="ttname"><a href="group___g_p_i_o.html#gad3d8f07163fbe858774e769eb6d755db">GPIO_init</a></div><div class="ttdeci">void GPIO_init(GPIO_t *gpio, uint32_t *base_address, uint8_t width, uint8_t enable_offset, uint8_t write_offset, uint8_t read_offset)</div><div class="ttdoc">Inizializza un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.c:19</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html"><div class="ttname"><a href="struct_g_p_i_o__t.html">GPIO_t</a></div><div class="ttdoc">Struttura che astrae un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:29</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a3ed32d8f1442759cabff7abda8dd9cdb"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a3ed32d8f1442759cabff7abda8dd9cdb">GPIO_pin28</a></div><div class="ttdoc">GPIO pin28. </div><div class="ttdef"><b>Definition:</b> gpio.h:69</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga495d9a7aa735fe416a3f110337c54967a39769e54aa8c4b6fbad0ef4ae88b5c44"><div class="ttname"><a href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a39769e54aa8c4b6fbad0ef4ae88b5c44">GPIO_set</a></div><div class="ttdoc">GPIO_set, corrisponde al valore logico &#39;1&#39;. </div><div class="ttdef"><b>Definition:</b> gpio.h:99</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595adf78991a114e960df39d947c450de88c"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adf78991a114e960df39d947c450de88c">GPIO_byte3</a></div><div class="ttdoc">GPIO byte3. </div><div class="ttdef"><b>Definition:</b> gpio.h:76</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595aea86e18245853475d93732bda835a658"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595aea86e18245853475d93732bda835a658">GPIO_pin5</a></div><div class="ttdoc">GPIO pin5. </div><div class="ttdef"><b>Definition:</b> gpio.h:46</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga6d5aef8a8a54ee2f602d47252ff66595"><div class="ttname"><a href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a></div><div class="ttdeci">GPIO_mask</div><div class="ttdoc">Maschere di selezione dei pin di un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:40</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a6b95a92fcb5f5a07947ee0eb0f0b9745"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6b95a92fcb5f5a07947ee0eb0f0b9745">GPIO_pin9</a></div><div class="ttdoc">GPIO pin9. </div><div class="ttdef"><b>Definition:</b> gpio.h:50</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html_a79c591d5fa42efdf86abd98347fece90"><div class="ttname"><a href="struct_g_p_i_o__t.html#a79c591d5fa42efdf86abd98347fece90">GPIO_t::base_address</a></div><div class="ttdeci">uint32_t * base_address</div><div class="ttdef"><b>Definition:</b> gpio.h:30</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a4b85e0412ff080dfe5f10aeb981dad8f"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4b85e0412ff080dfe5f10aeb981dad8f">GPIO_pin24</a></div><div class="ttdoc">GPIO pin24. </div><div class="ttdef"><b>Definition:</b> gpio.h:65</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a8f89521ea70b3aed4a18c33a099b98d0"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a8f89521ea70b3aed4a18c33a099b98d0">GPIO_byte0</a></div><div class="ttdoc">GPIO byte0. </div><div class="ttdef"><b>Definition:</b> gpio.h:73</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga495d9a7aa735fe416a3f110337c54967a93cbe0e318453de590a9cb0030a840fa"><div class="ttname"><a href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a93cbe0e318453de590a9cb0030a840fa">GPIO_reset</a></div><div class="ttdoc">GPIO_reset, corrisponde al valore logico &#39;0&#39;. </div><div class="ttdef"><b>Definition:</b> gpio.h:98</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595afd25054cc3f6057842f12e9b461e04c5"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595afd25054cc3f6057842f12e9b461e04c5">GPIO_pin17</a></div><div class="ttdoc">GPIO pin17. </div><div class="ttdef"><b>Definition:</b> gpio.h:58</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a751529bf657ad303e5e5c67a703138fe"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a751529bf657ad303e5e5c67a703138fe">GPIO_pin29</a></div><div class="ttdoc">GPIO pin29. </div><div class="ttdef"><b>Definition:</b> gpio.h:70</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a47e8e2e95a483b8804336ebe8006bbdd"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a47e8e2e95a483b8804336ebe8006bbdd">GPIO_pin16</a></div><div class="ttdoc">GPIO pin16. </div><div class="ttdef"><b>Definition:</b> gpio.h:57</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga894e6ae857ed4a9aedd04fff44a6770e"><div class="ttname"><a href="group___g_p_i_o.html#ga894e6ae857ed4a9aedd04fff44a6770e">GPIO_mode</a></div><div class="ttdeci">GPIO_mode</div><div class="ttdoc">GPIO_mode, modalita&#39; di funzionamento (lettura/scrittura) di un device GPIO. </div><div class="ttdef"><b>Definition:</b> gpio.h:89</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html_abb65e5db6d4ad365a7c48d00e4af1f78"><div class="ttname"><a href="struct_g_p_i_o__t.html#abb65e5db6d4ad365a7c48d00e4af1f78">GPIO_t::write_offset</a></div><div class="ttdeci">uint8_t write_offset</div><div class="ttdef"><b>Definition:</b> gpio.h:33</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a29e82f4b193ce85e5d36546030dd8cdb"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a29e82f4b193ce85e5d36546030dd8cdb">GPIO_pin6</a></div><div class="ttdoc">GPIO pin6. </div><div class="ttdef"><b>Definition:</b> gpio.h:47</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a4cac847517ef83df4ec954d0d1937a21"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a4cac847517ef83df4ec954d0d1937a21">GPIO_pin20</a></div><div class="ttdoc">GPIO pin20. </div><div class="ttdef"><b>Definition:</b> gpio.h:61</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a7238a678f95a665e82c974cd6e64063b"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a7238a678f95a665e82c974cd6e64063b">GPIO_pin13</a></div><div class="ttdoc">GPIO pin13. </div><div class="ttdef"><b>Definition:</b> gpio.h:54</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595adcbdf41a3086c14917c16aa16fe8dce0"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595adcbdf41a3086c14917c16aa16fe8dce0">GPIO_pin0</a></div><div class="ttdoc">GPIO pin0. </div><div class="ttdef"><b>Definition:</b> gpio.h:41</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a25b17f4e7b1cbf2c8cd09f7049bf8e3c"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a25b17f4e7b1cbf2c8cd09f7049bf8e3c">GPIO_pin8</a></div><div class="ttdoc">GPIO pin8. </div><div class="ttdef"><b>Definition:</b> gpio.h:49</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a951a5bd12a5ce5079380b66814bc7d4b"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a951a5bd12a5ce5079380b66814bc7d4b">GPIO_pin19</a></div><div class="ttdoc">GPIO pin19. </div><div class="ttdef"><b>Definition:</b> gpio.h:60</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ab5034fbdfc700bfe777088325fa2a448"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab5034fbdfc700bfe777088325fa2a448">GPIO_pin3</a></div><div class="ttdoc">GPIO pin3. </div><div class="ttdef"><b>Definition:</b> gpio.h:44</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga86b232ed74eacf9aa723cb1d7917a156"><div class="ttname"><a href="group___g_p_i_o.html#ga86b232ed74eacf9aa723cb1d7917a156">GPIO_setValue</a></div><div class="ttdeci">void GPIO_setValue(GPIO_t *gpio, GPIO_mask mask, GPIO_value value)</div><div class="ttdoc">Permette di settare il valore dei pin di un device GPIO;. </div><div class="ttdef"><b>Definition:</b> gpio.c:43</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html_a09a2a45f731b02946ff6d3cd15c1a476"><div class="ttname"><a href="struct_g_p_i_o__t.html#a09a2a45f731b02946ff6d3cd15c1a476">GPIO_t::width</a></div><div class="ttdeci">uint8_t width</div><div class="ttdef"><b>Definition:</b> gpio.h:31</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a39d4771a24a35c485af5db41e458dfd5"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a39d4771a24a35c485af5db41e458dfd5">GPIO_pin27</a></div><div class="ttdoc">GPIO pin27. </div><div class="ttdef"><b>Definition:</b> gpio.h:68</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a178596b752aa47edc06017af21862b10"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a178596b752aa47edc06017af21862b10">GPIO_pin4</a></div><div class="ttdoc">GPIO pin4. </div><div class="ttdef"><b>Definition:</b> gpio.h:45</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a6945a183851232023f40f47222c3dc77"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6945a183851232023f40f47222c3dc77">GPIO_pin26</a></div><div class="ttdoc">GPIO pin26. </div><div class="ttdef"><b>Definition:</b> gpio.h:67</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html_a14886d03a6936e5edd25a9ad27af16bd"><div class="ttname"><a href="struct_g_p_i_o__t.html#a14886d03a6936e5edd25a9ad27af16bd">GPIO_t::enable_offset</a></div><div class="ttdeci">uint8_t enable_offset</div><div class="ttdef"><b>Definition:</b> gpio.h:32</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a325ca3d5d92005391a0b125ead02af7b"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a325ca3d5d92005391a0b125ead02af7b">GPIO_pin23</a></div><div class="ttdoc">GPIO pin23. </div><div class="ttdef"><b>Definition:</b> gpio.h:64</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ac16a97d0cb0ab4064462b8e90f431444"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac16a97d0cb0ab4064462b8e90f431444">GPIO_pin10</a></div><div class="ttdoc">GPIO pin10. </div><div class="ttdef"><b>Definition:</b> gpio.h:51</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a2331cdf16345b682aa5a4aae88b7bfd7"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2331cdf16345b682aa5a4aae88b7bfd7">GPIO_pin15</a></div><div class="ttdoc">GPIO pin15. </div><div class="ttdef"><b>Definition:</b> gpio.h:56</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a50add0846388b745f32ac8834f93de70"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a50add0846388b745f32ac8834f93de70">GPIO_pin30</a></div><div class="ttdoc">GPIO pin30. </div><div class="ttdef"><b>Definition:</b> gpio.h:71</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gaf388b01cd7459baae5c03c744f611724"><div class="ttname"><a href="group___g_p_i_o.html#gaf388b01cd7459baae5c03c744f611724">GPIO_getValue</a></div><div class="ttdeci">GPIO_value GPIO_getValue(GPIO_t *gpio, GPIO_mask mask)</div><div class="ttdoc">Permette di leggere il valore dei pin di un device GPIO;. </div><div class="ttdef"><b>Definition:</b> gpio.c:57</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga894e6ae857ed4a9aedd04fff44a6770eab1b932c1d800b09eb45b7ff5750bf73c"><div class="ttname"><a href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770eab1b932c1d800b09eb45b7ff5750bf73c">GPIO_write</a></div><div class="ttdoc">GPIO_write modalita&#39; scrittura. </div><div class="ttdef"><b>Definition:</b> gpio.h:91</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595af38edbc7a6b5ad7707b45f633879b5a6"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595af38edbc7a6b5ad7707b45f633879b5a6">GPIO_pin12</a></div><div class="ttdoc">GPIO pin12. </div><div class="ttdef"><b>Definition:</b> gpio.h:53</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a2a36eaac21d68a35dd3b3d1f790b4431"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a2a36eaac21d68a35dd3b3d1f790b4431">GPIO_byte1</a></div><div class="ttdoc">GPIO byte1. </div><div class="ttdef"><b>Definition:</b> gpio.h:74</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ab53658c53d924fd4310b948e6f2ac9a6"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab53658c53d924fd4310b948e6f2ac9a6">GPIO_pin21</a></div><div class="ttdoc">GPIO pin21. </div><div class="ttdef"><b>Definition:</b> gpio.h:62</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga894e6ae857ed4a9aedd04fff44a6770ea3db3c7d228d9b87cc125c8974241c800"><div class="ttname"><a href="group___g_p_i_o.html#gga894e6ae857ed4a9aedd04fff44a6770ea3db3c7d228d9b87cc125c8974241c800">GPIO_read</a></div><div class="ttdoc">GPIO_read modalita&#39; lettura. </div><div class="ttdef"><b>Definition:</b> gpio.h:90</div></div>
+<div class="ttc" id="struct_g_p_i_o__t_html_ab65acde67dc46f1d163e2ee468420b48"><div class="ttname"><a href="struct_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48">GPIO_t::read_offset</a></div><div class="ttdeci">uint8_t read_offset</div><div class="ttdef"><b>Definition:</b> gpio.h:34</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a0695e489ab495b018a134b1f3d654b03"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a0695e489ab495b018a134b1f3d654b03">GPIO_pin18</a></div><div class="ttdoc">GPIO pin18. </div><div class="ttdef"><b>Definition:</b> gpio.h:59</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595acf385bd78e3d36725f9d82955fce5fcf"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595acf385bd78e3d36725f9d82955fce5fcf">GPIO_byte2</a></div><div class="ttdoc">GPIO byte2. </div><div class="ttdef"><b>Definition:</b> gpio.h:75</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ac5221e21fc0c958892c6238838b637ed"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ac5221e21fc0c958892c6238838b637ed">GPIO_pin25</a></div><div class="ttdoc">GPIO pin25. </div><div class="ttdef"><b>Definition:</b> gpio.h:66</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595ab9d0bda88540c4e7ad5610009cd64d70"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595ab9d0bda88540c4e7ad5610009cd64d70">GPIO_pin31</a></div><div class="ttdoc">GPIO pin31. </div><div class="ttdef"><b>Definition:</b> gpio.h:72</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga2f516854e98cd048d4d1ee6f86261f8c"><div class="ttname"><a href="group___g_p_i_o.html#ga2f516854e98cd048d4d1ee6f86261f8c">GPIO_toggle</a></div><div class="ttdeci">void GPIO_toggle(GPIO_t *gpio, GPIO_mask mask)</div><div class="ttdoc">Permette di invertire il valore dei pin di un device GPIO;. </div><div class="ttdef"><b>Definition:</b> gpio.c:50</div></div>
+<div class="ttc" id="group___g_p_i_o_html_ga495d9a7aa735fe416a3f110337c54967"><div class="ttname"><a href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a></div><div class="ttdeci">GPIO_value</div><div class="ttdoc">GPIO_value. </div><div class="ttdef"><b>Definition:</b> gpio.h:97</div></div>
+<div class="ttc" id="group___g_p_i_o_html_gga6d5aef8a8a54ee2f602d47252ff66595a6d0450f7184d9e30f292609fdb702021"><div class="ttname"><a href="group___g_p_i_o.html#gga6d5aef8a8a54ee2f602d47252ff66595a6d0450f7184d9e30f292609fdb702021">GPIO_pin14</a></div><div class="ttdoc">GPIO pin14. </div><div class="ttdef"><b>Definition:</b> gpio.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generato Mar 16 Mag 2017 14:06:12 per Zynq-7000 Driver Pack da &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_23e4d12f26a49ef99fb41232b599cf4b.html">GPIO</a></li><li class="navelem"><a class="el" href="gpio_8h.html">gpio.h</a></li>
+    <li class="footer">Generato Mar 16 Mag 2017 21:25:58 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -17,6 +17,11 @@
 #include "gpio.h"
 
 /**
+ * @addtogroup Zybo
+ * @{
+ */
+
+/**
  * @brief Maschere di selezione dei led
  */
 typedef enum {
@@ -55,10 +60,17 @@ typedef struct {
  * @param Led1_pin pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo;
  * @param Led0_pin pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;
  *
+ * @code
  * GPIO_t gpioLed;
  * GPIO_init(&gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);				// inizializzazione del device GPIO
  * ZyboLed_t leds;
  * ZyboLed_init(&leds, &gpioLed, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);	// inzializzazione della struttura ZyboLed_t
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - leds non sia un puntatore nullo;
+ * - gpio non sia un puntatore nullo
+ * - LedN_pin siano tutti pin differenti
  */
 void ZyboLed_init(	ZyboLed_t	*leds,
 					GPIO_t		*gpio,
@@ -70,16 +82,39 @@ void ZyboLed_init(	ZyboLed_t	*leds,
 /**
  * @brief Permette di accendere/spegnere i Led sulla board
  * @param leds   puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param mask   maschera di selezione dei led, quelli non selezionati vengono lasciati alterati
+ * @param mask   maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
  * @param status status dei led, ZyboLed_on per accendere, ZyboLed_off per spegnere
  *
+ * @code
  * ZyboLed_setStatus(&leds, ZyboLed3 | ZyboLed1, ZyboLed_on);	// accensione dei Led 3 ed 1
  * ZyboLed_setStatus(&leds, ZyboLed3 | ZyboLed1, ZyboLed_off);	// spegnimento dei Led 3 ed 1
  * ZyboLed_setStatus(&leds, ZyboLed2 | ZyboLed0, ZyboLed_on);	// accendsione dei Led 2 ed 0
  * ZyboLed_setStatus(&leds, ZyboLed2 | ZyboLed0, ZyboLed_off);	// spegnimento dei Led 2 ed 0
  * ZyboLed_setStatus(&leds, ZyboLed3 | ZyboLed1 | ZyboLed2 | ZyboLed0, ZyboLed_on);		// accensone di tutti i led
  * ZyboLed_setStatus(&leds, ZyboLed3 | ZyboLed1 | ZyboLed2 | ZyboLed0, ZyboLed_off);	// spegnimento di tutti i led
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - leds non sia un puntatore nullo;
+ * - leds->gpio non sia un puntatore nullo
  */
 void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t status);
+
+/**
+ * @brief Permette di accendere/spegnere i Led sulla board, invertendone il valore
+ * @param leds   puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
+ * @param mask   maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
+ *
+ * @code
+ * ZyboLed_toggle(&leds, ZyboLed3 | ZyboLed1);	// accensione/spegnimento dei Led 3 ed 1
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - leds non sia un puntatore nullo;
+ * - leds->gpio non sia un puntatore nullo
+ */
+void ZyboLed_toggle(ZyboLed_t *leds, ZyboLed_mask_t mask);
+
+/** @} */
 
 #endif

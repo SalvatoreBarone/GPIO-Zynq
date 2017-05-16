@@ -18,6 +18,12 @@
 #ifndef __HD44780_LCD__
 #define __HD44780_LCD__
 
+/**
+ * @addtogroup LCD
+ * @{
+ */
+
+
 #include "gpio.h"
 
 typedef enum {
@@ -77,6 +83,7 @@ typedef struct {
  * @param Data1 pin del device GPIO a cui e' associato il segnale Data1 del display LCD;
  * @param Data0 pin del device GPIO a cui e' associato il segnale Data0 del display LCD;
  *
+ * @code
  * GPIO_t gpioDisplay;
  * GPIO_init(&gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);
  * HD44780_LCD_t lcd;
@@ -86,7 +93,7 @@ typedef struct {
  * HD44780_Print(&lcd, "Ciao! Come va");
  * HD44780_MoveToRow2(&lcd);
  * HD44780_Print(&lcd, "lo studio?");
- *
+ * @endcode
  */
 void HD44780_Init8(	HD44780_LCD_t	*lcd,
 					GPIO_t			*gpio,
@@ -127,6 +134,7 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  * @param Data5 pin del device GPIO a cui e' associato il segnale Data5 del display LCD;
  * @param Data4 pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
  *
+ * @code
  * GPIO_t gpioDisplay;
  * GPIO_init(&gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);
  * HD44780_LCD_t lcd;
@@ -135,7 +143,7 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  * HD44780_Print(&lcd, "Ciao! Come va");
  * HD44780_MoveToRow2(&lcd);
  * HD44780_Print(&lcd, "lo studio?");
-
+ * @endcode
  */
 void HD44780_Init4(	HD44780_LCD_t	*lcd,
 					GPIO_t			*gpio,
@@ -163,6 +171,7 @@ void HD44780_Printc(HD44780_LCD_t* lcd, char c);
  * @param lcd display da pilotare;
  * @param s puntatore alla stringa null-terminated da stampare sul display;
  *
+ * @code
  * // stampa di un intero
  * #include <stdlib.h>
  * 	...
@@ -195,6 +204,7 @@ void HD44780_Printc(HD44780_LCD_t* lcd, char c);
  * parte_decimale = (int)(float_number * moltiplicatore) - (parte_intera * moltiplicatore);
  * snprintf(str, 20,"%d.%d", parte_intera, parte_decimale);
  * error = HD44780_Print(lcd, str);
+ * @endcode
  */
 void HD44780_Print(HD44780_LCD_t* lcd, const char *s);
 
@@ -260,5 +270,7 @@ void HD44780_CursorOn(HD44780_LCD_t* lcd);
  * @param lcd display da pilotare;
  */
 void HD44780_CursorBlink(HD44780_LCD_t* lcd);
+
+/** @} */
 
 #endif

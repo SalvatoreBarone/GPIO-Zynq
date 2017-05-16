@@ -17,6 +17,12 @@
 #include "gpio.h"
 
 /**
+ * @addtogroup Zybo
+ * @{
+ */
+
+
+/**
  * @brief Maschere di selezione degli switch
  */
 typedef enum {
@@ -55,10 +61,17 @@ typedef struct {
  * @param Switch1_pin	pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo;
  * @param Switch0_pin	pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;
  *
+ * @code
  * GPIO_t gpioSwitch;
  * GPIO_init(&gpioSwitch, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);
  * ZyboSwitch_t switches;
  * ZyboSwitch_init(&switches, &gpioSwitch, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - switches non sia un puntatore nullo;
+ * - gpio non sia un puntatore nullo
+ * - SwitchN_pin siano tutti pin differenti
  */
 void ZyboSwitch_init(	ZyboSwitch_t	*switches,
 						GPIO_t			*gpio,
@@ -72,13 +85,21 @@ void ZyboSwitch_init(	ZyboSwitch_t	*switches,
  * @param switches		puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board Digilent Zybo;
  * @param mask			maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione
  * @return				status status degli switch
- *                   	- ZyboSwitch_on se uno degli switch selezionati e' attivo;
- *                    	- ZyboSwitch_off altrimenti
+ * @retval				ZyboSwitch_on se uno degli switch selezionati e' attivo;
+ * @retval				ZyboSwitch_off altrimenti
  *
+ * @code
  * ZyboSwitch_status_t switch_status = ZyboSwitch_getStatus(&switches, ZyboSwitch3);			// leggo lo stato dello switch 3
  * ZyboLed_status_t led_status = (switch_status == ZyboSwitch_on ? ZyboLed_on : ZyboLed_off);	// se lo switch 3 e' attivo accendo il led 3
  * ZyboLed_setStatus(&leds, ZyboLed3, led_status);												// accendo/spengo led 3
+ * @endcode
+ *
+ * @warning Usa la macro assert per verificare che:
+ * - switches non sia un puntatore nullo;
+ * - switches->gpio non sia un puntatore nullo
  */
 ZyboSwitch_status_t ZyboSwitch_getStatus(ZyboSwitch_t *switches, ZyboSwitch_mask_t mask);
+
+/** @} */
 
 #endif

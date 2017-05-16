@@ -62,3 +62,15 @@ void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t st
 	gpio_mask |= ((mask & ZyboLed0) != 0 ? leds->Led0_pin : 0);
 	GPIO_setValue(leds->gpio, gpio_mask, (status == ZyboLed_off ? GPIO_reset : GPIO_set));
 }
+
+
+void ZyboLed_toggle(ZyboLed_t *leds, ZyboLed_mask_t mask) {
+	assert(leds);
+	assert(leds->gpio);
+	GPIO_mask gpio_mask = 0;
+	gpio_mask |= ((mask & ZyboLed3) != 0 ? leds->Led3_pin : 0);
+	gpio_mask |= ((mask & ZyboLed2) != 0 ? leds->Led2_pin : 0);
+	gpio_mask |= ((mask & ZyboLed1) != 0 ? leds->Led1_pin : 0);
+	gpio_mask |= ((mask & ZyboLed0) != 0 ? leds->Led0_pin : 0);
+	GPIO_toggle(leds->gpio, gpio_mask);
+}

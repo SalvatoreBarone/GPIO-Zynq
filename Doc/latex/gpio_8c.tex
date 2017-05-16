@@ -1,0 +1,26 @@
+\hypertarget{gpio_8c}{\section{Riferimenti per il file G\+P\+I\+O/gpio.c}
+\label{gpio_8c}\index{G\+P\+I\+O/gpio.\+c@{G\+P\+I\+O/gpio.\+c}}
+}
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+Grafo delle dipendenze di inclusione per gpio.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{gpio_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___g_p_i_o_gad3d8f07163fbe858774e769eb6d755db}{G\+P\+I\+O\+\_\+init} (\hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, uint32\+\_\+t $\ast$base\+\_\+address, uint8\+\_\+t width, uint8\+\_\+t enable\+\_\+offset, uint8\+\_\+t write\+\_\+offset, uint8\+\_\+t read\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Inizializza un device G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group___g_p_i_o_ga3f18ccfbb70d89cc7e2b06712dd82eb7}{G\+P\+I\+O\+\_\+set\+Mode} (\hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group___g_p_i_o_ga894e6ae857ed4a9aedd04fff44a6770e}{G\+P\+I\+O\+\_\+mode} mode)
+\begin{DoxyCompactList}\small\item\em Permette di settare la modalita' lettura/scrittura dei pin di un device G\+P\+I\+O;. \end{DoxyCompactList}\item 
+void \hyperlink{group___g_p_i_o_ga86b232ed74eacf9aa723cb1d7917a156}{G\+P\+I\+O\+\_\+set\+Value} (\hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group___g_p_i_o_ga495d9a7aa735fe416a3f110337c54967}{G\+P\+I\+O\+\_\+value} value)
+\begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device G\+P\+I\+O;. \end{DoxyCompactList}\item 
+void \hyperlink{group___g_p_i_o_ga2f516854e98cd048d4d1ee6f86261f8c}{G\+P\+I\+O\+\_\+toggle} (\hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di invertire il valore dei pin di un device G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\hyperlink{group___g_p_i_o_ga495d9a7aa735fe416a3f110337c54967}{G\+P\+I\+O\+\_\+value} \hyperlink{group___g_p_i_o_gaf388b01cd7459baae5c03c744f611724}{G\+P\+I\+O\+\_\+get\+Value} (\hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di leggere il valore dei pin di un device G\+P\+I\+O;. \end{DoxyCompactList}\end{DoxyCompactItemize}
