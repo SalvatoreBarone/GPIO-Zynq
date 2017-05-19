@@ -1,0 +1,203 @@
+\hypertarget{group___switch}{\section{Switch}
+\label{group___switch}\index{Switch@{Switch}}
+}
+Diagramma di collaborazione per Switch\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{group___switch}
+\end{center}
+\end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae l'insieme degli switch presenti sulla board Digilent Zybo;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___switch_ga1c463f6e1e3a43f68109c176772ce5cc}{Zybo\+Switch}(i)~((uint32\+\_\+t)(1$<$$<$i))
+\begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} \{ \hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}{Zybo\+Switch3} = 0x8, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}{Zybo\+Switch2} = 0x4, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}{Zybo\+Switch1} = 0x2, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}{Zybo\+Switch0} = 0x1
+ \}
+\begin{DoxyCompactList}\small\item\em Maschere di selezione degli switch. \end{DoxyCompactList}\item 
+enum \hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \{ \hyperlink{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}{Zybo\+Switch\+\_\+off}, 
+\hyperlink{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{Zybo\+Switch\+\_\+on}
+ \}
+\begin{DoxyCompactList}\small\item\em Status di attivo/inattivo degli switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___switch_ga121018c0ccfeb05b6e8f692a5a6955d7}{Zybo\+Switch\+\_\+init} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch3\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch2\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch1\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch0\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}. \end{DoxyCompactList}\item 
+\hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \hyperlink{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}{Zybo\+Switch\+\_\+get\+Status} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} mask)
+\begin{DoxyCompactList}\small\item\em Permette la lettura dello stato degli switch presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+
+
+\subsection{Documentazione delle definizioni}
+\hypertarget{group___switch_ga1c463f6e1e3a43f68109c176772ce5cc}{\index{Switch@{Switch}!Zybo\+Switch@{Zybo\+Switch}}
+\index{Zybo\+Switch@{Zybo\+Switch}!Switch@{Switch}}
+\subsubsection[{Zybo\+Switch}]{\setlength{\rightskip}{0pt plus 5cm}\#define Zybo\+Switch(
+\begin{DoxyParamCaption}
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~((uint32\+\_\+t)(1$<$$<$i))}}\label{group___switch_ga1c463f6e1e3a43f68109c176772ce5cc}
+
+
+Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em i} & indice dello switch da selezionare, da 0 a 3 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera di selezione dello switch i-\/esimo 
+\end{DoxyReturn}
+
+
+\subsection{Documentazione dei tipi enumerati}
+\hypertarget{group___switch_ga2e0602a824354f25c395f938caba3703}{\index{Switch@{Switch}!Zybo\+Switch\+\_\+mask\+\_\+t@{Zybo\+Switch\+\_\+mask\+\_\+t}}
+\index{Zybo\+Switch\+\_\+mask\+\_\+t@{Zybo\+Switch\+\_\+mask\+\_\+t}!Switch@{Switch}}
+\subsubsection[{Zybo\+Switch\+\_\+mask\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Zybo\+Switch\+\_\+mask\+\_\+t}}}\label{group___switch_ga2e0602a824354f25c395f938caba3703}
+
+
+Maschere di selezione degli switch. 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{Zybo\+Switch3@{Zybo\+Switch3}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch3@{Zybo\+Switch3}}\item[{\em 
+\hypertarget{group___switch_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}{Zybo\+Switch3}\label{group___switch_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}
+}]Zybo\+Switch3, seleziona lo switch 3 sulla board Digilent Zybo;. \index{Zybo\+Switch2@{Zybo\+Switch2}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch2@{Zybo\+Switch2}}\item[{\em 
+\hypertarget{group___switch_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}{Zybo\+Switch2}\label{group___switch_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}
+}]Zybo\+Switch2, seleziona lo switch 2 sulla board Digilent Zybo;. \index{Zybo\+Switch1@{Zybo\+Switch1}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch1@{Zybo\+Switch1}}\item[{\em 
+\hypertarget{group___switch_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}{Zybo\+Switch1}\label{group___switch_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}
+}]Zybo\+Switch1, seleziona lo switch 1 sulla board Digilent Zybo;. \index{Zybo\+Switch0@{Zybo\+Switch0}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch0@{Zybo\+Switch0}}\item[{\em 
+\hypertarget{group___switch_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}{Zybo\+Switch0}\label{group___switch_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}
+}]Zybo\+Switch0, seleziona lo switch 0 sulla board Digilent Zybo;. \end{description}
+\end{Desc}
+\hypertarget{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{\index{Switch@{Switch}!Zybo\+Switch\+\_\+status\+\_\+t@{Zybo\+Switch\+\_\+status\+\_\+t}}
+\index{Zybo\+Switch\+\_\+status\+\_\+t@{Zybo\+Switch\+\_\+status\+\_\+t}!Switch@{Switch}}
+\subsubsection[{Zybo\+Switch\+\_\+status\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Zybo\+Switch\+\_\+status\+\_\+t}}}\label{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}
+
+
+Status di attivo/inattivo degli switch. 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{Zybo\+Switch\+\_\+off@{Zybo\+Switch\+\_\+off}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch\+\_\+off@{Zybo\+Switch\+\_\+off}}\item[{\em 
+\hypertarget{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}{Zybo\+Switch\+\_\+off}\label{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}
+}]Zybo\+Switch\+\_\+off, corrisponde al valore logico '0', indica che lo switch e' inattivo;. \index{Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}}\item[{\em 
+\hypertarget{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{Zybo\+Switch\+\_\+on}\label{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}
+}]Zybo\+Switch\+\_\+on, corrisponde al valore logico '1', indica che lo switch e' attivo;. \end{description}
+\end{Desc}
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}{\index{Switch@{Switch}!Zybo\+Switch\+\_\+get\+Status@{Zybo\+Switch\+\_\+get\+Status}}
+\index{Zybo\+Switch\+\_\+get\+Status@{Zybo\+Switch\+\_\+get\+Status}!Switch@{Switch}}
+\subsubsection[{Zybo\+Switch\+\_\+get\+Status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Zybo\+Switch\+\_\+status\+\_\+t} Zybo\+Switch\+\_\+get\+Status (
+\begin{DoxyParamCaption}
+\item[{{\bf Zybo\+Switch\+\_\+t} $\ast$}]{switches, }
+\item[{{\bf Zybo\+Switch\+\_\+mask\+\_\+t}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}
+
+
+Permette la lettura dello stato degli switch presenti sulla board. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
+\hline
+{\em mask} & maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+status status degli switch 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em Zybo\+Switch\+\_\+on} & se uno degli switch selezionati e' attivo; \\
+\hline
+{\em Zybo\+Switch\+\_\+off} & altrimenti\\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+1 ZyboSwitch\_status\_t switch\_status = ZyboSwitch\_getStatus(&switches, ZyboSwitch3);           // leggo lo
+       stato dello switch 3
+2 ZyboLed\_status\_t led\_status = (switch\_status == ZyboSwitch\_on ? ZyboLed\_on : ZyboLed\_off);  // se lo switch
+       3 e' attivo accendo il led 3
+3 ZyboLed\_setStatus(&leds, ZyboLed3, led\_status);                                             //
+       accendo/spengo led 3
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che\+:
+\begin{DoxyItemize}
+\item switches non sia un puntatore nullo;
+\item switches-\/$>$gpio non sia un puntatore nullo 
+\end{DoxyItemize}
+\end{DoxyWarning}
+\hypertarget{group___switch_ga121018c0ccfeb05b6e8f692a5a6955d7}{\index{Switch@{Switch}!Zybo\+Switch\+\_\+init@{Zybo\+Switch\+\_\+init}}
+\index{Zybo\+Switch\+\_\+init@{Zybo\+Switch\+\_\+init}!Switch@{Switch}}
+\subsubsection[{Zybo\+Switch\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void Zybo\+Switch\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf Zybo\+Switch\+\_\+t} $\ast$}]{switches, }
+\item[{{\bf G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf G\+P\+I\+O\+\_\+mask}}]{Switch3\+\_\+pin, }
+\item[{{\bf G\+P\+I\+O\+\_\+mask}}]{Switch2\+\_\+pin, }
+\item[{{\bf G\+P\+I\+O\+\_\+mask}}]{Switch1\+\_\+pin, }
+\item[{{\bf G\+P\+I\+O\+\_\+mask}}]{Switch0\+\_\+pin}
+\end{DoxyParamCaption}
+)}}\label{group___switch_ga121018c0ccfeb05b6e8f692a5a6955d7}
+
+
+Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
+\hline
+{\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\hline
+{\em Switch3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 3 della board Digilent Zybo; \\
+\hline
+{\em Switch2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 2 della board Digilent Zybo; \\
+\hline
+{\em Switch1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 1 della board Digilent Zybo; \\
+\hline
+{\em Switch0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 0 della board Digilent Zybo;\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+1 GPIO\_t gpioSwitch;
+2 GPIO\_init(&gpioSwitch, XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR, 4, 0, 4, 8);
+3 ZyboSwitch\_t switches;
+4 ZyboSwitch\_init(&switches, &gpioSwitch, GPIO\_pin3, GPIO\_pin2, GPIO\_pin1, GPIO\_pin0);
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che\+:
+\begin{DoxyItemize}
+\item switches non sia un puntatore nullo;
+\item gpio non sia un puntatore nullo
+\item Switch\+N\+\_\+pin siano tutti pin differenti 
+\end{DoxyItemize}
+\end{DoxyWarning}

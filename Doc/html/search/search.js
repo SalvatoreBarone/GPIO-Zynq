@@ -15,7 +15,7 @@ var indexSectionsWithContent =
   5: "ghz",
   6: "ghz",
   7: "hlt",
-  8: "glz"
+  8: "bghlsz"
 };
 
 var indexSectionNames =

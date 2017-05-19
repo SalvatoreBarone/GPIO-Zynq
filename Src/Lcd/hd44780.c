@@ -241,6 +241,42 @@ void HD44780_Print(HD44780_LCD_t* lcd, const char *s) {
 		HD44780_WriteData(lcd, (uint8_t)s[i++]);
 }
 
+void HD44780_printBinary8(HD44780_LCD_t *lcd, uint8_t b) {
+	int i;
+	for (i = 7; i != -1; i--)
+		HD44780_Printc(lcd, ((b>>i)&1)+'0');
+}
+
+void HD44780_printBinary32(HD44780_LCD_t *lcd, uint32_t w) {
+	int i;
+	for (i = 31; i != -1; i--)
+		HD44780_Printc(lcd, ((w>>i)&1)+'0');
+}
+
+void HD44780_printBinary64(HD44780_LCD_t *lcd, uint64_t b) {
+	int i;
+	for (i = 63; i != -1; i--)
+		HD44780_Printc(lcd, ((b>>i)&1)+'0');
+}
+
+void HD44780_printHex8(HD44780_LCD_t *lcd, uint8_t b) {
+	int i;
+	for (i = 7; i != -1; i-=4)
+		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'A'));
+}
+
+void HD44780_printHex32(HD44780_LCD_t *lcd, uint32_t w) {
+	int i;
+	for (i = 31; i != -1; i-=4)
+		HD44780_Printc(lcd, ((w>>i)&0xF) + (((w>>i)&0xF) < 10 ? '0' : 'A'));
+}
+
+void HD44780_printHex64(HD44780_LCD_t *lcd, uint64_t b) {
+	int i;
+	for (i = 63; i != -1; i-=4)
+		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'A'));
+}
+
 void HD44780_Clear(HD44780_LCD_t* lcd) {
 	HD44780_WriteCommand(lcd, HD44780_clear);
 }

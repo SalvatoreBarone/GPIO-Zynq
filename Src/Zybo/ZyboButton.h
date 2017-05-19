@@ -19,6 +19,9 @@
 /**
  * @addtogroup Zybo
  * @{
+ *
+ * @defgroup Button
+ * @{
  */
 
 
@@ -31,6 +34,13 @@ typedef enum {
 	ZyboButton1 = 0x2, //!< ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;
 	ZyboButton0 = 0x1  //!< ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;
 } ZyboButton_mask_t;
+
+/**
+ * @brief  Metodo alternativo per la specifica di uno dei button presenti sulla board Digilent Zybo
+ * @param i indice del button da selezionare, da 0 a 3
+ * @return  maschera di selezione del button i-esimo
+ */
+#define ZyboButton(i) ((uint32_t)(1<<i))
 
 /**
  * @brief Status di attivo/inattivo dei PushButton
@@ -152,6 +162,8 @@ void ZyboButton_waitWhileBusy(ZyboButton_t *buttons);
  */
 ZyboButton_status_t ZyboButton_getStatus(ZyboButton_t *buttons, ZyboButton_mask_t mask);
 
-/** @} */
-
+/**
+ * @}
+ * @}
+ */
 #endif

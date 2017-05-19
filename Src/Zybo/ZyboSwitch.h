@@ -19,6 +19,9 @@
 /**
  * @addtogroup Zybo
  * @{
+ *
+ * @defgroup Switch
+ * @{
  */
 
 
@@ -31,6 +34,13 @@ typedef enum {
 	ZyboSwitch1 = 0x2, //!< ZyboSwitch1, seleziona lo switch 1 sulla board Digilent Zybo;
 	ZyboSwitch0 = 0x1 //!< ZyboSwitch0, seleziona lo switch 0 sulla board Digilent Zybo;
 } ZyboSwitch_mask_t;
+
+/**
+ * @brief  Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo
+ * @param i indice dello switch da selezionare, da 0 a 3
+ * @return  maschera di selezione dello switch i-esimo
+ */
+#define ZyboSwitch(i) ((uint32_t)(1<<i))
 
 /**
  * @brief Status di attivo/inattivo degli switch
@@ -100,6 +110,9 @@ void ZyboSwitch_init(	ZyboSwitch_t	*switches,
  */
 ZyboSwitch_status_t ZyboSwitch_getStatus(ZyboSwitch_t *switches, ZyboSwitch_mask_t mask);
 
-/** @} */
+/**
+ * @}
+ * @}
+ */
 
 #endif

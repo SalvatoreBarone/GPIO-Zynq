@@ -19,6 +19,9 @@
 /**
  * @addtogroup Zybo
  * @{
+ *
+ * @defgroup Led
+ * @{
  */
 
 /**
@@ -30,6 +33,13 @@ typedef enum {
 	ZyboLed1 = 0x2, //!< ZyboLed1, seleziona il led 1 sulla board Digilent Zybo;
 	ZyboLed0 = 0x1 //!< ZyboLed0, seleziona il led 0 sulla board Digilent Zybo;
 } ZyboLed_mask_t;
+
+/**
+ * @brief  Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo
+ * @param i indice del led da selezionare, da 0 a 3
+ * @return  maschera di selezione del led i-esimo
+ */
+#define ZyboLed(i) ((uint32_t)(1<<i))
 
 /**
  * @brief Status di accensione/spegnimento dei led
@@ -115,6 +125,9 @@ void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t st
  */
 void ZyboLed_toggle(ZyboLed_t *leds, ZyboLed_mask_t mask);
 
-/** @} */
+/**
+ * @}
+ * @}
+ */
 
 #endif

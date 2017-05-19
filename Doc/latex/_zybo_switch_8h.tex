@@ -9,8 +9,7 @@ Grafo delle dipendenze di inclusione per Zybo\+Switch.\+h\+:\nopagebreak
 \includegraphics[width=181pt]{_zybo_switch_8h__incl}
 \end{center}
 \end{figure}
-Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
-\nopagebreak
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -22,23 +21,28 @@ Questo grafo mostra quali altri file includono direttamente o indirettamente que
 \item 
 struct \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}
 \begin{DoxyCompactList}\small\item\em Struttura opaca che astrae l'insieme degli switch presenti sulla board Digilent Zybo;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___switch_ga1c463f6e1e3a43f68109c176772ce5cc}{Zybo\+Switch}(i)~((uint32\+\_\+t)(1$<$$<$i))
+\begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{group___zybo_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} \{ \hyperlink{group___zybo_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}{Zybo\+Switch3} = 0x8, 
-\hyperlink{group___zybo_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}{Zybo\+Switch2} = 0x4, 
-\hyperlink{group___zybo_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}{Zybo\+Switch1} = 0x2, 
-\hyperlink{group___zybo_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}{Zybo\+Switch0} = 0x1
+enum \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} \{ \hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}{Zybo\+Switch3} = 0x8, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}{Zybo\+Switch2} = 0x4, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}{Zybo\+Switch1} = 0x2, 
+\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}{Zybo\+Switch0} = 0x1
  \}
 \begin{DoxyCompactList}\small\item\em Maschere di selezione degli switch. \end{DoxyCompactList}\item 
-enum \hyperlink{group___zybo_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \{ \hyperlink{group___zybo_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}{Zybo\+Switch\+\_\+off}, 
-\hyperlink{group___zybo_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{Zybo\+Switch\+\_\+on}
+enum \hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \{ \hyperlink{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}{Zybo\+Switch\+\_\+off}, 
+\hyperlink{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{Zybo\+Switch\+\_\+on}
  \}
 \begin{DoxyCompactList}\small\item\em Status di attivo/inattivo degli switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{group___zybo_ga121018c0ccfeb05b6e8f692a5a6955d7}{Zybo\+Switch\+\_\+init} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch3\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch2\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch1\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch0\+\_\+pin)
+void \hyperlink{group___switch_ga121018c0ccfeb05b6e8f692a5a6955d7}{Zybo\+Switch\+\_\+init} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch3\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch2\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch1\+\_\+pin, \hyperlink{group___g_p_i_o_ga6d5aef8a8a54ee2f602d47252ff66595}{G\+P\+I\+O\+\_\+mask} Switch0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}. \end{DoxyCompactList}\item 
-\hyperlink{group___zybo_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \hyperlink{group___zybo_gafac8daf9a9a585f8f20ef2a6fa883a1f}{Zybo\+Switch\+\_\+get\+Status} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{group___zybo_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} mask)
+\hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \hyperlink{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}{Zybo\+Switch\+\_\+get\+Status} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} mask)
 \begin{DoxyCompactList}\small\item\em Permette la lettura dello stato degli switch presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}

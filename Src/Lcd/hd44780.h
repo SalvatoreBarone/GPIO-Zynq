@@ -21,6 +21,48 @@
 /**
  * @addtogroup LCD
  * @{
+ *
+ * @defgroup HD44780
+ * @{
+ *
+ * Un oggetto di tipo HD44780_LCD_t rappresenta un device lcd HD44780. Il modulo e' pensato per
+ * permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti
+ * HD44780_LCD_t diversi.<br>
+ * La struttura HD44780_LCD_t specifica quali siano i pin del microcontrollore che pilotano un
+ * determinato segnale del device. Ciascuno dei pin, cosi' come previsto dalla libreria STMCube,
+ * e' identificato attraverso una coppia porta-pin (ad esempio la coppia GPIOD-GPIO_PIN_9 si
+ * riferisce al pin 9 della porta D, quindi PD9). L'assegnazione segnale-coppia, quindi l'
+ * inizializzazione della struttura HD44780_LCD_t relativa ad un device lcd, DEVE essere effettuata
+ * tassativamente utilizzando le funzioni<br>
+ * 	- HD44780_Init4()
+ * 	- HD44780_Init4_v2()
+ * 	- HD44780_Init8()
+ * 	- HD44780_Init8_v2()<br>
+ *
+ * le quali provvedono anche ad effettuare un test di connessione volto ad individuare eventuali
+ * segnali erroneamente associati.<br>
+ * Tali funzioni restituiscono un codice di errore, il quale puo' essere utilizzato per identificare
+ * la problematica sorta durante l'inizializzazione e provvedere alla sua gestione. Per i dettagli
+ * si rimanda alla documentazione delle specifiche funzioni.<br>
+ * <br>
+ * Oltre alle funzioni di inizializzazione, il modulo fornisce anche funzioni basilari per la
+ * stampa su display lcd di
+ * - caratteri, con la funzione HD44780_Printc()
+ * - stringhe null-terminated di caratteri, con la funzione HD44780_Print()<br>
+ *
+ * Sono disponibili, inoltre, anche funzioni specifiche per inviare comandi al device:
+ *  - HD44780_Clear()
+ *  - HD44780_Home()
+ *  - HD44780_MoveToRow1()
+ *  - HD44780_MoveToRow2()
+ *  - HD44780_MoveCursor()
+ *  - HD44780_DisplayOff()
+ *  - HD44780_CursorOff()
+ *  - HD44780_CursorOn()
+ *  - HD44780_CursorBlink()<br>
+ *
+ * Per ulteriori dettagli si rimanda alla documentazione delle specifiche funzioni ed alla
+ * documentazione esterna che accompagna il modulo, reperibile nella cartella Doc.
  */
 
 
@@ -209,6 +251,48 @@ void HD44780_Printc(HD44780_LCD_t* lcd, char c);
 void HD44780_Print(HD44780_LCD_t* lcd, const char *s);
 
 /**
+ * @brief Stampa un byte in binario. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param b byte da stampare
+ */
+void HD44780_printBinary8(HD44780_LCD_t *lcd, uint8_t b);
+
+/**
+ * @brief Stampa una word di 32 bit in binario. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param w word da stampare
+ */
+void HD44780_printBinary32(HD44780_LCD_t *lcd, uint32_t w);
+
+/**
+ * @brief Stampa un blocco di 64 bit in binario. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param b blocco da stampare
+ */
+void HD44780_printBinary64(HD44780_LCD_t *lcd, uint64_t b);
+
+/**
+ * @brief Stampa un byte in esadecimale. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param b byte da stampare
+ */
+void HD44780_printHex8(HD44780_LCD_t *lcd, uint8_t b);
+
+/**
+ * @brief Stampa una word di 32 bit in esadecimale. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param w word da stampare
+ */
+void HD44780_printHex32(HD44780_LCD_t *lcd, uint32_t w);
+
+/**
+ * @brief Stampa un blocco di 64 bit in esadecimale. (bit piu' significativo a sinistra)
+ * @param lcd
+ * @param b blocco da stampare
+ */
+void HD44780_printHex64(HD44780_LCD_t *lcd, uint64_t b);
+
+/**
  * @brief Pulisce il display e sposta il cursore all'inizio della prima riga
  * @param lcd display da pilotare;
  */
@@ -271,6 +355,9 @@ void HD44780_CursorOn(HD44780_LCD_t* lcd);
  */
 void HD44780_CursorBlink(HD44780_LCD_t* lcd);
 
-/** @} */
+/**
+ * @}
+ * @}
+ */
 
 #endif
