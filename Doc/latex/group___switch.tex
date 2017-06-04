@@ -1,8 +1,7 @@
 \hypertarget{group___switch}{\section{Switch}
 \label{group___switch}\index{Switch@{Switch}}
 }
-Diagramma di collaborazione per Switch\+:
-\nopagebreak
+Diagramma di collaborazione per Switch\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -57,8 +56,8 @@ void \hyperlink{group___switch_ga121018c0ccfeb05b6e8f692a5a6955d7}{Zybo\+Switch\
 Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em i} & indice dello switch da selezionare, da 0 a 3 \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em i} & indice dello switch da selezionare, da 0 a 3 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -119,10 +118,10 @@ Status di attivo/inattivo degli switch.
 Permette la lettura dello stato degli switch presenti sulla board. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
 \hline
-{\em mask} & maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione \\
+\mbox{\tt in}  & {\em mask} & maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -170,18 +169,18 @@ Usa la macro assert per verificare che\+:
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
 \hline
-{\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
 \hline
-{\em Switch3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 3 della board Digilent Zybo; \\
 \hline
-{\em Switch2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 2 della board Digilent Zybo; \\
 \hline
-{\em Switch1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 1 della board Digilent Zybo; \\
 \hline
-{\em Switch0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Switch0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 

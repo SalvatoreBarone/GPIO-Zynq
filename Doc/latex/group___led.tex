@@ -1,8 +1,7 @@
 \hypertarget{group___led}{\section{Led}
 \label{group___led}\index{Led@{Led}}
 }
-Diagramma di collaborazione per Led\+:
-\nopagebreak
+Diagramma di collaborazione per Led\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -59,8 +58,8 @@ void \hyperlink{group___led_ga20ddd78a98b4c0123c5b964aa0a59046}{Zybo\+Led\+\_\+t
 Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em i} & indice del led da selezionare, da 0 a 3 \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em i} & indice del led da selezionare, da 0 a 3 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -124,19 +123,21 @@ Status di accensione/spegnimento dei led.
 
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. 
 
+Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo G\+P\+I\+O ed un puntatore ad una struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} che lo astrae. Tale struttura non viene inizializzata dalla funzione Zybo\+Led\+\_\+init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device G\+P\+I\+O a cui i led sono connessi.
 
-\begin{DoxyParams}{Parametri}
-{\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
 \hline
-{\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; la struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t} non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. \\
 \hline
-{\em Led3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led3 della board Digilent Zybo; \\
 \hline
-{\em Led2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led2 della board Digilent Zybo; \\
 \hline
-{\em Led1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led1 della board Digilent Zybo; \\
 \hline
-{\em Led0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Led0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
@@ -172,12 +173,12 @@ Usa la macro assert per verificare che\+:
 Permette di accendere/spegnere i Led sulla board. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
 \hline
-{\em mask} & maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati \\
+\mbox{\tt in}  & {\em mask} & maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati \\
 \hline
-{\em status} & status dei led, Zybo\+Led\+\_\+on per accendere, Zybo\+Led\+\_\+off per spegnere\\
+\mbox{\tt in}  & {\em status} & status dei led, Zybo\+Led\+\_\+on per accendere, Zybo\+Led\+\_\+off per spegnere\\
 \hline
 \end{DoxyParams}
 
@@ -213,10 +214,10 @@ Usa la macro assert per verificare che\+:
 Permette di accendere/spegnere i Led sulla board, invertendone il valore. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
 \hline
-{\em mask} & maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati\\
+\mbox{\tt in}  & {\em mask} & maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati\\
 \hline
 \end{DoxyParams}
 

@@ -37,8 +37,8 @@ typedef enum {
 
 /**
  * @brief  Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo
- * @param i indice dello switch da selezionare, da 0 a 3
- * @return  maschera di selezione dello switch i-esimo
+ * @param[in] i indice dello switch da selezionare, da 0 a 3
+ * @return maschera di selezione dello switch i-esimo
  */
 #define ZyboSwitch(i) ((uint32_t)(1<<i))
 
@@ -54,22 +54,29 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme degli switch presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	GPIO_t		*gpio;
-	GPIO_mask 	Switch3_pin;
-	GPIO_mask 	Switch2_pin;
-	GPIO_mask 	Switch1_pin;
-	GPIO_mask 	Switch0_pin;
+	GPIO_t		*gpio;			/**< puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per la lettura dello
+									stato degli switch presenti sulla board */
+	GPIO_mask 	Switch3_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 3
+									 della board Zybo*/
+	GPIO_mask 	Switch2_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 2
+									 della board Zybo*/
+	GPIO_mask 	Switch1_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 1
+									 della board Zybo*/
+	GPIO_mask 	Switch0_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 0
+									 della board Zybo*/
 } ZyboSwitch_t;
 
 /**
  * @brief Inizializza un oggetto di tipo ZyboSwitch_t.
- * @param switches		puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board Digilent Zybo;
- * @param gpio     		puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara'
- *                   	necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito
- * @param Switch3_pin	pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo;
- * @param Switch2_pin	pin del device GPIO a cui e' associato lo switch 2 della board Digilent Zybo;
- * @param Switch1_pin	pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo;
- * @param Switch0_pin	pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;
+ * @param[inout]	switches		puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board
+ * 									Digilent Zybo;
+ * @param[in]		gpio     		puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla
+ * 									funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio
+ * 									riportato di seguito
+ * @param[in] 		Switch3_pin		pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo;
+ * @param[in] 		Switch2_pin		pin del device GPIO a cui e' associato lo switch 2 della board Digilent Zybo;
+ * @param[in] 		Switch1_pin		pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo;
+ * @param[in] 		Switch0_pin		pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;
  *
  * @code
  * GPIO_t gpioSwitch;
@@ -92,11 +99,14 @@ void ZyboSwitch_init(	ZyboSwitch_t	*switches,
 
 /**
  * @brief Permette la lettura dello stato degli switch presenti sulla board.
- * @param switches		puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board Digilent Zybo;
- * @param mask			maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione
- * @return				status status degli switch
- * @retval				ZyboSwitch_on se uno degli switch selezionati e' attivo;
- * @retval				ZyboSwitch_off altrimenti
+ *
+ * @param[in]	switches	puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board
+ * 							Digilent Zybo;
+ * @param[in]	mask		maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione
+ *
+ * @return status status degli switch
+ * @retval ZyboSwitch_on se uno degli switch selezionati e' attivo;
+ * @retval ZyboSwitch_off altrimenti
  *
  * @code
  * ZyboSwitch_status_t switch_status = ZyboSwitch_getStatus(&switches, ZyboSwitch3);			// leggo lo stato dello switch 3

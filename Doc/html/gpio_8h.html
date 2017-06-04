@@ -30,6 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
   </td>
@@ -198,7 +199,7 @@ Tipi enumerati (enum)</h2></td></tr>
 <tr class="memitem:ga495d9a7aa735fe416a3f110337c54967"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a> { <a class="el" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a93cbe0e318453de590a9cb0030a840fa">GPIO_reset</a>, 
 <a class="el" href="group___g_p_i_o.html#gga495d9a7aa735fe416a3f110337c54967a39769e54aa8c4b6fbad0ef4ae88b5c44">GPIO_set</a>
  }</td></tr>
-<tr class="memdesc:ga495d9a7aa735fe416a3f110337c54967"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO_value.  <a href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga495d9a7aa735fe416a3f110337c54967"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO_value, valore di un GPIO.  <a href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">Continua...</a><br /></td></tr>
 <tr class="separator:ga495d9a7aa735fe416a3f110337c54967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -210,10 +211,10 @@ Funzioni</h2></td></tr>
 <tr class="memdesc:ga3f18ccfbb70d89cc7e2b06712dd82eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare la modalita' lettura/scrittura dei pin di un device GPIO;.  <a href="group___g_p_i_o.html#ga3f18ccfbb70d89cc7e2b06712dd82eb7">Continua...</a><br /></td></tr>
 <tr class="separator:ga3f18ccfbb70d89cc7e2b06712dd82eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga86b232ed74eacf9aa723cb1d7917a156"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga86b232ed74eacf9aa723cb1d7917a156">GPIO_setValue</a> (<a class="el" href="struct_g_p_i_o__t.html">GPIO_t</a> *gpio, <a class="el" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask, <a class="el" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a> value)</td></tr>
-<tr class="memdesc:ga86b232ed74eacf9aa723cb1d7917a156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare il valore dei pin di un device GPIO;.  <a href="group___g_p_i_o.html#ga86b232ed74eacf9aa723cb1d7917a156">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga86b232ed74eacf9aa723cb1d7917a156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare il valore dei pin di un device GPIO, se configurati come output.  <a href="group___g_p_i_o.html#ga86b232ed74eacf9aa723cb1d7917a156">Continua...</a><br /></td></tr>
 <tr class="separator:ga86b232ed74eacf9aa723cb1d7917a156"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2f516854e98cd048d4d1ee6f86261f8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga2f516854e98cd048d4d1ee6f86261f8c">GPIO_toggle</a> (<a class="el" href="struct_g_p_i_o__t.html">GPIO_t</a> *gpio, <a class="el" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask)</td></tr>
-<tr class="memdesc:ga2f516854e98cd048d4d1ee6f86261f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di invertire il valore dei pin di un device GPIO;.  <a href="group___g_p_i_o.html#ga2f516854e98cd048d4d1ee6f86261f8c">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga2f516854e98cd048d4d1ee6f86261f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di invertire il valore dei pin di un device GPIO, se configurati come output.  <a href="group___g_p_i_o.html#ga2f516854e98cd048d4d1ee6f86261f8c">Continua...</a><br /></td></tr>
 <tr class="separator:ga2f516854e98cd048d4d1ee6f86261f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf388b01cd7459baae5c03c744f611724"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___g_p_i_o.html#ga495d9a7aa735fe416a3f110337c54967">GPIO_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#gaf388b01cd7459baae5c03c744f611724">GPIO_getValue</a> (<a class="el" href="struct_g_p_i_o__t.html">GPIO_t</a> *gpio, <a class="el" href="group___g_p_i_o.html#ga6d5aef8a8a54ee2f602d47252ff66595">GPIO_mask</a> mask)</td></tr>
 <tr class="memdesc:gaf388b01cd7459baae5c03c744f611724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di leggere il valore dei pin di un device GPIO;.  <a href="group___g_p_i_o.html#gaf388b01cd7459baae5c03c744f611724">Continua...</a><br /></td></tr>
@@ -225,7 +226,7 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_23e4d12f26a49ef99fb41232b599cf4b.html">GPIO</a></li><li class="navelem"><a class="el" href="gpio_8h.html">gpio.h</a></li>
-    <li class="footer">Generato Sab 20 Mag 2017 00:00:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Dom 4 Giu 2017 21:07:14 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

@@ -21,26 +21,28 @@
 /**
  * @addtogroup GPIO
  * @{
+ *
+ * Il modulo definisce un driver OO-like per l'utilizzo di una periferica GPIO custom.
  */
 
 /**
  * @brief Struttura che astrae un device GPIO.
  */
 typedef struct {
-	uint32_t*	base_address;
-	uint8_t		width;
-	uint8_t		enable_offset;
-	uint8_t		write_offset;
-	uint8_t		read_offset;
+	uint32_t*	base_address;	/**< indirizzo base */
+	uint8_t		width;			/**< dimensione, in bit */
+	uint8_t		enable_offset;	/**< offset, rispetto all'indirizzo base, del registro "enable" */
+	uint8_t		write_offset;	/**< offset, rispetto all'indirizzo base, del registro "write" */
+	uint8_t		read_offset;	/**< offset, rispetto all'indirizzo base, del registro "read" */
 } GPIO_t;
 
 /**
  * @brief Maschere di selezione dei pin di un device GPIO
  */
 typedef enum {
-	GPIO_pin0 = 0x1,        //!< GPIO pin0
-	GPIO_pin1 = 0x2,        //!< GPIO pin1
-	GPIO_pin2 = 0x4,        //!< GPIO pin2
+	GPIO_pin0 = 0x1,        //!< GPIO pin0 maschera di selezione del pin 0 di un device GPIO
+	GPIO_pin1 = 0x2,        //!< GPIO pin1 maschera di selezione del pin 1 di un device GPIO
+	GPIO_pin2 = 0x4,        //!< GPIO pin2 maschera di selezione del pin 2 di un device GPIO
 	GPIO_pin3 = 0x8,        //!< GPIO pin3
 	GPIO_pin4 = 0x10,       //!< GPIO pin4
 	GPIO_pin5 = 0x20,       //!< GPIO pin5
@@ -69,17 +71,17 @@ typedef enum {
 	GPIO_pin28 = 0x10000000,//!< GPIO pin28
 	GPIO_pin29 = 0x20000000,//!< GPIO pin29
 	GPIO_pin30 = 0x40000000,//!< GPIO pin30
-	GPIO_pin31 = 0x80000000,//!< GPIO pin31
-	GPIO_byte0 = 0x000000ff,//!< GPIO byte0
-	GPIO_byte1 = 0x0000ff00,//!< GPIO byte1
-	GPIO_byte2 = 0x00ff0000,//!< GPIO byte2
-	GPIO_byte3 = 0xff000000 //!< GPIO byte3
+	GPIO_pin31 = 0x80000000,//!< GPIO pin31	maschera di selezione del pin 31 di un device GPIO
+	GPIO_byte0 = 0x000000ff,//!< GPIO byte0 maschera di selezione deI pin 0-7 di un device GPIO
+	GPIO_byte1 = 0x0000ff00,//!< GPIO byte1 maschera di selezione deI pin 8-15 di un device GPIO
+	GPIO_byte2 = 0x00ff0000,//!< GPIO byte2 maschera di selezione deI pin 16-23 di un device GPIO
+	GPIO_byte3 = 0xff000000 //!< GPIO byte3 maschera di selezione deI pin 24-31 di un device GPIO
 } GPIO_mask;
 
 /**
- *@brief  Metodo alternativo per la specifica di uno dei pin di un device GPIO
- * @param i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
- * @return  maschera di selezione del pin i-esimo
+ * @brief Metodo alternativo per la specifica di uno dei pin di un device GPIO
+ * @param[in] i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
+ * @return maschera di selezione del pin i-esimo
  */
 #define GPIO_pin(i) ((uint32_t)(1<<i))
 
@@ -87,12 +89,12 @@ typedef enum {
  * @brief GPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device GPIO
  */
 typedef enum {
-	GPIO_read,//!< GPIO_read  modalita' lettura
-	GPIO_write//!< GPIO_write modalita' scrittura
+	GPIO_read, //!< GPIO_read  modalita' lettura
+	GPIO_write //!< GPIO_write modalita' scrittura
 } GPIO_mode;
 
 /**
- * @brief GPIO_value
+ * @brief GPIO_value, valore di un GPIO
  */
 typedef enum {
 	GPIO_reset,//!< GPIO_reset, corrisponde al valore logico '0'
@@ -105,15 +107,15 @@ typedef enum {
  * Inizializza una struttura di tipo GPIO_t, che astrae u device GPIO, controllando che l'inizializzazione vada a buon fine,
  * effettuando diversi test sui parametri di inizializzazione e restituendo un codice di errore.
  *
- * @param gpio			puntatore a GPIO_t, che astrae un device GPIO;
- * @param base_address	indirizzo di memoria a cui e' mappato il device GPIO;
- * @param width			numero di pin di ingresso/uscita del device GPIO; Deve essere un numero compreso tra 1 e 32;
- * @param enable_offset offset in byte del registro "enable" del device GPIO;
- * 						il registro permette di impostare la modalita' di funzionamento del device GPIO;
- * @param write_offset	offset in byte del registro "write" del device GPIO;
- * 						il registro permette di scrivere sui pin del device GPIO;
- * @param read_offset	offset in byte del registro "read" del device GPIO;
- * 						il registro permette di leggere dai pin del device GPIO;
+ * @param[inout]	gpio			puntatore a GPIO_t, che astrae un device GPIO;
+ * @param[in]		base_address	indirizzo di memoria a cui e' mappato il device GPIO;
+ * @param[in]		width			numero di pin di ingresso/uscita del device GPIO; Deve essere un numero compreso tra 1 e 32;
+ * @param[in] 		enable_offset	offset in byte del registro "enable" del device GPIO;
+ * 									il registro permette di impostare la modalita' di funzionamento del device GPIO;
+ * @param[in] 		write_offset	offset in byte del registro "write" del device GPIO;
+ * 									il registro permette di scrivere sui pin del device GPIO;
+ * @param[in] 		read_offset		offset in byte del registro "read" del device GPIO;
+ * 									il registro permette di leggere dai pin del device GPIO;
  *
  * @code
  * GPIO_t gpio;
@@ -140,16 +142,16 @@ void GPIO_init(	GPIO_t* 	gpio,
  * GPIO_setMode(gpio, GPIO_pin19 | GPIO_pin20 | GPIO_pin21, GPIO_read);
  * @endcode
  *
- * @param gpio	puntatore a GPIO_t, che astrae un device GPIO;
- * @param mask	maschera dei pin su cui agire;
- * @param mode	modalita' di funzionamento dei pin;
+ * @param[in]	gpio	puntatore a GPIO_t, che astrae un device GPIO;
+ * @param[in]	mask	maschera dei pin su cui agire;
+ * @param[in]	mode	modalita' di funzionamento dei pin;
  *
  * @warning Usa la macro assert per verificare che gpio non sia un puntatore nullo
  */
 void GPIO_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode);
 
 /**
- * @brief Permette di settare il valore dei pin di un device GPIO;
+ * @brief Permette di settare il valore dei pin di un device GPIO, se configurati come output
  *
  * @code
  * // setta i pin 0 ed 1 di un device GPIO a livello logico '1', gli altri restano invariati
@@ -159,24 +161,24 @@ void GPIO_setMode(GPIO_t* gpio, GPIO_mask mask, GPIO_mode mode);
  * GPIO_setValue(gpio, GPIO_pin19 | GPIO_pin20 | GPIO_pin21, GPIO_reset);
  * @endcode
  *
- * @param gpio	puntatore a GPIO_t, che astrae un device GPIO;
- * @param mask	maschera dei pin su cui agire;
- * @param value valore dei pin
+ * @param[in]	gpio	puntatore a GPIO_t, che astrae un device GPIO;
+ * @param[in]	mask	maschera dei pin su cui agire;
+ * @param[in]	value	valore dei pin
  *
  * @warning Usa la macro assert per verificare che gpio non sia un puntatore nullo
  */
 void GPIO_setValue(GPIO_t* gpio, GPIO_mask mask, GPIO_value value);
 
 /**
- * @brief Permette di invertire il valore dei pin di un device GPIO;
+ * @brief Permette di invertire il valore dei pin di un device GPIO, se configurati come output
  *
  * @code
  * // inverte i pin 0 ed 1 di un device GPIO a livello logico '1', gli altri restano invariati
  * GPIO_toggle(gpio, GPIO_pin0 | GPIO_pin1);
  * @endcode
  *
- * @param gpio	puntatore a GPIO_t, che astrae un device GPIO;
- * @param mask	maschera dei pin su cui agire;
+ * @param[in]	gpio	puntatore a GPIO_t, che astrae un device GPIO;
+ * @param[in]	mask	maschera dei pin su cui agire;
  *
  * @warning Usa la macro assert per verificare che gpio non sia un puntatore nullo
  */
@@ -194,8 +196,9 @@ void GPIO_toggle(GPIO_t* gpio, GPIO_mask mask);
  * GPIO_value value = gpio_getValue(gpio, GPIO_pin0 | GPIO_pin3 | GPIO_pin5);
  * @endcode
  *
- * @param gpio	puntatore a GPIO_t, che astrae un device GPIO;
- * @param mask	maschera dei pin su cui agire;
+ * @param[in] gpio	puntatore a GPIO_t, che astrae un device GPIO;
+ * @param[in] mask	maschera dei pin su cui agire;
+ *
  * @return	restituisce la OR dei pin letti
  * @retval GPIO_set se uno dei pin letti e' GPIO_set,
  * @retval GPIO_reset se TUTTI i pin sono GPIO_reset

@@ -30,6 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
   </td>
@@ -279,8 +280,8 @@ Funzioni</h2></td></tr>
 <p>Permette la lettura dello stato dei button presenti sulla board. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramname">mask</td><td>maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione</td></tr>
   </table>
   </dd>
 </dl>
@@ -354,12 +355,12 @@ Funzioni</h2></td></tr>
 <p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="struct_g_p_i_o__t.html" title="Struttura che astrae un device GPIO. ">GPIO_t</a>, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
-    <tr><td class="paramname">Button3_pin</td><td>pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramname">Button2_pin</td><td>pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramname">Button1_pin</td><td>pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramname">Button0_pin</td><td>pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="struct_g_p_i_o__t.html" title="Struttura che astrae un device GPIO. ">GPIO_t</a>, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Button3_pin</td><td>pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Button2_pin</td><td>pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Button1_pin</td><td>pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Button0_pin</td><td>pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;</td></tr>
   </table>
   </dd>
 </dl>
@@ -391,10 +392,10 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permettere di mettere il programma in attesa attiva finche' i button restano attivi;. </p>
-<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro ZyboButton_DebounceWait</dd></dl>
+<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo;</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo;</td></tr>
   </table>
   </dd>
 </dl>
@@ -427,10 +428,10 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;. </p>
-<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro ZyboButton_DebounceWait</dd></dl>
+<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo;</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo;</td></tr>
   </table>
   </dd>
 </dl>
@@ -453,7 +454,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Sab 20 Mag 2017 00:00:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Dom 4 Giu 2017 21:07:14 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

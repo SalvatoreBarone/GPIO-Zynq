@@ -35,9 +35,7 @@
  * inizializzazione della struttura HD44780_LCD_t relativa ad un device lcd, DEVE essere effettuata
  * tassativamente utilizzando le funzioni<br>
  * 	- HD44780_Init4()
- * 	- HD44780_Init4_v2()
- * 	- HD44780_Init8()
- * 	- HD44780_Init8_v2()<br>
+ * 	- HD44780_Init8()<br>
  *
  * le quali provvedono anche ad effettuare un test di connessione volto ad individuare eventuali
  * segnali erroneamente associati.<br>
@@ -68,9 +66,13 @@
 
 #include "gpio.h"
 
+/**
+ * @brief Modalita' di interfacciamento.
+ * Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit.
+ */
 typedef enum {
-	HD44780_INTERFACE_4bit,
-	HD44780_INTERFACE_8bit
+	HD44780_INTERFACE_4bit,	/**< Interfacciamento a quattro bit */
+	HD44780_INTERFACE_8bit  /**< Interfacciamento ad otto bit */
 } HD44780_InterfaceMode_t;
 
 /**
@@ -85,19 +87,19 @@ typedef enum {
  * del cursore di un posto in avanti o indietro, alla riga in basso o in alto.
  */
 typedef struct {
-	GPIO_t 		*gpio;
-	GPIO_mask 	RS;
-	GPIO_mask 	RW;
-	GPIO_mask 	E;
-	GPIO_mask 	Data7;
-	GPIO_mask 	Data6;
-	GPIO_mask 	Data5;
-	GPIO_mask 	Data4;
-	GPIO_mask 	Data3;
-	GPIO_mask 	Data2;
-	GPIO_mask 	Data1;
-	GPIO_mask 	Data0;
-	HD44780_InterfaceMode_t iface_mode;
+	GPIO_t 		*gpio; 	/**< puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per il pilotaggio del display */
+	GPIO_mask 	RS;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RS */
+	GPIO_mask 	RW;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RW */
+	GPIO_mask 	E;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale E */
+	GPIO_mask 	Data7;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D7 */
+	GPIO_mask 	Data6;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D6 */
+	GPIO_mask 	Data5;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D5 */
+	GPIO_mask 	Data4;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D4 */
+	GPIO_mask 	Data3;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D3 */
+	GPIO_mask 	Data2;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D2 */
+	GPIO_mask 	Data1;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D1 */
+	GPIO_mask 	Data0;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D0 */
+	HD44780_InterfaceMode_t iface_mode;	/**< modalita' di funzionamento dell'interfaccia verso il displau (4 oppure 8 bit) */
 } HD44780_LCD_t;
 
 /**
@@ -110,20 +112,20 @@ typedef struct {
  *
  * @warning La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
  *
- * @param lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
- * @param gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato
- *             	dalla funziona, sara' necessario inizializzarlo preventivamente;
- * @param RS 	pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
- * @param RW	pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
- * @param E 	pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD;
- * @param Data7 pin del device GPIO a cui e' associato il segnale Data7 del display LCD;
- * @param Data6 pin del device GPIO a cui e' associato il segnale Data6 del display LCD;
- * @param Data5 pin del device GPIO a cui e' associato il segnale Data5 del display LCD;
- * @param Data4 pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
- * @param Data3 pin del device GPIO a cui e' associato il segnale Data3 del display LCD;
- * @param Data2 pin del device GPIO a cui e' associato il segnale Data2 del display LCD;
- * @param Data1 pin del device GPIO a cui e' associato il segnale Data1 del display LCD;
- * @param Data0 pin del device GPIO a cui e' associato il segnale Data0 del display LCD;
+ * @param[inout]	lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
+ * @param[in]		gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
+ *             				inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente;
+ * @param[in]		RS 		pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
+ * @param[in]		RW		pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
+ * @param[in]		E 		pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD;
+ * @param[in]		Data7 	pin del device GPIO a cui e' associato il segnale Data7 del display LCD;
+ * @param[in]		Data6 	pin del device GPIO a cui e' associato il segnale Data6 del display LCD;
+ * @param[in]		Data5 	pin del device GPIO a cui e' associato il segnale Data5 del display LCD;
+ * @param[in]		Data4 	pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
+ * @param[in]		Data3 	pin del device GPIO a cui e' associato il segnale Data3 del display LCD;
+ * @param[in]		Data2 	pin del device GPIO a cui e' associato il segnale Data2 del display LCD;
+ * @param[in]		Data1 	pin del device GPIO a cui e' associato il segnale Data1 del display LCD;
+ * @param[in]		Data0 	pin del device GPIO a cui e' associato il segnale Data0 del display LCD;
  *
  * @code
  * GPIO_t gpioDisplay;
@@ -165,16 +167,16 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  *
  * @warning La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
  *
- * @param lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
- * @param gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato
- *             	dalla funziona, sara' necessario inizializzarlo preventivamente;
- * @param RS 	pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
- * @param RW	pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
- * @param E 	pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD;
- * @param Data7 pin del device GPIO a cui e' associato il segnale Data7 del display LCD;
- * @param Data6 pin del device GPIO a cui e' associato il segnale Data6 del display LCD;
- * @param Data5 pin del device GPIO a cui e' associato il segnale Data5 del display LCD;
- * @param Data4 pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
+ * @param[inout]	lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
+ * @param[in]		gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
+ *             				inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente;
+ * @param[in]		RS 		pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
+ * @param[in]		RW		pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
+ * @param[in]		E 		pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD;
+ * @param[in]		Data7 	pin del device GPIO a cui e' associato il segnale Data7 del display LCD;
+ * @param[in]		Data6 	pin del device GPIO a cui e' associato il segnale Data6 del display LCD;
+ * @param[in]		Data5 	pin del device GPIO a cui e' associato il segnale Data5 del display LCD;
+ * @param[in]		Data4 	pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
  *
  * @code
  * GPIO_t gpioDisplay;
@@ -199,8 +201,8 @@ void HD44780_Init4(	HD44780_LCD_t	*lcd,
 
 /**
  * @brief Stampa un carattere
- * @param lcd display da pilotare;
- * @param c carattere da stampare sul display;
+ * @param[in] lcd display da pilotare;
+ * @param[in] c carattere da stampare sul display;
  */
 void HD44780_Printc(HD44780_LCD_t* lcd, char c);
 
@@ -210,8 +212,8 @@ void HD44780_Printc(HD44780_LCD_t* lcd, char c);
  * La funzione può essere utilizzata per stampare anche numeri interi e floating point. Si veda
  * gli esempi di cui sotto.
  *
- * @param lcd display da pilotare;
- * @param s puntatore alla stringa null-terminated da stampare sul display;
+ * @param[in] lcd display da pilotare;
+ * @param[in] s puntatore alla stringa null-terminated da stampare sul display;
  *
  * @code
  * // stampa di un intero
@@ -220,18 +222,27 @@ void HD44780_Printc(HD44780_LCD_t* lcd, char c);
  * char str[10];	// assicurarsi di allocare sufficiente spazio per la stampa del numero
  * sprintf(str,"%d", integer_number);
  * error = HD44780_Print(lcd, str);
+ * @endcode
+ *
+ * @code
  * // stampa di un intero
  * #include <stdlib.h>
  * ...
  * char str[10];
  * snprintf(str, 10,"%d", integer_number);
  * error = HD44780_Print(lcd, str);
+ * @endcode
+ *
+ * @code
  * // stampa di un float
  * #include <stdlib.h>
  * ...
  * char str[20];	// assicurarsi di allocare sufficiente spazio per la stampa del numero
  * sprintf(str,"%f", float_number);
  * error = HD44780_Print(lcd, str);
+ * @endcode
+ *
+ * @code
  * // stampa di un float, nel caso in cui la soluzione precedente dovesse non funzionare
  * #include <stdlib.h>
  * ...
@@ -252,67 +263,67 @@ void HD44780_Print(HD44780_LCD_t* lcd, const char *s);
 
 /**
  * @brief Stampa un byte in binario. (bit piu' significativo a sinistra)
- * @param lcd
- * @param b byte da stampare
+ * @param[in] lcd
+ * @param[in] b byte da stampare
  */
 void HD44780_printBinary8(HD44780_LCD_t *lcd, uint8_t b);
 
 /**
  * @brief Stampa una word di 32 bit in binario. (bit piu' significativo a sinistra)
- * @param lcd
- * @param w word da stampare
+ * @param[in] lcd
+ * @param[in] w word da stampare
  */
 void HD44780_printBinary32(HD44780_LCD_t *lcd, uint32_t w);
 
 /**
  * @brief Stampa un blocco di 64 bit in binario. (bit piu' significativo a sinistra)
- * @param lcd
- * @param b blocco da stampare
+ * @param[in] lcd
+ * @param[in] b blocco da stampare
  */
 void HD44780_printBinary64(HD44780_LCD_t *lcd, uint64_t b);
 
 /**
  * @brief Stampa un byte in esadecimale. (bit piu' significativo a sinistra)
- * @param lcd
- * @param b byte da stampare
+ * @param[in] lcd
+ * @param[in] b byte da stampare
  */
 void HD44780_printHex8(HD44780_LCD_t *lcd, uint8_t b);
 
 /**
  * @brief Stampa una word di 32 bit in esadecimale. (bit piu' significativo a sinistra)
- * @param lcd
- * @param w word da stampare
+ * @param[in] lcd
+ * @param[in] w word da stampare
  */
 void HD44780_printHex32(HD44780_LCD_t *lcd, uint32_t w);
 
 /**
  * @brief Stampa un blocco di 64 bit in esadecimale. (bit piu' significativo a sinistra)
- * @param lcd
- * @param b blocco da stampare
+ * @param[in] lcd
+ * @param[in] b blocco da stampare
  */
 void HD44780_printHex64(HD44780_LCD_t *lcd, uint64_t b);
 
 /**
  * @brief Pulisce il display e sposta il cursore all'inizio della prima riga
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_Clear(HD44780_LCD_t* lcd);
 
 /**
  * @brief Sposta il cursore all'inizio della prima riga
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_Home(HD44780_LCD_t* lcd);
 
 /**
  * @brief Sposta il cursore all'inizio della prima riga
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_MoveToRow1(HD44780_LCD_t* lcd);
 
 /**
  * @brief Sposta il cursore all'inizio della seconda riga
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_MoveToRow2(HD44780_LCD_t* lcd);
 
@@ -326,32 +337,32 @@ typedef enum {
 
 /**
  * @brief Sposta il cursore di una posizione a destra o sinistra
- * @param lcd display da pilotare;
- * @param dir direzione in cui spostare il cursore, @see direction_t;
+ * @param[in] lcd display da pilotare;
+ * @param[in] dir direzione in cui spostare il cursore, @see direction_t;
  */
 void HD44780_MoveCursor(HD44780_LCD_t* lcd, HD44780_Direction_t dir);
 
 /**
  * @brief Disattiva il display
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_DisplayOff(HD44780_LCD_t* lcd);
 
 /**
  * @brief Disattiva la visualizzazione del cursore
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_CursorOff(HD44780_LCD_t* lcd);
 
 /**
  * @brief Attiva la visualizzazione del cursore
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_CursorOn(HD44780_LCD_t* lcd);
 
 /**
  * @brief Attiva il cursore lampeggiante
- * @param lcd display da pilotare;
+ * @param[in] lcd display da pilotare;
  */
 void HD44780_CursorBlink(HD44780_LCD_t* lcd);
 

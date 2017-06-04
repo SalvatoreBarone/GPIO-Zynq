@@ -35,9 +35,9 @@ typedef enum {
 } ZyboLed_mask_t;
 
 /**
- * @brief  Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo
- * @param i indice del led da selezionare, da 0 a 3
- * @return  maschera di selezione del led i-esimo
+ * @brief Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo
+ * @param[in] i indice del led da selezionare, da 0 a 3
+ * @return maschera di selezione del led i-esimo
  */
 #define ZyboLed(i) ((uint32_t)(1<<i))
 
@@ -53,22 +53,34 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	GPIO_t		*gpio;
-	GPIO_mask 	Led3_pin;
-	GPIO_mask 	Led2_pin;
-	GPIO_mask 	Led1_pin;
-	GPIO_mask 	Led0_pin;
+	GPIO_t		*gpio;		/**<	puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per il pilotaggio dei led
+									presenti sulla board */
+	GPIO_mask 	Led3_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+									numero 3 della board Zybo */
+	GPIO_mask 	Led2_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+									numero 2 della board Zybo */
+	GPIO_mask 	Led1_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+									numero 1 della board Zybo */
+	GPIO_mask 	Led0_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+									numero 0 della board Zybo */
 } ZyboLed_t;
 
 /**
  * @brief Inizializza un oggetto di tipo ZyboLed_t.
- * @param leds     puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param gpio     puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara'
- *                 necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito
- * @param Led3_pin pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo;
- * @param Led2_pin pin del device GPIO a cui e' associato il Led2 della board Digilent Zybo;
- * @param Led1_pin pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo;
- * @param Led0_pin pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;
+ *
+ * Inizializza un oggetto di tipo ZyboLed_t, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo.
+ * Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura GPIO_t che lo astrae. Tale struttura non viene
+ * inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si
+ * assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.
+ *
+ * @param[inout]	leds    	puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
+ * @param[in]		gpio    	puntatore a struttura GPIO_t, che astrae un device GPIO; la struttura GPIO_t non viene
+ * 								inizializzata dalla funzione, per cui sara' necessario farlo preventivamente;
+ * 								si faccia riferimento all'esempio riportato di seguito.
+ * @param[in]		Led3_pin	pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo;
+ * @param[in]		Led2_pin	pin del device GPIO a cui e' associato il Led2 della board Digilent Zybo;
+ * @param[in]		Led1_pin	pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo;
+ * @param[in]		Led0_pin	pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;
  *
  * @code
  * GPIO_t gpioLed;
@@ -91,9 +103,10 @@ void ZyboLed_init(	ZyboLed_t	*leds,
 
 /**
  * @brief Permette di accendere/spegnere i Led sulla board
- * @param leds   puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param mask   maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
- * @param status status dei led, ZyboLed_on per accendere, ZyboLed_off per spegnere
+ *
+ * @param[in] leds		puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
+ * @param[in] mask		maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
+ * @param[in] status	status dei led, ZyboLed_on per accendere, ZyboLed_off per spegnere
  *
  * @code
  * ZyboLed_setStatus(&leds, ZyboLed3 | ZyboLed1, ZyboLed_on);	// accensione dei Led 3 ed 1
@@ -112,8 +125,9 @@ void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t st
 
 /**
  * @brief Permette di accendere/spegnere i Led sulla board, invertendone il valore
- * @param leds   puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param mask   maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
+ *
+ * @param[in]	leds	puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
+ * @param[in]	mask	maschera di selezione dei led, quelli non selezionati vengono lasciati inalterati
  *
  * @code
  * ZyboLed_toggle(&leds, ZyboLed3 | ZyboLed1);	// accensione/spegnimento dei Led 3 ed 1

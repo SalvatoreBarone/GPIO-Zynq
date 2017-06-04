@@ -54,22 +54,30 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	GPIO_t		*gpio;
-	GPIO_mask 	Button3_pin;
-	GPIO_mask 	Button2_pin;
-	GPIO_mask 	Button1_pin;
-	GPIO_mask 	Button0_pin;
+	GPIO_t		*gpio;			/**< puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per la lettura dello
+									stato dei button presenti sulla board */
+	GPIO_mask 	Button3_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 3
+									 della board Zybo*/
+	GPIO_mask 	Button2_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 2
+									 della board Zybo*/
+	GPIO_mask 	Button1_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 1
+									 della board Zybo*/
+	GPIO_mask 	Button0_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 0
+									 della board Zybo*/
 } ZyboButton_t;
 
 /**
  * @brief Inizializza un oggetto di tipo ZyboButton_t.
- * @param buttons		puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
- * @param gpio     		puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara'
- *                   	necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito
- * @param Button3_pin	pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo;
- * @param Button2_pin	pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo;
- * @param Button1_pin	pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo;
- * @param Button0_pin	pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;
+ *
+ * @param[inout] buttons		puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board
+ * 								Digilent Zybo;
+ * @param[in] gpio     			puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona,
+ * 								sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di
+ * 								seguito
+ * @param[in] Button3_pin		pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo;
+ * @param[in] Button2_pin		pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo;
+ * @param[in] Button1_pin		pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo;
+ * @param[in] Button0_pin		pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;
  *
  * @code
  * GPIO_t gpioButton;
@@ -100,9 +108,9 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
  * @brief Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;
  *
  * @warning La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della
- * macro ZyboButton_DebounceWait
+ * macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.
  *
- * @param buttons puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
+ * @param[in] buttons	puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  *
  * @code
  * ZyboButton_waitWhileIdle(&buttons);
@@ -123,9 +131,9 @@ void ZyboButton_waitWhileIdle(ZyboButton_t *buttons);
  * @brief Permettere di mettere il programma in attesa attiva finche' i button restano attivi;
  *
  * @warning La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della
- * macro ZyboButton_DebounceWait
+ * macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.
  *
- * @param buttons puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
+ * @param[in] buttons	puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  *
  * @code
  * ZyboButton_waitWhileIdle(&buttons);
@@ -144,11 +152,14 @@ void ZyboButton_waitWhileBusy(ZyboButton_t *buttons);
 
 /**
  * @brief Permette la lettura dello stato dei button presenti sulla board.
- * @param buttons		puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
- * @param mask   		maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione
- * @return				status status dei button
- * @retval 				ZyboButton_on se uno dei button selezionati e' attivo;
- * @retval				ZyboButton_off altrimenti
+ *
+ * @param[in] buttons	puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent
+ * 						Zybo;
+ * @param[in] mask   	maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione
+ *
+ * @return status status dei button
+ * @retval ZyboButton_on se uno dei button selezionati e' attivo;
+ * @retval ZyboButton_off altrimenti
  *
  * @code
  * ZyboButton_status_t button_status = ZyboButton_getStatus(&buttons, ZyboButton3);				// leggo lo stato ddi button 3

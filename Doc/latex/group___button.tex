@@ -1,8 +1,7 @@
 \hypertarget{group___button}{\section{Button}
 \label{group___button}\index{Button@{Button}}
 }
-Diagramma di collaborazione per Button\+:
-\nopagebreak
+Diagramma di collaborazione per Button\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -132,10 +131,10 @@ Status di attivo/inattivo dei Push\+Button.
 Permette la lettura dello stato dei button presenti sulla board. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
 \hline
-{\em mask} & maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione \\
+\mbox{\tt in}  & {\em mask} & maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -183,18 +182,18 @@ Usa la macro assert per verificare che\+:
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}. 
 
 
-\begin{DoxyParams}{Parametri}
-{\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
 \hline
-{\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{struct_g_p_i_o__t}{G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
 \hline
-{\em Button3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 3 della board Digilent Zybo; \\
 \hline
-{\em Button2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 2 della board Digilent Zybo; \\
 \hline
-{\em Button1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 1 della board Digilent Zybo; \\
 \hline
-{\em Button0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Button0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
@@ -226,11 +225,11 @@ Usa la macro assert per verificare che\+:
 Permettere di mettere il programma in attesa attiva finche' i button restano attivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait
+La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
-\begin{DoxyParams}{Parametri}
-{\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
@@ -267,11 +266,11 @@ Usa la macro assert per verificare che\+:
 Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait
+La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
-\begin{DoxyParams}{Parametri}
-{\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
