@@ -37,7 +37,7 @@ begin
 			if (GPIO_inten = '1' and old_GPIO_inout /= GPIO_inout) then
 				GPIO_int_tmp <= '1';
 				old_GPIO_inout <= GPIO_inout;
-			elsif (GPIO_intclr = '1')
+			elsif (GPIO_intclr = '1') then
 				GPIO_int_tmp <= '0';
 			end if;
 		end if;	

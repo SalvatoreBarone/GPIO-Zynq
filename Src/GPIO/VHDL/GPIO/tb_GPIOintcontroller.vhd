@@ -11,6 +11,9 @@
 --! You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 --! Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+library ieee;
+use ieee.std_logic_1164.all;
+
 entity tb_GPIOintcontroller is
 end tb_GPIOintcontroller;
 
@@ -27,15 +30,15 @@ architecture behavioral of tb_GPIOintcontroller is
 	
 	constant period : time := 10 ns;
 	signal clock : std_logic := '0';							
-	signal GPIO_inout : std_logic_vector(width-1 downto 0) := (others => '0');	
+	signal GPIO_inout : std_logic_vector(3 downto 0) := (others => '0');	
 	signal GPIO_inten : std_logic := '0';							
 	signal GPIO_int : std_logic := '0';							
 	signal GPIO_intclr : std_logic := '0';
 
 begin
 
-	uut : GPIOintcontroller is
-		generic map (	width			=> GPIO_width)
+	uut : GPIOintcontroller 
+		generic map (	width			=> 4)
 		port map (		clock			=> clock,
 						GPIO_inout		=> GPIO_inout,
 						GPIO_inten		=> GPIO_inten,
@@ -45,7 +48,7 @@ begin
 	clock_process : process
 	begin
 		clock <= not clock;
-		wait for clock_period / 2;
+		wait for period / 2;
 	end process clock_process;
 
 
