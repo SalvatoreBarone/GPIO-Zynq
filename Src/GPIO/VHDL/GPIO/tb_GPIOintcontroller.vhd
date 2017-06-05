@@ -54,7 +54,13 @@ begin
 
 	stim_process : process
 	begin
-	
+		wait for 100 ns;
+		GPIO_inten <= '1';
+		wait for 10 ns;
+		GPIO_inout <= x"5";
+		wait for 50 ns;
+		GPIO_intclr <= '1', '0' after 50 ns;
+		wait;
 	end process;
 
 end behavioral;
