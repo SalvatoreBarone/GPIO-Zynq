@@ -59,3 +59,9 @@ GPIO_value GPIO_getValue(GPIO_t *gpio, GPIO_mask mask) {
 	assert(gpio->base_address != NULL);
 	return ((gpio->base_address[gpio->read_offset>>2] & mask) == 0 ? GPIO_reset : GPIO_set);
 }
+
+GPIO_mask GPIO_read(GPIO_t *gpio) {
+	assert(gpio != NULL);
+	assert(gpio->base_address != NULL);
+	return gpio->base_address[gpio->read_offset>>2];
+}

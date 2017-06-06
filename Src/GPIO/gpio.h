@@ -208,6 +208,26 @@ void GPIO_toggle(GPIO_t* gpio, GPIO_mask mask);
 GPIO_value GPIO_getValue(GPIO_t* gpio, GPIO_mask mask);
 
 /**
+ * @brief Restituisce la maschera dei pin settati di un device GPIO
+ *
+ * @param[in] gpio puntatore a GPIO_t, che astrae un device GPIO;
+ *
+ * @return maschera dei pin settati di un device GPIO
+ *
+ * @code
+ * GPIO_mask mask = GPIO_read(&gpio);
+ * if (mask & GPIO_pin3) {
+ * 		...
+ * }
+ * else {
+ * 		...
+ * }
+ * @endcode
+ */
+GPIO_mask GPIO_read(GPIO_t *gpio);
+
+
+/**
  * @}
  */
 
