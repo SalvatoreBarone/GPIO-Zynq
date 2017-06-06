@@ -39,6 +39,7 @@ architecture behavioral of GPIOintcontroller is
 begin
 	GPIO_int <= GPIO_int_tmp;
 	process(clock, GPIO_inout, GPIO_inten, GPIO_intclr)
+
 	begin
 		if (reset_n = '0') then
 			GPIO_int_tmp <= '0';

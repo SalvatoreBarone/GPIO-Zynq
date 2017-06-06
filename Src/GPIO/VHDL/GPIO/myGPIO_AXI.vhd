@@ -14,6 +14,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
 
 --! @addtogroup myGPIO
 --! @{
@@ -28,9 +29,10 @@ use ieee.numeric_std.all;
 --   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
 -- - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
 --   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
--- - S/C : registro di stato controllo; solo i due bit meno significativi del registro sono significativi; i bit 0 e bit 1 ,
---   rispettivamente, IntEn e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
---   dell'interruzione sollevata.
+-- - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi;
+--    - bit 0: interrupt-enable
+--    - bit 1: interrupt-request
+--    - bit 2: interrupt-ack (clear)
 --
 -- @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
 --
@@ -127,17 +129,6 @@ architecture arch_imp of myGPIO_AXI is
 					GPIO_read 		: out 	std_logic_vector (GPIO_width-1 downto 0));	-- segnale di output, diretto verso l'interno del device.
 	end component;
 	
-	component GPIOintcontroller is
-	generic (	width			: natural := 4);							-- parallelismo dell'array, di default pari a 4 celle.
-	port (		clock			: in	std_logic;							-- segnale di clock
-				reset_n			: in	std_logic;							-- reset asincrono, attivo basso
-				GPIO_inout		: in	std_logic_vector(width-1 downto 0);	-- segnale monitorato, al cambio di stato, se GPIO_inten e' '1', viene generato interrupt
-				GPIO_inten		: in	std_logic;							-- segnale di abilitazione dell'interrupt sul cambio di stato sul pin GPIO_inout
-				GPIO_int		: out	std_logic;							-- segnale di interrupt a livelli, se GPIO_inten='1' diventa alto quando GPIO_inout cambia stato
-				GPIO_intclr		: in	std_logic);							-- segnale di clear per GPIO_int, quando posto a '1' riporta a '0' il valore di GPIO_int
-	end component;
-	
-
 	-- AXI4LITE signals
 	signal axi_awaddr	: std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
 	signal axi_awready	: std_logic;
@@ -174,6 +165,10 @@ architecture arch_imp of myGPIO_AXI is
 	
 	signal GPIO_inout_masked : std_logic_vector (GPIO_width-1 downto 0); -- segnale GPIO_inout mascherato con ~slv_reg0 (GPIO_enable), in 
 																		 -- modo che solo i pin settati come input possano generare interruzione
+																		 
+	signal GPIO_int_ack : std_logic := '0';
+	
+	signal GPIO_int_tmp : std_logic := '0';
 	
 begin
 	-- I/O Connections assignments
@@ -273,6 +268,7 @@ begin
 	    else
 	      loc_addr := axi_awaddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
 	      if (slv_reg_wren = '1') then
+	      	GPIO_int_ack <= '0'; -- serve a definire il valore di GPIO_int_ack  quando non indirizzo slv_reg3
 	        case loc_addr is
 	          when b"00" =>
 	            for byte_index in 0 to (C_S_AXI_DATA_WIDTH/8-1) loop
@@ -298,6 +294,7 @@ begin
 	                slv_reg2(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
 	              end if;
 	            end loop;
+	            
 	          when b"11" =>
 	            for byte_index in 0 to (C_S_AXI_DATA_WIDTH/8-1) loop
 	              if ( S_AXI_WSTRB(byte_index) = '1' ) then
@@ -305,12 +302,15 @@ begin
 	                -- slave registor 3
 	                slv_reg3(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
 	              end if;
+	              
+	              GPIO_int_ack <= S_AXI_WDATA(2);
 	            end loop;
 	          when others =>
 	            slv_reg0 <= slv_reg0;
 	            slv_reg1 <= slv_reg1;
 	            slv_reg2 <= slv_reg2;
 	            slv_reg3 <= slv_reg3;
+	            GPIO_int_ack <= '0'; -- serve a definire il valore di GPIO_int_ack  quando non indirizzo slv_reg3
 	        end case;
 	      end if;
 	    end if;
@@ -412,7 +412,8 @@ begin
 	        -- reg_data_out <= slv_reg2;
 	        reg_data_out <= GPIO_read;
 	      when b"11" =>
-	        reg_data_out <= slv_reg3;
+	        -- reg_data_out <= slv_reg3;
+	        	reg_data_out <= slv_reg3(C_S_AXI_DATA_WIDTH -1 downto 3) & GPIO_int_ack & GPIO_int_tmp & slv_reg3(0);
 	      when others =>
 	        reg_data_out  <= (others => '0');
 	    end case;
@@ -445,19 +446,27 @@ begin
 							GPIO_inout	 	=> GPIO_inout,
 							GPIO_read 		=> GPIO_read(GPIO_width-1 downto 0));
 							
+	
 	-- il segnale GPIO_inout viene mascherato con ~slv_reg0 (GPIO_enable), in 
 	-- modo che solo i pin settati come input possano generare interruzione
-	GPIO_inout_masked <= GPIO_inout and (not slv_reg0(GPIO_width-1 downto 0));
-							
-	GPIO_int_controller : GPIOintcontroller 
-		generic map (	width			=> GPIO_width)
-		port map (		clock			=> S_AXI_ACLK,
-						reset_n			=> S_AXI_ARESETN,
-						GPIO_inout		=> GPIO_inout_masked,
-						GPIO_inten		=> slv_reg3(0),
-						GPIO_int		=> GPIO_int,
-						GPIO_intclr		=> slv_reg3(1));
-
+	
+	GPIO_int <= GPIO_int_tmp; -- questo accrocco serve a poter leggere da slv_reg3(1) se si sia manifestato un interrupt
+	GPIO_int_tmp <= or_reduce(GPIO_inout_masked) and slv_reg3(0);	--slv_reg3(0) e' interrupt enable
+	
+	process (S_AXI_ACLK, S_AXI_ARESETN, GPIO_inout)
+	begin
+		if S_AXI_ARESETN = '0' then
+			GPIO_inout_masked <= (others => '0');
+		elsif rising_edge(S_AXI_ACLK) then
+			if GPIO_int_ack = '1' then
+				GPIO_inout_masked <= (others => '0');
+			else
+				GPIO_inout_masked <= GPIO_inout and (not slv_reg0(GPIO_width-1 downto 0));
+			end if;
+		end if;
+	end process;
+	
+	
 	-- User logic ends
 
 end arch_imp;

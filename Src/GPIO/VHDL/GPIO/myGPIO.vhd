@@ -18,6 +18,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+
 --! @brief Periferica AXI4 Lite che implementa una GPIO pilotabile da processing-system.
 --!
 --! Registri della periferica
@@ -27,9 +28,11 @@ use ieee.numeric_std.all;
 --!   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
 --! - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
 --!   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
---! - S/C : registro di stato controllo; solo i due bit meno significativi del registro sono significativi; i bit 0 ed 1 sono,
---!   rispettivamente, IntEn ed IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
---!   dell'interruzione sollevata. Tale operazione deve essere effettuata via software.
+--! - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi;
+--!    - bit 0: interrupt-enable, '1' abilita le interruzioni, '0' disabilita le interruzioni
+--!    - bit 1: interrupt-request (sola lettura), '1' indica che la periferica ha generato una interruzione
+--!    - bit 2: interrupt-ack (clear, sola scrittura), consente di resettare il segnale interrupt-request, via software, dopo aver
+--!		servito l'interruzione.
 --!
 --! @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
 --!
