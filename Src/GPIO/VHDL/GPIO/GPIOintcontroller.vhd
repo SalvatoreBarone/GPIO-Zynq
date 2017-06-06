@@ -14,6 +14,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+--! @addtogroup myGPIO
+--! @{
+
+
 --! @brief Interrupt controller.
 --! Monitora il segnale GPIO_inout, generando un segnale a livelli, utilizzabile per la generazione di interrupt, al variare di quest'ultimo.
 --! Il segnale di interruzione, GPIO_int, viene generato solo se GPIO_inten='1', abilitando la generazione delle interruzioni.
@@ -49,3 +53,5 @@ begin
 		end if;	
 	end process;
 end behavioral;
+
+--! @}

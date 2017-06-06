@@ -11,6 +11,9 @@
 --! You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
 --! Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
+--! @addtogroup myGPIO
+--! @{
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -24,9 +27,12 @@ use ieee.numeric_std.all;
 --!   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
 --! - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
 --!   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
---! - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi; i bit 0, 1 e 2 sono,
---!   rispettivamente, IntEn, Irq e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
---!   dell'interruzione sollevata.
+--! - S/C : registro di stato controllo; solo i due bit meno significativi del registro sono significativi; i bit 0 ed 1 sono,
+--!   rispettivamente, IntEn ed IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
+--!   dell'interruzione sollevata. Tale operazione deve essere effettuata via software.
+--!
+--! @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
+--!
 entity myGPIO is
 	generic (
 		-- Users to add parameters here
@@ -80,6 +86,7 @@ architecture arch_imp of myGPIO is
 		);
 		port (
 		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);
+		GPIO_int		: out std_logic;	
 		S_AXI_ACLK		: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -144,3 +151,5 @@ myGPIO_AXI_inst : myGPIO_AXI
 	-- User logic ends
 
 end arch_imp;
+
+--! @}

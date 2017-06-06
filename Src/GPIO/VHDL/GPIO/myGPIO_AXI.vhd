@@ -15,6 +15,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+--! @addtogroup myGPIO
+--! @{
+
+
 -- @brief Periferica AXI4 Lite che implementa una GPIO pilotabile da processing-system.
 --
 -- Registri della periferica
@@ -24,9 +28,12 @@ use ieee.numeric_std.all;
 --   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
 -- - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
 --   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
--- - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi; i bit 0, 1 e 2 sono,
---   rispettivamente, IntEn, Irq e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
+-- - S/C : registro di stato controllo; solo i due bit meno significativi del registro sono significativi; i bit 0 e bit 1 ,
+--   rispettivamente, IntEn e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
 --   dell'interruzione sollevata.
+--
+-- @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
+--
 entity myGPIO_AXI is
 	generic (
 		-- Users to add parameters here
@@ -164,7 +171,10 @@ architecture arch_imp of myGPIO_AXI is
 	signal byte_index	: integer;
 	
 	signal GPIO_read :std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-
+	
+	signal GPIO_inout_masked : std_logic_vector (GPIO_width-1 downto 0); -- segnale GPIO_inout mascherato con ~slv_reg0 (GPIO_enable), in 
+																		 -- modo che solo i pin settati come input possano generare interruzione
+	
 begin
 	-- I/O Connections assignments
 
@@ -435,15 +445,21 @@ begin
 							GPIO_inout	 	=> GPIO_inout,
 							GPIO_read 		=> GPIO_read(GPIO_width-1 downto 0));
 							
-	GPIO_int_controller : : GPIOintcontroller 
+	-- il segnale GPIO_inout viene mascherato con ~slv_reg0 (GPIO_enable), in 
+	-- modo che solo i pin settati come input possano generare interruzione
+	GPIO_inout_masked <= GPIO_inout and (not slv_reg0(GPIO_width-1 downto 0));
+							
+	GPIO_int_controller : GPIOintcontroller 
 		generic map (	width			=> GPIO_width)
 		port map (		clock			=> S_AXI_ACLK,
 						reset_n			=> S_AXI_ARESETN,
-						GPIO_inout		=> GPIO_inout,
-						GPIO_inten		=> slv_reg(0),
-						GPIO_int		=> slv_reg(1),
-						GPIO_intclr		=> slv_reg(2));
+						GPIO_inout		=> GPIO_inout_masked,
+						GPIO_inten		=> slv_reg3(0),
+						GPIO_int		=> GPIO_int,
+						GPIO_intclr		=> slv_reg3(1));
 
 	-- User logic ends
 
 end arch_imp;
+
+--! @}

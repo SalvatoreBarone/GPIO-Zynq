@@ -14,6 +14,10 @@
 -- Changelog
 -- 2017-04-07:  Creazione del file e prima implementazione1
 
+--! @addtogroup myGPIO
+--! @{
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -34,3 +38,5 @@ begin
 		GPIO_inout <= 	GPIO_write when '1',
 						'Z' when others;
 end Structural;
+
+--! @}
