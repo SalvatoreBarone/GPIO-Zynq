@@ -1,22 +1,47 @@
+--! @file myGPIO.vhd
+--! @author Salvatore Barone <salvator.barone@gmail.com>
+--!			Alfonso Di Martino <alfonsodimartino160989@gmail.com>
+--!			Pietro Liguori <pie.liguori@gmail.com>
+--! @date 2017-04-07
+--! @copyright
+--! This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as
+--! published by the Free Software Foundation; either version 3 of the License, or any later version.
+--! This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+--! of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+--! You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
+--! Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity myGPIO_v1_0 is
+--! @brief Periferica AXI4 Lite che implementa una GPIO pilotabile da processing-system.
+--!
+--! Registri della periferica
+--! - MODE : consente di impostare i singoli GPIO come ingressi o uscite; solo i GPIO_width bit meno significativi del registro sono
+--!   significativi; l'offset, rispetto all'indirizzo base della periferica e' 0;
+--! - WRITE : consente di imporre un valore qualora i GPIO siano configurati come uscite; solo i GPIO_width bit meno significativi del
+--!   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
+--! - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
+--!   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
+--! - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi; i bit 0, 1 e 2 sono,
+--!   rispettivamente, IntEn, Irq e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
+--!   dell'interruzione sollevata.
+entity myGPIO is
 	generic (
 		-- Users to add parameters here
-		GPIO_width 		: 		natural := 4;
+		GPIO_width : natural := 4;	--! numero di GPIO offerti dalla periferica, di default pari a 4 celle.
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
-
-
 		-- Parameters of Axi Slave Bus Interface S00_AXI
-		C_S00_AXI_DATA_WIDTH	: integer	:= 32;
-		C_S00_AXI_ADDR_WIDTH	: integer	:= 4
+		C_S00_AXI_DATA_WIDTH : integer	:= 32;
+		C_S00_AXI_ADDR_WIDTH : integer	:= 4
 	);
 	port (
 		-- Users to add ports here
-		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);
+		GPIO_inout : inout std_logic_vector (GPIO_width-1 downto 0);	--! segnale bidirezionale diretto verso l'esterno del device.
+		GPIO_int : out std_logic;										--! segnale di interrupt a livelli, se gli interrupt sono abilitati
+																		--! diventa alto quando GPIO_inout cambia stato
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 		-- Ports of Axi Slave Bus Interface S00_AXI
@@ -42,12 +67,12 @@ entity myGPIO_v1_0 is
 		s00_axi_rvalid	: out std_logic;
 		s00_axi_rready	: in std_logic
 	);
-end myGPIO_v1_0;
+end myGPIO;
 
-architecture arch_imp of myGPIO_v1_0 is
+architecture arch_imp of myGPIO is
 
 	-- component declaration
-	component myGPIO_v1_0_S00_AXI is
+	component myGPIO_AXI is
 		generic (
 		GPIO_width 			: natural := 4;
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
@@ -77,12 +102,12 @@ architecture arch_imp of myGPIO_v1_0 is
 		S_AXI_RVALID	: out std_logic;
 		S_AXI_RREADY	: in std_logic
 		);
-	end component myGPIO_v1_0_S00_AXI;
+	end component myGPIO_AXI;
 
 begin
 
 -- Instantiation of Axi Bus Interface S00_AXI
-myGPIO_v1_0_S00_AXI_inst : myGPIO_v1_0_S00_AXI
+myGPIO_AXI_inst : myGPIO_AXI
 	generic map (
 		GPIO_width	=> GPIO_width,
 		C_S_AXI_DATA_WIDTH	=> C_S00_AXI_DATA_WIDTH,
@@ -90,6 +115,7 @@ myGPIO_v1_0_S00_AXI_inst : myGPIO_v1_0_S00_AXI
 	)
 	port map (
 		GPIO_inout => GPIO_inout,
+		GPIO_int => GPIO_int,
 		S_AXI_ACLK	=> s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,

@@ -1,14 +1,38 @@
+--! @file muGPIO_AXI.vhd
+--! @author Salvatore Barone <salvator.barone@gmail.com>
+--!			Alfonso Di Martino <alfonsodimartino160989@gmail.com>
+--!			Pietro Liguori <pie.liguori@gmail.com>
+--! @date 2017-04-07
+--! @copyright
+--! This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as
+--! published by the Free Software Foundation; either version 3 of the License, or any later version.
+--! This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+--! of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+--! You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
+--! Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity myGPIO_v1_0_S00_AXI is
+-- @brief Periferica AXI4 Lite che implementa una GPIO pilotabile da processing-system.
+--
+-- Registri della periferica
+-- - MODE : consente di impostare i singoli GPIO come ingressi o uscite; solo i GPIO_width bit meno significativi del registro sono
+--   significativi; l'offset, rispetto all'indirizzo base della periferica e' 0;
+-- - WRITE : consente di imporre un valore qualora i GPIO siano configurati come uscite; solo i GPIO_width bit meno significativi del
+--   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
+-- - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
+--   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
+-- - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi; i bit 0, 1 e 2 sono,
+--   rispettivamente, IntEn, Irq e IntAck; IntAck va manualmente riportato a '0', dopo averlo posto ad '1' per segnalare il servizio
+--   dell'interruzione sollevata.
+entity myGPIO_AXI is
 	generic (
 		-- Users to add parameters here
-		GPIO_width 		: 		natural := 4;
+		GPIO_width : natural := 4;	-- numero di GPIO offerti dalla periferica, di default pari a 4 celle.
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
-
 		-- Width of S_AXI data bus
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
 		-- Width of S_AXI address bus
@@ -16,10 +40,11 @@ entity myGPIO_v1_0_S00_AXI is
 	);
 	port (
 		-- Users to add ports here
-		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);
+		GPIO_inout : inout std_logic_vector (GPIO_width-1 downto 0);	-- segnale bidirezionale diretto verso l'esterno del device.
+		GPIO_int : out std_logic;										-- segnale di interrupt a livelli, se gli interrupt sono abilitati
+																		-- diventa alto quando GPIO_inout cambia stato
 		-- User ports ends
 		-- Do not modify the ports beyond this line
-
 		-- Global Clock Signal
 		S_AXI_ACLK	: in std_logic;
 		-- Global Reset Signal. This Signal is Active LOW
@@ -81,17 +106,30 @@ entity myGPIO_v1_0_S00_AXI is
     		-- accept the read data and response information.
 		S_AXI_RREADY	: in std_logic
 	);
-end myGPIO_v1_0_S00_AXI;
+end myGPIO_AXI;
 
-architecture arch_imp of myGPIO_v1_0_S00_AXI is
+architecture arch_imp of myGPIO_AXI is
 
 	component GPIOarray is
-		Generic (	GPIO_width 		: 		natural := 4);
-		Port 	(	GPIO_enable		: in 	std_logic_vector (GPIO_width-1 downto 0);
-					GPIO_write 		: in 	std_logic_vector (GPIO_width-1 downto 0);
-					GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);
-					GPIO_read 		: out 	std_logic_vector (GPIO_width-1 downto 0));
+		Generic (	GPIO_width 		: 		natural := 4);								-- parallelismo dell'array, di default pari a 4 celle.
+		Port 	(	GPIO_enable		: in 	std_logic_vector (GPIO_width-1 downto 0);	-- segnale di abilitazione, permette di pilotare la linea 
+																						-- "GPIO_inout".
+																						--	Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro.
+					GPIO_write 		: in 	std_logic_vector (GPIO_width-1 downto 0);	-- segnale di input, diretto verso l'esterno del device.
+					GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);	-- segnale bidirezionale diretto verso l'esterno del device.
+					GPIO_read 		: out 	std_logic_vector (GPIO_width-1 downto 0));	-- segnale di output, diretto verso l'interno del device.
 	end component;
+	
+	component GPIOintcontroller is
+	generic (	width			: natural := 4);							-- parallelismo dell'array, di default pari a 4 celle.
+	port (		clock			: in	std_logic;							-- segnale di clock
+				reset_n			: in	std_logic;							-- reset asincrono, attivo basso
+				GPIO_inout		: in	std_logic_vector(width-1 downto 0);	-- segnale monitorato, al cambio di stato, se GPIO_inten e' '1', viene generato interrupt
+				GPIO_inten		: in	std_logic;							-- segnale di abilitazione dell'interrupt sul cambio di stato sul pin GPIO_inout
+				GPIO_int		: out	std_logic;							-- segnale di interrupt a livelli, se GPIO_inten='1' diventa alto quando GPIO_inout cambia stato
+				GPIO_intclr		: in	std_logic);							-- segnale di clear per GPIO_int, quando posto a '1' riporta a '0' il valore di GPIO_int
+	end component;
+	
 
 	-- AXI4LITE signals
 	signal axi_awaddr	: std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -396,6 +434,15 @@ begin
 							GPIO_write 		=> slv_reg1(GPIO_width-1 downto 0),
 							GPIO_inout	 	=> GPIO_inout,
 							GPIO_read 		=> GPIO_read(GPIO_width-1 downto 0));
+							
+	GPIO_int_controller : : GPIOintcontroller 
+		generic map (	width			=> GPIO_width)
+		port map (		clock			=> S_AXI_ACLK,
+						reset_n			=> S_AXI_ARESETN,
+						GPIO_inout		=> GPIO_inout,
+						GPIO_inten		=> slv_reg(0),
+						GPIO_int		=> slv_reg(1),
+						GPIO_intclr		=> slv_reg(2));
 
 	-- User logic ends
 
