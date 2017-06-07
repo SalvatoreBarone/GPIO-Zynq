@@ -440,6 +440,8 @@ begin
 
 
 	-- Add user logic here
+	
+	-- istanziazione dell'array di GPIO
 	GPIOarray_inst : GPIOarray
 			Generic map (	GPIO_width 		=> GPIO_width)
 			Port map 	(	GPIO_enable		=> slv_reg0(GPIO_width-1 downto 0),
@@ -450,19 +452,32 @@ begin
 	
 	-- il segnale GPIO_inout viene mascherato con ~slv_reg0 (GPIO_enable), in 
 	-- modo che solo i pin settati come input possano generare interruzione
+	GPIO_inout_masked <= GPIO_inout and (not slv_reg0(GPIO_width-1 downto 0));
 	
-	GPIO_int <= GPIO_int_tmp; -- questo accrocco serve a poter leggere da slv_reg3(1) se si sia manifestato un interrupt
-	GPIO_int_tmp <= or_reduce(GPIO_inout_masked) and slv_reg3(0);	--slv_reg3(0) e' interrupt enable
-	
+	-- poter leggere GPIO_int da slv_reg3(1) e' necessario usare un segnale diverso
+	-- se gli interrupt sono abilitati e GPIO_inout_masked possiede un bit '1'
+	-- allora GPIO_int_tmp diventa '1'. Esso viene assegnago a GPIO_int, in modo che
+	-- tale segnale ne segua il valore, e letto al posto di slv_reg3(1), in modo
+	-- che sia possibile verificare, via software, quale sia la periferica interrompente
+	GPIO_int <= GPIO_int_tmp; 	
+		
+	-- il process seguente implementa la logica di controllo del segnale GPIO_int_tmp,
+	-- connesso a GPIO_int e a slv_reg3(1);
+	-- GPIO_int_tmp diviene '1' quando uno dei bit del segnale GPIO_inout_masked e' '1'
+	-- e rimane in tale stato finche' il device non viene resettato (S_AXI_ARESETN = '0')
+	-- o al device non viene segnalato che l'interrupt sollevata non sia stata servita
+	-- (GPIO_int_ack = '1', si noti che tale segnale viene scritto al posto di slv_reg3(2)).
 	process (S_AXI_ACLK, S_AXI_ARESETN, GPIO_inout)
 	begin
 		if S_AXI_ARESETN = '0' then
-			GPIO_inout_masked <= (others => '0');
+			GPIO_int_tmp <= '0';
 		elsif rising_edge(S_AXI_ACLK) then
+			if or_reduce(GPIO_inout_masked) = '1' and slv_reg3(0) = '1' then	--slv_reg3(0) e' interrupt enable
+				GPIO_int_tmp <= '1';
+			end if;
+			
 			if GPIO_int_ack = '1' then
-				GPIO_inout_masked <= (others => '0');
-			else
-				GPIO_inout_masked <= GPIO_inout and (not slv_reg0(GPIO_width-1 downto 0));
+				GPIO_int_tmp <= '0';
 			end if;
 		end if;
 	end process;
