@@ -4,13 +4,13 @@ COMPILE = $(CC) $(CC_OPZ) $(DEBUG_OPZ) -c $< -o $@
 LINK = $(CC) $(LINK_OPZ) $^ -o $@
 SRC=../
 
-test : test.o gpio.o
+test : test.o myGPIO.o
 	$(LINK)
 
-test.o : test.c gpio.o
+test.o : test.c myGPIO.o
 	$(COMPILE) -I..
 
-gpio.o : $(SRC)gpio.c $(SRC)gpio.h
+myGPIO.o : $(SRC)myGPIO.c $(SRC)myGPIO.h
 	$(COMPILE)
 
 clean :
