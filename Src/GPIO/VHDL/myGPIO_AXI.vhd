@@ -30,10 +30,10 @@ use ieee.std_logic_misc.all;
 -- - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
 --   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
 -- - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi;
---    - bit 0: interrupt-enable, '1' abilita le interruzioni, '0' disabilita le interruzioni
---    - bit 1: interrupt-request (sola lettura), '1' indica che la periferica ha generato una interruzione
---    - bit 2: interrupt-ack (clear, sola scrittura), consente di resettare il segnale interrupt-request, via software, dopo aver
---		servito l'interruzione.
+--    - IntEn (bit 0): interrupt-enable, '1' abilita le interruzioni, '0' disabilita le interruzioni
+--    - Irq (bit 1): interrupt-request (sola lettura), '1' indica che la periferica ha generato una interruzione
+--    - IntAck (bit 2): interrupt-ack (clear, sola scrittura), consente di resettare il segnale interrupt-request, via software, dopo 
+--		aver servito l'interruzione.
 --
 -- @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
 --
@@ -297,15 +297,19 @@ begin
 	            end loop;
 	            
 	          when b"11" =>
-	            for byte_index in 0 to (C_S_AXI_DATA_WIDTH/8-1) loop
-	              if ( S_AXI_WSTRB(byte_index) = '1' ) then
-	                -- Respective byte enables are asserted as per write strobes                   
-	                -- slave registor 3
-	                slv_reg3(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
-	              end if;
-	              
+--	            for byte_index in 0 to (C_S_AXI_DATA_WIDTH/8-1) loop
+-- 	              if ( S_AXI_WSTRB(byte_index) = '1' ) then
+-- 	                -- Respective byte enables are asserted as per write strobes                   
+-- 	                -- slave registor 3
+-- 	                slv_reg3(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
+-- 	              end if;
+--	            end loop;
+
+				-- La scrittura "persistente" avviene soltanto sul bit 0 di slv_reg3, che viene usato come interrupt
+				-- enable. Il bit 2 di S_AXI_WDATA viene usato per settare il segnale GPIO_int_ack. Quando si smette di
+				-- indirizzare slv_reg3, GPIO_int_ack torna automaticamente a zero.
+	              slv_reg3(0) <= S_AXI_WDATA(0);
 	              GPIO_int_ack <= S_AXI_WDATA(2);
-	            end loop;
 	          when others =>
 	            slv_reg0 <= slv_reg0;
 	            slv_reg1 <= slv_reg1;
@@ -467,7 +471,7 @@ begin
 	-- e rimane in tale stato finche' il device non viene resettato (S_AXI_ARESETN = '0')
 	-- o al device non viene segnalato che l'interrupt sollevata non sia stata servita
 	-- (GPIO_int_ack = '1', si noti che tale segnale viene scritto al posto di slv_reg3(2)).
-	process (S_AXI_ACLK, S_AXI_ARESETN, GPIO_inout)
+	process (S_AXI_ACLK, S_AXI_ARESETN, GPIO_inout_masked, GPIO_int_ack, slv_reg3(0))
 	begin
 		if S_AXI_ARESETN = '0' then
 			GPIO_int_tmp <= '0';
@@ -481,7 +485,6 @@ begin
 			end if;
 		end if;
 	end process;
-	
 	
 	-- User logic ends
 

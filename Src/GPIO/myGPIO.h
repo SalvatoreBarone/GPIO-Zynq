@@ -36,13 +36,40 @@ typedef struct {
 	uint8_t		int_offset;		/**< offset, rispetto all'indirizzo base, del registro "interrupt" */
 } myGPIO_t;
 
-#define myGPIO_MODE_OFFSET		0	//!< @brief Offset, rispetto all'indirizzo base, del registro "mode" per il device myGPIO
-#define myGPIO_WRITE_OFFSET		4	//!< @brief Offset, rispetto all'indirizzo base, del registro "write" per il device myGPIO
-#define myGPIO_READ_OFFSET		8 	//!< @brief Offset, rispetto all'indirizzo base, del registro "read" per il device myGPIO
-#define myGPIO_INTR_OFFSET		12	//!< @brief Offset, rispetto all'indirizzo base, del registro "interrupt" per il device myGPIO
-#define myGPIO_INTR_IntEn_mask	0x1	//!< @brief maschera del bit del registro "interrupt" che funge da interrupt-enable, per il device myGPIO
-#define myGPIO_INTR_Irq_mask	0x2	//!< @brief maschera del bit del registro "interrupt" che funge da interrupt-request, per il device myGPIO
-#define myGPIO_INTR_IntAck_mask 0x4	//!< @brief maschera del bit del registro "interrupt" che funge da interrupt-ack, per il device myGPIO
+/**
+ * @brief Offset, rispetto all'indirizzo base, del registro "mode" per il device myGPIO
+ */
+#define myGPIO_MODE_OFFSET		0
+
+/**
+ * @brief Offset, rispetto all'indirizzo base, del registro "write" per il device myGPIO
+ */
+#define myGPIO_WRITE_OFFSET		4
+
+/**
+ * @brief Offset, rispetto all'indirizzo base, del registro "read" per il device myGPIO
+ */
+#define myGPIO_READ_OFFSET		8
+
+/**
+ * @brief Offset, rispetto all'indirizzo base, del registro "interrupt" per il device myGPIO
+ */
+#define myGPIO_INTR_OFFSET		12
+
+/**
+ * @brief maschera del bit del registro "interrupt" che funge da interrupt-enable, per il device myGPIO
+ */
+#define myGPIO_INTR_IntEn_mask	0x1
+
+/**
+ * @brief maschera del bit del registro "interrupt" che funge da interrupt-request, per il device myGPIO
+ */
+#define myGPIO_INTR_Irq_mask	0x2
+
+/**
+ * @brief maschera del bit del registro "interrupt" che funge da interrupt-ack, per il device myGPIO
+ */
+#define myGPIO_INTR_IntAck_mask 0x4
 
 /**
  * @brief Maschere di selezione dei pin di un device myGPIO
@@ -124,7 +151,7 @@ typedef enum {
  *
  * @warning Usa la macro assert per verificare che gpio e base_address non siano nulli.
  */
-void myGPIO_init(	myGPIO_t* gpio, uint32_t *base_address);
+void myGPIO_init(myGPIO_t* gpio, uint32_t base_address);
 				
 /**
  * @brief Permette di settare la modalita' lettura/scrittura dei pin di un device myGPIO;
@@ -262,7 +289,7 @@ void myGPIO_interruptAck(myGPIO_t *gpio);
  * @code
  * @endcode
  */
-myGPIO_value myGPIO_getPendingIrq(myGPIO_t *gpio);
+myGPIO_value myGPIO_getIrq(myGPIO_t *gpio);
 
 /**
  * @}

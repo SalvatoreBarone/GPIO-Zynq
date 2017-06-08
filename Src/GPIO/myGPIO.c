@@ -16,11 +16,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
-void myGPIO_init(	myGPIO_t* gpio, uint32_t	*base_address) {
+void myGPIO_init(myGPIO_t* gpio, uint32_t base_address) {
 	assert(gpio != NULL);
-	assert(base_address != NULL);
+	assert(base_address != 0);
 	
-	gpio->base_address = base_address;
+	gpio->base_address = (uint32_t *)base_address;
 	gpio->mode_offset = myGPIO_MODE_OFFSET;
 	gpio->write_offset = myGPIO_WRITE_OFFSET;
 	gpio->read_offset = myGPIO_READ_OFFSET;
@@ -76,6 +76,7 @@ void myGPIO_interruptAck(myGPIO_t *gpio) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);
 	gpio->base_address[gpio->int_offset>>2] |= myGPIO_INTR_IntAck_mask;
+	// gpio->base_address[gpio->int_offset>>2] &= ~myGPIO_INTR_IntAck_mask;
 }
 
 myGPIO_value myGPIO_getIrq(myGPIO_t *gpio) {
