@@ -29,10 +29,10 @@
  * @brief Maschere di selezione dei PushButton
  */
 typedef enum {
-	ZyboButton3 = 0x8, //!< ZyboButton3, seleziona il button 3 sulla board Digilent Zybo;
-	ZyboButton2 = 0x4, //!< ZyboButton2, seleziona il button 2 sulla board Digilent Zybo;
-	ZyboButton1 = 0x2, //!< ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;
-	ZyboButton0 = 0x1  //!< ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;
+	ZyboButton3 = 0x8U, //!< ZyboButton3, seleziona il button 3 sulla board Digilent Zybo;
+	ZyboButton2 = 0x4U, //!< ZyboButton2, seleziona il button 2 sulla board Digilent Zybo;
+	ZyboButton1 = 0x2U, //!< ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;
+	ZyboButton0 = 0x1U  //!< ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;
 } ZyboButton_mask_t;
 
 /**

@@ -28,10 +28,10 @@
  * @brief Maschere di selezione dei led
  */
 typedef enum {
-	ZyboLed3 = 0x8, //!< ZyboLed3, seleziona il led 3 sulla board Digilent Zybo;
-	ZyboLed2 = 0x4, //!< ZyboLed2, seleziona il led 2 sulla board Digilent Zybo;
-	ZyboLed1 = 0x2, //!< ZyboLed1, seleziona il led 1 sulla board Digilent Zybo;
-	ZyboLed0 = 0x1 //!< ZyboLed0, seleziona il led 0 sulla board Digilent Zybo;
+	ZyboLed3 = 0x8U, //!< ZyboLed3, seleziona il led 3 sulla board Digilent Zybo;
+	ZyboLed2 = 0x4U, //!< ZyboLed2, seleziona il led 2 sulla board Digilent Zybo;
+	ZyboLed1 = 0x2U, //!< ZyboLed1, seleziona il led 1 sulla board Digilent Zybo;
+	ZyboLed0 = 0x1U //!< ZyboLed0, seleziona il led 0 sulla board Digilent Zybo;
 } ZyboLed_mask_t;
 
 /**

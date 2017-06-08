@@ -29,10 +29,10 @@
  * @brief Maschere di selezione degli switch
  */
 typedef enum {
-	ZyboSwitch3 = 0x8, //!< ZyboSwitch3, seleziona lo switch 3 sulla board Digilent Zybo;
-	ZyboSwitch2 = 0x4, //!< ZyboSwitch2, seleziona lo switch 2 sulla board Digilent Zybo;
-	ZyboSwitch1 = 0x2, //!< ZyboSwitch1, seleziona lo switch 1 sulla board Digilent Zybo;
-	ZyboSwitch0 = 0x1 //!< ZyboSwitch0, seleziona lo switch 0 sulla board Digilent Zybo;
+	ZyboSwitch3 = 0x8U, //!< ZyboSwitch3, seleziona lo switch 3 sulla board Digilent Zybo;
+	ZyboSwitch2 = 0x4U, //!< ZyboSwitch2, seleziona lo switch 2 sulla board Digilent Zybo;
+	ZyboSwitch1 = 0x2U, //!< ZyboSwitch1, seleziona lo switch 1 sulla board Digilent Zybo;
+	ZyboSwitch0 = 0x1U //!< ZyboSwitch0, seleziona lo switch 0 sulla board Digilent Zybo;
 } ZyboSwitch_mask_t;
 
 /**

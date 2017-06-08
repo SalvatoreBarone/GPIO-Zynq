@@ -39,78 +39,78 @@ typedef struct {
 /**
  * @brief Offset, rispetto all'indirizzo base, del registro "mode" per il device myGPIO
  */
-#define myGPIO_MODE_OFFSET		0
+#define myGPIO_MODE_OFFSET		0U
 
 /**
  * @brief Offset, rispetto all'indirizzo base, del registro "write" per il device myGPIO
  */
-#define myGPIO_WRITE_OFFSET		4
+#define myGPIO_WRITE_OFFSET		4U
 
 /**
  * @brief Offset, rispetto all'indirizzo base, del registro "read" per il device myGPIO
  */
-#define myGPIO_READ_OFFSET		8
+#define myGPIO_READ_OFFSET		8U
 
 /**
  * @brief Offset, rispetto all'indirizzo base, del registro "interrupt" per il device myGPIO
  */
-#define myGPIO_INTR_OFFSET		12
+#define myGPIO_INTR_OFFSET		12U
 
 /**
  * @brief maschera del bit del registro "interrupt" che funge da interrupt-enable, per il device myGPIO
  */
-#define myGPIO_INTR_IntEn_mask	0x1
+#define myGPIO_INTR_IntEn_mask	0x1U
 
 /**
  * @brief maschera del bit del registro "interrupt" che funge da interrupt-request, per il device myGPIO
  */
-#define myGPIO_INTR_Irq_mask	0x2
+#define myGPIO_INTR_Irq_mask	0x2U
 
 /**
  * @brief maschera del bit del registro "interrupt" che funge da interrupt-ack, per il device myGPIO
  */
-#define myGPIO_INTR_IntAck_mask 0x4
+#define myGPIO_INTR_IntAck_mask 0x4U
 
 /**
  * @brief Maschere di selezione dei pin di un device myGPIO
  */
 typedef enum {
-	myGPIO_pin0 = 0x1,        //!< myGPIO pin0 maschera di selezione del pin 0 di un device myGPIO
-	myGPIO_pin1 = 0x2,        //!< myGPIO pin1 maschera di selezione del pin 1 di un device myGPIO
-	myGPIO_pin2 = 0x4,        //!< myGPIO pin2 maschera di selezione del pin 2 di un device myGPIO
-	myGPIO_pin3 = 0x8,        //!< myGPIO pin3 maschera di selezione del pin 3 di un device myGPIO
-	myGPIO_pin4 = 0x10,       //!< myGPIO pin4 maschera di selezione del pin 4 di un device myGPIO
-	myGPIO_pin5 = 0x20,       //!< myGPIO pin5 maschera di selezione del pin 5 di un device myGPIO
-	myGPIO_pin6 = 0x40,       //!< myGPIO pin6 maschera di selezione del pin 6 di un device myGPIO
-	myGPIO_pin7 = 0x80,       //!< myGPIO pin7 maschera di selezione del pin 7 di un device myGPIO
-	myGPIO_pin8 = 0x100,      //!< myGPIO pin8 maschera di selezione del pin 8 di un device myGPIO
-	myGPIO_pin9 = 0x200,      //!< myGPIO pin9 maschera di selezione del pin 9 di un device myGPIO
-	myGPIO_pin10 = 0x400,     //!< myGPIO pin10 maschera di selezione del pin 10 di un device myGPIO
-	myGPIO_pin11 = 0x800,     //!< myGPIO pin11 maschera di selezione del pin 11 di un device myGPIO
-	myGPIO_pin12 = 0x1000,    //!< myGPIO pin12 maschera di selezione del pin 12 di un device myGPIO
-	myGPIO_pin13 = 0x2000,    //!< myGPIO pin13 maschera di selezione del pin 13 di un device myGPIO
-	myGPIO_pin14 = 0x4000,    //!< myGPIO pin14 maschera di selezione del pin 14 di un device myGPIO
-	myGPIO_pin15 = 0x8000,    //!< myGPIO pin15 maschera di selezione del pin 15 di un device myGPIO
-	myGPIO_pin16 = 0x10000,   //!< myGPIO pin16 maschera di selezione del pin 16 di un device myGPIO
-	myGPIO_pin17 = 0x20000,   //!< myGPIO pin17 maschera di selezione del pin 17 di un device myGPIO
-	myGPIO_pin18 = 0x40000,   //!< myGPIO pin18 maschera di selezione del pin 18 di un device myGPIO
-	myGPIO_pin19 = 0x80000,   //!< myGPIO pin19 maschera di selezione del pin 19 di un device myGPIO
-	myGPIO_pin20 = 0x100000,  //!< myGPIO pin20 maschera di selezione del pin 20 di un device myGPIO
-	myGPIO_pin21 = 0x200000,  //!< myGPIO pin21 maschera di selezione del pin 21 di un device myGPIO
-	myGPIO_pin22 = 0x400000,  //!< myGPIO pin22 maschera di selezione del pin 22 di un device myGPIO
-	myGPIO_pin23 = 0x800000,  //!< myGPIO pin23 maschera di selezione del pin 23 di un device myGPIO
-	myGPIO_pin24 = 0x1000000, //!< myGPIO pin24 maschera di selezione del pin 24 di un device myGPIO
-	myGPIO_pin25 = 0x2000000, //!< myGPIO pin25 maschera di selezione del pin 25 di un device myGPIO
-	myGPIO_pin26 = 0x4000000, //!< myGPIO pin26 maschera di selezione del pin 26 di un device myGPIO
-	myGPIO_pin27 = 0x8000000, //!< myGPIO pin27 maschera di selezione del pin 27 di un device myGPIO
-	myGPIO_pin28 = 0x10000000,//!< myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO
-	myGPIO_pin29 = 0x20000000,//!< myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO
-	myGPIO_pin30 = 0x40000000,//!< myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO
-	myGPIO_pin31 = 0x80000000,//!< myGPIO pin31	maschera di selezione del pin 31 di un device myGPIO
-	myGPIO_byte0 = 0x000000ff,//!< myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO
-	myGPIO_byte1 = 0x0000ff00,//!< myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO
-	myGPIO_byte2 = 0x00ff0000,//!< myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO
-	myGPIO_byte3 = 0xff000000 //!< myGPIO byte3 maschera di selezione deI pin 24-31 di un device myGPIO
+	myGPIO_pin0 = 0x1U,        //!< myGPIO pin0 maschera di selezione del pin 0 di un device myGPIO
+	myGPIO_pin1 = 0x2U,        //!< myGPIO pin1 maschera di selezione del pin 1 di un device myGPIO
+	myGPIO_pin2 = 0x4U,        //!< myGPIO pin2 maschera di selezione del pin 2 di un device myGPIO
+	myGPIO_pin3 = 0x8U,        //!< myGPIO pin3 maschera di selezione del pin 3 di un device myGPIO
+	myGPIO_pin4 = 0x10U,       //!< myGPIO pin4 maschera di selezione del pin 4 di un device myGPIO
+	myGPIO_pin5 = 0x20U,       //!< myGPIO pin5 maschera di selezione del pin 5 di un device myGPIO
+	myGPIO_pin6 = 0x40U,       //!< myGPIO pin6 maschera di selezione del pin 6 di un device myGPIO
+	myGPIO_pin7 = 0x80U,       //!< myGPIO pin7 maschera di selezione del pin 7 di un device myGPIO
+	myGPIO_pin8 = 0x100U,      //!< myGPIO pin8 maschera di selezione del pin 8 di un device myGPIO
+	myGPIO_pin9 = 0x200U,      //!< myGPIO pin9 maschera di selezione del pin 9 di un device myGPIO
+	myGPIO_pin10 = 0x400U,     //!< myGPIO pin10 maschera di selezione del pin 10 di un device myGPIO
+	myGPIO_pin11 = 0x800U,     //!< myGPIO pin11 maschera di selezione del pin 11 di un device myGPIO
+	myGPIO_pin12 = 0x1000U,    //!< myGPIO pin12 maschera di selezione del pin 12 di un device myGPIO
+	myGPIO_pin13 = 0x2000U,    //!< myGPIO pin13 maschera di selezione del pin 13 di un device myGPIO
+	myGPIO_pin14 = 0x4000U,    //!< myGPIO pin14 maschera di selezione del pin 14 di un device myGPIO
+	myGPIO_pin15 = 0x8000U,    //!< myGPIO pin15 maschera di selezione del pin 15 di un device myGPIO
+	myGPIO_pin16 = 0x10000U,   //!< myGPIO pin16 maschera di selezione del pin 16 di un device myGPIO
+	myGPIO_pin17 = 0x20000U,   //!< myGPIO pin17 maschera di selezione del pin 17 di un device myGPIO
+	myGPIO_pin18 = 0x40000U,   //!< myGPIO pin18 maschera di selezione del pin 18 di un device myGPIO
+	myGPIO_pin19 = 0x80000U,   //!< myGPIO pin19 maschera di selezione del pin 19 di un device myGPIO
+	myGPIO_pin20 = 0x100000U,  //!< myGPIO pin20 maschera di selezione del pin 20 di un device myGPIO
+	myGPIO_pin21 = 0x200000U,  //!< myGPIO pin21 maschera di selezione del pin 21 di un device myGPIO
+	myGPIO_pin22 = 0x400000U,  //!< myGPIO pin22 maschera di selezione del pin 22 di un device myGPIO
+	myGPIO_pin23 = 0x800000U,  //!< myGPIO pin23 maschera di selezione del pin 23 di un device myGPIO
+	myGPIO_pin24 = 0x1000000U, //!< myGPIO pin24 maschera di selezione del pin 24 di un device myGPIO
+	myGPIO_pin25 = 0x2000000U, //!< myGPIO pin25 maschera di selezione del pin 25 di un device myGPIO
+	myGPIO_pin26 = 0x4000000U, //!< myGPIO pin26 maschera di selezione del pin 26 di un device myGPIO
+	myGPIO_pin27 = 0x8000000U, //!< myGPIO pin27 maschera di selezione del pin 27 di un device myGPIO
+	myGPIO_pin28 = 0x10000000U,//!< myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO
+	myGPIO_pin29 = 0x20000000U,//!< myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO
+	myGPIO_pin30 = 0x40000000U,//!< myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO
+	myGPIO_pin31 = 0x80000000U,//!< myGPIO pin31	maschera di selezione del pin 31 di un device myGPIO
+	myGPIO_byte0 = 0x000000ffU,//!< myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO
+	myGPIO_byte1 = 0x0000ff00U,//!< myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO
+	myGPIO_byte2 = 0x00ff0000U,//!< myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO
+	myGPIO_byte3 = 0xff000000U //!< myGPIO byte3 maschera di selezione deI pin 24-31 di un device myGPIO
 } myGPIO_mask;
 
 /**
