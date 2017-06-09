@@ -9,7 +9,7 @@ Grafo delle dipendenze di inclusione per hd44780.\+c\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=278pt]{hd44780_8c__incl}
+\includegraphics[width=279pt]{hd44780_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Definizioni}
@@ -49,13 +49,13 @@ Grafo delle dipendenze di inclusione per hd44780.\+c\+:
 \item 
 \#define \hyperlink{hd44780_8c_a9f0a484de0de3ab1ddd77d5f716dea96}{timer\+\_\+wait\+\_\+us}(us)~usleep(us)
 \item 
-\#define \hyperlink{hd44780_8c_a5060e38ac985451fad57ed890aea1d77}{lcd\+\_\+command}(lcd)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+S, G\+P\+I\+O\+\_\+reset)
+\#define \hyperlink{hd44780_8c_a5060e38ac985451fad57ed890aea1d77}{lcd\+\_\+command}(lcd)~\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+S, \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{my\+G\+P\+I\+O\+\_\+reset})
 \item 
-\#define \hyperlink{hd44780_8c_afac15d58a1ee77e8a17bc57252468ea1}{lcd\+\_\+data}(lcd)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+S, G\+P\+I\+O\+\_\+set)
+\#define \hyperlink{hd44780_8c_afac15d58a1ee77e8a17bc57252468ea1}{lcd\+\_\+data}(lcd)~\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+S, \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{my\+G\+P\+I\+O\+\_\+set})
 \item 
-\#define \hyperlink{hd44780_8c_a7546bbb2f97e50a0469cf71934ac18e2}{lcd\+\_\+write}(lcd)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+W, G\+P\+I\+O\+\_\+reset)
+\#define \hyperlink{hd44780_8c_a7546bbb2f97e50a0469cf71934ac18e2}{lcd\+\_\+write}(lcd)~\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+W, \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{my\+G\+P\+I\+O\+\_\+reset})
 \item 
-\#define \hyperlink{hd44780_8c_ad7be3fdeebf9b76a774a6c1afa7fa3c8}{lcd\+\_\+read}(lcd)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+W, G\+P\+I\+O\+\_\+set)
+\#define \hyperlink{hd44780_8c_ad7be3fdeebf9b76a774a6c1afa7fa3c8}{lcd\+\_\+read}(lcd)~\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+W, \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{my\+G\+P\+I\+O\+\_\+set})
 \item 
 \#define \hyperlink{hd44780_8c_acd814f8ff18cac325b1f9f5957dd3846}{lcd\+\_\+enable}(lcd)
 \end{DoxyCompactItemize}
@@ -72,9 +72,9 @@ int \hyperlink{hd44780_8c_ad3c60edaac713488ecb9c7ed73854a3c}{H\+D44780\+\_\+\+Va
 \item 
 void \hyperlink{hd44780_8c_ad4120d3a2df038c193d043f386fdb221}{H\+D44780\+\_\+\+Configure\+Pin} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd)
 \item 
-void \hyperlink{group___h_d44780_ga2df14171c71a8afda59e3ae1733c5469}{H\+D44780\+\_\+\+Init8} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, G\+P\+I\+O\+\_\+t $\ast$gpio, G\+P\+I\+O\+\_\+mask R\+S, G\+P\+I\+O\+\_\+mask R\+W, G\+P\+I\+O\+\_\+mask E, G\+P\+I\+O\+\_\+mask Data7, G\+P\+I\+O\+\_\+mask Data6, G\+P\+I\+O\+\_\+mask Data5, G\+P\+I\+O\+\_\+mask Data4, G\+P\+I\+O\+\_\+mask Data3, G\+P\+I\+O\+\_\+mask Data2, G\+P\+I\+O\+\_\+mask Data1, G\+P\+I\+O\+\_\+mask Data0)
+void \hyperlink{group___h_d44780_gad212907e20316f4fc0e93d7c7a8f338e}{H\+D44780\+\_\+\+Init8} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+S, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+W, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} E, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data7, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data6, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data5, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data4, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data3, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data2, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data1, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data0)
 \begin{DoxyCompactList}\small\item\em Inizializza un display lcd H\+D44780 con interfacciamento ad 8 bit. \end{DoxyCompactList}\item 
-void \hyperlink{group___h_d44780_gad8f777df204bc630b77924e0a96e5673}{H\+D44780\+\_\+\+Init4} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, G\+P\+I\+O\+\_\+t $\ast$gpio, G\+P\+I\+O\+\_\+mask R\+S, G\+P\+I\+O\+\_\+mask R\+W, G\+P\+I\+O\+\_\+mask E, G\+P\+I\+O\+\_\+mask Data7, G\+P\+I\+O\+\_\+mask Data6, G\+P\+I\+O\+\_\+mask Data5, G\+P\+I\+O\+\_\+mask Data4)
+void \hyperlink{group___h_d44780_ga0c08f9e41d770ebfa4af385a56b47b81}{H\+D44780\+\_\+\+Init4} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+S, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+W, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} E, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data7, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data6, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data5, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data4)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto display lcd H\+D44780 affinche' si utilizzi l'interfaccia a 4 bit. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga57b8c6ca0b3c12e5f7273b3c373a6f17}{H\+D44780\+\_\+\+Printc} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, char c)
 \begin{DoxyCompactList}\small\item\em Stampa un carattere. \end{DoxyCompactList}\item 
@@ -164,14 +164,14 @@ void \hyperlink{group___h_d44780_ga92eb58cb7d73c9a87b7087a9c56f73d5}{H\+D44780\+
 \begin{DoxyParamCaption}
 \item[{}]{lcd}
 \end{DoxyParamCaption}
-)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+S, G\+P\+I\+O\+\_\+reset)}}\label{hd44780_8c_a5060e38ac985451fad57ed890aea1d77}
+)~{\bf my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+S, {\bf my\+G\+P\+I\+O\+\_\+reset})}}\label{hd44780_8c_a5060e38ac985451fad57ed890aea1d77}
 \hypertarget{hd44780_8c_afac15d58a1ee77e8a17bc57252468ea1}{\index{hd44780.\+c@{hd44780.\+c}!lcd\+\_\+data@{lcd\+\_\+data}}
 \index{lcd\+\_\+data@{lcd\+\_\+data}!hd44780.\+c@{hd44780.\+c}}
 \subsubsection[{lcd\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}\#define lcd\+\_\+data(
 \begin{DoxyParamCaption}
 \item[{}]{lcd}
 \end{DoxyParamCaption}
-)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+S, G\+P\+I\+O\+\_\+set)}}\label{hd44780_8c_afac15d58a1ee77e8a17bc57252468ea1}
+)~{\bf my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+S, {\bf my\+G\+P\+I\+O\+\_\+set})}}\label{hd44780_8c_afac15d58a1ee77e8a17bc57252468ea1}
 \hypertarget{hd44780_8c_acd814f8ff18cac325b1f9f5957dd3846}{\index{hd44780.\+c@{hd44780.\+c}!lcd\+\_\+enable@{lcd\+\_\+enable}}
 \index{lcd\+\_\+enable@{lcd\+\_\+enable}!hd44780.\+c@{hd44780.\+c}}
 \subsubsection[{lcd\+\_\+enable}]{\setlength{\rightskip}{0pt plus 5cm}\#define lcd\+\_\+enable(
@@ -181,9 +181,10 @@ void \hyperlink{group___h_d44780_ga92eb58cb7d73c9a87b7087a9c56f73d5}{H\+D44780\+
 )}}\label{hd44780_8c_acd814f8ff18cac325b1f9f5957dd3846}
 {\bfseries Valore\+:}
 \begin{DoxyCode}
-GPIO\_setValue(lcd->gpio, lcd->E, GPIO\_set); \hyperlink{hd44780_8c_a9f0a484de0de3ab1ddd77d5f716dea96}{\(\backslash\)}
-\hyperlink{hd44780_8c_a9f0a484de0de3ab1ddd77d5f716dea96}{                            timer\_wait\_us}(100); \(\backslash\)
-                            GPIO\_setValue(lcd->gpio, lcd->E, GPIO\_reset)
+\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{myGPIO\_setValue}(lcd->gpio, lcd->E, \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{myGPIO\_set}); \hyperlink{hd44780_8c_a9f0a484de0de3ab1ddd77d5f716dea96}{\(\backslash\)}
+\hyperlink{hd44780_8c_a9f0a484de0de3ab1ddd77d5f716dea96}{                            timer\_wait\_us}(100); \hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{\(\backslash\)}
+\hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{                            myGPIO\_setValue}(lcd->gpio, lcd->E, 
+      \hyperlink{group__my_g_p_i_o_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{myGPIO\_reset})
 \end{DoxyCode}
 \hypertarget{hd44780_8c_ad7be3fdeebf9b76a774a6c1afa7fa3c8}{\index{hd44780.\+c@{hd44780.\+c}!lcd\+\_\+read@{lcd\+\_\+read}}
 \index{lcd\+\_\+read@{lcd\+\_\+read}!hd44780.\+c@{hd44780.\+c}}
@@ -191,14 +192,14 @@ GPIO\_setValue(lcd->gpio, lcd->E, GPIO\_set); \hyperlink{hd44780_8c_a9f0a484de0d
 \begin{DoxyParamCaption}
 \item[{}]{lcd}
 \end{DoxyParamCaption}
-)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+W, G\+P\+I\+O\+\_\+set)}}\label{hd44780_8c_ad7be3fdeebf9b76a774a6c1afa7fa3c8}
+)~{\bf my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+W, {\bf my\+G\+P\+I\+O\+\_\+set})}}\label{hd44780_8c_ad7be3fdeebf9b76a774a6c1afa7fa3c8}
 \hypertarget{hd44780_8c_a7546bbb2f97e50a0469cf71934ac18e2}{\index{hd44780.\+c@{hd44780.\+c}!lcd\+\_\+write@{lcd\+\_\+write}}
 \index{lcd\+\_\+write@{lcd\+\_\+write}!hd44780.\+c@{hd44780.\+c}}
 \subsubsection[{lcd\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}\#define lcd\+\_\+write(
 \begin{DoxyParamCaption}
 \item[{}]{lcd}
 \end{DoxyParamCaption}
-)~G\+P\+I\+O\+\_\+set\+Value(lcd-\/$>$gpio, lcd-\/$>$R\+W, G\+P\+I\+O\+\_\+reset)}}\label{hd44780_8c_a7546bbb2f97e50a0469cf71934ac18e2}
+)~{\bf my\+G\+P\+I\+O\+\_\+set\+Value}(lcd-\/$>$gpio, lcd-\/$>$R\+W, {\bf my\+G\+P\+I\+O\+\_\+reset})}}\label{hd44780_8c_a7546bbb2f97e50a0469cf71934ac18e2}
 \hypertarget{hd44780_8c_a5f45c877d1e8266f8a2c1d0b87746950}{\index{hd44780.\+c@{hd44780.\+c}!timer\+\_\+wait\+\_\+ms@{timer\+\_\+wait\+\_\+ms}}
 \index{timer\+\_\+wait\+\_\+ms@{timer\+\_\+wait\+\_\+ms}!hd44780.\+c@{hd44780.\+c}}
 \subsubsection[{timer\+\_\+wait\+\_\+ms}]{\setlength{\rightskip}{0pt plus 5cm}\#define timer\+\_\+wait\+\_\+ms(

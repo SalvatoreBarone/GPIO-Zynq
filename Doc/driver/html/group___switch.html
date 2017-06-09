@@ -123,7 +123,7 @@ Strutture dati</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
-<tr class="memitem:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga1c463f6e1e3a43f68109c176772ce5cc">ZyboSwitch</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memitem:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga1c463f6e1e3a43f68109c176772ce5cc">ZyboSwitch</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td></tr>
 <tr class="memdesc:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo.  <a href="#ga1c463f6e1e3a43f68109c176772ce5cc">Continua...</a><br /></td></tr>
 <tr class="separator:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -144,9 +144,9 @@ Tipi enumerati (enum)</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga121018c0ccfeb05b6e8f692a5a6955d7">ZyboSwitch_init</a> (<a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *switches, GPIO_t *gpio, GPIO_mask Switch3_pin, GPIO_mask Switch2_pin, GPIO_mask Switch1_pin, GPIO_mask Switch0_pin)</td></tr>
-<tr class="memdesc:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>.  <a href="#ga121018c0ccfeb05b6e8f692a5a6955d7">Continua...</a><br /></td></tr>
-<tr class="separator:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59108e526347f01f584bf1d6308a126f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga59108e526347f01f584bf1d6308a126f">ZyboSwitch_init</a> (<a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *switches, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Switch3_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Switch2_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Switch1_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Switch0_pin)</td></tr>
+<tr class="memdesc:ga59108e526347f01f584bf1d6308a126f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>.  <a href="#ga59108e526347f01f584bf1d6308a126f">Continua...</a><br /></td></tr>
+<tr class="separator:ga59108e526347f01f584bf1d6308a126f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">ZyboSwitch_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#gafac8daf9a9a585f8f20ef2a6fa883a1f">ZyboSwitch_getStatus</a> (<a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *switches, <a class="el" href="group___switch.html#ga2e0602a824354f25c395f938caba3703">ZyboSwitch_mask_t</a> mask)</td></tr>
 <tr class="memdesc:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette la lettura dello stato degli switch presenti sulla board.  <a href="#gafac8daf9a9a585f8f20ef2a6fa883a1f">Continua...</a><br /></td></tr>
 <tr class="separator:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,7 +162,7 @@ Funzioni</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">i</td><td>)</td>
-          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td>
+          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -281,7 +281,7 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga121018c0ccfeb05b6e8f692a5a6955d7"></a>
+<a class="anchor" id="ga59108e526347f01f584bf1d6308a126f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -294,31 +294,31 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Switch3_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Switch2_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Switch1_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Switch0_pin</em>&#160;</td>
         </tr>
         <tr>
@@ -333,7 +333,7 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">switches</td><td>puntatore a struttura <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Switch3_pin</td><td>pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Switch2_pin</td><td>pin del device GPIO a cui e' associato lo switch 2 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Switch1_pin</td><td>pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo; </td></tr>
@@ -341,7 +341,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioSwitch;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioSwitch;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioSwitch, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboSwitch_t switches;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboSwitch_init(&amp;switches, &amp;gpioSwitch, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);</div>
@@ -359,7 +359,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

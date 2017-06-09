@@ -23,7 +23,7 @@ struct \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}
 \begin{DoxyCompactList}\small\item\em maschera del bit del registro \char`\"{}interrupt\char`\"{} che funge da interrupt-\/request, per il device my\+G\+P\+I\+O \end{DoxyCompactList}\item 
 \#define \hyperlink{group__my_g_p_i_o_gaa760b8397e6372e48c1008c2ba8d7387}{my\+G\+P\+I\+O\+\_\+\+I\+N\+T\+R\+\_\+\+Int\+Ack\+\_\+mask}~0x4\+U
 \begin{DoxyCompactList}\small\item\em maschera del bit del registro \char`\"{}interrupt\char`\"{} che funge da interrupt-\/ack, per il device my\+G\+P\+I\+O \end{DoxyCompactList}\item 
-\#define \hyperlink{group__my_g_p_i_o_gabbe2491a3b71c292521025b7b382b971}{my\+G\+P\+I\+O\+\_\+pin}(i)~((uint32\+\_\+t)(1$<$$<$i))
+\#define \hyperlink{group__my_g_p_i_o_gabbe2491a3b71c292521025b7b382b971}{my\+G\+P\+I\+O\+\_\+pin}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
 \begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei pin di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
@@ -153,7 +153,7 @@ Offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} per i
 \begin{DoxyParamCaption}
 \item[{}]{i}
 \end{DoxyParamCaption}
-)~((uint32\+\_\+t)(1$<$$<$i))}}\label{group__my_g_p_i_o_gabbe2491a3b71c292521025b7b382b971}
+)~((uint32\+\_\+t)(1$<$$<$(i)))}}\label{group__my_g_p_i_o_gabbe2491a3b71c292521025b7b382b971}
 
 
 Metodo alternativo per la specifica di uno dei pin di un device my\+G\+P\+I\+O. 
@@ -549,38 +549,154 @@ Abilita gli interrupt per un device my\+G\+P\+I\+O.
        XST\_SUCCESS)
 61         return -1;
 62 
-63 //  XScuGic\_SetPriorityTriggerType(GIC, INTC\_INTERRUPT\_ID,0x00, 0x3);
-64 
-65     // abilitazione degli interrupt sulle linee connesse alle periferiche
-66     // sintassi: XScuGic\_Enable(GIC,irq\_line);
-67     XScuGic\_Enable(GIC, myGPIO\_irq\_line);
-68     // abilitazione degli interrupt delle periferiche
-69     myGPIO\_interruptEnable(gpio);
+63     // abilitazione degli interrupt sulle linee connesse alle periferiche
+64     // sintassi: XScuGic\_Enable(GIC,irq\_line);
+65     XScuGic\_Enable(GIC, myGPIO\_irq\_line);
+66     // abilitazione degli interrupt delle periferiche
+67     myGPIO\_interruptEnable(gpio);
+68 
+69     // abilitazione degli interrupt del processing-system
+70     Xil\_ExceptionEnable();
+71 
+72     return 0;
+73 \}
+74 
+75 void button\_isr(void* data) \{
+76     myGPIO\_t* gpio = (myGPIO\_t*)data;
+77 
+78     myGPIO\_interruptDisable(gpio);  // disabilito gli interrupt
+79     myGPIO\_interruptAck(gpio);      // clear del flag irq
+80 
+81     myGPIO\_mask mask = myGPIO\_getRead(gpio);
+82     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, myGPIO\_reset);
+83     myGPIO\_setValue(gpio, mask>>4, myGPIO\_set);
+84 
+85     myGPIO\_value value = myGPIO\_getIrq(gpio);
+86     myGPIO\_interruptAck(gpio);
+87     value = myGPIO\_getIrq(gpio);
+88     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, value);
+89     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, value);
+90 
+91     myGPIO\_interruptEnable(gpio);   // ri-abilito gli interrupt
+92 \}
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+1 #include "xscugic.h"
+2 #include "xparameters.h"
+3 #include "myGPIO.h"
+4 
+5 #define btn\_addr    XPAR\_MYGPIO\_0\_S00\_AXI\_BASEADDR  // base-address del gpio connesso ai button
+6 #define btn\_line    XPAR\_FABRIC\_MYGPIO\_0\_IRQ\_INTR   // linea di interrupt del gpio connesso ai button
+7 #define swc\_addr    XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR  // base-address del gpio connesso agli switch
+8 #define swc\_line    XPAR\_FABRIC\_MYGPIO\_1\_IRQ\_INTR   // linea di interrupt del gpio connesso agli switch
+9 #define led\_addr    XPAR\_MYGPIO\_2\_S00\_AXI\_BASEADDR  // base-address del gpio connesso ai led
+10 
+11 #define gic\_id      XPAR\_SCUGIC\_0\_DEVICE\_ID         // id del device gic
+12 
+13 myGPIO\_t led\_gpio;
+14 myGPIO\_t btn\_gpio;
+15 myGPIO\_t swc\_gpio;
+16 XScuGic GIC;
+17 
+18 // funzione di inizializzazione dei device gpio
+19 void gpio\_init(void);
+20 
+21 
+22 // isr per button e switch
+23 // devono necessariamente avere questa firma: restituire void e possedere un solo parametro puntatore
+24 // a void. In questo caso non viene utilizzato (tutte le variabili sono globali), ma tale puntatore
+25 // puo' essere usato per scambiare dati di ingresso/uscita alle isr
+26 void btn\_isr(void*); // isr per i button
+27 void swc\_isr(void*); // isr per gli switch
+28 
+29 // funzione di configurazione del device gic e delle interruzioni
+30 int int\_config(void);
+31 
+32 int main()
+33 \{
+34     gpio\_init();
+35     int\_config();
+36 
+37     for (;;);
+38 
+39     return 0;
+40 \}
+41 
+42 
+43 void gpio\_init(void) \{
+44     uint8\_t i;
+45     myGPIO\_init(&led\_gpio, led\_addr);
+46     myGPIO\_init(&btn\_gpio, btn\_addr);
+47     myGPIO\_init(&swc\_gpio, swc\_addr);
+48     for (i=0; i<myGPIO\_pin4; i++) \{
+49         myGPIO\_setMode(&led\_gpio, myGPIO\_pin(i), myGPIO\_write);
+50         myGPIO\_setValue(&led\_gpio, myGPIO\_pin(i), myGPIO\_reset);
+51         myGPIO\_setMode(&btn\_gpio, myGPIO\_pin(i), myGPIO\_read);
+52         myGPIO\_setValue(&btn\_gpio, myGPIO\_pin(i), myGPIO\_reset);
+53         myGPIO\_setMode(&swc\_gpio, myGPIO\_pin(i), myGPIO\_read);
+54         myGPIO\_setValue(&swc\_gpio, myGPIO\_pin(i), myGPIO\_reset);
+55     \}
+56 \}
+57 
+58 int int\_config(void) \{
+59     // inizializza il driver del GIC
+60     Xil\_ExceptionInit();
+61 
+62     // ottiene i parametri di configurazione del GIC, lo configura ed inizializza
+63     // sintassi : XScuGic\_LookupConfig(GIC\_id)
+64     // sintassi : XScuGic\_CfgInitialize(GIC\_ptr, config, cpu\_address)
+65     XScuGic\_Config *IntcConfig = XScuGic\_LookupConfig(gic\_id);
+66     if (IntcConfig == NULL)
+67         return -1;
+68     if (XScuGic\_CfgInitialize(&GIC, IntcConfig, IntcConfig->CpuBaseAddress) != XST\_SUCCESS)
+69         return -1;
 70 
-71     // abilitazione degli interrupt del processing-system
-72     Xil\_ExceptionEnable();
-73 
-74     return 0;
-75 \}
-76 
-77 void button\_isr(void* data) \{
-78     myGPIO\_t* gpio = (myGPIO\_t*)data;
-79 
-80     myGPIO\_interruptDisable(gpio);  // disabilito gli interrupt
-81     myGPIO\_interruptAck(gpio);      // clear del flag irq
-82 
-83     myGPIO\_mask mask = myGPIO\_getRead(gpio);
-84     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, myGPIO\_reset);
-85     myGPIO\_setValue(gpio, mask>>4, myGPIO\_set);
-86 
-87     myGPIO\_value value = myGPIO\_getIrq(gpio);
-88     myGPIO\_interruptAck(gpio);
-89     value = myGPIO\_getIrq(gpio);
-90     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, value);
-91     myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, value);
+71     // registra l'interrupt handler del GIC alla logica di gestione del processing-system
+72     // sintassi : Xil\_ExceptionRegisterHandler(XIL\_EXCEPTION\_ID\_INT, handler, gic\_ptr)
+73     Xil\_ExceptionRegisterHandler(XIL\_EXCEPTION\_ID\_INT,(Xil\_ExceptionHandler)XScuGic\_InterruptHandler,
+       &GIC);
+74 
+75     // registrazione degli handler
+76     // le righe seguenti stabiliscono quale sia l'handler da chiamare e quali dati bisogna passargli
+77     // qualora si manifesti una interruzione su una line di irq.
+78     // sintassi : XScuGic\_Connect(GIC, irq\_line, handler, data)
+79     if (XScuGic\_Connect(&GIC, btn\_line, (Xil\_InterruptHandler)btn\_isr, (void*)NULL) != XST\_SUCCESS)
+80         return -1;
+81     if (XScuGic\_Connect(&GIC, swc\_line, (Xil\_InterruptHandler)swc\_isr, (void*)NULL) != XST\_SUCCESS)
+82             return -1;
+83 
+84     // abilitazione degli interrupt sulle linee connesse alle periferiche
+85     // sintassi: XScuGic\_Enable(GIC,irq\_line);
+86     XScuGic\_Enable(&GIC, btn\_line);
+87     XScuGic\_Enable(&GIC, swc\_line);
+88 
+89     // abilitazione degli interrupt delle periferiche
+90     myGPIO\_interruptEnable(&btn\_gpio);
+91     myGPIO\_interruptEnable(&swc\_gpio);
 92 
-93     myGPIO\_interruptEnable(gpio);   // ri-abilito gli interrupt
-94 \}
+93     // abilitazione degli interrupt del processing-system
+94     Xil\_ExceptionEnable();
+95     return 0;
+96 \}
+97 
+98 void btn\_isr(void* data) \{
+99     myGPIO\_interruptDisable(&btn\_gpio); // disabilito gli interrupt
+100     myGPIO\_interruptAck(&btn\_gpio);     // clear del flag irq
+101     myGPIO\_mask mask = myGPIO\_getRead(&btn\_gpio);
+102     myGPIO\_setValue(&led\_gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, myGPIO\_reset);
+103     myGPIO\_setValue(&led\_gpio, mask, myGPIO\_set);
+104     myGPIO\_interruptEnable(&btn\_gpio);  // ri-abilito gli interrupt
+105 \}
+106 
+107 void swc\_isr(void* data) \{
+108     myGPIO\_interruptDisable(&swc\_gpio); // disabilito gli interrupt
+109     myGPIO\_interruptAck(&swc\_gpio);     // clear del flag irq
+110     myGPIO\_mask mask = myGPIO\_getRead(&swc\_gpio);
+111     myGPIO\_setValue(&led\_gpio, myGPIO\_pin0 | myGPIO\_pin1 | myGPIO\_pin2 | myGPIO\_pin3, myGPIO\_reset);
+112     myGPIO\_setValue(&led\_gpio, mask, myGPIO\_set);
+113     myGPIO\_interruptEnable(&swc\_gpio);  // ri-abilito gli interrupt
+114 \}
 \end{DoxyCode}
  \hypertarget{group__my_g_p_i_o_ga38a2ea04d07af50f7f570f0367594c8b}{\index{My\+G\+P\+I\+O@{My\+G\+P\+I\+O}!my\+G\+P\+I\+O\+\_\+set\+Mode@{my\+G\+P\+I\+O\+\_\+set\+Mode}}
 \index{my\+G\+P\+I\+O\+\_\+set\+Mode@{my\+G\+P\+I\+O\+\_\+set\+Mode}!My\+G\+P\+I\+O@{My\+G\+P\+I\+O}}

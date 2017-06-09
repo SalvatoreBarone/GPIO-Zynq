@@ -112,13 +112,13 @@ $(document).ready(function(){initNavTree('_zybo_led_8h.html','');});
 <div class="title">Riferimenti per il file ZyboLed.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;gpio.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="my_g_p_i_o_8h_source.html">myGPIO.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Grafo delle dipendenze di inclusione per ZyboLed.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_zybo_led_8h__incl.png" border="0" usemap="#_zybo_2_zybo_led_8h" alt=""/></div>
 <map name="_zybo_2_zybo_led_8h" id="_zybo_2_zybo_led_8h">
-</map>
+<area shape="rect" id="node2" href="my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="21,80,105,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
@@ -138,7 +138,7 @@ Strutture dati</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
-<tr class="memitem:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d">ZyboLed</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memitem:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d">ZyboLed</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td></tr>
 <tr class="memdesc:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo.  <a href="group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d">Continua...</a><br /></td></tr>
 <tr class="separator:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,9 +159,9 @@ Tipi enumerati (enum)</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:ga51b030897fde9b6378d083b8d711008e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga51b030897fde9b6378d083b8d711008e">ZyboLed_init</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, GPIO_t *gpio, GPIO_mask Led3_pin, GPIO_mask Led2_pin, GPIO_mask Led1_pin, GPIO_mask Led0_pin)</td></tr>
-<tr class="memdesc:ga51b030897fde9b6378d083b8d711008e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>.  <a href="group___led.html#ga51b030897fde9b6378d083b8d711008e">Continua...</a><br /></td></tr>
-<tr class="separator:ga51b030897fde9b6378d083b8d711008e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc">ZyboLed_init</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led3_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led2_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led1_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led0_pin)</td></tr>
+<tr class="memdesc:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>.  <a href="group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc">Continua...</a><br /></td></tr>
+<tr class="separator:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69">ZyboLed_setStatus</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, <a class="el" href="group___led.html#gad11701cccac394f7e1f90de8f85695f3">ZyboLed_mask_t</a> mask, <a class="el" href="group___led.html#ga3dcb274f22e577705c49944b8d1f4b12">ZyboLed_status_t</a> status)</td></tr>
 <tr class="memdesc:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di accendere/spegnere i Led sulla board.  <a href="group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69">Continua...</a><br /></td></tr>
 <tr class="separator:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +175,7 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_805767cd83dd00257d4810f58ca53032.html">Zybo</a></li><li class="navelem"><a class="el" href="_zybo_led_8h.html">ZyboLed.h</a></li>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

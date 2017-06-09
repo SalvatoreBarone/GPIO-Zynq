@@ -123,7 +123,7 @@ Strutture dati</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
-<tr class="memitem:ga5f85cbc14732f1d83faa75500b67defa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#ga5f85cbc14732f1d83faa75500b67defa">ZyboButton</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memitem:ga5f85cbc14732f1d83faa75500b67defa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#ga5f85cbc14732f1d83faa75500b67defa">ZyboButton</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td></tr>
 <tr class="memdesc:ga5f85cbc14732f1d83faa75500b67defa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno dei button presenti sulla board Digilent Zybo.  <a href="#ga5f85cbc14732f1d83faa75500b67defa">Continua...</a><br /></td></tr>
 <tr class="separator:ga5f85cbc14732f1d83faa75500b67defa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8960eefa6a431f50d4fe2a2f8063da3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#ga8960eefa6a431f50d4fe2a2f8063da3f">ZyboButton_DebounceWait</a>&#160;&#160;&#160;50</td></tr>
@@ -147,9 +147,9 @@ Tipi enumerati (enum)</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:gaa40462223af93b0f5bdf2932400fe2a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#gaa40462223af93b0f5bdf2932400fe2a5">ZyboButton_init</a> (<a class="el" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons, GPIO_t *gpio, GPIO_mask Button3_pin, GPIO_mask Button2_pin, GPIO_mask Button1_pin, GPIO_mask Button0_pin)</td></tr>
-<tr class="memdesc:gaa40462223af93b0f5bdf2932400fe2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>.  <a href="#gaa40462223af93b0f5bdf2932400fe2a5">Continua...</a><br /></td></tr>
-<tr class="separator:gaa40462223af93b0f5bdf2932400fe2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5362bbb2d8845e2403e9cbe18cf3834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#gac5362bbb2d8845e2403e9cbe18cf3834">ZyboButton_init</a> (<a class="el" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Button3_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Button2_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Button1_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Button0_pin)</td></tr>
+<tr class="memdesc:gac5362bbb2d8845e2403e9cbe18cf3834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>.  <a href="#gac5362bbb2d8845e2403e9cbe18cf3834">Continua...</a><br /></td></tr>
+<tr class="separator:gac5362bbb2d8845e2403e9cbe18cf3834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaca30e81084e746785e395f79e9678e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#gaca30e81084e746785e395f79e9678e9a">ZyboButton_waitWhileIdle</a> (<a class="el" href="struct_zybo_button__t.html">ZyboButton_t</a> *buttons)</td></tr>
 <tr class="memdesc:gaca30e81084e746785e395f79e9678e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;.  <a href="#gaca30e81084e746785e395f79e9678e9a">Continua...</a><br /></td></tr>
 <tr class="separator:gaca30e81084e746785e395f79e9678e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +171,7 @@ Funzioni</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">i</td><td>)</td>
-          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td>
+          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -304,7 +304,7 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gaa40462223af93b0f5bdf2932400fe2a5"></a>
+<a class="anchor" id="gac5362bbb2d8845e2403e9cbe18cf3834"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -317,31 +317,31 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Button3_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Button2_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Button1_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Button0_pin</em>&#160;</td>
         </tr>
         <tr>
@@ -356,7 +356,7 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">buttons</td><td>puntatore a struttura <a class="el" href="struct_zybo_button__t.html" title="Struttura opaca che astrae l&#39;insieme dei button presenti sulla board Digilent Zybo;. ">ZyboButton_t</a>, che astrae l'insieme dei button presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Button3_pin</td><td>pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Button2_pin</td><td>pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Button1_pin</td><td>pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo; </td></tr>
@@ -364,7 +364,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioButton;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioButton;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioButton, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboButton_t buttons;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboButton_init(&amp;buttons, &amp;gpioButton, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);</div>
@@ -454,7 +454,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

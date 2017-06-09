@@ -130,17 +130,17 @@ Tipi enumerati (enum)</h2></td></tr>
 <tr class="memitem:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a> { <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">HD44780_CursorLeft</a>, 
 <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">HD44780_CursorRight</a>
  }</td></tr>
-<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore.  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
+<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a>  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
 <tr class="separator:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:ga2df14171c71a8afda59e3ae1733c5469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469">HD44780_Init8</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4, GPIO_mask Data3, GPIO_mask Data2, GPIO_mask Data1, GPIO_mask Data0)</td></tr>
-<tr class="memdesc:ga2df14171c71a8afda59e3ae1733c5469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un display lcd HD44780 con interfacciamento ad 8 bit.  <a href="#ga2df14171c71a8afda59e3ae1733c5469">Continua...</a><br /></td></tr>
-<tr class="separator:ga2df14171c71a8afda59e3ae1733c5469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad8f777df204bc630b77924e0a96e5673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673">HD44780_Init4</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4)</td></tr>
-<tr class="memdesc:gad8f777df204bc630b77924e0a96e5673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto display lcd HD44780 affinche' si utilizzi l'interfaccia a 4 bit.  <a href="#gad8f777df204bc630b77924e0a96e5673">Continua...</a><br /></td></tr>
-<tr class="separator:gad8f777df204bc630b77924e0a96e5673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad212907e20316f4fc0e93d7c7a8f338e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e">HD44780_Init8</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RS, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RW, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> E, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data7, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data6, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data5, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data4, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data3, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data2, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data1, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data0)</td></tr>
+<tr class="memdesc:gad212907e20316f4fc0e93d7c7a8f338e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un display lcd HD44780 con interfacciamento ad 8 bit.  <a href="#gad212907e20316f4fc0e93d7c7a8f338e">Continua...</a><br /></td></tr>
+<tr class="separator:gad212907e20316f4fc0e93d7c7a8f338e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81">HD44780_Init4</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RS, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RW, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> E, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data7, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data6, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data5, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data4)</td></tr>
+<tr class="memdesc:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto display lcd HD44780 affinche' si utilizzi l'interfaccia a 4 bit.  <a href="#ga0c08f9e41d770ebfa4af385a56b47b81">Continua...</a><br /></td></tr>
+<tr class="separator:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga57b8c6ca0b3c12e5f7273b3c373a6f17">HD44780_Printc</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, char c)</td></tr>
 <tr class="memdesc:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa un carattere.  <a href="#ga57b8c6ca0b3c12e5f7273b3c373a6f17">Continua...</a><br /></td></tr>
 <tr class="separator:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,8 +197,8 @@ Funzioni</h2></td></tr>
 <p>Un oggetto di tipo <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> rappresenta un device lcd HD44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> diversi.<br />
  La struttura <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> specifica quali siano i pin del microcontrollore che pilotano un determinato segnale del device. Ciascuno dei pin, cosi' come previsto dalla libreria STMCube, e' identificato attraverso una coppia porta-pin (ad esempio la coppia GPIOD-GPIO_PIN_9 si riferisce al pin 9 della porta D, quindi PD9). L'assegnazione segnale-coppia, quindi l' inizializzazione della struttura <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> relativa ad un device lcd, DEVE essere effettuata tassativamente utilizzando le funzioni<br />
 </p><ul>
-<li><a class="el" href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673" title="Inizializza un oggetto display lcd HD44780 affinche&#39; si utilizzi l&#39;interfaccia a 4 bit...">HD44780_Init4()</a></li>
-<li><a class="el" href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469" title="Inizializza un display lcd HD44780 con interfacciamento ad 8 bit. ">HD44780_Init8()</a><br />
+<li><a class="el" href="group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81" title="Inizializza un oggetto display lcd HD44780 affinche&#39; si utilizzi l&#39;interfaccia a 4 bit...">HD44780_Init4()</a></li>
+<li><a class="el" href="group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e" title="Inizializza un display lcd HD44780 con interfacciamento ad 8 bit. ">HD44780_Init8()</a><br />
 </li>
 </ul>
 <p>le quali provvedono anche ad effettuare un test di connessione volto ad individuare eventuali segnali erroneamente associati.<br />
@@ -233,7 +233,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Direzioni di spostamento del cursore. </p>
+<p>Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a> </p>
 <table class="fieldtable">
 <tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292"></a>HD44780_CursorLeft&#160;</td><td class="fielddoc">
 <p>left sposta il cursore a sinistra </p>
@@ -412,7 +412,7 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gad8f777df204bc630b77924e0a96e5673"></a>
+<a class="anchor" id="ga0c08f9e41d770ebfa4af385a56b47b81"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -425,49 +425,49 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>RS</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>RW</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>E</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data7</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data6</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data5</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data4</em>&#160;</td>
         </tr>
         <tr>
@@ -484,11 +484,11 @@ Funzioni</h2></td></tr>
 <dd>
 Non modificare i campi della struttura <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> dopo che essa sia stata inizializzata.</dd>
 <dd>
-La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.</dd></dl>
+La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, a cui fa riferimento il parametro gpio, va inizializzata a parte.</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">lcd</td><td>puntatore a struttura di tipo <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> che descrive un display HD44780 da inizializzare; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore alla struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">RS</td><td>pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">RW</td><td>pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">E</td><td>pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD; </td></tr>
@@ -499,7 +499,7 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioDisplay;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioDisplay;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;HD44780_LCD_t lcd;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;HD44780_Init4(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div>
@@ -510,7 +510,7 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
 </div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="ga2df14171c71a8afda59e3ae1733c5469"></a>
+<a class="anchor" id="gad212907e20316f4fc0e93d7c7a8f338e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -523,73 +523,73 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>RS</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>RW</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>E</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data7</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data6</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data5</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data4</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data3</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Data0</em>&#160;</td>
         </tr>
         <tr>
@@ -605,11 +605,11 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
 <dd>
 Non modificare i campi della struttura dopo che essa sia stata inizializzata.</dd>
 <dd>
-La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.</dd></dl>
+La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, a cui fa riferimento il parametro gpio, va inizializzata a parte.</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">lcd</td><td>puntatore a struttura di tipo <a class="el" href="struct_h_d44780___l_c_d__t.html" title="Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...">HD44780_LCD_t</a> che descrive un display HD44780 da inizializzare; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore alla struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> che astrae il device GPIO a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">RS</td><td>pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">RW</td><td>pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">E</td><td>pin del device GPIO a cui e' associato il segnale E (Enable) del display LCD; </td></tr>
@@ -624,7 +624,7 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioDisplay;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioDisplay;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;HD44780_LCD_t lcd;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;HD44780_Init8(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div>
@@ -1038,7 +1038,7 @@ La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

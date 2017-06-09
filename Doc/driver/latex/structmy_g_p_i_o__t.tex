@@ -28,6 +28,8 @@ uint8\+\_\+t \hyperlink{structmy_g_p_i_o__t_a85774c49d56d05c7daa0803bf49654c4}{i
 \subsection{Descrizione dettagliata}
 Struttura che astrae un device my\+G\+P\+I\+O. 
 
+Essa comprende l'indirizzo di memoria a cui il device e' mappato e gli offset dei registri attraverso i quali e' possibile interagire con il device stesso. La struttura e' pensata, com'e' ovvio, per consentire l'uso di più device G\+P\+I\+O nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver, e' totalmente trasparente a chi la utilizza, nel senso che non e' strettamente necessario conoscerne i dettagli per poter utilizzare il driver. 
+
 \subsection{Documentazione dei campi}
 \hypertarget{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!base\+\_\+address@{base\+\_\+address}}
 \index{base\+\_\+address@{base\+\_\+address}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}

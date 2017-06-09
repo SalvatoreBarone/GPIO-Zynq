@@ -1,19 +1,19 @@
 var group___h_d44780 =
 [
     [ "HD44780_LCD_t", "struct_h_d44780___l_c_d__t.html", [
-      [ "Data0", "struct_h_d44780___l_c_d__t.html#aed1ef3393be1a14aa7b2644585e5bb08", null ],
-      [ "Data1", "struct_h_d44780___l_c_d__t.html#a9b310a22b76c920feb015a3a3084b125", null ],
-      [ "Data2", "struct_h_d44780___l_c_d__t.html#afb22274224118a94688f1809cda55501", null ],
-      [ "Data3", "struct_h_d44780___l_c_d__t.html#ae6f2e7b5a4aa8b82451e021f2f5b3a89", null ],
-      [ "Data4", "struct_h_d44780___l_c_d__t.html#a923c685eba8920c56f33117410da2742", null ],
-      [ "Data5", "struct_h_d44780___l_c_d__t.html#aff5ae7b6e5cd6f96a13e719cd07e3f15", null ],
-      [ "Data6", "struct_h_d44780___l_c_d__t.html#a6a787746d32e0e18dbd57202e547756b", null ],
-      [ "Data7", "struct_h_d44780___l_c_d__t.html#a7f1bd9ea66e1fa6d0667c3f60d2f155d", null ],
-      [ "E", "struct_h_d44780___l_c_d__t.html#a851ed1cefdadae2e5069d1364ae8fc9e", null ],
-      [ "gpio", "struct_h_d44780___l_c_d__t.html#acb3116190992a4d8d26545c103304d27", null ],
+      [ "Data0", "struct_h_d44780___l_c_d__t.html#a1f035dad73cbfdf86503edc70141696b", null ],
+      [ "Data1", "struct_h_d44780___l_c_d__t.html#a3f02fac6148faca9f183a786e0cf07d8", null ],
+      [ "Data2", "struct_h_d44780___l_c_d__t.html#af0a0822c09b4802e36ac8044447de80a", null ],
+      [ "Data3", "struct_h_d44780___l_c_d__t.html#a84205eb8dd4646c5e83dec2d77e78c39", null ],
+      [ "Data4", "struct_h_d44780___l_c_d__t.html#a558b10ea85ca2ed99e34d38a2b4cf388", null ],
+      [ "Data5", "struct_h_d44780___l_c_d__t.html#abebc68d092e3d1c115ecb22f7ac91f4b", null ],
+      [ "Data6", "struct_h_d44780___l_c_d__t.html#aab366da5e8192bd7c5dd9194aa2d6fde", null ],
+      [ "Data7", "struct_h_d44780___l_c_d__t.html#a0709183e63889cacaf3149c60ff6cb7d", null ],
+      [ "E", "struct_h_d44780___l_c_d__t.html#aafe8aa696cf0ea45fd710809360b974a", null ],
+      [ "gpio", "struct_h_d44780___l_c_d__t.html#ac37ddc7c58d246d233dfb38037020184", null ],
       [ "iface_mode", "struct_h_d44780___l_c_d__t.html#a7c5a51b8cc5de5ee2cf42b884bd1bc67", null ],
-      [ "RS", "struct_h_d44780___l_c_d__t.html#a142ae0db638dca7ab42e2183a1311d32", null ],
-      [ "RW", "struct_h_d44780___l_c_d__t.html#af8225e4a125a2159215dfa03372c305f", null ]
+      [ "RS", "struct_h_d44780___l_c_d__t.html#a120bc0a069f764630359d9655fe0c46d", null ],
+      [ "RW", "struct_h_d44780___l_c_d__t.html#af404868fc36134454144950be4977d95", null ]
     ] ],
     [ "HD44780_Direction_t", "group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30", [
       [ "HD44780_CursorLeft", "group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292", null ],
@@ -29,8 +29,8 @@ var group___h_d44780 =
     [ "HD44780_CursorOn", "group___h_d44780.html#ga3a381cb44df5d76d79be5ed71a52bae6", null ],
     [ "HD44780_DisplayOff", "group___h_d44780.html#ga5cf07b2179272029410f9a81f56621ed", null ],
     [ "HD44780_Home", "group___h_d44780.html#ga68e3712332aa9482d4bdaa4991a92127", null ],
-    [ "HD44780_Init4", "group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673", null ],
-    [ "HD44780_Init8", "group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469", null ],
+    [ "HD44780_Init4", "group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81", null ],
+    [ "HD44780_Init8", "group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e", null ],
     [ "HD44780_MoveCursor", "group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf", null ],
     [ "HD44780_MoveToRow1", "group___h_d44780.html#gad90e2924a4e632ce42940323f8f49e37", null ],
     [ "HD44780_MoveToRow2", "group___h_d44780.html#ga713670d498b6f5d50a174df19081c515", null ],

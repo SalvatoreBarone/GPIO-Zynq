@@ -12,5 +12,5 @@ var _zybo_switch_8h =
       [ "ZyboSwitch_on", "group___switch.html#gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8", null ]
     ] ],
     [ "ZyboSwitch_getStatus", "group___switch.html#gafac8daf9a9a585f8f20ef2a6fa883a1f", null ],
-    [ "ZyboSwitch_init", "group___switch.html#ga121018c0ccfeb05b6e8f692a5a6955d7", null ]
+    [ "ZyboSwitch_init", "group___switch.html#ga59108e526347f01f584bf1d6308a126f", null ]
 ];

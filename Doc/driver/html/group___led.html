@@ -123,7 +123,7 @@ Strutture dati</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
-<tr class="memitem:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d">ZyboLed</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memitem:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d">ZyboLed</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td></tr>
 <tr class="memdesc:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo.  <a href="#ga50ab39fed34dc3aaf53cdfd67d8ba25d">Continua...</a><br /></td></tr>
 <tr class="separator:ga50ab39fed34dc3aaf53cdfd67d8ba25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -144,9 +144,9 @@ Tipi enumerati (enum)</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:ga51b030897fde9b6378d083b8d711008e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga51b030897fde9b6378d083b8d711008e">ZyboLed_init</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, GPIO_t *gpio, GPIO_mask Led3_pin, GPIO_mask Led2_pin, GPIO_mask Led1_pin, GPIO_mask Led0_pin)</td></tr>
-<tr class="memdesc:ga51b030897fde9b6378d083b8d711008e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>.  <a href="#ga51b030897fde9b6378d083b8d711008e">Continua...</a><br /></td></tr>
-<tr class="separator:ga51b030897fde9b6378d083b8d711008e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc">ZyboLed_init</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led3_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led2_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led1_pin, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Led0_pin)</td></tr>
+<tr class="memdesc:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>.  <a href="#ga51bccd37e6ae8cd32e2c50c60a5e83cc">Continua...</a><br /></td></tr>
+<tr class="separator:ga51bccd37e6ae8cd32e2c50c60a5e83cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69">ZyboLed_setStatus</a> (<a class="el" href="struct_zybo_led__t.html">ZyboLed_t</a> *leds, <a class="el" href="group___led.html#gad11701cccac394f7e1f90de8f85695f3">ZyboLed_mask_t</a> mask, <a class="el" href="group___led.html#ga3dcb274f22e577705c49944b8d1f4b12">ZyboLed_status_t</a> status)</td></tr>
 <tr class="memdesc:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di accendere/spegnere i Led sulla board.  <a href="#gacf5c2b0328c4bdf2d796397fc4510c69">Continua...</a><br /></td></tr>
 <tr class="separator:gacf5c2b0328c4bdf2d796397fc4510c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +165,7 @@ Funzioni</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">i</td><td>)</td>
-          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td>
+          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -233,7 +233,7 @@ Funzioni</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
-<a class="anchor" id="ga51b030897fde9b6378d083b8d711008e"></a>
+<a class="anchor" id="ga51bccd37e6ae8cd32e2c50c60a5e83cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -246,31 +246,31 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Led3_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Led2_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Led1_pin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramtype"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td>
           <td class="paramname"><em>Led0_pin</em>&#160;</td>
         </tr>
         <tr>
@@ -282,11 +282,11 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>. </p>
-<p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura GPIO_t che lo astrae. Tale struttura non viene inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.</p>
+<p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> che lo astrae. Tale struttura non viene inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">leds</td><td>puntatore a struttura <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura GPIO_t, che astrae un device GPIO; la struttura GPIO_t non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device GPIO; la struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Led3_pin</td><td>pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Led2_pin</td><td>pin del device GPIO a cui e' associato il Led2 della board Digilent Zybo; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Led1_pin</td><td>pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo; </td></tr>
@@ -294,7 +294,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioLed;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioLed;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);                // inizializzazione del device GPIO</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboLed_t leds;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboLed_init(&amp;leds, &amp;gpioLed, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);  // inzializzazione della struttura ZyboLed_t</div>
@@ -406,7 +406,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

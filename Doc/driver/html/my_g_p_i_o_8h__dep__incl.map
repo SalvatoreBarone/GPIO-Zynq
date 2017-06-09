@@ -1,3 +1,12 @@
 <map id="GPIO/myGPIO.h" name="GPIO/myGPIO.h">
 <area shape="rect" id="node2" href="$my_g_p_i_o_8c.html" title="GPIO/myGPIO.c" alt="" coords="5,80,127,107"/>
+<area shape="rect" id="node3" href="$hd44780_8h.html" title="Lcd/hd44780.h" alt="" coords="151,80,258,107"/>
+<area shape="rect" id="node5" href="$_zybo_led_8h.html" title="Zybo/ZyboLed.h" alt="" coords="600,80,716,107"/>
+<area shape="rect" id="node8" href="$_zybo_switch_8h.html" title="Zybo/ZyboSwitch.h" alt="" coords="283,80,417,107"/>
+<area shape="rect" id="node10" href="$_zybo_button_8h.html" title="Zybo/ZyboButton.h" alt="" coords="442,80,575,107"/>
+<area shape="rect" id="node4" href="$hd44780_8c.html" title="Lcd/hd44780.c" alt="" coords="151,155,258,181"/>
+<area shape="rect" id="node6" href="$_zybo_8h.html" title="Zybo/Zybo.h" alt="" coords="600,155,695,181"/>
+<area shape="rect" id="node7" href="$_zybo_led_8c.html" title="Zybo/ZyboLed.c" alt="" coords="719,155,835,181"/>
+<area shape="rect" id="node9" href="$_zybo_switch_8c.html" title="Zybo/ZyboSwitch.c" alt="" coords="283,155,417,181"/>
+<area shape="rect" id="node11" href="$_zybo_button_8c.html" title="Zybo/ZyboButton.c" alt="" coords="442,155,575,181"/>
 </map>

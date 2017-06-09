@@ -10,18 +10,28 @@ Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
 
 {\ttfamily \#include $<$Zybo\+Led.\+h$>$}
 
+
+
+Diagramma di collaborazione per Zybo\+Led\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=143pt]{struct_zybo_led__t__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Campi}
 \begin{DoxyCompactItemize}
 \item 
-G\+P\+I\+O\+\_\+t $\ast$ \hyperlink{struct_zybo_led__t_acb3116190992a4d8d26545c103304d27}{gpio}
+\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$ \hyperlink{struct_zybo_led__t_ac37ddc7c58d246d233dfb38037020184}{gpio}
 \item 
-G\+P\+I\+O\+\_\+mask \hyperlink{struct_zybo_led__t_a85b108a2f134972366da967a9489068f}{Led3\+\_\+pin}
+\hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{struct_zybo_led__t_afc64d1407f30615e374bf9f06721842a}{Led3\+\_\+pin}
 \item 
-G\+P\+I\+O\+\_\+mask \hyperlink{struct_zybo_led__t_a566ca7784af030de3be9244c99066a5c}{Led2\+\_\+pin}
+\hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{struct_zybo_led__t_a4213c78e5a02b1476222e989c2eceb04}{Led2\+\_\+pin}
 \item 
-G\+P\+I\+O\+\_\+mask \hyperlink{struct_zybo_led__t_a2ee8b92c08972eb1b5bb1b72f4a9d305}{Led1\+\_\+pin}
+\hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{struct_zybo_led__t_adc78fb167f1dd6693910813d4ec5930e}{Led1\+\_\+pin}
 \item 
-G\+P\+I\+O\+\_\+mask \hyperlink{struct_zybo_led__t_aa4d077e557e43132a3100ab30b60165c}{Led0\+\_\+pin}
+\hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{struct_zybo_led__t_ac5afef2eef91d5533a23435cfcc60104}{Led0\+\_\+pin}
 \end{DoxyCompactItemize}
 
 
@@ -29,21 +39,21 @@ G\+P\+I\+O\+\_\+mask \hyperlink{struct_zybo_led__t_aa4d077e557e43132a3100ab30b60
 Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;. 
 
 \subsection{Documentazione dei campi}
-\hypertarget{struct_zybo_led__t_acb3116190992a4d8d26545c103304d27}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!gpio@{gpio}}
+\hypertarget{struct_zybo_led__t_ac37ddc7c58d246d233dfb38037020184}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!gpio@{gpio}}
 \index{gpio@{gpio}!Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}}
-\subsubsection[{gpio}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+t$\ast$ gpio}}\label{struct_zybo_led__t_acb3116190992a4d8d26545c103304d27}
-puntatore a struttura G\+P\+I\+O\+\_\+t, che astrae il particolare G\+P\+I\+O usato per il pilotaggio dei led presenti sulla board \hypertarget{struct_zybo_led__t_aa4d077e557e43132a3100ab30b60165c}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led0\+\_\+pin@{Led0\+\_\+pin}}
+\subsubsection[{gpio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+t}$\ast$ gpio}}\label{struct_zybo_led__t_ac37ddc7c58d246d233dfb38037020184}
+puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae il particolare G\+P\+I\+O usato per il pilotaggio dei led presenti sulla board \hypertarget{struct_zybo_led__t_ac5afef2eef91d5533a23435cfcc60104}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led0\+\_\+pin@{Led0\+\_\+pin}}
 \index{Led0\+\_\+pin@{Led0\+\_\+pin}!Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}}
-\subsubsection[{Led0\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Led0\+\_\+pin}}\label{struct_zybo_led__t_aa4d077e557e43132a3100ab30b60165c}
-maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 0 della board Zybo \hypertarget{struct_zybo_led__t_a2ee8b92c08972eb1b5bb1b72f4a9d305}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led1\+\_\+pin@{Led1\+\_\+pin}}
+\subsubsection[{Led0\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} Led0\+\_\+pin}}\label{struct_zybo_led__t_ac5afef2eef91d5533a23435cfcc60104}
+maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 0 della board Zybo \hypertarget{struct_zybo_led__t_adc78fb167f1dd6693910813d4ec5930e}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led1\+\_\+pin@{Led1\+\_\+pin}}
 \index{Led1\+\_\+pin@{Led1\+\_\+pin}!Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}}
-\subsubsection[{Led1\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Led1\+\_\+pin}}\label{struct_zybo_led__t_a2ee8b92c08972eb1b5bb1b72f4a9d305}
-maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 1 della board Zybo \hypertarget{struct_zybo_led__t_a566ca7784af030de3be9244c99066a5c}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led2\+\_\+pin@{Led2\+\_\+pin}}
+\subsubsection[{Led1\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} Led1\+\_\+pin}}\label{struct_zybo_led__t_adc78fb167f1dd6693910813d4ec5930e}
+maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 1 della board Zybo \hypertarget{struct_zybo_led__t_a4213c78e5a02b1476222e989c2eceb04}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led2\+\_\+pin@{Led2\+\_\+pin}}
 \index{Led2\+\_\+pin@{Led2\+\_\+pin}!Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}}
-\subsubsection[{Led2\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Led2\+\_\+pin}}\label{struct_zybo_led__t_a566ca7784af030de3be9244c99066a5c}
-maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 2 della board Zybo \hypertarget{struct_zybo_led__t_a85b108a2f134972366da967a9489068f}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led3\+\_\+pin@{Led3\+\_\+pin}}
+\subsubsection[{Led2\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} Led2\+\_\+pin}}\label{struct_zybo_led__t_a4213c78e5a02b1476222e989c2eceb04}
+maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 2 della board Zybo \hypertarget{struct_zybo_led__t_afc64d1407f30615e374bf9f06721842a}{\index{Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}!Led3\+\_\+pin@{Led3\+\_\+pin}}
 \index{Led3\+\_\+pin@{Led3\+\_\+pin}!Zybo\+Led\+\_\+t@{Zybo\+Led\+\_\+t}}
-\subsubsection[{Led3\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Led3\+\_\+pin}}\label{struct_zybo_led__t_a85b108a2f134972366da967a9489068f}
+\subsubsection[{Led3\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} Led3\+\_\+pin}}\label{struct_zybo_led__t_afc64d1407f30615e374bf9f06721842a}
 maschera di selezione per il particolare bit del device G\+P\+I\+O usato per il pilotaggio del led numero 3 della board Zybo 
 
 La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}

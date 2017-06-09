@@ -1,11 +1,11 @@
 var group___button =
 [
     [ "ZyboButton_t", "struct_zybo_button__t.html", [
-      [ "Button0_pin", "struct_zybo_button__t.html#aa079dc844a7d73e98b762cef39e9bf90", null ],
-      [ "Button1_pin", "struct_zybo_button__t.html#aa4b6f01d89a502266798176affa8f59b", null ],
-      [ "Button2_pin", "struct_zybo_button__t.html#a249726210aba837b00df4d2afc89965d", null ],
-      [ "Button3_pin", "struct_zybo_button__t.html#a0be2104e3b0077272dcbfee7dbdb14ee", null ],
-      [ "gpio", "struct_zybo_button__t.html#acb3116190992a4d8d26545c103304d27", null ]
+      [ "Button0_pin", "struct_zybo_button__t.html#af7d7d5a9c9fc174e8f4ee4c762c2abee", null ],
+      [ "Button1_pin", "struct_zybo_button__t.html#a6cb60bb285e32e29c51c15e85206aaeb", null ],
+      [ "Button2_pin", "struct_zybo_button__t.html#a3b4fe634c2d98ce55fdef526c2d230d1", null ],
+      [ "Button3_pin", "struct_zybo_button__t.html#ad462a15a55883fd4c86d2be9e11968a7", null ],
+      [ "gpio", "struct_zybo_button__t.html#ac37ddc7c58d246d233dfb38037020184", null ]
     ] ],
     [ "ZyboButton", "group___button.html#ga5f85cbc14732f1d83faa75500b67defa", null ],
     [ "ZyboButton_DebounceWait", "group___button.html#ga8960eefa6a431f50d4fe2a2f8063da3f", null ],
@@ -20,7 +20,7 @@ var group___button =
       [ "ZyboButton_on", "group___button.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe", null ]
     ] ],
     [ "ZyboButton_getStatus", "group___button.html#ga75407539e8ba0ad3ea142496219cd083", null ],
-    [ "ZyboButton_init", "group___button.html#gaa40462223af93b0f5bdf2932400fe2a5", null ],
+    [ "ZyboButton_init", "group___button.html#gac5362bbb2d8845e2403e9cbe18cf3834", null ],
     [ "ZyboButton_waitWhileBusy", "group___button.html#ga3840edf011b5bad6302b7efc9c6326fe", null ],
     [ "ZyboButton_waitWhileIdle", "group___button.html#gaca30e81084e746785e395f79e9678e9a", null ]
 ];

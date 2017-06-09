@@ -117,15 +117,13 @@ $(document).ready(function(){initNavTree('my_g_p_i_o_8h.html','');});
 Grafo delle dipendenze di inclusione per myGPIO.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="my_g_p_i_o_8h__incl.png" border="0" usemap="#_g_p_i_o_2my_g_p_i_o_8h" alt=""/></div>
-<map name="_g_p_i_o_2my_g_p_i_o_8h" id="_g_p_i_o_2my_g_p_i_o_8h">
-</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
 <div class="dyncontent">
 <div class="center"><img src="my_g_p_i_o_8h__dep__incl.png" border="0" usemap="#_g_p_i_o_2my_g_p_i_o_8hdep" alt=""/></div>
 <map name="_g_p_i_o_2my_g_p_i_o_8hdep" id="_g_p_i_o_2my_g_p_i_o_8hdep">
-<area shape="rect" id="node2" href="my_g_p_i_o_8c.html" title="GPIO/myGPIO.c" alt="" coords="5,80,127,107"/></map>
+<area shape="rect" id="node2" href="my_g_p_i_o_8c.html" title="GPIO/myGPIO.c" alt="" coords="5,80,127,107"/><area shape="rect" id="node3" href="hd44780_8h.html" title="Lcd/hd44780.h" alt="" coords="151,80,258,107"/><area shape="rect" id="node5" href="_zybo_led_8h.html" title="Zybo/ZyboLed.h" alt="" coords="600,80,716,107"/><area shape="rect" id="node8" href="_zybo_switch_8h.html" title="Zybo/ZyboSwitch.h" alt="" coords="283,80,417,107"/><area shape="rect" id="node10" href="_zybo_button_8h.html" title="Zybo/ZyboButton.h" alt="" coords="442,80,575,107"/><area shape="rect" id="node4" href="hd44780_8c.html" title="Lcd/hd44780.c" alt="" coords="151,155,258,181"/><area shape="rect" id="node6" href="_zybo_8h.html" title="Zybo/Zybo.h" alt="" coords="600,155,695,181"/><area shape="rect" id="node7" href="_zybo_led_8c.html" title="Zybo/ZyboLed.c" alt="" coords="719,155,835,181"/><area shape="rect" id="node9" href="_zybo_switch_8c.html" title="Zybo/ZyboSwitch.c" alt="" coords="283,155,417,181"/><area shape="rect" id="node11" href="_zybo_button_8c.html" title="Zybo/ZyboButton.c" alt="" coords="442,155,575,181"/></map>
 </div>
 </div>
 <p><a href="my_g_p_i_o_8h_source.html">Vai al codice sorgente di questo file.</a></p>
@@ -159,7 +157,7 @@ Definizioni</h2></td></tr>
 <tr class="memitem:gaa760b8397e6372e48c1008c2ba8d7387"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gaa760b8397e6372e48c1008c2ba8d7387">myGPIO_INTR_IntAck_mask</a>&#160;&#160;&#160;0x4U</td></tr>
 <tr class="memdesc:gaa760b8397e6372e48c1008c2ba8d7387"><td class="mdescLeft">&#160;</td><td class="mdescRight">maschera del bit del registro "interrupt" che funge da interrupt-ack, per il device myGPIO  <a href="group__my_g_p_i_o.html#gaa760b8397e6372e48c1008c2ba8d7387">Continua...</a><br /></td></tr>
 <tr class="separator:gaa760b8397e6372e48c1008c2ba8d7387"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabbe2491a3b71c292521025b7b382b971"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gabbe2491a3b71c292521025b7b382b971">myGPIO_pin</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memitem:gabbe2491a3b71c292521025b7b382b971"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gabbe2491a3b71c292521025b7b382b971">myGPIO_pin</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;(i)))</td></tr>
 <tr class="memdesc:gabbe2491a3b71c292521025b7b382b971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno dei pin di un device myGPIO.  <a href="group__my_g_p_i_o.html#gabbe2491a3b71c292521025b7b382b971">Continua...</a><br /></td></tr>
 <tr class="separator:gabbe2491a3b71c292521025b7b382b971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -264,7 +262,7 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_23e4d12f26a49ef99fb41232b599cf4b.html">GPIO</a></li><li class="navelem"><a class="el" href="my_g_p_i_o_8h.html">myGPIO.h</a></li>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

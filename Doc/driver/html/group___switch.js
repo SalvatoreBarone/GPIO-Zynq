@@ -1,11 +1,11 @@
 var group___switch =
 [
     [ "ZyboSwitch_t", "struct_zybo_switch__t.html", [
-      [ "gpio", "struct_zybo_switch__t.html#acb3116190992a4d8d26545c103304d27", null ],
-      [ "Switch0_pin", "struct_zybo_switch__t.html#a5b7f83cd96441b7d1692710c6499147c", null ],
-      [ "Switch1_pin", "struct_zybo_switch__t.html#a6a3a5739e7e8f138241cafeeb7c1a33f", null ],
-      [ "Switch2_pin", "struct_zybo_switch__t.html#a33eda4a0115ef585edd90078924ca56e", null ],
-      [ "Switch3_pin", "struct_zybo_switch__t.html#a6b95420b88fe8c1fd7f347ce3ae1906b", null ]
+      [ "gpio", "struct_zybo_switch__t.html#ac37ddc7c58d246d233dfb38037020184", null ],
+      [ "Switch0_pin", "struct_zybo_switch__t.html#aa125c82837d72bdb20a0e22f3a86646e", null ],
+      [ "Switch1_pin", "struct_zybo_switch__t.html#aa031241ea0c12a6f327d3697113e992c", null ],
+      [ "Switch2_pin", "struct_zybo_switch__t.html#aacdefa991c974546015032b1bb95ea1e", null ],
+      [ "Switch3_pin", "struct_zybo_switch__t.html#ab2ea73dda75022931396b29e1c377cfb", null ]
     ] ],
     [ "ZyboSwitch", "group___switch.html#ga1c463f6e1e3a43f68109c176772ce5cc", null ],
     [ "ZyboSwitch_mask_t", "group___switch.html#ga2e0602a824354f25c395f938caba3703", [
@@ -19,5 +19,5 @@ var group___switch =
       [ "ZyboSwitch_on", "group___switch.html#gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8", null ]
     ] ],
     [ "ZyboSwitch_getStatus", "group___switch.html#gafac8daf9a9a585f8f20ef2a6fa883a1f", null ],
-    [ "ZyboSwitch_init", "group___switch.html#ga121018c0ccfeb05b6e8f692a5a6955d7", null ]
+    [ "ZyboSwitch_init", "group___switch.html#ga59108e526347f01f584bf1d6308a126f", null ]
 ];

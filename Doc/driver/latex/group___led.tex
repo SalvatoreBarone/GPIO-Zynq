@@ -1,8 +1,7 @@
 \hypertarget{group___led}{\section{Led}
 \label{group___led}\index{Led@{Led}}
 }
-Diagramma di collaborazione per Led\+:
-\nopagebreak
+Diagramma di collaborazione per Led\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,7 +16,7 @@ struct \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group___led_ga50ab39fed34dc3aaf53cdfd67d8ba25d}{Zybo\+Led}(i)~((uint32\+\_\+t)(1$<$$<$i))
+\#define \hyperlink{group___led_ga50ab39fed34dc3aaf53cdfd67d8ba25d}{Zybo\+Led}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
 \begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
@@ -35,7 +34,7 @@ enum \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{Zybo\+Led\+\_\+s
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{group___led_ga51b030897fde9b6378d083b8d711008e}{Zybo\+Led\+\_\+init} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, G\+P\+I\+O\+\_\+t $\ast$gpio, G\+P\+I\+O\+\_\+mask Led3\+\_\+pin, G\+P\+I\+O\+\_\+mask Led2\+\_\+pin, G\+P\+I\+O\+\_\+mask Led1\+\_\+pin, G\+P\+I\+O\+\_\+mask Led0\+\_\+pin)
+void \hyperlink{group___led_ga51bccd37e6ae8cd32e2c50c60a5e83cc}{Zybo\+Led\+\_\+init} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led3\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led2\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led1\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. \end{DoxyCompactList}\item 
 void \hyperlink{group___led_gacf5c2b0328c4bdf2d796397fc4510c69}{Zybo\+Led\+\_\+set\+Status} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} mask, \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{Zybo\+Led\+\_\+status\+\_\+t} status)
 \begin{DoxyCompactList}\small\item\em Permette di accendere/spegnere i Led sulla board. \end{DoxyCompactList}\item 
@@ -53,7 +52,7 @@ void \hyperlink{group___led_ga20ddd78a98b4c0123c5b964aa0a59046}{Zybo\+Led\+\_\+t
 \begin{DoxyParamCaption}
 \item[{}]{i}
 \end{DoxyParamCaption}
-)~((uint32\+\_\+t)(1$<$$<$i))}}\label{group___led_ga50ab39fed34dc3aaf53cdfd67d8ba25d}
+)~((uint32\+\_\+t)(1$<$$<$(i)))}}\label{group___led_ga50ab39fed34dc3aaf53cdfd67d8ba25d}
 
 
 Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo. 
@@ -108,29 +107,29 @@ Status di accensione/spegnimento dei led.
 
 
 \subsection{Documentazione delle funzioni}
-\hypertarget{group___led_ga51b030897fde9b6378d083b8d711008e}{\index{Led@{Led}!Zybo\+Led\+\_\+init@{Zybo\+Led\+\_\+init}}
+\hypertarget{group___led_ga51bccd37e6ae8cd32e2c50c60a5e83cc}{\index{Led@{Led}!Zybo\+Led\+\_\+init@{Zybo\+Led\+\_\+init}}
 \index{Zybo\+Led\+\_\+init@{Zybo\+Led\+\_\+init}!Led@{Led}}
 \subsubsection[{Zybo\+Led\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void Zybo\+Led\+\_\+init (
 \begin{DoxyParamCaption}
 \item[{{\bf Zybo\+Led\+\_\+t} $\ast$}]{leds, }
-\item[{G\+P\+I\+O\+\_\+t $\ast$}]{gpio, }
-\item[{G\+P\+I\+O\+\_\+mask}]{Led3\+\_\+pin, }
-\item[{G\+P\+I\+O\+\_\+mask}]{Led2\+\_\+pin, }
-\item[{G\+P\+I\+O\+\_\+mask}]{Led1\+\_\+pin, }
-\item[{G\+P\+I\+O\+\_\+mask}]{Led0\+\_\+pin}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Led3\+\_\+pin, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Led2\+\_\+pin, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Led1\+\_\+pin, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Led0\+\_\+pin}
 \end{DoxyParamCaption}
-)}}\label{group___led_ga51b030897fde9b6378d083b8d711008e}
+)}}\label{group___led_ga51bccd37e6ae8cd32e2c50c60a5e83cc}
 
 
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. 
 
-Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo G\+P\+I\+O ed un puntatore ad una struttura G\+P\+I\+O\+\_\+t che lo astrae. Tale struttura non viene inizializzata dalla funzione Zybo\+Led\+\_\+init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device G\+P\+I\+O a cui i led sono connessi.
+Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo G\+P\+I\+O ed un puntatore ad una struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che lo astrae. Tale struttura non viene inizializzata dalla funzione Zybo\+Led\+\_\+init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device G\+P\+I\+O a cui i led sono connessi.
 
 
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore a struttura G\+P\+I\+O\+\_\+t, che astrae un device G\+P\+I\+O; la struttura G\+P\+I\+O\+\_\+t non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; la struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. \\
 \hline
 \mbox{\tt in}  & {\em Led3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led3 della board Digilent Zybo; \\
 \hline
@@ -143,7 +142,7 @@ Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t},
 \end{DoxyParams}
 
 \begin{DoxyCode}
-1 GPIO\_t gpioLed;
+1 myGPIO\_t gpioLed;
 2 GPIO\_init(&gpioLed, XPAR\_MYGPIO\_0\_S00\_AXI\_BASEADDR, 4, 0, 4, 8);                // inizializzazione del
        device GPIO
 3 ZyboLed\_t leds;

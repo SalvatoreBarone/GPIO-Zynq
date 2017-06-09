@@ -111,13 +111,13 @@ $(document).ready(function(){initNavTree('hd44780_8h.html','');});
 <div class="title">Riferimenti per il file hd44780.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;gpio.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="my_g_p_i_o_8h_source.html">myGPIO.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Grafo delle dipendenze di inclusione per hd44780.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="hd44780_8h__incl.png" border="0" usemap="#_lcd_2hd44780_8h" alt=""/></div>
 <map name="_lcd_2hd44780_8h" id="_lcd_2hd44780_8h">
-</map>
+<area shape="rect" id="node2" href="my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="17,80,101,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
@@ -145,17 +145,17 @@ Tipi enumerati (enum)</h2></td></tr>
 <tr class="memitem:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a> { <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">HD44780_CursorLeft</a>, 
 <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">HD44780_CursorRight</a>
  }</td></tr>
-<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore.  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
+<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a>  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
 <tr class="separator:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:ga2df14171c71a8afda59e3ae1733c5469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469">HD44780_Init8</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4, GPIO_mask Data3, GPIO_mask Data2, GPIO_mask Data1, GPIO_mask Data0)</td></tr>
-<tr class="memdesc:ga2df14171c71a8afda59e3ae1733c5469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un display lcd HD44780 con interfacciamento ad 8 bit.  <a href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469">Continua...</a><br /></td></tr>
-<tr class="separator:ga2df14171c71a8afda59e3ae1733c5469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad8f777df204bc630b77924e0a96e5673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673">HD44780_Init4</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4)</td></tr>
-<tr class="memdesc:gad8f777df204bc630b77924e0a96e5673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto display lcd HD44780 affinche' si utilizzi l'interfaccia a 4 bit.  <a href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673">Continua...</a><br /></td></tr>
-<tr class="separator:gad8f777df204bc630b77924e0a96e5673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad212907e20316f4fc0e93d7c7a8f338e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e">HD44780_Init8</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RS, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RW, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> E, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data7, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data6, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data5, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data4, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data3, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data2, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data1, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data0)</td></tr>
+<tr class="memdesc:gad212907e20316f4fc0e93d7c7a8f338e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un display lcd HD44780 con interfacciamento ad 8 bit.  <a href="group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e">Continua...</a><br /></td></tr>
+<tr class="separator:gad212907e20316f4fc0e93d7c7a8f338e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81">HD44780_Init4</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, <a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RS, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> RW, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> E, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data7, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data6, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data5, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> Data4)</td></tr>
+<tr class="memdesc:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto display lcd HD44780 affinche' si utilizzi l'interfaccia a 4 bit.  <a href="group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81">Continua...</a><br /></td></tr>
+<tr class="separator:ga0c08f9e41d770ebfa4af385a56b47b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#ga57b8c6ca0b3c12e5f7273b3c373a6f17">HD44780_Printc</a> (<a class="el" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, char c)</td></tr>
 <tr class="memdesc:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa un carattere.  <a href="group___h_d44780.html#ga57b8c6ca0b3c12e5f7273b3c373a6f17">Continua...</a><br /></td></tr>
 <tr class="separator:ga57b8c6ca0b3c12e5f7273b3c373a6f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,7 +214,7 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_88b5360b2377451c743d9a6483fc2e44.html">Lcd</a></li><li class="navelem"><a class="el" href="hd44780_8h.html">hd44780.h</a></li>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

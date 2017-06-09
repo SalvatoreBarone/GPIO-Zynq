@@ -131,6 +131,7 @@ Campi</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Struttura che astrae un device myGPIO. </p>
+<p>Essa comprende l'indirizzo di memoria a cui il device e' mappato e gli offset dei registri attraverso i quali e' possibile interagire con il device stesso. La struttura e' pensata, com'e' ovvio, per consentire l'uso di più device GPIO nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver, e' totalmente trasparente a chi la utilizza, nel senso che non e' strettamente necessario conoscerne i dettagli per poter utilizzare il driver. </p>
 </div><h2 class="groupheader">Documentazione dei campi</h2>
 <a class="anchor" id="a79c591d5fa42efdf86abd98347fece90"></a>
 <div class="memitem">
@@ -206,7 +207,7 @@ Campi</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a></li>
-    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 10 Giu 2017 00:29:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
