@@ -163,13 +163,16 @@ architecture arch_imp of myGPIO_AXI is
 	signal byte_index	: integer;
 	
 	signal GPIO_read :std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-	
-	signal GPIO_inout_masked : std_logic_vector (GPIO_width-1 downto 0); -- segnale GPIO_inout mascherato con ~slv_reg0 (GPIO_enable), in 
-																		 -- modo che solo i pin settati come input possano generare interruzione
-																		 
+	-- segnale GPIO_inout mascherato con ~slv_reg0 (GPIO_enable), in 
+	-- modo che solo i pin settati come input possano generare interruzione
+	signal GPIO_inout_masked : std_logic_vector (GPIO_width-1 downto 0);
+	-- segnale "di appoggio", connesso a GPIO_int, usato per leggere il valore di quest'ultimo
+	-- viene letto al posto di slv_reg3(1)
+	signal GPIO_int_tmp : std_logic := '0';
+	-- segnale di Ack, scritto al posto di slv_reg3(2), permette di resettare il flag di interrupt
 	signal GPIO_int_ack : std_logic := '0';
 	
-	signal GPIO_int_tmp : std_logic := '0';
+	
 	
 begin
 	-- I/O Connections assignments

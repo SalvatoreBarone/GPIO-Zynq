@@ -76,7 +76,6 @@ void myGPIO_interruptAck(myGPIO_t *gpio) {
 	assert(gpio != NULL);
 	assert(gpio->base_address != NULL);
 	gpio->base_address[gpio->int_offset>>2] |= myGPIO_INTR_IntAck_mask;
-	// gpio->base_address[gpio->int_offset>>2] &= ~myGPIO_INTR_IntAck_mask;
 }
 
 myGPIO_value myGPIO_getIrq(myGPIO_t *gpio) {

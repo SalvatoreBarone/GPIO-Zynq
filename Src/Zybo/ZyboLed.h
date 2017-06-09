@@ -14,7 +14,7 @@
 #ifndef __ZYBO_LED_HEADER_H__
 #define __ZYBO_LED_HEADER_H__
 
-#include "gpio.h"
+#include "myGPIO.h"
 
 /**
  * @addtogroup Zybo
@@ -39,7 +39,7 @@ typedef enum {
  * @param[in] i indice del led da selezionare, da 0 a 3
  * @return maschera di selezione del led i-esimo
  */
-#define ZyboLed(i) ((uint32_t)(1<<i))
+#define ZyboLed(i) ((uint32_t)(1<<(i)))
 
 /**
  * @brief Status di accensione/spegnimento dei led
@@ -53,15 +53,15 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	GPIO_t		*gpio;		/**<	puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per il pilotaggio dei led
+	myGPIO_t		*gpio;		/**<	puntatore a struttura myGPIO_t, che astrae il particolare GPIO usato per il pilotaggio dei led
 									presenti sulla board */
-	GPIO_mask 	Led3_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led3_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
 									numero 3 della board Zybo */
-	GPIO_mask 	Led2_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led2_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
 									numero 2 della board Zybo */
-	GPIO_mask 	Led1_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led1_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
 									numero 1 della board Zybo */
-	GPIO_mask 	Led0_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led0_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
 									numero 0 della board Zybo */
 } ZyboLed_t;
 
@@ -69,12 +69,12 @@ typedef struct {
  * @brief Inizializza un oggetto di tipo ZyboLed_t.
  *
  * Inizializza un oggetto di tipo ZyboLed_t, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo.
- * Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura GPIO_t che lo astrae. Tale struttura non viene
+ * Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura myGPIO_t che lo astrae. Tale struttura non viene
  * inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si
  * assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.
  *
  * @param[inout]	leds    	puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param[in]		gpio    	puntatore a struttura GPIO_t, che astrae un device GPIO; la struttura GPIO_t non viene
+ * @param[in]		gpio    	puntatore a struttura myGPIO_t, che astrae un device GPIO; la struttura myGPIO_t non viene
  * 								inizializzata dalla funzione, per cui sara' necessario farlo preventivamente;
  * 								si faccia riferimento all'esempio riportato di seguito.
  * @param[in]		Led3_pin	pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo;
@@ -83,7 +83,7 @@ typedef struct {
  * @param[in]		Led0_pin	pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;
  *
  * @code
- * GPIO_t gpioLed;
+ * myGPIO_t gpioLed;
  * GPIO_init(&gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);				// inizializzazione del device GPIO
  * ZyboLed_t leds;
  * ZyboLed_init(&leds, &gpioLed, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);	// inzializzazione della struttura ZyboLed_t
@@ -95,11 +95,11 @@ typedef struct {
  * - LedN_pin siano tutti pin differenti
  */
 void ZyboLed_init(	ZyboLed_t	*leds,
-					GPIO_t		*gpio,
-					GPIO_mask 	Led3_pin,
-					GPIO_mask 	Led2_pin,
-					GPIO_mask 	Led1_pin,
-					GPIO_mask 	Led0_pin);
+					myGPIO_t	*gpio,
+					myGPIO_mask Led3_pin,
+					myGPIO_mask Led2_pin,
+					myGPIO_mask Led1_pin,
+					myGPIO_mask Led0_pin);
 
 /**
  * @brief Permette di accendere/spegnere i Led sulla board

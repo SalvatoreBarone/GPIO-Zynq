@@ -1,0 +1,91 @@
+\hypertarget{struct_h_d44780___l_c_d__t}{\section{Riferimenti per la struct H\+D44780\+\_\+\+L\+C\+D\+\_\+t}
+\label{struct_h_d44780___l_c_d__t}\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+}
+
+
+Struttura opaca che astrae un device Display L\+C\+D con cntroller Hitachi H\+D44780, o compatibile. Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni H\+D44780\+\_\+\+Init8 e\+H\+D44780\+\_\+\+Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-\/terminated di caratteri. Si veda la documentazione delle funzioni H\+D44780\+\_\+\+Printc e H\+D44780\+\_\+\+Print. Inoltre sono presenti diverse funzioni di utilita' generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto.  
+
+
+
+
+{\ttfamily \#include $<$hd44780.\+h$>$}
+
+\subsection*{Campi}
+\begin{DoxyCompactItemize}
+\item 
+G\+P\+I\+O\+\_\+t $\ast$ \hyperlink{struct_h_d44780___l_c_d__t_acb3116190992a4d8d26545c103304d27}{gpio}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a142ae0db638dca7ab42e2183a1311d32}{R\+S}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_af8225e4a125a2159215dfa03372c305f}{R\+W}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a851ed1cefdadae2e5069d1364ae8fc9e}{E}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a7f1bd9ea66e1fa6d0667c3f60d2f155d}{Data7}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a6a787746d32e0e18dbd57202e547756b}{Data6}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_aff5ae7b6e5cd6f96a13e719cd07e3f15}{Data5}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a923c685eba8920c56f33117410da2742}{Data4}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_ae6f2e7b5a4aa8b82451e021f2f5b3a89}{Data3}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_afb22274224118a94688f1809cda55501}{Data2}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_a9b310a22b76c920feb015a3a3084b125}{Data1}
+\item 
+G\+P\+I\+O\+\_\+mask \hyperlink{struct_h_d44780___l_c_d__t_aed1ef3393be1a14aa7b2644585e5bb08}{Data0}
+\item 
+\hyperlink{group___h_d44780_gaaaea8b73e24f7658da4118f6b01b45f0}{H\+D44780\+\_\+\+Interface\+Mode\+\_\+t} \hyperlink{struct_h_d44780___l_c_d__t_a7c5a51b8cc5de5ee2cf42b884bd1bc67}{iface\+\_\+mode}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Struttura opaca che astrae un device Display L\+C\+D con cntroller Hitachi H\+D44780, o compatibile. Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni H\+D44780\+\_\+\+Init8 e\+H\+D44780\+\_\+\+Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-\/terminated di caratteri. Si veda la documentazione delle funzioni H\+D44780\+\_\+\+Printc e H\+D44780\+\_\+\+Print. Inoltre sono presenti diverse funzioni di utilita' generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto. 
+
+\subsection{Documentazione dei campi}
+\hypertarget{struct_h_d44780___l_c_d__t_aed1ef3393be1a14aa7b2644585e5bb08}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data0@{Data0}}
+\index{Data0@{Data0}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data0}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data0}}\label{struct_h_d44780___l_c_d__t_aed1ef3393be1a14aa7b2644585e5bb08}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D0 \hypertarget{struct_h_d44780___l_c_d__t_a9b310a22b76c920feb015a3a3084b125}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data1@{Data1}}
+\index{Data1@{Data1}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data1}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data1}}\label{struct_h_d44780___l_c_d__t_a9b310a22b76c920feb015a3a3084b125}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D1 \hypertarget{struct_h_d44780___l_c_d__t_afb22274224118a94688f1809cda55501}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data2@{Data2}}
+\index{Data2@{Data2}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data2}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data2}}\label{struct_h_d44780___l_c_d__t_afb22274224118a94688f1809cda55501}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D2 \hypertarget{struct_h_d44780___l_c_d__t_ae6f2e7b5a4aa8b82451e021f2f5b3a89}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data3@{Data3}}
+\index{Data3@{Data3}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data3}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data3}}\label{struct_h_d44780___l_c_d__t_ae6f2e7b5a4aa8b82451e021f2f5b3a89}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D3 \hypertarget{struct_h_d44780___l_c_d__t_a923c685eba8920c56f33117410da2742}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data4@{Data4}}
+\index{Data4@{Data4}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data4}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data4}}\label{struct_h_d44780___l_c_d__t_a923c685eba8920c56f33117410da2742}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D4 \hypertarget{struct_h_d44780___l_c_d__t_aff5ae7b6e5cd6f96a13e719cd07e3f15}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data5@{Data5}}
+\index{Data5@{Data5}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data5}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data5}}\label{struct_h_d44780___l_c_d__t_aff5ae7b6e5cd6f96a13e719cd07e3f15}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D5 \hypertarget{struct_h_d44780___l_c_d__t_a6a787746d32e0e18dbd57202e547756b}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data6@{Data6}}
+\index{Data6@{Data6}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data6}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data6}}\label{struct_h_d44780___l_c_d__t_a6a787746d32e0e18dbd57202e547756b}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D6 \hypertarget{struct_h_d44780___l_c_d__t_a7f1bd9ea66e1fa6d0667c3f60d2f155d}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!Data7@{Data7}}
+\index{Data7@{Data7}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{Data7}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask Data7}}\label{struct_h_d44780___l_c_d__t_a7f1bd9ea66e1fa6d0667c3f60d2f155d}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale D7 \hypertarget{struct_h_d44780___l_c_d__t_a851ed1cefdadae2e5069d1364ae8fc9e}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!E@{E}}
+\index{E@{E}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{E}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask E}}\label{struct_h_d44780___l_c_d__t_a851ed1cefdadae2e5069d1364ae8fc9e}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale E \hypertarget{struct_h_d44780___l_c_d__t_acb3116190992a4d8d26545c103304d27}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!gpio@{gpio}}
+\index{gpio@{gpio}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{gpio}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+t$\ast$ gpio}}\label{struct_h_d44780___l_c_d__t_acb3116190992a4d8d26545c103304d27}
+puntatore a struttura G\+P\+I\+O\+\_\+t, che astrae il particolare G\+P\+I\+O usato per il pilotaggio del display \hypertarget{struct_h_d44780___l_c_d__t_a7c5a51b8cc5de5ee2cf42b884bd1bc67}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!iface\+\_\+mode@{iface\+\_\+mode}}
+\index{iface\+\_\+mode@{iface\+\_\+mode}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{iface\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\+D44780\+\_\+\+Interface\+Mode\+\_\+t} iface\+\_\+mode}}\label{struct_h_d44780___l_c_d__t_a7c5a51b8cc5de5ee2cf42b884bd1bc67}
+modalita' di funzionamento dell'interfaccia verso il displau (4 oppure 8 bit) \hypertarget{struct_h_d44780___l_c_d__t_a142ae0db638dca7ab42e2183a1311d32}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!R\+S@{R\+S}}
+\index{R\+S@{R\+S}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{R\+S}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask R\+S}}\label{struct_h_d44780___l_c_d__t_a142ae0db638dca7ab42e2183a1311d32}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale R\+S \hypertarget{struct_h_d44780___l_c_d__t_af8225e4a125a2159215dfa03372c305f}{\index{H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}!R\+W@{R\+W}}
+\index{R\+W@{R\+W}!H\+D44780\+\_\+\+L\+C\+D\+\_\+t@{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}}
+\subsubsection[{R\+W}]{\setlength{\rightskip}{0pt plus 5cm}G\+P\+I\+O\+\_\+mask R\+W}}\label{struct_h_d44780___l_c_d__t_af8225e4a125a2159215dfa03372c305f}
+maschera di selezione per il pin del device G\+P\+I\+O usato per il pilotaggio del segnale R\+W 
+
+La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+Lcd/\hyperlink{hd44780_8h}{hd44780.\+h}\end{DoxyCompactItemize}

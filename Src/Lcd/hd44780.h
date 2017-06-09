@@ -64,7 +64,7 @@
  */
 
 
-#include "gpio.h"
+#include "myGPIO.h"
 
 /**
  * @brief Modalita' di interfacciamento.
@@ -87,18 +87,18 @@ typedef enum {
  * del cursore di un posto in avanti o indietro, alla riga in basso o in alto.
  */
 typedef struct {
-	GPIO_t 		*gpio; 	/**< puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per il pilotaggio del display */
-	GPIO_mask 	RS;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RS */
-	GPIO_mask 	RW;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RW */
-	GPIO_mask 	E;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale E */
-	GPIO_mask 	Data7;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D7 */
-	GPIO_mask 	Data6;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D6 */
-	GPIO_mask 	Data5;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D5 */
-	GPIO_mask 	Data4;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D4 */
-	GPIO_mask 	Data3;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D3 */
-	GPIO_mask 	Data2;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D2 */
-	GPIO_mask 	Data1;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D1 */
-	GPIO_mask 	Data0;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D0 */
+	myGPIO_t 		*gpio; 	/**< puntatore a struttura myGPIO_t, che astrae il particolare GPIO usato per il pilotaggio del display */
+	myGPIO_mask 	RS;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RS */
+	myGPIO_mask 	RW;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale RW */
+	myGPIO_mask 	E;		/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale E */
+	myGPIO_mask 	Data7;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D7 */
+	myGPIO_mask 	Data6;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D6 */
+	myGPIO_mask 	Data5;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D5 */
+	myGPIO_mask 	Data4;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D4 */
+	myGPIO_mask 	Data3;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D3 */
+	myGPIO_mask 	Data2;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D2 */
+	myGPIO_mask 	Data1;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D1 */
+	myGPIO_mask 	Data0;	/**< maschera di selezione per il pin del device GPIO usato per il pilotaggio del segnale D0 */
 	HD44780_InterfaceMode_t iface_mode;	/**< modalita' di funzionamento dell'interfaccia verso il displau (4 oppure 8 bit) */
 } HD44780_LCD_t;
 
@@ -110,10 +110,10 @@ typedef struct {
  *
  * @warning Non modificare i campi della struttura dopo che essa sia stata inizializzata.
  *
- * @warning La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
+ * @warning La struttura myGPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
  *
  * @param[inout]	lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
- * @param[in]		gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
+ * @param[in]		gpio	puntatore alla struttura myGPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
  *             				inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente;
  * @param[in]		RS 		pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
  * @param[in]		RW		pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
@@ -128,7 +128,7 @@ typedef struct {
  * @param[in]		Data0 	pin del device GPIO a cui e' associato il segnale Data0 del display LCD;
  *
  * @code
- * GPIO_t gpioDisplay;
+ * myGPIO_t gpioDisplay;
  * GPIO_init(&gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);
  * HD44780_LCD_t lcd;
  * HD44780_Init8(&lcd, &gpioDisplay, 	GPIO_pin10, GPIO_pin9, GPIO_pin8,
@@ -140,18 +140,18 @@ typedef struct {
  * @endcode
  */
 void HD44780_Init8(	HD44780_LCD_t	*lcd,
-					GPIO_t			*gpio,
-					GPIO_mask		RS,
-					GPIO_mask		RW,
-					GPIO_mask		E,
-					GPIO_mask		Data7,
-					GPIO_mask 		Data6,
-					GPIO_mask 		Data5,
-					GPIO_mask 		Data4,
-					GPIO_mask 		Data3,
-					GPIO_mask 		Data2,
-					GPIO_mask 		Data1,
-					GPIO_mask 		Data0);
+					myGPIO_t		*gpio,
+					myGPIO_mask		RS,
+					myGPIO_mask		RW,
+					myGPIO_mask		E,
+					myGPIO_mask		Data7,
+					myGPIO_mask 	Data6,
+					myGPIO_mask 	Data5,
+					myGPIO_mask 	Data4,
+					myGPIO_mask 	Data3,
+					myGPIO_mask 	Data2,
+					myGPIO_mask 	Data1,
+					myGPIO_mask 	Data0);
 
 /**
  * @brief Inizializza un oggetto display lcd HD44780 affinche' si utilizzi l'interfaccia a 4 bit.
@@ -165,10 +165,10 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  * @warning Non modificare i campi della struttura HD44780_LCD_t dopo che essa sia stata
  * inizializzata.
  *
- * @warning La struttura GPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
+ * @warning La struttura myGPIO_t, a cui fa riferimento il parametro gpio, va inizializzata a parte.
  *
  * @param[inout]	lcd 	puntatore a struttura di tipo HD44780_LCD_t che descrive un display HD44780 da inizializzare;
- * @param[in]		gpio	puntatore alla struttura GPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
+ * @param[in]		gpio	puntatore alla struttura myGPIO_t che astrae il device GPIO a cui il display e' connesso. Non viene
  *             				inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente;
  * @param[in]		RS 		pin del device GPIO a cui e' associato il segnale RS (data/command) del display LCD;
  * @param[in]		RW		pin del device GPIO a cui e' associato il segnale RW (read/write) del display LCD;
@@ -179,7 +179,7 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  * @param[in]		Data4 	pin del device GPIO a cui e' associato il segnale Data4 del display LCD;
  *
  * @code
- * GPIO_t gpioDisplay;
+ * myGPIO_t gpioDisplay;
  * GPIO_init(&gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);
  * HD44780_LCD_t lcd;
  * HD44780_Init4(&lcd, &gpioDisplay, 	GPIO_pin10, GPIO_pin9, GPIO_pin8,
@@ -190,14 +190,14 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
  * @endcode
  */
 void HD44780_Init4(	HD44780_LCD_t	*lcd,
-					GPIO_t			*gpio,
-					GPIO_mask		RS,
-					GPIO_mask		RW,
-					GPIO_mask		E,
-					GPIO_mask		Data7,
-					GPIO_mask 		Data6,
-					GPIO_mask 		Data5,
-					GPIO_mask 		Data4);
+					myGPIO_t		*gpio,
+					myGPIO_mask		RS,
+					myGPIO_mask		RW,
+					myGPIO_mask		E,
+					myGPIO_mask		Data7,
+					myGPIO_mask 	Data6,
+					myGPIO_mask 	Data5,
+					myGPIO_mask 	Data4);
 
 /**
  * @brief Stampa un carattere
@@ -328,7 +328,7 @@ void HD44780_MoveToRow1(HD44780_LCD_t* lcd);
 void HD44780_MoveToRow2(HD44780_LCD_t* lcd);
 
 /**
- * @brief Direzioni di spostamento del cursore
+ * @brief Direzioni di spostamento del cursore, usata dalla funzione HD44780_MoveCursor()
  */
 typedef enum {
 	HD44780_CursorLeft,//!< left sposta il cursore a sinistra

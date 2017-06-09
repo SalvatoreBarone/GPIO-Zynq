@@ -18,7 +18,7 @@
 static int validatePair(ZyboSwitch_t* switches) {
 	int array_dim = 4;
 	int i, j;
-	const GPIO_mask pair[] = {switches->Switch3_pin, switches->Switch2_pin, switches->Switch1_pin, switches->Switch0_pin};
+	const myGPIO_mask pair[] = {switches->Switch3_pin, switches->Switch2_pin, switches->Switch1_pin, switches->Switch0_pin};
 	for (i = 0; i < array_dim; i++) {
 		if (pair[i] == 0)
 			return 0;
@@ -33,11 +33,11 @@ static int validatePair(ZyboSwitch_t* switches) {
 }
 
 void ZyboSwitch_init(	ZyboSwitch_t	*switches,
-						GPIO_t			*gpio,
-						GPIO_mask 		Switch3_pin,
-						GPIO_mask 		Switch2_pin,
-						GPIO_mask 		Switch1_pin,
-						GPIO_mask 		Switch0_pin) {
+						myGPIO_t			*gpio,
+						myGPIO_mask 		Switch3_pin,
+						myGPIO_mask 		Switch2_pin,
+						myGPIO_mask 		Switch1_pin,
+						myGPIO_mask 		Switch0_pin) {
 	assert(switches);
 	assert(gpio);
 	switches->gpio = gpio;
@@ -46,17 +46,17 @@ void ZyboSwitch_init(	ZyboSwitch_t	*switches,
 	switches->Switch1_pin = Switch1_pin;
 	switches->Switch0_pin = Switch0_pin;
 	assert(validatePair(switches));
-	GPIO_setMode(switches->gpio, switches->Switch3_pin | switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_read);
-	GPIO_setValue(switches->gpio, switches->Switch3_pin| switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, GPIO_reset);
+	myGPIO_setMode(switches->gpio, switches->Switch3_pin | switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, myGPIO_read);
+	myGPIO_setValue(switches->gpio, switches->Switch3_pin| switches->Switch2_pin | switches->Switch1_pin | switches->Switch0_pin, myGPIO_reset);
 }
 
 ZyboSwitch_status_t ZyboSwitch_getStatus(ZyboSwitch_t *switches, ZyboSwitch_mask_t mask) {
 	assert(switches);
 	assert(switches->gpio);
-	GPIO_mask gpio_mask = 0;
+	myGPIO_mask gpio_mask = 0;
 	gpio_mask |= ((mask & ZyboSwitch3) != 0 ? switches->Switch3_pin : 0);
 	gpio_mask |= ((mask & ZyboSwitch2) != 0 ? switches->Switch2_pin : 0);
 	gpio_mask |= ((mask & ZyboSwitch1) != 0 ? switches->Switch1_pin : 0);
 	gpio_mask |= ((mask & ZyboSwitch0) != 0 ? switches->Switch0_pin : 0);
-	return (GPIO_getValue(switches->gpio, gpio_mask) == GPIO_reset ? ZyboSwitch_off : ZyboSwitch_on);
+	return (myGPIO_getValue(switches->gpio, gpio_mask) == myGPIO_reset ? ZyboSwitch_off : ZyboSwitch_on);
 }

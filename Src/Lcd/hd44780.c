@@ -33,37 +33,37 @@
 
 #define timer_wait_ms(ms)   usleep(ms<<10)
 #define timer_wait_us(us)	usleep(us)
-#define lcd_command(lcd)	GPIO_setValue(lcd->gpio, lcd->RS, GPIO_reset)
-#define lcd_data(lcd)		GPIO_setValue(lcd->gpio, lcd->RS, GPIO_set)
-#define lcd_write(lcd)		GPIO_setValue(lcd->gpio, lcd->RW, GPIO_reset)
-#define lcd_read(lcd)		GPIO_setValue(lcd->gpio, lcd->RW, GPIO_set)
-#define lcd_enable(lcd)		GPIO_setValue(lcd->gpio, lcd->E, GPIO_set); \
+#define lcd_command(lcd)	myGPIO_setValue(lcd->gpio, lcd->RS, myGPIO_reset)
+#define lcd_data(lcd)		myGPIO_setValue(lcd->gpio, lcd->RS, myGPIO_set)
+#define lcd_write(lcd)		myGPIO_setValue(lcd->gpio, lcd->RW, myGPIO_reset)
+#define lcd_read(lcd)		myGPIO_setValue(lcd->gpio, lcd->RW, myGPIO_set)
+#define lcd_enable(lcd)		myGPIO_setValue(lcd->gpio, lcd->E, myGPIO_set); \
 							timer_wait_us(100); \
-							GPIO_setValue(lcd->gpio, lcd->E, GPIO_reset)
+							myGPIO_setValue(lcd->gpio, lcd->E, myGPIO_reset)
 
 void HD44780_SetByte(HD44780_LCD_t* lcd, uint8_t byte) {
 	int i;
 	if (lcd->iface_mode == HD44780_INTERFACE_8bit) {
-		GPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x80) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x40) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x20) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x10) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data3, ((byte & 0x08) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data2, ((byte & 0x04) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data1, ((byte & 0x02) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data0, ((byte & 0x01) == 0 ? GPIO_reset : GPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x80) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x40) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x20) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x10) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data3, ((byte & 0x08) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data2, ((byte & 0x04) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data1, ((byte & 0x02) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data0, ((byte & 0x01) == 0 ? myGPIO_reset : myGPIO_set));
 		lcd_enable(lcd);
 	}
 	else {
-		GPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x80) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x40) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x20) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x10) == 0 ? GPIO_reset : GPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x80) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x40) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x20) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x10) == 0 ? myGPIO_reset : myGPIO_set));
 		lcd_enable(lcd);
-		GPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x08) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x04) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x02) == 0 ? GPIO_reset : GPIO_set));
-		GPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x01) == 0 ? GPIO_reset : GPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data7, ((byte & 0x08) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data6, ((byte & 0x04) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data5, ((byte & 0x02) == 0 ? myGPIO_reset : myGPIO_set));
+		myGPIO_setValue(lcd->gpio, lcd->Data4, ((byte & 0x01) == 0 ? myGPIO_reset : myGPIO_set));
 		lcd_enable(lcd);
 	}
 }
@@ -92,7 +92,7 @@ int HD44780_ValidatePair(HD44780_LCD_t* lcd)
 {
 	int array_dim = (lcd->iface_mode == HD44780_INTERFACE_8bit ? 11 : 7);
 	int i, j;
-	const GPIO_mask pair[] = {	lcd->RS, lcd->RW, lcd->E,
+	const myGPIO_mask pair[] = {	lcd->RS, lcd->RW, lcd->E,
 								lcd->Data7, lcd->Data6, lcd->Data5, lcd->Data4,
 								lcd->Data3, lcd->Data2, lcd->Data1, lcd->Data0};
 	for (i = 0; i < array_dim; i++) {
@@ -109,27 +109,27 @@ int HD44780_ValidatePair(HD44780_LCD_t* lcd)
 }
 
 void HD44780_ConfigurePin(HD44780_LCD_t* lcd) {
-	GPIO_setMode(lcd->gpio, lcd->RS | lcd->RW | lcd->E |
+	myGPIO_setMode(lcd->gpio, lcd->RS | lcd->RW | lcd->E |
 							lcd->Data7 | lcd->Data6 | lcd->Data5 | lcd->Data4 |
-							lcd->Data3 | lcd->Data2 | lcd->Data1 | lcd->Data0, GPIO_write);
-	GPIO_setValue(lcd->gpio, lcd->RS | lcd->RW | lcd->E |
+							lcd->Data3 | lcd->Data2 | lcd->Data1 | lcd->Data0, myGPIO_write);
+	myGPIO_setValue(lcd->gpio, lcd->RS | lcd->RW | lcd->E |
 							lcd->Data7 | lcd->Data6 | lcd->Data5 | lcd->Data4 |
-							lcd->Data3 | lcd->Data2 | lcd->Data1 | lcd->Data0, GPIO_reset);
+							lcd->Data3 | lcd->Data2 | lcd->Data1 | lcd->Data0, myGPIO_reset);
 }
 
 void HD44780_Init8(	HD44780_LCD_t	*lcd,
-					GPIO_t			*gpio,
-					GPIO_mask		RS,
-					GPIO_mask		RW,
-					GPIO_mask		E,
-					GPIO_mask		Data7,
-					GPIO_mask 		Data6,
-					GPIO_mask 		Data5,
-					GPIO_mask 		Data4,
-					GPIO_mask 		Data3,
-					GPIO_mask 		Data2,
-					GPIO_mask 		Data1,
-					GPIO_mask 		Data0) {
+					myGPIO_t			*gpio,
+					myGPIO_mask		RS,
+					myGPIO_mask		RW,
+					myGPIO_mask		E,
+					myGPIO_mask		Data7,
+					myGPIO_mask 		Data6,
+					myGPIO_mask 		Data5,
+					myGPIO_mask 		Data4,
+					myGPIO_mask 		Data3,
+					myGPIO_mask 		Data2,
+					myGPIO_mask 		Data1,
+					myGPIO_mask 		Data0) {
 	assert(lcd);
 	assert(gpio);
 	lcd->iface_mode = HD44780_INTERFACE_8bit;
@@ -149,12 +149,12 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
 	HD44780_ConfigurePin(lcd);
 	// sequenza di inizializzazione del device
 	timer_wait_ms(50);
-	GPIO_setValue(lcd->gpio, lcd->RS, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->RW, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data7, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data6, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data5, GPIO_set);
-	GPIO_setValue(lcd->gpio, lcd->Data4, GPIO_set);
+	myGPIO_setValue(lcd->gpio, lcd->RS, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->RW, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data7, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data6, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data5, myGPIO_set);
+	myGPIO_setValue(lcd->gpio, lcd->Data4, myGPIO_set);
 	lcd_enable(lcd);
 	timer_wait_ms(10);
 	lcd_enable(lcd);
@@ -174,14 +174,14 @@ void HD44780_Init8(	HD44780_LCD_t	*lcd,
 }
 
 void HD44780_Init4(	HD44780_LCD_t	*lcd,
-					GPIO_t			*gpio,
-					GPIO_mask		RS,
-					GPIO_mask		RW,
-					GPIO_mask		E,
-					GPIO_mask		Data7,
-					GPIO_mask 		Data6,
-					GPIO_mask 		Data5,
-					GPIO_mask 		Data4) {
+					myGPIO_t		*gpio,
+					myGPIO_mask		RS,
+					myGPIO_mask		RW,
+					myGPIO_mask		E,
+					myGPIO_mask		Data7,
+					myGPIO_mask 	Data6,
+					myGPIO_mask 	Data5,
+					myGPIO_mask 	Data4) {
 	assert(lcd);
 	assert(gpio);
 	lcd->iface_mode = HD44780_INTERFACE_4bit;
@@ -201,22 +201,22 @@ void HD44780_Init4(	HD44780_LCD_t	*lcd,
 	HD44780_ConfigurePin(lcd);
 	// sequenza di inizializzazione del device
 	timer_wait_ms(50);
-	GPIO_setValue(lcd->gpio, lcd->RS, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->RW, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data7, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data6, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data5, GPIO_set);
-	GPIO_setValue(lcd->gpio, lcd->Data4, GPIO_set);
+	myGPIO_setValue(lcd->gpio, lcd->RS, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->RW, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data7, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data6, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data5, myGPIO_set);
+	myGPIO_setValue(lcd->gpio, lcd->Data4, myGPIO_set);
 	lcd_enable(lcd);
 	timer_wait_ms(10);
 	lcd_enable(lcd);
 	timer_wait_ms(10);
 	lcd_enable(lcd);
 	timer_wait_ms(10);
-	GPIO_setValue(lcd->gpio, lcd->Data7, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data6, GPIO_reset);
-	GPIO_setValue(lcd->gpio, lcd->Data5, GPIO_set);
-	GPIO_setValue(lcd->gpio, lcd->Data4, GPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data7, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data6, myGPIO_reset);
+	myGPIO_setValue(lcd->gpio, lcd->Data5, myGPIO_set);
+	myGPIO_setValue(lcd->gpio, lcd->Data4, myGPIO_reset);
 	lcd_enable(lcd);
 	timer_wait_ms(5);
 	HD44780_SetByte(lcd, 0x28);

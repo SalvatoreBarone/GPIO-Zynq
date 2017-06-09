@@ -20,7 +20,7 @@
 static int validatePair(ZyboButton_t* buttons) {
 	int array_dim = 4;
 	int i, j;
-	const GPIO_mask pair[] = {buttons->Button3_pin, buttons->Button2_pin, buttons->Button1_pin, buttons->Button0_pin};
+	const myGPIO_mask pair[] = {buttons->Button3_pin, buttons->Button2_pin, buttons->Button1_pin, buttons->Button0_pin};
 	for (i = 0; i < array_dim; i++) {
 		if (pair[i] == 0)
 			return 0;
@@ -35,11 +35,11 @@ static int validatePair(ZyboButton_t* buttons) {
 }
 
 void ZyboButton_init(	ZyboButton_t	*buttons,
-						GPIO_t			*gpio,
-						GPIO_mask 		Button3_pin,
-						GPIO_mask 		Button2_pin,
-						GPIO_mask 		Button1_pin,
-						GPIO_mask 		Button0_pin) {
+						myGPIO_t			*gpio,
+						myGPIO_mask 		Button3_pin,
+						myGPIO_mask 		Button2_pin,
+						myGPIO_mask 		Button1_pin,
+						myGPIO_mask 		Button0_pin) {
 	assert(buttons);
 	assert(gpio);
 	buttons->gpio = gpio;
@@ -48,8 +48,8 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
 	buttons->Button1_pin = Button1_pin;
 	buttons->Button0_pin = Button0_pin;
 	assert(validatePair(buttons));
-	GPIO_setMode(buttons->gpio, buttons->Button3_pin | buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_read);
-	GPIO_setValue(buttons->gpio, buttons->Button3_pin| buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, GPIO_reset);
+	myGPIO_setMode(buttons->gpio, buttons->Button3_pin | buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, myGPIO_read);
+	myGPIO_setValue(buttons->gpio, buttons->Button3_pin| buttons->Button2_pin | buttons->Button1_pin | buttons->Button0_pin, myGPIO_reset);
 }
 
 void ZyboButton_waitWhileIdle(ZyboButton_t *buttons) {
@@ -65,10 +65,10 @@ void ZyboButton_waitWhileBusy(ZyboButton_t *buttons) {
 ZyboButton_status_t ZyboButton_getStatus(ZyboButton_t *buttons, ZyboButton_mask_t mask) {
 	assert(buttons);
 	assert(buttons->gpio);
-	GPIO_mask gpio_mask = 0;
+	myGPIO_mask gpio_mask = 0;
 	gpio_mask |= ((mask & ZyboButton3) != 0 ? buttons->Button3_pin : 0);
 	gpio_mask |= ((mask & ZyboButton2) != 0 ? buttons->Button2_pin : 0);
 	gpio_mask |= ((mask & ZyboButton1) != 0 ? buttons->Button1_pin : 0);
 	gpio_mask |= ((mask & ZyboButton0) != 0 ? buttons->Button0_pin : 0);
-	return (GPIO_getValue(buttons->gpio, gpio_mask) == GPIO_reset ? ZyboButton_off : ZyboButton_on);
+	return (myGPIO_getValue(buttons->gpio, gpio_mask) == myGPIO_reset ? ZyboButton_off : ZyboButton_on);
 }

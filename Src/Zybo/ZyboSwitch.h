@@ -14,7 +14,7 @@
 #ifndef __ZYBO_SWITCH_HEADER_H__
 #define __ZYBO_SWITCH_HEADER_H__
 
-#include "gpio.h"
+#include "myGPIO.h"
 
 /**
  * @addtogroup Zybo
@@ -40,7 +40,7 @@ typedef enum {
  * @param[in] i indice dello switch da selezionare, da 0 a 3
  * @return maschera di selezione dello switch i-esimo
  */
-#define ZyboSwitch(i) ((uint32_t)(1<<i))
+#define ZyboSwitch(i) ((uint32_t)(1<<(i)))
 
 /**
  * @brief Status di attivo/inattivo degli switch
@@ -54,15 +54,15 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme degli switch presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	GPIO_t		*gpio;			/**< puntatore a struttura GPIO_t, che astrae il particolare GPIO usato per la lettura dello
+	myGPIO_t		*gpio;			/**< puntatore a struttura myGPIO_t, che astrae il particolare GPIO usato per la lettura dello
 									stato degli switch presenti sulla board */
-	GPIO_mask 	Switch3_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 3
+	myGPIO_mask 	Switch3_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 3
 									 della board Zybo*/
-	GPIO_mask 	Switch2_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 2
+	myGPIO_mask 	Switch2_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 2
 									 della board Zybo*/
-	GPIO_mask 	Switch1_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 1
+	myGPIO_mask 	Switch1_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 1
 									 della board Zybo*/
-	GPIO_mask 	Switch0_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 0
+	myGPIO_mask 	Switch0_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso allo switch numero 0
 									 della board Zybo*/
 } ZyboSwitch_t;
 
@@ -70,7 +70,7 @@ typedef struct {
  * @brief Inizializza un oggetto di tipo ZyboSwitch_t.
  * @param[inout]	switches		puntatore a struttura ZyboSwitch_t, che astrae l'insieme degli switch presenti sulla board
  * 									Digilent Zybo;
- * @param[in]		gpio     		puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla
+ * @param[in]		gpio     		puntatore a struttura myGPIO_t, che astrae un device GPIO; non viene inizializzato dalla
  * 									funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio
  * 									riportato di seguito
  * @param[in] 		Switch3_pin		pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo;
@@ -79,7 +79,7 @@ typedef struct {
  * @param[in] 		Switch0_pin		pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;
  *
  * @code
- * GPIO_t gpioSwitch;
+ * myGPIO_t gpioSwitch;
  * GPIO_init(&gpioSwitch, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);
  * ZyboSwitch_t switches;
  * ZyboSwitch_init(&switches, &gpioSwitch, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);
@@ -91,11 +91,11 @@ typedef struct {
  * - SwitchN_pin siano tutti pin differenti
  */
 void ZyboSwitch_init(	ZyboSwitch_t	*switches,
-						GPIO_t			*gpio,
-						GPIO_mask 		Switch3_pin,
-						GPIO_mask 		Switch2_pin,
-						GPIO_mask 		Switch1_pin,
-						GPIO_mask 		Switch0_pin);
+						myGPIO_t		*gpio,
+						myGPIO_mask 	Switch3_pin,
+						myGPIO_mask 	Switch2_pin,
+						myGPIO_mask 	Switch1_pin,
+						myGPIO_mask 	Switch0_pin);
 
 /**
  * @brief Permette la lettura dello stato degli switch presenti sulla board.

@@ -19,7 +19,7 @@ static int validatePair(ZyboLed_t* leds)
 {
 	int array_dim = 4;
 	int i, j;
-	const GPIO_mask pair[] = {leds->Led3_pin, leds->Led2_pin, leds->Led1_pin, leds->Led0_pin};
+	const myGPIO_mask pair[] = {leds->Led3_pin, leds->Led2_pin, leds->Led1_pin, leds->Led0_pin};
 	for (i = 0; i < array_dim; i++) {
 		if (pair[i] == 0)
 			return 0;
@@ -34,11 +34,11 @@ static int validatePair(ZyboLed_t* leds)
 }
 
 void ZyboLed_init(	ZyboLed_t	*leds,
-					GPIO_t		*gpio,
-					GPIO_mask 	Led3_pin,
-					GPIO_mask 	Led2_pin,
-					GPIO_mask 	Led1_pin,
-					GPIO_mask 	Led0_pin) {
+					myGPIO_t		*gpio,
+					myGPIO_mask 	Led3_pin,
+					myGPIO_mask 	Led2_pin,
+					myGPIO_mask 	Led1_pin,
+					myGPIO_mask 	Led0_pin) {
 	assert(leds);
 	assert(gpio);
 	leds->gpio = gpio;
@@ -47,30 +47,30 @@ void ZyboLed_init(	ZyboLed_t	*leds,
 	leds->Led1_pin = Led1_pin;
 	leds->Led0_pin = Led0_pin;
 	assert(validatePair(leds));
-	GPIO_setMode(leds->gpio, leds->Led3_pin | leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_write);
-	GPIO_setValue(leds->gpio, leds->Led3_pin| leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, GPIO_reset);
+	myGPIO_setMode(leds->gpio, leds->Led3_pin | leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, myGPIO_write);
+	myGPIO_setValue(leds->gpio, leds->Led3_pin| leds->Led2_pin | leds->Led1_pin | leds->Led0_pin, myGPIO_reset);
 
 }
 
 void ZyboLed_setStatus(ZyboLed_t *leds, ZyboLed_mask_t mask, ZyboLed_status_t status) {
 	assert(leds);
 	assert(leds->gpio);
-	GPIO_mask gpio_mask = 0;
+	myGPIO_mask gpio_mask = 0;
 	gpio_mask |= ((mask & ZyboLed3) != 0 ? leds->Led3_pin : 0);
 	gpio_mask |= ((mask & ZyboLed2) != 0 ? leds->Led2_pin : 0);
 	gpio_mask |= ((mask & ZyboLed1) != 0 ? leds->Led1_pin : 0);
 	gpio_mask |= ((mask & ZyboLed0) != 0 ? leds->Led0_pin : 0);
-	GPIO_setValue(leds->gpio, gpio_mask, (status == ZyboLed_off ? GPIO_reset : GPIO_set));
+	myGPIO_setValue(leds->gpio, gpio_mask, (status == ZyboLed_off ? myGPIO_reset : myGPIO_set));
 }
 
 
 void ZyboLed_toggle(ZyboLed_t *leds, ZyboLed_mask_t mask) {
 	assert(leds);
 	assert(leds->gpio);
-	GPIO_mask gpio_mask = 0;
+	myGPIO_mask gpio_mask = 0;
 	gpio_mask |= ((mask & ZyboLed3) != 0 ? leds->Led3_pin : 0);
 	gpio_mask |= ((mask & ZyboLed2) != 0 ? leds->Led2_pin : 0);
 	gpio_mask |= ((mask & ZyboLed1) != 0 ? leds->Led1_pin : 0);
 	gpio_mask |= ((mask & ZyboLed0) != 0 ? leds->Led0_pin : 0);
-	GPIO_toggle(leds->gpio, gpio_mask);
+	myGPIO_toggle(leds->gpio, gpio_mask);
 }

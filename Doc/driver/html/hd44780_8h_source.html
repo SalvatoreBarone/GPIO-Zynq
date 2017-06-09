@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack:  File sorgente Lcd/hd44780.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('hd44780_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">hd44780.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="hd44780_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file hd44780.h</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @author Salvatore Barone</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * @email salvator.barone@gmail.com</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * @copyright</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * published by the Free Software Foundation; either version 3 of the License, or any later version.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License along with this program; if not, write to the Free</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * Un oggetto di tipo HD44780_LCD_t rappresenta un device lcd HD44780. Il modulo e&#39; pensato per</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * permettere la gestione di piu&#39; display da parte dello stesso processore, agendo su oggetti</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * HD44780_LCD_t diversi.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef __HD44780_LCD__</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define __HD44780_LCD__</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#include &quot;gpio.h&quot;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">   73</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6">   74</a></span>&#160;    <a class="code" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6">HD44780_INTERFACE_4bit</a>, </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5">   75</a></span>&#160;    <a class="code" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5">HD44780_INTERFACE_8bit</a>  </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;} <a class="code" href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">HD44780_InterfaceMode_t</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#acb3116190992a4d8d26545c103304d27">   90</a></span>&#160;    GPIO_t      *<a class="code" href="struct_h_d44780___l_c_d__t.html#acb3116190992a4d8d26545c103304d27">gpio</a>;  </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a142ae0db638dca7ab42e2183a1311d32">   91</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a142ae0db638dca7ab42e2183a1311d32">RS</a>;     </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#af8225e4a125a2159215dfa03372c305f">   92</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#af8225e4a125a2159215dfa03372c305f">RW</a>;     </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a851ed1cefdadae2e5069d1364ae8fc9e">   93</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a851ed1cefdadae2e5069d1364ae8fc9e">E</a>;      </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a7f1bd9ea66e1fa6d0667c3f60d2f155d">   94</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a7f1bd9ea66e1fa6d0667c3f60d2f155d">Data7</a>;  </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a6a787746d32e0e18dbd57202e547756b">   95</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a6a787746d32e0e18dbd57202e547756b">Data6</a>;  </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#aff5ae7b6e5cd6f96a13e719cd07e3f15">   96</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#aff5ae7b6e5cd6f96a13e719cd07e3f15">Data5</a>;  </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a923c685eba8920c56f33117410da2742">   97</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a923c685eba8920c56f33117410da2742">Data4</a>;  </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#ae6f2e7b5a4aa8b82451e021f2f5b3a89">   98</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#ae6f2e7b5a4aa8b82451e021f2f5b3a89">Data3</a>;  </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#afb22274224118a94688f1809cda55501">   99</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#afb22274224118a94688f1809cda55501">Data2</a>;  </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a9b310a22b76c920feb015a3a3084b125">  100</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#a9b310a22b76c920feb015a3a3084b125">Data1</a>;  </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#aed1ef3393be1a14aa7b2644585e5bb08">  101</a></span>&#160;    GPIO_mask   <a class="code" href="struct_h_d44780___l_c_d__t.html#aed1ef3393be1a14aa7b2644585e5bb08">Data0</a>;  </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="struct_h_d44780___l_c_d__t.html#a7c5a51b8cc5de5ee2cf42b884bd1bc67">  102</a></span>&#160;    <a class="code" href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">HD44780_InterfaceMode_t</a> <a class="code" href="struct_h_d44780___l_c_d__t.html#a7c5a51b8cc5de5ee2cf42b884bd1bc67">iface_mode</a>; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;} <a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469">HD44780_Init8</a>( <a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>   *lcd,</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    GPIO_t          *gpio,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    GPIO_mask       RS,</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    GPIO_mask       RW,</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    GPIO_mask       E,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    GPIO_mask       Data7,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    GPIO_mask       Data6,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    GPIO_mask       Data5,</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    GPIO_mask       Data4,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    GPIO_mask       Data3,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    GPIO_mask       Data2,</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    GPIO_mask       Data1,</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                    GPIO_mask       Data0);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673">HD44780_Init4</a>( <a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>   *lcd,</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    GPIO_t          *gpio,</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                    GPIO_mask       RS,</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    GPIO_mask       RW,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    GPIO_mask       E,</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    GPIO_mask       Data7,</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    GPIO_mask       Data6,</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    GPIO_mask       Data5,</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                    GPIO_mask       Data4);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga57b8c6ca0b3c12e5f7273b3c373a6f17">HD44780_Printc</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd, <span class="keywordtype">char</span> c);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd, <span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga2a5d4d528175321c46c790b581959e63">HD44780_printBinary8</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint8_t b);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga95cceef2401c5519295e5a83c6688b5c">HD44780_printBinary32</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint32_t w);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga0f99bc5458acb172d0f3bfeb94f90e2a">HD44780_printBinary64</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint64_t b);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#gad967bd458b4d2bd358a93cbb7144addd">HD44780_printHex8</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint8_t b);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#gaa82a2a27a3008f55c969a2d390c50497">HD44780_printHex32</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint32_t w);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga7a4b110e7da806f8c01e01d184d3a19a">HD44780_printHex64</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> *lcd, uint64_t b);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga38cac13d7a66f068be54f79a716ff7d4">HD44780_Clear</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga68e3712332aa9482d4bdaa4991a92127">HD44780_Home</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#gad90e2924a4e632ce42940323f8f49e37">HD44780_MoveToRow1</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga713670d498b6f5d50a174df19081c515">HD44780_MoveToRow2</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">  333</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00334"></a><span class="lineno"><a class="line" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">  334</a></span>&#160;    <a class="code" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">HD44780_CursorLeft</a>,</div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">  335</a></span>&#160;    <a class="code" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">HD44780_CursorRight</a></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;} <a class="code" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf">HD44780_MoveCursor</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd, <a class="code" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a> dir);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga5cf07b2179272029410f9a81f56621ed">HD44780_DisplayOff</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga56421dc398825188aa10257063a3ee4b">HD44780_CursorOff</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga3a381cb44df5d76d79be5ed71a52bae6">HD44780_CursorOn</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___h_d44780.html#ga92eb58cb7d73c9a87b7087a9c56f73d5">HD44780_CursorBlink</a>(<a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a>* lcd);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="group___h_d44780_html_ga68e3712332aa9482d4bdaa4991a92127"><div class="ttname"><a href="group___h_d44780.html#ga68e3712332aa9482d4bdaa4991a92127">HD44780_Home</a></div><div class="ttdeci">void HD44780_Home(HD44780_LCD_t *lcd)</div><div class="ttdoc">Sposta il cursore all&#39;inizio della prima riga. </div><div class="ttdef"><b>Definition:</b> hd44780.c:284</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a851ed1cefdadae2e5069d1364ae8fc9e"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a851ed1cefdadae2e5069d1364ae8fc9e">HD44780_LCD_t::E</a></div><div class="ttdeci">GPIO_mask E</div><div class="ttdef"><b>Definition:</b> hd44780.h:93</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_acb3116190992a4d8d26545c103304d27"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#acb3116190992a4d8d26545c103304d27">HD44780_LCD_t::gpio</a></div><div class="ttdeci">GPIO_t * gpio</div><div class="ttdef"><b>Definition:</b> hd44780.h:90</div></div>
+<div class="ttc" id="group___h_d44780_html_ga56421dc398825188aa10257063a3ee4b"><div class="ttname"><a href="group___h_d44780.html#ga56421dc398825188aa10257063a3ee4b">HD44780_CursorOff</a></div><div class="ttdeci">void HD44780_CursorOff(HD44780_LCD_t *lcd)</div><div class="ttdoc">Disattiva la visualizzazione del cursore. </div><div class="ttdef"><b>Definition:</b> hd44780.c:304</div></div>
+<div class="ttc" id="group___h_d44780_html_ga5cf07b2179272029410f9a81f56621ed"><div class="ttname"><a href="group___h_d44780.html#ga5cf07b2179272029410f9a81f56621ed">HD44780_DisplayOff</a></div><div class="ttdeci">void HD44780_DisplayOff(HD44780_LCD_t *lcd)</div><div class="ttdoc">Disattiva il display. </div><div class="ttdef"><b>Definition:</b> hd44780.c:300</div></div>
+<div class="ttc" id="group___h_d44780_html_ga92eb58cb7d73c9a87b7087a9c56f73d5"><div class="ttname"><a href="group___h_d44780.html#ga92eb58cb7d73c9a87b7087a9c56f73d5">HD44780_CursorBlink</a></div><div class="ttdeci">void HD44780_CursorBlink(HD44780_LCD_t *lcd)</div><div class="ttdoc">Attiva il cursore lampeggiante. </div><div class="ttdef"><b>Definition:</b> hd44780.c:312</div></div>
+<div class="ttc" id="group___h_d44780_html_ga3a381cb44df5d76d79be5ed71a52bae6"><div class="ttname"><a href="group___h_d44780.html#ga3a381cb44df5d76d79be5ed71a52bae6">HD44780_CursorOn</a></div><div class="ttdeci">void HD44780_CursorOn(HD44780_LCD_t *lcd)</div><div class="ttdoc">Attiva la visualizzazione del cursore. </div><div class="ttdef"><b>Definition:</b> hd44780.c:308</div></div>
+<div class="ttc" id="group___h_d44780_html_gad967bd458b4d2bd358a93cbb7144addd"><div class="ttname"><a href="group___h_d44780.html#gad967bd458b4d2bd358a93cbb7144addd">HD44780_printHex8</a></div><div class="ttdeci">void HD44780_printHex8(HD44780_LCD_t *lcd, uint8_t b)</div><div class="ttdoc">Stampa un byte in esadecimale. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:262</div></div>
+<div class="ttc" id="group___h_d44780_html_gaf46f4db4f981d3a1088804a6d6980d30"><div class="ttname"><a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a></div><div class="ttdeci">HD44780_Direction_t</div><div class="ttdoc">Direzioni di spostamento del cursore. </div><div class="ttdef"><b>Definition:</b> hd44780.h:333</div></div>
+<div class="ttc" id="group___h_d44780_html_ga2a5d4d528175321c46c790b581959e63"><div class="ttname"><a href="group___h_d44780.html#ga2a5d4d528175321c46c790b581959e63">HD44780_printBinary8</a></div><div class="ttdeci">void HD44780_printBinary8(HD44780_LCD_t *lcd, uint8_t b)</div><div class="ttdoc">Stampa un byte in binario. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:244</div></div>
+<div class="ttc" id="group___h_d44780_html_ga0f99bc5458acb172d0f3bfeb94f90e2a"><div class="ttname"><a href="group___h_d44780.html#ga0f99bc5458acb172d0f3bfeb94f90e2a">HD44780_printBinary64</a></div><div class="ttdeci">void HD44780_printBinary64(HD44780_LCD_t *lcd, uint64_t b)</div><div class="ttdoc">Stampa un blocco di 64 bit in binario. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:256</div></div>
+<div class="ttc" id="group___h_d44780_html_ga7a4b110e7da806f8c01e01d184d3a19a"><div class="ttname"><a href="group___h_d44780.html#ga7a4b110e7da806f8c01e01d184d3a19a">HD44780_printHex64</a></div><div class="ttdeci">void HD44780_printHex64(HD44780_LCD_t *lcd, uint64_t b)</div><div class="ttdoc">Stampa un blocco di 64 bit in esadecimale. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:274</div></div>
+<div class="ttc" id="group___h_d44780_html_ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292"><div class="ttname"><a href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">HD44780_CursorLeft</a></div><div class="ttdoc">left sposta il cursore a sinistra </div><div class="ttdef"><b>Definition:</b> hd44780.h:334</div></div>
+<div class="ttc" id="group___h_d44780_html_ga57b8c6ca0b3c12e5f7273b3c373a6f17"><div class="ttname"><a href="group___h_d44780.html#ga57b8c6ca0b3c12e5f7273b3c373a6f17">HD44780_Printc</a></div><div class="ttdeci">void HD44780_Printc(HD44780_LCD_t *lcd, char c)</div><div class="ttdoc">Stampa un carattere. </div><div class="ttdef"><b>Definition:</b> hd44780.c:234</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a></div><div class="ttdoc">Struttura opaca che astrae un device Display LCD con cntroller Hitachi HD44780, o compatibile...</div><div class="ttdef"><b>Definition:</b> hd44780.h:89</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_af8225e4a125a2159215dfa03372c305f"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#af8225e4a125a2159215dfa03372c305f">HD44780_LCD_t::RW</a></div><div class="ttdeci">GPIO_mask RW</div><div class="ttdef"><b>Definition:</b> hd44780.h:92</div></div>
+<div class="ttc" id="group___h_d44780_html_gaaaea8b73e24f7658da4118f6b01b45f0"><div class="ttname"><a href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">HD44780_InterfaceMode_t</a></div><div class="ttdeci">HD44780_InterfaceMode_t</div><div class="ttdoc">Modalita&#39; di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit...</div><div class="ttdef"><b>Definition:</b> hd44780.h:73</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_ae6f2e7b5a4aa8b82451e021f2f5b3a89"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#ae6f2e7b5a4aa8b82451e021f2f5b3a89">HD44780_LCD_t::Data3</a></div><div class="ttdeci">GPIO_mask Data3</div><div class="ttdef"><b>Definition:</b> hd44780.h:98</div></div>
+<div class="ttc" id="group___h_d44780_html_ga713670d498b6f5d50a174df19081c515"><div class="ttname"><a href="group___h_d44780.html#ga713670d498b6f5d50a174df19081c515">HD44780_MoveToRow2</a></div><div class="ttdeci">void HD44780_MoveToRow2(HD44780_LCD_t *lcd)</div><div class="ttdoc">Sposta il cursore all&#39;inizio della seconda riga. </div><div class="ttdef"><b>Definition:</b> hd44780.c:292</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a9b310a22b76c920feb015a3a3084b125"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a9b310a22b76c920feb015a3a3084b125">HD44780_LCD_t::Data1</a></div><div class="ttdeci">GPIO_mask Data1</div><div class="ttdef"><b>Definition:</b> hd44780.h:100</div></div>
+<div class="ttc" id="group___h_d44780_html_ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399"><div class="ttname"><a href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">HD44780_CursorRight</a></div><div class="ttdoc">right sposta il cursore a destra </div><div class="ttdef"><b>Definition:</b> hd44780.h:335</div></div>
+<div class="ttc" id="group___h_d44780_html_ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5"><div class="ttname"><a href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5">HD44780_INTERFACE_8bit</a></div><div class="ttdef"><b>Definition:</b> hd44780.h:75</div></div>
+<div class="ttc" id="group___h_d44780_html_gaa82a2a27a3008f55c969a2d390c50497"><div class="ttname"><a href="group___h_d44780.html#gaa82a2a27a3008f55c969a2d390c50497">HD44780_printHex32</a></div><div class="ttdeci">void HD44780_printHex32(HD44780_LCD_t *lcd, uint32_t w)</div><div class="ttdoc">Stampa una word di 32 bit in esadecimale. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:268</div></div>
+<div class="ttc" id="group___h_d44780_html_ga3aedff8e2040e62db569fde955d3987b"><div class="ttname"><a href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a></div><div class="ttdeci">void HD44780_Print(HD44780_LCD_t *lcd, const char *s)</div><div class="ttdoc">Stampa una stringa null-terminated di caratteri. </div><div class="ttdef"><b>Definition:</b> hd44780.c:238</div></div>
+<div class="ttc" id="group___h_d44780_html_gad8f777df204bc630b77924e0a96e5673"><div class="ttname"><a href="group___h_d44780.html#gad8f777df204bc630b77924e0a96e5673">HD44780_Init4</a></div><div class="ttdeci">void HD44780_Init4(HD44780_LCD_t *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4)</div><div class="ttdoc">Inizializza un oggetto display lcd HD44780 affinche&#39; si utilizzi l&#39;interfaccia a 4 bit...</div><div class="ttdef"><b>Definition:</b> hd44780.c:176</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a7f1bd9ea66e1fa6d0667c3f60d2f155d"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a7f1bd9ea66e1fa6d0667c3f60d2f155d">HD44780_LCD_t::Data7</a></div><div class="ttdeci">GPIO_mask Data7</div><div class="ttdef"><b>Definition:</b> hd44780.h:94</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a7c5a51b8cc5de5ee2cf42b884bd1bc67"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a7c5a51b8cc5de5ee2cf42b884bd1bc67">HD44780_LCD_t::iface_mode</a></div><div class="ttdeci">HD44780_InterfaceMode_t iface_mode</div><div class="ttdef"><b>Definition:</b> hd44780.h:102</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_aff5ae7b6e5cd6f96a13e719cd07e3f15"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#aff5ae7b6e5cd6f96a13e719cd07e3f15">HD44780_LCD_t::Data5</a></div><div class="ttdeci">GPIO_mask Data5</div><div class="ttdef"><b>Definition:</b> hd44780.h:96</div></div>
+<div class="ttc" id="group___h_d44780_html_gabcea9a03050c46530e39b7556c673baf"><div class="ttname"><a href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf">HD44780_MoveCursor</a></div><div class="ttdeci">void HD44780_MoveCursor(HD44780_LCD_t *lcd, HD44780_Direction_t dir)</div><div class="ttdoc">Sposta il cursore di una posizione a destra o sinistra. </div><div class="ttdef"><b>Definition:</b> hd44780.c:296</div></div>
+<div class="ttc" id="group___h_d44780_html_ga2df14171c71a8afda59e3ae1733c5469"><div class="ttname"><a href="group___h_d44780.html#ga2df14171c71a8afda59e3ae1733c5469">HD44780_Init8</a></div><div class="ttdeci">void HD44780_Init8(HD44780_LCD_t *lcd, GPIO_t *gpio, GPIO_mask RS, GPIO_mask RW, GPIO_mask E, GPIO_mask Data7, GPIO_mask Data6, GPIO_mask Data5, GPIO_mask Data4, GPIO_mask Data3, GPIO_mask Data2, GPIO_mask Data1, GPIO_mask Data0)</div><div class="ttdoc">Inizializza un display lcd HD44780 con interfacciamento ad 8 bit. </div><div class="ttdef"><b>Definition:</b> hd44780.c:120</div></div>
+<div class="ttc" id="group___h_d44780_html_ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6"><div class="ttname"><a href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6">HD44780_INTERFACE_4bit</a></div><div class="ttdef"><b>Definition:</b> hd44780.h:74</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a923c685eba8920c56f33117410da2742"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a923c685eba8920c56f33117410da2742">HD44780_LCD_t::Data4</a></div><div class="ttdeci">GPIO_mask Data4</div><div class="ttdef"><b>Definition:</b> hd44780.h:97</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_aed1ef3393be1a14aa7b2644585e5bb08"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#aed1ef3393be1a14aa7b2644585e5bb08">HD44780_LCD_t::Data0</a></div><div class="ttdeci">GPIO_mask Data0</div><div class="ttdef"><b>Definition:</b> hd44780.h:101</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a142ae0db638dca7ab42e2183a1311d32"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a142ae0db638dca7ab42e2183a1311d32">HD44780_LCD_t::RS</a></div><div class="ttdeci">GPIO_mask RS</div><div class="ttdef"><b>Definition:</b> hd44780.h:91</div></div>
+<div class="ttc" id="group___h_d44780_html_gad90e2924a4e632ce42940323f8f49e37"><div class="ttname"><a href="group___h_d44780.html#gad90e2924a4e632ce42940323f8f49e37">HD44780_MoveToRow1</a></div><div class="ttdeci">void HD44780_MoveToRow1(HD44780_LCD_t *lcd)</div><div class="ttdoc">Sposta il cursore all&#39;inizio della prima riga. </div><div class="ttdef"><b>Definition:</b> hd44780.c:288</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_a6a787746d32e0e18dbd57202e547756b"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#a6a787746d32e0e18dbd57202e547756b">HD44780_LCD_t::Data6</a></div><div class="ttdeci">GPIO_mask Data6</div><div class="ttdef"><b>Definition:</b> hd44780.h:95</div></div>
+<div class="ttc" id="group___h_d44780_html_ga38cac13d7a66f068be54f79a716ff7d4"><div class="ttname"><a href="group___h_d44780.html#ga38cac13d7a66f068be54f79a716ff7d4">HD44780_Clear</a></div><div class="ttdeci">void HD44780_Clear(HD44780_LCD_t *lcd)</div><div class="ttdoc">Pulisce il display e sposta il cursore all&#39;inizio della prima riga. </div><div class="ttdef"><b>Definition:</b> hd44780.c:280</div></div>
+<div class="ttc" id="group___h_d44780_html_ga95cceef2401c5519295e5a83c6688b5c"><div class="ttname"><a href="group___h_d44780.html#ga95cceef2401c5519295e5a83c6688b5c">HD44780_printBinary32</a></div><div class="ttdeci">void HD44780_printBinary32(HD44780_LCD_t *lcd, uint32_t w)</div><div class="ttdoc">Stampa una word di 32 bit in binario. (bit piu&#39; significativo a sinistra) </div><div class="ttdef"><b>Definition:</b> hd44780.c:250</div></div>
+<div class="ttc" id="struct_h_d44780___l_c_d__t_html_afb22274224118a94688f1809cda55501"><div class="ttname"><a href="struct_h_d44780___l_c_d__t.html#afb22274224118a94688f1809cda55501">HD44780_LCD_t::Data2</a></div><div class="ttdeci">GPIO_mask Data2</div><div class="ttdef"><b>Definition:</b> hd44780.h:99</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_88b5360b2377451c743d9a6483fc2e44.html">Lcd</a></li><li class="navelem"><a class="el" href="hd44780_8h.html">hd44780.h</a></li>
+    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

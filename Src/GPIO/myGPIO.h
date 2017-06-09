@@ -27,6 +27,13 @@
 
 /**
  * @brief Struttura che astrae un device myGPIO.
+ * 
+ * Essa comprende l'indirizzo di memoria a cui il device e' mappato e gli offset dei registri attraverso
+ * i quali e' possibile interagire con il device stesso. La struttura e' pensata, com'e' ovvio, per consentire
+ * l'uso di più device GPIO nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo
+ * di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver,
+ * e' totalmente trasparente a chi la utilizza, nel senso che non e' strettamente necessario conoscerne i
+ * dettagli per poter utilizzare il driver. 
  */
 typedef struct {
 	uint32_t*	base_address;	/**< indirizzo base */
@@ -106,7 +113,7 @@ typedef enum {
 	myGPIO_pin28 = 0x10000000U,//!< myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO
 	myGPIO_pin29 = 0x20000000U,//!< myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO
 	myGPIO_pin30 = 0x40000000U,//!< myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO
-	myGPIO_pin31 = 0x80000000U,//!< myGPIO pin31	maschera di selezione del pin 31 di un device myGPIO
+	myGPIO_pin31 = 0x80000000U,//!< myGPIO pin31 maschera di selezione del pin 31 di un device myGPIO
 	myGPIO_byte0 = 0x000000ffU,//!< myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO
 	myGPIO_byte1 = 0x0000ff00U,//!< myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO
 	myGPIO_byte2 = 0x00ff0000U,//!< myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO
@@ -118,7 +125,7 @@ typedef enum {
  * @param[in] i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
  * @return maschera di selezione del pin i-esimo
  */
-#define myGPIO_pin(i) ((uint32_t)(1<<i))
+#define myGPIO_pin(i) ((uint32_t)(1<<(i)))
 
 /**
  * @brief myGPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device myGPIO
@@ -254,6 +261,214 @@ myGPIO_mask myGPIO_getRead(myGPIO_t *gpio);
  * @param [in] gpio puntatore a myGPIO_t, che astrae un device myGPIO;
  * 
  * @code
+//L'esempio seguente fa riferimento ad un sistema con un device myGPIO di 8 bit ai quali sono connessi
+//led e button presenti sulla board Zybo.
+//I led sono connessi ai bit 0-3 del device myGPIO, mentre i button sono connessi ai bit 4-7.
+#include "xscugic.h"
+#include "xparameters.h"
+#include "myGPIO.h"
+
+#define myGPIO_id 			XPAR_MYGPIO_0_DEVICE_ID			// ID del device MYGPIO0
+#define myGPIO_addr			XPAR_MYGPIO_0_S00_AXI_BASEADDR	// Indirizzo base del device MYGPIO0
+#define myGPIO_irq_line		XPAR_FABRIC_MYGPIO_0_IRQ_INTR	// linea interrupt a cui e' connesso il device MYGPIO0
+#define GIC_ID				XPAR_SCUGIC_0_DEVICE_ID			// ID del device GIC
+#define GIC_baddr			XPAR_SCUGIC_0_CPU_BASEADDR		// Indirizzo base del device GIC
+
+// funzione di configurazione delle interrupt
+int INT_config(XScuGic *GIC, myGPIO_t* gpio);
+
+// prototipo della isr per la gestione della pressione di un button
+// deve necessariamente essere una funzione che restituisce void e prende in ingresso un
+// puntatore a void per i dati
+void button_isr(void* data);
+
+int main()
+{
+	XScuGic GIC;
+	myGPIO_t gpio;
+
+	myGPIO_init(&gpio, myGPIO_addr);
+    myGPIO_setMode(&gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_write);
+    myGPIO_setMode(&gpio, myGPIO_pin4 | myGPIO_pin5 | myGPIO_pin6 | myGPIO_pin7, myGPIO_read);
+    myGPIO_setValue(&gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+
+    INT_config(&GIC, &gpio);
+
+    for(;;);
+
+    return 0;
+}
+
+int INT_config(XScuGic *GIC, myGPIO_t* gpio) {
+
+	// inizializza il driver del GIC
+	Xil_ExceptionInit();
+
+	// ottiene i parametri di configurazione del GIC, lo configura ed inizializza
+	// sintassi : XScuGic_LookupConfig(GIC_id)
+	// sintassi : XScuGic_CfgInitialize(GIC, config, address)
+	XScuGic_Config *IntcConfig = XScuGic_LookupConfig(GIC_ID);
+	if (IntcConfig == NULL)
+		return -1;
+	if (XScuGic_CfgInitialize(GIC, IntcConfig, IntcConfig->CpuBaseAddress) != XST_SUCCESS)
+		return -1;
+
+	// registra l'interrupt handler del GIC alla logica di gestione del processing-system
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler, GIC);
+
+	// registrazione degli handler
+	// le due righe seguenti stabiliscono quale sia l'handler da chiamare e quali dati bisogna passargli
+	// qualora si manifesti una interruzione su una line di irq.
+	// sintassi : XScuGic_Connect(GIC, irq_line, handler, data)
+	if (XScuGic_Connect(GIC, myGPIO_irq_line, (Xil_InterruptHandler)button_isr, (void*)gpio) != XST_SUCCESS)
+		return -1;
+
+	// abilitazione degli interrupt sulle linee connesse alle periferiche
+	// sintassi: XScuGic_Enable(GIC,irq_line);
+	XScuGic_Enable(GIC, myGPIO_irq_line);
+	// abilitazione degli interrupt delle periferiche
+	myGPIO_interruptEnable(gpio);
+
+	// abilitazione degli interrupt del processing-system
+	Xil_ExceptionEnable();
+
+	return 0;
+}
+
+void button_isr(void* data) {
+	myGPIO_t* gpio = (myGPIO_t*)data;
+
+	myGPIO_interruptDisable(gpio);	// disabilito gli interrupt
+	myGPIO_interruptAck(gpio);		// clear del flag irq
+
+	myGPIO_mask mask = myGPIO_getRead(gpio);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+	myGPIO_setValue(gpio, mask>>4, myGPIO_set);
+
+	myGPIO_value value = myGPIO_getIrq(gpio);
+	myGPIO_interruptAck(gpio);
+	value = myGPIO_getIrq(gpio);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, value);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, value);
+
+	myGPIO_interruptEnable(gpio);	// ri-abilito gli interrupt
+}
+ * @endcode
+ * @code
+#include "xscugic.h"
+#include "xparameters.h"
+#include "myGPIO.h"
+
+#define btn_addr	XPAR_MYGPIO_0_S00_AXI_BASEADDR	// base-address del gpio connesso ai button
+#define btn_line	XPAR_FABRIC_MYGPIO_0_IRQ_INTR	// linea di interrupt del gpio connesso ai button
+#define swc_addr	XPAR_MYGPIO_1_S00_AXI_BASEADDR	// base-address del gpio connesso agli switch
+#define swc_line	XPAR_FABRIC_MYGPIO_1_IRQ_INTR	// linea di interrupt del gpio connesso agli switch
+#define led_addr	XPAR_MYGPIO_2_S00_AXI_BASEADDR	// base-address del gpio connesso ai led
+
+#define gic_id		XPAR_SCUGIC_0_DEVICE_ID			// id del device gic
+
+myGPIO_t led_gpio;
+myGPIO_t btn_gpio;
+myGPIO_t swc_gpio;
+XScuGic GIC;
+
+// funzione di inizializzazione dei device gpio
+void gpio_init(void);
+
+
+// isr per button e switch
+// devono necessariamente avere questa firma: restituire void e possedere un solo parametro puntatore
+// a void. In questo caso non viene utilizzato (tutte le variabili sono globali), ma tale puntatore
+// puo' essere usato per scambiare dati di ingresso/uscita alle isr
+void btn_isr(void*); // isr per i button
+void swc_isr(void*); // isr per gli switch
+
+// funzione di configurazione del device gic e delle interruzioni
+int int_config(void);
+
+int main()
+{
+	gpio_init();
+	int_config();
+
+	for (;;);
+
+    return 0;
+}
+
+
+void gpio_init(void) {
+	uint8_t i;
+	myGPIO_init(&led_gpio, led_addr);
+	myGPIO_init(&btn_gpio, btn_addr);
+	myGPIO_init(&swc_gpio, swc_addr);
+	for (i=0; i<myGPIO_pin4; i++) {
+		myGPIO_setMode(&led_gpio, myGPIO_pin(i), myGPIO_write);
+		myGPIO_setValue(&led_gpio, myGPIO_pin(i), myGPIO_reset);
+		myGPIO_setMode(&btn_gpio, myGPIO_pin(i), myGPIO_read);
+		myGPIO_setValue(&btn_gpio, myGPIO_pin(i), myGPIO_reset);
+		myGPIO_setMode(&swc_gpio, myGPIO_pin(i), myGPIO_read);
+		myGPIO_setValue(&swc_gpio, myGPIO_pin(i), myGPIO_reset);
+	}
+}
+
+int int_config(void) {
+	// inizializza il driver del GIC
+	Xil_ExceptionInit();
+
+	// ottiene i parametri di configurazione del GIC, lo configura ed inizializza
+	// sintassi : XScuGic_LookupConfig(GIC_id)
+	// sintassi : XScuGic_CfgInitialize(GIC_ptr, config, cpu_address)
+	XScuGic_Config *IntcConfig = XScuGic_LookupConfig(gic_id);
+	if (IntcConfig == NULL)
+		return -1;
+	if (XScuGic_CfgInitialize(&GIC, IntcConfig, IntcConfig->CpuBaseAddress) != XST_SUCCESS)
+		return -1;
+
+	// registra l'interrupt handler del GIC alla logica di gestione del processing-system
+	// sintassi : Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, handler, gic_ptr)
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler, &GIC);
+
+	// registrazione degli handler
+	// le righe seguenti stabiliscono quale sia l'handler da chiamare e quali dati bisogna passargli
+	// qualora si manifesti una interruzione su una line di irq.
+	// sintassi : XScuGic_Connect(GIC, irq_line, handler, data)
+	if (XScuGic_Connect(&GIC, btn_line, (Xil_InterruptHandler)btn_isr, (void*)NULL) != XST_SUCCESS)
+		return -1;
+	if (XScuGic_Connect(&GIC, swc_line, (Xil_InterruptHandler)swc_isr, (void*)NULL) != XST_SUCCESS)
+			return -1;
+
+	// abilitazione degli interrupt sulle linee connesse alle periferiche
+	// sintassi: XScuGic_Enable(GIC,irq_line);
+	XScuGic_Enable(&GIC, btn_line);
+	XScuGic_Enable(&GIC, swc_line);
+
+	// abilitazione degli interrupt delle periferiche
+	myGPIO_interruptEnable(&btn_gpio);
+	myGPIO_interruptEnable(&swc_gpio);
+
+	// abilitazione degli interrupt del processing-system
+	Xil_ExceptionEnable();
+	return 0;
+}
+
+void btn_isr(void* data) {
+	myGPIO_interruptDisable(&btn_gpio);	// disabilito gli interrupt
+	myGPIO_interruptAck(&btn_gpio);		// clear del flag irq
+	myGPIO_mask mask = myGPIO_getRead(&btn_gpio);
+	myGPIO_setValue(&led_gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+	myGPIO_setValue(&led_gpio, mask, myGPIO_set);
+	myGPIO_interruptEnable(&btn_gpio);	// ri-abilito gli interrupt
+}
+
+void swc_isr(void* data) {
+	myGPIO_interruptDisable(&swc_gpio);	// disabilito gli interrupt
+	myGPIO_interruptAck(&swc_gpio);		// clear del flag irq
+	myGPIO_mask mask = myGPIO_getRead(&swc_gpio);
+	myGPIO_setValue(&led_gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+	myGPIO_setValue(&led_gpio, mask, myGPIO_set);
+	myGPIO_interruptEnable(&swc_gpio);	// ri-abilito gli interrupt
+}
  * @endcode
  */
 void myGPIO_interruptEnable(myGPIO_t *gpio);
