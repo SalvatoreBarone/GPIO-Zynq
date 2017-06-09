@@ -34,7 +34,7 @@ use ieee.numeric_std.all;
 --!    - IntAck (bit 2): interrupt-ack (clear, sola scrittura), consente di resettare il segnale interrupt-request, via software, dopo 
 --!		 aver servito l'interruzione.
 --!
---! @warning il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
+--! @note il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
 --!
 entity myGPIO is
 	generic (
@@ -49,7 +49,7 @@ entity myGPIO is
 	port (
 		-- Users to add ports here
 		GPIO_inout : inout std_logic_vector (GPIO_width-1 downto 0);	--! segnale bidirezionale diretto verso l'esterno del device.
-		GPIO_int : out std_logic;										--! segnale di interrupt a livelli, se gli interrupt sono abilitati
+		irq : out std_logic;											--! segnale di interrupt a livelli, se gli interrupt sono abilitati
 																		--! diventa alto quando GPIO_inout cambia stato
 		-- User ports ends
 		-- Do not modify the ports beyond this line
@@ -125,7 +125,7 @@ myGPIO_AXI_inst : myGPIO_AXI
 	)
 	port map (
 		GPIO_inout => GPIO_inout,
-		GPIO_int => GPIO_int,
+		GPIO_int => irq,
 		S_AXI_ACLK	=> s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,

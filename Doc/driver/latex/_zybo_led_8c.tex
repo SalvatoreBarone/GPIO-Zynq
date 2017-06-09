@@ -1,0 +1,23 @@
+\hypertarget{_zybo_led_8c}{\section{Riferimenti per il file Zybo/\+Zybo\+Led.c}
+\label{_zybo_led_8c}\index{Zybo/\+Zybo\+Led.\+c@{Zybo/\+Zybo\+Led.\+c}}
+}
+{\ttfamily \#include \char`\"{}Zybo\+Led.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Grafo delle dipendenze di inclusione per Zybo\+Led.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{_zybo_led_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___led_ga51b030897fde9b6378d083b8d711008e}{Zybo\+Led\+\_\+init} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, G\+P\+I\+O\+\_\+t $\ast$gpio, G\+P\+I\+O\+\_\+mask Led3\+\_\+pin, G\+P\+I\+O\+\_\+mask Led2\+\_\+pin, G\+P\+I\+O\+\_\+mask Led1\+\_\+pin, G\+P\+I\+O\+\_\+mask Led0\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. \end{DoxyCompactList}\item 
+void \hyperlink{group___led_gacf5c2b0328c4bdf2d796397fc4510c69}{Zybo\+Led\+\_\+set\+Status} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} mask, \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{Zybo\+Led\+\_\+status\+\_\+t} status)
+\begin{DoxyCompactList}\small\item\em Permette di accendere/spegnere i Led sulla board. \end{DoxyCompactList}\item 
+void \hyperlink{group___led_ga20ddd78a98b4c0123c5b964aa0a59046}{Zybo\+Led\+\_\+toggle} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} mask)
+\begin{DoxyCompactList}\small\item\em Permette di accendere/spegnere i Led sulla board, invertendone il valore. \end{DoxyCompactList}\end{DoxyCompactItemize}

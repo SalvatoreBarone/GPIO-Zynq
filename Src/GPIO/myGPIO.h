@@ -106,7 +106,7 @@ typedef enum {
 	myGPIO_pin28 = 0x10000000U,//!< myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO
 	myGPIO_pin29 = 0x20000000U,//!< myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO
 	myGPIO_pin30 = 0x40000000U,//!< myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO
-	myGPIO_pin31 = 0x80000000U,//!< myGPIO pin31	maschera di selezione del pin 31 di un device myGPIO
+	myGPIO_pin31 = 0x80000000U,//!< myGPIO pin31 maschera di selezione del pin 31 di un device myGPIO
 	myGPIO_byte0 = 0x000000ffU,//!< myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO
 	myGPIO_byte1 = 0x0000ff00U,//!< myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO
 	myGPIO_byte2 = 0x00ff0000U,//!< myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO
@@ -254,6 +254,101 @@ myGPIO_mask myGPIO_getRead(myGPIO_t *gpio);
  * @param [in] gpio puntatore a myGPIO_t, che astrae un device myGPIO;
  * 
  * @code
+//L'esempio seguente fa riferimento ad un sistema con un device myGPIO di 8 bit ai quali sono connessi
+//led e button presenti sulla board Zybo.
+//I led sono connessi ai bit 0-3 del device myGPIO, mentre i button sono connessi ai bit 4-7.
+#include "xscugic.h"
+#include "xparameters.h"
+#include "myGPIO.h"
+
+#define myGPIO_id 			XPAR_MYGPIO_0_DEVICE_ID			// ID del device MYGPIO0
+#define myGPIO_addr			XPAR_MYGPIO_0_S00_AXI_BASEADDR	// Indirizzo base del device MYGPIO0
+#define myGPIO_irq_line		XPAR_FABRIC_MYGPIO_0_IRQ_INTR	// linea interrupt a cui e' connesso il device MYGPIO0
+#define GIC_ID				XPAR_SCUGIC_0_DEVICE_ID			// ID del device GIC
+#define GIC_baddr			XPAR_SCUGIC_0_CPU_BASEADDR		// Indirizzo base del device GIC
+
+// funzione di configurazione delle interrupt
+int INT_config(XScuGic *GIC, myGPIO_t* gpio);
+
+// prototipo della isr per la gestione della pressione di un button
+// deve necessariamente essere una funzione che restituisce void e prende in ingresso un
+// puntatore a void per i dati
+void button_isr(void* data);
+
+int main()
+{
+	XScuGic GIC;
+	myGPIO_t gpio;
+
+	myGPIO_init(&gpio, myGPIO_addr);
+    myGPIO_setMode(&gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_write);
+    myGPIO_setMode(&gpio, myGPIO_pin4 | myGPIO_pin5 | myGPIO_pin6 | myGPIO_pin7, myGPIO_read);
+    myGPIO_setValue(&gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+
+    INT_config(&GIC, &gpio);
+
+    for(;;);
+
+    return 0;
+}
+
+int INT_config(XScuGic *GIC, myGPIO_t* gpio) {
+
+	// inizializza il driver del GIC
+	Xil_ExceptionInit();
+
+	// ottiene i parametri di configurazione del GIC, lo configura ed inizializza
+	// sintassi : XScuGic_LookupConfig(GIC_id)
+	// sintassi : XScuGic_CfgInitialize(GIC, config, address)
+	XScuGic_Config *IntcConfig = XScuGic_LookupConfig(GIC_ID);
+	if (IntcConfig == NULL)
+		return -1;
+	if (XScuGic_CfgInitialize(GIC, IntcConfig, IntcConfig->CpuBaseAddress) != XST_SUCCESS)
+		return -1;
+
+	// registra l'interrupt handler del GIC alla logica di gestione del processing-system
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler, GIC);
+
+	// registrazione degli handler
+	// le due righe seguenti stabiliscono quale sia l'handler da chiamare e quali dati bisogna passargli
+	// qualora si manifesti una interruzione su una line di irq.
+	// sintassi : XScuGic_Connect(GIC, irq_line, handler, data)
+	if (XScuGic_Connect(GIC, myGPIO_irq_line, (Xil_InterruptHandler)button_isr, (void*)gpio) != XST_SUCCESS)
+		return -1;
+
+//	XScuGic_SetPriorityTriggerType(GIC, INTC_INTERRUPT_ID,0x00, 0x3);
+
+	// abilitazione degli interrupt sulle linee connesse alle periferiche
+	// sintassi: XScuGic_Enable(GIC,irq_line);
+	XScuGic_Enable(GIC, myGPIO_irq_line);
+	// abilitazione degli interrupt delle periferiche
+	myGPIO_interruptEnable(gpio);
+
+	// abilitazione degli interrupt del processing-system
+	Xil_ExceptionEnable();
+
+	return 0;
+}
+
+void button_isr(void* data) {
+	myGPIO_t* gpio = (myGPIO_t*)data;
+
+	myGPIO_interruptDisable(gpio);	// disabilito gli interrupt
+	myGPIO_interruptAck(gpio);		// clear del flag irq
+
+	myGPIO_mask mask = myGPIO_getRead(gpio);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, myGPIO_reset);
+	myGPIO_setValue(gpio, mask>>4, myGPIO_set);
+
+	myGPIO_value value = myGPIO_getIrq(gpio);
+	myGPIO_interruptAck(gpio);
+	value = myGPIO_getIrq(gpio);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, value);
+	myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1 | myGPIO_pin2 | myGPIO_pin3, value);
+
+	myGPIO_interruptEnable(gpio);	// ri-abilito gli interrupt
+}
+
  * @endcode
  */
 void myGPIO_interruptEnable(myGPIO_t *gpio);

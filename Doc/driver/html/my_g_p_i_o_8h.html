@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Riferimenti per il file GPIO/myGPIO.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('my_g_p_i_o_8h.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Strutture dati</a> &#124;
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#enum-members">Tipi enumerati (enum)</a> &#124;
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per il file myGPIO.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;inttypes.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per myGPIO.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="my_g_p_i_o_8h__incl.png" border="0" usemap="#_g_p_i_o_2my_g_p_i_o_8h" alt=""/></div>
+<map name="_g_p_i_o_2my_g_p_i_o_8h" id="_g_p_i_o_2my_g_p_i_o_8h">
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="my_g_p_i_o_8h__dep__incl.png" border="0" usemap="#_g_p_i_o_2my_g_p_i_o_8hdep" alt=""/></div>
+<map name="_g_p_i_o_2my_g_p_i_o_8hdep" id="_g_p_i_o_2my_g_p_i_o_8hdep">
+<area shape="rect" id="node2" href="my_g_p_i_o_8c.html" title="GPIO/myGPIO.c" alt="" coords="5,80,127,107"/></map>
+</div>
+</div>
+<p><a href="my_g_p_i_o_8h_source.html">Vai al codice sorgente di questo file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Strutture dati</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struttura che astrae un device myGPIO.  <a href="structmy_g_p_i_o__t.html#details">Continua...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definizioni</h2></td></tr>
+<tr class="memitem:ga81a662103d6ed053978c0a9b4c273065"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga81a662103d6ed053978c0a9b4c273065">myGPIO_MODE_OFFSET</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="memdesc:ga81a662103d6ed053978c0a9b4c273065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset, rispetto all'indirizzo base, del registro "mode" per il device myGPIO.  <a href="group__my_g_p_i_o.html#ga81a662103d6ed053978c0a9b4c273065">Continua...</a><br /></td></tr>
+<tr class="separator:ga81a662103d6ed053978c0a9b4c273065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e45778b6ca9ce6f5768b3f7a4557ce1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga2e45778b6ca9ce6f5768b3f7a4557ce1">myGPIO_WRITE_OFFSET</a>&#160;&#160;&#160;4U</td></tr>
+<tr class="memdesc:ga2e45778b6ca9ce6f5768b3f7a4557ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset, rispetto all'indirizzo base, del registro "write" per il device myGPIO.  <a href="group__my_g_p_i_o.html#ga2e45778b6ca9ce6f5768b3f7a4557ce1">Continua...</a><br /></td></tr>
+<tr class="separator:ga2e45778b6ca9ce6f5768b3f7a4557ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga584d2dfece76e5762030d918d80592cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga584d2dfece76e5762030d918d80592cc">myGPIO_READ_OFFSET</a>&#160;&#160;&#160;8U</td></tr>
+<tr class="memdesc:ga584d2dfece76e5762030d918d80592cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset, rispetto all'indirizzo base, del registro "read" per il device myGPIO.  <a href="group__my_g_p_i_o.html#ga584d2dfece76e5762030d918d80592cc">Continua...</a><br /></td></tr>
+<tr class="separator:ga584d2dfece76e5762030d918d80592cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacf2d8a21a051e778f02f8811b9c1e96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gaacf2d8a21a051e778f02f8811b9c1e96">myGPIO_INTR_OFFSET</a>&#160;&#160;&#160;12U</td></tr>
+<tr class="memdesc:gaacf2d8a21a051e778f02f8811b9c1e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset, rispetto all'indirizzo base, del registro "interrupt" per il device myGPIO.  <a href="group__my_g_p_i_o.html#gaacf2d8a21a051e778f02f8811b9c1e96">Continua...</a><br /></td></tr>
+<tr class="separator:gaacf2d8a21a051e778f02f8811b9c1e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ba32e2adf874ed7216c5993369153e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga0ba32e2adf874ed7216c5993369153e1">myGPIO_INTR_IntEn_mask</a>&#160;&#160;&#160;0x1U</td></tr>
+<tr class="memdesc:ga0ba32e2adf874ed7216c5993369153e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">maschera del bit del registro "interrupt" che funge da interrupt-enable, per il device myGPIO  <a href="group__my_g_p_i_o.html#ga0ba32e2adf874ed7216c5993369153e1">Continua...</a><br /></td></tr>
+<tr class="separator:ga0ba32e2adf874ed7216c5993369153e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4cd02635783bc2a4ad7639cfb9fdb698"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga4cd02635783bc2a4ad7639cfb9fdb698">myGPIO_INTR_Irq_mask</a>&#160;&#160;&#160;0x2U</td></tr>
+<tr class="memdesc:ga4cd02635783bc2a4ad7639cfb9fdb698"><td class="mdescLeft">&#160;</td><td class="mdescRight">maschera del bit del registro "interrupt" che funge da interrupt-request, per il device myGPIO  <a href="group__my_g_p_i_o.html#ga4cd02635783bc2a4ad7639cfb9fdb698">Continua...</a><br /></td></tr>
+<tr class="separator:ga4cd02635783bc2a4ad7639cfb9fdb698"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa760b8397e6372e48c1008c2ba8d7387"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gaa760b8397e6372e48c1008c2ba8d7387">myGPIO_INTR_IntAck_mask</a>&#160;&#160;&#160;0x4U</td></tr>
+<tr class="memdesc:gaa760b8397e6372e48c1008c2ba8d7387"><td class="mdescLeft">&#160;</td><td class="mdescRight">maschera del bit del registro "interrupt" che funge da interrupt-ack, per il device myGPIO  <a href="group__my_g_p_i_o.html#gaa760b8397e6372e48c1008c2ba8d7387">Continua...</a><br /></td></tr>
+<tr class="separator:gaa760b8397e6372e48c1008c2ba8d7387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbe2491a3b71c292521025b7b382b971"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gabbe2491a3b71c292521025b7b382b971">myGPIO_pin</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memdesc:gabbe2491a3b71c292521025b7b382b971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno dei pin di un device myGPIO.  <a href="group__my_g_p_i_o.html#gabbe2491a3b71c292521025b7b382b971">Continua...</a><br /></td></tr>
+<tr class="separator:gabbe2491a3b71c292521025b7b382b971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Tipi enumerati (enum)</h2></td></tr>
+<tr class="memitem:ga402a0d20afc0cb7c25554b8b023f4253"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> { <br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> = 0x1U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a> = 0x2U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783">myGPIO_pin2</a> = 0x4U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a> = 0x8U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637">myGPIO_pin4</a> = 0x10U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2">myGPIO_pin5</a> = 0x20U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b">myGPIO_pin6</a> = 0x40U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b">myGPIO_pin7</a> = 0x80U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e">myGPIO_pin8</a> = 0x100U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9">myGPIO_pin9</a> = 0x200U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341">myGPIO_pin10</a> = 0x400U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a">myGPIO_pin11</a> = 0x800U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5">myGPIO_pin12</a> = 0x1000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c">myGPIO_pin13</a> = 0x2000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd">myGPIO_pin14</a> = 0x4000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee">myGPIO_pin15</a> = 0x8000U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67">myGPIO_pin16</a> = 0x10000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779">myGPIO_pin17</a> = 0x20000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99">myGPIO_pin18</a> = 0x40000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309">myGPIO_pin19</a> = 0x80000U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711">myGPIO_pin20</a> = 0x100000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5">myGPIO_pin21</a> = 0x200000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c">myGPIO_pin22</a> = 0x400000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830">myGPIO_pin23</a> = 0x800000U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110">myGPIO_pin24</a> = 0x1000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56">myGPIO_pin25</a> = 0x2000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af">myGPIO_pin26</a> = 0x4000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f">myGPIO_pin27</a> = 0x8000000U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632">myGPIO_pin28</a> = 0x10000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084">myGPIO_pin29</a> = 0x20000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8">myGPIO_pin30</a> = 0x40000000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225">myGPIO_pin31</a> = 0x80000000U, 
+<br />
+&#160;&#160;<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d">myGPIO_byte0</a> = 0x000000ffU, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0">myGPIO_byte1</a> = 0x0000ff00U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b">myGPIO_byte2</a> = 0x00ff0000U, 
+<a class="el" href="group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129">myGPIO_byte3</a> = 0xff000000U
+<br />
+ }</td></tr>
+<tr class="memdesc:ga402a0d20afc0cb7c25554b8b023f4253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione dei pin di un device myGPIO.  <a href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">Continua...</a><br /></td></tr>
+<tr class="separator:ga402a0d20afc0cb7c25554b8b023f4253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga76b849f0e0c05e7f9161bdb33396f2b1">myGPIO_mode</a> { <a class="el" href="group__my_g_p_i_o.html#gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d">myGPIO_read</a>, 
+<a class="el" href="group__my_g_p_i_o.html#gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6">myGPIO_write</a>
+ }</td></tr>
+<tr class="memdesc:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device myGPIO  <a href="group__my_g_p_i_o.html#ga76b849f0e0c05e7f9161bdb33396f2b1">Continua...</a><br /></td></tr>
+<tr class="separator:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> { <a class="el" href="group__my_g_p_i_o.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>, 
+<a class="el" href="group__my_g_p_i_o.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>
+ }</td></tr>
+<tr class="memdesc:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_value, valore di un myGPIO  <a href="group__my_g_p_i_o.html#gaf634fe4a0e1eab8da5000b72d6ad362b">Continua...</a><br /></td></tr>
+<tr class="separator:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:ga8fda7ca73b187baf256409423c25d725"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga8fda7ca73b187baf256409423c25d725">myGPIO_init</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, uint32_t base_address)</td></tr>
+<tr class="memdesc:ga8fda7ca73b187baf256409423c25d725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un device myGPIO.  <a href="group__my_g_p_i_o.html#ga8fda7ca73b187baf256409423c25d725">Continua...</a><br /></td></tr>
+<tr class="separator:ga8fda7ca73b187baf256409423c25d725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38a2ea04d07af50f7f570f0367594c8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga38a2ea04d07af50f7f570f0367594c8b">myGPIO_setMode</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask, <a class="el" href="group__my_g_p_i_o.html#ga76b849f0e0c05e7f9161bdb33396f2b1">myGPIO_mode</a> mode)</td></tr>
+<tr class="memdesc:ga38a2ea04d07af50f7f570f0367594c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare la modalita' lettura/scrittura dei pin di un device myGPIO;.  <a href="group__my_g_p_i_o.html#ga38a2ea04d07af50f7f570f0367594c8b">Continua...</a><br /></td></tr>
+<tr class="separator:ga38a2ea04d07af50f7f570f0367594c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab742e68093ad4c90fe299b64fd6736ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gab742e68093ad4c90fe299b64fd6736ca">myGPIO_setValue</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask, <a class="el" href="group__my_g_p_i_o.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> value)</td></tr>
+<tr class="memdesc:gab742e68093ad4c90fe299b64fd6736ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare il valore dei pin di un device myGPIO, se configurati come output.  <a href="group__my_g_p_i_o.html#gab742e68093ad4c90fe299b64fd6736ca">Continua...</a><br /></td></tr>
+<tr class="separator:gab742e68093ad4c90fe299b64fd6736ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27ea411bf51a58fe48eb8c5036780b53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga27ea411bf51a58fe48eb8c5036780b53">myGPIO_toggle</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask)</td></tr>
+<tr class="memdesc:ga27ea411bf51a58fe48eb8c5036780b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di invertire il valore dei pin di un device myGPIO, se configurati come output.  <a href="group__my_g_p_i_o.html#ga27ea411bf51a58fe48eb8c5036780b53">Continua...</a><br /></td></tr>
+<tr class="separator:ga27ea411bf51a58fe48eb8c5036780b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6576f1d0fb17d9b492da0b1008550d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__my_g_p_i_o.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gad6576f1d0fb17d9b492da0b1008550d0">myGPIO_getValue</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask)</td></tr>
+<tr class="memdesc:gad6576f1d0fb17d9b492da0b1008550d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di leggere il valore dei pin di un device myGPIO;.  <a href="group__my_g_p_i_o.html#gad6576f1d0fb17d9b492da0b1008550d0">Continua...</a><br /></td></tr>
+<tr class="separator:gad6576f1d0fb17d9b492da0b1008550d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb3ecd03ea82420488977134c9313e18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__my_g_p_i_o.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gadb3ecd03ea82420488977134c9313e18">myGPIO_getRead</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio)</td></tr>
+<tr class="memdesc:gadb3ecd03ea82420488977134c9313e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce la maschera dei pin settati di un device myGPIO.  <a href="group__my_g_p_i_o.html#gadb3ecd03ea82420488977134c9313e18">Continua...</a><br /></td></tr>
+<tr class="separator:gadb3ecd03ea82420488977134c9313e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39822bfa495a9388e81ced74884c06a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga39822bfa495a9388e81ced74884c06a2">myGPIO_interruptEnable</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio)</td></tr>
+<tr class="memdesc:ga39822bfa495a9388e81ced74884c06a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abilita gli interrupt per un device myGPIO.  <a href="group__my_g_p_i_o.html#ga39822bfa495a9388e81ced74884c06a2">Continua...</a><br /></td></tr>
+<tr class="separator:ga39822bfa495a9388e81ced74884c06a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab681db0119860bfad2c3e674289d8b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#gab681db0119860bfad2c3e674289d8b3d">myGPIO_interruptDisable</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio)</td></tr>
+<tr class="memdesc:gab681db0119860bfad2c3e674289d8b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disabilita gli interrupt per un device myGPIO.  <a href="group__my_g_p_i_o.html#gab681db0119860bfad2c3e674289d8b3d">Continua...</a><br /></td></tr>
+<tr class="separator:gab681db0119860bfad2c3e674289d8b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga396f6e5e7f0eeff01e98fcc78523402b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga396f6e5e7f0eeff01e98fcc78523402b">myGPIO_interruptAck</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio)</td></tr>
+<tr class="memdesc:ga396f6e5e7f0eeff01e98fcc78523402b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Segnala al device che l'interruzione da lui sollevata e' stata servita.  <a href="group__my_g_p_i_o.html#ga396f6e5e7f0eeff01e98fcc78523402b">Continua...</a><br /></td></tr>
+<tr class="separator:ga396f6e5e7f0eeff01e98fcc78523402b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7936b506b45f116de68ddf06c84cc242"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__my_g_p_i_o.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__my_g_p_i_o.html#ga7936b506b45f116de68ddf06c84cc242">myGPIO_getIrq</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio)</td></tr>
+<tr class="memdesc:ga7936b506b45f116de68ddf06c84cc242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consente di verificare se un device myGPIO abbia generato un'interruzione.  <a href="group__my_g_p_i_o.html#ga7936b506b45f116de68ddf06c84cc242">Continua...</a><br /></td></tr>
+<tr class="separator:ga7936b506b45f116de68ddf06c84cc242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_23e4d12f26a49ef99fb41232b599cf4b.html">GPIO</a></li><li class="navelem"><a class="el" href="my_g_p_i_o_8h.html">myGPIO.h</a></li>
+    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

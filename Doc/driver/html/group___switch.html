@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Switch</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('group___switch.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Strutture dati</a> &#124;
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#enum-members">Tipi enumerati (enum)</a> &#124;
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Switch<div class="ingroups"><a class="el" href="group___zybo.html">Zybo</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagramma di collaborazione per Switch:</div>
+<div class="dyncontent">
+<center><table><tr><td><img src="group___switch.png" border="0" alt="" usemap="#group______switch"/>
+<map name="group______switch" id="group______switch">
+<area shape="rect" id="node2" href="group___zybo.html" title="Zybo" alt="" coords="5,5,56,32"/></map>
+</td></tr></table></center>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Strutture dati</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struttura opaca che astrae l'insieme degli switch presenti sulla board Digilent Zybo;.  <a href="struct_zybo_switch__t.html#details">Continua...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definizioni</h2></td></tr>
+<tr class="memitem:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga1c463f6e1e3a43f68109c176772ce5cc">ZyboSwitch</a>(i)&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td></tr>
+<tr class="memdesc:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo.  <a href="#ga1c463f6e1e3a43f68109c176772ce5cc">Continua...</a><br /></td></tr>
+<tr class="separator:ga1c463f6e1e3a43f68109c176772ce5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Tipi enumerati (enum)</h2></td></tr>
+<tr class="memitem:ga2e0602a824354f25c395f938caba3703"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga2e0602a824354f25c395f938caba3703">ZyboSwitch_mask_t</a> { <a class="el" href="group___switch.html#gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3">ZyboSwitch3</a> = 0x8U, 
+<a class="el" href="group___switch.html#gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e">ZyboSwitch2</a> = 0x4U, 
+<a class="el" href="group___switch.html#gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f">ZyboSwitch1</a> = 0x2U, 
+<a class="el" href="group___switch.html#gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651">ZyboSwitch0</a> = 0x1U
+ }</td></tr>
+<tr class="memdesc:ga2e0602a824354f25c395f938caba3703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione degli switch.  <a href="group___switch.html#ga2e0602a824354f25c395f938caba3703">Continua...</a><br /></td></tr>
+<tr class="separator:ga2e0602a824354f25c395f938caba3703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ba6b49b2f47ebb464aefcea7e23e04a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">ZyboSwitch_status_t</a> { <a class="el" href="group___switch.html#gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755">ZyboSwitch_off</a>, 
+<a class="el" href="group___switch.html#gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8">ZyboSwitch_on</a>
+ }</td></tr>
+<tr class="memdesc:ga4ba6b49b2f47ebb464aefcea7e23e04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status di attivo/inattivo degli switch.  <a href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">Continua...</a><br /></td></tr>
+<tr class="separator:ga4ba6b49b2f47ebb464aefcea7e23e04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#ga121018c0ccfeb05b6e8f692a5a6955d7">ZyboSwitch_init</a> (<a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *switches, GPIO_t *gpio, GPIO_mask Switch3_pin, GPIO_mask Switch2_pin, GPIO_mask Switch1_pin, GPIO_mask Switch0_pin)</td></tr>
+<tr class="memdesc:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un oggetto di tipo <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>.  <a href="#ga121018c0ccfeb05b6e8f692a5a6955d7">Continua...</a><br /></td></tr>
+<tr class="separator:ga121018c0ccfeb05b6e8f692a5a6955d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">ZyboSwitch_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___switch.html#gafac8daf9a9a585f8f20ef2a6fa883a1f">ZyboSwitch_getStatus</a> (<a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *switches, <a class="el" href="group___switch.html#ga2e0602a824354f25c395f938caba3703">ZyboSwitch_mask_t</a> mask)</td></tr>
+<tr class="memdesc:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette la lettura dello stato degli switch presenti sulla board.  <a href="#gafac8daf9a9a585f8f20ef2a6fa883a1f">Continua...</a><br /></td></tr>
+<tr class="separator:gafac8daf9a9a585f8f20ef2a6fa883a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<h2 class="groupheader">Documentazione delle definizioni</h2>
+<a class="anchor" id="ga1c463f6e1e3a43f68109c176772ce5cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ZyboSwitch</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">i</td><td>)</td>
+          <td>&#160;&#160;&#160;((uint32_t)(1&lt;&lt;i))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Metodo alternativo per la specifica di uno degli switch presenti sulla board Digilent Zybo. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>indice dello switch da selezionare, da 0 a 3 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>maschera di selezione dello switch i-esimo </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione dei tipi enumerati</h2>
+<a class="anchor" id="ga2e0602a824354f25c395f938caba3703"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___switch.html#ga2e0602a824354f25c395f938caba3703">ZyboSwitch_mask_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maschere di selezione degli switch. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3"></a>ZyboSwitch3&#160;</td><td class="fielddoc">
+<p>ZyboSwitch3, seleziona lo switch 3 sulla board Digilent Zybo;. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e"></a>ZyboSwitch2&#160;</td><td class="fielddoc">
+<p>ZyboSwitch2, seleziona lo switch 2 sulla board Digilent Zybo;. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f"></a>ZyboSwitch1&#160;</td><td class="fielddoc">
+<p>ZyboSwitch1, seleziona lo switch 1 sulla board Digilent Zybo;. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651"></a>ZyboSwitch0&#160;</td><td class="fielddoc">
+<p>ZyboSwitch0, seleziona lo switch 0 sulla board Digilent Zybo;. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a class="anchor" id="ga4ba6b49b2f47ebb464aefcea7e23e04a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">ZyboSwitch_status_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Status di attivo/inattivo degli switch. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755"></a>ZyboSwitch_off&#160;</td><td class="fielddoc">
+<p>ZyboSwitch_off, corrisponde al valore logico '0', indica che lo switch e' inattivo;. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8"></a>ZyboSwitch_on&#160;</td><td class="fielddoc">
+<p>ZyboSwitch_on, corrisponde al valore logico '1', indica che lo switch e' attivo;. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle funzioni</h2>
+<a class="anchor" id="gafac8daf9a9a585f8f20ef2a6fa883a1f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___switch.html#ga4ba6b49b2f47ebb464aefcea7e23e04a">ZyboSwitch_status_t</a> ZyboSwitch_getStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *&#160;</td>
+          <td class="paramname"><em>switches</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___switch.html#ga2e0602a824354f25c395f938caba3703">ZyboSwitch_mask_t</a>&#160;</td>
+          <td class="paramname"><em>mask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permette la lettura dello stato degli switch presenti sulla board. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">switches</td><td>puntatore a struttura <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera di selezione degli switch, quelli non selezionati non vengono tenuti in considerazione</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>status status degli switch </dd></dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">ZyboSwitch_on</td><td>se uno degli switch selezionati e' attivo; </td></tr>
+    <tr><td class="paramname">ZyboSwitch_off</td><td>altrimenti</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ZyboSwitch_status_t switch_status = ZyboSwitch_getStatus(&amp;switches, ZyboSwitch3);           // leggo lo stato dello switch 3</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboLed_status_t led_status = (switch_status == ZyboSwitch_on ? ZyboLed_on : ZyboLed_off);  // se lo switch 3 e&#39; attivo accendo il led 3</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboLed_setStatus(&amp;leds, ZyboLed3, led_status);                                             // accendo/spengo led 3</div>
+</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<li>switches non sia un puntatore nullo;</li>
+<li>switches-&gt;gpio non sia un puntatore nullo </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga121018c0ccfeb05b6e8f692a5a6955d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZyboSwitch_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_zybo_switch__t.html">ZyboSwitch_t</a> *&#160;</td>
+          <td class="paramname"><em>switches</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_t *&#160;</td>
+          <td class="paramname"><em>gpio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramname"><em>Switch3_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramname"><em>Switch2_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramname"><em>Switch1_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_mask&#160;</td>
+          <td class="paramname"><em>Switch0_pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">switches</td><td>puntatore a struttura <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura GPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch3_pin</td><td>pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch2_pin</td><td>pin del device GPIO a cui e' associato lo switch 2 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch1_pin</td><td>pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch0_pin</td><td>pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;GPIO_t gpioSwitch;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioSwitch, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboSwitch_t switches;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboSwitch_init(&amp;switches, &amp;gpioSwitch, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);</div>
+</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<li>switches non sia un puntatore nullo;</li>
+<li>gpio non sia un puntatore nullo</li>
+<li>SwitchN_pin siano tutti pin differenti </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generato Ven 9 Giu 2017 10:39:37 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

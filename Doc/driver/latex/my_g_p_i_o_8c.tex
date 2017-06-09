@@ -1,0 +1,37 @@
+\hypertarget{my_g_p_i_o_8c}{\section{Riferimenti per il file G\+P\+I\+O/my\+G\+P\+I\+O.c}
+\label{my_g_p_i_o_8c}\index{G\+P\+I\+O/my\+G\+P\+I\+O.\+c@{G\+P\+I\+O/my\+G\+P\+I\+O.\+c}}
+}
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{my_g_p_i_o_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__my_g_p_i_o_ga8fda7ca73b187baf256409423c25d725}{my\+G\+P\+I\+O\+\_\+init} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, uint32\+\_\+t base\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Inizializza un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_ga38a2ea04d07af50f7f570f0367594c8b}{my\+G\+P\+I\+O\+\_\+set\+Mode} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__my_g_p_i_o_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} mode)
+\begin{DoxyCompactList}\small\item\em Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_gab742e68093ad4c90fe299b64fd6736ca}{my\+G\+P\+I\+O\+\_\+set\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__my_g_p_i_o_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} value)
+\begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_ga27ea411bf51a58fe48eb8c5036780b53}{my\+G\+P\+I\+O\+\_\+toggle} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di invertire il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+\hyperlink{group__my_g_p_i_o_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__my_g_p_i_o_gad6576f1d0fb17d9b492da0b1008550d0}{my\+G\+P\+I\+O\+\_\+get\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di leggere il valore dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{group__my_g_p_i_o_gadb3ecd03ea82420488977134c9313e18}{my\+G\+P\+I\+O\+\_\+get\+Read} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Restituisce la maschera dei pin settati di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_ga39822bfa495a9388e81ced74884c06a2}{my\+G\+P\+I\+O\+\_\+interrupt\+Enable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Abilita gli interrupt per un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_gab681db0119860bfad2c3e674289d8b3d}{my\+G\+P\+I\+O\+\_\+interrupt\+Disable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Disabilita gli interrupt per un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__my_g_p_i_o_ga396f6e5e7f0eeff01e98fcc78523402b}{my\+G\+P\+I\+O\+\_\+interrupt\+Ack} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Segnala al device che l'interruzione da lui sollevata e' stata servita. \end{DoxyCompactList}\item 
+\hyperlink{group__my_g_p_i_o_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__my_g_p_i_o_ga7936b506b45f116de68ddf06c84cc242}{my\+G\+P\+I\+O\+\_\+get\+Irq} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Consente di verificare se un device my\+G\+P\+I\+O abbia generato un'interruzione. \end{DoxyCompactList}\end{DoxyCompactItemize}
