@@ -1,7 +1,6 @@
 /**
  * @file ZyboLed.c
- * @author Salvatore Barone
- * @email salvator.barone@gmail.com
+ * @author Salvatore Barone <salvator.barone@gmail.com>
  *
  * @copyright
  * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
