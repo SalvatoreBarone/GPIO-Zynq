@@ -4,7 +4,7 @@ DEFINE = -D__XIL_GPIO__
 COMPILE = $(CC) $(CC_OPZ) $(DEFINE) -c $< -o $@
 LINK = $(CC) $(LINK_OPZ) $^ -o $@
 SRC=../../
-OUT=noDriver
+OUT=uio
 
 $(OUT) : $(OUT).o myGPIO.o
 	$(LINK)

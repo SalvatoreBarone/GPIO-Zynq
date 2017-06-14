@@ -1,7 +1,7 @@
 /**
- * @file noDriver.c
+ * @file uio-int.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
- * @date 12 06 2017
+ * @date 14 06 2017
  *
  * @copyright
  * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
@@ -38,7 +38,7 @@ void howto(void);
 
 int parse_args(	int 		argc,
 				char		**argv,
-				uint32_t	*gpio_address,	// indirizzo di memoria del device gpio
+				char		**uio_file,		// file uio da usare
 				uint8_t		*op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
 				uint32_t	*mode_value,	// valore che l'utente intende scrivere nel registro mode
 				uint8_t		*op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
@@ -55,95 +55,39 @@ void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
 
 
 int main(int argc, char** argv) {
-	uint32_t gpio_addr = 0;		// indirizzo di memoria del device gpio
+	char* uio_file = 0;			// nome del file uio
 	uint8_t op_mode = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
 	uint32_t mode_value;		// valore che l'utente intende scrivere nel registro mode
 	uint8_t op_write = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su write
 	uint32_t write_value;		// valore che l'utente intende scrivere nel registro write
 	uint8_t op_read = 0;		// impostato ad 1 se l'utente intende effettuare lettura da read
 
-	if (parse_args(argc, argv, &gpio_addr, &op_mode, &mode_value, &op_write, &write_value, &op_read) == -1)
+	if (parse_args(argc, argv, &uio_file, &op_mode, &mode_value, &op_write, &write_value, &op_read) == -1)
 		return -1;
 
-	if (gpio_addr == 0) {
+	if (uio_file == 0) {
 		printf("E' necessario specificare l'indirizzo di memoria del device.\n");
 		howto();
 		return -1;
 	}
 
-	/* Apertura di /dev/mem
+	/* In questo caso accedere al device e' estremamente piu' semplice.
+	 * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
+	 * effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento
+	 * del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende
+	 * comunicare.
+	 * Ad ogni periferica compatibile con UIO e' associato un file diverso in /dev/uioX attraverso il
+	 * quale e' possibile raggiungere il device.
 	 *
-	 * 		#include <sys/stat.h>
-     * 		#include <fcntl.h>
-     * 		int open(const char *path, int oflag, ...  );
-	 *
-	 * The  open()  function shall establish the connection between a file and a file descriptor.
-	 * It shall create an open file description that refers to a file and a file descriptor thatrefers
-	 * to that open file description. The file descriptor is used by other I/O functions to refer to
-	 * that file. The path argument points to a pathname naming the file.
-	 *
-	 * Values  for oflag are constructed by a bitwise-inclusive OR of flags from the following list,
-	 * defined in <fcntl.h>. Applications shall specify exactly one of the first three values (file
-	 * access modes) below in the value of oflag:
-	 * 		O_RDONLY Open for reading only.
-	 * 		O_WRONLY Open for writing only.
-	 * 		O_RDWR Open for reading and writing. The result is undefined if this flag is applied to a FIFO.
-	 *
-	 *
-	 *
-	 * 		#include <stdio.h>
-	 * 		void perror(const char *s);
-	 *
-	 * The  routine perror() produces a message on the standard error output, describing the last error
-	 * encountered during a call to a system or library function.  First (if s is not NULL and *s is not
-	 * a null byte ('\0')) the argument string s is printed, followed by a colon and a blank. Then the
-	 * message and a new-line.
 	 */
-	int descriptor = open ("/dev/mem", O_RDWR);
+	int descriptor = open (uio_file, O_RDWR);
 	if (descriptor < 1) {
 		perror(argv[0]);
 		return -1;
 	}
 
-	/* Calcolo dell'indirizzo virtuale del device.
-	 * Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo
-	 * agli indirizzo di memoria (virtuali) appartenenti al suo address-space.
-	 * Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping
-	 * di quell'indirizzo nell'address space del processo.
-	 * Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare
-	 * il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina  appartenga
-	 * l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente
-	 * la dimensione delle pagine e' una potenza del due.
-	 * Si supponga che l'indirizzo di cui si vuole fare il mapping e' 0x43C002F0 e che la dimensione delle
-	 * pagine sia 16KB.
-	 * Scrivendo la dimensione delle pagine in esadecimale
-	 * 												0x00002000
-	 * sottraendo 1
-	 * 												0x00001FFF
-	 * negando
-	 * 												0xFFFFE000
-	 * si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di
-	 * memoria a cui l'indirizzo appartiene. In questo caso
-	 * 										0x43C002F0 & 0xFFFFE000 = 0x43C00000
-	 * L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo
-	 * e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver
-	 * effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina
-	 * stessa.
-	 *
-	 *
-	 *		#include <unistd.h>
-	 *		long sysconf(int name);
-	 *
-	 * POSIX allows an application to test at compile or run time whether certain options are supported,
-	 * or what the value is of certain configurable constants or limits.
-	 * At run time, one can ask for numerical values using the present function sysconf().
-	 * We give the name of the variable, the name of the sysconf() argument used to inquire about its
-	 * value, and a short description.
-	 * 		PAGESIZE or _SC_PAGESIZE Size of a page in bytes.
-	 *
-	 *
-	 *
-	 *
+	/* Dopodiche' e' possibile connettere l'indirizzo fisico del device allo spazio di indirizzamento
+	 * del processo.
 	 *
 	 *		#include <sys/mman.h>
 	 *		void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
@@ -175,30 +119,27 @@ int main(int argc, char** argv) {
 	 * 				   MAP_PRIVATE         Changes are private.
 	 * 				   MAP_FIXED           Interpret addr exactly.
 	 *
-	 * 	- filedes:	descrittore del file /dev/mem
+	 * 	- filedes:	descrittore del file uio
 	 *
 	 * 	- off:		indirizzo fisico del blocco che si intente mappare
 	 * 				The  off  argument  is  constrained to be aligned and sized according to the value returned
 	 * 				by sysconf() when passed _SC_PAGESIZE or _SC_PAGE_SIZE.
 	 *
+	 *
+	 * Rispetto al "driver" nodriver, la chiamata differisce per un solo perticolare: essendo descriptor il
+	 * descrittore di uioX, e l'offset specificato nullo, la funzione restituisce direttamente l'indirizzo
+	 * virtuale del device nello spazio di indirizzamento del processo.
 	 */
 	uint32_t page_size = sysconf(_SC_PAGESIZE);		// dimensione della pagina
-	uint32_t page_mask = ~(page_size-1);			// maschera di conversione indirizzo -> indirizzo pagina
-	uint32_t page_addr = gpio_addr & page_mask;		// indirizzo della "pagina fisica" a cui e' mappato il device
-	uint32_t offset = gpio_addr - page_addr;		// offset del device rispetto all'indirizzo della pagina
-	// conversione dell'indirizzo fisico in indirizzo virtuale
-	void* vrt_page_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, page_addr);
-
-	if (vrt_page_addr == MAP_FAILED) {
+	void* vrt_gpio_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, 0);
+	if (vrt_gpio_addr == MAP_FAILED) {
 		printf("Mapping indirizzo fisico - indirizzo virtuale FALLITO!\n");
 		return -1;
 	}
 
-	void* vrt_gpio_addr = vrt_page_addr + offset;	// indirizzo virtuale del device gpio
-
 	gpio_op(vrt_gpio_addr, op_mode, mode_value, op_write, write_value, op_read);
 
-	munmap(vrt_page_addr, page_size);
+	munmap(vrt_gpio_addr, page_size);
 	close(descriptor);
 
 	return 0;
@@ -207,7 +148,7 @@ int main(int argc, char** argv) {
 
 void howto(void) {
 	printf("Uso:\n");
-	printf("noDriver -a gpio_phisycal_address -w|m <hex-value> -r\n");
+	printf("uio -d /dev/uioX -w|m <hex-value> -r\n");
 	printf("\t-m <hex-value>: scrive nel registro \"mode\"\n");
 	printf("\t-w <hex-value>: scrive nel registro \"write\"\n");
 	printf("\t-r: legge il valore del registro \"read\"\n");
@@ -216,7 +157,7 @@ void howto(void) {
 
 int parse_args(	int 		argc,
 				char		**argv,
-				uint32_t	*gpio_address,	// indirizzo di memoria del device gpio
+				char		**uio,			// file uio da usare
 				uint8_t		*op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
 				uint32_t	*mode_value,	// valore che l'utente intende scrivere nel registro mode
 				uint8_t		*op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
@@ -246,10 +187,10 @@ int parse_args(	int 		argc,
      * following text in the same argv-element, or the text of the following argv-element, in optarg.
      * Two colons mean an option takes an optional arg;
 	 */
-	while((par = getopt(argc, argv, "a:w:m:r")) != -1) {
+	while((par = getopt(argc, argv, "d:w:m:r")) != -1) {
 		switch (par) {
-		case 'a' :
-			*gpio_address = strtoul(optarg, NULL, 0);
+		case 'd' :
+			*uio = optarg;
 			break;
 		case 'w' :
 			*write_value = strtoul(optarg, NULL, 0);
