@@ -22,8 +22,8 @@
  *
  * @brief Questo e' un programma di esempio per l'interfacciamento con una periferica myGPIO.
  *
- * In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri
- * di memoria, senza mediazione di altri driver.
+ * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
+ * driver uio. Utilizza gli interrupt per la lettura.
  */
 
 #include <inttypes.h>
@@ -33,6 +33,7 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include "myGPIO.h"
+#include "xil_gpio.h"
 
 void howto(void);
 
@@ -46,6 +47,7 @@ int parse_args(	int 		argc,
 				uint8_t		*op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
 
 void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
+				int			uio_descriptor,	// descrittore del file /dev/uioX usato
 				uint8_t 	op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
 				uint32_t	mode_value,		// valore che l'utente intende scrivere nel registro mode
 				uint8_t		op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
@@ -137,7 +139,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
-	gpio_op(vrt_gpio_addr, op_mode, mode_value, op_write, write_value, op_read);
+	gpio_op(vrt_gpio_addr, descriptor, op_mode, mode_value, op_write, write_value, op_read);
 
 	munmap(vrt_gpio_addr, page_size);
 	close(descriptor);
@@ -213,28 +215,24 @@ int parse_args(	int 		argc,
 }
 
 void gpio_op (	void* 		vrt_gpio_addr,
+				int			uio_descriptor,
 				uint8_t 	op_mode,
 				uint32_t	mode_value,
 				uint8_t		op_write,
 				uint32_t	write_value,
 				uint8_t		op_read)
 {
-#ifdef __XIL_GPIO__
-#define MODE_OFFSET		4U
-#define WRITE_OFFSET	0U
-#define READ_OFFSET		8U
-#else
+#ifndef __XIL_GPIO__
 	myGPIO_t gpio;
-	myGPIO_init(&gpio, (uint32_t)vrt_gpio_addr);
+	myGPIO_init(&gpio, vrt_gpio_addr);
 #endif
-
 
 
 	printf("Indirizzo gpio: %08x\n", (uint32_t)vrt_gpio_addr);
 	if (op_mode == 1) {
 #ifdef __XIL_GPIO__
-		*((uint32_t*)(vrt_gpio_addr+MODE_OFFSET)) = mode_value;
-		mode_value = *((uint32_t*)(vrt_gpio_addr+MODE_OFFSET));
+		*((uint32_t*)(vrt_gpio_addr+GPIO_TRI_OFFSET)) = mode_value;
+		mode_value = *((uint32_t*)(vrt_gpio_addr+GPIO_TRI_OFFSET));
 #else
 		myGPIO_setMode(&gpio, mode_value, myGPIO_write);
 		myGPIO_setMode(&gpio, ~mode_value, myGPIO_reset);
@@ -244,8 +242,8 @@ void gpio_op (	void* 		vrt_gpio_addr,
 
 	if (op_write == 1) {
 #ifdef __XIL_GPIO__
-		*((uint32_t*)(vrt_gpio_addr+WRITE_OFFSET)) = write_value;
-		write_value = *((uint32_t*)(vrt_gpio_addr+WRITE_OFFSET));
+		*((uint32_t*)(vrt_gpio_addr+GPIO_DATA_OFFSET)) = write_value;
+		write_value = *((uint32_t*)(vrt_gpio_addr+GPIO_DATA_OFFSET));
 #else
 		myGPIO_setValue(&gpio, write_value, myGPIO_set);
 		myGPIO_setValue(&gpio, ~write_value, myGPIO_reset);
@@ -253,13 +251,93 @@ void gpio_op (	void* 		vrt_gpio_addr,
 		printf("Scrittura sul registro write: %08x\n", write_value);
 	}
 
+	/* E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
+	 * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
+	 * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
+	 * del device usando mmap().
+	 *
+	 * Gli interrupt sono gestiti effettuando una lettura bloccante su /dev/uioX. Una read() su /dev/uioX
+	 * fa in modo che il processo venga sospeso ed inserito nella cosa dei processi in attesa di un evento
+	 * su quel file. Appena l'interrupt si manifesta, il processo viene posto nella cosa dei processi
+	 * pronti. La funzione read() consente di ottenere anche il numero totale di interrupt manifestatisi
+	 * su quella particolare periferica.
+	 * Quando un device possiede piu' di una sorgente di interrupt interna, ma non possiede maschere IRQ
+	 * differenti o registri di stato differenti, potrebbe essere impossibile, per un programma in
+	 * userspace, determinare quale sia la sorgente di interrupt se l'handler implementato nel kernel
+	 * le disabilita scrivendo nei registri.
+	 * Per lasciare inalterati i registri della periferica il kernel deve disabilitare completamente le
+	 * interruzioni, in modo che il programma userspace possa determinare la causa scatenante l'interruzione.
+	 * Una volta terminate le operazioni, però, il programma userspace non puo' riabilitare le interruzioni,
+	 * motivo per cui il driver implementa anche una funzione write().
+	 * La funzione write(), chiamata su /dev/uioX, consente di riabilitare le interruzioni per quella
+	 * specifica periferica, scrivendo 1.
+	 *
+	 * NOTA: la parte di codice per il GPIO Xilinx e' stata scritta per hardware configurato in
+	 * modo che il channel 1 del gpio fosse connessi esclusivamente ai led,mentre switch e button
+	 * fossero connessi al channel 2 dello stesso GPIO.
+	 * Il channel 1 ha dimensione 4 bit, mentre il channel 2 e' da 8 bit.
+	 *
+	 */
 	if (op_read == 1) {
 		uint32_t read_value = 0;
-#ifdef __XIL_GPIO__
-		read_value = *((uint32_t*)(vrt_gpio_addr+READ_OFFSET));
-#else
+		// interrupt enable (interni alla periferica)
+		#ifdef __XIL_GPIO__
+		// (globale + canale 2)
+		XilGpio_Global_Interrupt((uint32_t*)vrt_gpio_addr, GLOBAL_INTR_ENABLE);
+		XilGpio_Channel_Interrupt((uint32_t*)vrt_gpio_addr, CHANNEL2_INTR_ENABLE);
+		#else
+		myGPIO_interruptEnable(&gpio);
+		#endif
+
+		// attesa dell'arrivo dell'interruzione
+		printf("Attesa dell'interruzione\n");
+		uint32_t interrupt_count = 1;
+		if (read(uio_descriptor, &interrupt_count, sizeof(uint32_t)) != sizeof(uint32_t)) {
+			printf("Read error!\n");
+			return;
+		}
+
+		printf("Interrupt count: %08x\n", interrupt_count);
+		// disabilitazione interrupt (interni alla periferica)
+		#ifdef __XIL_GPIO__
+		XilGpio_Global_Interrupt((uint32_t*)vrt_gpio_addr, GLOBAL_INTR_DISABLE);
+		XilGpio_Channel_Interrupt((uint32_t*)vrt_gpio_addr, CHANNEL2_INTR_DISABLE);
+		#else
+		myGPIO_interruptDisable(&gpio);
+		#endif
+
+		// "servizio" dell'interruzione.
+		// lettura del registro
+		#ifdef __XIL_GPIO__
+		read_value = *((uint32_t*)(vrt_gpio_addr+GPIO_READ_OFFSET));
+		#else
 		read_value = myGPIO_getRead(&gpio);
-#endif
+		#endif
 		printf("Lettura dat registro read: %08x\n", read_value);
+
+		// attesa del rilascio del pusante
+		// questo serve, in modo particolare, per il GPIO Xilinx, per il quale,
+		// stranamente, viene generata una interruzione sia alla pressione che al
+		// rilascio di uno dei button
+		#ifdef __XIL_GPIO__
+        while(*((uint32_t*)(vrt_gpio_addr+GPIO_READ_OFFSET))!=0);
+		#else
+        while(myGPIO_getRead(&gpio) != 0);
+		#endif
+
+		// invio dell'ack alla periferica
+		#ifdef __XIL_GPIO__
+		XilGpio_Ack_Interrupt((uint32_t*)vrt_gpio_addr, CHANNEL2_ACK);
+		#else
+		myGPIO_interruptAck(&gpio);
+		#endif
+
+		// riabilito le interruzioni "uio", scrivendo 1
+		uint32_t reenable = 1;
+		if (write(uio_descriptor, (void*)&reenable, sizeof(uint32_t)) != sizeof(uint32_t)) {
+			printf("Write error!\n");
+			return;
+		}
+
 	}
 }

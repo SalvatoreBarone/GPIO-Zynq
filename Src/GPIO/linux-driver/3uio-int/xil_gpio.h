@@ -1,5 +1,7 @@
-#ifndef __XIL_GPIO__
-#define __XIL_GPIO__
+#ifndef __XIL_GPIO_H__
+#define __XIL_GPIO_H__
+
+#include <inttypes.h>
 
 #define XGPIO_GIE_GINTR_ENABLE_MASK	0x80000000
 
@@ -25,9 +27,9 @@
 
 
 
-int XilGpio_Global_Interrupt(long* baseAddress, unsigned long mask);
-int XilGpio_Channel_Interrupt(long* baseAddress, unsigned long mask);
-int XilGpio_Ack_Interrupt(long* baseAddress, int channel);
+int XilGpio_Global_Interrupt(uint32_t* baseAddress, uint32_t mask);
+int XilGpio_Channel_Interrupt(uint32_t* baseAddress, uint32_t mask);
+int XilGpio_Ack_Interrupt(uint32_t* baseAddress, uint32_t channel);
 
 #endif
 

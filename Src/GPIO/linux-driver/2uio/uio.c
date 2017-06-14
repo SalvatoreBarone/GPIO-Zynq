@@ -71,7 +71,12 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
-	/* In questo caso accedere al device e' estremamente piu' semplice.
+	/* E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
+	 * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
+	 * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
+	 * del device usando mmap().
+	 *
+	 * In questo caso accedere al device e' estremamente piu' semplice.
 	 * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
 	 * effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento
 	 * del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende
