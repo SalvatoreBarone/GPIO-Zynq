@@ -131,11 +131,16 @@ int main (int argc, char **argv) {
 		return -1;
 
 	// send lunghezza nome file
-	int name_length = strlen(file);
+	char* begin_of_name = strrchr(file, '/');
+	if (begin_of_name != NULL)
+		begin_of_name++;
+
+	int name_length = strlen((begin_of_name != NULL ? begin_of_name : file));
 	name_length = htonl(name_length);
 	send(sock_descriptor, &name_length, sizeof(int), 0);
+
 	// send nome file
-	send(sock_descriptor, file, strlen(file), 0);
+	send(sock_descriptor, (begin_of_name != NULL ? begin_of_name : file), strlen((begin_of_name != NULL ? begin_of_name : file)), 0);
 
 	// sending del file per intero
 	int size = lseek(file_descriptor, 0, SEEK_END);

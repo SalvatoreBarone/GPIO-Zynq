@@ -1,6 +1,6 @@
 CC = gcc
 CC_OPZ = -Wall -Wextra
-DEFINE = 
+#DEFINE = 
 COMPILE = $(CC) $(CC_OPZ) $(DEFINE) $< -o $@
 LINK = $(CC) $(LINK_OPZ) $^ -o $@
 
