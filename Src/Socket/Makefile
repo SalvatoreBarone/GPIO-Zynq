@@ -10,7 +10,7 @@ clientTCP : clientTCP.c
 	$(COMPILE)
 
 serverTCP : serverTCP.c
-	$(COMPILE)
+	$(COMPILE) -lpthread
 
 clean :
 	rm -rf clientTCP serverTCP

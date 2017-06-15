@@ -35,13 +35,11 @@
 
 void help(void);
 
-int parse_args(	int 	argc,
-				char	**argv,
-				char	**host,
-				int		*port,
-				char	**file);
+int parse_args(int argc, char **argv, char **host, int *port, char **file);
 
-int create_socket (char *host, int port);
+int create_client_socket (char *host, int port);
+
+
 
 int main (int argc, char **argv) {
 	
@@ -55,7 +53,7 @@ int main (int argc, char **argv) {
 
 	printf("Creazione del socket\n");
 	int sock_descriptor;
-	if ((sock_descriptor = create_socket(host, port)) == -1)
+	if ((sock_descriptor = create_client_socket(host, port)) == -1)
 		return -1;
 
 	int execute = 1;
@@ -105,7 +103,6 @@ void help(void) {
 	printf("\t-f <file>: file che si desidera inviare\n");
 }
 
-
 int parse_args(	int 	argc,
 				char	**argv,
 				char	**host,
@@ -151,7 +148,7 @@ int parse_args(	int 	argc,
 	return 0;
 }
 
-int create_socket (	char *host, int port) {
+int create_client_socket (	char *host, int port) {
 	/* crerazione del socket:
 	 * della quintupla {protocol, local_addr, local_process, foreign_addr, foreign_process} viene specificato
 	 * solo il primo parametro, ossia il protocollo. In questo caso il socket è creato della famiglia AF_INET
