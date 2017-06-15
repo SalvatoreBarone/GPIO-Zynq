@@ -3,8 +3,8 @@
  * @author: Salvatore Barone <salvator.barone@gmail.com>
  * @date: 14 06 2017
  *
- *  Server TCP.
- * Invia pacchetti TCP su una socket.
+ * Server TCP.
+ * Riceve file testuali da una socket TCP e li memorizza sul filesystem, in una directory specifica.
  *
  * @copyright
  * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
@@ -23,6 +23,7 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  */
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -31,51 +32,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
+#include <signal.h>
 #include <pthread.h>
+#include <fcntl.h>
 
-void help();
-
-int parse_args(int argc, char **argv, int *port, int *max_connection, char **dest_dir);
-
-int create_listen_socket (int port, int max_connection);
-
-int accept_client_connection(int lsock_descr);
-
-void* serve_client_connection_thread(void*);
-
-int main (int argc, char** argv) {
-	int port = 8000;
-	int max_connection = 5;
-	char *dest_dir = ".";
-
-	if (parse_args(argc, argv, &port, &max_connection, &dest_dir) == -1)
-		return -1;
-
-	int lsock_descr;
-	if ((lsock_descr = create_listen_socket(port, max_connection)) == -1)
-		return -1;
-
-	printf("Server in ascolto sul port TCP %d\n", port);
-	for (;;) {
-		int* descr = (int*) malloc(sizeof(int));
-		if ((*descr = accept_client_connection(lsock_descr)) != -1) {
-			pthread_t thread_id;
-			pthread_create(&thread_id, NULL, serve_client_connection_thread, (void*)descr);
-		}
-		else
-			free(descr);
-	}
-
-
-	printf("Chiusura del socket di ascolto.\n");
-	//chiusura della socket di ascolto
-	close(lsock_descr);
-	return 0;
-}
-
+int lsock_descr;
 void help() {
 	printf("Simple TCP server:\n");
+	printf("Riceve file testuali da una socket TCP e li memorizza sul filesystem, in una directory specifica.\n");
 	printf("\n");
 	printf("\t\tserverTCP -p <port> -m <connection> -d <destination>\n");
 	printf("\n");
@@ -84,11 +48,7 @@ void help() {
 	printf("\t-d <destination>: directory nella quale verranno salvati i file spediti al server (default .)\n");
 }
 
-int parse_args(	int		argc,
-				char	**argv,
-				int		*port,
-				int		*max_connection,
-				char	**dest_dir) {
+int parse_args(int argc, char **argv, int *port, int *max_connection, char **dest_dir) {
 	int par;
 	while ((par = getopt(argc, argv, "p:d:m:h")) != -1) {
 		switch (par) {
@@ -113,44 +73,24 @@ int parse_args(	int		argc,
 }
 
 int create_listen_socket (int port, int max_connection) {
-	/* crerazione del socket:
-	 * della quintupla {protocol, local_addr, local_process, foreign_addr, foreign_process} viene specificato
-	 * solo il primo parametro, ossia il protocollo. In questo caso il socket è creato della famiglia AF_INET
-	 * per la comunicazione attraverso il protocollo IPv4, di tipo SOCK_STREAM, ossia sequenza di byte trasfe-
-	 * rita in maniera ordinata ed affidabile attraverso il protocollo TCP, come specificato dal parametro
-	 * IPPROTO_TCP.
-	 */
+
 	int lsock_descr = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (lsock_descr == -1) {
 		fprintf(stderr, "Errore nella creazione del socket!\n");
 		return -1;
 	}
-	/* struttura dati per l'indirizzo locale del server:
-	 * la struttura dati per la memorizzazione dell'indirizzo locale del server è server_addr, di tipo
-	 * struct sockaddr_in. Essendo il socket di tipo AF_INET, il membro sin_family deve essere proprio AF_INET
-	 * mentre il membro sin_addr.s_addr viene impostato tramite la macro INADDR_ANY.
-	 * La conversione del parametro port da "host byte order" a "TCP/IP network order" avviene per mezzo della
-	 * chiamata alla funzione htons()-
-	 */
+
 	struct sockaddr_in server_addr;
 	memset((char*)&server_addr, 0, sizeof(server_addr));
 	server_addr.sin_family = AF_INET;
 	server_addr.sin_addr.s_addr = INADDR_ANY;
 	server_addr.sin_port = htons(port);
-	/* bind:
-	 * l'indirizzo locale del server server_addr viene utilizzato nella funzione bind() per fare in modo che
-	 * richieste TCP in arrivo sulla porta specificata, siano servite dal server. Dopo la chiamata a bind,
-	 * della quintupla rimangono specificati solo i primi tre parametri.
-	 */
+
 	if (bind(lsock_descr, (struct sockaddr *)&server_addr, sizeof(server_addr)) != 0) {
 		fprintf(stderr, "Bind fallito\n");
 		return -1;
 	}
-	/* listen:
-	 * il server rende noto che è disposto ad accettare connessioni TCP sulla porta precedentemente specifica-
-	 * ta. Viene specificato, attraverso il secondo parametro, anche il numero massimo di connessioni che
-	 * possono trovarsi in coda, in attesa di essere servite.
-	 */
+
 	if (listen(lsock_descr, max_connection) < 0) {
 		fprintf(stderr, "listen fallito\n");
 		return -1;
@@ -159,21 +99,7 @@ int create_listen_socket (int port, int max_connection) {
 }
 
 int accept_client_connection(int lsock_descr) {
-	// socket descriptor del socket client
 	int client_sockd;
-	/* accept:
-	 * attraverso la chiamata alla funzione accept(), il server si mette materialmente in attesa di
-	 * connessioni. La chiamata è bloccante se nella coda non ci sono connessioni da poter essere
-	 * servite. Accept, chiamata su un socket, di cui si specifica il descrittore, a cui da adesso ci
-	 * riferiremo come socket di ascolto, restituisce un socket identico a quello di ascolto riservato
-	 * alla comunicazione con il client con il quale è stata instaurata una connessione. Per il socket
-	 * di ascolto, continuano ad essere specificati soltanto i primi tre valori della quintupla mentre
-	 * per il socket del client, tutti i valori della quintupla sono specificati ed attraverso di esso
-	 * il server ed il client possono comunicare tra loro.
-	 * Il secondo ed il terzo paramentro, ossia indirizzo del client e la sua lunghezza, non sono di
-	 * particolare interesse, in questo caso in quanto il socket è riservato esclusivamente alla
-	 * comunicazione con quello specifico client.
-	 */
 	if ((client_sockd = accept(lsock_descr, NULL, NULL)) < 0) {
 		fprintf(stderr, "accept fallito\n");
 		return -1;
@@ -181,45 +107,82 @@ int accept_client_connection(int lsock_descr) {
 	return client_sockd;
 }
 
+typedef struct {
+	int client_sockd;
+	char* dest_dir;
+} client_data_t;
+
 void* serve_client_connection_thread(void* data) {
-	int* client_sockd = (int*) data;
-	int execute = 1;
-	while (execute) {
-		char buffer[1000];
+	client_data_t* client_data = (client_data_t*) data;
+	char file_name[100];
+	memset(file_name, 0, sizeof(file_name));
+	// ricezione lunghezza nome file
+	int name_length = 0;
+	recv(client_data->client_sockd, &name_length, sizeof(int), 0);
+	name_length = ntohl(name_length);
+
+	recv(client_data->client_sockd, &file_name, name_length, 0);
+
+	char* file_path = (char*)malloc(strlen(client_data->dest_dir) + strlen(file_name) + 2);
+	strcpy(file_path, "");
+	strcat(file_path, client_data->dest_dir);
+	if (client_data->dest_dir[strlen(client_data->dest_dir)-1] != '/')
+		strcat(file_path, "/");
+	strcat(file_path, file_name);
+
+	FILE* file_ptr = fopen(file_path, "w");
+	char buffer[1000];
+	int byte_received = 0;
+	do {
 		memset(buffer, 0, sizeof(buffer));
-		/* recv:
-		 * attraverso la chiamata a recv, il server è in grado di attendere l'invio, da parte del
-		 * client, di una sequenza di byte. La sequenza viene vista come una sequenza di caratteri
-		 * per cui è del tutto simile ad una operazione di read su un descrittore di file! Infatti
-		 * read(client_sockd, &buffer, sizeof(buffer)) funzionerebbe ugualmente ed indistintamente
-		 * da recv. Recv non prevede di speficicare l'indirizzo del client in quanto, come già
-		 * detto, il socket che si usa è utilizzato esclusivamente per la comunicazione con uno
-		 * specifico client.
-		 */
-		recv(*client_sockd, &buffer, sizeof(buffer), 0);
-		if (!strncmp(buffer,"quit",5))
-			execute = 0;
-		printf("Ricevuto dal client: %s\n", buffer);
-		/* send:
-		 * attraverso la chiamata a send, il server è in grado di inviare dei dati, sottoforma di
-		 * sequenza di byte, al client. La sequenza viene vista come una sequenza di caratteri
-		 * per cui è del tutto simile ad una operazione di write su un descrittore di file!
-		 * Infatti write(client_sockd, &buffer, strlen(buffer)) funzionerebbe ugualmente ed in
-		 * modo indistinguibile da send.
-		 * Send non prevede di speficicare l'indirizzo del client in quanto, come già detto, il
-		 * socket che si usa è utilizzato esclusivamente per la comuni cazione con uno specifico
-		 * client.
-		 */
-		send(*client_sockd, &buffer, strlen(buffer), 0);
-		printf("Inviata al client: %s\n", buffer);
-	}
-	printf("Closing connection with client.\n");
-	/* chiusura del socket client:
-	 * nel momento in cui la comunicazione con il client è terminata, il socket utilizzato per quella
-	 * comunicazione può essere chiuso, liberando le risorse che occupava. Il socket di ascolto rimane
-	 * aperto e va chiuso quando non più necessario.
-	 */
-	close(*client_sockd);
-	free(client_sockd);
+		byte_received = recv(client_data->client_sockd, &buffer, sizeof(buffer), 0);
+		fprintf(file_ptr, "%s", buffer);
+	} while (byte_received != 0);
+	fclose(file_ptr);
+
+	close(client_data->client_sockd);
+	free(client_data);
 	return 0;
 }
+
+void signal_handler(int sig) {
+	printf("Ricevuto %d.\n", sig);
+	printf("Chiusura del socket di ascolto.\n");
+	//chiusura della socket di ascolto
+	close(lsock_descr);
+	abort();
+}
+
+int main (int argc, char** argv) {
+	int port = 8000;
+	int max_connection = 5;
+	char *dest_dir = ".";
+
+	if (parse_args(argc, argv, &port, &max_connection, &dest_dir) == -1)
+		return -1;
+
+	mkdir(dest_dir, S_IRWXU);
+
+	if ((lsock_descr = create_listen_socket(port, max_connection)) == -1)
+		return -1;
+
+	signal(SIGTERM, signal_handler);
+	signal(SIGINT, signal_handler);
+
+	for (;;) {
+		client_data_t* client_data = (client_data_t*) malloc(sizeof(client_data_t));
+		client_data->dest_dir = dest_dir;
+		int* descr = (int*) malloc(sizeof(int));
+		if ((client_data->client_sockd = accept_client_connection(lsock_descr)) != -1) {
+			pthread_t thread_id;
+			pthread_create(&thread_id, NULL, serve_client_connection_thread, (void*)client_data);
+		}
+		else
+			free(descr);
+	}
+
+	//chiusura della socket di ascolto
+	close(lsock_descr);
+	return 0;
+}
+
