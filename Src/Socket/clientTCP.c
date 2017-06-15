@@ -33,15 +33,126 @@
 #include <string.h>
 #include <unistd.h>
 
+void help(void);
+
+int parse_args(	int 	argc,
+				char	**argv,
+				char	**host,
+				int		*port,
+				char	**file);
+
+int create_socket (char *host, int port);
+
 int main (int argc, char **argv) {
-	if (argc != 3) {
-		fprintf(stderr, "usage: clientTCP host port\n");
+	
+	char *host = NULL;
+	int	port = 0;
+	char *file = NULL;
+
+	printf("Parsing parametri\n");
+	if (parse_args(argc, argv, &host, &port, &file) != 0)
+		return -1;
+
+	printf("Creazione del socket\n");
+	int sock_descriptor;
+	if ((sock_descriptor = create_socket(host, port)) == -1)
+		return -1;
+
+	int execute = 1;
+	while (execute) {
+		char buffer [1000];
+		memset(buffer, 0, sizeof(buffer));
+		printf("Scrivi una stringa da spedire al server: ");
+		gets(buffer);
+		/* send:
+		 * attraverso la chiamata a send, il server è in grado di inviare dei dati, sottoforma di sequenza
+		 * di byte, al client. La sequenza viene vista come una sequenza di caratteri per cui è del tutto
+		 * simile ad una operazione di write su un descrittore di file!* Infatti write(client_sockd, 
+		 * &buffer, strlen(buffer)) funzionerebbe ugualmente ed in modo indistinguibile da send.
+		 * Send non prevede di speficicare l'indirizzo del client in quanto, come già detto, il socket che
+		 * si usa è utilizzato esclusivamente per la comuni cazione con uno specifico client.
+		 */
+		send(sock_descriptor, &buffer, strlen(buffer), 0);
+		if (!strncmp(buffer, "quit", 4))
+			execute = 0;
+		/* recv:
+		 * attraverso la chiamata a recv, il server è in grado di attendere l'invio, da parte del client,
+		 * di una sequenza di byte. La sequenza viene vista come una sequenza di caratteri per cui è del
+		 * tutto simile ad una operazione di read su un descrittore di file! Infatti read(client_sockd,
+		 * &buffer, sizeof(buffer)) funzionerebbe ugualmente ed in modo indistinguibile da recv.
+		 * Recv non prevede di speficicare l'indirizzo del client in quanto, come già detto, il socket che
+		 * si usa è utilizzato esclusivamente per la comunicazione con uno  specifico client.
+		 */
+		memset(buffer, 0, sizeof(buffer));
+		recv(sock_descriptor, &buffer, sizeof(buffer), 0);
+		printf("Ricevuto dal server: %s\n", buffer);
+	}
+	/* chiusura del socket client:
+	 * nel momento in cui la comunicazione con il server è terminata, il socket utilizzato per quella
+	 * comunicazione può essere chiuso, liberando le risorse che occupata.
+	 */
+	close(sock_descriptor);
+	return 0;
+}
+
+void help(void) {
+	printf("Simple TCP client:\n");
+	printf("\n");
+	printf("\t\tclientTCP -a <address> -p <port> -f <file>\n");
+	printf("\n");
+	printf("\t-a <address>: indirizzo IP del server\n");
+	printf("\t-p <port>: porta sul quale il server e' in ascolto\n");
+	printf("\t-f <file>: file che si desidera inviare\n");
+}
+
+
+int parse_args(	int 	argc,
+				char	**argv,
+				char	**host,
+				int		*port,
+				char	**file)
+{
+	int par;
+	while ((par = getopt(argc, argv, "a:p:f:h")) != -1) {
+		switch (par) {
+		case 'a' :
+			*host = optarg;
+			break;
+		case 'p' :
+			*port = atoi(optarg);
+			break;
+		case 'f' :
+			*file = optarg;
+			break;
+		case 'h' :
+			help();
+			return -1;
+		default :
+			printf("%c: parametro sconosciuto.\n", par);
+			break;
+		}
+	}
+
+	if (*host == NULL) {
+		printf("E' necessario specificare l'indirizzo dell'host al quale connettersi\n");
 		return -1;
 	}
-	
-	char* host = argv[1]; 
-	int port = atoi(argv[2]);
-	/* crerazione del socket: 
+
+	if (*port == 0) {
+		printf("E' necessario specificare la porta sulla quale il server e' in ascolto\n");
+		return -1;
+	}
+
+	if (*file == NULL) {
+		printf("E' necessario specificare un file da trasferire\n");
+		return -1;
+	}
+
+	return 0;
+}
+
+int create_socket (	char *host, int port) {
+	/* crerazione del socket:
 	 * della quintupla {protocol, local_addr, local_process, foreign_addr, foreign_process} viene specificato
 	 * solo il primo parametro, ossia il protocollo. In questo caso il socket è creato della famiglia AF_INET
 	 * per la comunicazione attraverso il protocollo IPv4, di tipo SOCK_STREAM, ossia sequenza di byte trasfe-
@@ -80,41 +191,7 @@ int main (int argc, char **argv) {
 	 */
 	if (connect(sock_descriptor, (struct sockaddr *)&server_address, sizeof(server_address)) != 0) {
 		fprintf(stderr, "connect fallita\n");
-		return 1;
+		return -1;
 	}
-	int execute = 1;
-	while (execute) {
-		char buffer [1000];
-		memset(buffer, 0, sizeof(buffer));
-		printf("Scrivi una stringa da spedire al server: ");
-		gets(buffer);
-		/* send:
-		 * attraverso la chiamata a send, il server è in grado di inviare dei dati, sottoforma di sequenza
-		 * di byte, al client. La sequenza viene vista come una sequenza di caratteri per cui è del tutto
-		 * simile ad una operazione di write su un descrittore di file!* Infatti write(client_sockd, 
-		 * &buffer, strlen(buffer)) funzionerebbe ugualmente ed in modo indistinguibile da send.
-		 * Send non prevede di speficicare l'indirizzo del client in quanto, come già detto, il socket che
-		 * si usa è utilizzato esclusivamente per la comuni cazione con uno specifico client.
-		 */
-		send(sock_descriptor, &buffer, strlen(buffer), 0);
-		if (!strncmp(buffer, "quit", 4))
-			execute = 0;
-		/* recv:
-		 * attraverso la chiamata a recv, il server è in grado di attendere l'invio, da parte del client,
-		 * di una sequenza di byte. La sequenza viene vista come una sequenza di caratteri per cui è del
-		 * tutto simile ad una operazione di read su un descrittore di file! Infatti read(client_sockd,
-		 * &buffer, sizeof(buffer)) funzionerebbe ugualmente ed in modo indistinguibile da recv.
-		 * Recv non prevede di speficicare l'indirizzo del client in quanto, come già detto, il socket che
-		 * si usa è utilizzato esclusivamente per la comunicazione con uno  specifico client.
-		 */
-		memset(buffer, 0, sizeof(buffer));
-		recv(sock_descriptor, &buffer, sizeof(buffer), 0);
-		printf("Ricevuto dal server: %s\n", buffer);
-	}
-	/* chiusura del socket client:
-	 * nel momento in cui la comunicazione con il server è terminata, il socket utilizzato per quella
-	 * comunicazione può essere chiuso, liberando le risorse che occupava.
-	 */
-	close(sock_descriptor);
-	return 0;
+	return sock_descriptor;
 }
