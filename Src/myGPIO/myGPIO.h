@@ -516,6 +516,7 @@ myGPIO_value myGPIO_getIrq(myGPIO_t *gpio);
 
 /**
  * @}
+ * @}
  */
 
 #endif

@@ -1,3 +1,39 @@
+/**
+ * @file gpio.c
+ * @author Salvatore Barone <salvator.barone@gmail.com>
+ * @date 16 06 2017
+ *
+ * @copyright
+ * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
+ *
+ * This file is part of Zynq7000DriverPack
+ *
+ * Zynq7000DriverPack is free software; you can redistribute it and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation; either version 3 of
+ * the License, or any later version.
+ *
+ * Zynq7000DriverPack is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program; if not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
+ * USA.
+ *
+ * @addtogroup myGPIO
+ * @{
+ * @addtogroup Linux-Driver
+ * @{
+ * @addtogroup Kernel-Driver
+ * @{
+ * @defgroup Userspace-program
+ * @{
+ *
+ * @brief Programma di esempio per l'interfacciamento con una periferica myGPIO attraverso un driver kernel.
+ *
+ * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
+ * driver myGPIOK.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -96,20 +132,25 @@ int parse_args(	int argc, char **argv, param_t	*param) {
 void gpio_op (param_t *param) {
 	if (param->op_mode == 1) {
 		printf("Scrittura sul registro mode: %08x\n", param->mode_value);
+		write(param->dev_descr, &(param->mode_value), sizeof(uint32_t));
 	}
 
 	if (param->op_write) {
 		printf("Scrittura sul registro write: %08x\n", param->write_value);
-	}
-
-		if (param->op_mode == 1) {
-		printf("Scrittura sul registro mode: %08x\n", param->mode_value);
+		write(param->dev_descr, &(param->write_value), sizeof(uint32_t));
 	}
 
 	if (param->op_read) {
 		uint32_t read_value = 0;
-		printf("Scrittura sul registro write: %08x\n", read_value);
+		read(param->dev_descr, &read_value, sizeof(uint32_t)));
+		printf("Lettura dal registro read: %08x\n", read_value);
 	}
 }
 
+/**
+ * @}
+ * @}
+ * @}
+ * @}
+ */
 

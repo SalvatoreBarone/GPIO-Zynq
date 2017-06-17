@@ -1,0 +1,132 @@
+\hypertarget{group___u_i_o-simple}{\section{U\+I\+O-\/simple}
+\label{group___u_i_o-simple}\index{U\+I\+O-\/simple@{U\+I\+O-\/simple}}
+}
+
+
+Questo e' un programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O.  
+
+
+Diagramma di collaborazione per U\+I\+O-\/simple\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{group___u_i_o-simple}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___u_i_o-simple_ga05909651fa170a63e98e3f8e13451b7b}{howto} (void)
+\begin{DoxyCompactList}\small\item\em Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. \end{DoxyCompactList}\item 
+int \hyperlink{group___u_i_o-simple_ga15f7e5adb83963e5d21ccea3186b5364}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, char $\ast$$\ast$uio\+\_\+file, uint8\+\_\+t $\ast$op\+\_\+mode, uint32\+\_\+t $\ast$mode\+\_\+value, uint8\+\_\+t $\ast$op\+\_\+write, uint32\+\_\+t $\ast$write\+\_\+value, uint8\+\_\+t $\ast$op\+\_\+read)
+\begin{DoxyCompactList}\small\item\em Effettua il parsing dei parametri passati al programma. \end{DoxyCompactList}\item 
+void \hyperlink{group___u_i_o-simple_ga879d8b839631449ecb5bc4d0721432b6}{gpio\+\_\+op} (void $\ast$vrt\+\_\+gpio\+\_\+addr, uint8\+\_\+t op\+\_\+mode, uint32\+\_\+t mode\+\_\+value, uint8\+\_\+t op\+\_\+write, uint32\+\_\+t write\+\_\+value, uint8\+\_\+t op\+\_\+read)
+\begin{DoxyCompactList}\small\item\em Effettua operazioni su un device. \end{DoxyCompactList}\item 
+int \hyperlink{group___u_i_o-simple_ga3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo e' un programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O. 
+
+In questo specifico esempio l'interfacciamento avviene da user-\/space, interagendo attraverso il driver uio.
+
+E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0 per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via. on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi del device usando mmap().
+
+In questo caso, rispetto al caso No\+Driver, accedere al device e' estremamente piu' semplice. Se il device e' compatibile con il driver U\+I\+O, e' possibile \char`\"{}aprire\char`\"{} un file in /dev/uio\+X, effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende comunicare. Ad ogni periferica compatibile con U\+I\+O e' associato un file diverso in /dev/uio\+X attraverso il quale e' possibile raggiungere il device. 
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{group___u_i_o-simple_ga879d8b839631449ecb5bc4d0721432b6}{\index{U\+I\+O-\/simple@{U\+I\+O-\/simple}!gpio\+\_\+op@{gpio\+\_\+op}}
+\index{gpio\+\_\+op@{gpio\+\_\+op}!U\+I\+O-\/simple@{U\+I\+O-\/simple}}
+\subsubsection[{gpio\+\_\+op}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+op (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{vrt\+\_\+gpio\+\_\+addr, }
+\item[{uint8\+\_\+t}]{op\+\_\+mode, }
+\item[{uint32\+\_\+t}]{mode\+\_\+value, }
+\item[{uint8\+\_\+t}]{op\+\_\+write, }
+\item[{uint32\+\_\+t}]{write\+\_\+value, }
+\item[{uint8\+\_\+t}]{op\+\_\+read}
+\end{DoxyParamCaption}
+)}}\label{group___u_i_o-simple_ga879d8b839631449ecb5bc4d0721432b6}
+
+
+Effettua operazioni su un device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em vrt\+\_\+gpio\+\_\+addr} & indirizzo di memoria del device gpio \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\hline
+\mbox{\tt in}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\hline
+\mbox{\tt in}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___u_i_o-simple_ga05909651fa170a63e98e3f8e13451b7b}{\index{U\+I\+O-\/simple@{U\+I\+O-\/simple}!howto@{howto}}
+\index{howto@{howto}!U\+I\+O-\/simple@{U\+I\+O-\/simple}}
+\subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group___u_i_o-simple_ga05909651fa170a63e98e3f8e13451b7b}
+
+
+Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
+
+\hypertarget{group___u_i_o-simple_ga3c04138a5bfe5d72780bb7e82a18e627}{\index{U\+I\+O-\/simple@{U\+I\+O-\/simple}!main@{main}}
+\index{main@{main}!U\+I\+O-\/simple@{U\+I\+O-\/simple}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{group___u_i_o-simple_ga3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{group___u_i_o-simple_ga15f7e5adb83963e5d21ccea3186b5364}{\index{U\+I\+O-\/simple@{U\+I\+O-\/simple}!parse\+\_\+args@{parse\+\_\+args}}
+\index{parse\+\_\+args@{parse\+\_\+args}!U\+I\+O-\/simple@{U\+I\+O-\/simple}}
+\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{char $\ast$$\ast$}]{uio\+\_\+file, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+mode, }
+\item[{uint32\+\_\+t $\ast$}]{mode\+\_\+value, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+write, }
+\item[{uint32\+\_\+t $\ast$}]{write\+\_\+value, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+read}
+\end{DoxyParamCaption}
+)}}\label{group___u_i_o-simple_ga15f7e5adb83963e5d21ccea3186b5364}
+
+
+Effettua il parsing dei parametri passati al programma. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em argc} & \\
+\hline
+\mbox{\tt in}  & {\em argv} & \\
+\hline
+\mbox{\tt out}  & {\em uio\+\_\+file} & file uio da usare \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\hline
+\mbox{\tt out}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\hline
+\mbox{\tt out}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se il parsing ha successo \\
+\hline
+{\em -\/1} & se si verifica un errore \\
+\hline
+\end{DoxyRetVals}

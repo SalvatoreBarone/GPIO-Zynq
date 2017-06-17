@@ -20,10 +20,45 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
+ *
+ * @addtogroup myGPIO
+ * @{
+ * @addtogroup Linux-Driver
+ * @{
+ * @defgroup NoDriver
+ * @{
+ *
  * @brief Questo e' un programma di esempio per l'interfacciamento con una periferica myGPIO.
  *
  * In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri
- * di memoria, senza mediazione di altri driver.
+ * di memoria, senza mediazione di altri driver. Questo presuppone che si sia nelle condizioni di poter
+ * calcolare dell'indirizzo di memoria virtuale del device. <br>
+ *
+ * Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo
+ * agli indirizzo di memoria (virtuali) appartenenti al suo address-space.
+ * Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping
+ * di quell'indirizzo nell'address space del processo.
+ * Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare
+ * il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina  appartenga
+ * l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente
+ * la dimensione delle pagine e' una potenza del due.
+ * Si supponga che l'indirizzo di cui si vuole fare il mapping e' <b>0x43C002F0</b> e che la dimensione delle
+ * pagine sia 16KB.
+ * Scrivendo la dimensione delle pagine in esadecimale <br>
+ * 												<b>0x00002000</b> <br>
+ * sottraendo 1 <br>
+ * 												<b>0x00001FFF</b> <br>
+ * negando <br>
+ * 												<b>0xFFFFE000</b><br>
+ * si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di
+ * memoria a cui l'indirizzo appartiene. In questo caso <br>
+ * 										<b>0x43C002F0 & 0xFFFFE000 = 0x43C00000</b> <br>
+ * L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo
+ * e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver
+ * effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina
+ * stessa.
+ *
+ *
  */
 
 #include <inttypes.h>
@@ -34,23 +69,50 @@
 #include <fcntl.h>
 #include "myGPIO.h"
 
+/**
+ * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
+ */
 void howto(void);
 
+/**
+ * @brief Effettua il parsing dei parametri passati al programma
+ * @param [in] 	argc
+ * @param [in] 	argv
+ * @param [out] gpio_address	conterra' l'indirizzo di memoria del device gpio
+ * @param [out] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [out] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [out] op_write		sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [out] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [out] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ *
+ * @retval 0 se il parsing ha successo
+ * @retval -1 se si verifica un errore
+ */
 int parse_args(	int 		argc,
 				char		**argv,
-				uint32_t	*gpio_address,	// indirizzo di memoria del device gpio
-				uint8_t		*op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-				uint32_t	*mode_value,	// valore che l'utente intende scrivere nel registro mode
-				uint8_t		*op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-				uint32_t	*write_value,	// valore che l'utente intende scrivere nel registro write
-				uint8_t		*op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
+				uint32_t	*gpio_address,
+				uint8_t		*op_mode,
+				uint32_t	*mode_value,
+				uint8_t		*op_write,
+				uint32_t	*write_value,
+				uint8_t		*op_read);
 
-void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
-				uint8_t 	op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-				uint32_t	mode_value,		// valore che l'utente intende scrivere nel registro mode
-				uint8_t		op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-				uint32_t	write_value,	// valore che l'utente intende scrivere nel registro write
-				uint8_t		op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
+/**
+ * @brief Effettua operazioni su un device
+ *
+ * @param [in] vrt_gpio_addr	indirizzo di memoria del device gpio
+ * @param [in] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [in] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [in] op_write			sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [in] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [in] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ */
+void gpio_op (	void* 		vrt_gpio_addr,
+				uint8_t 	op_mode,
+				uint32_t	mode_value,
+				uint8_t		op_write,
+				uint32_t	write_value,
+				uint8_t		op_read);
 
 
 
@@ -322,3 +384,9 @@ void gpio_op (	void* 		vrt_gpio_addr,
 		printf("Lettura dat registro read: %08x\n", read_value);
 	}
 }
+
+/**
+ * @}
+ * @}
+ * @}
+ */

@@ -20,10 +20,48 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
+ * @addtogroup myGPIO
+ * @{
+ * @addtogroup Linux-Driver
+ * @{
+ * @addtogroup UIO
+ * @{
+ * @defgroup UIO-interrupt
+ * @{
+ *
  * @brief Questo e' un programma di esempio per l'interfacciamento con una periferica myGPIO.
  *
  * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
- * driver uio. Utilizza gli interrupt per la lettura.
+ * driver uio. <b>Utilizza gli interrupt per la lettura</b>.
+ *
+ * E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
+ * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
+ * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
+ * del device usando mmap().
+ *
+ * In questo caso, rispetto al caso NoDriver, accedere al device e' estremamente piu' semplice.
+ * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
+ * effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento
+ * del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende
+ * comunicare.
+ * Ad ogni periferica compatibile con UIO e' associato un file diverso in /dev/uioX attraverso il
+ * quale e' possibile raggiungere il device.
+ *
+ * Gli interrupt sono gestiti effettuando una lettura bloccante su /dev/uioX. Una read() su /dev/uioX
+ * fa in modo che il processo venga sospeso ed inserito nella cosa dei processi in attesa di un evento
+ * su quel file. Appena l'interrupt si manifesta, il processo viene posto nella cosa dei processi
+ * pronti. La funzione read() consente di ottenere anche il numero totale di interrupt manifestatisi
+ * su quella particolare periferica.
+ * Quando un device possiede piu' di una sorgente di interrupt interna, ma non possiede maschere IRQ
+ * differenti o registri di stato differenti, potrebbe essere impossibile, per un programma in
+ * userspace, determinare quale sia la sorgente di interrupt se l'handler implementato nel kernel
+ * le disabilita scrivendo nei registri.
+ * Per lasciare inalterati i registri della periferica il kernel deve disabilitare completamente le
+ * interruzioni, in modo che il programma userspace possa determinare la causa scatenante l'interruzione.
+ * Una volta terminate le operazioni, però, il programma userspace non puo' riabilitare le interruzioni,
+ * motivo per cui il driver implementa anche una funzione write().
+ * La funzione write(), chiamata su /dev/uioX, consente di riabilitare le interruzioni per quella
+ * specifica periferica, scrivendo 1.
  */
 
 #include <inttypes.h>
@@ -35,8 +73,26 @@
 #include "myGPIO.h"
 #include "xil_gpio.h"
 
+/**
+ * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
+ */
 void howto(void);
 
+
+/**
+ * @brief Effettua il parsing dei parametri passati al programma
+ * @param [in] 	argc
+ * @param [in] 	argv
+ * @param [out] uio_file		file uio da usare
+ * @param [out] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [out] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [out] op_write		sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [out] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [out] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ *
+ * @retval 0 se il parsing ha successo
+ * @retval -1 se si verifica un errore
+ */
 int parse_args(	int 		argc,
 				char		**argv,
 				char		**uio_file,		// file uio da usare
@@ -46,6 +102,17 @@ int parse_args(	int 		argc,
 				uint32_t	*write_value,	// valore che l'utente intende scrivere nel registro write
 				uint8_t		*op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
 
+/**
+ * @brief Effettua operazioni su un device
+ *
+ * @param [in] vrt_gpio_addr	indirizzo di memoria del device gpio
+ * @param [in] uio_descriptor	descrittore del file /dev/uioX usato
+ * @param [in] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [in] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [in] op_write			sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [in] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [in] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ */
 void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
 				int			uio_descriptor,	// descrittore del file /dev/uioX usato
 				uint8_t 	op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
@@ -341,3 +408,10 @@ void gpio_op (	void* 		vrt_gpio_addr,
 
 	}
 }
+
+/**
+ * @}
+ * @}
+ * @}
+ * @}
+ */

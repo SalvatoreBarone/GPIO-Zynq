@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['switch',['Switch',['../group___switch.html',1,'']]]
+  ['mygpio',['MyGPIO',['../group__my_g_p_i_o.html',1,'']]]
 ];

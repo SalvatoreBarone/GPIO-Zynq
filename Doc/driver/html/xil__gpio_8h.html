@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Riferimenti per il file myGPIO/linux-driver/xil_gpio.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('xil__gpio_8h.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per il file xil_gpio.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;inttypes.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per xil_gpio.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="xil__gpio_8h__incl.png" border="0" usemap="#my_g_p_i_o_2linux-driver_2xil__gpio_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="xil__gpio_8h__dep__incl.png" border="0" usemap="#my_g_p_i_o_2linux-driver_2xil__gpio_8hdep" alt=""/></div>
+<map name="my_g_p_i_o_2linux-driver_2xil__gpio_8hdep" id="my_g_p_i_o_2linux-driver_2xil__gpio_8hdep">
+<area shape="rect" id="node2" href="uio-int_8c.html" title="myGPIO/linux&#45;driver\l/uio&#45;int.c" alt="" coords="5,95,145,136"/><area shape="rect" id="node3" href="xil__gpio_8c.html" title="myGPIO/linux&#45;driver\l/xil_gpio.c" alt="" coords="169,95,309,136"/></map>
+</div>
+</div>
+<p><a href="xil__gpio_8h_source.html">Vai al codice sorgente di questo file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definizioni</h2></td></tr>
+<tr class="memitem:a0b576e472f8ad06f166d9107de3b0348"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a0b576e472f8ad06f166d9107de3b0348">XGPIO_GIE_GINTR_ENABLE_MASK</a>&#160;&#160;&#160;0x80000000</td></tr>
+<tr class="separator:a0b576e472f8ad06f166d9107de3b0348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78907649b00f7076af686bcac4cd1b8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a78907649b00f7076af686bcac4cd1b8c">GPIO_DATA_OFFSET</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:a78907649b00f7076af686bcac4cd1b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2a77c24e8a4e2b3800085ac10a8cf6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a6e2a77c24e8a4e2b3800085ac10a8cf6">GPIO_TRI_OFFSET</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="separator:a6e2a77c24e8a4e2b3800085ac10a8cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5cbf47902785bbcc678bddb8212c86b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#ae5cbf47902785bbcc678bddb8212c86b">GPIO_READ_OFFSET</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:ae5cbf47902785bbcc678bddb8212c86b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389241f63fd0ce9af2c1f6dc0f69dcb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a389241f63fd0ce9af2c1f6dc0f69dcb3">XGPIO_GIE_OFFSET</a>&#160;&#160;&#160;0x11C</td></tr>
+<tr class="separator:a389241f63fd0ce9af2c1f6dc0f69dcb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cbde8210cb1476b67ca87eccacbc2ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a6cbde8210cb1476b67ca87eccacbc2ed">XGPIO_ISR_OFFSET</a>&#160;&#160;&#160;0x120</td></tr>
+<tr class="separator:a6cbde8210cb1476b67ca87eccacbc2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f62e4ffa9e47cd55133c583134f4f57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a4f62e4ffa9e47cd55133c583134f4f57">XGPIO_IER_OFFSET</a>&#160;&#160;&#160;0x128</td></tr>
+<tr class="separator:a4f62e4ffa9e47cd55133c583134f4f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adede88fc60bf8fc2dd1df41223bcaab2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#adede88fc60bf8fc2dd1df41223bcaab2">GLOBAL_INTR_ENABLE</a>&#160;&#160;&#160;<a class="el" href="xil__gpio_8h.html#a0b576e472f8ad06f166d9107de3b0348">XGPIO_GIE_GINTR_ENABLE_MASK</a></td></tr>
+<tr class="separator:adede88fc60bf8fc2dd1df41223bcaab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130274e8d50b05c49c171bde017762f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a130274e8d50b05c49c171bde017762f8">CHANNEL1_INTR_ENABLE</a>&#160;&#160;&#160;0x00000001</td></tr>
+<tr class="separator:a130274e8d50b05c49c171bde017762f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e472673cd2e996bc6cb7d60fea9b9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a09e472673cd2e996bc6cb7d60fea9b9b">CHANNEL2_INTR_ENABLE</a>&#160;&#160;&#160;0x00000002</td></tr>
+<tr class="separator:a09e472673cd2e996bc6cb7d60fea9b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893a2062ab316b15fd6bdca35310b86d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a893a2062ab316b15fd6bdca35310b86d">GLOBAL_INTR_DISABLE</a>&#160;&#160;&#160;0x00000000</td></tr>
+<tr class="separator:a893a2062ab316b15fd6bdca35310b86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791faef22795624f2a18f50f06815584"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a791faef22795624f2a18f50f06815584">CHANNEL1_INTR_DISABLE</a>&#160;&#160;&#160;0x00000000</td></tr>
+<tr class="separator:a791faef22795624f2a18f50f06815584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99ad674322d803e37f8233f207e3d1d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a99ad674322d803e37f8233f207e3d1d1">CHANNEL2_INTR_DISABLE</a>&#160;&#160;&#160;0x00000000</td></tr>
+<tr class="separator:a99ad674322d803e37f8233f207e3d1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afecdab372af31213ce646b474ba22f96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#afecdab372af31213ce646b474ba22f96">CHANNEL1_ACK</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:afecdab372af31213ce646b474ba22f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56fe75e9fc0fcfc0b8fdda217d9d842"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#af56fe75e9fc0fcfc0b8fdda217d9d842">CHANNEL2_ACK</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="separator:af56fe75e9fc0fcfc0b8fdda217d9d842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9542a6000bf702bcd6cc746a6ea288a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#a9542a6000bf702bcd6cc746a6ea288a5">GPIO_MAP_SIZE</a>&#160;&#160;&#160;0x10000</td></tr>
+<tr class="separator:a9542a6000bf702bcd6cc746a6ea288a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:aac9ff33f07964a1f5f9b8b1173072d67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#aac9ff33f07964a1f5f9b8b1173072d67">XilGpio_Global_Interrupt</a> (uint32_t *baseAddress, uint32_t mask)</td></tr>
+<tr class="separator:aac9ff33f07964a1f5f9b8b1173072d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab335ddab38389969b7a1fdb226eb1fbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#ab335ddab38389969b7a1fdb226eb1fbf">XilGpio_Channel_Interrupt</a> (uint32_t *baseAddress, uint32_t mask)</td></tr>
+<tr class="separator:ab335ddab38389969b7a1fdb226eb1fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7b9691b1dc24679b60c25a6d5dc9647"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xil__gpio_8h.html#ad7b9691b1dc24679b60c25a6d5dc9647">XilGpio_Ack_Interrupt</a> (uint32_t *baseAddress, uint32_t channel)</td></tr>
+<tr class="separator:ad7b9691b1dc24679b60c25a6d5dc9647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentazione delle definizioni</h2>
+<a class="anchor" id="afecdab372af31213ce646b474ba22f96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL1_ACK&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a791faef22795624f2a18f50f06815584"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL1_INTR_DISABLE&#160;&#160;&#160;0x00000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a130274e8d50b05c49c171bde017762f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL1_INTR_ENABLE&#160;&#160;&#160;0x00000001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af56fe75e9fc0fcfc0b8fdda217d9d842"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL2_ACK&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a99ad674322d803e37f8233f207e3d1d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL2_INTR_DISABLE&#160;&#160;&#160;0x00000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a09e472673cd2e996bc6cb7d60fea9b9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNEL2_INTR_ENABLE&#160;&#160;&#160;0x00000002</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a893a2062ab316b15fd6bdca35310b86d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GLOBAL_INTR_DISABLE&#160;&#160;&#160;0x00000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adede88fc60bf8fc2dd1df41223bcaab2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GLOBAL_INTR_ENABLE&#160;&#160;&#160;<a class="el" href="xil__gpio_8h.html#a0b576e472f8ad06f166d9107de3b0348">XGPIO_GIE_GINTR_ENABLE_MASK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a78907649b00f7076af686bcac4cd1b8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_DATA_OFFSET&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9542a6000bf702bcd6cc746a6ea288a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_MAP_SIZE&#160;&#160;&#160;0x10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae5cbf47902785bbcc678bddb8212c86b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_READ_OFFSET&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6e2a77c24e8a4e2b3800085ac10a8cf6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_TRI_OFFSET&#160;&#160;&#160;0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0b576e472f8ad06f166d9107de3b0348"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XGPIO_GIE_GINTR_ENABLE_MASK&#160;&#160;&#160;0x80000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a389241f63fd0ce9af2c1f6dc0f69dcb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XGPIO_GIE_OFFSET&#160;&#160;&#160;0x11C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Glogal interrupt enable register </p>
+
+</div>
+</div>
+<a class="anchor" id="a4f62e4ffa9e47cd55133c583134f4f57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XGPIO_IER_OFFSET&#160;&#160;&#160;0x128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Interrupt enable register </p>
+
+</div>
+</div>
+<a class="anchor" id="a6cbde8210cb1476b67ca87eccacbc2ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XGPIO_ISR_OFFSET&#160;&#160;&#160;0x120</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Interrupt status register </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle funzioni</h2>
+<a class="anchor" id="ad7b9691b1dc24679b60c25a6d5dc9647"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int XilGpio_Ack_Interrupt </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>baseAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>channel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab335ddab38389969b7a1fdb226eb1fbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int XilGpio_Channel_Interrupt </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>baseAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>mask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aac9ff33f07964a1f5f9b8b1173072d67"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int XilGpio_Global_Interrupt </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>baseAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>mask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_6606294767fbca126709a3b546a6288b.html">myGPIO</a></li><li class="navelem"><a class="el" href="dir_0806f99fd206df600ec4c8ea55a92e57.html">linux-driver</a></li><li class="navelem"><a class="el" href="xil__gpio_8h.html">xil_gpio.h</a></li>
+    <li class="footer">Generato Sab 17 Giu 2017 12:35:53 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

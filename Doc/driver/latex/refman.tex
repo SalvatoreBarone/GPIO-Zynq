@@ -74,8 +74,8 @@
 \fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
 \fancyfoot[LE]{\fancyplain{}{}}
 \fancyfoot[CE]{\fancyplain{}{}}
-\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Generato Sab 10 Giu 2017 00\+:29\+:30 per Zynq-\/7000 Driver Pack da Doxygen }}
-\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Generato Sab 10 Giu 2017 00\+:29\+:30 per Zynq-\/7000 Driver Pack da Doxygen }}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Generato Sab 17 Giu 2017 12\+:35\+:53 per Zynq-\/7000 Driver Pack da Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Generato Sab 17 Giu 2017 12\+:35\+:53 per Zynq-\/7000 Driver Pack da Doxygen }}
 \fancyfoot[CO]{\fancyplain{}{}}
 \fancyfoot[RO]{\fancyplain{}{}}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -131,7 +131,7 @@
 \vspace*{1cm}
 {\large Generato da Doxygen 1.8.8}\\
 \vspace*{0.5cm}
-{\small Sab 10 Giu 2017 00:29:30}\\
+{\small Sab 17 Giu 2017 12:35:53}\\
 \end{center}
 \end{titlepage}
 \clearemptydoublepage
@@ -150,6 +150,14 @@
 \chapter{Documentazione dei moduli}
 \input{group___l_c_d}
 \include{group___h_d44780}
+\include{group___kernel-_driver}
+\include{group___kernel-_module}
+\include{group___userspace-program}
+\include{group___linux-_driver}
+\include{group___no_driver}
+\include{group___u_i_o}
+\include{group___u_i_o-interrupt}
+\include{group___u_i_o-simple}
 \include{group___zybo}
 \include{group___button}
 \include{group___led}
@@ -158,14 +166,24 @@
 \chapter{Documentazione delle classi}
 \input{struct_h_d44780___l_c_d__t}
 \input{structmy_g_p_i_o__t}
+\input{structparam__t}
 \input{struct_zybo_button__t}
 \input{struct_zybo_led__t}
 \input{struct_zybo_switch__t}
 \chapter{Documentazione dei file}
-\input{my_g_p_i_o_8c}
-\input{my_g_p_i_o_8h}
 \input{hd44780_8c}
 \input{hd44780_8h}
+\input{my_g_p_i_o_k_8c}
+\input{my_g_p_i_o_k_8mod_8c}
+\input{gpio_8c}
+\input{no_driver_8c}
+\input{uio-int_8c}
+\input{uio_8c}
+\input{xil__gpio_8c}
+\input{xil__gpio_8h}
+\input{my_g_p_i_o_8c}
+\input{my_g_p_i_o_8h}
+\input{test_8c}
 \input{_zybo_8h}
 \input{_zybo_button_8c}
 \input{_zybo_button_8h}

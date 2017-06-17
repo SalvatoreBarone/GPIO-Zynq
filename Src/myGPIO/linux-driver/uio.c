@@ -20,10 +20,32 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
+ * @addtogroup myGPIO
+ * @{
+ * @addtogroup Linux-Driver
+ * @{
+ * @addtogroup UIO
+ * @{
+ * @defgroup UIO-simple
+ * @{
+ *
  * @brief Questo e' un programma di esempio per l'interfacciamento con una periferica myGPIO.
  *
  * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
  * driver uio.
+ *
+ * E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
+ * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
+ * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
+ * del device usando mmap().
+ *
+ * In questo caso, rispetto al caso NoDriver, accedere al device e' estremamente piu' semplice.
+ * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
+ * effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento
+ * del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende
+ * comunicare.
+ * Ad ogni periferica compatibile con UIO e' associato un file diverso in /dev/uioX attraverso il
+ * quale e' possibile raggiungere il device.
  */
 
 #include <inttypes.h>
@@ -34,8 +56,25 @@
 #include <fcntl.h>
 #include "myGPIO.h"
 
+/**
+ * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
+ */
 void howto(void);
 
+/**
+ * @brief Effettua il parsing dei parametri passati al programma
+ * @param [in] 	argc
+ * @param [in] 	argv
+ * @param [out] uio_file		file uio da usare
+ * @param [out] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [out] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [out] op_write		sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [out] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [out] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ *
+ * @retval 0 se il parsing ha successo
+ * @retval -1 se si verifica un errore
+ */
 int parse_args(	int 		argc,
 				char		**argv,
 				char		**uio_file,		// file uio da usare
@@ -45,6 +84,16 @@ int parse_args(	int 		argc,
 				uint32_t	*write_value,	// valore che l'utente intende scrivere nel registro write
 				uint8_t		*op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
 
+/**
+ * @brief Effettua operazioni su un device
+ *
+ * @param [in] vrt_gpio_addr	indirizzo di memoria del device gpio
+ * @param [in] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [in] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [in] op_write			sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [in] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [in] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ */
 void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
 				uint8_t 	op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
 				uint32_t	mode_value,		// valore che l'utente intende scrivere nel registro mode
@@ -268,3 +317,10 @@ void gpio_op (	void* 		vrt_gpio_addr,
 		printf("Lettura dat registro read: %08x\n", read_value);
 	}
 }
+
+/**
+ * @}
+ * @}
+ * @}
+ * @}
+ */

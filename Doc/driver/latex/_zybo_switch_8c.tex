@@ -4,8 +4,7 @@
 {\ttfamily \#include \char`\"{}Zybo\+Switch.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$assert.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
-Grafo delle dipendenze di inclusione per Zybo\+Switch.\+c\+:
-\nopagebreak
+Grafo delle dipendenze di inclusione per Zybo\+Switch.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +14,34 @@ Grafo delle dipendenze di inclusione per Zybo\+Switch.\+c\+:
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
+static int \hyperlink{_zybo_switch_8c_ae97431dec8f3f1382a88dd55ef1bc3fc}{validate\+Pair} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches)
+\item 
 void \hyperlink{group___switch_ga59108e526347f01f584bf1d6308a126f}{Zybo\+Switch\+\_\+init} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Switch3\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Switch2\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Switch1\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Switch0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}. \end{DoxyCompactList}\item 
 \hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{Zybo\+Switch\+\_\+status\+\_\+t} \hyperlink{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}{Zybo\+Switch\+\_\+get\+Status} (\hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t} $\ast$switches, \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{Zybo\+Switch\+\_\+mask\+\_\+t} mask)
 \begin{DoxyCompactList}\small\item\em Permette la lettura dello stato degli switch presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+
+You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{_zybo_switch_8c_ae97431dec8f3f1382a88dd55ef1bc3fc}{\index{Zybo\+Switch.\+c@{Zybo\+Switch.\+c}!validate\+Pair@{validate\+Pair}}
+\index{validate\+Pair@{validate\+Pair}!Zybo\+Switch.\+c@{Zybo\+Switch.\+c}}
+\subsubsection[{validate\+Pair}]{\setlength{\rightskip}{0pt plus 5cm}static int validate\+Pair (
+\begin{DoxyParamCaption}
+\item[{{\bf Zybo\+Switch\+\_\+t} $\ast$}]{switches}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{_zybo_switch_8c_ae97431dec8f3f1382a88dd55ef1bc3fc}

@@ -4,8 +4,7 @@
 {\ttfamily \#include \char`\"{}Zybo\+Button.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$assert.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
-Grafo delle dipendenze di inclusione per Zybo\+Button.\+c\+:
-\nopagebreak
+Grafo delle dipendenze di inclusione per Zybo\+Button.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,6 +19,8 @@ Grafo delle dipendenze di inclusione per Zybo\+Button.\+c\+:
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
+static int \hyperlink{_zybo_button_8c_a95c2a715afd25ea4057cfb47056956a4}{validate\+Pair} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
+\item 
 void \hyperlink{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{Zybo\+Button\+\_\+init} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button3\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button2\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button1\+\_\+pin, \hyperlink{group__my_g_p_i_o_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}. \end{DoxyCompactList}\item 
 void \hyperlink{group___button_gaca30e81084e746785e395f79e9678e9a}{Zybo\+Button\+\_\+wait\+While\+Idle} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
@@ -30,6 +31,21 @@ void \hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{Zybo\+Button\
 \begin{DoxyCompactList}\small\item\em Permette la lettura dello stato dei button presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+
+You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 
+
 \subsection{Documentazione delle definizioni}
 \hypertarget{_zybo_button_8c_a5f45c877d1e8266f8a2c1d0b87746950}{\index{Zybo\+Button.\+c@{Zybo\+Button.\+c}!timer\+\_\+wait\+\_\+ms@{timer\+\_\+wait\+\_\+ms}}
 \index{timer\+\_\+wait\+\_\+ms@{timer\+\_\+wait\+\_\+ms}!Zybo\+Button.\+c@{Zybo\+Button.\+c}}
@@ -38,3 +54,13 @@ void \hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{Zybo\+Button\
 \item[{}]{ms}
 \end{DoxyParamCaption}
 )~usleep(ms$<$$<$10)}}\label{_zybo_button_8c_a5f45c877d1e8266f8a2c1d0b87746950}
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{_zybo_button_8c_a95c2a715afd25ea4057cfb47056956a4}{\index{Zybo\+Button.\+c@{Zybo\+Button.\+c}!validate\+Pair@{validate\+Pair}}
+\index{validate\+Pair@{validate\+Pair}!Zybo\+Button.\+c@{Zybo\+Button.\+c}}
+\subsubsection[{validate\+Pair}]{\setlength{\rightskip}{0pt plus 5cm}static int validate\+Pair (
+\begin{DoxyParamCaption}
+\item[{{\bf Zybo\+Button\+\_\+t} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{_zybo_button_8c_a95c2a715afd25ea4057cfb47056956a4}

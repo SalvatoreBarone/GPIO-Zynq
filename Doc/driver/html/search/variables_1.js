@@ -7,5 +7,6 @@ var searchData=
   ['data4',['Data4',['../struct_h_d44780___l_c_d__t.html#a558b10ea85ca2ed99e34d38a2b4cf388',1,'HD44780_LCD_t']]],
   ['data5',['Data5',['../struct_h_d44780___l_c_d__t.html#abebc68d092e3d1c115ecb22f7ac91f4b',1,'HD44780_LCD_t']]],
   ['data6',['Data6',['../struct_h_d44780___l_c_d__t.html#aab366da5e8192bd7c5dd9194aa2d6fde',1,'HD44780_LCD_t']]],
-  ['data7',['Data7',['../struct_h_d44780___l_c_d__t.html#a0709183e63889cacaf3149c60ff6cb7d',1,'HD44780_LCD_t']]]
+  ['data7',['Data7',['../struct_h_d44780___l_c_d__t.html#a0709183e63889cacaf3149c60ff6cb7d',1,'HD44780_LCD_t']]],
+  ['dev_5fdescr',['dev_descr',['../structparam__t.html#a52701f5f8091598d5c5ac1bb80cd2070',1,'param_t']]]
 ];

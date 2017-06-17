@@ -1,0 +1,139 @@
+\hypertarget{group___no_driver}{\section{No\+Driver}
+\label{group___no_driver}\index{No\+Driver@{No\+Driver}}
+}
+
+
+Questo e' un programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O.  
+
+
+Diagramma di collaborazione per No\+Driver\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{group___no_driver}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___no_driver_ga05909651fa170a63e98e3f8e13451b7b}{howto} (void)
+\begin{DoxyCompactList}\small\item\em Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. \end{DoxyCompactList}\item 
+int \hyperlink{group___no_driver_ga218f8a9dfc36572bfe2230c5e2d2c776}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, uint32\+\_\+t $\ast$gpio\+\_\+address, uint8\+\_\+t $\ast$op\+\_\+mode, uint32\+\_\+t $\ast$mode\+\_\+value, uint8\+\_\+t $\ast$op\+\_\+write, uint32\+\_\+t $\ast$write\+\_\+value, uint8\+\_\+t $\ast$op\+\_\+read)
+\begin{DoxyCompactList}\small\item\em Effettua il parsing dei parametri passati al programma. \end{DoxyCompactList}\item 
+void \hyperlink{group___no_driver_ga879d8b839631449ecb5bc4d0721432b6}{gpio\+\_\+op} (void $\ast$vrt\+\_\+gpio\+\_\+addr, uint8\+\_\+t op\+\_\+mode, uint32\+\_\+t mode\+\_\+value, uint8\+\_\+t op\+\_\+write, uint32\+\_\+t write\+\_\+value, uint8\+\_\+t op\+\_\+read)
+\begin{DoxyCompactList}\small\item\em Effettua operazioni su un device. \end{DoxyCompactList}\item 
+int \hyperlink{group___no_driver_ga3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo e' un programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O. 
+
+In questo specifico esempio l'interfacciamento avviene da user-\/space, agendo direttamente sui registri di memoria, senza mediazione di altri driver. Questo presuppone che si sia nelle condizioni di poter calcolare dell'indirizzo di memoria virtuale del device. ~\newline
+
+
+Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo agli indirizzo di memoria (virtuali) appartenenti al suo address-\/space. Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping di quell'indirizzo nell'address space del processo. Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina appartenga l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente la dimensione delle pagine e' una potenza del due. Si supponga che l'indirizzo di cui si vuole fare il mapping e' {\bfseries 0x43\+C002\+F0} e che la dimensione delle pagine sia 16\+K\+B. Scrivendo la dimensione delle pagine in esadecimale ~\newline
+ {\bfseries 0x00002000} ~\newline
+ sottraendo 1 ~\newline
+ {\bfseries 0x00001\+F\+F\+F} ~\newline
+ negando ~\newline
+ {\bfseries 0x\+F\+F\+F\+F\+E000}~\newline
+ si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di memoria a cui l'indirizzo appartiene. In questo caso ~\newline
+ {\bfseries 0x43\+C002\+F0 \& 0x\+F\+F\+F\+F\+E000 = 0x43\+C00000} ~\newline
+ L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina stessa. 
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{group___no_driver_ga879d8b839631449ecb5bc4d0721432b6}{\index{No\+Driver@{No\+Driver}!gpio\+\_\+op@{gpio\+\_\+op}}
+\index{gpio\+\_\+op@{gpio\+\_\+op}!No\+Driver@{No\+Driver}}
+\subsubsection[{gpio\+\_\+op}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+op (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{vrt\+\_\+gpio\+\_\+addr, }
+\item[{uint8\+\_\+t}]{op\+\_\+mode, }
+\item[{uint32\+\_\+t}]{mode\+\_\+value, }
+\item[{uint8\+\_\+t}]{op\+\_\+write, }
+\item[{uint32\+\_\+t}]{write\+\_\+value, }
+\item[{uint8\+\_\+t}]{op\+\_\+read}
+\end{DoxyParamCaption}
+)}}\label{group___no_driver_ga879d8b839631449ecb5bc4d0721432b6}
+
+
+Effettua operazioni su un device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em vrt\+\_\+gpio\+\_\+addr} & indirizzo di memoria del device gpio \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\hline
+\mbox{\tt in}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\hline
+\mbox{\tt in}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\hline
+\mbox{\tt in}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___no_driver_ga05909651fa170a63e98e3f8e13451b7b}{\index{No\+Driver@{No\+Driver}!howto@{howto}}
+\index{howto@{howto}!No\+Driver@{No\+Driver}}
+\subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group___no_driver_ga05909651fa170a63e98e3f8e13451b7b}
+
+
+Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
+
+\hypertarget{group___no_driver_ga3c04138a5bfe5d72780bb7e82a18e627}{\index{No\+Driver@{No\+Driver}!main@{main}}
+\index{main@{main}!No\+Driver@{No\+Driver}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{group___no_driver_ga3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{group___no_driver_ga218f8a9dfc36572bfe2230c5e2d2c776}{\index{No\+Driver@{No\+Driver}!parse\+\_\+args@{parse\+\_\+args}}
+\index{parse\+\_\+args@{parse\+\_\+args}!No\+Driver@{No\+Driver}}
+\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{uint32\+\_\+t $\ast$}]{gpio\+\_\+address, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+mode, }
+\item[{uint32\+\_\+t $\ast$}]{mode\+\_\+value, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+write, }
+\item[{uint32\+\_\+t $\ast$}]{write\+\_\+value, }
+\item[{uint8\+\_\+t $\ast$}]{op\+\_\+read}
+\end{DoxyParamCaption}
+)}}\label{group___no_driver_ga218f8a9dfc36572bfe2230c5e2d2c776}
+
+
+Effettua il parsing dei parametri passati al programma. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em argc} & \\
+\hline
+\mbox{\tt in}  & {\em argv} & \\
+\hline
+\mbox{\tt out}  & {\em gpio\+\_\+address} & conterra' l'indirizzo di memoria del device gpio \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\hline
+\mbox{\tt out}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\hline
+\mbox{\tt out}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\hline
+\mbox{\tt out}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se il parsing ha successo \\
+\hline
+{\em -\/1} & se si verifica un errore \\
+\hline
+\end{DoxyRetVals}

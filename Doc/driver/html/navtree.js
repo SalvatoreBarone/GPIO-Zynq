@@ -13,8 +13,9 @@ var NAVTREE =
     [ "File", null, [
       [ "Elenco dei file", "files.html", "files" ],
       [ "Elementi globali", "globals.html", [
-        [ "Tutto", "globals.html", null ],
+        [ "Tutto", "globals.html", "globals_dup" ],
         [ "Funzioni", "globals_func.html", null ],
+        [ "Variabili", "globals_vars.html", null ],
         [ "Tipi enumerati (enum)", "globals_enum.html", null ],
         [ "Valori del tipo enumerato", "globals_eval.html", null ],
         [ "Definizioni", "globals_defs.html", null ]
@@ -26,7 +27,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_zybo_8h.html",
-"group__my_g_p_i_o.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be"
+"group___u_i_o-interrupt.html#ga3c04138a5bfe5d72780bb7e82a18e627",
+"structparam__t.html#aec948fb30e99b1eda7e3d9ff741d417a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
