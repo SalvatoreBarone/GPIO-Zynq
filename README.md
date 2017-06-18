@@ -17,3 +17,14 @@ La documentazione si trova nella cartella <b>Doc</b>. All'interno di essa sono p
 - la cartella driver, contenente la documentazione dell'implementazione C del driver per la periferica myGPIO, del BSP per
   la board Digilent Zynq, e, soprattutto, dei driver per Kernel Linux, scritti minuziosamente ed in modo didattizo. La
   documentazione e' disponibile in html o pdf; la documentazione e' comprensiva di esempi.
+
+
+TODO
+In Src/myGPIO/linux-driver/kernel_module/kernel_module/myGPIOK.c:
+aggiungere il supporto per scheduling/queueing in lettura
+
+implementare e documentare
+ - static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs);
+ - static unsigned int myGPIOK_poll (struct file *file, struct poll_table_struct *wait);
+ - static ssize_t myGPIOK_read (struct file *file, char *buf, size_t count, loff_t *ppos);
+

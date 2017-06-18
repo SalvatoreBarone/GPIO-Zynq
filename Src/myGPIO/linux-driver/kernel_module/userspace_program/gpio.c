@@ -40,30 +40,55 @@
 #include <fcntl.h>
 
 #include "myGPIO.h"
+#include "xil_gpio.h"
 
-/*============================================================================================================
- * Dichiarazione funzioni
+#ifdef __XIL_GPIO__
+#define MODE_OFFSET		GPIO_TRI_OFFSET
+#define WRITE_OFFSET	GPIO_DATA_OFFSET
+#define READ_OFFSET		GPIO_READ_OFFSET
+#else
+#define MODE_OFFSET		myGPIO_MODE_OFFSET
+#define WRITE_OFFSET	myGPIO_WRITE_OFFSET
+#define READ_OFFSET		myGPIO_READ_OFFSET
+#endif
+
+/**
+ * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
  */
-
 void howto(void);
 
+/**
+ * @brief La struttura raccoglie tutti i parametri di esecuzione del programma.
+ */
 typedef struct {
-	int 		dev_descr;		// device descriptor
-	uint8_t		op_mode;		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-	uint32_t	mode_value;		// valore che l'utente intende scrivere nel registro mode
-	uint8_t		op_write;		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-	uint32_t	write_value;	// valore che l'utente intende scrivere nel registro write
-	uint8_t		op_read;		// impostato ad 1 se l'utente intende effettuare lettura da read
-
+	int 		dev_descr;		//!< device descriptor
+	uint8_t		op_mode;		//!< impostato ad 1 se l'utente intende effettuare scrittuara su mode
+	uint32_t	mode_value;		//!< valore che l'utente intende scrivere nel registro mode
+	uint8_t		op_write;		//!< impostato ad 1 se l'utente intende effettuare scrittuara su write
+	uint32_t	write_value;	//!< valore che l'utente intende scrivere nel registro write
+	uint8_t		op_read;		//!< impostato ad 1 se l'utente intende effettuare lettura da read
 } param_t;
 
+/**
+ * @brief Effettua il parsing dei parametri passati al programma
+ *
+ * @param [in] 	argc
+ * @param [in] 	argv
+ * @param [out] param	puntatore a struttura param_t, conterra' i vari parametri di esecuzione
+ * 						del programma.
+ *
+ * @retval 0 se il parsing ha successo
+ * @retval -1 se si verifica un errore
+ */
 int parse_args(	int argc, char **argv, param_t	*param);
 
-void gpio_op (param_t *param);
-
-/*============================================================================================================
- * Main
+/**
+ * @brief Effettua operazioni su un device
+ *
+ * @param [in] param	puntatore a struttura param_t, contiene i vari parametri di esecuzione
+ * 						del programma.
  */
+void gpio_op (param_t *param);
 
 int main (int argc, char **argv) {
 	param_t param;
@@ -74,6 +99,8 @@ int main (int argc, char **argv) {
 	gpio_op(&param);
 
 	close(param.dev_descr);
+
+	return 0;
 }
 
 /*============================================================================================================
@@ -130,19 +157,35 @@ int parse_args(	int argc, char **argv, param_t	*param) {
 }
 
 void gpio_op (param_t *param) {
+
 	if (param->op_mode == 1) {
 		printf("Scrittura sul registro mode: %08x\n", param->mode_value);
+#ifndef __USE_PWRITE__
+		lseek(param->dev_descr, MODE_OFFSET, SEEK_SET);
 		write(param->dev_descr, &(param->mode_value), sizeof(uint32_t));
+#else
+		pwrite(param->dev_descr, &(param->mode_value), sizeof(uint32_t), MODE_OFFSET);
+#endif
 	}
 
-	if (param->op_write) {
+	if (param->op_write == 1) {
 		printf("Scrittura sul registro write: %08x\n", param->write_value);
+#ifndef __USE_PWRITE__
+		lseek(param->dev_descr, WRITE_OFFSET, SEEK_SET);
 		write(param->dev_descr, &(param->write_value), sizeof(uint32_t));
+#else
+		pwrite(param->dev_descr, &(param->mode_value), sizeof(uint32_t), WRITE_OFFSET);
+#endif
 	}
 
-	if (param->op_read) {
+	if (param->op_read == 1) {
 		uint32_t read_value = 0;
-		read(param->dev_descr, &read_value, sizeof(uint32_t)));
+#ifndef __USE_READ__
+		lseek(param->dev_descr, READ_OFFSET, SEEK_SET);
+		read(param->dev_descr, &read_value, sizeof(uint32_t));
+#else
+		pread(param->dev_descr, &read_value, sizeof(uint32_t), READ_OFFSET);
+#endif
 		printf("Lettura dal registro read: %08x\n", read_value);
 	}
 }
