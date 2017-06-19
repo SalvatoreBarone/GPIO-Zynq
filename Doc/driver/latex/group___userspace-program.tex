@@ -17,16 +17,25 @@ Diagramma di collaborazione per Userspace-\/program\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structparam__t}{param\+\_\+t}
+\begin{DoxyCompactList}\small\item\em La struttura raccoglie tutti i parametri di esecuzione del programma. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___userspace-program_ga7a63b24ca5489eb3206598e3d90fe19c}{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__my_g_p_i_o_ga81a662103d6ed053978c0a9b4c273065}{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}
+\item 
+\#define \hyperlink{group___userspace-program_ga77d96306ed0e813f93c4c3f98b970b86}{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__my_g_p_i_o_ga2e45778b6ca9ce6f5768b3f7a4557ce1}{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}
+\item 
+\#define \hyperlink{group___userspace-program_gad32c3a5b42163e171daccde5b5d5de02}{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__my_g_p_i_o_ga584d2dfece76e5762030d918d80592cc}{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}
 \end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{group___userspace-program_ga05909651fa170a63e98e3f8e13451b7b}{howto} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. \end{DoxyCompactList}\item 
 int \hyperlink{group___userspace-program_ga65d977fb03a14dedd76e1515d6d24ff4}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, \hyperlink{structparam__t}{param\+\_\+t} $\ast$param)
-\item 
+\begin{DoxyCompactList}\small\item\em Effettua il parsing dei parametri passati al programma. \end{DoxyCompactList}\item 
 void \hyperlink{group___userspace-program_ga63fab82d87963c07f9557a5f5d5d3e86}{gpio\+\_\+op} (\hyperlink{structparam__t}{param\+\_\+t} $\ast$param)
-\item 
+\begin{DoxyCompactList}\small\item\em Effettua operazioni su un device. \end{DoxyCompactList}\item 
 int \hyperlink{group___userspace-program_ga3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
 
@@ -36,6 +45,18 @@ Programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O at
 
 In questo specifico esempio l'interfacciamento avviene da user-\/space, interagendo attraverso il driver my\+G\+P\+I\+O\+K. 
 
+\subsection{Documentazione delle definizioni}
+\hypertarget{group___userspace-program_ga7a63b24ca5489eb3206598e3d90fe19c}{\index{Userspace-\/program@{Userspace-\/program}!M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Userspace-\/program@{Userspace-\/program}}
+\subsubsection[{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{group___userspace-program_ga7a63b24ca5489eb3206598e3d90fe19c}
+\hypertarget{group___userspace-program_gad32c3a5b42163e171daccde5b5d5de02}{\index{Userspace-\/program@{Userspace-\/program}!R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}!Userspace-\/program@{Userspace-\/program}}
+\subsubsection[{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{group___userspace-program_gad32c3a5b42163e171daccde5b5d5de02}
+\hypertarget{group___userspace-program_ga77d96306ed0e813f93c4c3f98b970b86}{\index{Userspace-\/program@{Userspace-\/program}!W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Userspace-\/program@{Userspace-\/program}}
+\subsubsection[{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{group___userspace-program_ga77d96306ed0e813f93c4c3f98b970b86}
+
+
 \subsection{Documentazione delle funzioni}
 \hypertarget{group___userspace-program_ga63fab82d87963c07f9557a5f5d5d3e86}{\index{Userspace-\/program@{Userspace-\/program}!gpio\+\_\+op@{gpio\+\_\+op}}
 \index{gpio\+\_\+op@{gpio\+\_\+op}!Userspace-\/program@{Userspace-\/program}}
@@ -44,6 +65,15 @@ In questo specifico esempio l'interfacciamento avviene da user-\/space, interage
 \item[{{\bf param\+\_\+t} $\ast$}]{param}
 \end{DoxyParamCaption}
 )}}\label{group___userspace-program_ga63fab82d87963c07f9557a5f5d5d3e86}
+
+
+Effettua operazioni su un device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em param} & puntatore a struttura \hyperlink{structparam__t}{param\+\_\+t}, contiene i vari parametri di esecuzione del programma. \\
+\hline
+\end{DoxyParams}
 \hypertarget{group___userspace-program_ga05909651fa170a63e98e3f8e13451b7b}{\index{Userspace-\/program@{Userspace-\/program}!howto@{howto}}
 \index{howto@{howto}!Userspace-\/program@{Userspace-\/program}}
 \subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
@@ -51,6 +81,10 @@ In questo specifico esempio l'interfacciamento avviene da user-\/space, interage
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}}\label{group___userspace-program_ga05909651fa170a63e98e3f8e13451b7b}
+
+
+Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
+
 \hypertarget{group___userspace-program_ga3c04138a5bfe5d72780bb7e82a18e627}{\index{Userspace-\/program@{Userspace-\/program}!main@{main}}
 \index{main@{main}!Userspace-\/program@{Userspace-\/program}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
@@ -68,3 +102,23 @@ In questo specifico esempio l'interfacciamento avviene da user-\/space, interage
 \item[{{\bf param\+\_\+t} $\ast$}]{param}
 \end{DoxyParamCaption}
 )}}\label{group___userspace-program_ga65d977fb03a14dedd76e1515d6d24ff4}
+
+
+Effettua il parsing dei parametri passati al programma. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em argc} & \\
+\hline
+\mbox{\tt in}  & {\em argv} & \\
+\hline
+\mbox{\tt out}  & {\em param} & puntatore a struttura \hyperlink{structparam__t}{param\+\_\+t}, conterra' i vari parametri di esecuzione del programma.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se il parsing ha successo \\
+\hline
+{\em -\/1} & se si verifica un errore \\
+\hline
+\end{DoxyRetVals}

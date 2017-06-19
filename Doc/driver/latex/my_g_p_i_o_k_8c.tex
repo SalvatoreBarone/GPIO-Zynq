@@ -4,15 +4,27 @@
 {\ttfamily \#include $<$linux/init.\+h$>$}\\*
 {\ttfamily \#include $<$linux/module.\+h$>$}\\*
 {\ttfamily \#include $<$linux/kernel.\+h$>$}\\*
+{\ttfamily \#include $<$linux/slab.\+h$>$}\\*
 {\ttfamily \#include $<$linux/fs.\+h$>$}\\*
+{\ttfamily \#include $<$linux/errno.\+h$>$}\\*
 {\ttfamily \#include $<$linux/types.\+h$>$}\\*
+{\ttfamily \#include $<$linux/proc\+\_\+fs.\+h$>$}\\*
+{\ttfamily \#include $<$linux/fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$linux/unistd.\+h$>$}\\*
 {\ttfamily \#include $<$linux/device.\+h$>$}\\*
 {\ttfamily \#include $<$linux/platform\+\_\+device.\+h$>$}\\*
-{\ttfamily \#include $<$linux/mod\+\_\+devicetable.\+h$>$}\\*
+{\ttfamily \#include $<$linux/cdev.\+h$>$}\\*
+{\ttfamily \#include $<$linux/interrupt.\+h$>$}\\*
+{\ttfamily \#include $<$linux/irqreturn.\+h$>$}\\*
+{\ttfamily \#include $<$linux/spinlock.\+h$>$}\\*
 {\ttfamily \#include $<$linux/of\+\_\+device.\+h$>$}\\*
 {\ttfamily \#include $<$linux/of\+\_\+platform.\+h$>$}\\*
 {\ttfamily \#include $<$linux/of\+\_\+address.\+h$>$}\\*
 {\ttfamily \#include $<$linux/of\+\_\+irq.\+h$>$}\\*
+{\ttfamily \#include $<$asm/uaccess.\+h$>$}\\*
+{\ttfamily \#include $<$asm/io.\+h$>$}\\*
+{\ttfamily \#include $<$linux/sched.\+h$>$}\\*
+{\ttfamily \#include $<$linux/poll.\+h$>$}\\*
 Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O\+K.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -20,11 +32,18 @@ Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O\+K.\+c\+:\nopagebreak
 \includegraphics[width=350pt]{my_g_p_i_o_k_8c__incl}
 \end{center}
 \end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Stuttura per l'astrazione di un device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{group___kernel-_module_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}
-\begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___kernel-_module_ga605a877d5e63c79a65d4a57d364680b4}{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}~1
+\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti da driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,22 +51,24 @@ static int \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}
 \begin{DoxyCompactList}\small\item\em Viene chiamata quando il modulo viene inserito. \end{DoxyCompactList}\item 
 static int \hyperlink{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}{my\+G\+P\+I\+O\+K\+\_\+remove} (struct platform\+\_\+device $\ast$op)
 \item 
-\hyperlink{group___kernel-_module_ga4982cc224a0881ae5d106fce7526fb68}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E} (of, \hyperlink{group___kernel-_module_ga91f28437e0a553effa546d16fa44f03a}{my\+G\+P\+I\+Ok\+\_\+match})
-\item 
-\hyperlink{group___kernel-_module_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver} (\hyperlink{group___kernel-_module_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver})
-\item 
-static loff\+\_\+t \hyperlink{group___kernel-_module_gaee309b7824d1efb418d9aa5e8c888c7c}{my\+G\+P\+I\+O\+K\+\_\+seek} (struct file $\ast$file, loff\+\_\+t off, int whence)
-\begin{DoxyCompactList}\small\item\em usato per cambiare la posizione della \char`\"{}testina\char`\"{} di lettura/scrittura in un file. \end{DoxyCompactList}\item 
-static ssize\+\_\+t \hyperlink{group___kernel-_module_gac03e8e943c9886549d64625253b8c4bf}{my\+G\+P\+I\+O\+K\+\_\+read} (struct file $\ast$file, char $\ast$buf, size\+\_\+t count, loff\+\_\+t $\ast$ppos)
-\begin{DoxyCompactList}\small\item\em legge dati dal device. \end{DoxyCompactList}\item 
-static ssize\+\_\+t \hyperlink{group___kernel-_module_ga93f7a4111f4555747323e4afcb1343fd}{my\+G\+P\+I\+O\+K\+\_\+write} (struct file $\ast$file, const char $\ast$buf, size\+\_\+t size, loff\+\_\+t $\ast$off)
-\begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
-static unsigned int \hyperlink{group___kernel-_module_ga27a9fd0cd8497c6fb4415ffcf0733270}{my\+G\+P\+I\+O\+K\+\_\+poll} (struct file $\ast$file, struct poll\+\_\+table\+\_\+struct $\ast$wait)
-\begin{DoxyCompactList}\small\item\em Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. \end{DoxyCompactList}\item 
-static int \hyperlink{group___kernel-_module_ga7aa7d2d19eb7034855c87a17e433918d}{my\+G\+P\+I\+O\+K\+\_\+open} (struct inode $\ast$inode, struct file $\ast$file)
+static int \hyperlink{group___kernel-_module_gad013759c18fbf6ea96005b9b3bfa5b4e}{my\+G\+P\+I\+O\+K\+\_\+open} (struct inode $\ast$inode, struct file $\ast$file\+\_\+ptr)
 \begin{DoxyCompactList}\small\item\em Invocata all'apertura del file corrispondente al device. \end{DoxyCompactList}\item 
-static int \hyperlink{group___kernel-_module_gaf310cbdd4b64b3e108ed0cd67374fa9b}{my\+G\+P\+I\+O\+K\+\_\+release} (struct inode $\ast$inode, struct file $\ast$file)
+static int \hyperlink{group___kernel-_module_ga17ce7f574723246c790b70b06e3e7103}{my\+G\+P\+I\+O\+K\+\_\+release} (struct inode $\ast$inode, struct file $\ast$file\+\_\+ptr)
 \begin{DoxyCompactList}\small\item\em Invocata alla chiusura del file corrispondente al device. \end{DoxyCompactList}\item 
+static loff\+\_\+t \hyperlink{group___kernel-_module_ga66e7f726b72320a272b633ecbaecefff}{my\+G\+P\+I\+O\+K\+\_\+llseek} (struct file $\ast$file\+\_\+ptr, loff\+\_\+t off, int whence)
+\begin{DoxyCompactList}\small\item\em Implementa le system-\/call lseek() e llseek(). \end{DoxyCompactList}\item 
+static unsigned int \hyperlink{group___kernel-_module_gaba935e8a8215c2ebce9a7147fd4f5147}{my\+G\+P\+I\+O\+K\+\_\+poll} (struct file $\ast$file\+\_\+ptr, struct poll\+\_\+table\+\_\+struct $\ast$wait)
+\begin{DoxyCompactList}\small\item\em Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. \end{DoxyCompactList}\item 
+static ssize\+\_\+t \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{my\+G\+P\+I\+O\+K\+\_\+read} (struct file $\ast$file\+\_\+ptr, char $\ast$buf, size\+\_\+t count, loff\+\_\+t $\ast$off)
+\begin{DoxyCompactList}\small\item\em Legge dati dal device. \end{DoxyCompactList}\item 
+static ssize\+\_\+t \hyperlink{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write} (struct file $\ast$file\+\_\+ptr, const char $\ast$buf, size\+\_\+t size, loff\+\_\+t $\ast$off)
+\begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
+static irqreturn\+\_\+t \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler} (int irq, struct pt\+\_\+regs $\ast$regs)
+\item 
+\hyperlink{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E} (of, \hyperlink{group___kernel-_module_ga91f28437e0a553effa546d16fa44f03a}{my\+G\+P\+I\+Ok\+\_\+match})
+\item 
+\hyperlink{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver} (\hyperlink{group___kernel-_module_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver})
+\item 
 \hyperlink{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E} (\char`\"{}G\+P\+L\char`\"{})
 \item 
 \hyperlink{my_g_p_i_o_k_8c_aa528ef168ff30340d38c46a12fce906b}{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R} (\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{})
@@ -61,12 +82,20 @@ static int \hyperlink{group___kernel-_module_gaf310cbdd4b64b3e108ed0cd67374fa9b}
 \subsection*{Variabili}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$ \hyperlink{group___kernel-_module_gae370dfc26b06b6cc24a7bcc152f4969e}{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr} = N\+U\+L\+L
+\begin{DoxyCompactList}\small\item\em Puntatore a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. \end{DoxyCompactList}\item 
+static dev\+\_\+t \hyperlink{group___kernel-_module_ga434e034e4625b1949f0c626823870a39}{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number}
+\begin{DoxyCompactList}\small\item\em Major e minor number per il device driver. \end{DoxyCompactList}\item 
+static struct class $\ast$ \hyperlink{group___kernel-_module_gaaf8d1bce7d6389684a037e94381c275c}{my\+G\+P\+I\+O\+K\+\_\+class} = N\+U\+L\+L
+\item 
+static struct device $\ast$ \hyperlink{group___kernel-_module_ga2d345c792760e3103059b6b6e0bfdaee}{my\+G\+P\+I\+O\+K\+\_\+device} = N\+U\+L\+L
+\item 
 static struct of\+\_\+device\+\_\+id \hyperlink{group___kernel-_module_ga91f28437e0a553effa546d16fa44f03a}{my\+G\+P\+I\+Ok\+\_\+match} \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em Identifica il device all'interno del device tree. \end{DoxyCompactList}\item 
 static struct platform\+\_\+driver \hyperlink{group___kernel-_module_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver}
 \begin{DoxyCompactList}\small\item\em Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. \end{DoxyCompactList}\item 
 static struct file\+\_\+operations \hyperlink{group___kernel-_module_ga9f31111fdb3b4a5944e18d45045e0f01}{my\+G\+P\+I\+O\+\_\+fops}
-\begin{DoxyCompactList}\small\item\em definisce la corrispondenza tra funzioni kernel e funzioni driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Descrizione dettagliata}
@@ -109,6 +138,14 @@ You should have received a copy of the G\+N\+U General Public License along with
 \item[{\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{}}]{}
 \end{DoxyParamCaption}
 )}}\label{my_g_p_i_o_k_8c_a1a0de0abbfec8f65abc50ccd3a549a4d}
+\hypertarget{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E (
+\begin{DoxyParamCaption}
+\item[{of}]{, }
+\item[{{\bf my\+G\+P\+I\+Ok\+\_\+match}}]{}
+\end{DoxyParamCaption}
+)}}\label{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}
 \hypertarget{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}}
 \index{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
 \subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E (
@@ -116,6 +153,13 @@ You should have received a copy of the G\+N\+U General Public License along with
 \item[{\char`\"{}G\+P\+L\char`\"{}}]{}
 \end{DoxyParamCaption}
 )}}\label{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}
+\hypertarget{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}}
+\index{module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
+\subsubsection[{module\+\_\+platform\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}module\+\_\+platform\+\_\+driver (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+driver}}]{}
+\end{DoxyParamCaption}
+)}}\label{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}
 \hypertarget{my_g_p_i_o_k_8c_a4b75c2cb371865e62f06fc635df9401e}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
 \index{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
 \subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N (

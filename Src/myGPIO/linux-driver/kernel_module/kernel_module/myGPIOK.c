@@ -785,52 +785,9 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
 /**
  * @brief Legge dati dal device.
  *
- * <h3>Il metodo read()</h3>
- *
- * <h5>Accesso ai registri del device</h5>
- * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
- * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
- * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
- *
- * Per leggere dalla memoria vengono usate le seguenti:
- *
- * @code
- * unsigned int ioread8(void *addr);
- * unsigned int ioread16(void *addr);
- * unsigned int ioread32(void *addr);
- * @endcode
- *
- * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
- * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
- * locazione di memoria a cui viene effettuato accesso.
- *
- * Esiste un insieme di funzioni simili che, invece, scrivono dulla memoria:
- *
- * @code
- * void iowrite8(u8 value, void *addr);
- * void iowrite16(u16 value, void *addr);
- * void iowrite32(u32 value, void *addr);
- * @endcode
- *
- * @param file
- * @param buf
- * @param count
- * @param ppos
- *
- * @return La funzione restituisce il numero di byte letti con successo ma, nel caso si
- * verifichi un errore, restituisce un numero intero negativo.
- */
-static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, loff_t *ppos) {
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-	return 0;
-}
-
-/**
- * @brief Invia dati al device
- *
  * <h3>Operazioni di lettura e scrittura</h3>
- * The read and write methods both perform a similar task, that is, copying data from and to application code.
- * Therefore, their prototypes are pretty similar, and it's worth introducing them at the same time:
+ * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
+ * prototipo e' molto simile.
  *
  * @code
  * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
@@ -838,33 +795,26 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
  * @endcode
  *
- * For both methods, filp is the file pointer and count is the size of the requested data transfer. The buff
- * argument points to the user buffer holding the data to be written or the empty buffer where the newly read
- * data should be placed. Finally, offp is a pointer to a "long offset type" object that indicates the file
- * position the user is accessing. The return value is a "signed size type"; its use is discussed later.
+ * Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
+ * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
+ * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
+ * alla quale si sta effettuando l'accesso.
  *
- * Let us repeat that the buff argument to the read and write methods is a user-space pointer. Therefore, it
- * cannot be directly dereferenced by kernel code. There are a few reasons for this restriction:
- *  - Depending on which architecture your driver is running on, and how the kernel was configured, the
- *    user-space pointer may not be valid while running in kernel mode at all. There may be no mapping for
- *    that address, or it could point to some other, random data.
- *  - Even if the pointer does mean the same thing in kernel space, user-space memory is paged, and the
- *    memory in question might not be resident in RAM when the system call is made. Attempting to reference
- *    the user-space memory directly could generate a page fault, which is something that kernel code is not
- *    allowed to do. The result would be an "oops," which would result in the death of the process that made
- *    the system call.
- *  - The pointer in question has been supplied by a user program, which could be buggy or malicious. If your
- *    driver ever blindly dereferences a user-supplied pointer, it provides an open doorway allowing a
- *    user-space program to access or overwrite memory anywhere in the system. If you do not wish to be
- *    responsible for compromising the security of your users' systems, you cannot ever dereference a
- *    user-space pointer directly.
+ * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
+ * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
+ * diverse ragioni, tra le quali:
+ *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
+ *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
+ *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
+ *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
+ *    terminazione del processo che ha effettuato la system-call;
+ *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
+ *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
+ *    programma userspace puo' modificare la memoria senza costrizioni.
  *
- * Obviously, your driver must be able to access the user-space buffer in order to get its job done. This
- * access must always be performed by special, kernel-supplied functions, however, in order to be safe.
- * This functions are defined in <asm/uaccess.h>
- * We need to copy a whole segment of data to or from the user address space. This capability is offered by
- * the following kernel functions, which copy an arbitrary array of bytes and sit at the heart of most read
- * and write implementations:
+ * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
+ * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
+ * <asm/uaccess.h>
  *
  * @code
  * unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);
@@ -872,63 +822,13 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);
  * @endcode
  *
- * Although these functions behave like normal memcpy functions, a little extra care must be used when
- * accessing user space from kernel code. The user pages being addressed might not be currently present in
- * memory, and the virtual memory subsystem can put the process to sleep while the page is being transferred
- * into place. This happens, for example, when the page must be retrieved from swap space. The net result
- * for the driver writer is that any function that accesses user space must be reentrant, must be able to
- * execute concurrently with other driver functions, and, in particular, must be in a position where it can
- * legally sleep.
- * The role of the two functions is not limited to copying data to and from user-space: they also check
- * whether the user space pointer is valid. If the pointer is invalid, no copy is performed; if an invalid
- * address is encountered during the copy, on the other hand, only part of the data is copied. In both
- * cases, the return value is the amount of memory still to be copied.
+ * Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che
+ * il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene
+ * effettuata.
  *
- * As far as the actual device methods are concerned, the task of the read method is to copy data from the
- * device to user space (using copy_to_user), while the write method must copy data from user space to the
- * device (using copy_from_user). Each read or write system call requests transfer of a specific number of
- * bytes, but the driver is free to transfer less data.
- *
- * Whatever the amount of data the methods transfer, they should generally update the file position at *offp
- * to represent the current file position after successful completion of the system call. The kernel then
- * propagates the file position change back into the file structure when appropriate. The pread and pwrite
- * system calls have different semantics, however; they operate from a given file offset and do not change
- * the file position as seen by any other system calls. These calls pass in a pointer to the user-supplied
- * position, and discard the changes that your driver makes.
- *
- * Both the read and write methods return a negative value if an error occurs. A return value greater than
- * or equal to 0, instead, tells the calling program how many bytes have been successfully transferred. If
- * some data is transferred correctly and then an error happens, the return value must be the count of
- * bytes successfully transferred, and the error does not get reported until the next time the function
- * is called. Implementing this convention requires, of course, that your driver remember that the error
- * has occurred so that it can return the error status in the future.
- *
- * <h5>Il metodo read()</h5>
- * The return value for read is interpreted by the calling application program:
- *  - If the value equals the count argument passed to the read system call, the requested number of bytes
- *    has been transferred. This is the optimal case.
- *  - If the value is positive, but smaller than count, only part of the data has been transferred. This
- *    may happen for a number of reasons, depending on the device. Most often, the application program
- *    retries the read. For instance, if you read using the fread function, the library function reissues
- *    the system call until completion of the requested data transfer.
- *  - If the value is 0, end-of-file was reached (and no data was read).
- *
- *  A negative value means there was an error. The value specifies what the error was, according to
- *  <linux/errno.h>. Typical values returned on error include -EINTR (interrupted system call) or -EFAULT
- *  (bad address).
- *  What is missing from the preceding list is the case of "there is no data, but it may arrive later."
- *  In this case, the read system call should block.
- *
- * <h5>Il metodo write()</h5>
- * write, like read, can transfer less data than was requested, according to the following rules for the
- * return value:
- *  - If the value equals count, the requested number of bytes has been transferred.
- *  - If the value is positive, but smaller than count, only part of the data has been transferred. The
- *    program will most likely retry writing the rest of the data.
- *  - If the value is 0, nothing was written. This result is not an error, and there is no reason to return
- *    an error code. Once again, the standard library retries the call to write.
- *  - A negative value means an error occurred; as for read, valid error values are those defined in
- *    <linux/errno.h>.
+ * Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia
+ * verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con
+ * successo.
  *
  * <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
@@ -947,7 +847,101 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
  * locazione di memoria a cui viene effettuato accesso.
  *
- * Esiste un insieme di funzioni simili che, invece, scrivono dulla memoria:
+ * @param [in]  file
+ * @param [out] buf
+ * @param [in]  count
+ * @param [in]  ppos
+ *
+ * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
+ * o uguale a zero indica il numero di byte scritti con successo.
+ */
+static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, loff_t *off) {
+	myGPIOK_t *myGPIOK_dev_ptr;
+	uint32_t data_readed;
+	int i;
+
+	printk(KERN_INFO "Chiamata %s\n", __func__);
+
+	myGPIOK_dev_ptr = file_ptr->private_data;
+
+	if (*off > myGPIOK_dev_ptr->rsrc_size)
+		return -EFAULT;
+
+	/* Il processore Zynq a bordo della Zybo e' little endian. Per questo motivo e'
+	 * possibile convertire char* in uint32_t* mediante un semplice casting, senza
+	 * invertire manualmente l'ordine dei byte.
+	 */
+	printk(KERN_INFO "%s : offset %08X\n", __func__, *off);
+	data_readed = ioread32(myGPIOK_dev_ptr->vrtl_addr+*off);
+
+	for (i=0; i<16; i+=4) {
+		//data_readed = ioread32(myGPIOK_dev_ptr->vrtl_addr+i);
+		data_readed = *((uint32_t*)(myGPIOK_dev_ptr->vrtl_addr+i));
+		printk(KERN_INFO "%s : offset %08X\n", __func__, i);
+		printk(KERN_INFO "%s : read %08X\n", __func__, data_readed);
+	}
+
+	if (copy_to_user(buf, &data_readed, count))
+		return -EFAULT;
+
+	return count;
+}
+
+/**
+ * @brief Invia dati al device
+ *
+ * <h3>Operazioni di lettura e scrittura</h3>
+ * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
+ * prototipo e' molto simile.
+ *
+ * @code
+ * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
+ *
+ * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
+ * @endcode
+ *
+ * Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
+ * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
+ * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
+ * alla quale si sta effettuando l'accesso.
+ *
+ * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
+ * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
+ * diverse ragioni, tra le quali:
+ *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
+ *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
+ *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
+ *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
+ *    terminazione del processo che ha effettuato la system-call;
+ *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
+ *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
+ *    programma userspace puo' modificare la memoria senza costrizioni.
+ *
+ * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
+ * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
+ * <asm/uaccess.h>
+ *
+ * @code
+ * unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);
+ *
+ * unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);
+ * @endcode
+ *
+ * Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che
+ * il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene
+ * effettuata.
+ *
+ * Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia
+ * verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con
+ * successo.
+ *
+ * <h5>Accesso ai registri del device</h5>
+ * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
+ * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
+ * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in
+ * <asm/io.h>.
+ *
+ * Per scrivere nella memoria vengono usate le seguenti:
  *
  * @code
  * void iowrite8(u8 value, void *addr);
@@ -955,13 +949,17 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * void iowrite32(u32 value, void *addr);
  * @endcode
  *
- * @param file
- * @param buf
- * @param size
- * @param off
+ * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
+ * eventualmente, aggiunto un offset. value e' il valore che verra' scritto alla particolare locazione di
+ * memoria a cui viene effettuato accesso.
  *
- * @return Il valore di ritorno, se non negativo, rappresenta il numero di byte
- * correttamente scritti.
+ * @param [in] file
+ * @param [in] buf
+ * @param [in] size
+ * @param [in] off
+ *
+ * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
+ * o uguale a zero indica il numero di byte scritti con successo.
  */
 static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t size, loff_t *off) {
 

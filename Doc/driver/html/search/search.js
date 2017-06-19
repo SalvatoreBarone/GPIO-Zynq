@@ -11,7 +11,7 @@ var indexSectionsWithContent =
   1: "hmpz",
   2: "ghmntuxz",
   3: "_ghmpvxz",
-  4: "bdegilmorsw",
+  4: "bcdegilmorsvw",
   5: "hmz",
   6: "hmz",
   7: "cghltx",

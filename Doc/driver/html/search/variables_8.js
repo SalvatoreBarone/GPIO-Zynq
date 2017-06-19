@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['read_5foffset',['read_offset',['../structmy_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48',1,'myGPIO_t']]],
-  ['rs',['RS',['../struct_h_d44780___l_c_d__t.html#a120bc0a069f764630359d9655fe0c46d',1,'HD44780_LCD_t']]],
-  ['rw',['RW',['../struct_h_d44780___l_c_d__t.html#af404868fc36134454144950be4977d95',1,'HD44780_LCD_t']]]
+  ['op_5fmode',['op_mode',['../structparam__t.html#aec948fb30e99b1eda7e3d9ff741d417a',1,'param_t']]],
+  ['op_5fread',['op_read',['../structparam__t.html#ae66d5c3154a115636a63227b7489a6eb',1,'param_t']]],
+  ['op_5fwrite',['op_write',['../structparam__t.html#a67752de733f167918a4e966354183a69',1,'param_t']]]
 ];

@@ -180,7 +180,7 @@ void gpio_op (param_t *param) {
 
 	if (param->op_read == 1) {
 		uint32_t read_value = 0;
-#ifndef __USE_READ__
+#ifndef __USE_PREAD__
 		lseek(param->dev_descr, READ_OFFSET, SEEK_SET);
 		read(param->dev_descr, &read_value, sizeof(uint32_t));
 #else

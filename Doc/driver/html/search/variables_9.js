@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['switch0_5fpin',['Switch0_pin',['../struct_zybo_switch__t.html#aa125c82837d72bdb20a0e22f3a86646e',1,'ZyboSwitch_t']]],
-  ['switch1_5fpin',['Switch1_pin',['../struct_zybo_switch__t.html#aa031241ea0c12a6f327d3697113e992c',1,'ZyboSwitch_t']]],
-  ['switch2_5fpin',['Switch2_pin',['../struct_zybo_switch__t.html#aacdefa991c974546015032b1bb95ea1e',1,'ZyboSwitch_t']]],
-  ['switch3_5fpin',['Switch3_pin',['../struct_zybo_switch__t.html#ab2ea73dda75022931396b29e1c377cfb',1,'ZyboSwitch_t']]]
+  ['read_5foffset',['read_offset',['../structmy_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48',1,'myGPIO_t']]],
+  ['rs',['RS',['../struct_h_d44780___l_c_d__t.html#a120bc0a069f764630359d9655fe0c46d',1,'HD44780_LCD_t']]],
+  ['rsrc',['rsrc',['../structmy_g_p_i_o_k__t.html#a565a1848c3ae8026257a74cf169c6941',1,'myGPIOK_t']]],
+  ['rsrc_5fsize',['rsrc_size',['../structmy_g_p_i_o_k__t.html#a0f87b53dc5049a349ef01aa586c0b5dc',1,'myGPIOK_t']]],
+  ['rw',['RW',['../struct_h_d44780___l_c_d__t.html#af404868fc36134454144950be4977d95',1,'HD44780_LCD_t']]]
 ];

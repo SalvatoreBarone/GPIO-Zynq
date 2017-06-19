@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('my_g_p_i_o_k_8c.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Strutture dati</a> &#124;
 <a href="#define-members">Definizioni</a> &#124;
 <a href="#func-members">Funzioni</a> &#124;
 <a href="#var-members">Variabili</a>  </div>
@@ -114,26 +115,47 @@ $(document).ready(function(){initNavTree('my_g_p_i_o_k_8c.html','');});
 <div class="textblock"><code>#include &lt;linux/init.h&gt;</code><br />
 <code>#include &lt;linux/module.h&gt;</code><br />
 <code>#include &lt;linux/kernel.h&gt;</code><br />
+<code>#include &lt;linux/slab.h&gt;</code><br />
 <code>#include &lt;linux/fs.h&gt;</code><br />
+<code>#include &lt;linux/errno.h&gt;</code><br />
 <code>#include &lt;linux/types.h&gt;</code><br />
+<code>#include &lt;linux/proc_fs.h&gt;</code><br />
+<code>#include &lt;linux/fcntl.h&gt;</code><br />
+<code>#include &lt;linux/unistd.h&gt;</code><br />
 <code>#include &lt;linux/device.h&gt;</code><br />
 <code>#include &lt;linux/platform_device.h&gt;</code><br />
-<code>#include &lt;linux/mod_devicetable.h&gt;</code><br />
+<code>#include &lt;linux/cdev.h&gt;</code><br />
+<code>#include &lt;linux/interrupt.h&gt;</code><br />
+<code>#include &lt;linux/irqreturn.h&gt;</code><br />
+<code>#include &lt;linux/spinlock.h&gt;</code><br />
 <code>#include &lt;linux/of_device.h&gt;</code><br />
 <code>#include &lt;linux/of_platform.h&gt;</code><br />
 <code>#include &lt;linux/of_address.h&gt;</code><br />
 <code>#include &lt;linux/of_irq.h&gt;</code><br />
+<code>#include &lt;asm/uaccess.h&gt;</code><br />
+<code>#include &lt;asm/io.h&gt;</code><br />
+<code>#include &lt;linux/sched.h&gt;</code><br />
+<code>#include &lt;linux/poll.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Grafo delle dipendenze di inclusione per myGPIOK.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="my_g_p_i_o_k_8c__incl.png" border="0" usemap="#my_g_p_i_o_2linux-driver_2kernel__module_2kernel__module_2my_g_p_i_o_k_8c" alt=""/></div>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Strutture dati</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html">myGPIOK_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stuttura per l'astrazione di un device.  <a href="structmy_g_p_i_o_k__t.html#details">Continua...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
 <tr class="memitem:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a>&#160;&#160;&#160;&quot;myGPIOK&quot;</td></tr>
 <tr class="memdesc:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device tree source.  <a href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">Continua...</a><br /></td></tr>
 <tr class="separator:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga605a877d5e63c79a65d4a57d364680b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4">REQUIRED_MINOR_NUMBER</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ga605a877d5e63c79a65d4a57d364680b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero di minor-number richiesti da driver.  <a href="group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4">Continua...</a><br /></td></tr>
+<tr class="separator:ga605a877d5e63c79a65d4a57d364680b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
@@ -142,28 +164,30 @@ Funzioni</h2></td></tr>
 <tr class="separator:gae40973a06d72f7c41a9af07513a62307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga59fddfaa36dea357f4bbdfceb0f47f8c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga59fddfaa36dea357f4bbdfceb0f47f8c">myGPIOK_remove</a> (struct platform_device *op)</td></tr>
 <tr class="separator:ga59fddfaa36dea357f4bbdfceb0f47f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4982cc224a0881ae5d106fce7526fb68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga4982cc224a0881ae5d106fce7526fb68">MODULE_DEVICE_TABLE</a> (of, <a class="el" href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a>)</td></tr>
-<tr class="separator:ga4982cc224a0881ae5d106fce7526fb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga61e890be90fe5582db8048893ca0ebbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga61e890be90fe5582db8048893ca0ebbf">module_platform_driver</a> (<a class="el" href="group___kernel-_module.html#ga8dba1541b58fa63f8208232ffce4fc47">myGPIOK_driver</a>)</td></tr>
-<tr class="separator:ga61e890be90fe5582db8048893ca0ebbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee309b7824d1efb418d9aa5e8c888c7c"><td class="memItemLeft" align="right" valign="top">static loff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gaee309b7824d1efb418d9aa5e8c888c7c">myGPIOK_seek</a> (struct file *file, loff_t off, int whence)</td></tr>
-<tr class="memdesc:gaee309b7824d1efb418d9aa5e8c888c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">usato per cambiare la posizione della "testina" di lettura/scrittura in un file.  <a href="group___kernel-_module.html#gaee309b7824d1efb418d9aa5e8c888c7c">Continua...</a><br /></td></tr>
-<tr class="separator:gaee309b7824d1efb418d9aa5e8c888c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac03e8e943c9886549d64625253b8c4bf"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gac03e8e943c9886549d64625253b8c4bf">myGPIOK_read</a> (struct file *file, char *buf, size_t count, loff_t *ppos)</td></tr>
-<tr class="memdesc:gac03e8e943c9886549d64625253b8c4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">legge dati dal device.  <a href="group___kernel-_module.html#gac03e8e943c9886549d64625253b8c4bf">Continua...</a><br /></td></tr>
-<tr class="separator:gac03e8e943c9886549d64625253b8c4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93f7a4111f4555747323e4afcb1343fd"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga93f7a4111f4555747323e4afcb1343fd">myGPIOK_write</a> (struct file *file, const char *buf, size_t size, loff_t *off)</td></tr>
-<tr class="memdesc:ga93f7a4111f4555747323e4afcb1343fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invia dati al device.  <a href="group___kernel-_module.html#ga93f7a4111f4555747323e4afcb1343fd">Continua...</a><br /></td></tr>
-<tr class="separator:ga93f7a4111f4555747323e4afcb1343fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga27a9fd0cd8497c6fb4415ffcf0733270"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga27a9fd0cd8497c6fb4415ffcf0733270">myGPIOK_poll</a> (struct file *file, struct poll_table_struct *wait)</td></tr>
-<tr class="memdesc:ga27a9fd0cd8497c6fb4415ffcf0733270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.  <a href="group___kernel-_module.html#ga27a9fd0cd8497c6fb4415ffcf0733270">Continua...</a><br /></td></tr>
-<tr class="separator:ga27a9fd0cd8497c6fb4415ffcf0733270"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7aa7d2d19eb7034855c87a17e433918d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga7aa7d2d19eb7034855c87a17e433918d">myGPIOK_open</a> (struct inode *inode, struct file *file)</td></tr>
-<tr class="memdesc:ga7aa7d2d19eb7034855c87a17e433918d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata all'apertura del file corrispondente al device.  <a href="group___kernel-_module.html#ga7aa7d2d19eb7034855c87a17e433918d">Continua...</a><br /></td></tr>
-<tr class="separator:ga7aa7d2d19eb7034855c87a17e433918d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf310cbdd4b64b3e108ed0cd67374fa9b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gaf310cbdd4b64b3e108ed0cd67374fa9b">myGPIOK_release</a> (struct inode *inode, struct file *file)</td></tr>
-<tr class="memdesc:gaf310cbdd4b64b3e108ed0cd67374fa9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata alla chiusura del file corrispondente al device.  <a href="group___kernel-_module.html#gaf310cbdd4b64b3e108ed0cd67374fa9b">Continua...</a><br /></td></tr>
-<tr class="separator:gaf310cbdd4b64b3e108ed0cd67374fa9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e">myGPIOK_open</a> (struct inode *inode, struct file *file_ptr)</td></tr>
+<tr class="memdesc:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata all'apertura del file corrispondente al device.  <a href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e">Continua...</a><br /></td></tr>
+<tr class="separator:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17ce7f574723246c790b70b06e3e7103"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga17ce7f574723246c790b70b06e3e7103">myGPIOK_release</a> (struct inode *inode, struct file *file_ptr)</td></tr>
+<tr class="memdesc:ga17ce7f574723246c790b70b06e3e7103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata alla chiusura del file corrispondente al device.  <a href="group___kernel-_module.html#ga17ce7f574723246c790b70b06e3e7103">Continua...</a><br /></td></tr>
+<tr class="separator:ga17ce7f574723246c790b70b06e3e7103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66e7f726b72320a272b633ecbaecefff"><td class="memItemLeft" align="right" valign="top">static loff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff">myGPIOK_llseek</a> (struct file *file_ptr, loff_t off, int whence)</td></tr>
+<tr class="memdesc:ga66e7f726b72320a272b633ecbaecefff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementa le system-call lseek() e llseek().  <a href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff">Continua...</a><br /></td></tr>
+<tr class="separator:ga66e7f726b72320a272b633ecbaecefff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gaba935e8a8215c2ebce9a7147fd4f5147">myGPIOK_poll</a> (struct file *file_ptr, struct poll_table_struct *wait)</td></tr>
+<tr class="memdesc:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.  <a href="group___kernel-_module.html#gaba935e8a8215c2ebce9a7147fd4f5147">Continua...</a><br /></td></tr>
+<tr class="separator:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90ac339df9c02ae5f11a2a7727adc923"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923">myGPIOK_read</a> (struct file *file_ptr, char *buf, size_t count, loff_t *off)</td></tr>
+<tr class="memdesc:ga90ac339df9c02ae5f11a2a7727adc923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legge dati dal device.  <a href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923">Continua...</a><br /></td></tr>
+<tr class="separator:ga90ac339df9c02ae5f11a2a7727adc923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1eea0f6c86e8966ba9b701da57502aad"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad">myGPIOK_write</a> (struct file *file_ptr, const char *buf, size_t size, loff_t *off)</td></tr>
+<tr class="memdesc:ga1eea0f6c86e8966ba9b701da57502aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invia dati al device.  <a href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad">Continua...</a><br /></td></tr>
+<tr class="separator:ga1eea0f6c86e8966ba9b701da57502aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memItemLeft" align="right" valign="top">static irqreturn_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511">myGPIOK_irq_handler</a> (int irq, struct pt_regs *regs)</td></tr>
+<tr class="separator:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4982cc224a0881ae5d106fce7526fb68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="my_g_p_i_o_k_8c.html#a4982cc224a0881ae5d106fce7526fb68">MODULE_DEVICE_TABLE</a> (of, <a class="el" href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a>)</td></tr>
+<tr class="separator:a4982cc224a0881ae5d106fce7526fb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61e890be90fe5582db8048893ca0ebbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="my_g_p_i_o_k_8c.html#a61e890be90fe5582db8048893ca0ebbf">module_platform_driver</a> (<a class="el" href="group___kernel-_module.html#ga8dba1541b58fa63f8208232ffce4fc47">myGPIOK_driver</a>)</td></tr>
+<tr class="separator:a61e890be90fe5582db8048893ca0ebbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad94b36675e7eb067ea3ce6ff9e244a44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="my_g_p_i_o_k_8c.html#ad94b36675e7eb067ea3ce6ff9e244a44">MODULE_LICENSE</a> (&quot;GPL&quot;)</td></tr>
 <tr class="separator:ad94b36675e7eb067ea3ce6ff9e244a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa528ef168ff30340d38c46a12fce906b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="my_g_p_i_o_k_8c.html#aa528ef168ff30340d38c46a12fce906b">MODULE_AUTHOR</a> (&quot;Salvatore Barone &lt;salvator.barone@gmail.com&gt;&quot;)</td></tr>
@@ -177,6 +201,16 @@ Funzioni</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variabili</h2></td></tr>
+<tr class="memitem:gae370dfc26b06b6cc24a7bcc152f4969e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmy_g_p_i_o_k__t.html">myGPIOK_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gae370dfc26b06b6cc24a7bcc152f4969e">myGPIOK_dev_ptr</a> = NULL</td></tr>
+<tr class="memdesc:gae370dfc26b06b6cc24a7bcc152f4969e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntatore a struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device. ">myGPIOK_t</a>, contenente tutti i dati necessari al device driver.  <a href="group___kernel-_module.html#gae370dfc26b06b6cc24a7bcc152f4969e">Continua...</a><br /></td></tr>
+<tr class="separator:gae370dfc26b06b6cc24a7bcc152f4969e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga434e034e4625b1949f0c626823870a39"><td class="memItemLeft" align="right" valign="top">static dev_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga434e034e4625b1949f0c626823870a39">myGPIOK_Mm_number</a></td></tr>
+<tr class="memdesc:ga434e034e4625b1949f0c626823870a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Major e minor number per il device driver.  <a href="group___kernel-_module.html#ga434e034e4625b1949f0c626823870a39">Continua...</a><br /></td></tr>
+<tr class="separator:ga434e034e4625b1949f0c626823870a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf8d1bce7d6389684a037e94381c275c"><td class="memItemLeft" align="right" valign="top">static struct class *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#gaaf8d1bce7d6389684a037e94381c275c">myGPIOK_class</a> = NULL</td></tr>
+<tr class="separator:gaaf8d1bce7d6389684a037e94381c275c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d345c792760e3103059b6b6e0bfdaee"><td class="memItemLeft" align="right" valign="top">static struct device *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga2d345c792760e3103059b6b6e0bfdaee">myGPIOK_device</a> = NULL</td></tr>
+<tr class="separator:ga2d345c792760e3103059b6b6e0bfdaee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga91f28437e0a553effa546d16fa44f03a"><td class="memItemLeft" align="right" valign="top">static struct of_device_id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a> []</td></tr>
 <tr class="memdesc:ga91f28437e0a553effa546d16fa44f03a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifica il device all'interno del device tree.  <a href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">Continua...</a><br /></td></tr>
 <tr class="separator:ga91f28437e0a553effa546d16fa44f03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,7 +218,7 @@ Variabili</h2></td></tr>
 <tr class="memdesc:ga8dba1541b58fa63f8208232ffce4fc47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver.  <a href="group___kernel-_module.html#ga8dba1541b58fa63f8208232ffce4fc47">Continua...</a><br /></td></tr>
 <tr class="separator:ga8dba1541b58fa63f8208232ffce4fc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9f31111fdb3b4a5944e18d45045e0f01"><td class="memItemLeft" align="right" valign="top">static struct file_operations&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga9f31111fdb3b4a5944e18d45045e0f01">myGPIO_fops</a></td></tr>
-<tr class="memdesc:ga9f31111fdb3b4a5944e18d45045e0f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">definisce la corrispondenza tra funzioni kernel e funzioni driver.  <a href="group___kernel-_module.html#ga9f31111fdb3b4a5944e18d45045e0f01">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga9f31111fdb3b4a5944e18d45045e0f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device.  <a href="group___kernel-_module.html#ga9f31111fdb3b4a5944e18d45045e0f01">Continua...</a><br /></td></tr>
 <tr class="separator:ga9f31111fdb3b4a5944e18d45045e0f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
@@ -244,6 +278,32 @@ Variabili</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4982cc224a0881ae5d106fce7526fb68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_DEVICE_TABLE </td>
+          <td>(</td>
+          <td class="paramtype">of&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ad94b36675e7eb067ea3ce6ff9e244a44"></a>
 <div class="memitem">
 <div class="memproto">
@@ -252,6 +312,22 @@ Variabili</h2></td></tr>
           <td class="memname">MODULE_LICENSE </td>
           <td>(</td>
           <td class="paramtype">&quot;GPL&quot;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a61e890be90fe5582db8048893ca0ebbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">module_platform_driver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___kernel-_module.html#ga8dba1541b58fa63f8208232ffce4fc47">myGPIOK_driver</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -282,7 +358,7 @@ Variabili</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6606294767fbca126709a3b546a6288b.html">myGPIO</a></li><li class="navelem"><a class="el" href="dir_0806f99fd206df600ec4c8ea55a92e57.html">linux-driver</a></li><li class="navelem"><a class="el" href="dir_f51cc2116ea4e6914fe02e6d89ad9132.html">kernel_module</a></li><li class="navelem"><a class="el" href="dir_c78a57d726f4ba6b647a4be9658a2d06.html">kernel_module</a></li><li class="navelem"><a class="el" href="my_g_p_i_o_k_8c.html">myGPIOK.c</a></li>
-    <li class="footer">Generato Sab 17 Giu 2017 12:35:53 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Lun 19 Giu 2017 13:14:08 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

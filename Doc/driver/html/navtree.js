@@ -27,8 +27,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_zybo_8h.html",
-"group___u_i_o-interrupt.html#ga3c04138a5bfe5d72780bb7e82a18e627",
-"structparam__t.html#aec948fb30e99b1eda7e3d9ff741d417a"
+"group___switch.html#gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755",
+"struct_zybo_switch__t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
