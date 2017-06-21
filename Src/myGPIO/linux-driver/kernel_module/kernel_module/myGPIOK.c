@@ -190,9 +190,7 @@ static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
  * Funzioni e definizioni di servizio.
  * Non verranno documentate.
  */
-#define myGPIO_MODE_OFFSET		0U
-#define myGPIO_WRITE_OFFSET		4U
-#define myGPIO_READ_OFFSET		8U
+
 #define myGPIO_INTR_OFFSET		12U
 #define myGPIO_INTR_IntEn_mask	0x1U
 #define myGPIO_INTR_Irq_mask	0x2U
@@ -216,9 +214,7 @@ static void myGPIO_interruptAck(void* baseAddress) {
 	iowrite32(reg_value, (baseAddress + myGPIO_INTR_OFFSET));
 }
 
-#define XGPIO_DATA_OFFSET 	0x00
-#define XGPIO_TRI_OFFSET 	0x04
-#define xGPIO_READ_OFFSET	0x08
+
 #define XGPIO_GIE_OFFSET	0x11C
 #define XGPIO_ISR_OFFSET	0x120
 #define XGPIO_IER_OFFSET	0x128
@@ -438,7 +434,7 @@ static int myGPIOK_probe(struct platform_device *op) {
 	int error = 0;
 	struct device *dev;
 
-	printk(KERN_INFO "Chiamata %s\n", __func__);
+	printk(KERN_INFO "myGPIOK build %d\nChiamata %s\n", BUILD,__func__);
 
 	/* Allocazione dell'oggetto myGPIOK_t */
 	if ((myGPIOK_dev_ptr = kmalloc(sizeof(myGPIOK_t), GFP_KERNEL)) == NULL) {
@@ -897,20 +893,29 @@ static loff_t myGPIOK_llseek (struct file *file_ptr, loff_t off, int whence) {
 /**
  * @brief Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.
  *
- * Questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select,
- * le quali	sono usate per capire se una operazione di lettura/scrittura du un device
- * possano risultare bloccanti o meno.
- *
- * @param file
- * @param wait
+ * @param[inout]	file
+ * @param[inout]	wait
  *
  * @return restituisce una maschera di bit che indica se sia possibile effettuare
  * operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa
  * bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
+ *
+ * @details
+ * Questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select,
+ * le quali	sono usate per capire se una operazione di lettura/scrittura du un device
+ * possano risultare bloccanti o meno.
  */
 static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struct *wait) {
+	myGPIOK_t *myGPIOK_dev;
+	unsigned int mask = 0;
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-	return 0;
+	myGPIOK_dev = file_ptr->private_data;
+	poll_wait(file_ptr, &myGPIOK_dev->poll_queue,  wait);
+	spin_lock(&myGPIOK_dev->slock_int);
+	if(myGPIOK_dev->int_occurred & MYGPIOK_AREAD)
+		mask = POLLIN | POLLRDNORM;
+	spin_unlock(&myGPIOK_dev->slock_int);
+	return mask;
 }
 
 /**
@@ -1084,9 +1089,11 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  *
  * La condizione sulla quale i processi vengono bloccati riguarda il flag "interrupt occurred". Fin quando
  * questo flag, posto in and con la maschera MYGPIOK_SREAD, e' zero, il processo deve restare bloccato, per
- * cui i processi che effettuano read() bloccante restano bloccati finoche' int_occurred & MYGPIO_SREAD == 0.
+ * cui i processi che effettuano read() bloccante restano bloccati finche' int_occurred & MYGPIO_SREAD == 0.
+ * Quando tale uguaglianza non sara' piu' valida, perche' il valore di int_occurred viene settato dalla
+ * funzione myGPIOK_irq_handler(), allora il processo verra' risvegliato.
  */
-		wait_event_interruptible(myGPIOK_dev_ptr->read_queue, (myGPIOK_dev_ptr->int_occurred & MYGPIOK_SREAD) == 0);
+		wait_event_interruptible(myGPIOK_dev_ptr->read_queue, (myGPIOK_dev_ptr->int_occurred & MYGPIOK_SREAD) != 0);
 /**<h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
  * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
  * esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata
@@ -1125,11 +1132,6 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
 		myGPIOK_dev_ptr-> int_occurred &= ~(MYGPIOK_AREAD);
 		spin_unlock(&myGPIOK_dev_ptr->slock_int);
 	}
-/** <h5>Calcolo dell'indirizzo effettivo</h5>
- * L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo
- * base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
- */
-	read_addr = myGPIOK_dev_ptr->vrtl_addr+(*off>>2);
 /** <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
  * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
@@ -1150,6 +1152,7 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * void iowrite32(u32 value, void *addr);
  * @endcode
  */
+	read_addr = myGPIOK_dev_ptr->vrtl_addr+*off;
 	data_readed = ioread32(read_addr);
 /** <h5>Accesso alla memoria userspace</h5>
  * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
@@ -1259,11 +1262,6 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
  */
 	if (copy_from_user(&data_to_write, buf, size))
 		return -EFAULT;
-/** <h5>Calcolo dell'indirizzo effettivo</h5>
- * L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo
- * base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
- */
-	write_addr = myGPIOK_dev_ptr->vrtl_addr+(*off>>2);
 /** <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
  * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
@@ -1289,6 +1287,7 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
  * void iowrite32(u32 value, void *addr);
  * @endcode
  */
+	write_addr = myGPIOK_dev_ptr->vrtl_addr+*off;
 	iowrite32(data_to_write, write_addr);
 	printk(KERN_INFO "%s : address %08X\n", __func__, (uint32_t) write_addr);
 	printk(KERN_INFO "%s : write %08X\n", __func__, data_to_write);

@@ -1,3 +1,5 @@
 <map id="Userspace&#45;program" name="Userspace&#45;program">
-<area shape="rect" id="node2" href="$group___kernel-_driver.html" title="Kernel&#45;Driver" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" href="$group__userspace-gpio.html" title="Programma di esempio per l&#39;interfacciamento con una periferica myGPIO attraverso un driver kernel..." alt="" coords="343,5,456,32"/>
+<area shape="rect" id="node4" href="$group__userspace-readall.html" title="Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem..." alt="" coords="336,56,463,83"/>
+<area shape="rect" id="node3" href="$group___kernel-_driver.html" title="Kernel&#45;Driver" alt="" coords="5,31,104,57"/>
 </map>

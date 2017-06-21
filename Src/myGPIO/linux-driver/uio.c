@@ -36,8 +36,7 @@
  *
  * E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
  * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
- * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
- * del device usando mmap().
+ * Tale file puo' essere usato per accedere allo spazio degli indirizzi del device usando mmap().
  *
  * In questo caso, rispetto al caso NoDriver, accedere al device e' estremamente piu' semplice.
  * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
@@ -59,7 +58,14 @@
 /**
  * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
  */
-void howto(void);
+void howto(void) {
+	printf("Uso:\n");
+	printf("uio -d /dev/uioX -w|m <hex-value> -r\n");
+	printf("\t-m <hex-value>: scrive nel registro \"mode\"\n");
+	printf("\t-w <hex-value>: scrive nel registro \"write\"\n");
+	printf("\t-r: legge il valore del registro \"read\"\n");
+	printf("I parametri possono anche essere usati assieme.\n");
+}
 
 /**
  * @brief Effettua il parsing dei parametri passati al programma
@@ -74,141 +80,9 @@ void howto(void);
  *
  * @retval 0 se il parsing ha successo
  * @retval -1 se si verifica un errore
- */
-int parse_args(	int 		argc,
-				char		**argv,
-				char		**uio_file,		// file uio da usare
-				uint8_t		*op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-				uint32_t	*mode_value,	// valore che l'utente intende scrivere nel registro mode
-				uint8_t		*op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-				uint32_t	*write_value,	// valore che l'utente intende scrivere nel registro write
-				uint8_t		*op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
-
-/**
- * @brief Effettua operazioni su un device
  *
- * @param [in] vrt_gpio_addr	indirizzo di memoria del device gpio
- * @param [in] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
- * @param [in] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
- * @param [in] op_write			sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
- * @param [in] write_value		conterra' il valore che l'utente intende scrivere nel registro write
- * @param [in] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ * @details
  */
-void gpio_op (	void* 		vrt_gpio_addr,	// indirizzo di memoria del device gpio
-				uint8_t 	op_mode,		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-				uint32_t	mode_value,		// valore che l'utente intende scrivere nel registro mode
-				uint8_t		op_write,		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-				uint32_t	write_value,	// valore che l'utente intende scrivere nel registro write
-				uint8_t		op_read);		// impostato ad 1 se l'utente intende effettuare lettura da read
-
-
-
-int main(int argc, char** argv) {
-	char* uio_file = 0;			// nome del file uio
-	uint8_t op_mode = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
-	uint32_t mode_value;		// valore che l'utente intende scrivere nel registro mode
-	uint8_t op_write = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su write
-	uint32_t write_value;		// valore che l'utente intende scrivere nel registro write
-	uint8_t op_read = 0;		// impostato ad 1 se l'utente intende effettuare lettura da read
-
-	if (parse_args(argc, argv, &uio_file, &op_mode, &mode_value, &op_write, &write_value, &op_read) == -1)
-		return -1;
-
-	if (uio_file == 0) {
-		printf("E' necessario specificare l'indirizzo di memoria del device.\n");
-		howto();
-		return -1;
-	}
-
-	/* E' possibile accedere ad ognuno dei device attraverso un file diverso. Tale file sara' /dev/uio0
-	 * per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
-	 * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
-	 * del device usando mmap().
-	 *
-	 * In questo caso accedere al device e' estremamente piu' semplice.
-	 * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
-	 * effettuare il mapping connettendo l'indirizzo fisico del device allo spazio di indirizzamento
-	 * del processo, senza la necessita' di conoscere l'indirizzo della periferica col quale di intende
-	 * comunicare.
-	 * Ad ogni periferica compatibile con UIO e' associato un file diverso in /dev/uioX attraverso il
-	 * quale e' possibile raggiungere il device.
-	 *
-	 */
-	int descriptor = open (uio_file, O_RDWR);
-	if (descriptor < 1) {
-		perror(argv[0]);
-		return -1;
-	}
-
-	/* Dopodiche' e' possibile connettere l'indirizzo fisico del device allo spazio di indirizzamento
-	 * del processo.
-	 *
-	 *		#include <sys/mman.h>
-	 *		void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
-	 *
-	 * The mmap() function shall establish a mapping between a process' address space and a file, shared
-	 * memory object, or  typed memory object.  The format of the call is as follows:
-	 *               pa=mmap(addr, len, prot, flags, fildes, off);
-	 *
-	 * 	- pa: 		indirizzo virtuale dell'address-space locale del processo, a cui viene eseguito il map.
-	 * 		  		Se il mapping ha successo viene restituito qualcosa di diverso da MAP_FAILED
-	 * 	- addr:
-	 *
-	 * 	- len:		lunghezza del blocco mappato
-	 *
-	 * 	- prot:		The  parameter  prot determines whether read, write, execute, or some combination of
-	 * 				accesses are permitted to the data being mapped.  The prot shall be either PROT_NONE
-	 * 				or the bit‐wise-inclusive OR of one or more of the other flags in the following table,
-	 * 				defined in the <sys/mman.h> header.
-	 * 				   Symbolic Constant   Description
-	 * 				   PROT_READ           Data can be read.
-	 * 				   PROT_WRITE          Data can be written.
-	 * 				   PROT_EXEC           Data can be executed.
-	 * 				   PROT_NONE           Data cannot be accessed.
-	 *
-	 * 	- flags:	The parameter flags provides other information about the handling of the mapped data.
-	 * 				The value of flags is the bitwise-inclusive OR of these options, defined in <sys/mman.h>:
-	 * 				   Symbolic Constant   Description
-	 * 				   MAP_SHARED          Changes are shared.
-	 * 				   MAP_PRIVATE         Changes are private.
-	 * 				   MAP_FIXED           Interpret addr exactly.
-	 *
-	 * 	- filedes:	descrittore del file uio
-	 *
-	 * 	- off:		indirizzo fisico del blocco che si intente mappare
-	 * 				The  off  argument  is  constrained to be aligned and sized according to the value returned
-	 * 				by sysconf() when passed _SC_PAGESIZE or _SC_PAGE_SIZE.
-	 *
-	 *
-	 * Rispetto al "driver" nodriver, la chiamata differisce per un solo perticolare: essendo descriptor il
-	 * descrittore di uioX, e l'offset specificato nullo, la funzione restituisce direttamente l'indirizzo
-	 * virtuale del device nello spazio di indirizzamento del processo.
-	 */
-	uint32_t page_size = sysconf(_SC_PAGESIZE);		// dimensione della pagina
-	void* vrt_gpio_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, 0);
-	if (vrt_gpio_addr == MAP_FAILED) {
-		printf("Mapping indirizzo fisico - indirizzo virtuale FALLITO!\n");
-		return -1;
-	}
-
-	gpio_op(vrt_gpio_addr, op_mode, mode_value, op_write, write_value, op_read);
-
-	munmap(vrt_gpio_addr, page_size);
-	close(descriptor);
-
-	return 0;
-}
-
-
-void howto(void) {
-	printf("Uso:\n");
-	printf("uio -d /dev/uioX -w|m <hex-value> -r\n");
-	printf("\t-m <hex-value>: scrive nel registro \"mode\"\n");
-	printf("\t-w <hex-value>: scrive nel registro \"write\"\n");
-	printf("\t-r: legge il valore del registro \"read\"\n");
-	printf("I parametri possono anche essere usati assieme.\n");
-}
-
 int parse_args(	int 		argc,
 				char		**argv,
 				char		**uio,			// file uio da usare
@@ -219,28 +93,32 @@ int parse_args(	int 		argc,
 				uint8_t		*op_read)		// impostato ad 1 se l'utente intende effettuare lettura da read
 {
 	int par;
-	/* Parsing dei parametri del programma.
-	 * 	#include <unistd.h>
-	 *
-     *  int getopt(int argc, char * const argv[], const char *optstring);
-     *
-     * The  getopt()  function parses the command-line arguments.  Its arguments argc and argv are
-     * the argument count and array as passed to the main() function on program invocation.  An
-     * element of argv that starts with '-' (and is not exactly "-" or "--") is an option element.
-     * The characters of this element (aside from the initial '-') are option characters.   If
-     * getopt() is called repeatedly, it returns successively each of the option characters from each
-     * of the option elements.
-     *
-     * If getopt() finds another option character, it returns that character, updating the external
-     * variable optind and a static variable nextchar so that the next call to getopt() can resume
-     * the scan with the following option character or argv-element. If there are no more option
-     * characters, getopt() returns -1.
-     *
-     * optstring is a string containing the legitimate option characters.  If such a character is
-     * followed by a colon, the option requires an argument, so getopt() places a pointer to the
-     * following text in the same argv-element, or the text of the following argv-element, in optarg.
-     * Two colons mean an option takes an optional arg;
-	 */
+/** <h4>Parsing dei parametri del programma.</h4>
+ * Il parsing viene effettuato usando la funzione getopt().
+ * @code
+ * #include <unistd.h>
+ * int getopt(int argc, char * const argv[], const char *optstring);
+ * @endcode
+ * Essa prende in input i parametri argc ed argv passati alla funzione main() quando il programma viene invocato.
+ * Quando una delle stringhe che compongono argv comincia con il carattere '-', getopt() la considera una opzione.
+ * Il carattere immediatamente successivo il '-' identifica la particolare opzione.
+ * La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati
+ * analizzati tutti i parametri passati al programma.
+ * Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta
+ * al prossimo parametro contenuto in argv.
+ * La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da ':' vuol dire che
+ * essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.
+ *
+ * <h4>Parametri riconosciuti</h4>
+ * La funzione riconosce i parametri:
+ *  - 'd' : seguito dal percordo del device /dev/uioX col quale interagire
+ *  - 'w' : operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra'
+ *          effettuata sul registro WRITE;
+ *  - 'm' : impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra'
+ *          effettuata sul registro MODE;
+ *  - 'r' : operazione di lettura, primo di argomento; la lettura viene effettuata dal registro READ ed e' non
+ *          bloccante, nel senso che viene semplicemente letto il contenuto del registro.
+ */
 	while((par = getopt(argc, argv, "d:w:m:r")) != -1) {
 		switch (par) {
 		case 'd' :
@@ -266,6 +144,23 @@ int parse_args(	int 		argc,
 	return 0;
 }
 
+
+/**
+ * @brief Effettua operazioni su un device
+ *
+ * @param [in] vrt_gpio_addr	indirizzo di memoria del device gpio
+ * @param [in] op_mode			sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode
+ * @param [in] mode_value		conterra' il valore che l'utente intende scrivere nel registro mode
+ * @param [in] op_write			sara' impostato ad 1 se l'utente intende effettuare scrittuara su write
+ * @param [in] write_value		conterra' il valore che l'utente intende scrivere nel registro write
+ * @param [in] op_read			sara' impostato ad 1 se l'utente intende effettuare lettura da read
+ *
+ * @details
+ * La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando
+ * esso viene invocato. E' stata scritta per funzionare sia con il GPIO Xilinx che con il GPIO custom myGPIO.
+ * E' possibile utilizzare il primo definendo la macro __XIL_GPIO__. Effettua, sul device, le operazioni
+ * impostate, in accordo con i parametri passati al programma alla sua invocazione.
+ */
 void gpio_op (	void* 		vrt_gpio_addr,
 				uint8_t 	op_mode,
 				uint32_t	mode_value,
@@ -273,7 +168,9 @@ void gpio_op (	void* 		vrt_gpio_addr,
 				uint32_t	write_value,
 				uint8_t		op_read)
 {
-#ifdef __XIL_GPIO__
+	printf("Indirizzo gpio: %08x\n", (uint32_t)vrt_gpio_addr);
+
+	#ifdef __XIL_GPIO__
 #define MODE_OFFSET		4U
 #define WRITE_OFFSET	0U
 #define READ_OFFSET		8U
@@ -281,10 +178,12 @@ void gpio_op (	void* 		vrt_gpio_addr,
 	myGPIO_t gpio;
 	myGPIO_init(&gpio, (uint32_t)vrt_gpio_addr);
 #endif
-
-
-
-	printf("Indirizzo gpio: %08x\n", (uint32_t)vrt_gpio_addr);
+/** <h4>Impostazione della modalita' di funzionamento</h4>
+ * Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di impostazione della modalita' di
+ * funzionamento del GPIO vengono effettuate scrivendo direttamente sul registro MODE del device. In caso contrario
+ * si e' preferito utilizzare la funzioni myGPIO_setMode() (Si veda il modulo myGPIO). Funzionalmente non c'e'
+ * differenza.
+ */
 	if (op_mode == 1) {
 #ifdef __XIL_GPIO__
 		*((uint32_t*)(vrt_gpio_addr+MODE_OFFSET)) = mode_value;
@@ -295,7 +194,12 @@ void gpio_op (	void* 		vrt_gpio_addr,
 #endif
 		printf("Scrittura sul registro mode: %08x\n", mode_value);
 	}
-
+/** <h4>Operazione di scrittura</h4>
+ * Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di scrittura del valore dei pin
+ * del device GPIO vengono effettuate scrivendo direttamente sul registro WRITE del device. In caso contrario
+ * si e' preferito utilizzare la funzioni myGPIO_setValue() (Si veda il modulo myGPIO). Funzionalmente non c'e'
+ * differenza.
+ */
 	if (op_write == 1) {
 #ifdef __XIL_GPIO__
 		*((uint32_t*)(vrt_gpio_addr+WRITE_OFFSET)) = write_value;
@@ -306,7 +210,14 @@ void gpio_op (	void* 		vrt_gpio_addr,
 #endif
 		printf("Scrittura sul registro write: %08x\n", write_value);
 	}
-
+/** <h4>Operazione di lettura</h4>
+ * Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di lettura del valore dei pin
+ * del device GPIO vengono effettuate leggendo direttamente dal registro READ del device. In caso contrario
+ * si e' preferito utilizzare la funzioni myGPIO_getRead() (Si veda il modulo myGPIO). Funzionalmente non c'e'
+ * differenza. La lettura e' non bloccante: viene semplicemente letto il valore contenuto nel registro.
+ * UIO permette l'implementazione di meccanismi di lettura basati su interruzione, ma in questo caso, per
+ * semplicita', tale meccanismo e' stato omesso. Si veda il modulo UIO-interrupt.
+ */
 	if (op_read == 1) {
 		uint32_t read_value = 0;
 #ifdef __XIL_GPIO__
@@ -316,6 +227,124 @@ void gpio_op (	void* 		vrt_gpio_addr,
 #endif
 		printf("Lettura dat registro read: %08x\n", read_value);
 	}
+}
+
+/**
+ * @brief funzione main().
+ *
+ * @details
+ */
+int main(int argc, char** argv) {
+	char* uio_file = 0;			// nome del file uio
+	uint8_t op_mode = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su mode
+	uint32_t mode_value;		// valore che l'utente intende scrivere nel registro mode
+	uint8_t op_write = 0;		// impostato ad 1 se l'utente intende effettuare scrittuara su write
+	uint32_t write_value;		// valore che l'utente intende scrivere nel registro write
+	uint8_t op_read = 0;		// impostato ad 1 se l'utente intende effettuare lettura da read
+
+	printf("%s build %d\n", argv[0], BUILD);
+
+/** <h4>Parsing dei parametri di invocazione</h4>
+ * Il parsing dei parametri passati al programma all'atto della sua invocazione viene effettuato dalla funzione
+ * parse_args(). Si rimanda alla sua documentazione per i dettagli sui parametri riconosciuti.
+ */
+	if (parse_args(argc, argv, &uio_file, &op_mode, &mode_value, &op_write, &write_value, &op_read) == -1)
+		return -1;
+/**
+ * Se non viene specificato il device UIO col quale interagire e' impossibile continuare.
+ * Per questo motivo, in questo caso, il programma viene terminato.
+ */
+	if (uio_file == 0) {
+		printf("E' necessario specificare il device UIO col quale interagire.\n");
+		howto();
+		return -1;
+	}
+/** <h4>Accesso ad un device /dev/uioX</h4>
+ * Il driver generic-UIO e' il driver generico per eccellenza. Ad ogni periferica compatibile con
+ * UIO e' associato un file diverso in /dev/uioX attraverso il quale e' possibile raggiungere il device.
+ * Tale file sara' /dev/uio0 per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via.
+ * on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi
+ * del device usando mmap().
+ *
+ * In questo caso, rispetto all'esempio noDriver, accedere al device e' estremamente piu' semplice.
+ * Se il device e' compatibile con il driver UIO, e' possibile "aprire" un file in /dev/uioX,
+ * effettuare il mapping, connettendo il device allo spazio di indirizzamento del processo, senza la
+ * necessita' di conoscere l'indirizzo fisico della periferica col quale di intende comunicare.
+ *
+ * L'accesso al device /dev/uioX viene ottenuto mediante la system-call open():
+ * @code
+ * #include <sys/stat.h>
+ * #include <fcntl.h>
+ * int open(const char *path, int oflag, ...  );
+ * @endcode
+ * la quale restituisce il descrittore del file /dev/uioX, usato nel seguito per effettuare le operazioni
+ * di I/O. I valori del parametro oflag specificano il modo in cui il file /dev/uioX viene aperto. In questo
+ * caso viene usato O_RDWR, il quale garantisce accesso in lettura ed in scrittura. Altri valori sono O_RDONLY,
+ * il quale garantisce accesso in sola lettura, ed O_WRONLY, che, invece, garantisce accesso in sola scrittura.
+ */
+	int descriptor = open (uio_file, O_RDWR);
+	if (descriptor < 1) {
+		perror(argv[0]);
+		return -1;
+	}
+/** <h4>Mapping un device /dev/uioX</h4>
+ * La "conversione" dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di
+ * indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce
+ * un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o
+ * un qualsiasi altro memory-object, restituendo un indirizzo virtuale valido, attraverso il quale e' possibile
+ * accedere al blocco di memoria fisico.
+ * @code
+ *		#include <sys/mman.h>
+ *		void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
+ * @endcode
+ * Per semplicita' supponiamo che la chiamata alla funzione sia la seguente:
+ *               <center>pa=mmap(addr, len, prot, flags, fildes, off);</center>
+ * la semantica dei diversi parametri e':
+ * 	- pa: indirizzo virtuale dell'address-space locale del processo, a cui viene eseguito il map; se il mapping
+ * 	  ha successo viene restituito qualcosa di diverso da MAP_FAILED;
+ * 	- addr:
+ * 	- len: lunghezza, in byte, del blocco mappato; in questo caso viene usato il valore restituito da
+ * 	  sysconf(_SC_PAGESIZE);
+ * 	- prot: specifica i permessi di accesso al blocco di memoria del quale si sta facendo il mapping;
+ * 		- PROT_READ indica che il blocco puo' essere letto;
+ * 		- PROT_WRITE indica che il blocco puo' essere scritto;
+ * 		- PROT_NONE sta ad indicare che il blocco non puo' essere acceduto;
+ * 	    .
+ * 	- flags:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il
+ * 	  mapping; il valore del flag puo' essere uno dei seguenti:
+ * 	  	- MAP_SHARED: modifiche al blocco sono condivise con chiunque altri lo stia usando;
+ * 	  	- MAP_PRIVATE: le modifiche sono primate;
+ *		.
+ * 	- filedes: descrittore del file /dev/mem
+ * 	- off: indirizzo fisico del blocco che si intente mappare; e' necessario che sia allineato alla dimensione
+ * 	  della pagina di memoria, cosi' come restituito dalla funzione sysconf(_SC_PAGESIZE);
+ *
+ * In questo caso la chiamata a mmap avviene con i seguenti parametri:
+ * @code
+ * uint32_t page_size = sysconf(_SC_PAGESIZE);		// dimensione della pagina
+ * void* vrt_gpio_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, 0);
+ * @endcode
+ *
+ * Rispetto al "driver" nodriver, la chiamata differisce per un solo perticolare: essendo descriptor il
+ * descrittore di uioX, e l'offset specificato nullo, la funzione restituisce direttamente l'indirizzo virtuale
+ * del device nello spazio di indirizzamento del processo.
+ */
+	uint32_t page_size = sysconf(_SC_PAGESIZE);		// dimensione della pagina
+	void* vrt_gpio_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, 0);
+	if (vrt_gpio_addr == MAP_FAILED) {
+		printf("Mapping indirizzo fisico - indirizzo virtuale FALLITO!\n");
+		return -1;
+	}
+/** <h4>Operazioni sul device</h4>
+ * Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate
+ * dalla funzione gpio_op(). Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().
+ */
+	gpio_op(vrt_gpio_addr, op_mode, mode_value, op_write, write_value, op_read);
+
+	munmap(vrt_gpio_addr, page_size);
+	close(descriptor);
+
+	return 0;
 }
 
 /**

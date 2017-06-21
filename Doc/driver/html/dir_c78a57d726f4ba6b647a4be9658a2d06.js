@@ -1,4 +1,5 @@
 var dir_c78a57d726f4ba6b647a4be9658a2d06 =
 [
-    [ "myGPIOK.c", "my_g_p_i_o_k_8c.html", "my_g_p_i_o_k_8c" ]
+    [ "myGPIOK.c", "my_g_p_i_o_k_8c.html", "my_g_p_i_o_k_8c" ],
+    [ "myGPIOK.mod.c", "my_g_p_i_o_k_8mod_8c.html", "my_g_p_i_o_k_8mod_8c" ]
 ];

@@ -27,10 +27,12 @@
  * @{
  * @addtogroup Kernel-Driver
  * @{
- * @defgroup Userspace-program
+ * @addtogroup Userspace-program
+ * @{
+ * @defgroup userspace-readall
  * @{
  *
- * @brief Programma di test. Legge tutti i registri della periferica direttamente dal file /dev/mem
+ * @brief Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem
  */
 
 #include <inttypes.h>
@@ -116,6 +118,8 @@ int main(int argc, char** argv) {
 
 
 /**
+ * @}
+ * @}
  * @}
  * @}
  * @}

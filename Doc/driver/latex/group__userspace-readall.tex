@@ -1,0 +1,57 @@
+\hypertarget{group__userspace-readall}{\section{Userspace-\/readall}
+\label{group__userspace-readall}\index{Userspace-\/readall@{Userspace-\/readall}}
+}
+
+
+Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem.  
+
+
+Diagramma di collaborazione per Userspace-\/readall\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{group__userspace-readall}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__userspace-readall_ga05909651fa170a63e98e3f8e13451b7b}{howto} (void)
+\item 
+int \hyperlink{group__userspace-readall_ga87c1177178432113628b0885b0cff1b2}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, uint32\+\_\+t $\ast$gpio\+\_\+address, uint32\+\_\+t $\ast$max\+\_\+offset)
+\item 
+int \hyperlink{group__userspace-readall_ga3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{group__userspace-readall_ga05909651fa170a63e98e3f8e13451b7b}{\index{Userspace-\/readall@{Userspace-\/readall}!howto@{howto}}
+\index{howto@{howto}!Userspace-\/readall@{Userspace-\/readall}}
+\subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__userspace-readall_ga05909651fa170a63e98e3f8e13451b7b}
+\hypertarget{group__userspace-readall_ga3c04138a5bfe5d72780bb7e82a18e627}{\index{Userspace-\/readall@{Userspace-\/readall}!main@{main}}
+\index{main@{main}!Userspace-\/readall@{Userspace-\/readall}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{group__userspace-readall_ga3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{group__userspace-readall_ga87c1177178432113628b0885b0cff1b2}{\index{Userspace-\/readall@{Userspace-\/readall}!parse\+\_\+args@{parse\+\_\+args}}
+\index{parse\+\_\+args@{parse\+\_\+args}!Userspace-\/readall@{Userspace-\/readall}}
+\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{uint32\+\_\+t $\ast$}]{gpio\+\_\+address, }
+\item[{uint32\+\_\+t $\ast$}]{max\+\_\+offset}
+\end{DoxyParamCaption}
+)}}\label{group__userspace-readall_ga87c1177178432113628b0885b0cff1b2}

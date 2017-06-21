@@ -1,11 +1,13 @@
 obj-m := myGPIOK.o
 KERNEL_SOURCE := /home/ssaa/linux-zybo/Linux-Digilent-Dev/
 PWD := $(shell pwd)
+BUILD_N := $(shell date +"%s")
 ARCH=arm
 CROSS_COMPILE=arm-xilinx-linux-gnueabi-
-CFLAGS_myGPIOK.o := -D__XGPIO__
+CFLAGS_myGPIOK.o := -DBUILD=$(BUILD_N) -D__XGPIO__
 
 default:
+	@echo "BUILD ID : " $(BUILD_N)
 	${MAKE} -C ${KERNEL_SOURCE} SUBDIRS=${PWD} modules
 	
 clean:

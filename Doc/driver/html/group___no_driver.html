@@ -127,21 +127,12 @@ Funzioni</h2></td></tr>
 <tr class="memdesc:ga879d8b839631449ecb5bc4d0721432b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effettua operazioni su un device.  <a href="#ga879d8b839631449ecb5bc4d0721432b6">Continua...</a><br /></td></tr>
 <tr class="separator:ga879d8b839631449ecb5bc4d0721432b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___no_driver.html#ga3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">funzione <a class="el" href="group___no_driver.html#ga3c04138a5bfe5d72780bb7e82a18e627" title="funzione main(). ">main()</a>.  <a href="#ga3c04138a5bfe5d72780bb7e82a18e627">Continua...</a><br /></td></tr>
 <tr class="separator:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <p>Questo e' un programma di esempio per l'interfacciamento con una periferica myGPIO. </p>
-<p>In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri di memoria, senza mediazione di altri driver. Questo presuppone che si sia nelle condizioni di poter calcolare dell'indirizzo di memoria virtuale del device. <br />
-</p>
-<p>Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo agli indirizzo di memoria (virtuali) appartenenti al suo address-space. Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping di quell'indirizzo nell'address space del processo. Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina appartenga l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente la dimensione delle pagine e' una potenza del due. Si supponga che l'indirizzo di cui si vuole fare il mapping e' <b>0x43C002F0</b> e che la dimensione delle pagine sia 16KB. Scrivendo la dimensione delle pagine in esadecimale <br />
- <b>0x00002000</b> <br />
- sottraendo 1 <br />
- <b>0x00001FFF</b> <br />
- negando <br />
- <b>0xFFFFE000</b><br />
- si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di memoria a cui l'indirizzo appartiene. In questo caso <br />
- <b>0x43C002F0 &amp; 0xFFFFE000 = 0x43C00000</b> <br />
- L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina stessa. </p>
+<p>In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri di memoria, senza mediazione di altri driver, usando il device /dev/mem. </p>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
 <a class="anchor" id="ga879d8b839631449ecb5bc4d0721432b6"></a>
 <div class="memitem">
@@ -199,10 +190,17 @@ Funzioni</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mode_value</td><td>conterra' il valore che l'utente intende scrivere nel registro mode </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">op_write</td><td>sara' impostato ad 1 se l'utente intende effettuare scrittuara su write </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">write_value</td><td>conterra' il valore che l'utente intende scrivere nel registro write </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">op_read</td><td>sara' impostato ad 1 se l'utente intende effettuare lettura da read </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">op_read</td><td>sara' impostato ad 1 se l'utente intende effettuare lettura da read</td></tr>
   </table>
   </dd>
 </dl>
+<p>La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il GPIO Xilinx che con il GPIO custom myGPIO. E' possibile utilizzare il primo definendo la macro <b>XIL_GPIO</b>. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. </p>
+<h4>Impostazione della modalita' di funzionamento</h4>
+<p>Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di impostazione della modalita' di funzionamento del GPIO vengono effettuate scrivendo direttamente sul registro MODE del device. In caso contrario si e' preferito utilizzare la funzioni <a class="el" href="group__my_g_p_i_o.html#ga38a2ea04d07af50f7f570f0367594c8b" title="Permette di settare la modalita&#39; lettura/scrittura dei pin di un device myGPIO;. ">myGPIO_setMode()</a> (Si veda il modulo myGPIO). Funzionalmente non c'e' differenza.</p>
+<h4>Operazione di scrittura</h4>
+<p>Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di scrittura del valore dei pin del device GPIO vengono effettuate scrivendo direttamente sul registro WRITE del device. In caso contrario si e' preferito utilizzare la funzioni <a class="el" href="group__my_g_p_i_o.html#gab742e68093ad4c90fe299b64fd6736ca" title="Permette di settare il valore dei pin di un device myGPIO, se configurati come output. ">myGPIO_setValue()</a> (Si veda il modulo myGPIO). Funzionalmente non c'e' differenza.</p>
+<h4>Operazione di lettura</h4>
+<p>Nel caso in cui si stia operando su un device GPIO Xilinx, le operazioni di lettura del valore dei pin del device GPIO vengono effettuate leggendo direttamente dal registro READ del device. In caso contrario si e' preferito utilizzare la funzioni <a class="el" href="group__my_g_p_i_o.html#gadb3ecd03ea82420488977134c9313e18" title="Restituisce la maschera dei pin settati di un device myGPIO. ">myGPIO_getRead()</a> (Si veda il modulo myGPIO). Funzionalmente non c'e' differenza. La lettura e' non bloccante: viene semplicemente letto il valore contenuto nel registro perche' tale modalita' di interazione non permette l'implementazione di un meccanismo di lettura basato su interruzioni.</p>
 
 </div>
 </div>
@@ -247,6 +245,57 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>funzione <a class="el" href="group___no_driver.html#ga3c04138a5bfe5d72780bb7e82a18e627" title="funzione main(). ">main()</a>. </p>
+<h4>Parsing dei parametri di invocazione</h4>
+<p>Il parsing dei parametri passati al programma all'atto della sua invocazione viene effettuato dalla funzione <a class="el" href="group___no_driver.html#ga218f8a9dfc36572bfe2230c5e2d2c776" title="Effettua il parsing dei parametri passati al programma. ">parse_args()</a>. Si rimanda alla sua documentazione per i dettagli sui parametri riconosciuti.</p>
+<p>Se non viene specificato l'indirizzo fisico del device al quale accedere e' impossibile continuare. Per questo motivo, in questo caso, il programma viene terminato.</p>
+<h4>Apertura di /dev/mem</h4>
+<p>In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri di memoria, senza mediazione di altri driver, usando il device /dev/mem. Questo presuppone che si sia nelle condizioni di poter calcolare dell'indirizzo di memoria virtuale del device. <br />
+ L'accesso al device /dev/mem viene ottenuto mediante la system-call open(): </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#include &lt;sys/stat.h&gt;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#include &lt;fcntl.h&gt;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;int open(const char *path, int oflag, ...  );</div>
+</div><!-- fragment --><p> la quale restituisce il descrittore del file /dev/mem, usato nel seguito per effettuare le operazioni di I/O. I valori del parametro oflag specificano il modo in cui il file /dev/mem viene aperto. In questo caso viene usato O_RDWR, il quale garantisce accesso in lettura ed in scrittura. Altri valori sono O_RDONLY, il quale garantisce accesso in sola lettura, ed O_WRONLY, che, invece, garantisce accesso in sola scrittura.</p>
+<h4>Calcolo dell'indirizzo virtuale del device.</h4>
+<p>Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo agli indirizzo di memoria (virtuali) appartenenti al suo address-space. Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping di quell'indirizzo nell'address space del processo. Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina appartenga l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente la dimensione delle pagine e' una potenza del due. Si supponga che l'indirizzo di cui si vuole fare il mapping e' <b>0x43C002F0</b> e che la dimensione delle pagine sia 16KB. Scrivendo la dimensione delle pagine in esadecimale <br />
+ </p><center><b>0x00002000</b></center><p><br />
+ sottraendo 1 <br />
+ </p><center><b>0x00001FFF</b></center><p><br />
+ negando <br />
+ </p><center><b>0xFFFFE000</b></center><p><br />
+ si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di memoria a cui l'indirizzo appartiene. In questo caso <br />
+ </p><center><b>0x43C002F0 &amp; 0xFFFFE000 = 0x43C00000</b></center><p><br />
+ L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina stessa.</p>
+<h4>Conversione dell'indirizzo fisico in indirizzo virtuale</h4>
+<p>La "conversione" dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o un qualsiasi altro memory-object, restituendo un indirizzo virtuale valido, attraverso il quale e' possibile accedere al blocco di memoria fisico. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#include &lt;sys/mman.h&gt;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);</div>
+</div><!-- fragment --><p> Per semplicita' supponiamo che la chiamata alla funzione sia la seguente: </p><center>pa=mmap(addr, len, prot, flags, fildes, off);</center><p> la semantica dei diversi parametri e':</p><ul>
+<li>pa: indirizzo virtuale dell'address-space locale del processo, a cui viene eseguito il map; se il mapping ha successo viene restituito qualcosa di diverso da MAP_FAILED;</li>
+<li>addr:</li>
+<li>len: lunghezza, in byte, del blocco mappato; in questo caso viene usato il valore restituito da sysconf(_SC_PAGESIZE);</li>
+<li>prot: specifica i permessi di accesso al blocco di memoria del quale si sta facendo il mapping;<ul>
+<li>PROT_READ indica che il blocco puo' essere letto;</li>
+<li>PROT_WRITE indica che il blocco puo' essere scritto;</li>
+<li>PROT_NONE sta ad indicare che il blocco non puo' essere acceduto;</li>
+</ul>
+</li>
+<li>flags:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il mapping; il valore del flag puo' essere uno dei seguenti:<ul>
+<li>MAP_SHARED: modifiche al blocco sono condivise con chiunque altri lo stia usando;</li>
+<li>MAP_PRIVATE: le modifiche sono primate;</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>filedes: descrittore del file /dev/mem</li>
+<li>off: indirizzo fisico del blocco che si intente mappare; e' necessario che sia allineato alla dimensione della pagina di memoria, cosi' come restituito dalla funzione sysconf(_SC_PAGESIZE);</li>
+</ul>
+<p>In questo caso la chiamata a mmap avviene con i seguenti parametri: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;uint32_t page_size = sysconf(_SC_PAGESIZE);     // dimensione della pagina</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;uint32_t page_mask = ~(page_size-1);            // maschera di conversione indirizzo -&gt; indirizzo pagina</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;uint32_t page_addr = gpio_addr &amp; page_mask;     // indirizzo della &quot;pagina fisica&quot; a cui e&#39; mappato il device</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;uint32_t offset = gpio_addr - page_addr;        // offset del device rispetto all&#39;indirizzo della pagina</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;void* vrt_page_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, page_addr) + offset;</div>
+</div><!-- fragment --><h4>Operazioni sul device</h4>
+<p>Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate dalla funzione <a class="el" href="group___no_driver.html#ga879d8b839631449ecb5bc4d0721432b6" title="Effettua operazioni su un device. ">gpio_op()</a>. Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().</p>
 
 </div>
 </div>
@@ -331,6 +380,17 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
+<h4>Parsing dei parametri del programma.</h4>
+<p>Il parsing viene effettuato usando la funzione getopt(). </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#include &lt;unistd.h&gt;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int getopt(int argc, char * const argv[], const char *optstring);</div>
+</div><!-- fragment --><p> Essa prende in input i parametri argc ed argv passati alla funzione <a class="el" href="group___no_driver.html#ga3c04138a5bfe5d72780bb7e82a18e627" title="funzione main(). ">main()</a> quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-', getopt() la considera una opzione. Il carattere immediatamente successivo il '-' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da ':' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.</p>
+<h4>Parametri riconosciuti</h4>
+<p>La funzione riconosce i parametri:</p><ul>
+<li>'a' : seguito dall'indirizzo fisico della periferica con la quale interagire, il quale puo' essere indicato in esadecimale;</li>
+<li>'w' : operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro WRITE;</li>
+<li>'m' : impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro MODE;</li>
+<li>'r' : operazione di lettura, primo di argomento; la lettura viene effettuata dal registro READ ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.</li>
+</ul>
 
 </div>
 </div>
@@ -339,7 +399,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mer 21 Giu 2017 11:45:22 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 21 Giu 2017 17:32:49 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

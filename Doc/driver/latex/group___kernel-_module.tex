@@ -344,19 +344,17 @@ Il parametro inode contiene tutte le informazioni necessarie all'interno del cam
 
 Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. 
 
-Questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno.
 
-
-\begin{DoxyParams}{Parametri}
-{\em file} & \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em file} & \\
 \hline
-{\em wait} & \\
+\mbox{\tt in,out}  & {\em wait} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-restituisce una maschera di bit che indica se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili. 
+restituisce una maschera di bit che indica se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
 \end{DoxyReturn}
-\hypertarget{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}}
+Questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno. \hypertarget{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}}
 \index{my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}!Kernel-\/\+Module@{Kernel-\/\+Module}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+probe}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+probe (
 \begin{DoxyParamCaption}
@@ -621,7 +619,7 @@ Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una 
 \end{DoxyCode}
  Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait\+\_\+event\+\_\+interruptible() puo' essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero, indica che il processo e' stato risvegliato da un segnale.
 
-La condizione sulla quale i processi vengono bloccati riguarda il flag \char`\"{}interrupt occurred\char`\"{}. Fin quando questo flag, posto in and con la maschera M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D, e' zero, il processo deve restare bloccato, per cui i processi che effettuano read() bloccante restano bloccati finoche' int\+\_\+occurred \& M\+Y\+G\+P\+I\+O\+\_\+\+S\+R\+E\+A\+D == 0.
+La condizione sulla quale i processi vengono bloccati riguarda il flag \char`\"{}interrupt occurred\char`\"{}. Fin quando questo flag, posto in and con la maschera M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D, e' zero, il processo deve restare bloccato, per cui i processi che effettuano read() bloccante restano bloccati finche' int\+\_\+occurred \& M\+Y\+G\+P\+I\+O\+\_\+\+S\+R\+E\+A\+D == 0. Quando tale uguaglianza non sara' piu' valida, perche' il valore di int\+\_\+occurred viene settato dalla funzione \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()}, allora il processo verra' risvegliato.
 
 \subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() bloccanti}
 
@@ -640,10 +638,6 @@ I semafori sono uno strumento potentissimo per per l'implementazione di sezioni 
 \subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() non-\/bloccanti}
 
 Anche nel caso in cui la read() non sia bloccante e' necessario resettare il flag in modo opportuno e per prevenire inconsistenze, anche questa operazione deve essere effettuata avendo accesso esclusivo al flag interrupt occurred.
-
-\subparagraph*{Calcolo dell'indirizzo effettivo}
-
-L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
 
 \subparagraph*{Accesso ai registri del device}
 
@@ -783,10 +777,6 @@ Ovviamente il driver deve essere in grado di poter accedere al buffer userspace,
 \subparagraph*{Piccola nota sull'endianess}
 
 Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char$\ast$ in uint32\+\_\+t$\ast$ mediante un semplice casting, senza invertire manualmente l'ordine dei byte.
-
-\subparagraph*{Calcolo dell'indirizzo effettivo}
-
-L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
 
 \subparagraph*{Accesso ai registri del device}
 

@@ -28,7 +28,7 @@ var NAVTREEINDEX =
 [
 "_zybo_8h.html",
 "group___switch.html#gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651",
-"structmy_g_p_i_o__t.html"
+"struct_zybo_led__t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
