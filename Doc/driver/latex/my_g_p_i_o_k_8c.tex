@@ -14,6 +14,7 @@
 {\ttfamily \#include $<$linux/device.\+h$>$}\\*
 {\ttfamily \#include $<$linux/platform\+\_\+device.\+h$>$}\\*
 {\ttfamily \#include $<$linux/cdev.\+h$>$}\\*
+{\ttfamily \#include $<$linux/wait.\+h$>$}\\*
 {\ttfamily \#include $<$linux/interrupt.\+h$>$}\\*
 {\ttfamily \#include $<$linux/irqreturn.\+h$>$}\\*
 {\ttfamily \#include $<$linux/spinlock.\+h$>$}\\*
@@ -43,7 +44,11 @@ struct \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}
 \#define \hyperlink{group___kernel-_module_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}
 \begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___kernel-_module_ga605a877d5e63c79a65d4a57d364680b4}{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}~1
-\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti da driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti da driver. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___kernel-_module_ga71d797b61faad7d2c7071da10880a71d}{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D}~1
+\begin{DoxyCompactList}\small\item\em Flag il cui significato e' \char`\"{}e' possibile servire una read() bloccante\char`\"{}. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___kernel-_module_ga2ae183c0bf8cbddbd7337f6b8a3d598b}{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D}~2
+\begin{DoxyCompactList}\small\item\em Flag il cui significato e' \char`\"{}e' possibile servire una read() non-\/bloccante\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -64,21 +69,7 @@ static ssize\+\_\+t \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a77
 static ssize\+\_\+t \hyperlink{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write} (struct file $\ast$file\+\_\+ptr, const char $\ast$buf, size\+\_\+t size, loff\+\_\+t $\ast$off)
 \begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
 static irqreturn\+\_\+t \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler} (int irq, struct pt\+\_\+regs $\ast$regs)
-\item 
-\hyperlink{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E} (of, \hyperlink{group___kernel-_module_ga91f28437e0a553effa546d16fa44f03a}{my\+G\+P\+I\+Ok\+\_\+match})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver} (\hyperlink{group___kernel-_module_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E} (\char`\"{}G\+P\+L\char`\"{})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_aa528ef168ff30340d38c46a12fce906b}{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R} (\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_a1a0de0abbfec8f65abc50ccd3a549a4d}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N} (\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_a4b75c2cb371865e62f06fc635df9401e}{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N} (\char`\"{}0.\+1\char`\"{})
-\item 
-\hyperlink{my_g_p_i_o_k_8c_a1681c4acdb2692baf523dbf58f940399}{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S} (\hyperlink{group___kernel-_module_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Interrupt-\/handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variabili}
 \begin{DoxyCompactItemize}
 \item 
@@ -115,55 +106,3 @@ Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify i
 Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
 
 You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 
-
-\subsection{Documentazione delle funzioni}
-\hypertarget{my_g_p_i_o_k_8c_a1681c4acdb2692baf523dbf58f940399}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S@{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S@{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S (
-\begin{DoxyParamCaption}
-\item[{{\bf D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_a1681c4acdb2692baf523dbf58f940399}
-\hypertarget{my_g_p_i_o_k_8c_aa528ef168ff30340d38c46a12fce906b}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R@{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R@{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R (
-\begin{DoxyParamCaption}
-\item[{\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_aa528ef168ff30340d38c46a12fce906b}
-\hypertarget{my_g_p_i_o_k_8c_a1a0de0abbfec8f65abc50ccd3a549a4d}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N (
-\begin{DoxyParamCaption}
-\item[{\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_a1a0de0abbfec8f65abc50ccd3a549a4d}
-\hypertarget{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E (
-\begin{DoxyParamCaption}
-\item[{of}]{, }
-\item[{{\bf my\+G\+P\+I\+Ok\+\_\+match}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}
-\hypertarget{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E (
-\begin{DoxyParamCaption}
-\item[{\char`\"{}G\+P\+L\char`\"{}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_ad94b36675e7eb067ea3ce6ff9e244a44}
-\hypertarget{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}}
-\index{module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{module\+\_\+platform\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}module\+\_\+platform\+\_\+driver (
-\begin{DoxyParamCaption}
-\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+driver}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}
-\hypertarget{my_g_p_i_o_k_8c_a4b75c2cb371865e62f06fc635df9401e}{\index{my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}!M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
-\index{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!my\+G\+P\+I\+O\+K.\+c@{my\+G\+P\+I\+O\+K.\+c}}
-\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N (
-\begin{DoxyParamCaption}
-\item[{\char`\"{}0.\+1\char`\"{}}]{}
-\end{DoxyParamCaption}
-)}}\label{my_g_p_i_o_k_8c_a4b75c2cb371865e62f06fc635df9401e}

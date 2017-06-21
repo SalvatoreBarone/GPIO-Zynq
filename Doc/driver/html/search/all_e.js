@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['read_5foffset',['read_offset',['../structmy_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48',1,'myGPIO_t::read_offset()'],['../group___userspace-program.html#gad32c3a5b42163e171daccde5b5d5de02',1,'READ_OFFSET():&#160;gpio.c']]],
-  ['required_5fminor_5fnumber',['REQUIRED_MINOR_NUMBER',['../group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4',1,'myGPIOK.c']]],
-  ['rs',['RS',['../struct_h_d44780___l_c_d__t.html#a120bc0a069f764630359d9655fe0c46d',1,'HD44780_LCD_t']]],
-  ['rsrc',['rsrc',['../structmy_g_p_i_o_k__t.html#a565a1848c3ae8026257a74cf169c6941',1,'myGPIOK_t']]],
-  ['rsrc_5fsize',['rsrc_size',['../structmy_g_p_i_o_k__t.html#a0f87b53dc5049a349ef01aa586c0b5dc',1,'myGPIOK_t']]],
-  ['rw',['RW',['../struct_h_d44780___l_c_d__t.html#af404868fc36134454144950be4977d95',1,'HD44780_LCD_t']]]
+  ['sl_5ftotal_5firq',['sl_total_irq',['../structmy_g_p_i_o_k__t.html#ac41bbc7fe03ef25b7f468275fb565d78',1,'myGPIOK_t']]],
+  ['slock_5fint',['slock_int',['../structmy_g_p_i_o_k__t.html#a1e1ddf972b4dc84dd331a0c72e5d9895',1,'myGPIOK_t']]],
+  ['switch',['Switch',['../group___switch.html',1,'']]],
+  ['switch0_5fpin',['Switch0_pin',['../struct_zybo_switch__t.html#aa125c82837d72bdb20a0e22f3a86646e',1,'ZyboSwitch_t']]],
+  ['switch1_5fpin',['Switch1_pin',['../struct_zybo_switch__t.html#aa031241ea0c12a6f327d3697113e992c',1,'ZyboSwitch_t']]],
+  ['switch2_5fpin',['Switch2_pin',['../struct_zybo_switch__t.html#aacdefa991c974546015032b1bb95ea1e',1,'ZyboSwitch_t']]],
+  ['switch3_5fpin',['Switch3_pin',['../struct_zybo_switch__t.html#ab2ea73dda75022931396b29e1c377cfb',1,'ZyboSwitch_t']]]
 ];

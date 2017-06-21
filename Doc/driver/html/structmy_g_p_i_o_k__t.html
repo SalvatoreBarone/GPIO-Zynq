@@ -126,8 +126,20 @@ Campi</h2></td></tr>
 <tr class="separator:a18c4eb95350c67ccb239a8a39c43c09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f87b53dc5049a349ef01aa586c0b5dc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a0f87b53dc5049a349ef01aa586c0b5dc">rsrc_size</a></td></tr>
 <tr class="separator:a0f87b53dc5049a349ef01aa586c0b5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fb037ce37d63eb2c327ec952c74d2e9"><td class="memItemLeft" align="right" valign="top">uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a7fb037ce37d63eb2c327ec952c74d2e9">vrtl_addr</a></td></tr>
-<tr class="separator:a7fb037ce37d63eb2c327ec952c74d2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5aef493b3c2bc9d1f036ce0acea9bba"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#af5aef493b3c2bc9d1f036ce0acea9bba">vrtl_addr</a></td></tr>
+<tr class="separator:af5aef493b3c2bc9d1f036ce0acea9bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251570f8e6976ad87411093e330e7b4f"><td class="memItemLeft" align="right" valign="top">wait_queue_head_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a251570f8e6976ad87411093e330e7b4f">read_queue</a></td></tr>
+<tr class="separator:a251570f8e6976ad87411093e330e7b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2080617f88cafd765430573afe7701d1"><td class="memItemLeft" align="right" valign="top">wait_queue_head_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a2080617f88cafd765430573afe7701d1">poll_queue</a></td></tr>
+<tr class="separator:a2080617f88cafd765430573afe7701d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd94ecf2bef1aa7bd105577b660a112"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a6fd94ecf2bef1aa7bd105577b660a112">int_occurred</a></td></tr>
+<tr class="separator:a6fd94ecf2bef1aa7bd105577b660a112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1ddf972b4dc84dd331a0c72e5d9895"><td class="memItemLeft" align="right" valign="top">spinlock_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a1e1ddf972b4dc84dd331a0c72e5d9895">slock_int</a></td></tr>
+<tr class="separator:a1e1ddf972b4dc84dd331a0c72e5d9895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da711ac290a9613b8d8af97f122b997"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a2da711ac290a9613b8d8af97f122b997">total_irq</a></td></tr>
+<tr class="separator:a2da711ac290a9613b8d8af97f122b997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41bbc7fe03ef25b7f468275fb565d78"><td class="memItemLeft" align="right" valign="top">spinlock_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#ac41bbc7fe03ef25b7f468275fb565d78">sl_total_irq</a></td></tr>
+<tr class="separator:ac41bbc7fe03ef25b7f468275fb565d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Stuttura per l'astrazione di un device. </p>
@@ -146,6 +158,23 @@ Campi</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6fd94ecf2bef1aa7bd105577b660a112"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t int_occurred</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flag "interrupt occurred" Il valore viene settato dalla funzione <a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a> al manifestarsi di un interrupt, prima di risvegliare i processi in attesa che tale variabile assuma uno specifico valore. I valori con cui questo flag puo' essere settato sono due:</p><ul>
+<li>MYGPIOK_SREAD : per la read bloccante.</li>
+<li>MYGPIOK_AREAD : pre la read non bloccante.</li>
+</ul>
+<p>I processi che effettuano read() bloccante restano bloccati finoche' int_occurred &amp; MYGPIO_SREAD != 0 </p>
+
+</div>
+</div>
 <a class="anchor" id="a42a1593ebe61611c4e29413903a373a5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +184,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>interrupt-number a cui il device e' connesso. Restituito salla chiamata alla funzione irq_of_parse_and_map() </p>
+<p>interrupt-number a cui il device e' connesso. Restituito dalla chiamata alla funzione irq_of_parse_and_map() </p>
 
 </div>
 </div>
@@ -172,6 +201,32 @@ Campi</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2080617f88cafd765430573afe7701d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wait_queue_head_t poll_queue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>wait queue per la system-call poll() </p>
+
+</div>
+</div>
+<a class="anchor" id="a251570f8e6976ad87411093e330e7b4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">wait_queue_head_t read_queue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>wait queue per la system-call read() Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante non ha la minima conoscenza delle dinamiche interne del device, per cui, nell'impossibilita' di servire la richiesta, il driver deve bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non puo' essere servita. Tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in &lt;linux/wait.h&gt;. </p>
+
+</div>
+</div>
 <a class="anchor" id="a565a1848c3ae8026257a74cf169c6941"></a>
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +236,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa e' mappata. In particolare i campi "start" ed "end" contendono, rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device e' mappato. </p>
+<p>Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa e' mappata. In particolare i campi "start" ed "end" contengono, rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device e' mappato. </p>
 
 </div>
 </div>
@@ -198,12 +253,52 @@ Campi</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7fb037ce37d63eb2c327ec952c74d2e9"></a>
+<a class="anchor" id="ac41bbc7fe03ef25b7f468275fb565d78"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t* vrtl_addr</td>
+          <td class="memname">spinlock_t sl_total_irq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile total_irq da parte delle funzioni del modulo </p>
+
+</div>
+</div>
+<a class="anchor" id="a1e1ddf972b4dc84dd331a0c72e5d9895"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">spinlock_t slock_int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int_occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un
+po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2da711ac290a9613b8d8af97f122b997"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t total_irq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>numero totale di interrupt manifestatesi </p>
+
+</div>
+</div>
+<a class="anchor" id="af5aef493b3c2bc9d1f036ce0acea9bba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* vrtl_addr</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -220,7 +315,7 @@ Campi</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structmy_g_p_i_o_k__t.html">myGPIOK_t</a></li>
-    <li class="footer">Generato Lun 19 Giu 2017 13:14:09 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 21 Giu 2017 11:45:22 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

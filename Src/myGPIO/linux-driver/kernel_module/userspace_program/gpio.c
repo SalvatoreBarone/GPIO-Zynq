@@ -90,6 +90,7 @@ int parse_args(	int argc, char **argv, param_t	*param);
  */
 void gpio_op (param_t *param);
 
+
 int main (int argc, char **argv) {
 	param_t param;
 
@@ -157,6 +158,10 @@ int parse_args(	int argc, char **argv, param_t	*param) {
 }
 
 void gpio_op (param_t *param) {
+
+	printf("MODE_OFFSET  : %X\n", MODE_OFFSET);
+	printf("WRITE_OFFSET : %X\n", WRITE_OFFSET);
+	printf("READ_OFFSET  : %X\n", READ_OFFSET);
 
 	if (param->op_mode == 1) {
 		printf("Scrittura sul registro mode: %08x\n", param->mode_value);

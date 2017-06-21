@@ -1,14 +1,9 @@
 var my_g_p_i_o_k_8c =
 [
     [ "DRIVER_NAME", "group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb", null ],
+    [ "MYGPIOK_AREAD", "group___kernel-_module.html#ga2ae183c0bf8cbddbd7337f6b8a3d598b", null ],
+    [ "MYGPIOK_SREAD", "group___kernel-_module.html#ga71d797b61faad7d2c7071da10880a71d", null ],
     [ "REQUIRED_MINOR_NUMBER", "group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4", null ],
-    [ "MODULE_ALIAS", "my_g_p_i_o_k_8c.html#a1681c4acdb2692baf523dbf58f940399", null ],
-    [ "MODULE_AUTHOR", "my_g_p_i_o_k_8c.html#aa528ef168ff30340d38c46a12fce906b", null ],
-    [ "MODULE_DESCRIPTION", "my_g_p_i_o_k_8c.html#a1a0de0abbfec8f65abc50ccd3a549a4d", null ],
-    [ "MODULE_DEVICE_TABLE", "my_g_p_i_o_k_8c.html#a4982cc224a0881ae5d106fce7526fb68", null ],
-    [ "MODULE_LICENSE", "my_g_p_i_o_k_8c.html#ad94b36675e7eb067ea3ce6ff9e244a44", null ],
-    [ "module_platform_driver", "my_g_p_i_o_k_8c.html#a61e890be90fe5582db8048893ca0ebbf", null ],
-    [ "MODULE_VERSION", "my_g_p_i_o_k_8c.html#a4b75c2cb371865e62f06fc635df9401e", null ],
     [ "myGPIOK_irq_handler", "group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511", null ],
     [ "myGPIOK_llseek", "group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff", null ],
     [ "myGPIOK_open", "group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e", null ],

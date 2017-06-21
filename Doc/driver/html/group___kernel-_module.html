@@ -132,6 +132,12 @@ Definizioni</h2></td></tr>
 <tr class="memitem:ga605a877d5e63c79a65d4a57d364680b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4">REQUIRED_MINOR_NUMBER</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:ga605a877d5e63c79a65d4a57d364680b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero di minor-number richiesti da driver.  <a href="#ga605a877d5e63c79a65d4a57d364680b4">Continua...</a><br /></td></tr>
 <tr class="separator:ga605a877d5e63c79a65d4a57d364680b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71d797b61faad7d2c7071da10880a71d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga71d797b61faad7d2c7071da10880a71d">MYGPIOK_SREAD</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ga71d797b61faad7d2c7071da10880a71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag il cui significato e' "e' possibile servire una read() bloccante".  <a href="#ga71d797b61faad7d2c7071da10880a71d">Continua...</a><br /></td></tr>
+<tr class="separator:ga71d797b61faad7d2c7071da10880a71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ae183c0bf8cbddbd7337f6b8a3d598b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga2ae183c0bf8cbddbd7337f6b8a3d598b">MYGPIOK_AREAD</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:ga2ae183c0bf8cbddbd7337f6b8a3d598b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag il cui significato e' "e' possibile servire una read() non-bloccante".  <a href="#ga2ae183c0bf8cbddbd7337f6b8a3d598b">Continua...</a><br /></td></tr>
+<tr class="separator:ga2ae183c0bf8cbddbd7337f6b8a3d598b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
@@ -159,6 +165,7 @@ Funzioni</h2></td></tr>
 <tr class="memdesc:ga1eea0f6c86e8966ba9b701da57502aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invia dati al device.  <a href="#ga1eea0f6c86e8966ba9b701da57502aad">Continua...</a><br /></td></tr>
 <tr class="separator:ga1eea0f6c86e8966ba9b701da57502aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memItemLeft" align="right" valign="top">static irqreturn_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511">myGPIOK_irq_handler</a> (int irq, struct pt_regs *regs)</td></tr>
+<tr class="memdesc:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt-handler.  <a href="#ga2fc230a12a97aa63e43b2dc4aec73511">Continua...</a><br /></td></tr>
 <tr class="separator:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -185,16 +192,32 @@ Variabili</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <p>Device-driver in kernel-mode per myGPIO. </p>
-<h2>Platform-device</h2>
-<p>I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel.</p>
-<p>I "platform-device" sono device che non possono annunciarsi al software (non possono dire "Hey,
-sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili", nel senso che il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei device PCI o USB, che non sono platform-device, un device I²C non viene enumerato a livello hardware, per cui e' necessario che il sistema operativo sappia, a tempo di "compilazione", cioe' prima del boot - quale device sia connesso al bus I²C.</p>
-<p>I non-discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema. Bisogna distinguere in:</p><ul>
+<h2>Descrizione generale del driver</h2>
+<p>Il modulo driver implementa definisce il tipo <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device. ">myGPIOK_t</a> ed implementa le seguenti funzioni:</p><ul>
+<li><a class="el" href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307" title="Viene chiamata quando il modulo viene inserito. ">myGPIOK_probe()</a>: richiamata quando il modulo, o un device compatibile col modulo, viene inserito:</li>
+<li><a class="el" href="group___kernel-_module.html#ga59fddfaa36dea357f4bbdfceb0f47f8c">myGPIOK_remove()</a>: richiamata quando il modulo, o un device compatibile, viene rimosso;</li>
+<li><a class="el" href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e" title="Invocata all&#39;apertura del file corrispondente al device. ">myGPIOK_open()</a>: implementa la system call open();</li>
+<li><a class="el" href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff" title="Implementa le system-call lseek() e llseek(). ">myGPIOK_llseek()</a>: implementa la system call seek();</li>
+<li><a class="el" href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad" title="Invia dati al device. ">myGPIOK_write()</a>: implementa la system call seek();</li>
+<li><a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a>: implementa la ISR dedicata alla gestione delle interruzioni provenienti dal device;</li>
+<li><a class="el" href="group___kernel-_module.html#gaba935e8a8215c2ebce9a7147fd4f5147" title="Verifica che le operazioni di lettura/scrittura risultino non-bloccanti. ">myGPIOK_poll()</a> : implementa il back-end di tre diverse system-calls (poll, epoll e select)</li>
+<li><a class="el" href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923" title="Legge dati dal device. ">myGPIOK_read()</a> : implementa la system call read.</li>
+</ul>
+<p>Nel seguito viene presentato un breve escursus su tutto cio' che c'e' da sapere per comprendere come funziona un device-driver e come poterne scrivere uno. Dopo aver letto il seguito, si consiglia, in ordine, di leggere, in ordine, la documentazione della struttura myGPIOK-t, poi quella delle funzioni</p><ul>
+<li><a class="el" href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307" title="Viene chiamata quando il modulo viene inserito. ">myGPIOK_probe()</a>;</li>
+<li><a class="el" href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e" title="Invocata all&#39;apertura del file corrispondente al device. ">myGPIOK_open()</a>;</li>
+<li><a class="el" href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff" title="Implementa le system-call lseek() e llseek(). ">myGPIOK_llseek()</a>;</li>
+<li><a class="el" href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad" title="Invia dati al device. ">myGPIOK_write()</a>;</li>
+<li><a class="el" href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923" title="Legge dati dal device. ">myGPIOK_read()</a>;</li>
+<li><a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a>;</li>
+</ul>
+<h3>Platform-device</h3>
+<p>I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel. I "platform-device" sono device che non possono annunciarsi al software (non possono dire "Hey,
+sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili", nel senso che il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei device PCI o USB, che non sono platform-device, un device I²C non viene enumerato a livello hardware, per cui e' necessario che il sistema operativo sappia, a tempo di "compilazione", cioe' prima del boot - quale device sia connesso al bus I²C. I non-discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema. Bisogna distinguere in:</p><ul>
 <li>Platform Driver</li>
 <li>Platform Device</li>
 </ul>
-<p>Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni standard che possono essere effettuate su un platform-device. Un riferimento pue' essere <a href="http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173">http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173</a>.</p>
-<p>Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere nome qualsiasi.</p>
+<p>Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni standard che possono essere effettuate su un platform-device. Un riferimento pue' essere <a href="http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173">http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173</a>. Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere nome qualsiasi.</p>
 <div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">int</span> sample_drv_probe(<span class="keyword">struct</span> platform_device *pdev) {</div>
 <div class="line">        <span class="comment">//Empty Probe function.</span></div>
 <div class="line">}</div>
@@ -202,7 +225,7 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">int</span> sample_drv_remove(<span class="keyword">struct</span> platform_device *pdev) {</div>
 <div class="line">        <span class="comment">//Empty remove function.</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><p>La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro <a class="el" href="my_g_p_i_o_k_8c.html#a61e890be90fe5582db8048893ca0ebbf">module_platform_driver()</a>, la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module_init() e module_close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.</p>
+</div><!-- fragment --><p>La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro module_platform_driver(), la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module_init() e module_close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.</p>
 <div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">struct </span>platform_driver sample_pldriver = {</div>
 <div class="line">    .probe  = sample_drv_probe,</div>
 <div class="line">    .remove = sample_drv_remove,</div>
@@ -211,7 +234,7 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line">    },</div>
 <div class="line">};</div>
 <div class="line"></div>
-<div class="line"><a class="code" href="my_g_p_i_o_k_8c.html#a61e890be90fe5582db8048893ca0ebbf">module_platform_driver</a>(sample_pldriver);</div>
+<div class="line">module_platform_driver(sample_pldriver);</div>
 </div><!-- fragment --><p>Si noti DRIVER_NAME: deve essere identica alla stringa indicata, nel device-tree, al campo "compatible".</p>
 <p>Affinche' il driver possa essere caricato a caldo, e' necessario aggiungere alla struttura di cui sopra qualche informazione in piu'. Tutti i device-driver devono esporre un ID. A tempo di compilazione, il processo di build estrae queste informazioni dai driver per la preparazione di una tabella. Quando si "inserisce" il device, la tabella viene riferita dal kernel e, se viene trovata una entry corrispondente al driver per quel device, il driver viene caricato ed inizializzato.</p>
 <p>Usando la struttura</p>
@@ -220,8 +243,8 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line">        {},</div>
 <div class="line">};</div>
 <div class="line"></div>
-<div class="line"><a class="code" href="my_g_p_i_o_k_8c.html#a4982cc224a0881ae5d106fce7526fb68">MODULE_DEVICE_TABLE</a>(of, device_match);</div>
-</div><!-- fragment --><p>si identifica un particolare device. La macro <a class="el" href="my_g_p_i_o_k_8c.html#a4982cc224a0881ae5d106fce7526fb68">MODULE_DEVICE_TABLE()</a> viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform_driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.</p>
+<div class="line">MODULE_DEVICE_TABLE(of, device_match);</div>
+</div><!-- fragment --><p>si identifica un particolare device. La macro MODULE_DEVICE_TABLE() viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform_driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.</p>
 <div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">struct </span>platform_driver sample_pldriver = {</div>
 <div class="line">    .probe  = sample_drv_probe,</div>
 <div class="line">    .remove = sample_drv_remove,</div>
@@ -243,6 +266,34 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </div><div class="memdoc">
 
 <p>Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device tree source. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga2ae183c0bf8cbddbd7337f6b8a3d598b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MYGPIOK_AREAD&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag il cui significato e' "e' possibile servire una read() non-bloccante". </p>
+
+</div>
+</div>
+<a class="anchor" id="ga71d797b61faad7d2c7071da10880a71d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MYGPIOK_SREAD&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag il cui significato e' "e' possibile servire una read() bloccante". </p>
 
 </div>
 </div>
@@ -292,6 +343,8 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Interrupt-handler. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">irq</td><td></td></tr>
@@ -299,7 +352,27 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd></dd></dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">IRQ_HANDLED</td><td>dopo aver servito l'interruzione</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica. Viene registrata dalla funzione <a class="el" href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307" title="Viene chiamata quando il modulo viene inserito. ">myGPIOK_probe()</a> affinche' venga richiamata al manifestarsi di un interrupt sulla linea cui e' connesso il device </p>
+<h5>Disabilitazione delle interruzioni della periferica</h5>
+<p>Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati. Se si tratta di un GPIO Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal secondo canale. Se, invece, si tratta di un device GPIO custom myGPIO, vengono disabilitati solo gli interrupt globali.</p>
+<h5>Setting del valore del flag "interrupt occurred"</h5>
+<p>Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag "interrupt occurred", in modo che i processi in attesa possano essere risvegliati in modo sicuro. Per prevenire race condition, tale operazione viene effettuata mutua esclusione. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void spin_lock_irqsave(spinlock_t *lock, unsigned long flags);</div>
+</div><!-- fragment --><p> la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi ripristinarlo quando lo spinlock viene rilasciato, usando </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void spin_unlock_irqrestore(spinlock_t *lock, unsigned long flags);</div>
+</div><!-- fragment --><h5>Incremento del numero totale di interrupt</h5>
+<p>Dopo aver settato il flag, viene incrementato il valore degli interrupt totali. Anche questa operazione viene effettuata in mutua esclusione.</p>
+<h5>Ack degli interrupt della periferica</h5>
+<p>Prima di risvegliare i processi, viene inviato l'Ack alla periferica, per segnalargli che l'interrupt e' stato servito.</p>
+<h5>Wakeup dei processi sleeping</h5>
+<p>La ISR deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che un particolare evento si manifestasse. La funzione </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void wake_up_interruptible(wait_queue_head_t *queue);</div>
+</div><!-- fragment --><p> risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno effettuato una chiamata a wait_event_interruptible()). Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-condition.</p>
+<h5>Abilitazione degli interrupt della periferica</h5>
+<p>A seconda del valore CFLAGS_myGPIOK.o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del GPIO Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device GPIO custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.</p>
 
 </div>
 </div>
@@ -345,13 +418,13 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <dl class="section warning"><dt>Avvertimento</dt><dd>L'implementazione di read() e write() non sposta la testina di lettura/scrittura!</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file_ptr</td><td></td></tr>
-    <tr><td class="paramname">off</td><td></td></tr>
-    <tr><td class="paramname">whence</td><td></td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">file_ptr</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">off</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">whence</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd></dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Nuova posizione della "testina" di lettura/scrittura </dd></dl>
 
 </div>
 </div>
@@ -388,7 +461,20 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </div><div class="memdoc">
 
 <p>Invocata all'apertura del file corrispondente al device. </p>
-<h3>Il metodo open()</h3>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">inode</td><td></td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">file</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>se non si verifica nessun errore</td></tr>
+  </table>
+  </dd>
+</dl>
+<h5>Il metodo open()</h5>
 <p>Il metodo open di un device driver viene fornito per effettuare ogni inizializzazione necessaria ad operazioni successive. Effettua le seguenti operazioni:</p><ul>
 <li>verifica che non si siano manifestati errori;</li>
 <li>inizializza il device</li>
@@ -397,17 +483,9 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </ul>
 <p>In primo luogo e' necessario identificare il device che sta per essere aperto. Tenendo presente che il prototipo di qualunque metodo open e'</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int (*open)(struct inode *inode, struct file *filp);</div>
-</div><!-- fragment --><p>il parametro inode contiene tutte le informazioni necessarie all'interno del campo i_cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device. ">myGPIOK_t</a>. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container_if() definita in &lt;linux/kernel.h&gt;.</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;container_of(pointer, container_type, container_field);</div>
-</div><!-- fragment --><p>La macro prende in ingresso un puntatore ad un campo di tipo container_field, di una struttura container_type, restituendo il puntatore alla struttura che la contiene.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inode</td><td></td></tr>
-    <tr><td class="paramname">file</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Restituisce</dt><dd></dd></dl>
+</div><!-- fragment --> <h3>Identificare il particolare device associato al file</h3>
+<p>Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i_cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device. ">myGPIOK_t</a>. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container_if() definita in &lt;linux/kernel.h&gt;. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;container_of(pointer, container_type, container_field);</div>
+</div><!-- fragment --><p> La macro prende in ingresso un puntatore ad un campo di tipo container_field, di una struttura container_type, restituendo il puntatore alla struttura che la contiene.</p>
 
 </div>
 </div>
@@ -479,9 +557,22 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </div><div class="memdoc">
 
 <p>Viene chiamata quando il modulo viene inserito. </p>
-<p>Inizializza il driver e la periferica. Alloca un oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device. ">myGPIOK_t</a>, che astrae un device myGPIO, e lo inizializza, associandogli gli operatori che permetteranno di interagire con tale device da user-space.</p>
-<h5>Inizializzazione del driver</h5>
-<p>Il device GPIO viene gestito come un character-device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere &lt;linux/cdev.h&gt;, che definisce tale struttura e le relative funzioni.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">op</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>nel caso in cui non si sia verificato nessun errore; </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>nel caso in cui non sia possibile allocare memoria; </td></tr>
+    <tr><td class="paramname">&lt;0</td><td>per altri errori</td></tr>
+  </table>
+  </dd>
+</dl>
+<h3>Inizializzazione del driver</h3>
+<p>Il device GPIO viene gestito come un character-device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere &lt;linux/cdev.h&gt;, che definisce tale struttura e le relative funzioni. </p>
 <h5>Major-number e Minor-number</h5>
 <p>Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver. Il driver scritto per GPIO non usera' minor-number. La registrazione di un device driver puo' essere effettuata chiamando <b>alloc_chrdev_region()</b>, la quale alloca un char-device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori, 0 altrimenti. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int alloc_chrdev_region (dev_t * dev, unsigned baseminor, unsigned count, const char *name);</div>
 </div><!-- fragment --><ul>
@@ -536,6 +627,7 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <li>count: numero di minor-numbers richiesti per il device</li>
 </ul>
 <p>La funzione restituisce un numero negativo in caso di errore.</p>
+<h5>Creazione del device</h5>
 <p>Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione puo' essere effettuata chiamando </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;struct device * device_create( struct class *class, struct device *parent, dev_t devt, const char *fmt, ...)</div>
 </div><!-- fragment --><ul>
 <li>class: puntatore alla struttura class alla quale il device deve essere registrato</li>
@@ -549,40 +641,32 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int of_address_to_resource(struct device_node *node, int index, struct resource *r);</div>
 </div><!-- fragment --><p>popola una struttura resource con l'indirizzo di memoria cui e' mapato il device usando le informazioni contenute all'interno del device tree. Ad esempio, se il device tree contiene </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;reg = &lt;0x41200000 0x10000&gt;;</div>
 </div><!-- fragment --><p> signidifa che l'indirizzo fisico associato al device e' l'indirizzo 0x41200000, che al device sono riservati 0x10000 bytes. of_address_to_resource() settera' res.start = 0x41200000 e res.end = 0x4120ffff.</p>
-<p>Le regioni di memoria per di I/O vanno allocate prima di poter essere usate.</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;struct resource *request_mem_region(unsigned long start, unsigned long len, char *name);</div>
-</div><!-- fragment --><p>Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo, mentre nel caso in cui si verifichi un errore viene restituito NULL. La funzione viene chiamata per ottenere l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso spazio di memoria.</p>
-<p>L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la funzione.</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void *ioremap(unsigned long phys_addr, unsigned long size);</div>
-</div><!-- fragment --><ul>
-<li><h5>Interrupts</h5>
-</li>
-</ul>
-<p>The LKM driver must register a handler function for the interrupt, which defines the actions that the interrupt should perform. L'handler deve essere compatibile con il tipo puntatore a funzione irq_handler_t, così definito. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;struct irqreturn_t (*irq_handler_t)(int irq, struct pt_regs * regs);</div>
-</div><!-- fragment --><p> Il modulo definisce la funzione <a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511">myGPIOK_irq_handler()</a>. L'handler puo' essere registrato usando</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int request_irq(    unsigned int irqNumber,</div>
+<h5>Allocazione della memoria del device</h5>
+<p>Le regioni di memoria per di I/O vanno allocate prima di poter essere usate. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;struct resource *request_mem_region(unsigned long start, unsigned long len, char *name);</div>
+</div><!-- fragment --><p> Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo, mentre nel caso in cui si verifichi un errore viene restituito NULL. La funzione viene chiamata per ottenere l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso spazio di memoria.</p>
+<h5>Remapping</h5>
+<p>L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la funzione. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void *ioremap(unsigned long phys_addr, unsigned long size);</div>
+</div><!-- fragment --><h5>Registrazione di un interrupt-handler</h5>
+<p>Il modulo deve registrare un handler per gli interrupt. L'handler deve essere compatibile con il tipo puntatore a funzione irq_handler_t, così definito. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;struct irqreturn_t (*irq_handler_t)(int irq, struct pt_regs * regs);</div>
+</div><!-- fragment --><p> Il modulo definisce la funzione <a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a>. L'handler puo' essere registrato usando </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int request_irq(    unsigned int irqNumber,</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;                    irqreturn_t (*handler)(int, void *, struct pt_regs *),</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;                    unsigned long irqflags,</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                    const char *devname,</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                    void *dev_id);</div>
-</div><!-- fragment --><p>IL parametro irqNumber puo' essere determinato automaticamente usando la funzione</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned int irq_of_parse_and_map(struct device_node *node, int index);</div>
-</div><!-- fragment --><p>La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del device tree e restituisce un irq number cosi' come de lo aspetta request_irq() (cioe' compaci con l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli interrupt specificate. Il device tree, nella sezione dedicata al gpio,reca </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;interrupts = &lt;0 29 4&gt;;</div>
-</div><!-- fragment --><p>Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral interrupt). Un valore diverso da zero indica che la linea e' SPI.</p>
-<p>Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware, in questo specifico esempio il device GPIO e' connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29.</p>
-<p>Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori:</p><ul>
+</div><!-- fragment --><p> IL parametro irqNumber puo' essere determinato automaticamente usando la funzione </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned int irq_of_parse_and_map(struct device_node *node, int index);</div>
+</div><!-- fragment --><p> La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del device tree e restituisce un irq number cosi' come de lo aspetta request_irq() (cioe' compaci con l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli interrupt specificate. Il device tree, nella sezione dedicata al gpio,reca </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;interrupts = &lt;0 29 4&gt;;</div>
+</div><!-- fragment --><p> Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral interrupt). Un valore diverso da zero indica che la linea e' SPI. Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware, in questo specifico esempio il device GPIO e' connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29. Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori:</p><ul>
 <li>0 : power-up default</li>
 <li>1 : rising-edge</li>
 <li>4 : a livelli, active alto</li>
 </ul>
-<dl class="retval"><dt>Valori di ritorno</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">0</td><td>nel caso in cui non si sia verificato nessun errore; </td></tr>
-    <tr><td class="paramname">-ENOMEM</td><td>nel caso in cui non sia possibile allocare memoria; </td></tr>
-    <tr><td class="paramname">&lt;0</td><td>per altri errori </td></tr>
-  </table>
-  </dd>
-</dl>
+<h5>Inizializzazione della wait-queue per la system-call read() e poll()</h5>
+<p>In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in &lt;linux/wait.h&gt;. Il driver in questione prevede due wait-queue differenti: una per la system-call read() ed una per la system-call poll(). Entrambe le code vengono inizializzate dalla funzione <a class="el" href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307" title="Viene chiamata quando il modulo viene inserito. ">myGPIOK_probe()</a>. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;init_waitqueue_head(&amp;my_queue);</div>
+</div><!-- fragment --><p> Si veda la documentazione della funzione <a class="el" href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923" title="Legge dati dal device. ">myGPIOK_read()</a> per dettagli ulteriori.</p>
+<h5>Inizializzazione degli spinlock</h5>
+<p>I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. L'inizializzazione di uno spinlock avviene usando la funzione </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void spin_lock_init(spinlock_t *lock);</div>
+</div><!-- fragment --><h5>Abilitazione degli interrupt del device</h5>
+<p>A seconda del valore CFLAGS_myGPIOK.o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del GPIO Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device GPIO custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.</p>
 
 </div>
 </div>
@@ -631,40 +715,55 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </div><div class="memdoc">
 
 <p>Legge dati dal device. </p>
-<h3>Operazioni di lettura e scrittura</h3>
-<p>I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);</div>
-</div><!-- fragment --><p>Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione alla quale si sta effettuando l'accesso.</p>
-<p>Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali:</p><ul>
-<li>a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;</li>
-<li>la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente terminazione del processo che ha effettuato la system-call;</li>
-<li>il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.</li>
-</ul>
-<p>Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in &lt;asm/uaccess.h&gt;</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);</div>
-</div><!-- fragment --><p>Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata.</p>
-<p>Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.</p>
-<h5>Accesso ai registri del device</h5>
-<p>Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in &lt;asm/io.h&gt;.</p>
-<p>Per leggere dalla memoria vengono usate le seguenti:</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned int ioread8(void *addr);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;unsigned int ioread16(void *addr);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;unsigned int ioread32(void *addr);</div>
-</div><!-- fragment --><p>addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare locazione di memoria a cui viene effettuato accesso.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ppos</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">off</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo. </dd></dl>
+<dl class="section warning"><dt>Avvertimento</dt><dd>L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.</dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo.</dd></dl>
+<h3>Operazioni di lettura e scrittura</h3>
+<p>I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);</div>
+</div><!-- fragment --><p> Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione alla quale si sta effettuando l'accesso.</p>
+<h5>I/O bloccante</h5>
+<p>Nel paragrafo precedente e' stato ignorato un problema importante: come comportarsi quando il driver non e' in grado di servire immegiatamente una richiesta? Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante e' totalmente all'oscuro di queste dinamiche, anzi potrebbe non avere la minima conoscenza delle dinamiche interne del device: chiama le funzioni read() o write() e si aspetta che facciano cio' che devono fare, per cui, nell'impossibilita' di servire la richiesta, il driver bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non puo' essere servita. Il codice (la ISR) che dovra' risvegliare il processo quado potra' servire la sua richiesta, deve essere a conoscenza dell'evento "risvegliante" e deve essere in grado di "trovare" i processi in attesa per quel particolare evento. Per questo motivo, tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. Il codice della ISR deve effettuare una chiamata a wakeup() per risvegliare i processi in attesa di un evento quando questo si e' manifestato. Si veda la documentazione della funzione <a class="el" href="group___kernel-_module.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a> per dettagli ulteriori. </p>
+<h5>I/O non-bloccante</h5>
+<p>Esistono casi in cui il processo chiamante non vuole essere bloccato in attesa di un evento. Questa evenienza viene esplicitamente indicata attraverso il flag O_NONBLOCK flag in filp-&gt;f_flags. Il flag viene definito in &lt;linux/fcntl.h&gt; il quale e' incluso in&lt;linux/fs.h&gt;.</p>
+<h5>Porre un processo nello stato sleeping</h5>
+<p>Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera, per cui essa va nuovamente testata. Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait_event(), o una delle sue varianti: essa combina la gestione della messa in sleeping del processo ed il check della condizione che il processo si aspetta diventi vera. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;wait_event_interruptible(queue, condition);</div>
+</div><!-- fragment --><p> Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() puo' essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero, indica che il processo e' stato risvegliato da un segnale.</p>
+<p>La condizione sulla quale i processi vengono bloccati riguarda il flag "interrupt occurred". Fin quando questo flag, posto in and con la maschera MYGPIOK_SREAD, e' zero, il processo deve restare bloccato, per cui i processi che effettuano read() bloccante restano bloccati finoche' int_occurred &amp; MYGPIO_SREAD == 0.</p>
+<h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
+<p>Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata per prevenire race-condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.</p>
+<p>I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void spin_lock(spinlock_t *lock);</div>
+</div><!-- fragment --><p> per rilasciare uno spinlock, invece, verra' usata </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void spin_unlock(spinlock_t *lock);</div>
+</div><!-- fragment --><h5>Reset del flag "interrupt occurred" per read() non-bloccanti</h5>
+<p>Anche nel caso in cui la read() non sia bloccante e' necessario resettare il flag in modo opportuno e per prevenire inconsistenze, anche questa operazione deve essere effettuata avendo accesso esclusivo al flag interrupt occurred.</p>
+<h5>Calcolo dell'indirizzo effettivo</h5>
+<p>L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.</p>
+<h5>Accesso ai registri del device</h5>
+<p>Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in &lt;asm/io.h&gt;. Per leggere dalla memoria vengono usate le seguenti: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned int ioread8(void *addr);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;unsigned int ioread16(void *addr);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;unsigned int ioread32(void *addr);</div>
+</div><!-- fragment --><p> addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare locazione di memoria a cui viene effettuato accesso. Per scrivere nella memoria vengono usate le seguenti: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void iowrite8(u8 value, void *addr);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;void iowrite16(u16 value, void *addr);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;void iowrite32(u32 value, void *addr);</div>
+</div><!-- fragment --><h5>Accesso alla memoria userspace</h5>
+<p>Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali:</p><ul>
+<li>a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;</li>
+<li>la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente terminazione del processo che ha effettuato la system-call;</li>
+<li>il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.</li>
+</ul>
+<p>Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in &lt;asm/uaccess.h&gt; </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);</div>
+</div><!-- fragment --><p> Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata. Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.</p>
+<h5>Piccola nota sull'endianess</h5>
+<p>Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante un semplice casting, senza invertire manualmente l'ordine dei byte.</p>
 
 </div>
 </div>
@@ -703,12 +802,17 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <p>Invocata alla chiusura del file corrispondente al device. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inode</td><td></td></tr>
-    <tr><td class="paramname">file</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inode</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd></dd></dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>se non si verifica nessun errore </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -734,7 +838,19 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </table>
 </div><div class="memdoc">
 <p>Viene chiamata automaticamente alla rimozione del mosulo.</p>
-<p>Dealloca tutta la memoria utilizzata dal driver, de-inizializzando il device. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">op</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>se non si verifica nessun errore</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Dealloca tutta la memoria utilizzata dal driver, de-inizializzando il device e disattivando gli interrupt per il device, effettuando tutte le operazioni inverse della funzione <a class="el" href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307" title="Viene chiamata quando il modulo viene inserito. ">myGPIOK_probe()</a>. </p>
 
 </div>
 </div>
@@ -783,30 +899,6 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 </div><div class="memdoc">
 
 <p>Invia dati al device. </p>
-<h3>Operazioni di lettura e scrittura</h3>
-<p>I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);</div>
-</div><!-- fragment --><p>Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione alla quale si sta effettuando l'accesso.</p>
-<p>Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali:</p><ul>
-<li>a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;</li>
-<li>la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente terminazione del processo che ha effettuato la system-call;</li>
-<li>il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.</li>
-</ul>
-<p>Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in &lt;asm/uaccess.h&gt;</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);</div>
-</div><!-- fragment --><p>Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata.</p>
-<p>Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.</p>
-<h5>Accesso ai registri del device</h5>
-<p>Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in &lt;asm/io.h&gt;.</p>
-<p>Per scrivere nella memoria vengono usate le seguenti:</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void iowrite8(u8 value, void *addr);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;void iowrite16(u16 value, void *addr);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;void iowrite32(u32 value, void *addr);</div>
-</div><!-- fragment --><p>addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. value e' il valore che verra' scritto alla particolare locazione di memoria a cui viene effettuato accesso.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">file</td><td></td></tr>
@@ -816,8 +908,38 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo. </dd></dl>
-
+<dl class="section warning"><dt>Avvertimento</dt><dd>L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.</dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo.</dd></dl>
+<h3>Operazioni di lettura e scrittura</h3>
+<p>I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);</div>
+</div><!-- fragment --><p>Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione alla quale si sta effettuando l'accesso. </p>
+<h5>Accesso alla memoria userspace</h5>
+<p>Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali:</p><ul>
+<li>a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;</li>
+<li>la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente terminazione del processo che ha effettuato la system-call;</li>
+<li>il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.</li>
+</ul>
+<p>Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in &lt;asm/uaccess.h&gt; </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);</div>
+</div><!-- fragment --><p> Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata. Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.</p>
+<h5>Piccola nota sull'endianess</h5>
+<p>Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante un semplice casting, senza invertire manualmente l'ordine dei byte.</p>
+<h5>Calcolo dell'indirizzo effettivo</h5>
+<p>L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.</p>
+<h5>Accesso ai registri del device</h5>
+<p>Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in &lt;asm/io.h&gt;.</p>
+<p>Per leggere dalla memoria vengono usate le seguenti:</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;unsigned int ioread8(void *addr);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;unsigned int ioread16(void *addr);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;unsigned int ioread32(void *addr);</div>
+</div><!-- fragment --><p>addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare locazione di memoria a cui viene effettuato accesso.</p>
+<p>Per scrivere nella memoria vengono usate le seguenti:</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;void iowrite8(u8 value, void *addr);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;void iowrite16(u16 value, void *addr);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;void iowrite32(u32 value, void *addr);</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle variabili</h2>
@@ -847,12 +969,12 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line">        .open       = <a class="code" href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e">myGPIOK_open</a>,</div>
 <div class="line">        .release    = <a class="code" href="group___kernel-_module.html#ga17ce7f574723246c790b70b06e3e7103">myGPIOK_release</a></div>
 <div class="line">}</div>
-<div class="ttc" id="group___kernel-_module_html_ga66e7f726b72320a272b633ecbaecefff"><div class="ttname"><a href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff">myGPIOK_llseek</a></div><div class="ttdeci">static loff_t myGPIOK_llseek(struct file *file_ptr, loff_t off, int whence)</div><div class="ttdoc">Implementa le system-call lseek() e llseek(). </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:721</div></div>
-<div class="ttc" id="group___kernel-_module_html_ga17ce7f574723246c790b70b06e3e7103"><div class="ttname"><a href="group___kernel-_module.html#ga17ce7f574723246c790b70b06e3e7103">myGPIOK_release</a></div><div class="ttdeci">static int myGPIOK_release(struct inode *inode, struct file *file_ptr)</div><div class="ttdoc">Invocata alla chiusura del file corrispondente al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:705</div></div>
-<div class="ttc" id="group___kernel-_module_html_gad013759c18fbf6ea96005b9b3bfa5b4e"><div class="ttname"><a href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e">myGPIOK_open</a></div><div class="ttdeci">static int myGPIOK_open(struct inode *inode, struct file *file_ptr)</div><div class="ttdoc">Invocata all&#39;apertura del file corrispondente al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:684</div></div>
-<div class="ttc" id="group___kernel-_module_html_ga90ac339df9c02ae5f11a2a7727adc923"><div class="ttname"><a href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923">myGPIOK_read</a></div><div class="ttdeci">static ssize_t myGPIOK_read(struct file *file_ptr, char *buf, size_t count, loff_t *ppos)</div><div class="ttdoc">Legge dati dal device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:858</div></div>
-<div class="ttc" id="group___kernel-_module_html_gaba935e8a8215c2ebce9a7147fd4f5147"><div class="ttname"><a href="group___kernel-_module.html#gaba935e8a8215c2ebce9a7147fd4f5147">myGPIOK_poll</a></div><div class="ttdeci">static unsigned int myGPIOK_poll(struct file *file_ptr, struct poll_table_struct *wait)</div><div class="ttdoc">Verifica che le operazioni di lettura/scrittura risultino non-bloccanti. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:768</div></div>
-<div class="ttc" id="group___kernel-_module_html_ga1eea0f6c86e8966ba9b701da57502aad"><div class="ttname"><a href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad">myGPIOK_write</a></div><div class="ttdeci">static ssize_t myGPIOK_write(struct file *file_ptr, const char *buf, size_t size, loff_t *off)</div><div class="ttdoc">Invia dati al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:961</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga66e7f726b72320a272b633ecbaecefff"><div class="ttname"><a href="group___kernel-_module.html#ga66e7f726b72320a272b633ecbaecefff">myGPIOK_llseek</a></div><div class="ttdeci">static loff_t myGPIOK_llseek(struct file *file_ptr, loff_t off, int whence)</div><div class="ttdoc">Implementa le system-call lseek() e llseek(). </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:873</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga17ce7f574723246c790b70b06e3e7103"><div class="ttname"><a href="group___kernel-_module.html#ga17ce7f574723246c790b70b06e3e7103">myGPIOK_release</a></div><div class="ttdeci">static int myGPIOK_release(struct inode *inode, struct file *file_ptr)</div><div class="ttdoc">Invocata alla chiusura del file corrispondente al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:858</div></div>
+<div class="ttc" id="group___kernel-_module_html_gad013759c18fbf6ea96005b9b3bfa5b4e"><div class="ttname"><a href="group___kernel-_module.html#gad013759c18fbf6ea96005b9b3bfa5b4e">myGPIOK_open</a></div><div class="ttdeci">static int myGPIOK_open(struct inode *inode, struct file *file_ptr)</div><div class="ttdoc">Invocata all&#39;apertura del file corrispondente al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:828</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga90ac339df9c02ae5f11a2a7727adc923"><div class="ttname"><a href="group___kernel-_module.html#ga90ac339df9c02ae5f11a2a7727adc923">myGPIOK_read</a></div><div class="ttdeci">static ssize_t myGPIOK_read(struct file *file_ptr, char *buf, size_t count, loff_t *ppos)</div><div class="ttdoc">Legge dati dal device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:1054</div></div>
+<div class="ttc" id="group___kernel-_module_html_gaba935e8a8215c2ebce9a7147fd4f5147"><div class="ttname"><a href="group___kernel-_module.html#gaba935e8a8215c2ebce9a7147fd4f5147">myGPIOK_poll</a></div><div class="ttdeci">static unsigned int myGPIOK_poll(struct file *file_ptr, struct poll_table_struct *wait)</div><div class="ttdoc">Verifica che le operazioni di lettura/scrittura risultino non-bloccanti. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:911</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga1eea0f6c86e8966ba9b701da57502aad"><div class="ttname"><a href="group___kernel-_module.html#ga1eea0f6c86e8966ba9b701da57502aad">myGPIOK_write</a></div><div class="ttdeci">static ssize_t myGPIOK_write(struct file *file_ptr, const char *buf, size_t size, loff_t *off)</div><div class="ttdoc">Invia dati al device. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:1221</div></div>
 </div><!-- fragment -->
 <p>mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device. </p>
 <p>Essendo un device "visto" come un file, ogni device driver deve implementare tutte le system-call previste per l'interfacciamento con un file. La corrispondenza tra la system-call e la funzione fornita dal driver viene stabilita attraverso tale struttura. La struttura dati file_operations, definita in &lt;linux/fs.h&gt; mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file. </p>
@@ -939,10 +1061,10 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line">                .of_match_table = <a class="code" href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a>,</div>
 <div class="line">        },</div>
 <div class="line">}</div>
-<div class="ttc" id="group___kernel-_module_html_ga91f28437e0a553effa546d16fa44f03a"><div class="ttname"><a href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a></div><div class="ttdeci">static struct of_device_id myGPIOk_match[]</div><div class="ttdoc">Identifica il device all&#39;interno del device tree. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:245</div></div>
-<div class="ttc" id="group___kernel-_module_html_ga59fddfaa36dea357f4bbdfceb0f47f8c"><div class="ttname"><a href="group___kernel-_module.html#ga59fddfaa36dea357f4bbdfceb0f47f8c">myGPIOK_remove</a></div><div class="ttdeci">static int myGPIOK_remove(struct platform_device *op)</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:631</div></div>
-<div class="ttc" id="group___kernel-_module_html_gae40973a06d72f7c41a9af07513a62307"><div class="ttname"><a href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307">myGPIOK_probe</a></div><div class="ttdeci">static int myGPIOK_probe(struct platform_device *op)</div><div class="ttdoc">Viene chiamata quando il modulo viene inserito. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:520</div></div>
-<div class="ttc" id="group___kernel-_module_html_ga25634d21648ca7fb7a2aca614bafaaeb"><div class="ttname"><a href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a></div><div class="ttdeci">#define DRIVER_NAME</div><div class="ttdoc">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device...</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:208</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga91f28437e0a553effa546d16fa44f03a"><div class="ttname"><a href="group___kernel-_module.html#ga91f28437e0a553effa546d16fa44f03a">myGPIOk_match</a></div><div class="ttdeci">static struct of_device_id myGPIOk_match[]</div><div class="ttdoc">Identifica il device all&#39;interno del device tree. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:381</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga59fddfaa36dea357f4bbdfceb0f47f8c"><div class="ttname"><a href="group___kernel-_module.html#ga59fddfaa36dea357f4bbdfceb0f47f8c">myGPIOK_remove</a></div><div class="ttdeci">static int myGPIOK_remove(struct platform_device *op)</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:783</div></div>
+<div class="ttc" id="group___kernel-_module_html_gae40973a06d72f7c41a9af07513a62307"><div class="ttname"><a href="group___kernel-_module.html#gae40973a06d72f7c41a9af07513a62307">myGPIOK_probe</a></div><div class="ttdeci">static int myGPIOK_probe(struct platform_device *op)</div><div class="ttdoc">Viene chiamata quando il modulo viene inserito. </div><div class="ttdef"><b>Definition:</b> myGPIOK.c:437</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga25634d21648ca7fb7a2aca614bafaaeb"><div class="ttname"><a href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a></div><div class="ttdeci">#define DRIVER_NAME</div><div class="ttdoc">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device...</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:336</div></div>
 </div><!-- fragment -->
 <p>Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. </p>
 
@@ -969,7 +1091,7 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <div class="line">        {.compatible = <a class="code" href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a>},</div>
 <div class="line">        {},</div>
 <div class="line">}</div>
-<div class="ttc" id="group___kernel-_module_html_ga25634d21648ca7fb7a2aca614bafaaeb"><div class="ttname"><a href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a></div><div class="ttdeci">#define DRIVER_NAME</div><div class="ttdoc">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device...</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:208</div></div>
+<div class="ttc" id="group___kernel-_module_html_ga25634d21648ca7fb7a2aca614bafaaeb"><div class="ttname"><a href="group___kernel-_module.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a></div><div class="ttdeci">#define DRIVER_NAME</div><div class="ttdoc">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device...</div><div class="ttdef"><b>Definition:</b> myGPIOK.c:336</div></div>
 </div><!-- fragment -->
 <p>Identifica il device all'interno del device tree. </p>
 <p>Tutti i device-driver devono esporre un ID. A tempo di compilazione, il processo di build estrae queste informazioni dai driver per la preparazione di una tabella. Quando si "inserisce" il device, la tabella viene riferita dal kernel e, se viene trovata una entry corrispondente al driver per quel device, il driver viene caricato ed inizializzato. </p>
@@ -1003,7 +1125,7 @@ sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili",
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Lun 19 Giu 2017 13:14:08 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 21 Giu 2017 11:45:22 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

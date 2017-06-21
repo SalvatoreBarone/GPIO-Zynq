@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['param_5ft',['param_t',['../structparam__t.html',1,'']]],
-  ['parse_5fargs',['parse_args',['../group___userspace-program.html#ga65d977fb03a14dedd76e1515d6d24ff4',1,'parse_args(int argc, char **argv, param_t *param):&#160;gpio.c'],['../group___no_driver.html#ga218f8a9dfc36572bfe2230c5e2d2c776',1,'parse_args(int argc, char **argv, uint32_t *gpio_address, uint8_t *op_mode, uint32_t *mode_value, uint8_t *op_write, uint32_t *write_value, uint8_t *op_read):&#160;noDriver.c'],['../group___u_i_o-interrupt.html#ga15f7e5adb83963e5d21ccea3186b5364',1,'parse_args(int argc, char **argv, char **uio_file, uint8_t *op_mode, uint32_t *mode_value, uint8_t *op_write, uint32_t *write_value, uint8_t *op_read):&#160;uio-int.c'],['../group___u_i_o-simple.html#ga15f7e5adb83963e5d21ccea3186b5364',1,'parse_args(int argc, char **argv, char **uio_file, uint8_t *op_mode, uint32_t *mode_value, uint8_t *op_write, uint32_t *write_value, uint8_t *op_read):&#160;uio.c']]],
-  ['print_5fconfig',['print_config',['../test_8c.html#a9fd999a1267f2f167fe7fbc5dba555e1',1,'test.c']]],
-  ['print_5fstatus',['print_status',['../test_8c.html#ad8f9191b732ea2fedd9d97c58ea30c8d',1,'test.c']]]
+  ['read_5foffset',['read_offset',['../structmy_g_p_i_o__t.html#ab65acde67dc46f1d163e2ee468420b48',1,'myGPIO_t::read_offset()'],['../group___userspace-program.html#gad32c3a5b42163e171daccde5b5d5de02',1,'READ_OFFSET():&#160;gpio.c']]],
+  ['read_5fqueue',['read_queue',['../structmy_g_p_i_o_k__t.html#a251570f8e6976ad87411093e330e7b4f',1,'myGPIOK_t']]],
+  ['readall_2ec',['readAll.c',['../read_all_8c.html',1,'']]],
+  ['required_5fminor_5fnumber',['REQUIRED_MINOR_NUMBER',['../group___kernel-_module.html#ga605a877d5e63c79a65d4a57d364680b4',1,'myGPIOK.c']]],
+  ['rs',['RS',['../struct_h_d44780___l_c_d__t.html#a120bc0a069f764630359d9655fe0c46d',1,'HD44780_LCD_t']]],
+  ['rsrc',['rsrc',['../structmy_g_p_i_o_k__t.html#a565a1848c3ae8026257a74cf169c6941',1,'myGPIOK_t']]],
+  ['rsrc_5fsize',['rsrc_size',['../structmy_g_p_i_o_k__t.html#a0f87b53dc5049a349ef01aa586c0b5dc',1,'myGPIOK_t']]],
+  ['rw',['RW',['../struct_h_d44780___l_c_d__t.html#af404868fc36134454144950be4977d95',1,'HD44780_LCD_t']]]
 ];

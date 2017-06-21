@@ -24,7 +24,11 @@ struct \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}
 \#define \hyperlink{group___kernel-_module_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}
 \begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___kernel-_module_ga605a877d5e63c79a65d4a57d364680b4}{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}~1
-\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti da driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti da driver. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___kernel-_module_ga71d797b61faad7d2c7071da10880a71d}{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D}~1
+\begin{DoxyCompactList}\small\item\em Flag il cui significato e' \char`\"{}e' possibile servire una read() bloccante\char`\"{}. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___kernel-_module_ga2ae183c0bf8cbddbd7337f6b8a3d598b}{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D}~2
+\begin{DoxyCompactList}\small\item\em Flag il cui significato e' \char`\"{}e' possibile servire una read() non-\/bloccante\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,7 +49,7 @@ static ssize\+\_\+t \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a77
 static ssize\+\_\+t \hyperlink{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write} (struct file $\ast$file\+\_\+ptr, const char $\ast$buf, size\+\_\+t size, loff\+\_\+t $\ast$off)
 \begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
 static irqreturn\+\_\+t \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler} (int irq, struct pt\+\_\+regs $\ast$regs)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Interrupt-\/handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variabili}
 \begin{DoxyCompactItemize}
 \item 
@@ -68,22 +72,40 @@ static struct file\+\_\+operations \hyperlink{group___kernel-_module_ga9f31111fd
 \subsection{Descrizione dettagliata}
 Device-\/driver in kernel-\/mode per my\+G\+P\+I\+O. 
 
-\subsubsection*{Platform-\/device}
+\subsubsection*{Descrizione generale del driver}
 
-I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel.
+Il modulo driver implementa definisce il tipo \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} ed implementa le seguenti funzioni\+:
+\begin{DoxyItemize}
+\item \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()}\+: richiamata quando il modulo, o un device compatibile col modulo, viene inserito\+:
+\item \hyperlink{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}{my\+G\+P\+I\+O\+K\+\_\+remove()}\+: richiamata quando il modulo, o un device compatibile, viene rimosso;
+\item \hyperlink{group___kernel-_module_gad013759c18fbf6ea96005b9b3bfa5b4e}{my\+G\+P\+I\+O\+K\+\_\+open()}\+: implementa la system call open();
+\item \hyperlink{group___kernel-_module_ga66e7f726b72320a272b633ecbaecefff}{my\+G\+P\+I\+O\+K\+\_\+llseek()}\+: implementa la system call seek();
+\item \hyperlink{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write()}\+: implementa la system call seek();
+\item \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()}\+: implementa la I\+S\+R dedicata alla gestione delle interruzioni provenienti dal device;
+\item \hyperlink{group___kernel-_module_gaba935e8a8215c2ebce9a7147fd4f5147}{my\+G\+P\+I\+O\+K\+\_\+poll()} \+: implementa il back-\/end di tre diverse system-\/calls (poll, epoll e select)
+\item \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{my\+G\+P\+I\+O\+K\+\_\+read()} \+: implementa la system call read.
+\end{DoxyItemize}
 
-I \char`\"{}platform-\/device\char`\"{} sono device che non possono annunciarsi al software (non possono dire \char`\"{}\+Hey,
-sono qui'!\char`\"{} al sistema operativo), quindi sono intrinsecamente \char`\"{}non-\/scopribili\char`\"{}, nel senso che il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei device P\+C\+I o U\+S\+B, che non sono platform-\/device, un device I²\+C non viene enumerato a livello hardware, per cui e' necessario che il sistema operativo sappia, a tempo di \char`\"{}compilazione\char`\"{}, cioe' prima del boot -\/ quale device sia connesso al bus I²\+C.
+Nel seguito viene presentato un breve escursus su tutto cio' che c'e' da sapere per comprendere come funziona un device-\/driver e come poterne scrivere uno. Dopo aver letto il seguito, si consiglia, in ordine, di leggere, in ordine, la documentazione della struttura my\+G\+P\+I\+O\+K-\/t, poi quella delle funzioni
+\begin{DoxyItemize}
+\item \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()};
+\item \hyperlink{group___kernel-_module_gad013759c18fbf6ea96005b9b3bfa5b4e}{my\+G\+P\+I\+O\+K\+\_\+open()};
+\item \hyperlink{group___kernel-_module_ga66e7f726b72320a272b633ecbaecefff}{my\+G\+P\+I\+O\+K\+\_\+llseek()};
+\item \hyperlink{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write()};
+\item \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{my\+G\+P\+I\+O\+K\+\_\+read()};
+\item \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()};
+\end{DoxyItemize}
 
-I non-\/discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema. Bisogna distinguere in\+:
+\paragraph*{Platform-\/device}
+
+I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel. I \char`\"{}platform-\/device\char`\"{} sono device che non possono annunciarsi al software (non possono dire \char`\"{}\+Hey,
+sono qui'!\char`\"{} al sistema operativo), quindi sono intrinsecamente \char`\"{}non-\/scopribili\char`\"{}, nel senso che il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei device P\+C\+I o U\+S\+B, che non sono platform-\/device, un device I²\+C non viene enumerato a livello hardware, per cui e' necessario che il sistema operativo sappia, a tempo di \char`\"{}compilazione\char`\"{}, cioe' prima del boot -\/ quale device sia connesso al bus I²\+C. I non-\/discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema. Bisogna distinguere in\+:
 \begin{DoxyItemize}
 \item Platform Driver
 \item Platform Device
 \end{DoxyItemize}
 
-Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni standard che possono essere effettuate su un platform-\/device. Un riferimento pue' essere \href{http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173}{\tt http\+://lxr.\+free-\/electrons.\+com/source/include/linux/platform\+\_\+device.\+h\#\+L173}.
-
-Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere nome qualsiasi.
+Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni standard che possono essere effettuate su un platform-\/device. Un riferimento pue' essere \href{http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173}{\tt http\+://lxr.\+free-\/electrons.\+com/source/include/linux/platform\+\_\+device.\+h\#\+L173}. Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere nome qualsiasi.
 
 
 \begin{DoxyCode}
@@ -97,7 +119,7 @@ Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che
 \end{DoxyCode}
 
 
-La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro \hyperlink{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver()}, la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.
+La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro module\+\_\+platform\+\_\+driver(), la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.
 
 
 \begin{DoxyCode}
@@ -109,7 +131,7 @@ La definizione di quali funzioni probe() e remove() chiamare quando viene carica
     \},
 \};
 
-\hyperlink{my_g_p_i_o_k_8c_a61e890be90fe5582db8048893ca0ebbf}{module\_platform\_driver}(sample\_pldriver);
+module\_platform\_driver(sample\_pldriver);
 \end{DoxyCode}
 
 
@@ -126,11 +148,11 @@ Usando la struttura
         \{\},
 \};
 
-\hyperlink{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{MODULE\_DEVICE\_TABLE}(of, device\_match);
+MODULE\_DEVICE\_TABLE(of, device\_match);
 \end{DoxyCode}
 
 
-si identifica un particolare device. La macro \hyperlink{my_g_p_i_o_k_8c_a4982cc224a0881ae5d106fce7526fb68}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E()} viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform\+\_\+driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.
+si identifica un particolare device. La macro M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E() viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform\+\_\+driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.
 
 
 \begin{DoxyCode}
@@ -154,6 +176,20 @@ si identifica un particolare device. La macro \hyperlink{my_g_p_i_o_k_8c_a4982cc
 
 Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. 
 
+\hypertarget{group___kernel-_module_ga2ae183c0bf8cbddbd7337f6b8a3d598b}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D@{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D}}
+\index{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D@{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D}!Kernel-\/\+Module@{Kernel-\/\+Module}}
+\subsubsection[{M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+G\+P\+I\+O\+K\+\_\+\+A\+R\+E\+A\+D~2}}\label{group___kernel-_module_ga2ae183c0bf8cbddbd7337f6b8a3d598b}
+
+
+Flag il cui significato e' \char`\"{}e' possibile servire una read() non-\/bloccante\char`\"{}. 
+
+\hypertarget{group___kernel-_module_ga71d797b61faad7d2c7071da10880a71d}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D@{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D}}
+\index{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D@{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D}!Kernel-\/\+Module@{Kernel-\/\+Module}}
+\subsubsection[{M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D~1}}\label{group___kernel-_module_ga71d797b61faad7d2c7071da10880a71d}
+
+
+Flag il cui significato e' \char`\"{}e' possibile servire una read() bloccante\char`\"{}. 
+
 \hypertarget{group___kernel-_module_ga605a877d5e63c79a65d4a57d364680b4}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R@{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}}
 \index{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R@{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}!Kernel-\/\+Module@{Kernel-\/\+Module}}
 \subsubsection[{R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+Q\+U\+I\+R\+E\+D\+\_\+\+M\+I\+N\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R~1}}\label{group___kernel-_module_ga605a877d5e63c79a65d4a57d364680b4}
@@ -173,16 +209,56 @@ Numero di minor-\/number richiesti da driver.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}
 
+
+Interrupt-\/handler. 
+
+
 \begin{DoxyParams}{Parametri}
 {\em irq} & \\
 \hline
 {\em regs} & \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
 
-\end{DoxyReturn}
-\hypertarget{group___kernel-_module_ga66e7f726b72320a272b633ecbaecefff}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}}
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em I\+R\+Q\+\_\+\+H\+A\+N\+D\+L\+E\+D} & dopo aver servito l'interruzione\\
+\hline
+\end{DoxyRetVals}
+Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica. Viene registrata dalla funzione \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()} affinche' venga richiamata al manifestarsi di un interrupt sulla linea cui e' connesso il device \subparagraph*{Disabilitazione delle interruzioni della periferica}
+
+Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati. Se si tratta di un G\+P\+I\+O Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal secondo canale. Se, invece, si tratta di un device G\+P\+I\+O custom my\+G\+P\+I\+O, vengono disabilitati solo gli interrupt globali.
+
+\subparagraph*{Setting del valore del flag \char`\"{}interrupt occurred\char`\"{}}
+
+Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag \char`\"{}interrupt occurred\char`\"{}, in modo che i processi in attesa possano essere risvegliati in modo sicuro. Per prevenire race condition, tale operazione viene effettuata mutua esclusione. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
+\begin{DoxyCode}
+1 void spin\_lock\_irqsave(spinlock\_t *lock, unsigned long flags);
+\end{DoxyCode}
+ la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi ripristinarlo quando lo spinlock viene rilasciato, usando 
+\begin{DoxyCode}
+1 void spin\_unlock\_irqrestore(spinlock\_t *lock, unsigned long flags);
+\end{DoxyCode}
+
+
+\subparagraph*{Incremento del numero totale di interrupt}
+
+Dopo aver settato il flag, viene incrementato il valore degli interrupt totali. Anche questa operazione viene effettuata in mutua esclusione.
+
+\subparagraph*{Ack degli interrupt della periferica}
+
+Prima di risvegliare i processi, viene inviato l'Ack alla periferica, per segnalargli che l'interrupt e' stato servito.
+
+\subparagraph*{Wakeup dei processi sleeping}
+
+La I\+S\+R deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che un particolare evento si manifestasse. La funzione 
+\begin{DoxyCode}
+1 void wake\_up\_interruptible(wait\_queue\_head\_t *queue);
+\end{DoxyCode}
+ risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno effettuato una chiamata a wait\+\_\+event\+\_\+interruptible()). Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-\/condition.
+
+\subparagraph*{Abilitazione degli interrupt della periferica}
+
+A seconda del valore C\+F\+L\+A\+G\+S\+\_\+my\+G\+P\+I\+O\+K.\+o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del G\+P\+I\+O Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device G\+P\+I\+O custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.\hypertarget{group___kernel-_module_ga66e7f726b72320a272b633ecbaecefff}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}}
 \index{my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}!Kernel-\/\+Module@{Kernel-\/\+Module}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+llseek}]{\setlength{\rightskip}{0pt plus 5cm}static loff\+\_\+t my\+G\+P\+I\+O\+K\+\_\+llseek (
 \begin{DoxyParamCaption}
@@ -199,16 +275,16 @@ Implementa le system-\/call lseek() e llseek().
 L'implementazione di read() e write() non sposta la testina di lettura/scrittura!
 \end{DoxyWarning}
 
-\begin{DoxyParams}{Parametri}
-{\em file\+\_\+ptr} & \\
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em file\+\_\+ptr} & \\
 \hline
-{\em off} & \\
+\mbox{\tt in}  & {\em off} & \\
 \hline
-{\em whence} & \\
+\mbox{\tt in}  & {\em whence} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-
+Nuova posizione della \char`\"{}testina\char`\"{} di lettura/scrittura 
 \end{DoxyReturn}
 \hypertarget{group___kernel-_module_gad013759c18fbf6ea96005b9b3bfa5b4e}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}}
 \index{my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}!Kernel-\/\+Module@{Kernel-\/\+Module}}
@@ -222,7 +298,19 @@ L'implementazione di read() e write() non sposta la testina di lettura/scrittura
 
 Invocata all'apertura del file corrispondente al device. 
 
-\paragraph*{Il metodo open()}
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em inode} & \\
+\hline
+\mbox{\tt in,out}  & {\em file} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se non si verifica nessun errore\\
+\hline
+\end{DoxyRetVals}
+\subparagraph*{Il metodo open()}
 
 Il metodo open di un device driver viene fornito per effettuare ogni inizializzazione necessaria ad operazioni successive. Effettua le seguenti operazioni\+:
 \begin{DoxyItemize}
@@ -238,29 +326,13 @@ In primo luogo e' necessario identificare il device che sta per essere aperto. T
 \begin{DoxyCode}
 1 int (*open)(struct inode *inode, struct file *filp);
 \end{DoxyCode}
+ \paragraph*{Identificare il particolare device associato al file}
 
-
-il parametro inode contiene tutte le informazioni necessarie all'interno del campo i\+\_\+cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container\+\_\+if() definita in $<$linux/kernel.\+h$>$.
-
-
+Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i\+\_\+cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container\+\_\+if() definita in $<$linux/kernel.\+h$>$. 
 \begin{DoxyCode}
 1 container\_of(pointer, container\_type, container\_field);
 \end{DoxyCode}
-
-
-La macro prende in ingresso un puntatore ad un campo di tipo container\+\_\+field, di una struttura container\+\_\+type, restituendo il puntatore alla struttura che la contiene.
-
-
-\begin{DoxyParams}{Parametri}
-{\em inode} & \\
-\hline
-{\em file} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-
-\end{DoxyReturn}
-\hypertarget{group___kernel-_module_gaba935e8a8215c2ebce9a7147fd4f5147}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}}
+ La macro prende in ingresso un puntatore ad un campo di tipo container\+\_\+field, di una struttura container\+\_\+type, restituendo il puntatore alla struttura che la contiene.\hypertarget{group___kernel-_module_gaba935e8a8215c2ebce9a7147fd4f5147}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}}
 \index{my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}!Kernel-\/\+Module@{Kernel-\/\+Module}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+poll}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned int my\+G\+P\+I\+O\+K\+\_\+poll (
 \begin{DoxyParamCaption}
@@ -295,13 +367,23 @@ restituisce una maschera di bit che indica se sia possibile effettuare operazion
 
 Viene chiamata quando il modulo viene inserito. 
 
-Inizializza il driver e la periferica. Alloca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, che astrae un device my\+G\+P\+I\+O, e lo inizializza, associandogli gli operatori che permetteranno di interagire con tale device da user-\/space.
 
-\subparagraph*{Inizializzazione del driver}
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em op} & \\
+\hline
+\end{DoxyParams}
 
-Il device G\+P\+I\+O viene gestito come un character-\/device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere $<$linux/cdev.\+h$>$, che definisce tale struttura e le relative funzioni.
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & nel caso in cui non si sia verificato nessun errore; \\
+\hline
+{\em -\/\+E\+N\+O\+M\+E\+M} & nel caso in cui non sia possibile allocare memoria; \\
+\hline
+{\em $<$0} & per altri errori\\
+\hline
+\end{DoxyRetVals}
+\paragraph*{Inizializzazione del driver}
 
-\subparagraph*{Major-\/number e Minor-\/number}
+Il device G\+P\+I\+O viene gestito come un character-\/device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere $<$linux/cdev.\+h$>$, che definisce tale struttura e le relative funzioni. \subparagraph*{Major-\/number e Minor-\/number}
 
 Ai device drivers sono associati un major-\/number ed un minor-\/number. Il major-\/number viene usato dal kernel per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver. Il driver scritto per G\+P\+I\+O non usera' minor-\/number. La registrazione di un device driver puo' essere effettuata chiamando {\bfseries alloc\+\_\+chrdev\+\_\+region()}, la quale alloca un char-\/device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori, 0 altrimenti. 
 \begin{DoxyCode}
@@ -389,6 +471,8 @@ Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiunger
 
 La funzione restituisce un numero negativo in caso di errore.
 
+\subparagraph*{Creazione del device}
+
 Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione puo' essere effettuata chiamando 
 \begin{DoxyCode}
 1 struct device * device\_create( struct class *class, struct device *parent, dev\_t devt, const char *fmt,
@@ -420,36 +504,29 @@ popola una struttura resource con l'indirizzo di memoria cui e' mapato il device
 \end{DoxyCode}
  signidifa che l'indirizzo fisico associato al device e' l'indirizzo 0x41200000, che al device sono riservati 0x10000 bytes. of\+\_\+address\+\_\+to\+\_\+resource() settera' res.\+start = 0x41200000 e res.\+end = 0x4120ffff.
 
-Le regioni di memoria per di I/\+O vanno allocate prima di poter essere usate.
+\subparagraph*{Allocazione della memoria del device}
 
-
+Le regioni di memoria per di I/\+O vanno allocate prima di poter essere usate. 
 \begin{DoxyCode}
 1 struct resource *request\_mem\_region(unsigned long start, unsigned long len, char *name);
 \end{DoxyCode}
+ Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo, mentre nel caso in cui si verifichi un errore viene restituito N\+U\+L\+L. La funzione viene chiamata per ottenere l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso spazio di memoria.
 
+\subparagraph*{Remapping}
 
-Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo, mentre nel caso in cui si verifichi un errore viene restituito N\+U\+L\+L. La funzione viene chiamata per ottenere l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso spazio di memoria.
-
-L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la funzione.
-
-
+L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la funzione. 
 \begin{DoxyCode}
 1 void *ioremap(unsigned long phys\_addr, unsigned long size);
 \end{DoxyCode}
 
 
+\subparagraph*{Registrazione di un interrupt-\/handler}
 
-\begin{DoxyItemize}
-\item \subparagraph*{Interrupts}
-\end{DoxyItemize}
-
-The L\+K\+M driver must register a handler function for the interrupt, which defines the actions that the interrupt should perform. L'handler deve essere compatibile con il tipo puntatore a funzione irq\+\_\+handler\+\_\+t, così definito. 
+Il modulo deve registrare un handler per gli interrupt. L'handler deve essere compatibile con il tipo puntatore a funzione irq\+\_\+handler\+\_\+t, così definito. 
 \begin{DoxyCode}
 1 struct irqreturn\_t (*irq\_handler\_t)(int irq, struct pt\_regs * regs);
 \end{DoxyCode}
- Il modulo definisce la funzione \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()}. L'handler puo' essere registrato usando
-
-
+ Il modulo definisce la funzione \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()}. L'handler puo' essere registrato usando 
 \begin{DoxyCode}
 1 int request\_irq(    unsigned int irqNumber,
 2                     irqreturn\_t (*handler)(int, void *, struct pt\_regs *),
@@ -457,43 +534,40 @@ The L\+K\+M driver must register a handler function for the interrupt, which def
 4                     const char *devname,
 5                     void *dev\_id);
 \end{DoxyCode}
-
-
-I\+L parametro irq\+Number puo' essere determinato automaticamente usando la funzione
-
-
+ I\+L parametro irq\+Number puo' essere determinato automaticamente usando la funzione 
 \begin{DoxyCode}
 1 unsigned int irq\_of\_parse\_and\_map(struct device\_node *node, int index);
 \end{DoxyCode}
-
-
-La funzione irq\+\_\+of\+\_\+parse\+\_\+and\+\_\+map() effettua un looks-\/up nella specifica degli interrupt all'interno del device tree e restituisce un irq number cosi' come de lo aspetta request\+\_\+irq() (cioe' compaci con l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli interrupt specificate. Il device tree, nella sezione dedicata al gpio,reca 
+ La funzione irq\+\_\+of\+\_\+parse\+\_\+and\+\_\+map() effettua un looks-\/up nella specifica degli interrupt all'interno del device tree e restituisce un irq number cosi' come de lo aspetta request\+\_\+irq() (cioe' compaci con l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli interrupt specificate. Il device tree, nella sezione dedicata al gpio,reca 
 \begin{DoxyCode}
 1 interrupts = <0 29 4>;
 \end{DoxyCode}
-
-
-Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line S\+P\+I (shared peripheral interrupt). Un valore diverso da zero indica che la linea e' S\+P\+I.
-
-Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware, in questo specifico esempio il device G\+P\+I\+O e' connesso alla linea 61 del G\+I\+C. Sottraendo 32 si orriene 29.
-
-Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori\+:
+ Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line S\+P\+I (shared peripheral interrupt). Un valore diverso da zero indica che la linea e' S\+P\+I. Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware, in questo specifico esempio il device G\+P\+I\+O e' connesso alla linea 61 del G\+I\+C. Sottraendo 32 si orriene 29. Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori\+:
 \begin{DoxyItemize}
 \item 0 \+: power-\/up default
 \item 1 \+: rising-\/edge
 \item 4 \+: a livelli, active alto
 \end{DoxyItemize}
 
+\subparagraph*{Inizializzazione della wait-\/queue per la system-\/call read() e poll()}
 
-\begin{DoxyRetVals}{Valori di ritorno}
-{\em 0} & nel caso in cui non si sia verificato nessun errore; \\
-\hline
-{\em -\/\+E\+N\+O\+M\+E\+M} & nel caso in cui non sia possibile allocare memoria; \\
-\hline
-{\em $<$0} & per altri errori \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}}
+In linux una wait queue viene implementata da una struttura dati wait\+\_\+queue\+\_\+head\+\_\+t, definita in $<$linux/wait.\+h$>$. Il driver in questione prevede due wait-\/queue differenti\+: una per la system-\/call read() ed una per la system-\/call poll(). Entrambe le code vengono inizializzate dalla funzione \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()}. 
+\begin{DoxyCode}
+1 init\_waitqueue\_head(&my\_queue);
+\end{DoxyCode}
+ Si veda la documentazione della funzione \hyperlink{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{my\+G\+P\+I\+O\+K\+\_\+read()} per dettagli ulteriori.
+
+\subparagraph*{Inizializzazione degli spinlock}
+
+I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. L'inizializzazione di uno spinlock avviene usando la funzione 
+\begin{DoxyCode}
+1 void spin\_lock\_init(spinlock\_t *lock);
+\end{DoxyCode}
+
+
+\subparagraph*{Abilitazione degli interrupt del device}
+
+A seconda del valore C\+F\+L\+A\+G\+S\+\_\+my\+G\+P\+I\+O\+K.\+o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del G\+P\+I\+O Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device G\+P\+I\+O custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.\hypertarget{group___kernel-_module_ga90ac339df9c02ae5f11a2a7727adc923}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}}
 \index{my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}!Kernel-\/\+Module@{Kernel-\/\+Module}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}static ssize\+\_\+t my\+G\+P\+I\+O\+K\+\_\+read (
 \begin{DoxyParamCaption}
@@ -507,19 +581,87 @@ Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre v
 
 Legge dati dal device. 
 
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em file} & \\
+\hline
+\mbox{\tt out}  & {\em buf} & \\
+\hline
+\mbox{\tt in}  & {\em count} & \\
+\hline
+\mbox{\tt in}  & {\em off} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Restituisce}
+restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo.
+\end{DoxyReturn}
 \paragraph*{Operazioni di lettura e scrittura}
 
-I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.
-
-
+I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile. 
 \begin{DoxyCode}
 1 ssize\_t read(struct file *filp, char \_\_user *buff, size\_t count, loff\_t *offp);
-2 
-3 ssize\_t write(struct file *filp, const char \_\_user *buff, size\_t count, loff\_t *offp);
+2 ssize\_t write(struct file *filp, const char \_\_user *buff, size\_t count, loff\_t *offp);
+\end{DoxyCode}
+ Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto \char`\"{}long offset type\char`\"{} che indica la posizione alla quale si sta effettuando l'accesso.
+
+\subparagraph*{I/\+O bloccante}
+
+Nel paragrafo precedente e' stato ignorato un problema importante\+: come comportarsi quando il driver non e' in grado di servire immegiatamente una richiesta? Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante e' totalmente all'oscuro di queste dinamiche, anzi potrebbe non avere la minima conoscenza delle dinamiche interne del device\+: chiama le funzioni read() o write() e si aspetta che facciano cio' che devono fare, per cui, nell'impossibilita' di servire la richiesta, il driver bloccare il processo e metterlo tra i processi \char`\"{}sleeping\char`\"{}, fin quando la richiesta non puo' essere servita. Il codice (la I\+S\+R) che dovra' risvegliare il processo quado potra' servire la sua richiesta, deve essere a conoscenza dell'evento \char`\"{}risvegliante\char`\"{} e deve essere in grado di \char`\"{}trovare\char`\"{} i processi in attesa per quel particolare evento. Per questo motivo, tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. Il codice della I\+S\+R deve effettuare una chiamata a wakeup() per risvegliare i processi in attesa di un evento quando questo si e' manifestato. Si veda la documentazione della funzione \hyperlink{group___kernel-_module_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()} per dettagli ulteriori. \subparagraph*{I/\+O non-\/bloccante}
+
+Esistono casi in cui il processo chiamante non vuole essere bloccato in attesa di un evento. Questa evenienza viene esplicitamente indicata attraverso il flag O\+\_\+\+N\+O\+N\+B\+L\+O\+C\+K flag in filp-\/$>$f\+\_\+flags. Il flag viene definito in $<$linux/fcntl.\+h$>$ il quale e' incluso in$<$linux/fs.\+h$>$.
+
+\subparagraph*{Porre un processo nello stato sleeping}
+
+Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera, per cui essa va nuovamente testata. Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait\+\_\+event(), o una delle sue varianti\+: essa combina la gestione della messa in sleeping del processo ed il check della condizione che il processo si aspetta diventi vera. 
+\begin{DoxyCode}
+1 wait\_event\_interruptible(queue, condition);
+\end{DoxyCode}
+ Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait\+\_\+event\+\_\+interruptible() puo' essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero, indica che il processo e' stato risvegliato da un segnale.
+
+La condizione sulla quale i processi vengono bloccati riguarda il flag \char`\"{}interrupt occurred\char`\"{}. Fin quando questo flag, posto in and con la maschera M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D, e' zero, il processo deve restare bloccato, per cui i processi che effettuano read() bloccante restano bloccati finoche' int\+\_\+occurred \& M\+Y\+G\+P\+I\+O\+\_\+\+S\+R\+E\+A\+D == 0.
+
+\subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() bloccanti}
+
+Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata per prevenire race-\/condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
+
+I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
+\begin{DoxyCode}
+1 void spin\_lock(spinlock\_t *lock);
+\end{DoxyCode}
+ per rilasciare uno spinlock, invece, verra' usata 
+\begin{DoxyCode}
+1 void spin\_unlock(spinlock\_t *lock);
 \end{DoxyCode}
 
 
-Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto \char`\"{}long offset type\char`\"{} che indica la posizione alla quale si sta effettuando l'accesso.
+\subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() non-\/bloccanti}
+
+Anche nel caso in cui la read() non sia bloccante e' necessario resettare il flag in modo opportuno e per prevenire inconsistenze, anche questa operazione deve essere effettuata avendo accesso esclusivo al flag interrupt occurred.
+
+\subparagraph*{Calcolo dell'indirizzo effettivo}
+
+L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
+
+\subparagraph*{Accesso ai registri del device}
+
+Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-\/mapped I/\+O, definite in $<$asm/io.\+h$>$. Per leggere dalla memoria vengono usate le seguenti\+: 
+\begin{DoxyCode}
+1 unsigned int ioread8(void *addr);
+2 unsigned int ioread16(void *addr);
+3 unsigned int ioread32(void *addr);
+\end{DoxyCode}
+ addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare locazione di memoria a cui viene effettuato accesso. Per scrivere nella memoria vengono usate le seguenti\+: 
+\begin{DoxyCode}
+1 void iowrite8(u8 value, void *addr);
+2 void iowrite16(u16 value, void *addr);
+3 void iowrite32(u32 value, void *addr);
+\end{DoxyCode}
+
+
+\subparagraph*{Accesso alla memoria userspace}
 
 Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-\/space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali\+:
 \begin{DoxyItemize}
@@ -528,19 +670,123 @@ Buff e' un puntatore appartenente allo spazio di indirizzamento del programma us
 \item il puntatore in questione potrebbe essere stato fornito da un programma user-\/space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.
 \end{DoxyItemize}
 
-Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in $<$asm/uaccess.\+h$>$
+Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in $<$asm/uaccess.\+h$>$ 
+\begin{DoxyCode}
+1 unsigned long copy\_to\_user(void \_\_user *to, const void *from, unsigned long count);
+2 unsigned long copy\_from\_user(void *to, const void \_\_user *from, unsigned long count);
+\end{DoxyCode}
+ Queste due funzioni non si limitano a copiare dati da/verso userspacem\+: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata. Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.
+
+\subparagraph*{Piccola nota sull'endianess}
+
+Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char$\ast$ in uint32\+\_\+t$\ast$ mediante un semplice casting, senza invertire manualmente l'ordine dei byte.\hypertarget{group___kernel-_module_ga17ce7f574723246c790b70b06e3e7103}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+release@{my\+G\+P\+I\+O\+K\+\_\+release}}
+\index{my\+G\+P\+I\+O\+K\+\_\+release@{my\+G\+P\+I\+O\+K\+\_\+release}!Kernel-\/\+Module@{Kernel-\/\+Module}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+release}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+release (
+\begin{DoxyParamCaption}
+\item[{struct inode $\ast$}]{inode, }
+\item[{struct file $\ast$}]{file\+\_\+ptr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga17ce7f574723246c790b70b06e3e7103}
+
+
+Invocata alla chiusura del file corrispondente al device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em inode} & \\
+\hline
+\mbox{\tt in}  & {\em file} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se non si verifica nessun errore \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+remove@{my\+G\+P\+I\+O\+K\+\_\+remove}}
+\index{my\+G\+P\+I\+O\+K\+\_\+remove@{my\+G\+P\+I\+O\+K\+\_\+remove}!Kernel-\/\+Module@{Kernel-\/\+Module}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{struct platform\+\_\+device $\ast$}]{op}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}
+Viene chiamata automaticamente alla rimozione del mosulo.
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em op} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se non si verifica nessun errore\\
+\hline
+\end{DoxyRetVals}
+Dealloca tutta la memoria utilizzata dal driver, de-\/inizializzando il device e disattivando gli interrupt per il device, effettuando tutte le operazioni inverse della funzione \hyperlink{group___kernel-_module_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()}. \hypertarget{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}}
+\index{my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}!Kernel-\/\+Module@{Kernel-\/\+Module}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}static ssize\+\_\+t my\+G\+P\+I\+O\+K\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{struct file $\ast$}]{file\+\_\+ptr, }
+\item[{const char $\ast$}]{buf, }
+\item[{size\+\_\+t}]{size, }
+\item[{loff\+\_\+t $\ast$}]{off}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}
+
+
+Invia dati al device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em file} & \\
+\hline
+\mbox{\tt in}  & {\em buf} & \\
+\hline
+\mbox{\tt in}  & {\em size} & \\
+\hline
+\mbox{\tt in}  & {\em off} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Restituisce}
+restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo.
+\end{DoxyReturn}
+\paragraph*{Operazioni di lettura e scrittura}
+
+I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.
 
 
 \begin{DoxyCode}
-1 unsigned long copy\_to\_user(void \_\_user *to, const void *from, unsigned long count);
-2 
-3 unsigned long copy\_from\_user(void *to, const void \_\_user *from, unsigned long count);
+1 ssize\_t read(struct file *filp, char \_\_user *buff, size\_t count, loff\_t *offp);
+2 ssize\_t write(struct file *filp, const char \_\_user *buff, size\_t count, loff\_t *offp);
 \end{DoxyCode}
 
 
-Queste due funzioni non si limitano a copiare dati da/verso userspacem\+: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata.
+Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto \char`\"{}long offset type\char`\"{} che indica la posizione alla quale si sta effettuando l'accesso. \subparagraph*{Accesso alla memoria userspace}
 
-Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.
+Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-\/space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali\+:
+\begin{DoxyItemize}
+\item a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
+\item la memoria user-\/space e' paginata e potrebbe non essere presente in R\+A\+M quando la system-\/call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-\/fault con conseguente terminazione del processo che ha effettuato la system-\/call;
+\item il puntatore in questione potrebbe essere stato fornito da un programma user-\/space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.
+\end{DoxyItemize}
+
+Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in $<$asm/uaccess.\+h$>$ 
+\begin{DoxyCode}
+1 unsigned long copy\_to\_user(void \_\_user *to, const void *from, unsigned long count);
+2 unsigned long copy\_from\_user(void *to, const void \_\_user *from, unsigned long count);
+\end{DoxyCode}
+ Queste due funzioni non si limitano a copiare dati da/verso userspacem\+: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata. Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.
+
+\subparagraph*{Piccola nota sull'endianess}
+
+Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char$\ast$ in uint32\+\_\+t$\ast$ mediante un semplice casting, senza invertire manualmente l'ordine dei byte.
+
+\subparagraph*{Calcolo dell'indirizzo effettivo}
+
+L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
 
 \subparagraph*{Accesso ai registri del device}
 
@@ -558,104 +804,6 @@ Per leggere dalla memoria vengono usate le seguenti\+:
 
 addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare locazione di memoria a cui viene effettuato accesso.
 
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em file} & \\
-\hline
-\mbox{\tt out}  & {\em buf} & \\
-\hline
-\mbox{\tt in}  & {\em count} & \\
-\hline
-\mbox{\tt in}  & {\em ppos} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo. 
-\end{DoxyReturn}
-\hypertarget{group___kernel-_module_ga17ce7f574723246c790b70b06e3e7103}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+release@{my\+G\+P\+I\+O\+K\+\_\+release}}
-\index{my\+G\+P\+I\+O\+K\+\_\+release@{my\+G\+P\+I\+O\+K\+\_\+release}!Kernel-\/\+Module@{Kernel-\/\+Module}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+release}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+release (
-\begin{DoxyParamCaption}
-\item[{struct inode $\ast$}]{inode, }
-\item[{struct file $\ast$}]{file\+\_\+ptr}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga17ce7f574723246c790b70b06e3e7103}
-
-
-Invocata alla chiusura del file corrispondente al device. 
-
-
-\begin{DoxyParams}{Parametri}
-{\em inode} & \\
-\hline
-{\em file} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-
-\end{DoxyReturn}
-\hypertarget{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+remove@{my\+G\+P\+I\+O\+K\+\_\+remove}}
-\index{my\+G\+P\+I\+O\+K\+\_\+remove@{my\+G\+P\+I\+O\+K\+\_\+remove}!Kernel-\/\+Module@{Kernel-\/\+Module}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+remove (
-\begin{DoxyParamCaption}
-\item[{struct platform\+\_\+device $\ast$}]{op}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga59fddfaa36dea357f4bbdfceb0f47f8c}
-Viene chiamata automaticamente alla rimozione del mosulo.
-
-Dealloca tutta la memoria utilizzata dal driver, de-\/inizializzando il device. \hypertarget{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}{\index{Kernel-\/\+Module@{Kernel-\/\+Module}!my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}}
-\index{my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}!Kernel-\/\+Module@{Kernel-\/\+Module}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}static ssize\+\_\+t my\+G\+P\+I\+O\+K\+\_\+write (
-\begin{DoxyParamCaption}
-\item[{struct file $\ast$}]{file\+\_\+ptr, }
-\item[{const char $\ast$}]{buf, }
-\item[{size\+\_\+t}]{size, }
-\item[{loff\+\_\+t $\ast$}]{off}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___kernel-_module_ga1eea0f6c86e8966ba9b701da57502aad}
-
-
-Invia dati al device. 
-
-\paragraph*{Operazioni di lettura e scrittura}
-
-I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro prototipo e' molto simile.
-
-
-\begin{DoxyCode}
-1 ssize\_t read(struct file *filp, char \_\_user *buff, size\_t count, loff\_t *offp);
-2 
-3 ssize\_t write(struct file *filp, const char \_\_user *buff, size\_t count, loff\_t *offp);
-\end{DoxyCode}
-
-
-Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti per la read()). Infine offp e' il puntatore ad un oggetto \char`\"{}long offset type\char`\"{} che indica la posizione alla quale si sta effettuando l'accesso.
-
-Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-\/space che utilizza il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per diverse ragioni, tra le quali\+:
-\begin{DoxyItemize}
-\item a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
-\item la memoria user-\/space e' paginata e potrebbe non essere presente in R\+A\+M quando la system-\/call viene effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-\/fault con conseguente terminazione del processo che ha effettuato la system-\/call;
-\item il puntatore in questione potrebbe essere stato fornito da un programma user-\/space buggato o malizioso, motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il programma userspace puo' modificare la memoria senza costrizioni.
-\end{DoxyItemize}
-
-Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in $<$asm/uaccess.\+h$>$
-
-
-\begin{DoxyCode}
-1 unsigned long copy\_to\_user(void \_\_user *to, const void *from, unsigned long count);
-2 
-3 unsigned long copy\_from\_user(void *to, const void \_\_user *from, unsigned long count);
-\end{DoxyCode}
-
-
-Queste due funzioni non si limitano a copiare dati da/verso userspacem\+: verificano, infatti, anche che il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene effettuata.
-
-Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con successo.
-
-\subparagraph*{Accesso ai registri del device}
-
-Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-\/mapped I/\+O, definite in $<$asm/io.\+h$>$.
-
 Per scrivere nella memoria vengono usate le seguenti\+:
 
 
@@ -664,24 +812,6 @@ Per scrivere nella memoria vengono usate le seguenti\+:
 2 void iowrite16(u16 value, void *addr);
 3 void iowrite32(u32 value, void *addr);
 \end{DoxyCode}
-
-
-addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene, eventualmente, aggiunto un offset. value e' il valore che verra' scritto alla particolare locazione di memoria a cui viene effettuato accesso.
-
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em file} & \\
-\hline
-\mbox{\tt in}  & {\em buf} & \\
-\hline
-\mbox{\tt in}  & {\em size} & \\
-\hline
-\mbox{\tt in}  & {\em off} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte scritti con successo. 
-\end{DoxyReturn}
 
 
 \subsection{Documentazione delle variabili}

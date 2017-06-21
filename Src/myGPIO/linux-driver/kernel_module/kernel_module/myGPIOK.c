@@ -31,16 +31,37 @@
  *
  * @brief Device-driver in kernel-mode per myGPIO
  *
- * <h2>Platform-device</h2>
- * I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel.
+ * <h2>Descrizione generale del driver</h2>
+ * Il modulo driver implementa definisce il tipo myGPIOK_t ed implementa le seguenti funzioni:
+ *  - myGPIOK_probe(): richiamata quando il modulo, o un device compatibile col modulo, viene inserito:
+ *  - myGPIOK_remove(): richiamata quando il modulo, o un device compatibile, viene rimosso;
+ *  - myGPIOK_open(): implementa la system call open();
+ *  - myGPIOK_llseek(): implementa la system call seek();
+ *  - myGPIOK_write(): implementa la system call seek();
+ *  - myGPIOK_irq_handler(): implementa la ISR dedicata alla gestione delle interruzioni provenienti dal
+ *    device;
+ *  - myGPIOK_poll() : implementa il back-end di tre diverse system-calls (poll, epoll e select)
+ *  - myGPIOK_read() : implementa la system call read.
  *
+ * Nel seguito viene presentato un breve escursus su tutto cio' che c'e' da sapere per comprendere come
+ * funziona un device-driver e come poterne scrivere uno.
+ * Dopo aver letto il seguito, si consiglia, in ordine, di leggere, in ordine, la documentazione della
+ * struttura myGPIOK-t, poi quella delle funzioni
+ * - myGPIOK_probe();
+ * - myGPIOK_open();
+ * - myGPIOK_llseek();
+ * - myGPIOK_write();
+ * - myGPIOK_read();
+ * - myGPIOK_irq_handler();
+ *
+ * <h3>Platform-device</h3>
+ * I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel.
  * I "platform-device" sono device che non possono annunciarsi al software (non possono dire "Hey,
  * sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili", nel senso che
  * il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei
  * device PCI o USB, che non sono platform-device, un device I²C non viene enumerato a livello
  * hardware, per cui e' necessario che il sistema operativo sappia, a tempo di "compilazione", cioe'
  * prima del boot - quale device sia connesso al bus I²C.
- *
  * I non-discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il
  * Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema.
  * Bisogna distinguere in:
@@ -50,7 +71,6 @@
  * Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni
  * standard che possono essere effettuate su un platform-device.
  * Un riferimento pue' essere http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173.
- *
  * Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere
  * implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere
  * nome qualsiasi.
@@ -117,7 +137,6 @@
  *   			},
  * 		};
  * @endcode
- *
  */
 
 
@@ -135,6 +154,7 @@
 #include <linux/device.h>
 #include <linux/platform_device.h>
 #include <linux/cdev.h>
+#include <linux/wait.h>
 #include <linux/interrupt.h>
 #include <linux/irqreturn.h>
 #include <linux/spinlock.h>
@@ -165,6 +185,67 @@ static ssize_t 		myGPIOK_write 			(struct file *file_ptr, const char *buf, size_
 
 static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
 
+/**
+ * @cond
+ * Funzioni e definizioni di servizio.
+ * Non verranno documentate.
+ */
+#define myGPIO_MODE_OFFSET		0U
+#define myGPIO_WRITE_OFFSET		4U
+#define myGPIO_READ_OFFSET		8U
+#define myGPIO_INTR_OFFSET		12U
+#define myGPIO_INTR_IntEn_mask	0x1U
+#define myGPIO_INTR_Irq_mask	0x2U
+#define myGPIO_INTR_IntAck_mask 0x4U
+
+static void myGPIO_interruptEnable(void* baseAddress) {
+	unsigned reg_value = ioread32((baseAddress + myGPIO_INTR_OFFSET));
+	reg_value |= myGPIO_INTR_IntEn_mask;
+	iowrite32(reg_value, (baseAddress + myGPIO_INTR_OFFSET));
+}
+
+static void myGPIO_interruptDisable(void* baseAddress) {
+	unsigned reg_value = ioread32((baseAddress + myGPIO_INTR_OFFSET));
+	reg_value &= ~myGPIO_INTR_IntEn_mask;
+	iowrite32(reg_value, (baseAddress + myGPIO_INTR_OFFSET));
+}
+
+static void myGPIO_interruptAck(void* baseAddress) {
+	unsigned reg_value = ioread32((baseAddress + myGPIO_INTR_OFFSET));
+	reg_value |= myGPIO_INTR_IntAck_mask;
+	iowrite32(reg_value, (baseAddress + myGPIO_INTR_OFFSET));
+}
+
+#define XGPIO_DATA_OFFSET 	0x00
+#define XGPIO_TRI_OFFSET 	0x04
+#define xGPIO_READ_OFFSET	0x08
+#define XGPIO_GIE_OFFSET	0x11C
+#define XGPIO_ISR_OFFSET	0x120
+#define XGPIO_IER_OFFSET	0x128
+#define XGPIO_GIE			0x80000000
+#define XGPIO_CH1_IE		0x00000001
+#define XGPIO_CH2_IE		0x00000002
+#define XGPIO_GIDS			0x00000000
+#define XGPIO_CH1_IDS		0x00000000
+#define XGPIO_CH2_IDS		0x00000000
+#define XGPIO_CH1_ACK		0x01
+#define XGPIO_CH2_ACK		0x02
+
+static void XGpio_Global_Interrupt(void* baseAddress, unsigned mask) {
+	iowrite32(mask, (baseAddress + XGPIO_GIE_OFFSET));
+}
+
+static void XGpio_Channel_Interrupt(void* baseAddress, unsigned mask) {
+	iowrite32(mask, (baseAddress + XGPIO_IER_OFFSET));
+}
+
+static void XGpio_Ack_Interrupt(void* baseAddress, unsigned channel) {
+	iowrite32(channel, (baseAddress + XGPIO_ISR_OFFSET));
+}
+
+/**
+ * @endcond
+ */
 
 
 /**
@@ -173,31 +254,78 @@ static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
  * E' buona abitudine, se non quasi indispensabile, definire una struttura dati nella quale contenere tutto
  * cio' che e' legato al device o al driver. In questo modulo viene usata la struttura myGPIOK_t per contenere
  * tutto cio' che e' necessario al funzionamento del driver.
- *
  */
 typedef struct {
-	struct cdev cdev;	/**<	Stuttura per l'astrazione di un device a caratteri,
-	 	 	 	 	 	 	 	Il kernel usa, internamente, una struttura cdev per rappresentare i device a
-	 	 	 	 	 	 	 	caratteri. Prima che il kernel invochi le funzioni definite dal driver per il
-	 	 	 	 	 	 	 	device, bisogna allocare e registrare uno, o piu', oggetti cdev.
-	 	 	 	 	 	 	 	In questo caso e' sufficiente allocare uno solo di questi oggetti.*/
+	struct cdev cdev;			/**<	Stuttura per l'astrazione di un device a caratteri,
+	 	 	 	 	 	 	 			Il kernel usa, internamente, una struttura cdev per rappresentare i
+	 	 	 	 	 	 	 			device a caratteri. Prima che il kernel invochi le funzioni definite
+	 	 	 	 	 	 	 			dal driver per il device, bisogna allocare e registrare uno, o piu',
+	 	 	 	 	 	 	 			oggetti cdev. In questo caso e' sufficiente allocare uno solo di
+	 	 	 	 	 	 	 			questi oggetti.*/
 
-	uint32_t irqNumber; /**< 	interrupt-number a cui il device e' connesso. Restituito salla chiamata alla
-								funzione irq_of_parse_and_map() */
+	uint32_t irqNumber; 		/**< 	interrupt-number a cui il device e' connesso. Restituito dalla
+										chiamata alla funzione irq_of_parse_and_map() */
 
-	struct resource rsrc; /**<	Struttura che astrae una risorsa device, dal punto di vista della memoria alla
-	 	 	 	 	 	 	 	quale la risorsa e' mappata. In particolare i campi "start" ed "end" contendono,
-	 	 	 	 	 	 	 	rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device e'
-	 	 	 	 	 	 	 	mappato. */
+	struct resource rsrc; 		/**<	Struttura che astrae una risorsa device, dal punto di vista della
+										memoria alla quale la risorsa e' mappata. In particolare i campi
+										"start" ed "end" contengono, rispettivamente, il primo e l'ultimo
+										indirizzo fisico a cui il device e' mappato. */
 
-	struct resource *mreg; /**<	puntatre alla regione di memoria cui il device e' mapapto */
+	struct resource *mreg;		/**<	puntatre alla regione di memoria cui il device e' mapapto */
 
-	uint32_t rsrc_size; /**< 	rsrc.end - rsrc.start
-	 	 	 	 	 	 	 	numero di indirizzi associati alla periferica.
-	 	 	 	 	 	 	 	occorre per effettuare il mapping indirizzo fisico - indirizzo virtuale */
+	uint32_t rsrc_size; 		/**<	rsrc.end - rsrc.start
+	 	 	 	 	 	 	 			numero di indirizzi associati alla periferica.
+	 	 	 	 	 	 	 			occorre per effettuare il mapping indirizzo fisico - indirizzo
+	 	 	 	 	 	 	 			virtuale */
 
-	uint32_t* vrtl_addr; /**<	indirizzo virtuale della periferica */
+	void *vrtl_addr; 			/**<	indirizzo virtuale della periferica */
 
+	wait_queue_head_t read_queue; /**<  wait queue per la system-call read()
+										Una chiamata a read() potrebbe arrivare quando i dati non sono
+										disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a
+										write() potrebbe avvenire quando il device non e' in grado di accettare
+										altri dati (perche' il suo buffer di ingresso potrebbe essere pieno).
+										Il processo chiamante non ha la minima conoscenza delle dinamiche
+										interne del device, per cui, nell'impossibilita' di servire la
+										richiesta, il driver deve bloccare il processo e metterlo tra i
+										processi "sleeping", fin quando la richiesta non puo' essere servita.
+										Tutti i processi in attesa di un particolare evento vengono posti
+										all'interno della stessa wait queue. In linux una wait queue viene
+										implementata da una struttura dati wait_queue_head_t, definita in
+										<linux/wait.h>. */
+
+	wait_queue_head_t poll_queue; /**< 	wait queue per la system-call poll() */
+
+	uint32_t int_occurred; /**< Flag "interrupt occurred"
+	 	 	 	 	 	 	 	Il valore viene settato dalla funzione myGPIOK_irq_handler() al
+	 	 	 	 	 	 	 	manifestarsi di un interrupt, prima di risvegliare i processi in attesa
+	 	 	 	 	 	 	 	che tale variabile assuma uno specifico valore.
+	 	 	 	 	 	 	 	I valori con cui questo flag puo' essere settato sono due:
+	 	 	 	 	 	 	 	 - MYGPIOK_SREAD : per la read bloccante.
+								 - MYGPIOK_AREAD : pre la read non bloccante.
+
+								I processi che effettuano read() bloccante restano bloccati finoche'
+								int_occurred & MYGPIO_SREAD != 0
+	 	 	 	 	 	 	 	*/
+
+	spinlock_t slock_int; /**<	Spinlock usato per garantire l'accesso in mutua esclusione alla variabile
+								int_occurred da parte delle funzioni del modulo.
+								I semafori sono uno strumento potentissimo per per l'implementazione di sezioni
+								critiche, ma non possono essere usati in codice non interrompibile. Gli spilock
+								sono come i semafori, ma possono essere usati anche in codice non interrompibile,
+								come puo' esserlo un modulo kernel.
+								Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si
+								entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo
+								rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione
+								critica sia quanto piu' piccola possibile. Ovviamente l'implementazione	e' "un
+								po'" piu' complessa di come e' stata descritta, ma il concetto e' questo.
+								Gli spinlock sono definiti in <linux/spinlock.h>.
+								*/
+
+	uint32_t total_irq;	/**< 		numero totale di interrupt manifestatesi */
+
+	spinlock_t sl_total_irq; /**<	Spinlock usato per garantire l'accesso in mutua esclusione alla variabile
+								 	total_irq da parte delle funzioni del modulo */
 
 } myGPIOK_t;
 
@@ -232,7 +360,15 @@ static struct class*  myGPIOK_class  = NULL;
  */
 static struct device* myGPIOK_device = NULL;
 
+/**
+ * @brief Flag il cui significato e' "e' possibile servire una read() bloccante"
+ */
+#define MYGPIOK_SREAD 1
 
+/**
+ * @brief Flag il cui significato e' "e' possibile servire una read() non-bloccante"
+ */
+#define MYGPIOK_AREAD 2
 
 /**
  * @brief Identifica il device all'interno del device tree
@@ -284,19 +420,32 @@ static struct file_operations myGPIO_fops = {
 /**
  * @brief Viene chiamata quando il modulo viene inserito.
  *
- * Inizializza il driver e la periferica.
- * Alloca un oggetto myGPIOK_t, che astrae un device myGPIO, e lo inizializza, associandogli
- * gli operatori che permetteranno di interagire con tale device da user-space.
+ * @param [inout] op
  *
- * <h5>Inizializzazione del driver</h5>
+ * @retval 0 nel caso in cui non si sia verificato nessun errore;
+ * @retval -ENOMEM nel caso in cui non sia possibile allocare memoria;
+ * @retval <0 per altri errori
  *
+ * @details
+ * <h3>Inizializzazione del driver</h3>
  * Il device GPIO viene gestito come un character-device, ossia un device su cui e' possibile leggere e/o
  * scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima
  * che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o
  * piu', oggetti cdev. Per farlo e' necessario includere <linux/cdev.h>, che definisce tale struttura e le
  * relative funzioni.
- *
- * <h5>Major-number e Minor-number</h5>
+ */
+static int myGPIOK_probe(struct platform_device *op) {
+	int error = 0;
+	struct device *dev;
+
+	printk(KERN_INFO "Chiamata %s\n", __func__);
+
+	/* Allocazione dell'oggetto myGPIOK_t */
+	if ((myGPIOK_dev_ptr = kmalloc(sizeof(myGPIOK_t), GFP_KERNEL)) == NULL) {
+		printk(KERN_ERR "%s: kmalloc ha restituito NULL\n", __func__);
+		return -ENOMEM;
+	}
+/** <h5>Major-number e Minor-number</h5>
  * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
  * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
  * su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver.
@@ -312,8 +461,13 @@ static struct file_operations myGPIO_fops = {
  *  - baseminor: primo dei minor number richiesti
  *  - count: numero di minornumber richiesti
  *  - name: nome del device driver
- *
- * <h5>Device Class</h5>
+ */
+	if ((error = alloc_chrdev_region(&myGPIOK_Mm_number, 0 , REQUIRED_MINOR_NUMBER, DRIVER_NAME)) != 0) {
+		printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
+		kfree(myGPIOK_dev_ptr);
+		return error;
+	}
+/** <h5>Device Class</h5>
  * Ai device-drivers viene associata una classe ed un device-name.
  * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
  * @code
@@ -322,7 +476,14 @@ static struct file_operations myGPIO_fops = {
  *  - owner: puntatore al modulo che "possiede" la classe, THIS_MODULE
  *  - name: puntatore alla stringa identificativa (il nome) del device driver, DRIVER_NAME
  *
- * <h5>Operatori</h5>
+ */
+	if ((myGPIOK_class = class_create(THIS_MODULE, DRIVER_NAME) ) == NULL) {
+		printk(KERN_ERR "%s: class_create() ha restituito NULL\n", __func__);
+		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
+		kfree(myGPIOK_dev_ptr);
+		return -ENOMEM;
+	}
+/** <h5>Operatori</h5>
  * Essendo un device "visto" come un file, ogni device driver deve implementare tutte le
  * system-call previste per l'interfacciamento con un file. La corrispondenza tra la
  * system-call e la funzione fornita dal driver viene stabilita attraverso la struttura
@@ -401,8 +562,10 @@ static struct file_operations myGPIO_fops = {
  * la quale prende, come parametri
  *  - cdev: puntatore a struttura cdev da inizializzare;
  *  - fops: puntatore a struttura file_operation con cui inizializzare il device.
- *
- * <h5>Aggiunta del device</h5>
+ */
+	cdev_init (&(myGPIOK_dev_ptr->cdev), &myGPIO_fops);
+	myGPIOK_dev_ptr->cdev.owner = THIS_MODULE;
+/** <h5>Aggiunta del device</h5>
  * Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando
  * @code
  * int cdev_add (struct cdev *p, dev_t dev, unsigned count);
@@ -414,6 +577,15 @@ static struct file_operations myGPIO_fops = {
  *
  * La funzione restituisce un numero negativo in caso di errore.
  *
+ */
+	if ((error = cdev_add(&myGPIOK_dev_ptr->cdev, myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER)) != 0) {
+		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
+		class_destroy(myGPIOK_class);
+		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
+		kfree(myGPIOK_dev_ptr);
+		return error;
+	}
+/** <h5>Creazione del device</h5>
  * Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione
  * puo' essere effettuata chiamando
  * @code
@@ -428,9 +600,16 @@ static struct file_operations myGPIO_fops = {
  * filesystem, associandogli il major number preventivamente inizializzato. La funzione restituisce il puntatore
  * alla struttura device creata all'interno del filesystem. Si noti che il puntatre alla struttura classes DEVE
  * essere stato precedentemente creato attraverso una chiamata alla funzione <i>class_create()</i>.
- *
- *
- * <h5>Accedere al segmento di memoria a cui la periferica e' mappata</h5>
+ */
+	if ((myGPIOK_device = device_create(myGPIOK_class, NULL, myGPIOK_Mm_number, NULL, DRIVER_NAME)) == NULL) {
+		printk(KERN_ERR "%s: device_create() ha restituito NULL\n", __func__);
+		cdev_del(&myGPIOK_dev_ptr->cdev);
+		class_destroy(myGPIOK_class);
+		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
+		kfree(myGPIOK_dev_ptr);
+		return -ENOMEM;
+	}
+/** <h5>Accedere al segmento di memoria a cui la periferica e' mappata</h5>
  * Un driver, tipicamente, prende possesso del segmento di memoria cui e' mappato il device con la funzione
  * di probe. Il problema e' che il device e' mappato ad un indirizzo di memoria fisico ed il Kernel, così
  * come qualsiasi altro programma, lavora su indirizzi di memoria virtuali. La funzione
@@ -446,130 +625,8 @@ static struct file_operations myGPIO_fops = {
  * @endcode
  * signidifa che l'indirizzo fisico associato al device e' l'indirizzo 0x41200000, che al device sono riservati
  * 0x10000 bytes. of_address_to_resource() settera' res.start = 0x41200000 e res.end = 0x4120ffff.
- *
- * Le regioni di memoria per di I/O vanno allocate prima di poter essere usate.
- *
- * @code
- * struct resource *request_mem_region(unsigned long start, unsigned long len, char *name);
- * @endcode
- *
- * Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo,
- * mentre nel caso in cui si verifichi un errore viene restituito NULL. La funzione viene chiamata per ottenere
- * l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso
- * spazio di memoria.
- *
- * L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere
- * usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la
- * funzione.
- *
- * @code
- * void *ioremap(unsigned long phys_addr, unsigned long size);
- * @endcode
- *
- *
- *  * <h5>Interrupts</h5>
- * The LKM driver must register a handler function for the interrupt, which defines the actions that the interrupt
- * should perform.
- * L'handler deve essere compatibile con il tipo puntatore a funzione irq_handler_t, così definito.
- * @code
- * struct irqreturn_t (*irq_handler_t)(int irq, struct pt_regs * regs);
- * @endcode
- * Il modulo definisce la funzione myGPIOK_irq_handler(). L'handler puo' essere registrato usando
- *
- * @code
- * int request_irq(	unsigned int irqNumber,
- * 					irqreturn_t (*handler)(int, void *, struct pt_regs *),
- * 					unsigned long irqflags,
- * 					const char *devname,
- * 					void *dev_id);
- * @endcode
- *
- * IL parametro irqNumber puo' essere determinato automaticamente usando la funzione
- *
- * @code
- * unsigned int irq_of_parse_and_map(struct device_node *node, int index);
- * @endcode
- *
- * La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del
- * device tree e restituisce un irq number cosi' come de lo aspetta request_irq() (cioe' compaci con
- * l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad
- * indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli
- * interrupt specificate.
- * Il device tree, nella sezione dedicata al gpio,reca
- * @code
- * interrupts = <0 29 4>;
- * @endcode
- *
- * Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral
- * interrupt). Un valore diverso da zero indica che la linea e' SPI.
- *
- * Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware,
- * in questo specifico esempio il device GPIO e' connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29.
- *
- * Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori:
- *  - 0 : power-up default
- *  - 1 : rising-edge
- *  - 4 : a livelli, active alto
- *
- *
- *
- * @retval 0 nel caso in cui non si sia verificato nessun errore;
- * @retval -ENOMEM nel caso in cui non sia possibile allocare memoria;
- * @retval <0 per altri errori
  */
-static int myGPIOK_probe(struct platform_device *op) {
-	int error = 0;
-	struct device *dev;
-
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-
-	/* Allocazione dell'oggetto myGPIOK_t */
-	if ((myGPIOK_dev_ptr = kmalloc(sizeof(myGPIOK_t), GFP_KERNEL)) == NULL) {
-		printk(KERN_ERR "%s: kmalloc ha restituito NULL\n", __func__);
-		return -ENOMEM;
-	}
-
-	/* Allocazione del device a caratteri */
-	if ((error = alloc_chrdev_region(&myGPIOK_Mm_number, 0 , REQUIRED_MINOR_NUMBER, DRIVER_NAME)) != 0) {
-		printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
-		kfree(myGPIOK_dev_ptr);
-		return error;
-	}
-
-	/* Creazione della classe */
-	if ((myGPIOK_class = class_create(THIS_MODULE, DRIVER_NAME) ) == NULL) {
-		printk(KERN_ERR "%s: class_create() ha restituito NULL\n", __func__);
-		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
-		kfree(myGPIOK_dev_ptr);
-		return -ENOMEM;
-	}
-
-	/* Inizializzazione del device a caratteri */
-	cdev_init (&(myGPIOK_dev_ptr->cdev), &myGPIO_fops);
-	myGPIOK_dev_ptr->cdev.owner = THIS_MODULE;
-
-	/* Aggiunta del device a caratteri al filesystem */
-	if ((error = cdev_add(&myGPIOK_dev_ptr->cdev, myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER)) != 0) {
-		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
-		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
-		kfree(myGPIOK_dev_ptr);
-		return error;
-	}
-
-	/* Creazione del device nel filesystem */
-	if ((myGPIOK_device = device_create(myGPIOK_class, NULL, myGPIOK_Mm_number, NULL, DRIVER_NAME)) == NULL) {
-		printk(KERN_ERR "%s: device_create() ha restituito NULL\n", __func__);
-		cdev_del(&myGPIOK_dev_ptr->cdev);
-		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
-		kfree(myGPIOK_dev_ptr);
-		return -ENOMEM;
-	}
-
 	dev = &op->dev;
-
-	/* costruzione del mapping in memoria della periferica */
 	if ((error = of_address_to_resource(dev->of_node, 0, &myGPIOK_dev_ptr->rsrc)) != 0) {
 		printk(KERN_ERR "%s: request_irq() ha restituito %d\n", __func__, error);
 		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
@@ -580,8 +637,16 @@ static int myGPIOK_probe(struct platform_device *op) {
 		return error;
 	}
 	myGPIOK_dev_ptr->rsrc_size = myGPIOK_dev_ptr->rsrc.end - myGPIOK_dev_ptr->rsrc.start + 1;
-
-	/* richiesta di accesso esclusivo all'area di memoria a cui il device e' mappato */
+/** <h5>Allocazione della memoria del device</h5>
+ * Le regioni di memoria per di I/O vanno allocate prima di poter essere usate.
+ * @code
+ * struct resource *request_mem_region(unsigned long start, unsigned long len, char *name);
+ * @endcode
+ * Questa funzione alloca una regione di memoria di len byte a partire da start restituendone l'indirizzo,
+ * mentre nel caso in cui si verifichi un errore viene restituito NULL. La funzione viene chiamata per ottenere
+ * l'accesso esclusivo della regione di memoria, per evitare che driver diversi tentino di accedere allo stesso
+ * spazio di memoria.
+ */
 	if ((myGPIOK_dev_ptr->mreg = request_mem_region(myGPIOK_dev_ptr->rsrc.start, myGPIOK_dev_ptr->rsrc_size, DRIVER_NAME)) == NULL) {
 		printk(KERN_ERR "%s: request_mem_region() ha restituito NULL\n", __func__);
 		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
@@ -592,7 +657,15 @@ static int myGPIOK_probe(struct platform_device *op) {
 		return -ENOMEM;
 	}
 
-	/* remapping */
+/** <h5>Remapping</h5>
+ * L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere
+ * usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la
+ * funzione.
+ * @code
+ * void *ioremap(unsigned long phys_addr, unsigned long size);
+ * @endcode
+ *
+ */
 	if ((myGPIOK_dev_ptr->vrtl_addr = ioremap(myGPIOK_dev_ptr->rsrc.start, myGPIOK_dev_ptr->rsrc_size))==NULL) {
 		printk(KERN_ERR "%s: ioremap() ha restituito NULL\n", __func__);
 		release_mem_region(myGPIOK_dev_ptr->rsrc.start, myGPIOK_dev_ptr->rsrc_size);
@@ -603,8 +676,42 @@ static int myGPIOK_probe(struct platform_device *op) {
 		kfree(myGPIOK_dev_ptr);
 		return -ENOMEM;
 	}
-
-	/* registrazione dell'interrupt handler */
+/** <h5>Registrazione di un interrupt-handler</h5>
+ * Il modulo deve registrare un handler per gli interrupt.
+ * L'handler deve essere compatibile con il tipo puntatore a funzione irq_handler_t, così definito.
+ * @code
+ * struct irqreturn_t (*irq_handler_t)(int irq, struct pt_regs * regs);
+ * @endcode
+ * Il modulo definisce la funzione myGPIOK_irq_handler(). L'handler puo' essere registrato usando
+ * @code
+ * int request_irq(	unsigned int irqNumber,
+ * 					irqreturn_t (*handler)(int, void *, struct pt_regs *),
+ * 					unsigned long irqflags,
+ * 					const char *devname,
+ * 					void *dev_id);
+ * @endcode
+ * IL parametro irqNumber puo' essere determinato automaticamente usando la funzione
+ * @code
+ * unsigned int irq_of_parse_and_map(struct device_node *node, int index);
+ * @endcode
+ * La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del
+ * device tree e restituisce un irq number cosi' come de lo aspetta request_irq() (cioe' compaci con
+ * l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad
+ * indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli
+ * interrupt specificate.
+ * Il device tree, nella sezione dedicata al gpio,reca
+ * @code
+ * interrupts = <0 29 4>;
+ * @endcode
+ * Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral
+ * interrupt). Un valore diverso da zero indica che la linea e' SPI.
+ * Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware,
+ * in questo specifico esempio il device GPIO e' connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29.
+ * Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori:
+ *  - 0 : power-up default
+ *  - 1 : rising-edge
+ *  - 4 : a livelli, active alto
+ */
 	myGPIOK_dev_ptr->irqNumber = irq_of_parse_and_map(dev->of_node, 0);
 	if ((error = request_irq(myGPIOK_dev_ptr->irqNumber ,(irq_handler_t) myGPIOK_irq_handler, 0, DRIVER_NAME, NULL)) != 0) {
 		printk(KERN_ERR "%s: request_irq() ha restituito %d\n", __func__, error);
@@ -617,20 +724,70 @@ static int myGPIOK_probe(struct platform_device *op) {
 		kfree(myGPIOK_dev_ptr);
 		return error;
 	}
-
-
-
+/** <h5>Inizializzazione della wait-queue per la system-call read() e poll()</h5>
+ * In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in
+ * <linux/wait.h>.
+ * Il driver in questione prevede due wait-queue differenti: una per la system-call read() ed una per la
+ * system-call poll(). Entrambe le code vengono inizializzate dalla funzione myGPIOK_probe().
+ * @code
+ * init_waitqueue_head(&my_queue);
+ * @endcode
+ * Si veda la documentazione della funzione myGPIOK_read() per dettagli ulteriori.
+ */
+	init_waitqueue_head(&myGPIOK_dev_ptr->read_queue);
+	init_waitqueue_head(&myGPIOK_dev_ptr->poll_queue);
+/** <h5>Inizializzazione degli spinlock</h5>
+ * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
+ * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
+ * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
+ * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
+ * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * definiti in <linux/spinlock.h>.
+ * L'inizializzazione di uno spinlock avviene usando la funzione
+ * @code
+ * void spin_lock_init(spinlock_t *lock);
+ * @endcode
+ */
+	spin_lock_init(&myGPIOK_dev_ptr->slock_int);
+	spin_lock_init(&myGPIOK_dev_ptr->sl_total_irq);
+	myGPIOK_dev_ptr->int_occurred = 0;
+	myGPIOK_dev_ptr->total_irq = 0;
+/** <h5>Abilitazione degli interrupt del device</h5>
+ * A seconda del valore CFLAGS_myGPIOK.o (si veda il Makefile a corredo), vengono abilitati gli interrupt della
+ * periferica. Se si tratta del GPIO Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale
+ * due. Se si tratta del device GPIO custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo
+ * gli interrupt globali.
+ */
+#ifdef __XGPIO__
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIE);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IE);
+#else
+	myGPIO_interruptEnable(myGPIOK_dev_ptr->vrtl_addr);
+#endif
 	return error;
 }
 
 /**
  * @breif Viene chiamata automaticamente alla rimozione del mosulo.
  *
- * Dealloca tutta la memoria utilizzata dal driver, de-inizializzando il device.
+ * @param [inout] op
+ *
+ * @retval 0 se non si verifica nessun errore
+ *
+ * @details
+ * Dealloca tutta la memoria utilizzata dal driver, de-inizializzando il device e disattivando gli interrupt per il
+ * device, effettuando tutte le operazioni inverse della funzione myGPIOK_probe().
  */
 static int myGPIOK_remove(struct platform_device *op) {
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-
+#ifdef __XGPIO__
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIDS);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IDS);
+#else
+	myGPIO_interruptDisable(myGPIOK_dev_ptr->vrtl_addr);
+#endif
 	free_irq(myGPIOK_dev_ptr->irqNumber, NULL);
 	iounmap(myGPIOK_dev_ptr->vrtl_addr);
 	release_mem_region(myGPIOK_dev_ptr->rsrc.start, myGPIOK_dev_ptr->rsrc_size);
@@ -639,14 +796,19 @@ static int myGPIOK_remove(struct platform_device *op) {
 	class_destroy(myGPIOK_class);
 	unregister_chrdev_region(myGPIOK_Mm_number, REQUIRED_MINOR_NUMBER);
 	kfree(myGPIOK_dev_ptr);
-
 	return 0;
 }
 
 /**
  * @brief Invocata all'apertura del file corrispondente al device.
  *
- * <h3>Il metodo open()</h3>
+ * @param [in]		inode
+ * @param [inout]	file
+ *
+ * @retval 0 se non si verifica nessun errore
+ *
+ * @details
+ * <h5>Il metodo open()</h5>
  * Il metodo open di un device driver viene fornito per effettuare ogni inizializzazione necessaria ad
  * operazioni successive. Effettua le seguenti operazioni:
  *  - verifica che non si siano manifestati errori;
@@ -662,49 +824,39 @@ static int myGPIOK_remove(struct platform_device *op) {
  * int (*open)(struct inode *inode, struct file *filp);
  * @endcode
  *
- * il parametro inode contiene tutte le informazioni necessarie all'interno del campo i_cdev, il quale
+ */
+static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
+	myGPIOK_t *myGPIOK_dev_ptr;
+	printk(KERN_INFO "Chiamata %s\n", __func__);
+/**
+ * <h3>Identificare il particolare device associato al file</h3>
+ * Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i_cdev, il quale
  * contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e'
  * che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo
  * caso della struttura myGPIOK_t.
  * Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la
  * macro container_if() definita in <linux/kernel.h>.
- *
  * @code
  * container_of(pointer, container_type, container_field);
  * @endcode
- *
  * La macro prende in ingresso un puntatore ad un campo di tipo container_field, di una struttura
  * container_type, restituendo il puntatore alla struttura che la contiene.
- *
- * @param inode
- * @param file
- *
- * @return
  */
-static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
-	myGPIOK_t *myGPIOK_dev_ptr;
-
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-
 	myGPIOK_dev_ptr = container_of(inode->i_cdev, myGPIOK_t, cdev);
 	file_ptr->private_data = myGPIOK_dev_ptr;
-
 	return 0;
 }
 
 /**
  * @brief Invocata alla chiusura del file corrispondente al device.
  *
+ * @param [in]	inode
+ * @param [in]	file
  *
- *
- * @param inode
- * @param file
- *
- * @return
+ * @retval 0 se non si verifica nessun errore
  */
 static int myGPIOK_release(struct inode *inode, struct file *file_ptr) {
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-
 	return 0;
 }
 
@@ -713,41 +865,32 @@ static int myGPIOK_release(struct inode *inode, struct file *file_ptr) {
  *
  * @warning L'implementazione di read() e write() non sposta la testina di lettura/scrittura!
  *
- * @param file_ptr
- * @param off
- * @param whence
- * @return
+ * @param [inout]	file_ptr
+ * @param [in]		off
+ * @param [in]		whence
+ * @return Nuova posizione della "testina" di lettura/scrittura
  */
 static loff_t myGPIOK_llseek (struct file *file_ptr, loff_t off, int whence) {
-
 	myGPIOK_t *myGPIOK_dev_ptr;
     loff_t newpos;
-
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-
 	myGPIOK_dev_ptr = file_ptr->private_data;
-
     switch(whence) {
       case 0: /* SEEK_SET */
         newpos = off;
         break;
-
       case 1: /* SEEK_CUR */
         newpos = file_ptr->f_pos + off;
         break;
-
       case 2: /* SEEK_END */
         newpos = myGPIOK_dev_ptr->rsrc_size + off;
         break;
-
       default: /* can't happen */
         return -EINVAL;
     }
     if (newpos < 0)
     	return -EINVAL;
-
     file_ptr->f_pos = newpos;
-
     return newpos;
 }
 
@@ -771,35 +914,244 @@ static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struc
 }
 
 /**
- *
+ * @brief Interrupt-handler
  * @param irq
  * @param regs
- * @return
+ * @retval IRQ_HANDLED dopo aver servito l'interruzione
+ *
+ * @details
+ * Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica.
+ * Viene registrata dalla funzione myGPIOK_probe() affinche' venga richiamata al manifestarsi di un interrupt
+ * sulla linea cui e' connesso il device
  */
 static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
-	irqreturn_t irqreturn;
+	unsigned long flags;
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-	return  irqreturn;
+/** <h5>Disabilitazione delle interruzioni della periferica</h5>
+ * Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati.
+ * Se si tratta di un GPIO Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal
+ * secondo canale. Se, invece, si tratta di un device GPIO custom myGPIO, vengono disabilitati solo gli interrupt
+ * globali.
+ */
+#ifdef __XGPIO__
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIDS);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IDS);
+#else
+	myGPIO_interruptDisable(myGPIOK_dev_ptr->vrtl_addr);
+#endif
+/** <h5>Setting del valore del flag "interrupt occurred"</h5>
+ * Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag
+ * "interrupt occurred", in modo che i processi in attesa possano essere risvegliati in modo sicuro.
+ * Per prevenire race condition, tale operazione viene effettuata mutua esclusione.
+ * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
+ * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
+ * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
+ * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
+ * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * definiti in <linux/spinlock.h>.
+ * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
+ * @code
+ * void spin_lock_irqsave(spinlock_t *lock, unsigned long flags);
+ * @endcode
+ * la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi
+ * ripristinarlo quando lo spinlock viene rilasciato, usando
+ * @code
+ * void spin_unlock_irqrestore(spinlock_t *lock, unsigned long flags);
+ * @endcode
+ */
+	spin_lock_irqsave(&myGPIOK_dev_ptr->slock_int, flags);
+	myGPIOK_dev_ptr-> int_occurred = MYGPIOK_SREAD | MYGPIOK_AREAD;
+	spin_unlock_irqrestore(&myGPIOK_dev_ptr->slock_int, flags);
+/** <h5>Incremento del numero totale di interrupt</h5>
+ * Dopo aver settato il flag, viene incrementato il valore degli interrupt totali.
+ * Anche questa operazione viene effettuata in mutua esclusione.
+ */
+	spin_lock_irqsave(&myGPIOK_dev_ptr->sl_total_irq, flags);
+	myGPIOK_dev_ptr->total_irq++;
+	spin_unlock_irqrestore(&myGPIOK_dev_ptr->sl_total_irq, flags);
+/** <h5>Ack degli interrupt della periferica</h5>
+ * Prima di risvegliare i processi, viene inviato l'Ack alla periferica, per segnalargli che l'interrupt e' stato
+ * servito.
+ */
+#ifdef __XGPIO__
+	XGpio_Ack_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_ACK);
+#else
+	myGPIO_interruptAck(myGPIOK_dev_ptr->vrtl_addr);
+#endif
+/** <h5>Wakeup dei processi sleeping</h5>
+ * La ISR deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che
+ * un particolare evento si manifestasse. La funzione
+ * @code
+ * void wake_up_interruptible(wait_queue_head_t *queue);
+ * @endcode
+ * risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno
+ * effettuato una chiamata a wait_event_interruptible()).
+ * Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-condition.
+ */
+	wake_up_interruptible(&myGPIOK_dev_ptr->read_queue);
+	wake_up_interruptible(&myGPIOK_dev_ptr->poll_queue);
+/** <h5>Abilitazione degli interrupt della periferica</h5>
+ * A seconda del valore CFLAGS_myGPIOK.o (si veda il Makefile a corredo), vengono abilitati gli interrupt della
+ * periferica. Se si tratta del GPIO Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale
+ * due. Se si tratta del device GPIO custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo
+ * gli interrupt globali.
+ */
+#ifdef __XGPIO__
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIE);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IE);
+#else
+	myGPIO_interruptEnable(myGPIOK_dev_ptr->vrtl_addr);
+#endif
+	return IRQ_HANDLED;
 }
 
 /**
  * @brief Legge dati dal device.
  *
+ * @param [in]  file
+ * @param [out] buf
+ * @param [in]  count
+ * @param [in]  off
+ *
+ * @warning L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.
+ *
+ * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
+ * o uguale a zero indica il numero di byte scritti con successo.
+ *
+ * @details
  * <h3>Operazioni di lettura e scrittura</h3>
  * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
  * prototipo e' molto simile.
- *
  * @code
  * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
- *
  * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
  * @endcode
- *
- * Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
+ * Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
  * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
  * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
  * alla quale si sta effettuando l'accesso.
  *
+ * <h5>I/O bloccante</h5>
+ * Nel paragrafo precedente e' stato ignorato un problema importante: come comportarsi quando il driver
+ * non e' in grado di servire immegiatamente una richiesta? Una chiamata a read() potrebbe arrivare quando
+ * i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe
+ * avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso
+ * potrebbe essere pieno). Il processo chiamante e' totalmente all'oscuro di queste dinamiche, anzi potrebbe
+ * non avere la minima conoscenza delle dinamiche interne del device: chiama le funzioni read() o write()
+ * e si aspetta che facciano cio' che devono fare, per cui, nell'impossibilita' di servire la richiesta, il
+ * driver bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non puo' essere
+ * servita.
+ * Il codice (la ISR) che dovra' risvegliare il processo quado potra' servire la sua richiesta, deve essere
+ * a conoscenza dell'evento "risvegliante" e deve essere in grado di "trovare" i processi in attesa per
+ * quel particolare evento. Per questo motivo, tutti i processi in attesa di un particolare evento vengono
+ * posti all'interno della stessa wait queue.
+ * Il codice della ISR deve effettuare una chiamata a wakeup() per risvegliare i processi in attesa di un
+ * evento quando questo si e' manifestato. Si veda la documentazione della funzione myGPIOK_irq_handler()
+ * per dettagli ulteriori.
+ */
+static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, loff_t *off) {
+	myGPIOK_t *myGPIOK_dev_ptr;
+	void* read_addr;
+	uint32_t data_readed;
+	printk(KERN_INFO "Chiamata %s\n", __func__);
+	myGPIOK_dev_ptr = file_ptr->private_data;
+	if (*off > myGPIOK_dev_ptr->rsrc_size)
+		return -EFAULT;
+/** <h5>I/O non-bloccante</h5>
+ * Esistono casi in cui il processo chiamante non vuole essere bloccato in attesa di un evento. Questa evenienza
+ * viene esplicitamente indicata attraverso il flag O_NONBLOCK flag in filp->f_flags. Il flag viene definito in
+ * <linux/fcntl.h> il quale e' incluso in<linux/fs.h>.
+ */
+	if ((file_ptr->f_flags & O_NONBLOCK) == 0) {
+		printk(KERN_INFO "%s e' bloccante\n", __func__);
+/** <h5>Porre un processo nello stato sleeping</h5>
+ * Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in
+ * futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera,
+ * per cui essa va nuovamente testata.
+ * Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait_event(), o una
+ * delle sue varianti: essa combina la gestione della messa in sleeping del processo ed il check della
+ * condizione che il processo si aspetta diventi vera.
+ * @code
+ * wait_event_interruptible(queue, condition);
+ * @endcode
+ * Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la
+ * messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping
+ * che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() puo'
+ * essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero,
+ * indica che il processo e' stato risvegliato da un segnale.
+ *
+ * La condizione sulla quale i processi vengono bloccati riguarda il flag "interrupt occurred". Fin quando
+ * questo flag, posto in and con la maschera MYGPIOK_SREAD, e' zero, il processo deve restare bloccato, per
+ * cui i processi che effettuano read() bloccante restano bloccati finoche' int_occurred & MYGPIO_SREAD == 0.
+ */
+		wait_event_interruptible(myGPIOK_dev_ptr->read_queue, (myGPIOK_dev_ptr->int_occurred & MYGPIOK_SREAD) == 0);
+/**<h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
+ * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
+ * esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata
+ * per prevenire race-condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso
+ * evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
+ *
+ * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
+ * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
+ * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
+ * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
+ * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * definiti in <linux/spinlock.h>.
+ * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
+ * @code
+ * void spin_lock(spinlock_t *lock);
+ * @endcode
+ * per rilasciare uno spinlock, invece, verra' usata
+ * @code
+ * void spin_unlock(spinlock_t *lock);
+ * @endcode
+ */
+		spin_lock(&myGPIOK_dev_ptr->slock_int);
+		myGPIOK_dev_ptr-> int_occurred &= ~(MYGPIOK_SREAD);
+		spin_unlock(&myGPIOK_dev_ptr->slock_int);
+	}
+	else {
+		printk(KERN_INFO "%s non e' bloccante\n", __func__);
+/**<h5>Reset del flag "interrupt occurred" per read() non-bloccanti</h5>
+ * Anche nel caso in cui la read() non sia bloccante e' necessario resettare il flag in modo opportuno
+ * e per prevenire inconsistenze, anche questa operazione deve essere effettuata avendo accesso esclusivo
+ * al flag interrupt occurred.
+ */
+		spin_lock(&myGPIOK_dev_ptr->slock_int);
+		myGPIOK_dev_ptr-> int_occurred &= ~(MYGPIOK_AREAD);
+		spin_unlock(&myGPIOK_dev_ptr->slock_int);
+	}
+/** <h5>Calcolo dell'indirizzo effettivo</h5>
+ * L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo
+ * base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
+ */
+	read_addr = myGPIOK_dev_ptr->vrtl_addr+(*off>>2);
+/** <h5>Accesso ai registri del device</h5>
+ * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
+ * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
+ * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
+ * Per leggere dalla memoria vengono usate le seguenti:
+ * @code
+ * unsigned int ioread8(void *addr);
+ * unsigned int ioread16(void *addr);
+ * unsigned int ioread32(void *addr);
+ * @endcode
+ * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
+ * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
+ * locazione di memoria a cui viene effettuato accesso.
+ * Per scrivere nella memoria vengono usate le seguenti:
+ * @code
+ * void iowrite8(u8 value, void *addr);
+ * void iowrite16(u16 value, void *addr);
+ * void iowrite32(u32 value, void *addr);
+ * @endcode
+ */
+	data_readed = ioread32(read_addr);
+/** <h5>Accesso alla memoria userspace</h5>
  * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
  * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
  * diverse ragioni, tra le quali:
@@ -815,22 +1167,104 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
  * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
  * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
  * <asm/uaccess.h>
- *
  * @code
  * unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);
- *
  * unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);
  * @endcode
- *
  * Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che
  * il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene
  * effettuata.
- *
  * Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia
  * verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con
  * successo.
  *
- * <h5>Accesso ai registri del device</h5>
+ * <h5>Piccola nota sull'endianess</h5>
+ * Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante
+ * un semplice casting, senza invertire manualmente l'ordine dei byte.
+ */
+	if (copy_to_user(buf, &data_readed, count))
+		return -EFAULT;
+	printk(KERN_INFO "%s : address %08X\n", __func__, (uint32_t) read_addr);
+	printk(KERN_INFO "%s : read %08X\n", __func__, data_readed);
+	return count;
+}
+
+/**
+ * @brief Invia dati al device
+ *
+ * @param [in] file
+ * @param [in] buf
+ * @param [in] size
+ * @param [in] off
+ *
+ * @warning L'offset viene diviso per quattro prima di essere aggiunto all'indirizzo base del device.
+ *
+ * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
+ * o uguale a zero indica il numero di byte scritti con successo.
+ *
+ * @details
+ * <h3>Operazioni di lettura e scrittura</h3>
+ * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
+ * prototipo e' molto simile.
+ *
+ * @code
+ * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
+ * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
+ * @endcode
+ *
+ * Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
+ * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
+ * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
+ * alla quale si sta effettuando l'accesso.
+ *
+ */
+static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t size, loff_t *off) {
+	myGPIOK_t *myGPIOK_dev_ptr;
+	uint32_t data_to_write;
+	void* write_addr;
+	printk(KERN_INFO "Chiamata %s\n", __func__);
+	myGPIOK_dev_ptr = file_ptr->private_data;
+	if (*off > myGPIOK_dev_ptr->rsrc_size)
+		return -EFAULT;
+/** <h5>Accesso alla memoria userspace</h5>
+ * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
+ * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
+ * diverse ragioni, tra le quali:
+ *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
+ *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
+ *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
+ *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
+ *    terminazione del processo che ha effettuato la system-call;
+ *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
+ *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
+ *    programma userspace puo' modificare la memoria senza costrizioni.
+ *
+ * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
+ * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
+ * <asm/uaccess.h>
+ * @code
+ * unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);
+ * unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);
+ * @endcode
+ * Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che
+ * il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene
+ * effettuata.
+ * Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia
+ * verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con
+ * successo.
+ *
+ * <h5>Piccola nota sull'endianess</h5>
+ * Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante
+ * un semplice casting, senza invertire manualmente l'ordine dei byte.
+ */
+	if (copy_from_user(&data_to_write, buf, size))
+		return -EFAULT;
+/** <h5>Calcolo dell'indirizzo effettivo</h5>
+ * L'indirizzo effettivo dove effettuare la scrittura viene calcolato aggiungendo l'offset all'indirizzo
+ * base virtuale del device. L'offset viene diviso per quattro, prima di effettuare la somma.
+ */
+	write_addr = myGPIOK_dev_ptr->vrtl_addr+(*off>>2);
+/** <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
  * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
  * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
@@ -847,100 +1281,6 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
  * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
  * locazione di memoria a cui viene effettuato accesso.
  *
- * @param [in]  file
- * @param [out] buf
- * @param [in]  count
- * @param [in]  ppos
- *
- * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
- * o uguale a zero indica il numero di byte scritti con successo.
- */
-static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, loff_t *off) {
-	myGPIOK_t *myGPIOK_dev_ptr;
-	uint32_t data_readed;
-	int i;
-
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-
-	myGPIOK_dev_ptr = file_ptr->private_data;
-
-	if (*off > myGPIOK_dev_ptr->rsrc_size)
-		return -EFAULT;
-
-	/* Il processore Zynq a bordo della Zybo e' little endian. Per questo motivo e'
-	 * possibile convertire char* in uint32_t* mediante un semplice casting, senza
-	 * invertire manualmente l'ordine dei byte.
-	 */
-	printk(KERN_INFO "%s : offset %08X\n", __func__, *off);
-	data_readed = ioread32(myGPIOK_dev_ptr->vrtl_addr+*off);
-
-	for (i=0; i<16; i+=4) {
-		//data_readed = ioread32(myGPIOK_dev_ptr->vrtl_addr+i);
-		data_readed = *((uint32_t*)(myGPIOK_dev_ptr->vrtl_addr+i));
-		printk(KERN_INFO "%s : offset %08X\n", __func__, i);
-		printk(KERN_INFO "%s : read %08X\n", __func__, data_readed);
-	}
-
-	if (copy_to_user(buf, &data_readed, count))
-		return -EFAULT;
-
-	return count;
-}
-
-/**
- * @brief Invia dati al device
- *
- * <h3>Operazioni di lettura e scrittura</h3>
- * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
- * prototipo e' molto simile.
- *
- * @code
- * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
- *
- * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
- * @endcode
- *
- * Per entrambi i metodifilep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
- * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
- * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
- * alla quale si sta effettuando l'accesso.
- *
- * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
- * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
- * diverse ragioni, tra le quali:
- *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
- *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
- *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
- *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
- *    terminazione del processo che ha effettuato la system-call;
- *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
- *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
- *    programma userspace puo' modificare la memoria senza costrizioni.
- *
- * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
- * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
- * <asm/uaccess.h>
- *
- * @code
- * unsigned long copy_to_user(void __user *to, const void *from, unsigned long count);
- *
- * unsigned long copy_from_user(void *to, const void __user *from, unsigned long count);
- * @endcode
- *
- * Queste due funzioni non si limitano a copiare dati da/verso userspacem: verificano, infatti, anche che
- * il puntatore al buffer userspace sia valido. Se il puntatore non risultasse valido la copia non viene
- * effettuata.
- *
- * Sia il metodo read() che il metodo write() restituiscono un valore negativo nel caso in cui si sia
- * verificato un errore. Un valore maggiore o uguale a zero indica il numero di byte trasferiti con
- * successo.
- *
- * <h5>Accesso ai registri del device</h5>
- * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
- * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
- * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in
- * <asm/io.h>.
- *
  * Per scrivere nella memoria vengono usate le seguenti:
  *
  * @code
@@ -948,66 +1288,27 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * void iowrite16(u16 value, void *addr);
  * void iowrite32(u32 value, void *addr);
  * @endcode
- *
- * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
- * eventualmente, aggiunto un offset. value e' il valore che verra' scritto alla particolare locazione di
- * memoria a cui viene effettuato accesso.
- *
- * @param [in] file
- * @param [in] buf
- * @param [in] size
- * @param [in] off
- *
- * @return restituisce un valore negativo nel caso in cui si sia verificato un errore. Un valore maggiore
- * o uguale a zero indica il numero di byte scritti con successo.
  */
-static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t size, loff_t *off) {
-
-	myGPIOK_t *myGPIOK_dev_ptr;
-	uint32_t data_to_write;
-
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-
-	myGPIOK_dev_ptr = file_ptr->private_data;
-
-	if (*off > myGPIOK_dev_ptr->rsrc_size)
-		return -EFAULT;
-
-	/* Il processore Zynq a bordo della Zybo e' little endian. Per questo motivo e'
-	 * possibile convertire char* in uint32_t* mediante un semplice casting, senza
-	 * invertire manualmente l'ordine dei byte.
-	 */
-	if (copy_from_user(&data_to_write, buf, size))
-		return -EFAULT;
-
-	iowrite32(data_to_write, (myGPIOK_dev_ptr->vrtl_addr+*off));
-
-	printk(KERN_INFO "%s : offset %08X\n", __func__, *off);
+	iowrite32(data_to_write, write_addr);
+	printk(KERN_INFO "%s : address %08X\n", __func__, (uint32_t) write_addr);
 	printk(KERN_INFO "%s : write %08X\n", __func__, data_to_write);
-
 	return size;
 }
 
 
-/**
- * @}
- * @}
- * @}
- * @}
+/**==================================== Inizializzazione del modulo ==========================================
+ * @cond
  */
 
-
-/*=====================================Sezione non documentata ============================================*/
-
 /*
- * @Inserisce una nuova entry nella tabella delle corrispondenze device - driver.
+ * @brief  Inserisce una nuova entry nella tabella delle corrispondenze device - driver.
  * @param [inout]	of 				riferimento alla tabella
  * @param [in]		myGPIOk_match	struttura of_device_id
  */
 MODULE_DEVICE_TABLE(of, myGPIOk_match);
 
 /*
- * la macro module_platform_driver() prende in input la struttura platform_driver ed implementa le
+ * @brief la macro module_platform_driver() prende in input la struttura platform_driver ed implementa le
  * funzioni module_init() e module_close() standard, chiamate quando il modulo viene caricato o
  * rimosso dal kernel.
  *
@@ -1022,3 +1323,12 @@ MODULE_DESCRIPTION("myGPIO device-driver in kernel mode");
 MODULE_VERSION("0.1");
 MODULE_ALIAS(DRIVER_NAME);
 
+
+
+/**
+ * @endcond
+ * @}
+ * @}
+ * @}
+ * @}
+ */

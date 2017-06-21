@@ -37,11 +37,15 @@ int \hyperlink{group___userspace-program_ga65d977fb03a14dedd76e1515d6d24ff4}{par
 void \hyperlink{group___userspace-program_ga63fab82d87963c07f9557a5f5d5d3e86}{gpio\+\_\+op} (\hyperlink{structparam__t}{param\+\_\+t} $\ast$param)
 \begin{DoxyCompactList}\small\item\em Effettua operazioni su un device. \end{DoxyCompactList}\item 
 int \hyperlink{group___userspace-program_ga3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\item 
+int \hyperlink{group___userspace-program_ga87c1177178432113628b0885b0cff1b2}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, uint32\+\_\+t $\ast$gpio\+\_\+address, uint32\+\_\+t $\ast$max\+\_\+offset)
 \end{DoxyCompactItemize}
 
 
 \subsection{Descrizione dettagliata}
 Programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O attraverso un driver kernel. 
+
+Programma di test. Legge tutti i registri della periferica direttamente dal file /dev/mem.
 
 In questo specifico esempio l'interfacciamento avviene da user-\/space, interagendo attraverso il driver my\+G\+P\+I\+O\+K. 
 
@@ -93,6 +97,16 @@ Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma.
 \item[{char $\ast$$\ast$}]{argv}
 \end{DoxyParamCaption}
 )}}\label{group___userspace-program_ga3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{group___userspace-program_ga87c1177178432113628b0885b0cff1b2}{\index{Userspace-\/program@{Userspace-\/program}!parse\+\_\+args@{parse\+\_\+args}}
+\index{parse\+\_\+args@{parse\+\_\+args}!Userspace-\/program@{Userspace-\/program}}
+\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{uint32\+\_\+t $\ast$}]{gpio\+\_\+address, }
+\item[{uint32\+\_\+t $\ast$}]{max\+\_\+offset}
+\end{DoxyParamCaption}
+)}}\label{group___userspace-program_ga87c1177178432113628b0885b0cff1b2}
 \hypertarget{group___userspace-program_ga65d977fb03a14dedd76e1515d6d24ff4}{\index{Userspace-\/program@{Userspace-\/program}!parse\+\_\+args@{parse\+\_\+args}}
 \index{parse\+\_\+args@{parse\+\_\+args}!Userspace-\/program@{Userspace-\/program}}
 \subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (

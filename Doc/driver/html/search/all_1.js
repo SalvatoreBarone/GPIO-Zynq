@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['base_5faddress',['base_address',['../structmy_g_p_i_o__t.html#a79c591d5fa42efdf86abd98347fece90',1,'myGPIO_t']]],
-  ['button',['Button',['../group___button.html',1,'']]],
-  ['button0_5fpin',['Button0_pin',['../struct_zybo_button__t.html#af7d7d5a9c9fc174e8f4ee4c762c2abee',1,'ZyboButton_t']]],
-  ['button1_5fpin',['Button1_pin',['../struct_zybo_button__t.html#a6cb60bb285e32e29c51c15e85206aaeb',1,'ZyboButton_t']]],
-  ['button2_5fpin',['Button2_pin',['../struct_zybo_button__t.html#a3b4fe634c2d98ce55fdef526c2d230d1',1,'ZyboButton_t']]],
-  ['button3_5fpin',['Button3_pin',['../struct_zybo_button__t.html#ad462a15a55883fd4c86d2be9e11968a7',1,'ZyboButton_t']]]
+  ['cdev',['cdev',['../structmy_g_p_i_o_k__t.html#acba682fe45d5a1501790dbdb1d99bd6a',1,'myGPIOK_t']]],
+  ['channel1_5fack',['CHANNEL1_ACK',['../xil__gpio_8h.html#afecdab372af31213ce646b474ba22f96',1,'xil_gpio.h']]],
+  ['channel1_5fintr_5fdisable',['CHANNEL1_INTR_DISABLE',['../xil__gpio_8h.html#a791faef22795624f2a18f50f06815584',1,'xil_gpio.h']]],
+  ['channel1_5fintr_5fenable',['CHANNEL1_INTR_ENABLE',['../xil__gpio_8h.html#a130274e8d50b05c49c171bde017762f8',1,'xil_gpio.h']]],
+  ['channel2_5fack',['CHANNEL2_ACK',['../xil__gpio_8h.html#af56fe75e9fc0fcfc0b8fdda217d9d842',1,'xil_gpio.h']]],
+  ['channel2_5fintr_5fdisable',['CHANNEL2_INTR_DISABLE',['../xil__gpio_8h.html#a99ad674322d803e37f8233f207e3d1d1',1,'xil_gpio.h']]],
+  ['channel2_5fintr_5fenable',['CHANNEL2_INTR_ENABLE',['../xil__gpio_8h.html#a09e472673cd2e996bc6cb7d60fea9b9b',1,'xil_gpio.h']]]
 ];

@@ -145,9 +145,12 @@ Funzioni</h2></td></tr>
 <tr class="separator:ga63fab82d87963c07f9557a5f5d5d3e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___userspace-program.html#ga3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga87c1177178432113628b0885b0cff1b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___userspace-program.html#ga87c1177178432113628b0885b0cff1b2">parse_args</a> (int argc, char **argv, uint32_t *gpio_address, uint32_t *max_offset)</td></tr>
+<tr class="separator:ga87c1177178432113628b0885b0cff1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <p>Programma di esempio per l'interfacciamento con una periferica myGPIO attraverso un driver kernel. </p>
+<p>Programma di test. Legge tutti i registri della periferica direttamente dal file /dev/mem.</p>
 <p>In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il driver myGPIOK. </p>
 <h2 class="groupheader">Documentazione delle definizioni</h2>
 <a class="anchor" id="ga7a63b24ca5489eb3206598e3d90fe19c"></a>
@@ -255,6 +258,44 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga87c1177178432113628b0885b0cff1b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parse_args </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>gpio_address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>max_offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ga65d977fb03a14dedd76e1515d6d24ff4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +350,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Lun 19 Giu 2017 13:14:08 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 21 Giu 2017 11:45:22 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
