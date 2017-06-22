@@ -1,5 +1,4 @@
 <map id="GPIOarray" name="GPIOarray">
-<area shape="rect" id="node3" href="$classmy_g_p_i_o___a_x_i.html" title="myGPIO_AXI" alt="" coords="5,155,108,181"/>
+<area shape="rect" id="node3" href="$classmy_g_p_i_o___a_x_i.html" title="Periferica AXI4 Lite che implementa una GPIO pilotabile da processing&#45;system. " alt="" coords="5,155,108,181"/>
 <area shape="rect" id="node2" href="$class_g_p_i_osingle.html" title="cella base GPIO " alt="" coords="12,5,101,32"/>
-<area shape="rect" id="node4" href="$classmy_g_p_i_o.html" title="Periferica AXI4 Lite che implementa una GPIO pilotabile da processing&#45;system. " alt="" coords="20,229,93,256"/>
 </map>

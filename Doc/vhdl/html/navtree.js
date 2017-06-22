@@ -1,18 +1,18 @@
 var NAVTREE =
 [
   [ "myGPIO", "index.html", [
-    [ "Modules", "modules.html", "modules" ],
+    [ "Moduli", "modules.html", "modules" ],
     [ "Design Unit List", null, [
       [ "Design Unit List", "annotated.html", "annotated" ],
       [ "Design Units", "classes.html", null ],
       [ "Design Unit Hierarchy", "hierarchy.html", null ],
       [ "Design Unit Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Tutto", "functions.html", null ],
+        [ "Variabili", "functions_vars.html", null ]
       ] ]
     ] ],
-    [ "Files", null, [
-      [ "File List", "files.html", "files" ]
+    [ "File", null, [
+      [ "Elenco dei file", "files.html", "files" ]
     ] ]
   ] ]
 ];

@@ -1,58 +1,158 @@
---! @file myGPIO.vhd
+--! @file muGPIO_AXI.vhd
 --! @author Salvatore Barone <salvator.barone@gmail.com>
---!			Alfonso Di Martino <alfonsodimartino160989@gmail.com>
---!			Pietro Liguori <pie.liguori@gmail.com>
---! @date 2017-04-07
+--! @date 22 06 2017
+--! 
 --! @copyright
---! This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as
---! published by the Free Software Foundation; either version 3 of the License, or any later version.
---! This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
---! of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
---! You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
---! Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-
+--! Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
+--! 
+--! This file is part of Zynq7000DriverPack
+--! 
+--! Zynq7000DriverPack is free software; you can redistribute it and/or modify it under the terms of
+--! the GNU General Public License as published by the Free Software Foundation; either version 3 of
+--! the License, or any later version.
+--! 
+--! Zynq7000DriverPack is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+--! without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+--! GNU General Public License for more details.
+--! 
+--! You should have received a copy of the GNU General Public License along with this program; if not,
+--! write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
+--! USA.
+--!
 --! @addtogroup myGPIO
 --! @{
+--! @addtogroup AXI-device
+--! @{
+
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+--! @mainpage
 --! @brief Periferica AXI4 Lite che implementa una GPIO pilotabile da processing-system.
 --!
---! Registri della periferica
---! - MODE : consente di impostare i singoli GPIO come ingressi o uscite; solo i GPIO_width bit meno significativi del registro sono
---!   significativi; l'offset, rispetto all'indirizzo base della periferica e' 0;
---! - WRITE : consente di imporre un valore qualora i GPIO siano configurati come uscite; solo i GPIO_width bit meno significativi del
---!   registro sono significativi;  l'offset, rispetto all'indirizzo base della periferica e' 4;
---! - READ : consente di leggere il valore dei GPIO, sia quelli configurati come ingressi che quelli configurati come uscite; solo i
---!   GPIO_width bit meno significativi del registro sono significativi; l'offset, rispetto all'indirizzo base della periferica e' 8;
---! - S/C : registro di stato controllo; solo i tre bit meno significativi del registro sono significativi;
---!    - IntEn (bit 0): interrupt-enable, '1' abilita le interruzioni, '0' disabilita le interruzioni
---!    - Irq (bit 1): interrupt-request (sola lettura), '1' indica che la periferica ha generato una interruzione
---!    - IntAck (bit 2): interrupt-ack (clear, sola scrittura), consente di resettare il segnale interrupt-request, via software, dopo 
---!		 aver servito l'interruzione.
+--! @details
 --!
---! @note il segnale GPIO_inout viene mascherato in modo che solo i pin settati come input possano generare interruzione 
+--! <h4>Registri interni del device</h4>
+--! Il device possiede i registri indicati di seguito. Per oognuno di essi viene indicata la modalita' di
+--! accesso (R sola lettura, W sola scrittura, R/W lettura scrittura), e l'offset, rispetto all'indirizzo
+--! base del device, col quale e' possibile indirizzarli.
 --!
+--!  - MODE (R/W, offset +0x0): consente di impostare i singoli pin del device come ingressi o uscite; solo i
+--!    GPIO_width bit meno significativi del registro hanno significato, agire sui restanti bit non produce
+--!    nessun effetto; Il valore che i singoli pin possono
+--!    assumere e':
+--!			- '1': il pin viene configurato come pin di uscita;
+--!			- 'o': il pin viene configurato come pin di ingresso;
+--!			.
+--!  - WRITE (R/W, offset +0x4): consente di imporre un valore ai pin del device, qualora essi siano configurati
+--!    come uscite; solo i GPIO_width bit meno significativi del hanno significato, agire sui restanti bit non produce
+--!    nessun effetto;
+--!  - READ (R, offset +0x8): consente di leggere il valore dei pin del device, sia quelli configurati come
+--!    ingressi che quelli configurati come uscite (il cui valore coincide con quello settato nel registro
+--!    WRITE); solo i GPIO_width bit meno significativi del registro hanno significato, gli altri vengono letti
+--!    zero;
+--!  - GIES (Global Interrupt Enable/Status, R/W, offset 0xC): Consente di abilitare/disabilitare gli interrupt
+--!    globali della periferica; solo due dei bit sono significativi:
+--!	   		- IE (bit 0): interrupt enable, abilita gli interrupt, puo' essere scritto e letto; se posto ad '1'
+--!			  la periferica potra' generare interrupt quando uno dei pin impostati come ingresso assume
+--!			  valore '1' (ed il corrispondente bit in PIE e' impostato ad '1'); se posto a '0' il device
+--!			  non generera' mai interruzioni;
+--!			- IS (bit 1): interrupt status, settato internamente ad '1' nel caso in cui la periferica abbia
+--!			  generato interrupt; replica del segnale "interrupt" diretto verso il processing-system.
+--!  - PIE (Pin Interrupt Enable, R/W, offset 0x10): consente di abilitare/disabilitare gli interrupt per i
+--!	   singoli pin. Con GIES(0)='1' e MODE(n)='0' (cioe' se gli interrupt globali sono abilitati e il pin
+--!	   n-esimo e' configurato come input), se PIE(n)='1' allora il device generera' un interrupt verso il
+--!	   processing-system quando il pin n-esimo assumera' valore '1', mentre, se PIE(n)='0' non verra'
+--!	   generata una interruzione;
+--!  - IRQ (Interrupt Request, R, offset 0x14): IRQ(n)='1' indica che la sorgente di interruzione e' il bit
+--!    n-esimo; la or-reduce di tale registro costituisce il segnale "interrupt" diretto verso il processing
+--!    system;
+--!  - IACK (Interrupt Ack, W, offset 0x18): imponento IACK(n)='1' e' possibile segnalare al device che
+--!    l'interruzione generata dal in n-esimo e' stata servita; il bit IRQ(n) verra' resettato automaticamente. 
+--!
+--!
+--! <h4>Process di scrittura dei registri della periferica</h4>
+--! Il process che implementa la logica di scrittura dei registri e' stato modificato in modo da ottenere
+--! il seguente indirizzamento:
+--! <table>
+--! <tr><th>Indirizzo</th><th>Offset</th><th>Registro</th></tr>
+--! <tr><td>b"00000"</td><td>0x00</td><td>MODE</td></tr>
+--! <tr><td>b"00100"</td><td>0x04</td><td>WRITE</td></tr>
+--! <tr><td>b"01000"</td><td>0x08</td><td>READ(*)</td></tr>
+--! <tr><td>b"01100"</td><td>0x0C</td><td>GIES(**)</td></tr>
+--! <tr><td>b"10000"</td><td>0x10</td><td>PIE</td></tr>
+--! <tr><td>b"10100"</td><td>0x14</td><td>IRQ(***)</td></tr>
+--! <tr><td>b"11000"</td><td>0x18</td><td>IACK(****)</td></tr>
+--! </table>
+--! (*) Il registro READ e' a sola lettura: le scritture su questo registro non producono effetti;
+--!  la scrittura, infatti, avviene su slv_reg2, che e' inutilizzato;<br>
+--! (**) La scrittura ha effetto solo sul bit zero del registro;<br>
+--! (***) Il registro IRQ e' a sola lettura: le scritture su questo registro non producono effetti;
+--!  la scrittura, infatti, avviene su slv_reg5, che e' inutilizzato;<br>
+--! (****) La scrittura su IACK e' fittizzia, nel senso che appena si smette di indirizzare il registro,
+--! esso assume valore zero;<br>
+--!
+--!
+--! <h4>Process di lettura dei registri della periferica</h4>
+--! Il process che implementa la logica di lettura dei registri e' stato modificato in modo da ottenere
+--! il seguente indirizzamento:
+--! <table>
+--! <tr><th>Indirizzo</th><th>Offset</th><th>Registro</th></tr>
+--! <tr><td>b"00000"</td><td>0x00</td><td>MODE</td></tr>
+--! <tr><td>b"00100"</td><td>0x04</td><td>WRITE</td></tr>
+--! <tr><td>b"01000"</td><td>0x08</td><td>READ(*)</td></tr>
+--! <tr><td>b"01100"</td><td>0x0C</td><td>GIES(**)</td></tr>
+--! <tr><td>b"10000"</td><td>0x10</td><td>PIE</td></tr>
+--! <tr><td>b"10100"</td><td>0x14</td><td>IRQ</td></tr>
+--! <tr><td>b"11000"</td><td>0x18</td><td>IACK(***)</td></tr>
+--! </table>
+--! (*) Il registro READ e' direttamente connesso alla porta GPIO_inout<br>
+--! (**) Il bit 2 di GIES e' il flag "interrupt", che vale '1' nel caso in cui la periferica abbia generato
+--! interrupt ancora non gestiti.<br>
+--! (***) Viene letto sempre zero, dal momento che la scrittura su tale registro e' fittizzia.
+--!
+--!
+--! <h4>Process di scrittura su IRQ</h4>	
+--! La logica di scrittura su IRQ e' semplice (non viene scritto come un normale registro, ma pilotato
+--! internamente dalla periferica):
+--! se uno dei bit di GPIO_inout_masked e' '1', (la or-reduce e' 1) allora il valore del segnale GPIO_inout_masked
+--! viene posto in bitwise-or con il valore attuale del registro IRQ, in modo da non resettare i bit di quest'
+--! ultimo che siano stati settati a seguito di una interruzione non ancora servita
+--! se uno dei bit di IACK e' '1' (la or-reduce e' '1'), allora il nuovo valore del registro IRQ viene ottenuto
+--!   - mascherando IACK con l'attuale valore di IRQ, in modo da non effettuare il set di bit resettati
+--!   - ponendo in XOR la maschera precedente con il valore attuale del registro	
+
 entity myGPIO is
 	generic (
 		-- Users to add parameters here
 		GPIO_width : natural := 4;	--! numero di GPIO offerti dalla periferica, di default pari a 4 celle.
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
+
+		--! @cond
 		-- Parameters of Axi Slave Bus Interface S00_AXI
-		C_S00_AXI_DATA_WIDTH : integer	:= 32;
-		C_S00_AXI_ADDR_WIDTH : integer	:= 4
+		C_S00_AXI_DATA_WIDTH	: integer	:= 32;
+		C_S00_AXI_ADDR_WIDTH	: integer	:= 5
+		--! @endcond
 	);
 	port (
 		-- Users to add ports here
-		GPIO_inout : inout std_logic_vector (GPIO_width-1 downto 0);	--! segnale bidirezionale diretto verso l'esterno del device.
-		irq : out std_logic;											--! segnale di interrupt a livelli, se gli interrupt sono abilitati
-																		--! diventa alto quando GPIO_inout cambia stato
+		GPIO_inout : inout std_logic_vector (GPIO_width-1 downto 0); --! 
+		--! segnale bidirezionale diretto verso l'esterno del device.
+		
+		interrupt : out std_logic; --!							
+		--! segnale di interrupt a livelli diretto verso il processing - system. Se le interruzioni sono
+		--! abilitate ed uno dei pin del device e' settato come input ed e' abilitato a generare interruzioni,
+		--! diventa '1' appena tale pin assume valore '1', e mantiene tale valore fino a quando tutte le
+		--! interruzioni non siano state servite.
+		
+		--! @cond
 		-- User ports ends
 		-- Do not modify the ports beyond this line
+
+
 		-- Ports of Axi Slave Bus Interface S00_AXI
 		s00_axi_aclk	: in std_logic;
 		s00_axi_aresetn	: in std_logic;
@@ -75,9 +175,11 @@ entity myGPIO is
 		s00_axi_rresp	: out std_logic_vector(1 downto 0);
 		s00_axi_rvalid	: out std_logic;
 		s00_axi_rready	: in std_logic
+		--! @endcond
 	);
 end myGPIO;
 
+--! @cond
 architecture arch_imp of myGPIO is
 
 	-- component declaration
@@ -85,11 +187,11 @@ architecture arch_imp of myGPIO is
 		generic (
 		GPIO_width 			: natural := 4;
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
-		C_S_AXI_ADDR_WIDTH	: integer	:= 4
+		C_S_AXI_ADDR_WIDTH	: integer	:= 5
 		);
 		port (
-		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);
-		GPIO_int		: out std_logic;	
+		GPIO_inout 		: inout std_logic_vector (GPIO_width-1 downto 0);
+		interrupt 		: out std_logic;
 		S_AXI_ACLK		: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -116,35 +218,35 @@ architecture arch_imp of myGPIO is
 
 begin
 
--- Instantiation of Axi Bus Interface S00_AXI
+
 myGPIO_AXI_inst : myGPIO_AXI
 	generic map (
-		GPIO_width	=> GPIO_width,
+		GPIO_width			=> GPIO_width,
 		C_S_AXI_DATA_WIDTH	=> C_S00_AXI_DATA_WIDTH,
 		C_S_AXI_ADDR_WIDTH	=> C_S00_AXI_ADDR_WIDTH
 	)
 	port map (
-		GPIO_inout => GPIO_inout,
-		GPIO_int => irq,
-		S_AXI_ACLK	=> s00_axi_aclk,
+		GPIO_inout 		=> GPIO_inout,
+		interrupt 		=> interrupt,
+		S_AXI_ACLK		=> s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,
 		S_AXI_AWPROT	=> s00_axi_awprot,
 		S_AXI_AWVALID	=> s00_axi_awvalid,
 		S_AXI_AWREADY	=> s00_axi_awready,
-		S_AXI_WDATA	=> s00_axi_wdata,
-		S_AXI_WSTRB	=> s00_axi_wstrb,
+		S_AXI_WDATA		=> s00_axi_wdata,
+		S_AXI_WSTRB		=> s00_axi_wstrb,
 		S_AXI_WVALID	=> s00_axi_wvalid,
 		S_AXI_WREADY	=> s00_axi_wready,
-		S_AXI_BRESP	=> s00_axi_bresp,
+		S_AXI_BRESP		=> s00_axi_bresp,
 		S_AXI_BVALID	=> s00_axi_bvalid,
 		S_AXI_BREADY	=> s00_axi_bready,
 		S_AXI_ARADDR	=> s00_axi_araddr,
 		S_AXI_ARPROT	=> s00_axi_arprot,
 		S_AXI_ARVALID	=> s00_axi_arvalid,
 		S_AXI_ARREADY	=> s00_axi_arready,
-		S_AXI_RDATA	=> s00_axi_rdata,
-		S_AXI_RRESP	=> s00_axi_rresp,
+		S_AXI_RDATA		=> s00_axi_rdata,
+		S_AXI_RRESP		=> s00_axi_rresp,
 		S_AXI_RVALID	=> s00_axi_rvalid,
 		S_AXI_RREADY	=> s00_axi_rready
 	);
@@ -155,4 +257,6 @@ myGPIO_AXI_inst : myGPIO_AXI
 
 end arch_imp;
 
+--! @endcond
+--! @}
 --! @}

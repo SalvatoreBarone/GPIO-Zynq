@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['irq',['irq',['../group__my_g_p_i_o.html#ga4030f561f17a188ad2b51e1533b79082',1,'myGPIO']]]
+  ['gpio_5fenable',['GPIO_enable',['../group___g_p_i_o-array.html#ga11dd30ea6a502615af8dccf7a8bc78fe',1,'GPIOarray.GPIO_enable()'],['../group___g_p_i_o-single.html#ga0ae7f62d9fa2c19d7ad2ad7574b58871',1,'GPIOsingle.GPIO_enable()']]],
+  ['gpio_5finout',['GPIO_inout',['../group___g_p_i_o-array.html#ga8829699d739ef35a4c5da396ffd38387',1,'GPIOarray.GPIO_inout()'],['../group___g_p_i_o-single.html#ga979707b3e6ce3920d653c07c91e80f70',1,'GPIOsingle.GPIO_inout()'],['../group___a_x_i-device.html#ga8829699d739ef35a4c5da396ffd38387',1,'myGPIO.GPIO_inout()'],['../group___a_x_i-internal.html#ga8829699d739ef35a4c5da396ffd38387',1,'myGPIO_AXI.GPIO_inout()']]],
+  ['gpio_5fread',['GPIO_read',['../group___g_p_i_o-array.html#gafbe6792efd02cef42af7717592c1b04a',1,'GPIOarray.GPIO_read()'],['../group___g_p_i_o-single.html#ga4a6632a5d5cd6c4e6c1b634286795362',1,'GPIOsingle.GPIO_read()']]],
+  ['gpio_5fwidth',['GPIO_width',['../group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069',1,'GPIOarray.GPIO_width()'],['../group___a_x_i-device.html#ga0b52ca75e9a6093b2b60d5e851803069',1,'myGPIO.GPIO_width()'],['../group___a_x_i-internal.html#ga0b52ca75e9a6093b2b60d5e851803069',1,'myGPIO_AXI.GPIO_width()']]],
+  ['gpio_5fwrite',['GPIO_write',['../group___g_p_i_o-array.html#ga15a2a96cc1645c826c8ac6469f70c5c0',1,'GPIOarray.GPIO_write()'],['../group___g_p_i_o-single.html#ga20547939f304c722cb29df650d7ca7ef',1,'GPIOsingle.GPIO_write()']]]
 ];

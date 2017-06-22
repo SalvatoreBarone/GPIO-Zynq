@@ -1,0 +1,59 @@
+\hypertarget{group___g_p_i_o-array}{\section{G\+P\+I\+O-\/array}
+\label{group___g_p_i_o-array}\index{G\+P\+I\+O-\/array@{G\+P\+I\+O-\/array}}
+}
+Diagramma di collaborazione per G\+P\+I\+O-\/array\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{group___g_p_i_o-array}
+\end{center}
+\end{figure}
+\subsection*{Entities}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_g_p_i_oarray}{G\+P\+I\+Oarray} entity
+\begin{DoxyCompactList}\small\item\em array di celle G\+P\+I\+O, pilotabili singolarmente \end{DoxyCompactList}\item 
+\hyperlink{class_g_p_i_oarray_1_1_structural}{Structural} architecture
+\end{DoxyCompactItemize}
+\subsection*{Libraries}
+ \begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___g_p_i_o-array_ga0a6af6eef40212dbaf130d57ce711256}{\hyperlink{group___g_p_i_o-array_ga0a6af6eef40212dbaf130d57ce711256}{ieee} }\label{group___g_p_i_o-array_ga0a6af6eef40212dbaf130d57ce711256}
+
+\end{DoxyCompactItemize}
+\subsection*{Use Clauses}
+ \begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___g_p_i_o-array_gacd03516902501cd1c7296a98e22c6fcb}{\hyperlink{group___g_p_i_o-array_gacd03516902501cd1c7296a98e22c6fcb}{std\+\_\+logic\+\_\+1164}   }\label{group___g_p_i_o-array_gacd03516902501cd1c7296a98e22c6fcb}
+
+\end{DoxyCompactItemize}
+\subsection*{Components}
+ \begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___g_p_i_o-array_ga1ef3f8a153dc3cf7c70b202d716ca7af}{\hyperlink{group___g_p_i_o-array_ga1ef3f8a153dc3cf7c70b202d716ca7af}{G\+P\+I\+Osingle}  {\bfseries }  }\label{group___g_p_i_o-array_ga1ef3f8a153dc3cf7c70b202d716ca7af}
+
+\end{DoxyCompactItemize}
+\subsection*{Generics}
+ \begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{\hyperlink{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{G\+P\+I\+O\+\_\+width} {\bfseries {\bfseries \textcolor{vhdlchar}{natural}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{\+:}\textcolor{vhdlchar}{=}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{4} \textcolor{vhdlchar}{ }}}}\label{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}
+
+\begin{DoxyCompactList}\small\item\em parallelismo dell'array, di default pari a 4 celle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Ports}
+ \begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___g_p_i_o-array_ga11dd30ea6a502615af8dccf7a8bc78fe}{\hyperlink{group___g_p_i_o-array_ga11dd30ea6a502615af8dccf7a8bc78fe}{G\+P\+I\+O\+\_\+enable}  {\bfseries {\bfseries \textcolor{vhdlchar}{in}\textcolor{vhdlchar}{ }}} {\bfseries \textcolor{vhdlchar}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \hyperlink{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{G\+P\+I\+O\+\_\+width}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} }\label{group___g_p_i_o-array_ga11dd30ea6a502615af8dccf7a8bc78fe}
+
+\begin{DoxyCompactList}\small\item\em segnale di abilitazione, permette di pilotare la linea \char`\"{}\+G\+P\+I\+O\+\_\+inout\char`\"{}. Quando G\+P\+I\+O\+\_\+enable=1, la linea G\+P\+I\+O\+\_\+inout e quella G\+P\+I\+O\+\_\+write sono connesse tra loro. \end{DoxyCompactList}\item 
+\hypertarget{group___g_p_i_o-array_ga15a2a96cc1645c826c8ac6469f70c5c0}{\hyperlink{group___g_p_i_o-array_ga15a2a96cc1645c826c8ac6469f70c5c0}{G\+P\+I\+O\+\_\+write}  {\bfseries {\bfseries \textcolor{vhdlchar}{in}\textcolor{vhdlchar}{ }}} {\bfseries \textcolor{vhdlchar}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \hyperlink{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{G\+P\+I\+O\+\_\+width}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} }\label{group___g_p_i_o-array_ga15a2a96cc1645c826c8ac6469f70c5c0}
+
+\begin{DoxyCompactList}\small\item\em segnale di input, diretto verso l'esterno del device. \end{DoxyCompactList}\item 
+\hypertarget{group___g_p_i_o-array_ga8829699d739ef35a4c5da396ffd38387}{\hyperlink{group___g_p_i_o-array_ga8829699d739ef35a4c5da396ffd38387}{G\+P\+I\+O\+\_\+inout}  {\bfseries {\bfseries \textcolor{vhdlchar}{inout}\textcolor{vhdlchar}{ }}} {\bfseries \textcolor{vhdlchar}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \hyperlink{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{G\+P\+I\+O\+\_\+width}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} }\label{group___g_p_i_o-array_ga8829699d739ef35a4c5da396ffd38387}
+
+\begin{DoxyCompactList}\small\item\em segnale bidirezionale diretto verso l'esterno del device. \end{DoxyCompactList}\item 
+\hypertarget{group___g_p_i_o-array_gafbe6792efd02cef42af7717592c1b04a}{\hyperlink{group___g_p_i_o-array_gafbe6792efd02cef42af7717592c1b04a}{G\+P\+I\+O\+\_\+read}  {\bfseries {\bfseries \textcolor{vhdlchar}{out}\textcolor{vhdlchar}{ }}} {\bfseries \textcolor{vhdlchar}{std\+\_\+logic\+\_\+vector}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{(}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ }{\bfseries \hyperlink{group___g_p_i_o-array_ga0b52ca75e9a6093b2b60d5e851803069}{G\+P\+I\+O\+\_\+width}} \textcolor{vhdlchar}{-\/}\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{1} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{downto}\textcolor{vhdlchar}{ }\textcolor{vhdlchar}{ } \textcolor{vhdldigit}{0} \textcolor{vhdlchar}{ }\textcolor{vhdlchar}{)}\textcolor{vhdlchar}{ }} }\label{group___g_p_i_o-array_gafbe6792efd02cef42af7717592c1b04a}
+
+\begin{DoxyCompactList}\small\item\em segnale di output, diretto verso l'interno del device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
