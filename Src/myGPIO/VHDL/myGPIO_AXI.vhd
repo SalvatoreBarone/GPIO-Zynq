@@ -68,8 +68,8 @@ use ieee.std_logic_misc.all;
 --!	   processing-system quando il pin n-esimo assumera' valore '1', mentre, se PIE(n)='0' non verra'
 --!	   generata una interruzione;
 --!  - IRQ (Interrupt Request, R, offset 0x14): IRQ(n)='1' indica che la sorgente di interruzione e' il bit
---!    n-esimo; la or-reduce di tale registro costituisce il segnale "interrupt" diretto verso il processing
---!    system;
+--!    n-esimo; la or-reduce di tale registro costituisce il flag "interrupt" (IS) di GIES, mentre lo stesso
+--!    segnale, posto in AND con GIES(0) - interrupt enable - è diretto verso il processing system.
 --!  - IACK (Interrupt Ack, W, offset 0x18): imponento IACK(n)='1' e' possibile segnalare al device che
 --!    l'interruzione generata dal in n-esimo e' stata servita; il bit IRQ(n) verra' resettato automaticamente. 
 --!
@@ -273,7 +273,8 @@ architecture arch_imp of myGPIO_AXI is
 --  - il registro PIE, in modo che solo i pin abilitati a generare interrupt lo facciano 
 	signal interrupt_tmp : std_logic := '0'; --!
 -- segnale "di appoggio", connesso al segnale "interrupt" ed usato per leggere il valore di quest'ultimo
--- attraverso GIES(1).  Viene ottenuto mediante la and tra la or-reduce di IRQ e GIES(0)
+-- attraverso GIES(1).  Viene ottenuto mediante la or-reduce di IRQ
+-- il segnale interrupt viene ottenuto come and tra interrupt_tmp GIES(0)
 
 begin
 	-- I/O Connections assignments
@@ -588,18 +589,20 @@ begin
 --  - il registro MODE (negato), in modo che solo i bit impostati come input possano generare interrupt;
 --  - il registro PIE, in modo che solo i pin abilitati a generare interrupt lo facciano 
 	GPIO_inout_masked <= GPIO_inout and (not MODE(GPIO_width-1 downto 0)) and PIE(GPIO_width-1 downto 0);
--- interrupt_tmp e' connesso al segnale interrupt
-	interrupt <= interrupt_tmp;
--- interrupt_tmp e' ottenuto mediante la and tra la or-reduce di IRQ e GIES(0)
-	interrupt_tmp <=  or_reduce(IRQ) and GIES(0);
+-- interrupt_tmp e' ottenuto mediante la or-reduce di IRQ
+	interrupt_tmp <= or_reduce(IRQ);
+-- interrupt e' ottenuto mediante and tra interrupt_tmp e GIES(0) (interrupt-enable)
+	interrupt <= interrupt_tmp and GIES(0);
 	
 	
 -- Process di scrittura su IRQ
 -- La logica di scrittura su IRQ e' semplice (non viene scritto come un normale registro, ma pilotato
 -- internamente dalla periferica):
+--
 -- se uno dei bit di GPIO_inout_masked e' '1', (la or-reduce e' 1) allora il valore del segnale GPIO_inout_masked
 -- viene posto in bitwise-or con il valore attuale del registro IRQ, in modo da non resettare i bit di quest'
 -- ultimo che siano stati settati a seguito di una interruzione non ancora servita
+--
 -- se uno dei bit di IACK e' '1' (la or-reduce e' '1'), allora il nuovo valore del registro IRQ viene ottenuto
 --   - mascherando IACK con l'attuale valore di IRQ, in modo da non effettuare il set di bit resettati
 --   - ponendo in XOR la maschera precedente con il valore attuale del registro			
@@ -608,12 +611,15 @@ begin
 		if S_AXI_ARESETN = '0' then
 			IRQ <= (others => '0');
 		elsif rising_edge(S_AXI_ACLK) then
+
 			if or_reduce(GPIO_inout_masked) = '1' then
 				IRQ(GPIO_width-1 downto 0) <= IRQ(GPIO_width-1 downto 0) or GPIO_inout_masked;
 			end if;
+						
 			if or_reduce(IACK) = '1' then
 				IRQ(GPIO_width-1 downto 0) <= IRQ(GPIO_width-1 downto 0) xor (IACK(GPIO_width-1 downto 0) and IRQ(GPIO_width-1 downto 0));
 			end if;
+			
 		end if;
 	end process;
 

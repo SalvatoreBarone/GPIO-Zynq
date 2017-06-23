@@ -1,0 +1,151 @@
+\hypertarget{mygpiok_8c}{\section{Riferimenti per il file Src/\+Examples/mygpiok.c}
+\label{mygpiok_8c}\index{Src/\+Examples/mygpiok.\+c@{Src/\+Examples/mygpiok.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}xil\+\_\+gpio.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per mygpiok.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mygpiok_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structparam__t}{param\+\_\+t}
+\begin{DoxyCompactList}\small\item\em La struttura raccoglie tutti i parametri di esecuzione del programma. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{mygpiok_8c_a7a63b24ca5489eb3206598e3d90fe19c}{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__bare-metal_ga81a662103d6ed053978c0a9b4c273065}{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}
+\item 
+\#define \hyperlink{mygpiok_8c_a77d96306ed0e813f93c4c3f98b970b86}{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__bare-metal_ga2e45778b6ca9ce6f5768b3f7a4557ce1}{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}
+\item 
+\#define \hyperlink{mygpiok_8c_ad32c3a5b42163e171daccde5b5d5de02}{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}~\hyperlink{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{howto} (void)
+\begin{DoxyCompactList}\small\item\em Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. \end{DoxyCompactList}\item 
+int \hyperlink{mygpiok_8c_a65d977fb03a14dedd76e1515d6d24ff4}{parse\+\_\+args} (int argc, char $\ast$$\ast$argv, \hyperlink{structparam__t}{param\+\_\+t} $\ast$param)
+\begin{DoxyCompactList}\small\item\em Effettua il parsing dei parametri passati al programma. \end{DoxyCompactList}\item 
+void \hyperlink{mygpiok_8c_a63fab82d87963c07f9557a5f5d5d3e86}{gpio\+\_\+op} (\hyperlink{structparam__t}{param\+\_\+t} $\ast$param)
+\begin{DoxyCompactList}\small\item\em Effettua operazioni su un device. \end{DoxyCompactList}\item 
+int \hyperlink{mygpiok_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle definizioni}
+\hypertarget{mygpiok_8c_a7a63b24ca5489eb3206598e3d90fe19c}{\index{mygpiok.\+c@{mygpiok.\+c}!M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{mygpiok_8c_a7a63b24ca5489eb3206598e3d90fe19c}
+\hypertarget{mygpiok_8c_ad32c3a5b42163e171daccde5b5d5de02}{\index{mygpiok.\+c@{mygpiok.\+c}!R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{mygpiok_8c_ad32c3a5b42163e171daccde5b5d5de02}
+\hypertarget{mygpiok_8c_a77d96306ed0e813f93c4c3f98b970b86}{\index{mygpiok.\+c@{mygpiok.\+c}!W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T~{\bf my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}}\label{mygpiok_8c_a77d96306ed0e813f93c4c3f98b970b86}
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{mygpiok_8c_a63fab82d87963c07f9557a5f5d5d3e86}{\index{mygpiok.\+c@{mygpiok.\+c}!gpio\+\_\+op@{gpio\+\_\+op}}
+\index{gpio\+\_\+op@{gpio\+\_\+op}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{gpio\+\_\+op}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+op (
+\begin{DoxyParamCaption}
+\item[{{\bf param\+\_\+t} $\ast$}]{param}
+\end{DoxyParamCaption}
+)}}\label{mygpiok_8c_a63fab82d87963c07f9557a5f5d5d3e86}
+
+
+Effettua operazioni su un device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em param} & puntatore a struttura \hyperlink{structparam__t}{param\+\_\+t}, contiene i vari parametri di esecuzione del programma.\\
+\hline
+\end{DoxyParams}
+La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il G\+P\+I\+O Xilinx che con il G\+P\+I\+O custom my\+G\+P\+I\+O. E' possibile utilizzare il primo definendo la macro {\bfseries X\+I\+L\+\_\+\+G\+P\+I\+O}. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. ~\newline
+ Nel caso un cui si usi un driver ad-\/hoc, e' possibile usare le funzioni read() e write() per interagire con il device, leggendo il valore dei registri o scrivendolo. Il driver my\+G\+P\+I\+O\+K mette a disposizione anche la funzione seek() che permette di scegliere quale registro leggere o scrivere. \subparagraph*{Impostazione della modalita' di funzionamento}
+
+Per impostare la modalita' di funzionamento e' necessario scrivere sul registro M\+O\+D\+E. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la \char`\"{}testina di scrittura\char`\"{} sul registro M\+O\+D\+E usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro {\bfseries U\+S\+E\+\_\+\+P\+W\+R\+I\+T\+E}, usare la funzione pwrite(), che combina le due operazioni.
+
+\subparagraph*{Operazione di scrittura}
+
+Per impostare il valore dei pin del device e' necessario scrivere sul registro W\+R\+I\+T\+E. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la \char`\"{}testina di scrittura\char`\"{} sul registro W\+R\+I\+T\+E usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro {\bfseries U\+S\+E\+\_\+\+P\+W\+R\+I\+T\+E}, usare la funzione pwrite(), che combina le due operazioni.
+
+\subparagraph*{Operazione di lettura con interrupt}
+
+La lettura dei pin del device avviene mediante la chiamata alla funzione read(), dopo aver spostato la \char`\"{}testina di lettura\char`\"{} sul registro R\+E\+A\+D. L'offset di tale registro, come nei due casi precedenti, viene determinato in base al particolare device che si sta usando. E' possibile, definendo la macro {\bfseries U\+S\+E\+\_\+\+P\+R\+E\+A\+D}, usare la funzione pread(), che combina le operazioni di seek() e read(). Il driver my\+G\+P\+I\+O\+K implementa un meccanismo di lettura bloccante\+: qualora non ci siano dati disponibili, il processo che chiama read() viene sospeso e messo in attesa che i dati siano disponibili. Quando arriva una interruzione dal device, il driver my\+G\+P\+I\+O\+K lo gestisce e risveglia i processi che erano stati messi precedentemente in attesa. Si legga la documentazione del driver my\+G\+P\+I\+O\+K per i dettagli.\hypertarget{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{mygpiok.\+c@{mygpiok.\+c}!howto@{howto}}
+\index{howto@{howto}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}
+
+
+Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
+
+\hypertarget{mygpiok_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{mygpiok.\+c@{mygpiok.\+c}!main@{main}}
+\index{main@{main}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{mygpiok_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{mygpiok_8c_a65d977fb03a14dedd76e1515d6d24ff4}{\index{mygpiok.\+c@{mygpiok.\+c}!parse\+\_\+args@{parse\+\_\+args}}
+\index{parse\+\_\+args@{parse\+\_\+args}!mygpiok.\+c@{mygpiok.\+c}}
+\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{{\bf param\+\_\+t} $\ast$}]{param}
+\end{DoxyParamCaption}
+)}}\label{mygpiok_8c_a65d977fb03a14dedd76e1515d6d24ff4}
+
+
+Effettua il parsing dei parametri passati al programma. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em argc} & \\
+\hline
+\mbox{\tt in}  & {\em argv} & \\
+\hline
+\mbox{\tt out}  & {\em param} & puntatore a struttura \hyperlink{structparam__t}{param\+\_\+t}, conterra' i vari parametri di esecuzione del programma.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se il parsing ha successo \\
+\hline
+{\em -\/1} & se si verifica un errore \\
+\hline
+\end{DoxyRetVals}
+\subparagraph*{Parsing dei parametri del programma.}
+
+Il parsing viene effettuato usando la funzione getopt(). 
+\begin{DoxyCode}
+1 #include <unistd.h>
+2 int getopt(int argc, char * const argv[], const char *optstring);
+\end{DoxyCode}
+ Essa prende in input i parametri argc ed argv passati alla funzione \hyperlink{mygpiok_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()} quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-\/', getopt() la considera una opzione. Il carattere immediatamente successivo il '-\/' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -\/1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da '\+:' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.
+
+\subparagraph*{Parametri riconosciuti}
+
+La funzione riconosce i parametri\+:
+\begin{DoxyItemize}
+\item 'd' \+: seguito dal percorso del device /dev/my\+G\+P\+I\+O\+K col quale interagire
+\item 'w' \+: operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro W\+R\+I\+T\+E;
+\item 'm' \+: impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro M\+O\+D\+E;
+\item 'r' \+: operazione di lettura, primo di argomento; la lettura viene effettuata dal registro R\+E\+A\+D ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.
+\end{DoxyItemize}
+
+Se non viene specificato il device my\+G\+P\+I\+O\+K col quale interagire e' impossibile continuare. Per questo motivo, in questo caso, la funzione restituisce -\/1, per cui il programma viene terminato.

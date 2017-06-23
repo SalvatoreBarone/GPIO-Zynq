@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: interrupt_bare.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">3.1</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+      <li><a href="examples.html"><span>Esempi</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('interrupt_bare_8c-example.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">interrupt_bare.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<p>Uso del driver myGPIO con interruzioni bare-metal su Zynq-7020 </p><dl class="section author"><dt>Autore</dt><dd>Salvatore Barone <a href="#" onclick="location.href='mai'+'lto:'+'sal'+'va'+'tor'+'.b'+'aro'+'ne'+'@gm'+'ai'+'l.c'+'om'; return false;">salva<span style="display: none;">.nosp@m.</span>tor.<span style="display: none;">.nosp@m.</span>baron<span style="display: none;">.nosp@m.</span>e@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<dl class="section date"><dt>Data</dt><dd>23 06 2017</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2017 Salvatore Barone <a href="#" onclick="location.href='mai'+'lto:'+'sal'+'va'+'tor'+'.b'+'aro'+'ne'+'@gm'+'ai'+'l.c'+'om'; return false;">salva<span style="display: none;">.nosp@m.</span>tor.<span style="display: none;">.nosp@m.</span>baron<span style="display: none;">.nosp@m.</span>e@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a></dd></dl>
+<p>This file is part of Zynq7000DriverPack</p>
+<p>Zynq7000DriverPack is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.</p>
+<p>Zynq7000DriverPack is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
+<h3>Configurazione hardware</h3>
+<p>L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-core Zynq7000 processing sysyem, sono presenti tre diversi device myGPIO, uno connesso ai led (base address 0x43c00000), uno connesso ai button (base address 0x43c10000) ed uno connesso agli switch (base address 0x43c20000).</p>
+<h4>ISR per la gestione di interrupt provenienti dal gpio connesso agli switch</h4>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a name="a0"></a><a class="code" href="interrupt__bare_8c.html#ad05dc46b6c6da383d687c5116864b4ed">swc_isr</a>(<span class="keywordtype">void</span>* data) {</div>
+<div class="line">    <a name="a1"></a><a class="code" href="group__bare-metal.html#gaacca2871ac57a166e62bf431a2da7548">myGPIO_GlobalInterruptDisable</a>(&amp;<a name="a2"></a><a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> enabledInterrut = <a name="a3"></a><a class="code" href="group__bare-metal.html#ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c">myGPIO_EnabledPinInterrupt</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">    <a name="a4"></a><a class="code" href="group__bare-metal.html#ga37d3df33ac50387d6f2e1fb5e2b13e49">myGPIO_PinInterruptDisable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>, enabledInterrut);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> pendingInterrupt = <a name="a5"></a><a class="code" href="group__bare-metal.html#ga6115bde39f860d4e76e7d8f421ce222c">myGPIO_PendingPinInterrupt</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">    <a name="a6"></a><a class="code" href="group__bare-metal.html#gab6ad3dda867515825890c97dbf6f55db">myGPIO_PinInterruptAck</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>, pendingInterrupt);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> value = <a name="a7"></a><a class="code" href="group__bare-metal.html#gac35776cd6652f7b932a132f3f6959a11">myGPIO_GetRead</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">    <a name="a8"></a><a class="code" href="group__bare-metal.html#ga9d9ce9d2db7d77a588da4a3749f2f24d">myGPIO_SetValue</a>(&amp;<a name="a9"></a><a class="code" href="interrupt__bare_8c.html#ac523aaaf082570c199faf2a98e03c219">led_gpio</a>, <a name="a10"></a><a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a name="a11"></a><a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a> | <a name="a12"></a><a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783">myGPIO_pin2</a> | <a name="a13"></a><a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a>, <a name="a14"></a><a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga9d9ce9d2db7d77a588da4a3749f2f24d">myGPIO_SetValue</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac523aaaf082570c199faf2a98e03c219">led_gpio</a>, value, <a name="a15"></a><a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>);</div>
+<div class="line"></div>
+<div class="line">    <a name="a16"></a><a class="code" href="group__bare-metal.html#ga116e3a1077a317e9e42ded6dd4df64af">myGPIO_PinInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>, enabledInterrut);</div>
+<div class="line">    <a name="a17"></a><a class="code" href="group__bare-metal.html#gada93ef6a9818e634f0a233ce14582216">myGPIO_GlobalInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente allo switch arrivo e riabilitare l'interrupt della periferica.</p>
+<h4>ISR per la gestione di interrupt provenienti dal gpio connesso ai button</h4>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a name="a18"></a><a class="code" href="interrupt__bare_8c.html#aa4eac585cb67311e3e5fd374d6b09ad4">btn_isr</a>(<span class="keywordtype">void</span>* data) {</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#gaacca2871ac57a166e62bf431a2da7548">myGPIO_GlobalInterruptDisable</a>(&amp;<a name="a19"></a><a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> enabledInterrut = <a class="code" href="group__bare-metal.html#ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c">myGPIO_EnabledPinInterrupt</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga37d3df33ac50387d6f2e1fb5e2b13e49">myGPIO_PinInterruptDisable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>, enabledInterrut);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> pendingInterrupt = <a class="code" href="group__bare-metal.html#ga6115bde39f860d4e76e7d8f421ce222c">myGPIO_PendingPinInterrupt</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#gab6ad3dda867515825890c97dbf6f55db">myGPIO_PinInterruptAck</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>, pendingInterrupt);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> value = <a class="code" href="group__bare-metal.html#gac35776cd6652f7b932a132f3f6959a11">myGPIO_GetRead</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga9d9ce9d2db7d77a588da4a3749f2f24d">myGPIO_SetValue</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac523aaaf082570c199faf2a98e03c219">led_gpio</a>, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783">myGPIO_pin2</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a>, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga9d9ce9d2db7d77a588da4a3749f2f24d">myGPIO_SetValue</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac523aaaf082570c199faf2a98e03c219">led_gpio</a>, value, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>);</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga116e3a1077a317e9e42ded6dd4df64af">myGPIO_PinInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>, enabledInterrut);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#gada93ef6a9818e634f0a233ce14582216">myGPIO_GlobalInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente al button premuto e riabilitare l'interrupt della periferica.</p>
+<h4>Configurazione del GIC e registrazione degli interrupt handler</h4>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> <a name="a20"></a><a class="code" href="interrupt__bare_8c.html#ad4c208e7b28dadf641bc3ec5b290d87d">int_config</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line">    <span class="comment">// inizializza il driver del GIC</span></div>
+<div class="line">    Xil_ExceptionInit();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// ottiene i parametri di configurazione del GIC, lo configura ed inizializza</span></div>
+<div class="line">    <span class="comment">// sintassi : XScuGic_LookupConfig(GIC_id)</span></div>
+<div class="line">    <span class="comment">// sintassi : XScuGic_CfgInitialize(GIC_ptr, config, cpu_address)</span></div>
+<div class="line">    XScuGic_Config *IntcConfig = XScuGic_LookupConfig(<a name="a21"></a><a class="code" href="interrupt__bare_8c.html#a22782ed5aaa2e8d89334d159d14753b5">gic_id</a>);</div>
+<div class="line">    <span class="keywordflow">if</span> (IntcConfig == NULL)</div>
+<div class="line">        <span class="keywordflow">return</span> -1;</div>
+<div class="line">    <span class="keywordflow">if</span> (XScuGic_CfgInitialize(&amp;<a name="a22"></a><a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>, IntcConfig, IntcConfig-&gt;CpuBaseAddress) != XST_SUCCESS)</div>
+<div class="line">        <span class="keywordflow">return</span> -1;</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// registra l&#39;interrupt handler del GIC alla logica di gestione del processing-system</span></div>
+<div class="line">    <span class="comment">// sintassi : Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, handler, gic_ptr)</span></div>
+<div class="line">    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler, &amp;<a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// registrazione degli handler</span></div>
+<div class="line">    <span class="comment">// le righe seguenti stabiliscono quale sia l&#39;handler da chiamare e quali dati bisogna passargli</span></div>
+<div class="line">    <span class="comment">// qualora si manifesti una interruzione su una line di irq.</span></div>
+<div class="line">    <span class="comment">// sintassi : XScuGic_Connect(GIC, irq_line, handler, data)</span></div>
+<div class="line">    <span class="keywordflow">if</span> (XScuGic_Connect(&amp;<a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>, <a name="a23"></a><a class="code" href="interrupt__bare_8c.html#ab5602e3672ec6d03f39d2229dbcb9f74">btn_irq_line</a>, (Xil_InterruptHandler)<a class="code" href="interrupt__bare_8c.html#aa4eac585cb67311e3e5fd374d6b09ad4">btn_isr</a>, (<span class="keywordtype">void</span>*)NULL) != XST_SUCCESS)</div>
+<div class="line">        <span class="keywordflow">return</span> -1;</div>
+<div class="line">    <span class="keywordflow">if</span> (XScuGic_Connect(&amp;<a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>, <a name="a24"></a><a class="code" href="interrupt__bare_8c.html#a48d05dc71b54a160af13c8e31e9000b1">swc_irq_line</a>, (Xil_InterruptHandler)<a class="code" href="interrupt__bare_8c.html#ad05dc46b6c6da383d687c5116864b4ed">swc_isr</a>, (<span class="keywordtype">void</span>*)NULL) != XST_SUCCESS)</div>
+<div class="line">            <span class="keywordflow">return</span> -1;</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// abilitazione degli interrupt sulle linee connesse alle periferiche</span></div>
+<div class="line">    <span class="comment">// sintassi: XScuGic_Enable(GIC,irq_line);</span></div>
+<div class="line">    XScuGic_Enable(&amp;<a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>, <a class="code" href="interrupt__bare_8c.html#ab5602e3672ec6d03f39d2229dbcb9f74">btn_irq_line</a>);</div>
+<div class="line">    XScuGic_Enable(&amp;<a class="code" href="interrupt__bare_8c.html#a0ad1175dbe99ac3f36c814258ec4f8c6">GIC</a>, <a class="code" href="interrupt__bare_8c.html#a48d05dc71b54a160af13c8e31e9000b1">swc_irq_line</a>);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// abilitazione degli interrupt delle periferiche</span></div>
+<div class="line">    <a class="code" href="group__bare-metal.html#gada93ef6a9818e634f0a233ce14582216">myGPIO_GlobalInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga116e3a1077a317e9e42ded6dd4df64af">myGPIO_PinInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac77d5df697b8a0d64704dee5f1433832">btn_gpio</a>, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783">myGPIO_pin2</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#gada93ef6a9818e634f0a233ce14582216">myGPIO_GlobalInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>);</div>
+<div class="line">    <a class="code" href="group__bare-metal.html#ga116e3a1077a317e9e42ded6dd4df64af">myGPIO_PinInterruptEnable</a>(&amp;<a class="code" href="interrupt__bare_8c.html#ac2f1233c00752afeb2ecfd305c5fe36a">swc_gpio</a>, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783">myGPIO_pin2</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a>);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// abilitazione degli interrupt del processing-system</span></div>
+<div class="line">    Xil_ExceptionEnable();</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> La funzione di configurazione delle interrupt e del GIC fa uso di alcune funzioni di libreria definite nell'header file "xscugic.h", il quale implementa il driver della periferica GIC, e di alcune macro definite nel file "xparameters.h". Solo per comodità le macro definite in xparameters.h sono state ridefinite come segue. </p><div class="fragment"><div class="line"><span class="preprocessor">#define led_base_addr XPAR_MYGPIO_0_S00_AXI_BASEADDR</span></div>
+<div class="line"><span class="preprocessor">#define btn_base_addr XPAR_MYGPIO_1_S00_AXI_BASEADDR</span></div>
+<div class="line"><span class="preprocessor">#define swc_base_addr XPAR_MYGPIO_2_S00_AXI_BASEADDR</span></div>
+<div class="line"><span class="preprocessor">#define led_irq_line XPAR_FABRIC_MYGPIO_0_INTERRUPT_INTR</span></div>
+<div class="line"><span class="preprocessor">#define btn_irq_line XPAR_FABRIC_MYGPIO_1_INTERRUPT_INTR</span></div>
+<div class="line"><span class="preprocessor">#define swc_irq_line XPAR_FABRIC_MYGPIO_2_INTERRUPT_INTR</span></div>
+<div class="line"><span class="preprocessor">#define gic_id      XPAR_SCUGIC_0_DEVICE_ID</span></div>
+</div><!-- fragment --><p> Le funzioni di libreria usate sono riportate di seguito, assieme ad una breve descrizione tratta dalla documentazione interna.</p><ul>
+<li>Xil_ExceptionInit(): inizializza gli exception-handlers di tutti i processori. Per ARM Cortex A53, R5 ed A9 gli exception-handlers sono sono inizializzati staticamente, per cui questa funzione non fa niente. Viene mantenutaper prevenire errori in fase di compilazione e per garantire backward-compatibility.</li>
+<li>XScuGic_LookupConfig(): looksup della configurazione di un device, basandosi sull'identificativo univoco dello stesso, dalla tabella contenente le configurazioni di tutti i device. Prende in ingresso un parametro DeviceId e restituisce un puntatore a XScuGic, contenente la configurazione, o NULL se il device non viene trovato.</li>
+<li>XScuGic_CfgInitialize(): inizializza e configura un interrupt-controller instance/driver. La procedura di inizializzazione prevede:<ul>
+<li>l'inizializzazione dei campi di una struttura XScuGic;</li>
+<li>la configurazione della Initial vector-table, con funzioni stub;</li>
+<li>disabilitazione di tutte le sorgenti di interruzione</li>
+</ul>
+Parametri:<ul>
+<li>InstancePtr: puntatore a struttura XScuGic;</li>
+<li>ConfigPtr: puntatore alla configurazione del device, restituito dalla funzione XScuGic_LookupConfig();</li>
+<li>EffectiveAddr: indirizzo base del device; Restituisce XST_SUCCESS se l'inizializzazione viene completata con successo.</li>
+</ul>
+</li>
+<li>Xil_ExceptionRegisterHandler(): crea una connessione tra l'identificativo di una sorgente di eccezioni e l'handler associato, in modo che l'handler venga eseguito qualora si manifestasse una eccezione. Prende i seguenti parametri:<ul>
+<li>exception_id: ID della sorgente di eccezioni;</li>
+<li>Handler: puntatore alla funzione di servizio;</li>
+<li>Data: puntatore ai dati da passare all'handler;</li>
+</ul>
+</li>
+<li>XScuGic_Connect(): crea una connessione tra l'identificativo di una sorgente di interruzioni e l'handler associato, in modo che l'handler venga eseguito qualora si manifestasse una interruzione. Prende i seguenti parametri:<ul>
+<li>InstancePtr: puntatore ad una istanza XScuGic;</li>
+<li>Int_Id: ID della sorgente di interruzioni;</li>
+<li>Handler: puntatore alla funzione di servizio;</li>
+<li>CallBackRef: puntatore ai dati da passare alla isr;</li>
+</ul>
+Restituisce XST_SUCCESS se l'handler è stato connesso correttamente.</li>
+<li>XScuGic_Enable(): abilita la sorgente di interruzioni Int_Id. Se ci sono pending interrupt per tale linea, scateneranno una interruzione dopo la chiamata a questa funzione. Parametri:<ul>
+<li>InstancePtr: puntatore ad una istanza XScuGic;</li>
+<li>Int_Id: ID della sorgente di interruzioni;</li>
+</ul>
+</li>
+<li>Xil_ExceptionEnable(): abilita le interruzioni.</li>
+</ul>
+<div class="fragment"></div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generato Ven 23 Giu 2017 15:46:55 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

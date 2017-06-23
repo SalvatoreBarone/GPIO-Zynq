@@ -1,0 +1,5 @@
+<map id="Bare&#45;metal" name="Bare&#45;metal">
+<area shape="rect" id="node1" href="$group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/>
+<area shape="rect" id="node3" href="$group___h_d44780.html" title="driver per display Hitachi hd44780 basato su driver myGPIO " alt="" coords="260,5,337,32"/>
+<area shape="rect" id="node4" href="$group___zybo.html" title="Zybo" alt="" coords="273,56,324,83"/>
+</map>

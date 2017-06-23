@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Riferimenti per il file Src/Examples/mygpiok.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">3.1</span>
+   </div>
+   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li><a href="examples.html"><span>Esempi</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('mygpiok_8c.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Strutture dati</a> &#124;
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per il file mygpiok.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="my_g_p_i_o_8h_source.html">myGPIO.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="xil__gpio_8h_source.html">xil_gpio.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per mygpiok.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="mygpiok_8c__incl.png" border="0" usemap="#_src_2_examples_2mygpiok_8c" alt=""/></div>
+<map name="_src_2_examples_2mygpiok_8c" id="_src_2_examples_2mygpiok_8c">
+<area shape="rect" id="node6" href="my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="355,80,439,107"/><area shape="rect" id="node8" href="xil__gpio_8h.html" title="xil_gpio.h" alt="" coords="464,80,541,107"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Strutture dati</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structparam__t.html">param_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La struttura raccoglie tutti i parametri di esecuzione del programma.  <a href="structparam__t.html#details">Continua...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definizioni</h2></td></tr>
+<tr class="memitem:a7a63b24ca5489eb3206598e3d90fe19c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a7a63b24ca5489eb3206598e3d90fe19c">MODE_OFFSET</a>&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga81a662103d6ed053978c0a9b4c273065">myGPIO_MODE_OFFSET</a></td></tr>
+<tr class="separator:a7a63b24ca5489eb3206598e3d90fe19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77d96306ed0e813f93c4c3f98b970b86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a77d96306ed0e813f93c4c3f98b970b86">WRITE_OFFSET</a>&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga2e45778b6ca9ce6f5768b3f7a4557ce1">myGPIO_WRITE_OFFSET</a></td></tr>
+<tr class="separator:a77d96306ed0e813f93c4c3f98b970b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32c3a5b42163e171daccde5b5d5de02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#ad32c3a5b42163e171daccde5b5d5de02">READ_OFFSET</a>&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga584d2dfece76e5762030d918d80592cc">myGPIO_READ_OFFSET</a></td></tr>
+<tr class="separator:ad32c3a5b42163e171daccde5b5d5de02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:a05909651fa170a63e98e3f8e13451b7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a05909651fa170a63e98e3f8e13451b7b">howto</a> (void)</td></tr>
+<tr class="memdesc:a05909651fa170a63e98e3f8e13451b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma.  <a href="#a05909651fa170a63e98e3f8e13451b7b">Continua...</a><br /></td></tr>
+<tr class="separator:a05909651fa170a63e98e3f8e13451b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65d977fb03a14dedd76e1515d6d24ff4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a65d977fb03a14dedd76e1515d6d24ff4">parse_args</a> (int argc, char **argv, <a class="el" href="structparam__t.html">param_t</a> *param)</td></tr>
+<tr class="memdesc:a65d977fb03a14dedd76e1515d6d24ff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effettua il parsing dei parametri passati al programma.  <a href="#a65d977fb03a14dedd76e1515d6d24ff4">Continua...</a><br /></td></tr>
+<tr class="separator:a65d977fb03a14dedd76e1515d6d24ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63fab82d87963c07f9557a5f5d5d3e86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a63fab82d87963c07f9557a5f5d5d3e86">gpio_op</a> (<a class="el" href="structparam__t.html">param_t</a> *param)</td></tr>
+<tr class="memdesc:a63fab82d87963c07f9557a5f5d5d3e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effettua operazioni su un device.  <a href="#a63fab82d87963c07f9557a5f5d5d3e86">Continua...</a><br /></td></tr>
+<tr class="separator:a63fab82d87963c07f9557a5f5d5d3e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygpiok_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentazione delle definizioni</h2>
+<a class="anchor" id="a7a63b24ca5489eb3206598e3d90fe19c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MODE_OFFSET&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga81a662103d6ed053978c0a9b4c273065">myGPIO_MODE_OFFSET</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad32c3a5b42163e171daccde5b5d5de02"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define READ_OFFSET&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga584d2dfece76e5762030d918d80592cc">myGPIO_READ_OFFSET</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a77d96306ed0e813f93c4c3f98b970b86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WRITE_OFFSET&#160;&#160;&#160;<a class="el" href="group__bare-metal.html#ga2e45778b6ca9ce6f5768b3f7a4557ce1">myGPIO_WRITE_OFFSET</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle funzioni</h2>
+<a class="anchor" id="a63fab82d87963c07f9557a5f5d5d3e86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gpio_op </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structparam__t.html">param_t</a> *&#160;</td>
+          <td class="paramname"><em>param</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Effettua operazioni su un device. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>puntatore a struttura <a class="el" href="structparam__t.html" title="La struttura raccoglie tutti i parametri di esecuzione del programma. ">param_t</a>, contiene i vari parametri di esecuzione del programma.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il GPIO Xilinx che con il GPIO custom myGPIO. E' possibile utilizzare il primo definendo la macro <b>XIL_GPIO</b>. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. <br />
+ Nel caso un cui si usi un driver ad-hoc, e' possibile usare le funzioni read() e write() per interagire con il device, leggendo il valore dei registri o scrivendolo. Il driver myGPIOK mette a disposizione anche la funzione seek() che permette di scegliere quale registro leggere o scrivere. </p>
+<h4>Impostazione della modalita' di funzionamento</h4>
+<p>Per impostare la modalita' di funzionamento e' necessario scrivere sul registro MODE. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la "testina di scrittura" sul registro MODE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
+<h4>Operazione di scrittura</h4>
+<p>Per impostare il valore dei pin del device e' necessario scrivere sul registro WRITE. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la "testina di scrittura" sul registro WRITE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
+<h4>Operazione di lettura con interrupt</h4>
+<p>La lettura dei pin del device avviene mediante la chiamata alla funzione read(), dopo aver spostato la "testina di lettura" sul registro READ. L'offset di tale registro, come nei due casi precedenti, viene determinato in base al particolare device che si sta usando. E' possibile, definendo la macro <b>USE_PREAD</b>, usare la funzione pread(), che combina le operazioni di seek() e read(). Il driver myGPIOK implementa un meccanismo di lettura bloccante: qualora non ci siano dati disponibili, il processo che chiama read() viene sospeso e messo in attesa che i dati siano disponibili. Quando arriva una interruzione dal device, il driver myGPIOK lo gestisce e risveglia i processi che erano stati messi precedentemente in attesa. Si legga la documentazione del driver myGPIOK per i dettagli.</p>
+
+</div>
+</div>
+<a class="anchor" id="a05909651fa170a63e98e3f8e13451b7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void howto </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a65d977fb03a14dedd76e1515d6d24ff4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parse_args </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structparam__t.html">param_t</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Effettua il parsing dei parametri passati al programma. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td></td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>puntatore a struttura <a class="el" href="structparam__t.html" title="La struttura raccoglie tutti i parametri di esecuzione del programma. ">param_t</a>, conterra' i vari parametri di esecuzione del programma.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valori di ritorno</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>se il parsing ha successo </td></tr>
+    <tr><td class="paramname">-1</td><td>se si verifica un errore </td></tr>
+  </table>
+  </dd>
+</dl>
+<h4>Parsing dei parametri del programma.</h4>
+<p>Il parsing viene effettuato usando la funzione getopt(). </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#include &lt;unistd.h&gt;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int getopt(int argc, char * const argv[], const char *optstring);</div>
+</div><!-- fragment --><p> Essa prende in input i parametri argc ed argv passati alla funzione <a class="el" href="mygpiok_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a> quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-', getopt() la considera una opzione. Il carattere immediatamente successivo il '-' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da ':' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.</p>
+<h4>Parametri riconosciuti</h4>
+<p>La funzione riconosce i parametri:</p><ul>
+<li>'d' : seguito dal percorso del device /dev/myGPIOK col quale interagire</li>
+<li>'w' : operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro WRITE;</li>
+<li>'m' : impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro MODE;</li>
+<li>'r' : operazione di lettura, primo di argomento; la lettura viene effettuata dal registro READ ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.</li>
+</ul>
+<p>Se non viene specificato il device myGPIOK col quale interagire e' impossibile continuare. Per questo motivo, in questo caso, la funzione restituisce -1, per cui il programma viene terminato.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_1b70f4f506dadebaa011ded43b066ccb.html">Examples</a></li><li class="navelem"><a class="el" href="mygpiok_8c.html">mygpiok.c</a></li>
+    <li class="footer">Generato Ven 23 Giu 2017 15:46:55 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

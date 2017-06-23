@@ -1,0 +1,4 @@
+<map id="MyGPIO" name="MyGPIO">
+<area shape="rect" id="node1" href="$group___linux-_driver.html" title="Device&#45;driver in kernel&#45;mode per myGPIO. " alt="" coords="127,5,219,32"/>
+<area shape="rect" id="node3" href="$group__bare-metal.html" title="device&#45;driver OO&#45;like bare&#45;metal per device myGPIO " alt="" coords="130,56,215,83"/>
+</map>

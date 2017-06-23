@@ -1,0 +1,66 @@
+\hypertarget{_zybo_led_8h}{\section{Riferimenti per il file Src/my\+G\+P\+I\+O/bare-\/metal/\+Zybo\+B\+S\+P/\+Zybo\+Led.h}
+\label{_zybo_led_8h}\index{Src/my\+G\+P\+I\+O/bare-\/metal/\+Zybo\+B\+S\+P/\+Zybo\+Led.\+h@{Src/my\+G\+P\+I\+O/bare-\/metal/\+Zybo\+B\+S\+P/\+Zybo\+Led.\+h}}
+}
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per Zybo\+Led.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{_zybo_led_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{_zybo_led_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___led_ga50ab39fed34dc3aaf53cdfd67d8ba25d}{Zybo\+Led}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
+\begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei led presenti sulla board Digilent Zybo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} \{ \hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3adc5edc2adfd899da9f149cb61364b141}{Zybo\+Led3} = 0x8\+U, 
+\hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3a4fa521f6fce7c4ba77d1d8144e71cdfc}{Zybo\+Led2} = 0x4\+U, 
+\hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3ad71c06f65dfffcf825d48f287718d9be}{Zybo\+Led1} = 0x2\+U, 
+\hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3ae1a1e8fa0bf803793ff27004884b85fe}{Zybo\+Led0} = 0x1\+U
+ \}
+\begin{DoxyCompactList}\small\item\em Maschere di selezione dei led. \end{DoxyCompactList}\item 
+enum \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{Zybo\+Led\+\_\+status\+\_\+t} \{ \hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12a9679f1c302afdb51915a2331b4ec92f3}{Zybo\+Led\+\_\+off}, 
+\hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12aafcf0ae16a6edec807c06bb0a99f7e8b}{Zybo\+Led\+\_\+on}
+ \}
+\begin{DoxyCompactList}\small\item\em Status di accensione/spegnimento dei led. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___led_ga51bccd37e6ae8cd32e2c50c60a5e83cc}{Zybo\+Led\+\_\+init} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led3\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led2\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led1\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Led0\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. \end{DoxyCompactList}\item 
+void \hyperlink{group___led_gacf5c2b0328c4bdf2d796397fc4510c69}{Zybo\+Led\+\_\+set\+Status} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} mask, \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{Zybo\+Led\+\_\+status\+\_\+t} status)
+\begin{DoxyCompactList}\small\item\em Permette di accendere/spegnere i Led sulla board. \end{DoxyCompactList}\item 
+void \hyperlink{group___led_ga20ddd78a98b4c0123c5b964aa0a59046}{Zybo\+Led\+\_\+toggle} (\hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t} $\ast$leds, \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{Zybo\+Led\+\_\+mask\+\_\+t} mask)
+\begin{DoxyCompactList}\small\item\em Permette di accendere/spegnere i Led sulla board, invertendone il valore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+
+You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 

@@ -1,0 +1,708 @@
+\hypertarget{group__bare-metal}{\section{Bare-\/metal}
+\label{group__bare-metal}\index{Bare-\/metal@{Bare-\/metal}}
+}
+
+
+device-\/driver O\+O-\/like bare-\/metal per device my\+G\+P\+I\+O  
+
+
+Diagramma di collaborazione per Bare-\/metal\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{group__bare-metal}
+\end{center}
+\end{figure}
+\subsection*{Moduli}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___h_d44780}{H\+D44780}
+\begin{DoxyCompactList}\small\item\em driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O \end{DoxyCompactList}\item 
+\hyperlink{group___zybo}{Zybo}
+\end{DoxyCompactItemize}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struttura che astrae un device my\+G\+P\+I\+O. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__bare-metal_ga81a662103d6ed053978c0a9b4c273065}{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x00\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_ga2e45778b6ca9ce6f5768b3f7a4557ce1}{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x04\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}write\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}~0x08\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}read\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_gad251e4d87d464525d4a2858977468994}{my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}~0x0\+C\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}gies\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_gaece3c1c9f504249d6b8ab060d8bb2738}{my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x10\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}pie\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_ga31a7c2a9de5c63576f2f5aa061b936c5}{my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}~0x14\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}irq\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_gadfca866ac50c2dae09c3c46ad80670fc}{my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}~0x18\+U
+\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}iack\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__bare-metal_gabbe2491a3b71c292521025b7b382b971}{my\+G\+P\+I\+O\+\_\+pin}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
+\begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei pin di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \{ \\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{my\+G\+P\+I\+O\+\_\+pin0} = 0x1\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{my\+G\+P\+I\+O\+\_\+pin1} = 0x2\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{my\+G\+P\+I\+O\+\_\+pin2} = 0x4\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{my\+G\+P\+I\+O\+\_\+pin3} = 0x8\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637}{my\+G\+P\+I\+O\+\_\+pin4} = 0x10\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2}{my\+G\+P\+I\+O\+\_\+pin5} = 0x20\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b}{my\+G\+P\+I\+O\+\_\+pin6} = 0x40\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b}{my\+G\+P\+I\+O\+\_\+pin7} = 0x80\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e}{my\+G\+P\+I\+O\+\_\+pin8} = 0x100\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9}{my\+G\+P\+I\+O\+\_\+pin9} = 0x200\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341}{my\+G\+P\+I\+O\+\_\+pin10} = 0x400\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a}{my\+G\+P\+I\+O\+\_\+pin11} = 0x800\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5}{my\+G\+P\+I\+O\+\_\+pin12} = 0x1000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c}{my\+G\+P\+I\+O\+\_\+pin13} = 0x2000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd}{my\+G\+P\+I\+O\+\_\+pin14} = 0x4000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee}{my\+G\+P\+I\+O\+\_\+pin15} = 0x8000\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67}{my\+G\+P\+I\+O\+\_\+pin16} = 0x10000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779}{my\+G\+P\+I\+O\+\_\+pin17} = 0x20000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99}{my\+G\+P\+I\+O\+\_\+pin18} = 0x40000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309}{my\+G\+P\+I\+O\+\_\+pin19} = 0x80000\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711}{my\+G\+P\+I\+O\+\_\+pin20} = 0x100000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5}{my\+G\+P\+I\+O\+\_\+pin21} = 0x200000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c}{my\+G\+P\+I\+O\+\_\+pin22} = 0x400000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830}{my\+G\+P\+I\+O\+\_\+pin23} = 0x800000\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110}{my\+G\+P\+I\+O\+\_\+pin24} = 0x1000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56}{my\+G\+P\+I\+O\+\_\+pin25} = 0x2000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af}{my\+G\+P\+I\+O\+\_\+pin26} = 0x4000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f}{my\+G\+P\+I\+O\+\_\+pin27} = 0x8000000\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632}{my\+G\+P\+I\+O\+\_\+pin28} = 0x10000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084}{my\+G\+P\+I\+O\+\_\+pin29} = 0x20000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8}{my\+G\+P\+I\+O\+\_\+pin30} = 0x40000000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225}{my\+G\+P\+I\+O\+\_\+pin31} = 0x80000000\+U, 
+\\*
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d}{my\+G\+P\+I\+O\+\_\+byte0} = 0x000000ff\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0}{my\+G\+P\+I\+O\+\_\+byte1} = 0x0000ff00\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b}{my\+G\+P\+I\+O\+\_\+byte2} = 0x00ff0000\+U, 
+\hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129}{my\+G\+P\+I\+O\+\_\+byte3} = 0xff000000\+U
+ \}
+\begin{DoxyCompactList}\small\item\em Maschere di selezione dei pin di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+enum \hyperlink{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} \{ \hyperlink{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}{my\+G\+P\+I\+O\+\_\+read}, 
+\hyperlink{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}{my\+G\+P\+I\+O\+\_\+write}
+ \}
+\begin{DoxyCompactList}\small\item\em my\+G\+P\+I\+O\+\_\+mode, modalita' di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O \end{DoxyCompactList}\item 
+enum \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \{ \hyperlink{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{my\+G\+P\+I\+O\+\_\+reset}, 
+\hyperlink{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{my\+G\+P\+I\+O\+\_\+set}
+ \}
+\begin{DoxyCompactList}\small\item\em my\+G\+P\+I\+O\+\_\+value, valore di un my\+G\+P\+I\+O \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{my\+G\+P\+I\+O\+\_\+\+Init} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, uint32\+\_\+t base\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Inizializza un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}{my\+G\+P\+I\+O\+\_\+\+Set\+Mode} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} mode)
+\begin{DoxyCompactList}\small\item\em Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_ga9d9ce9d2db7d77a588da4a3749f2f24d}{my\+G\+P\+I\+O\+\_\+\+Set\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} value)
+\begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_ga449b2af7cc20d24e6f6e017cf792ce03}{my\+G\+P\+I\+O\+\_\+\+Toggle} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di invertire il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__bare-metal_ga2a20e519816733b90204b975edc4e212}{my\+G\+P\+I\+O\+\_\+\+Get\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Permette di leggere il valore dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{group__bare-metal_gac35776cd6652f7b932a132f3f6959a11}{my\+G\+P\+I\+O\+\_\+\+Get\+Read} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Restituisce la maschera dei pin settati di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Abilita gli interrupt globali;. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_gaacca2871ac57a166e62bf431a2da7548}{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Disabilita gli interrupt globali;. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__bare-metal_ga0a753db3d02ad08014e4b7304e0f1829}{my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Consente di verificare se gli interrupt globali siano abilitati. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__bare-metal_ga386cea84aca8c6bb731b4b46fcbf9199}{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Consente di verificare se esistano interrupt non ancora serviti. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_ga116e3a1077a317e9e42ded6dd4df64af}{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Abilita gli interrupt per i singoli pin del device. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_ga37d3df33ac50387d6f2e1fb5e2b13e49}{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Disabilita gli interrupt per i singoli pin del device. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{group__bare-metal_ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c}{my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Consente di ottenere una maschera che indichi quali pin abbiano interrupt abilitati. \end{DoxyCompactList}\item 
+\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{group__bare-metal_ga6115bde39f860d4e76e7d8f421ce222c}{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;. \end{DoxyCompactList}\item 
+void \hyperlink{group__bare-metal_gab6ad3dda867515825890c97dbf6f55db}{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
+\begin{DoxyCompactList}\small\item\em Invia al device notifica di servizio di un interrupt;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+device-\/driver O\+O-\/like bare-\/metal per device my\+G\+P\+I\+O 
+
+
+
+\subsection{Documentazione delle definizioni}
+\hypertarget{group__bare-metal_gad251e4d87d464525d4a2858977468994}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T~0x0\+C\+U}}\label{group__bare-metal_gad251e4d87d464525d4a2858977468994}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}gies\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_gadfca866ac50c2dae09c3c46ad80670fc}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T~0x18\+U}}\label{group__bare-metal_gadfca866ac50c2dae09c3c46ad80670fc}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}iack\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_ga31a7c2a9de5c63576f2f5aa061b936c5}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T~0x14\+U}}\label{group__bare-metal_ga31a7c2a9de5c63576f2f5aa061b936c5}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}irq\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_ga81a662103d6ed053978c0a9b4c273065}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x00\+U}}\label{group__bare-metal_ga81a662103d6ed053978c0a9b4c273065}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_gaece3c1c9f504249d6b8ab060d8bb2738}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x10\+U}}\label{group__bare-metal_gaece3c1c9f504249d6b8ab060d8bb2738}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}pie\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_gabbe2491a3b71c292521025b7b382b971}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin@{my\+G\+P\+I\+O\+\_\+pin}}
+\index{my\+G\+P\+I\+O\+\_\+pin@{my\+G\+P\+I\+O\+\_\+pin}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+pin}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+pin(
+\begin{DoxyParamCaption}
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~((uint32\+\_\+t)(1$<$$<$(i)))}}\label{group__bare-metal_gabbe2491a3b71c292521025b7b382b971}
+
+
+Metodo alternativo per la specifica di uno dei pin di un device my\+G\+P\+I\+O. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em i} & indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera di selezione del pin i-\/esimo 
+\end{DoxyReturn}
+\hypertarget{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T~0x08\+U}}\label{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}read\char`\"{} per il device my\+G\+P\+I\+O. 
+
+\hypertarget{group__bare-metal_ga2e45778b6ca9ce6f5768b3f7a4557ce1}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
+\index{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x04\+U}}\label{group__bare-metal_ga2e45778b6ca9ce6f5768b3f7a4557ce1}
+
+
+Offset, rispetto all'indirizzo base, del registro \char`\"{}write\char`\"{} per il device my\+G\+P\+I\+O. 
+
+
+
+\subsection{Documentazione dei tipi enumerati}
+\hypertarget{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+mask@{my\+G\+P\+I\+O\+\_\+mask}}
+\index{my\+G\+P\+I\+O\+\_\+mask@{my\+G\+P\+I\+O\+\_\+mask}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+mask}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf my\+G\+P\+I\+O\+\_\+mask}}}\label{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}
+
+
+Maschere di selezione dei pin di un device my\+G\+P\+I\+O. 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{my\+G\+P\+I\+O\+\_\+pin0@{my\+G\+P\+I\+O\+\_\+pin0}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin0@{my\+G\+P\+I\+O\+\_\+pin0}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{my\+G\+P\+I\+O\+\_\+pin0}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}
+}]my\+G\+P\+I\+O pin0 maschera di selezione del pin 0 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin1@{my\+G\+P\+I\+O\+\_\+pin1}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin1@{my\+G\+P\+I\+O\+\_\+pin1}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{my\+G\+P\+I\+O\+\_\+pin1}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}
+}]my\+G\+P\+I\+O pin1 maschera di selezione del pin 1 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin2@{my\+G\+P\+I\+O\+\_\+pin2}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin2@{my\+G\+P\+I\+O\+\_\+pin2}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{my\+G\+P\+I\+O\+\_\+pin2}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}
+}]my\+G\+P\+I\+O pin2 maschera di selezione del pin 2 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin3@{my\+G\+P\+I\+O\+\_\+pin3}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin3@{my\+G\+P\+I\+O\+\_\+pin3}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{my\+G\+P\+I\+O\+\_\+pin3}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}
+}]my\+G\+P\+I\+O pin3 maschera di selezione del pin 3 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin4@{my\+G\+P\+I\+O\+\_\+pin4}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin4@{my\+G\+P\+I\+O\+\_\+pin4}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637}{my\+G\+P\+I\+O\+\_\+pin4}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637}
+}]my\+G\+P\+I\+O pin4 maschera di selezione del pin 4 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin5@{my\+G\+P\+I\+O\+\_\+pin5}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin5@{my\+G\+P\+I\+O\+\_\+pin5}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2}{my\+G\+P\+I\+O\+\_\+pin5}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2}
+}]my\+G\+P\+I\+O pin5 maschera di selezione del pin 5 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin6@{my\+G\+P\+I\+O\+\_\+pin6}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin6@{my\+G\+P\+I\+O\+\_\+pin6}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b}{my\+G\+P\+I\+O\+\_\+pin6}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b}
+}]my\+G\+P\+I\+O pin6 maschera di selezione del pin 6 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin7@{my\+G\+P\+I\+O\+\_\+pin7}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin7@{my\+G\+P\+I\+O\+\_\+pin7}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b}{my\+G\+P\+I\+O\+\_\+pin7}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b}
+}]my\+G\+P\+I\+O pin7 maschera di selezione del pin 7 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin8@{my\+G\+P\+I\+O\+\_\+pin8}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin8@{my\+G\+P\+I\+O\+\_\+pin8}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e}{my\+G\+P\+I\+O\+\_\+pin8}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e}
+}]my\+G\+P\+I\+O pin8 maschera di selezione del pin 8 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin9@{my\+G\+P\+I\+O\+\_\+pin9}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin9@{my\+G\+P\+I\+O\+\_\+pin9}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9}{my\+G\+P\+I\+O\+\_\+pin9}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9}
+}]my\+G\+P\+I\+O pin9 maschera di selezione del pin 9 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin10@{my\+G\+P\+I\+O\+\_\+pin10}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin10@{my\+G\+P\+I\+O\+\_\+pin10}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341}{my\+G\+P\+I\+O\+\_\+pin10}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341}
+}]my\+G\+P\+I\+O pin10 maschera di selezione del pin 10 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin11@{my\+G\+P\+I\+O\+\_\+pin11}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin11@{my\+G\+P\+I\+O\+\_\+pin11}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a}{my\+G\+P\+I\+O\+\_\+pin11}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a}
+}]my\+G\+P\+I\+O pin11 maschera di selezione del pin 11 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin12@{my\+G\+P\+I\+O\+\_\+pin12}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin12@{my\+G\+P\+I\+O\+\_\+pin12}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5}{my\+G\+P\+I\+O\+\_\+pin12}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5}
+}]my\+G\+P\+I\+O pin12 maschera di selezione del pin 12 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin13@{my\+G\+P\+I\+O\+\_\+pin13}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin13@{my\+G\+P\+I\+O\+\_\+pin13}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c}{my\+G\+P\+I\+O\+\_\+pin13}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c}
+}]my\+G\+P\+I\+O pin13 maschera di selezione del pin 13 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin14@{my\+G\+P\+I\+O\+\_\+pin14}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin14@{my\+G\+P\+I\+O\+\_\+pin14}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd}{my\+G\+P\+I\+O\+\_\+pin14}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd}
+}]my\+G\+P\+I\+O pin14 maschera di selezione del pin 14 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin15@{my\+G\+P\+I\+O\+\_\+pin15}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin15@{my\+G\+P\+I\+O\+\_\+pin15}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee}{my\+G\+P\+I\+O\+\_\+pin15}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee}
+}]my\+G\+P\+I\+O pin15 maschera di selezione del pin 15 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin16@{my\+G\+P\+I\+O\+\_\+pin16}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin16@{my\+G\+P\+I\+O\+\_\+pin16}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67}{my\+G\+P\+I\+O\+\_\+pin16}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67}
+}]my\+G\+P\+I\+O pin16 maschera di selezione del pin 16 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin17@{my\+G\+P\+I\+O\+\_\+pin17}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin17@{my\+G\+P\+I\+O\+\_\+pin17}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779}{my\+G\+P\+I\+O\+\_\+pin17}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779}
+}]my\+G\+P\+I\+O pin17 maschera di selezione del pin 17 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin18@{my\+G\+P\+I\+O\+\_\+pin18}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin18@{my\+G\+P\+I\+O\+\_\+pin18}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99}{my\+G\+P\+I\+O\+\_\+pin18}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99}
+}]my\+G\+P\+I\+O pin18 maschera di selezione del pin 18 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin19@{my\+G\+P\+I\+O\+\_\+pin19}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin19@{my\+G\+P\+I\+O\+\_\+pin19}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309}{my\+G\+P\+I\+O\+\_\+pin19}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309}
+}]my\+G\+P\+I\+O pin19 maschera di selezione del pin 19 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin20@{my\+G\+P\+I\+O\+\_\+pin20}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin20@{my\+G\+P\+I\+O\+\_\+pin20}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711}{my\+G\+P\+I\+O\+\_\+pin20}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711}
+}]my\+G\+P\+I\+O pin20 maschera di selezione del pin 20 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin21@{my\+G\+P\+I\+O\+\_\+pin21}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin21@{my\+G\+P\+I\+O\+\_\+pin21}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5}{my\+G\+P\+I\+O\+\_\+pin21}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5}
+}]my\+G\+P\+I\+O pin21 maschera di selezione del pin 21 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin22@{my\+G\+P\+I\+O\+\_\+pin22}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin22@{my\+G\+P\+I\+O\+\_\+pin22}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c}{my\+G\+P\+I\+O\+\_\+pin22}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c}
+}]my\+G\+P\+I\+O pin22 maschera di selezione del pin 22 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin23@{my\+G\+P\+I\+O\+\_\+pin23}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin23@{my\+G\+P\+I\+O\+\_\+pin23}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830}{my\+G\+P\+I\+O\+\_\+pin23}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830}
+}]my\+G\+P\+I\+O pin23 maschera di selezione del pin 23 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin24@{my\+G\+P\+I\+O\+\_\+pin24}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin24@{my\+G\+P\+I\+O\+\_\+pin24}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110}{my\+G\+P\+I\+O\+\_\+pin24}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110}
+}]my\+G\+P\+I\+O pin24 maschera di selezione del pin 24 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin25@{my\+G\+P\+I\+O\+\_\+pin25}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin25@{my\+G\+P\+I\+O\+\_\+pin25}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56}{my\+G\+P\+I\+O\+\_\+pin25}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56}
+}]my\+G\+P\+I\+O pin25 maschera di selezione del pin 25 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin26@{my\+G\+P\+I\+O\+\_\+pin26}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin26@{my\+G\+P\+I\+O\+\_\+pin26}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af}{my\+G\+P\+I\+O\+\_\+pin26}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af}
+}]my\+G\+P\+I\+O pin26 maschera di selezione del pin 26 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin27@{my\+G\+P\+I\+O\+\_\+pin27}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin27@{my\+G\+P\+I\+O\+\_\+pin27}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f}{my\+G\+P\+I\+O\+\_\+pin27}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f}
+}]my\+G\+P\+I\+O pin27 maschera di selezione del pin 27 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin28@{my\+G\+P\+I\+O\+\_\+pin28}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin28@{my\+G\+P\+I\+O\+\_\+pin28}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632}{my\+G\+P\+I\+O\+\_\+pin28}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632}
+}]my\+G\+P\+I\+O pin28 maschera di selezione del pin 28 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin29@{my\+G\+P\+I\+O\+\_\+pin29}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin29@{my\+G\+P\+I\+O\+\_\+pin29}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084}{my\+G\+P\+I\+O\+\_\+pin29}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084}
+}]my\+G\+P\+I\+O pin29 maschera di selezione del pin 29 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin30@{my\+G\+P\+I\+O\+\_\+pin30}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin30@{my\+G\+P\+I\+O\+\_\+pin30}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8}{my\+G\+P\+I\+O\+\_\+pin30}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8}
+}]my\+G\+P\+I\+O pin30 maschera di selezione del pin 30 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+pin31@{my\+G\+P\+I\+O\+\_\+pin31}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+pin31@{my\+G\+P\+I\+O\+\_\+pin31}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225}{my\+G\+P\+I\+O\+\_\+pin31}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225}
+}]my\+G\+P\+I\+O pin31 maschera di selezione del pin 31 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+byte0@{my\+G\+P\+I\+O\+\_\+byte0}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+byte0@{my\+G\+P\+I\+O\+\_\+byte0}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d}{my\+G\+P\+I\+O\+\_\+byte0}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d}
+}]my\+G\+P\+I\+O byte0 maschera di selezione de\+I pin 0-\/7 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+byte1@{my\+G\+P\+I\+O\+\_\+byte1}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+byte1@{my\+G\+P\+I\+O\+\_\+byte1}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0}{my\+G\+P\+I\+O\+\_\+byte1}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0}
+}]my\+G\+P\+I\+O byte1 maschera di selezione de\+I pin 8-\/15 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+byte2@{my\+G\+P\+I\+O\+\_\+byte2}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+byte2@{my\+G\+P\+I\+O\+\_\+byte2}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b}{my\+G\+P\+I\+O\+\_\+byte2}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b}
+}]my\+G\+P\+I\+O byte2 maschera di selezione de\+I pin 16-\/23 di un device my\+G\+P\+I\+O \index{my\+G\+P\+I\+O\+\_\+byte3@{my\+G\+P\+I\+O\+\_\+byte3}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+byte3@{my\+G\+P\+I\+O\+\_\+byte3}}\item[{\em 
+\hypertarget{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129}{my\+G\+P\+I\+O\+\_\+byte3}\label{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129}
+}]my\+G\+P\+I\+O byte3 maschera di selezione de\+I pin 24-\/31 di un device my\+G\+P\+I\+O \end{description}
+\end{Desc}
+\hypertarget{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+mode@{my\+G\+P\+I\+O\+\_\+mode}}
+\index{my\+G\+P\+I\+O\+\_\+mode@{my\+G\+P\+I\+O\+\_\+mode}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf my\+G\+P\+I\+O\+\_\+mode}}}\label{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}
+
+
+my\+G\+P\+I\+O\+\_\+mode, modalita' di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{my\+G\+P\+I\+O\+\_\+read@{my\+G\+P\+I\+O\+\_\+read}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+read@{my\+G\+P\+I\+O\+\_\+read}}\item[{\em 
+\hypertarget{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}{my\+G\+P\+I\+O\+\_\+read}\label{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}
+}]my\+G\+P\+I\+O\+\_\+read modalita' lettura \index{my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}}\item[{\em 
+\hypertarget{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}{my\+G\+P\+I\+O\+\_\+write}\label{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}
+}]my\+G\+P\+I\+O\+\_\+write modalita' scrittura \end{description}
+\end{Desc}
+\hypertarget{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+value@{my\+G\+P\+I\+O\+\_\+value}}
+\index{my\+G\+P\+I\+O\+\_\+value@{my\+G\+P\+I\+O\+\_\+value}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf my\+G\+P\+I\+O\+\_\+value}}}\label{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}
+
+
+my\+G\+P\+I\+O\+\_\+value, valore di un my\+G\+P\+I\+O 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{my\+G\+P\+I\+O\+\_\+reset@{my\+G\+P\+I\+O\+\_\+reset}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+reset@{my\+G\+P\+I\+O\+\_\+reset}}\item[{\em 
+\hypertarget{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{my\+G\+P\+I\+O\+\_\+reset}\label{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}
+}]my\+G\+P\+I\+O\+\_\+reset, corrisponde al valore logico '0' \index{my\+G\+P\+I\+O\+\_\+set@{my\+G\+P\+I\+O\+\_\+set}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+set@{my\+G\+P\+I\+O\+\_\+set}}\item[{\em 
+\hypertarget{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{my\+G\+P\+I\+O\+\_\+set}\label{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}
+}]my\+G\+P\+I\+O\+\_\+set, corrisponde al valore logico '1' \end{description}
+\end{Desc}
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{group__bare-metal_ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt}}
+\index{my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} my\+G\+P\+I\+O\+\_\+\+Enabled\+Pin\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c}
+
+
+Consente di ottenere una maschera che indichi quali pin abbiano interrupt abilitati. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera che riporta i pin per i quali gli interrupt sono stati abilitati; 
+\end{DoxyReturn}
+\hypertarget{group__bare-metal_gac35776cd6652f7b932a132f3f6959a11}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Get\+Read@{my\+G\+P\+I\+O\+\_\+\+Get\+Read}}
+\index{my\+G\+P\+I\+O\+\_\+\+Get\+Read@{my\+G\+P\+I\+O\+\_\+\+Get\+Read}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Get\+Read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} my\+G\+P\+I\+O\+\_\+\+Get\+Read (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_gac35776cd6652f7b932a132f3f6959a11}
+
+
+Restituisce la maschera dei pin settati di un device my\+G\+P\+I\+O. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O;\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera dei pin settati di un device my\+G\+P\+I\+O
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+1 myGPIO\_mask mask = myGPIO\_read(&gpio);
+2 if (mask & myGPIO\_pin3) \{
+3         ...
+4 \}
+5 else \{
+6         ...
+7 \}
+\end{DoxyCode}
+ \hypertarget{group__bare-metal_ga2a20e519816733b90204b975edc4e212}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Get\+Value@{my\+G\+P\+I\+O\+\_\+\+Get\+Value}}
+\index{my\+G\+P\+I\+O\+\_\+\+Get\+Value@{my\+G\+P\+I\+O\+\_\+\+Get\+Value}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Get\+Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+value} my\+G\+P\+I\+O\+\_\+\+Get\+Value (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga2a20e519816733b90204b975edc4e212}
+
+
+Permette di leggere il valore dei pin di un device my\+G\+P\+I\+O;. 
+
+
+\begin{DoxyCode}
+1 // legge il valore del pin 0 di un device myGPIO.
+2 myGPIO\_value value = gpio\_getValue(gpio, myGPIO\_pin0);
+3 
+4 // legge il valore del pin 0, 3 e 5 di un device myGPIO.
+5 // Verra' restituita la OR tra i valori dei pin
+6 myGPIO\_value value = gpio\_getValue(gpio, myGPIO\_pin0 | myGPIO\_pin3 | myGPIO\_pin5);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera dei pin su cui agire;\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+restituisce la O\+R dei pin letti 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em my\+G\+P\+I\+O\+\_\+set} & se uno dei pin letti e' my\+G\+P\+I\+O\+\_\+set, \\
+\hline
+{\em my\+G\+P\+I\+O\+\_\+reset} & se T\+U\+T\+T\+I i pin sono my\+G\+P\+I\+O\+\_\+reset\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che gpio non sia un puntatore nullo 
+\end{DoxyWarning}
+\hypertarget{group__bare-metal_gaacca2871ac57a166e62bf431a2da7548}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable}}
+\index{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_gaacca2871ac57a166e62bf431a2da7548}
+
+
+Disabilita gli interrupt globali;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable}}
+\index{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}
+
+
+Abilita gli interrupt globali;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__bare-metal_ga588201358d1633c53535b288c9198531}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Init@{my\+G\+P\+I\+O\+\_\+\+Init}}
+\index{my\+G\+P\+I\+O\+\_\+\+Init@{my\+G\+P\+I\+O\+\_\+\+Init}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{uint32\+\_\+t}]{base\+\_\+address}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga588201358d1633c53535b288c9198531}
+
+
+Inizializza un device my\+G\+P\+I\+O. 
+
+Inizializza una struttura di tipo \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae u device my\+G\+P\+I\+O, controllando che l'inizializzazione vada a buon fine, effettuando diversi test sui parametri di inizializzazione e restituendo un codice di errore.
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em base\+\_\+address} & indirizzo di memoria a cui e' mappato il device my\+G\+P\+I\+O; 
+\begin{DoxyCode}
+1 myGPIO\_t gpio;
+2 myGPIO\_init(&gpio, BASE\_ADDRESS);
+\end{DoxyCode}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che gpio e base\+\_\+address non siano nulli. 
+\end{DoxyWarning}
+\hypertarget{group__bare-metal_ga0a753db3d02ad08014e4b7304e0f1829}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled@{my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled}}
+\index{my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled@{my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+value} my\+G\+P\+I\+O\+\_\+\+Is\+Global\+Interrupt\+Enabled (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga0a753db3d02ad08014e4b7304e0f1829}
+
+
+Consente di verificare se gli interrupt globali siano abilitati. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 0 del registro G\+I\+E\+S e' settato, ad indicare che gli interrupt sono abilitati \\
+\hline
+{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 0 del registro G\+I\+E\+S e' resettato, ad indicare che gli interrupt non sono abilitati \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__bare-metal_ga386cea84aca8c6bb731b4b46fcbf9199}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt}}
+\index{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+value} my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga386cea84aca8c6bb731b4b46fcbf9199}
+
+
+Consente di verificare se esistano interrupt non ancora serviti. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 1 del registro G\+I\+E\+S e' settato, ad indicare che esistono interrupt pending \\
+\hline
+{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 1 del registro G\+I\+E\+S e' resettato, ad indicare che non esistono interrupt pending \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__bare-metal_ga6115bde39f860d4e76e7d8f421ce222c}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt}}
+\index{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+mask} my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga6115bde39f860d4e76e7d8f421ce222c}
+
+
+Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti; 
+\end{DoxyReturn}
+\hypertarget{group__bare-metal_gab6ad3dda867515825890c97dbf6f55db}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack}}
+\index{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Ack (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_gab6ad3dda867515825890c97dbf6f55db}
+
+
+Invia al device notifica di servizio di un interrupt;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera di selezione dei bit; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__bare-metal_ga37d3df33ac50387d6f2e1fb5e2b13e49}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable}}
+\index{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Disable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga37d3df33ac50387d6f2e1fb5e2b13e49}
+
+
+Disabilita gli interrupt per i singoli pin del device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da disabilitare, quelli non selezionati non vengono disabilitati; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__bare-metal_ga116e3a1077a317e9e42ded6dd4df64af}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable}}
+\index{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Pin\+Interrupt\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga116e3a1077a317e9e42ded6dd4df64af}
+
+
+Abilita gli interrupt per i singoli pin del device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da abilitare;quelli non selezionati non vengono abilitati; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Set\+Mode@{my\+G\+P\+I\+O\+\_\+\+Set\+Mode}}
+\index{my\+G\+P\+I\+O\+\_\+\+Set\+Mode@{my\+G\+P\+I\+O\+\_\+\+Set\+Mode}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Set\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Set\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mode}}]{mode}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}
+
+
+Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. 
+
+
+\begin{DoxyCode}
+1 // setta i pin 0 ed 1 di un device myGPIO come pin di uscita, gli altri restano invariati
+2 myGPIO\_setMode(gpio, myGPIO\_pin0 | myGPIO\_pin1, myGPIO\_write);
+3 
+4 // setta i pin 19, 20 e 21 di un device myGPIO come pin di ingresso, gli altri restano invariati
+5 myGPIO\_setMode(gpio, myGPIO\_pin19 | myGPIO\_pin20 | myGPIO\_pin21, myGPIO\_read);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera dei pin su cui agire; \\
+\hline
+\mbox{\tt in}  & {\em mode} & modalita' di funzionamento dei pin;\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che gpio non sia un puntatore nullo 
+\end{DoxyWarning}
+\hypertarget{group__bare-metal_ga9d9ce9d2db7d77a588da4a3749f2f24d}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Set\+Value@{my\+G\+P\+I\+O\+\_\+\+Set\+Value}}
+\index{my\+G\+P\+I\+O\+\_\+\+Set\+Value@{my\+G\+P\+I\+O\+\_\+\+Set\+Value}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Set\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Set\+Value (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+value}}]{value}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga9d9ce9d2db7d77a588da4a3749f2f24d}
+
+
+Permette di settare il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. 
+
+
+\begin{DoxyCode}
+1 // setta i pin 0 ed 1 di un device myGPIO a livello logico '1', gli altri restano invariati
+2 myGPIO\_setValue(gpio, myGPIO\_pin0 | myGPIO\_pin1, myGPIO\_set);
+3 
+4 // setta i pin 19, 20 e 21 di un device myGPIO a livello logico '0', gli altri restano invariati
+5 myGPIO\_setValue(gpio, myGPIO\_pin19 | myGPIO\_pin20 | myGPIO\_pin21, myGPIO\_reset);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera dei pin su cui agire; \\
+\hline
+\mbox{\tt in}  & {\em value} & valore dei pin\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che gpio non sia un puntatore nullo 
+\end{DoxyWarning}
+\hypertarget{group__bare-metal_ga449b2af7cc20d24e6f6e017cf792ce03}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Toggle@{my\+G\+P\+I\+O\+\_\+\+Toggle}}
+\index{my\+G\+P\+I\+O\+\_\+\+Toggle@{my\+G\+P\+I\+O\+\_\+\+Toggle}!Bare-\/metal@{Bare-\/metal}}
+\subsubsection[{my\+G\+P\+I\+O\+\_\+\+Toggle}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+\_\+\+Toggle (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
+\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group__bare-metal_ga449b2af7cc20d24e6f6e017cf792ce03}
+
+
+Permette di invertire il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. 
+
+
+\begin{DoxyCode}
+1 // inverte i pin 0 ed 1 di un device myGPIO a livello logico '1', gli altri restano invariati
+2 myGPIO\_toggle(gpio, myGPIO\_pin0 | myGPIO\_pin1);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera dei pin su cui agire;\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Avvertimento}
+Usa la macro assert per verificare che gpio non sia un puntatore nullo 
+\end{DoxyWarning}

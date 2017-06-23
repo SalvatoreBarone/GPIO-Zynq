@@ -1,0 +1,6 @@
+<map id="Zybo" name="Zybo">
+<area shape="rect" id="node1" href="$group___switch.html" title="supporto per gestione degli switch su board Digilent Zybo " alt="" coords="237,5,300,32"/>
+<area shape="rect" id="node2" href="$group__bare-metal.html" title="device&#45;driver OO&#45;like bare&#45;metal per device myGPIO " alt="" coords="5,56,91,83"/>
+<area shape="rect" id="node3" href="$group___button.html" title="supporto per gestione dei button su board Digilent Zybo " alt="" coords="239,56,299,83"/>
+<area shape="rect" id="node5" href="$group___led.html" title="supporto per gestione dei LED su board Digilent Zybo " alt="" coords="247,107,290,133"/>
+</map>
