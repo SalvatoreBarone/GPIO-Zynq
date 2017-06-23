@@ -21,3 +21,4 @@ La documentazione si trova nella cartella <b>Doc</b>. All'interno di essa sono p
 
 # To-Do
 1. Aggiunta delle funzionalita' che permettano di usare la stessa istanza del driver kernel-mode con istanze myGPIO diverse
+ 
