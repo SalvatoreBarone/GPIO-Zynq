@@ -30,8 +30,19 @@
 
 #include <linux/device.h>
 #include <linux/cdev.h>
+
+#include <linux/interrupt.h>
+#include <linux/irqreturn.h>
+#include <linux/of_device.h>
+#include <linux/of_platform.h>
+#include <linux/of_address.h>
+#include <linux/of_irq.h>
+
 #include <linux/wait.h>
 #include <linux/spinlock.h>
+
+#include <asm/uaccess.h>
+#include <asm/io.h>
 
 /**
  * @brief Stuttura per l'astrazione di un device myGPIO in kernel-mode
@@ -42,15 +53,9 @@
  */
 typedef struct {
 	uint32_t id;				/**<	Identificativo del device */
-	struct cdev cdev;			/**<	Stuttura per l'astrazione di un device a caratteri,
-	 	 	 	 	 	 	 			Il kernel usa, internamente, una struttura cdev per rappresentare i
-	 	 	 	 	 	 	 			device a caratteri. Prima che il kernel invochi le funzioni definite
-	 	 	 	 	 	 	 			dal driver per il device, bisogna allocare e registrare uno, o piu',
-	 	 	 	 	 	 	 			oggetti cdev. In questo caso e' sufficiente allocare uno solo di
-	 	 	 	 	 	 	 			questi oggetti.*/
+
 	uint32_t irqNumber; 		/**< 	interrupt-number a cui il device e' connesso. Restituito dalla
 										chiamata alla funzione irq_of_parse_and_map() */
-	uint32_t irq_line;			/**<	linea interrupt alla quale il device e' connesso */
 	uint32_t irq_mask;			/**<	maschera delle interruzioni interne per il device */
 	struct resource rsrc; 		/**<	Struttura che astrae una risorsa device, dal punto di vista della
 										memoria alla quale la risorsa e' mappata. In particolare i campi
@@ -100,8 +105,11 @@ typedef struct {
 } myGPIOK_t;
 
 
-int myGPIOK_t_Init(	myGPIOK_t* device,
+int myGPIOK_t_Init(	myGPIOK_t* myGPIOK_device,
+					struct device *dev,
 					uint32_t id,
+					const char* name,
+					irq_handler_t irq_handler,
 					uint32_t irq_mask);
 
 void myGPIOK_t_Destroy(myGPIOK_t* device);
