@@ -26,9 +26,8 @@
  * @{
  */
 #include "myGPIOK_t.h"
-#include "myGPIOK_dev_int.h"
 
-int myGPIOK_t_Init(	myGPIOK_t* myGPIOK_device,
+int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 					struct device *dev,
 					uint32_t id,
 					const char* name,
@@ -133,8 +132,6 @@ int myGPIOK_t_Init(	myGPIOK_t* myGPIOK_device,
 		release_mem_region(myGPIOK_device->rsrc.start, myGPIOK_device->rsrc_size);
 		return error;
 	}
-
-
 /** <h5>Inizializzazione della wait-queue per la system-call read() e poll()</h5>
  * In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in
  * <linux/wait.h>.
@@ -182,7 +179,7 @@ int myGPIOK_t_Init(	myGPIOK_t* myGPIOK_device,
 	return error;
 }
 
-void myGPIOK_t_Destroy(myGPIOK_t* device) {
+void myGPIOK_Destroy(myGPIOK_t* device) {
 	#ifdef __XGPIO__
 	XGpio_Global_Interrupt(device->vrtl_addr, XGPIO_GIDS);
 	XGpio_Channel_Interrupt(device->vrtl_addr, device->irq_mask);
@@ -194,6 +191,52 @@ void myGPIOK_t_Destroy(myGPIOK_t* device) {
 	iounmap(device->vrtl_addr);
 	release_mem_region(device->rsrc.start, device->rsrc_size);
 }
+
+
+
+
+
+void myGPIOK_GlobalInterruptEnable(myGPIOK_t* device) {
+	iowrite32(1, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
+}
+
+void myGPIOK_GlobalInterruptDisable(myGPIOK_t* device) {
+	iowrite32(0, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
+}
+
+void myGPIOK_PinInterruptEnable(myGPIOK_t* device, unsigned mask) {
+	unsigned reg_value = ioread32((device->vrtl_addr + myGPIOK_PIE_OFFSET));
+	reg_value |= mask;
+	iowrite32(reg_value, (device->vrtl_addr + myGPIOK_PIE_OFFSET));
+}
+
+void myGPIOK_PinInterruptDisable(myGPIOK_t* device, unsigned mask) {
+	unsigned reg_value = ioread32((device->vrtl_addr + myGPIOK_PIE_OFFSET));
+	reg_value &= ~mask;
+	iowrite32(reg_value, (device->vrtl_addr + myGPIOK_PIE_OFFSET));
+}
+
+unsigned myGPIOK_PendingPinInterrupt(myGPIOK_t* device) {
+	return ioread32((device->vrtl_addr + myGPIOK_IRQ_OFFSET));
+}
+
+void myGPIOK_PinInterruptAck(myGPIOK_t* device, unsigned mask) {
+	iowrite32(mask, (device->vrtl_addr + myGPIOK_IACK_OFFSET));
+}
+
+#ifdef __XGPIO__
+void XGpio_Global_Interrupt(myGPIOK_t* device, unsigned mask) {
+	iowrite32(mask, (device->vrtl_addr + XGPIO_GIE_OFFSET));
+}
+
+void XGpio_Channel_Interrupt(myGPIOK_t* device, unsigned mask) {
+	iowrite32(mask, (device->vrtl_addr + XGPIO_IER_OFFSET));
+}
+
+void XGpio_Ack_Interrupt(myGPIOK_t* device, unsigned channel) {
+	iowrite32(channel, (device->vrtl_addr + XGPIO_ISR_OFFSET));
+}
+#endif
 
 /**
  * @}

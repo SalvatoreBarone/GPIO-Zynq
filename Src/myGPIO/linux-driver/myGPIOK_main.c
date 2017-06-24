@@ -168,7 +168,6 @@
 #include <linux/sched.h>
 #include <linux/poll.h>
 
-#include "myGPIOK_dev_int.h"
 #include "myGPIOK_t.h"
 
 /**
@@ -215,10 +214,12 @@ static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
 
 #define myGPIOK_USED_INT		0xFFFFFFFFU //!< @brief Maschea di abilitazione degli interrupt per i singoli pin
 
+
+
 /**
- * @brief Puntatore a struttura myGPIOK_t, contenente tutti i dati necessari al device driver.
+ * @brief Array di puntatori a struttura myGPIOK_t, contenente tutti i dati necessari al device driver.
  */
-myGPIOK_t *myGPIOK_dev_ptr = NULL;
+myGPIOK_t *myGPIOK_dev_ptr;
 
 /**
  * @brief Numero di device myGPIOK_t attivi
@@ -271,7 +272,7 @@ static struct platform_driver myGPIOK_driver = {
 };
 
 /**
- * @brief  Inserisce una nuova entry nella tabella delle corrispondenze device - driver.
+ * @brief Inserisce una nuova entry nella tabella delle corrispondenze device - driver.
  * @param [inout]	of 				riferimento alla tabella
  * @param [in]		myGPIOK_match	struttura of_device_id
  */
@@ -324,10 +325,10 @@ static struct file_operations myGPIO_fops = {
  */
 static int myGPIOK_probe(struct platform_device *op) {
 	int error = 0;
+	dev_t dev;
+	printk(KERN_INFO "Chiamata %s\n\tname: %s\n\tid: %u\n", __func__, op->name, 0xFFFFFFFFU - op->id);
 
-	printk(KERN_INFO "Chiamata %s\n\tname: %s\n\tid: %u\n", __func__, op->name, op->id);
-
-
+	if (myGPIOK_on == 0) {
 /** <h5>Major-number e Minor-number</h5>
  * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
  * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
@@ -346,10 +347,10 @@ static int myGPIOK_probe(struct platform_device *op) {
  *  - count: numero di minornumber richiesti
  *  - name: nome del device driver
  */
-	if ((error = alloc_chrdev_region(&myGPIOK_Mm_number, 0 , MAX_NUM_OF_DEVICES, DRIVER_NAME)) != 0) {
-		printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
-		return error;
-	}
+		if ((error = alloc_chrdev_region(&myGPIOK_Mm_number, 0 , MAX_NUM_OF_DEVICES, DRIVER_NAME)) != 0) {
+			printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
+			return error;
+		}
 /** <h5>Device Class</h5>
  * Ai device-drivers viene associata una classe ed un device-name.
  * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
@@ -360,11 +361,11 @@ static int myGPIOK_probe(struct platform_device *op) {
  *  - name: puntatore alla stringa identificativa (il nome) del device driver, DRIVER_NAME
  *
  */
-	if ((myGPIOK_class = class_create(THIS_MODULE, DRIVER_NAME) ) == NULL) {
-		printk(KERN_ERR "%s: class_create() ha restituito NULL\n", __func__);
-		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
-		return -ENOMEM;
-	}
+		if ((myGPIOK_class = class_create(THIS_MODULE, DRIVER_NAME) ) == NULL) {
+			printk(KERN_ERR "%s: class_create() ha restituito NULL\n", __func__);
+			unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
+			return -ENOMEM;
+		}
 /** <h5>Operatori</h5>
  * Essendo un device "visto" come un file, ogni device driver deve implementare tutte le
  * system-call previste per l'interfacciamento con un file. La corrispondenza tra la
@@ -445,27 +446,9 @@ static int myGPIOK_probe(struct platform_device *op) {
  *  - cdev: puntatore a struttura cdev da inizializzare;
  *  - fops: puntatore a struttura file_operation con cui inizializzare il device.
  */
-	cdev_init (&myGPIOK_cdev, &myGPIO_fops);
-	myGPIOK_cdev.owner = THIS_MODULE;
-/** <h5>Aggiunta del device</h5>
- * Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando
- * @code
- * int cdev_add (struct cdev *p, dev_t dev, unsigned count);
- * @endcode
- * La quale accetta come parametri
- *  - p: puntatore a struttura cdev structure per il device
- *  - dev: device number (precedentemente inizializzato usando la funzione <i>alloc_chrdev_region()</i>)
- *  - count: numero di minor-numbers richiesti per il device
- *
- * La funzione restituisce un numero negativo in caso di errore.
- *
- */
-	if ((error = cdev_add(&myGPIOK_cdev, myGPIOK_Mm_number, MAX_NUM_OF_DEVICES)) != 0) {
-		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
-		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
-		return error;
-	}
+		cdev_init (&myGPIOK_cdev, &myGPIO_fops);
+		myGPIOK_cdev.owner = THIS_MODULE;
+
 /** <h5>Creazione del device</h5>
  * Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione
  * puo' essere effettuata chiamando
@@ -482,12 +465,36 @@ static int myGPIOK_probe(struct platform_device *op) {
  * alla struttura device creata all'interno del filesystem. Si noti che il puntatre alla struttura classes DEVE
  * essere stato precedentemente creato attraverso una chiamata alla funzione <i>class_create()</i>.
  */
-	if ((myGPIOK_device = device_create(myGPIOK_class, NULL, myGPIOK_Mm_number, NULL, DRIVER_NAME)) == NULL) {
-		printk(KERN_ERR "%s: device_create() ha restituito NULL\n", __func__);
-		cdev_del(&myGPIOK_cdev);
+		if ((myGPIOK_device = device_create(myGPIOK_class, NULL, myGPIOK_Mm_number, NULL, DRIVER_NAME)) == NULL) {
+			printk(KERN_ERR "%s: device_create() ha restituito NULL\n", __func__);
+			cdev_del(&myGPIOK_cdev);
+			class_destroy(myGPIOK_class);
+			unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
+			return -ENOMEM;
+		}
+	}
+
+/** <h5>Aggiunta del device</h5>
+ * Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando
+ * @code
+ * int cdev_add (struct cdev *p, dev_t dev, unsigned count);
+ * @endcode
+ * La quale accetta come parametri
+ *  - p: puntatore a struttura cdev structure per il device
+ *  - dev: device number (precedentemente inizializzato usando la funzione <i>alloc_chrdev_region()</i>)
+ *  - count: numero di minor-numbers richiesti per il device
+ *
+ * La funzione restituisce un numero negativo in caso di errore.
+ *
+ */
+
+	dev = MKDEV(MAJOR(myGPIOK_Mm_number), myGPIOK_on);
+
+	if ((error = cdev_add(&myGPIOK_cdev, dev, 1)) != 0) {
+		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
 		class_destroy(myGPIOK_class);
 		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
-		return -ENOMEM;
+		return error;
 	}
 
 	/* Allocazione dell'oggetto myGPIOK_t */
@@ -497,7 +504,7 @@ static int myGPIOK_probe(struct platform_device *op) {
 	}
 
 
-	if ((error = myGPIOK_t_Init(myGPIOK_dev_ptr, &op->dev, op->id, DRIVER_NAME, (irq_handler_t)myGPIOK_irq_handler, myGPIOK_USED_INT)) != 0) {
+	if ((error = myGPIOK_Init(myGPIOK_dev_ptr, &op->dev, op->id, DRIVER_NAME, (irq_handler_t)myGPIOK_irq_handler, myGPIOK_USED_INT)) != 0) {
 		printk(KERN_ERR "%s: myGPIOK_t_Init() ha restituito %d\n", __func__, error);
 		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
 		cdev_del(&myGPIOK_cdev);
@@ -522,12 +529,11 @@ static int myGPIOK_probe(struct platform_device *op) {
  */
 static int myGPIOK_remove(struct platform_device *op) {
 	printk(KERN_INFO "Chiamata %s\n", __func__);
-	myGPIOK_t_Destroy(myGPIOK_dev_ptr);
+	myGPIOK_Destroy(myGPIOK_dev_ptr);
 	device_destroy(myGPIOK_class, myGPIOK_Mm_number);
 	cdev_del(&myGPIOK_cdev);
 	class_destroy(myGPIOK_class);
 	unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
-	//kfree(myGPIOK_dev_ptr);
 	return 0;
 }
 
@@ -679,11 +685,11 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
  * globali.
  */
 #ifdef __XGPIO__
-	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIDS);
-	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IDS);
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr, XGPIO_GIDS);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr, myGPIOK_dev_ptr->irq_mask);
 #else
-	myGPIOK_GlobalInterruptDisable(myGPIOK_dev_ptr->vrtl_addr);
-	myGPIOK_PinInterruptDisable(myGPIOK_dev_ptr->vrtl_addr, myGPIOK_USED_INT);
+	myGPIOK_GlobalInterruptDisable(myGPIOK_dev_ptr);
+	myGPIOK_PinInterruptDisable(myGPIOK_dev_ptr, myGPIOK_dev_ptr->irq_mask);
 #endif
 /** <h5>Setting del valore del flag "interrupt occurred"</h5>
  * Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag
@@ -919,19 +925,19 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * sia stata effettuata.
  */
 #ifdef __XGPIO__
-	XGpio_Ack_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_ACK);
+	XGpio_Ack_Interrupt(myGPIOK_dev_ptr->vrtl_addr, myGPIOK_dev_ptr->irq_mask);
 #else
-		myGPIOK_PinInterruptAck(myGPIOK_dev_ptr->vrtl_addr, myGPIOK_USED_INT);
+	myGPIOK_PinInterruptAck(myGPIOK_dev_ptr, myGPIOK_dev_ptr->irq_mask);
 #endif
 /** <h5>Abilitazione degli interrupt della periferica</h5>
  * Dopo aver inviato notifica di servizio dell'interruzione al device, vengono nuovamente abilitati gli interrupt.
  */
 #ifdef __XGPIO__
-	XGpio_Global_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_GIE);
-	XGpio_Channel_Interrupt(myGPIOK_dev_ptr->vrtl_addr, XGPIO_CH2_IE);
+	XGpio_Global_Interrupt(myGPIOK_dev_ptr, XGPIO_GIE);
+	XGpio_Channel_Interrupt(myGPIOK_dev_ptr, myGPIOK_dev_ptr->irq_mask);
 #else
-	myGPIOK_GlobalInterruptEnable(myGPIOK_dev_ptr->vrtl_addr);
-	myGPIOK_PinInterruptEnable(myGPIOK_dev_ptr->vrtl_addr, myGPIOK_USED_INT);
+	myGPIOK_GlobalInterruptEnable(myGPIOK_dev_ptr);
+	myGPIOK_PinInterruptEnable(myGPIOK_dev_ptr, myGPIOK_dev_ptr->irq_mask);
 #endif
 
 	return count;

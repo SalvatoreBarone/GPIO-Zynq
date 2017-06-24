@@ -24,6 +24,9 @@
  * @{
  * @addtogroup Linux-Driver
  * @{
+ * @addtogroup myGPIOK_t
+ * @{
+ *
  */
 #ifndef __MYGPIOK_T__
 #define __MYGPIOK_T__
@@ -104,19 +107,104 @@ typedef struct {
 
 } myGPIOK_t;
 
-
-int myGPIOK_t_Init(	myGPIOK_t* myGPIOK_device,
+// la documentazione e' nel file muGPIOK_t.c
+int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 					struct device *dev,
 					uint32_t id,
 					const char* name,
 					irq_handler_t irq_handler,
 					uint32_t irq_mask);
 
-void myGPIOK_t_Destroy(myGPIOK_t* device);
+/**
+ *
+ * @param device
+ */
+void myGPIOK_Destroy(myGPIOK_t* device);
+
+#define myGPIOK_GIES_OFFSET		0x0CU	//!< @brief Offset, rispetto all'indirizzo base, del registro "gies" per il device myGPIO
+#define myGPIOK_PIE_OFFSET		0x10U	//!< @brief Offset, rispetto all'indirizzo base, del registro "pie" per il device myGPIO
+#define myGPIOK_IRQ_OFFSET		0x14U	//!< @brief Offset, rispetto all'indirizzo base, del registro "irq" per il device myGPIO
+#define myGPIOK_IACK_OFFSET		0x18U	//!< @brief Offset, rispetto all'indirizzo base, del registro "iack" per il device myGPIO
+
+/**
+ * @brief Abilita gli interrupt globali;
+ * @param [in] baseAddress indirizzo virtuale del device
+ */
+extern void myGPIOK_GlobalInterruptEnable(myGPIOK_t* myGPIOK_device);
+
+/**
+ * @brief Disabilita gli interrupt globali;
+ * @param [in] baseAddress indirizzo virtuale del device
+ */
+extern void myGPIOK_GlobalInterruptDisable(myGPIOK_t* myGPIOK_device);
+
+/**
+ * @brief Abilita gli interrupt per i singoli pin del device.
+ * @param [in] baseAddress indirizzo virtuale del device
+ * @param [in] mask maschera di selezione degli interrupt da abilitare; quelli non selezionati non
+ * vengono abilitati;
+ */
+extern void myGPIOK_PinInterruptEnable(myGPIOK_t* myGPIOK_device, unsigned mask);
+
+/**
+ * @brief Disabilita gli interrupt per i singoli pin del device.
+ * @param [in] baseAddress indirizzo virtuale del device
+ * @param [in] mask maschera di selezione degli interrupt da disabilitare; quelli non selezionati non
+ * vengono disabilitati;
+ */
+extern void myGPIOK_PinInterruptDisable(myGPIOK_t* myGPIOK_device, unsigned mask);
+
+/**
+ * @brief Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;
+ * @param [in] baseAddress indirizzo virtuale del device
+ * @return maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti;
+ */
+extern unsigned myGPIOK_PendingPinInterrupt(myGPIOK_t* myGPIOK_device);
+
+/**
+ * @brief Invia al device notifica di servizio di un interrupt;
+ * @param [in] baseAddress indirizzo virtuale del device
+ * @param [in] mask mask maschera di selezione degli interrupt da notificare; quelli non selezionati non
+ * vengono notificati;
+ */
+extern void myGPIOK_PinInterruptAck(myGPIOK_t* myGPIOK_device, unsigned mask);
+
+/**
+ * @cond
+ * Funzioni e definizioni di servizio per GPIO Xilinx
+ * Non verranno documentate.
+ */
+#ifdef __XGPIO__
+#define XGPIO_GIE_OFFSET	0x11C
+#define XGPIO_ISR_OFFSET	0x120
+#define XGPIO_IER_OFFSET	0x128
+#define XGPIO_GIE			0x80000000
+#define XGPIO_CH1_IE		0x00000001
+#define XGPIO_CH2_IE		0x00000002
+#define XGPIO_GIDS			0x00000000
+#define XGPIO_CH1_IDS		0x00000000
+#define XGPIO_CH2_IDS		0x00000000
+#define XGPIO_CH1_ACK		0x01
+#define XGPIO_CH2_ACK		0x02
+
+#define XGPIO_USED_INT		XGPIO_CH2_IE
+
+extern void XGpio_Global_Interrupt(myGPIOK_t* myGPIOK_device, unsigned mask);
+
+extern void XGpio_Channel_Interrupt(myGPIOK_t* myGPIOK_device, unsigned mask);
+
+extern void XGpio_Ack_Interrupt(myGPIOK_t* myGPIOK_device, unsigned channel);
+
+#endif
+/**
+ * @endcond
+ */
+
 
 #endif
 
 /**
+ * @}
  * @}
  * @}
  */
