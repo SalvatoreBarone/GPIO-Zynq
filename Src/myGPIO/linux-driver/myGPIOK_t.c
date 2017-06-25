@@ -30,12 +30,14 @@
 int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 					struct device *dev,
 					uint32_t id,
+					dev_t Mm,
 					const char* name,
 					irq_handler_t irq_handler,
 					uint32_t irq_mask) {
 	int error = 0;
 
 	myGPIOK_device->id = id;
+	myGPIOK_device->Mm_number = Mm;
 	myGPIOK_device->irq_mask = irq_mask;
 
 /** <h5>Accedere al segmento di memoria a cui la periferica e' mappata</h5>
@@ -88,7 +90,6 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 		release_mem_region(myGPIOK_device->rsrc.start, myGPIOK_device->rsrc_size);
 		return -ENOMEM;
 	}
-
 /** <h5>Registrazione di un interrupt-handler</h5>
  * Il modulo deve registrare un handler per gli interrupt.
  * L'handler deve essere compatibile con il tipo puntatore a funzione irq_handler_t, così definito.
@@ -169,11 +170,11 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * gli interrupt globali.
  */
 #ifdef __XGPIO__
-	XGpio_Global_Interrupt(myGPIOK_device->vrtl_addr, XGPIO_GIE);
-	XGpio_Channel_Interrupt(myGPIOK_device->vrtl_addr, myGPIOK_device->irq_mask);
+	XGpio_Global_Interrupt(myGPIOK_device, XGPIO_GIE);
+	XGpio_Channel_Interrupt(myGPIOK_device, myGPIOK_device->irq_mask);
 #else
-	myGPIOK_GlobalInterruptEnable(myGPIOK_device->vrtl_addr);
-	myGPIOK_PinInterruptEnable(myGPIOK_device->vrtl_addr, myGPIOK_device->irq_mask);
+	myGPIOK_GlobalInterruptEnable(myGPIOK_device);
+	myGPIOK_PinInterruptEnable(myGPIOK_device, myGPIOK_device->irq_mask);
 #endif
 
 	return error;
@@ -181,11 +182,11 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 
 void myGPIOK_Destroy(myGPIOK_t* device) {
 	#ifdef __XGPIO__
-	XGpio_Global_Interrupt(device->vrtl_addr, XGPIO_GIDS);
-	XGpio_Channel_Interrupt(device->vrtl_addr, device->irq_mask);
+	XGpio_Global_Interrupt(device, XGPIO_GIDS);
+	XGpio_Channel_Interrupt(device, device->irq_mask);
 #else
-	myGPIOK_GlobalInterruptDisable(device->vrtl_addr);
-	myGPIOK_PinInterruptDisable(device->vrtl_addr, device->irq_mask);
+	myGPIOK_GlobalInterruptDisable(device);
+	myGPIOK_PinInterruptDisable(device, device->irq_mask);
 #endif
 	free_irq(device->irqNumber, NULL);
 	iounmap(device->vrtl_addr);

@@ -57,6 +57,8 @@
 typedef struct {
 	uint32_t id;				/**<	Identificativo del device */
 
+	dev_t Mm_number;			/**<	Major e minor number associati al device */
+
 	uint32_t irqNumber; 		/**< 	interrupt-number a cui il device e' connesso. Restituito dalla
 										chiamata alla funzione irq_of_parse_and_map() */
 	uint32_t irq_mask;			/**<	maschera delle interruzioni interne per il device */
@@ -111,6 +113,7 @@ typedef struct {
 int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 					struct device *dev,
 					uint32_t id,
+					dev_t Mm,
 					const char* name,
 					irq_handler_t irq_handler,
 					uint32_t irq_mask);
@@ -120,6 +123,7 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * @param device
  */
 void myGPIOK_Destroy(myGPIOK_t* device);
+
 
 #define myGPIOK_GIES_OFFSET		0x0CU	//!< @brief Offset, rispetto all'indirizzo base, del registro "gies" per il device myGPIO
 #define myGPIOK_PIE_OFFSET		0x10U	//!< @brief Offset, rispetto all'indirizzo base, del registro "pie" per il device myGPIO

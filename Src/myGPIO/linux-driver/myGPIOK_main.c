@@ -169,6 +169,7 @@
 #include <linux/poll.h>
 
 #include "myGPIOK_t.h"
+#include "myGPIOK_list.h"
 
 /**
  * @brief Nome identificativo del device-driver.
@@ -182,49 +183,35 @@ MODULE_DESCRIPTION("myGPIO device-driver in kernel mode");
 MODULE_VERSION("3.2");
 MODULE_ALIAS(DRIVER_NAME);
 
-
-
-
 /**
  * @brief Numero di minor-number richiesti dal driver, corrispondera' al numero massimo di device gestibili
  */
-#define MAX_NUM_OF_DEVICES 16
+#define MAX_NUM_OF_DEVICES 256
 
 /**
  * @brief Major e minor number per il device driver
  */
 static dev_t myGPIOK_Mm_number;
 
-
 /*
  * Funzioni implementate dal modulo
  */
 static int 			myGPIOK_probe			(struct platform_device *op);
 static int 			myGPIOK_remove			(struct platform_device *op);
-
 static int 			myGPIOK_open			(struct inode *inode, struct file *file_ptr);
 static int 			myGPIOK_release			(struct inode *inode, struct file *file_ptr);
-
 static loff_t		myGPIOK_llseek			(struct file *file_ptr, loff_t off, int whence);
 static unsigned int myGPIOK_poll			(struct file *file_ptr, struct poll_table_struct *wait);
 static ssize_t 		myGPIOK_read			(struct file *file_ptr, char *buf, size_t count, loff_t *ppos);
 static ssize_t 		myGPIOK_write 			(struct file *file_ptr, const char *buf, size_t size, loff_t *off);
-
 static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
 
 #define myGPIOK_USED_INT		0xFFFFFFFFU //!< @brief Maschea di abilitazione degli interrupt per i singoli pin
 
-
-
 /**
  * @brief Array di puntatori a struttura myGPIOK_t, contenente tutti i dati necessari al device driver.
  */
-myGPIOK_t *myGPIOK_dev_ptr;
-
-/**
- * @brief Numero di device myGPIOK_t attivi
- */
-uint32_t myGPIOK_on = 0;
+static myGPIOK_list_t *device_list = NULL;
 
 /**
  * @brief
@@ -326,9 +313,21 @@ static struct file_operations myGPIO_fops = {
 static int myGPIOK_probe(struct platform_device *op) {
 	int error = 0;
 	dev_t dev;
-	printk(KERN_INFO "Chiamata %s\n\tname: %s\n\tid: %u\n", __func__, op->name, 0xFFFFFFFFU - op->id);
+	myGPIOK_t *myGPIOK_ptr = NULL;
+	printk(KERN_INFO "Chiamata %s\n\tptr: %08x\n\tname: %s\n\tid: %u\n", __func__, (uint32_t) op, op->name, op->id);
 
-	if (myGPIOK_on == 0) {
+	if (device_list == NULL) {
+
+		if ((device_list = kmalloc(sizeof(myGPIOK_list_t), GFP_KERNEL)) == NULL ) {
+			printk(KERN_ERR "%s: kmalloc ha restituito NULL\n", __func__);
+			return -ENOMEM;
+		}
+
+		if ((error = myGPIOK_list_Init(device_list, MAX_NUM_OF_DEVICES)) != 0) {
+			printk(KERN_ERR "%s: myGPIOK_list_Init() ha restituito %d\n", __func__, error);
+			return error;
+		}
+
 /** <h5>Major-number e Minor-number</h5>
  * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
  * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
@@ -351,6 +350,7 @@ static int myGPIOK_probe(struct platform_device *op) {
 			printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
 			return error;
 		}
+
 /** <h5>Device Class</h5>
  * Ai device-drivers viene associata una classe ed un device-name.
  * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
@@ -488,30 +488,25 @@ static int myGPIOK_probe(struct platform_device *op) {
  *
  */
 
-	dev = MKDEV(MAJOR(myGPIOK_Mm_number), myGPIOK_on);
+	dev = MKDEV(MAJOR(myGPIOK_Mm_number), myGPIOK_list_device_count(device_list));
 
 	if ((error = cdev_add(&myGPIOK_cdev, dev, 1)) != 0) {
 		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
-		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
 		return error;
 	}
 
 	/* Allocazione dell'oggetto myGPIOK_t */
-	if ((myGPIOK_dev_ptr = kmalloc(sizeof(myGPIOK_t), GFP_KERNEL)) == NULL) {
+	if ((myGPIOK_ptr = kmalloc(sizeof(myGPIOK_t), GFP_KERNEL)) == NULL) {
 		printk(KERN_ERR "%s: kmalloc ha restituito NULL\n", __func__);
 		return -ENOMEM;
 	}
 
-
-	if ((error = myGPIOK_Init(myGPIOK_dev_ptr, &op->dev, op->id, DRIVER_NAME, (irq_handler_t)myGPIOK_irq_handler, myGPIOK_USED_INT)) != 0) {
+	if ((error = myGPIOK_Init(myGPIOK_ptr, &op->dev, op->id, dev, DRIVER_NAME, (irq_handler_t)myGPIOK_irq_handler, myGPIOK_USED_INT)) != 0) {
 		printk(KERN_ERR "%s: myGPIOK_t_Init() ha restituito %d\n", __func__, error);
-		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
-		cdev_del(&myGPIOK_cdev);
-		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
 		return error;
 	}
+
+	myGPIOK_list_add(device_list, op, myGPIOK_ptr);
 
 	return error;
 }
@@ -528,12 +523,24 @@ static int myGPIOK_probe(struct platform_device *op) {
  * device, effettuando tutte le operazioni inverse della funzione myGPIOK_probe().
  */
 static int myGPIOK_remove(struct platform_device *op) {
-	printk(KERN_INFO "Chiamata %s\n", __func__);
-	myGPIOK_Destroy(myGPIOK_dev_ptr);
-	device_destroy(myGPIOK_class, myGPIOK_Mm_number);
-	cdev_del(&myGPIOK_cdev);
-	class_destroy(myGPIOK_class);
-	unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
+	myGPIOK_t *myGPIOK_ptr = NULL;
+
+	printk(KERN_INFO "Chiamata %s\n\tptr: %08x\n\tname: %s\n\tid: %u\n", __func__, (uint32_t) op, op->name, op->id);
+
+	myGPIOK_ptr = myGPIOK_list_find_by_op(device_list, op);
+	if (myGPIOK_ptr != NULL) {
+		myGPIOK_Destroy(myGPIOK_ptr);
+		kfree(myGPIOK_ptr);
+	}
+
+	if (myGPIOK_list_device_count(device_list) == 0) {
+		myGPIOK_list_Destroy(device_list);
+		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
+		cdev_del(&myGPIOK_cdev);
+		class_destroy(myGPIOK_class);
+		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
+	}
+
 	return 0;
 }
 
@@ -564,7 +571,7 @@ static int myGPIOK_remove(struct platform_device *op) {
  *
  */
 static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
-	//myGPIOK_t *myGPIOK_dev_ptr;
+	myGPIOK_t *myGPIOK_ptr;
 	printk(KERN_INFO "Chiamata %s\n", __func__);
 /**
  * <h3>Identificare il particolare device associato al file</h3>
@@ -584,8 +591,12 @@ static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
 
 
 
-	//myGPIOK_dev_ptr = container_of(inode->i_cdev, myGPIOK_t, cdev);
-	file_ptr->private_data = myGPIOK_dev_ptr;
+	if ((myGPIOK_ptr = myGPIOK_list_find_by_minor(device_list, inode->i_cdev->dev)) == NULL) {
+		printk(KERN_INFO "%s: myGPIOK_list_find_by_minor() ha restituito NULL\n", __func__);
+		return -1;
+	}
+
+	file_ptr->private_data = myGPIOK_ptr;
 	return 0;
 }
 
@@ -676,8 +687,16 @@ static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struc
  * sulla linea cui e' connesso il device
  */
 static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
+	myGPIOK_t *myGPIOK_dev_ptr = NULL;
 	unsigned long flags;
-	printk(KERN_INFO "Chiamata %s\n", __func__);
+	printk(KERN_INFO "Chiamata %s\n\tline: %d\n", __func__, irq);
+
+	myGPIOK_dev_ptr = device_list->device_list[0];
+
+	if (myGPIOK_list_find_irq_line(device_list, irq) == NULL)
+		printk(KERN_INFO "%s\n\tmyGPIOK_list_find_irq_line() restituisce NULL:\n", __func__);
+
+
 /** <h5>Disabilitazione delle interruzioni della periferica</h5>
  * Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati.
  * Se si tratta di un GPIO Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal
