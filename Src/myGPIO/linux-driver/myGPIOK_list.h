@@ -24,7 +24,7 @@
  * @{
  * @addtogroup Linux-Driver
  * @{
- * @addtogroup myGPIO_device_list
+ * @addtogroup DeviceList
  * @{
  */
 
@@ -33,19 +33,20 @@
 
 #include "myGPIOK_t.h"
 
+/**
+ * @brief
+ */
 typedef struct {
-	myGPIOK_t **device_list;
-	struct platform_device **op_list;
-	uint32_t list_size;
-	uint32_t device_count;
+	myGPIOK_t **device_list; /**< */
+	uint32_t list_size;		/**< */
+	uint32_t device_count;	/**< */
 } myGPIOK_list_t;
-
 
 extern int myGPIOK_list_Init(myGPIOK_list_t *list, uint32_t list_size);
 
 extern void myGPIOK_list_Destroy(myGPIOK_list_t* list);
 
-extern int myGPIOK_list_add(myGPIOK_list_t *list, struct platform_device* op, myGPIOK_t *device);
+extern int myGPIOK_list_add(myGPIOK_list_t *list, myGPIOK_t *device);
 
 extern myGPIOK_t* myGPIOK_list_find_by_op(myGPIOK_list_t *list, struct platform_device *op);
 

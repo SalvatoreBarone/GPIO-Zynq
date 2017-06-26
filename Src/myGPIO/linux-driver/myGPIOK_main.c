@@ -154,14 +154,14 @@
 #include <linux/fcntl.h>
 #include <linux/unistd.h>
 
-#include <linux/platform_device.h>
-#include <linux/interrupt.h>
-#include <linux/irqreturn.h>
 
+#include <linux/platform_device.h>
 #include <linux/of_device.h>
 #include <linux/of_platform.h>
 #include <linux/of_address.h>
 #include <linux/of_irq.h>
+#include <linux/interrupt.h>
+#include <linux/irqreturn.h>
 #include <asm/uaccess.h>
 #include <asm/io.h>
 
@@ -177,6 +177,11 @@
  */
 #define DRIVER_NAME "myGPIOK"
 
+/**
+ * @brief Nome del file creato in /dev/ per ciascuno dei device
+ */
+#define DRIVER_FNAME "myGPIOK%d"
+
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Salvatore Barone <salvator.barone@gmail.com>");
 MODULE_DESCRIPTION("myGPIO device-driver in kernel mode");
@@ -184,14 +189,14 @@ MODULE_VERSION("3.2");
 MODULE_ALIAS(DRIVER_NAME);
 
 /**
- * @brief Numero di minor-number richiesti dal driver, corrispondera' al numero massimo di device gestibili
+ * @brief Numero massimo di device gestibili
+ *
+ * In realta', il numero di device gestibili e' virtualmente illimitato. Il fattore limitante e' la memoria
+ * disponibile ed in numero di Major-minor number disponibili.
+ * MAX_NUM_OF_DEVICES incide sulla dimensione della struttura dati myGPIOk_list_t che mantiene i riferimenti
+ * alle strutture di controllo dei diversi device.
  */
-#define MAX_NUM_OF_DEVICES 256
-
-/**
- * @brief Major e minor number per il device driver
- */
-static dev_t myGPIOK_Mm_number;
+#define MAX_NUM_OF_DEVICES 15
 
 /*
  * Funzioni implementate dal modulo
@@ -214,23 +219,17 @@ static irqreturn_t	myGPIOK_irq_handler		(int irq, struct pt_regs * regs);
 static myGPIOK_list_t *device_list = NULL;
 
 /**
- * @brief
+ * @brief Classe del device
+ * Ai device-drivers viene associata una classe ed un device-name.
+ * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
+ * @code
+ * struct class * class_create(struct module * owner, const char * name);
+ * @endcode
+ * Parametri:
+ *  - owner: puntatore al modulo che "possiede" la classe, THIS_MODULE
+ *  - name: puntatore alla stringa identificativa (il nome) del device driver, DRIVER_NAME
  */
 static struct class*  myGPIOK_class  = NULL;
-
-/**
- * @brief
- */
-static struct device* myGPIOK_device = NULL;
-
-/**
- * @brief Stuttura per l'astrazione di un device a caratteri,
- *
- * Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il
- * kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu',
- * oggetti cdev. In questo caso e' sufficiente allocare uno solo di questi oggetti.
- */
-struct cdev myGPIOK_cdev;
 
 /**
  * @brief Identifica il device all'interno del device tree
@@ -270,7 +269,7 @@ MODULE_DEVICE_TABLE(of, myGPIOK_match);
  * funzioni module_init() e module_close() standard, chiamate quando il modulo viene caricato o
  * rimosso dal kernel.
  *
- * @param myGPIOK_driver struttura platform_driver associata al driver
+ * @param [in] myGPIOK_driver struttura platform_driver associata al driver
  */
 module_platform_driver(myGPIOK_driver);
 
@@ -283,7 +282,7 @@ module_platform_driver(myGPIOK_driver);
  * La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a funzioni definite dal
  * driver che consentono di definire il comportamento degli operatori che agiscono su un file.
  */
-static struct file_operations myGPIO_fops = {
+static struct file_operations myGPIOK_fops = {
 		.owner		= THIS_MODULE,
 		.llseek		= myGPIOK_llseek,
 		.read		= myGPIOK_read,
@@ -312,9 +311,8 @@ static struct file_operations myGPIO_fops = {
  */
 static int myGPIOK_probe(struct platform_device *op) {
 	int error = 0;
-	dev_t dev;
 	myGPIOK_t *myGPIOK_ptr = NULL;
-	printk(KERN_INFO "Chiamata %s\n\tptr: %08x\n\tname: %s\n\tid: %u\n", __func__, (uint32_t) op, op->name, op->id);
+	printk(KERN_INFO "Chiamata %s\n", __func__);
 
 	if (device_list == NULL) {
 
@@ -325,32 +323,10 @@ static int myGPIOK_probe(struct platform_device *op) {
 
 		if ((error = myGPIOK_list_Init(device_list, MAX_NUM_OF_DEVICES)) != 0) {
 			printk(KERN_ERR "%s: myGPIOK_list_Init() ha restituito %d\n", __func__, error);
+			kfree(device_list);
+			device_list = NULL;
 			return error;
 		}
-
-/** <h5>Major-number e Minor-number</h5>
- * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
- * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
- * su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver.
- * Questo driver, cosi' come molti altri, usa il minor number per distinguere le diverse istanze di device
- * myGPIO che usano il device-driver myGPIOK.
- * La registrazione di un device driver puo' essere effettuata chiamando <b>alloc_chrdev_region()</b>, la quale
- * alloca un char-device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione
- * attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori,
- * 0 altrimenti.
- * @code
- * int alloc_chrdev_region (dev_t * dev, unsigned baseminor, unsigned count, const char *name);
- * @endcode
- *  - dev: major e minor number
- *  - baseminor: primo dei minor number richiesti
- *  - count: numero di minornumber richiesti
- *  - name: nome del device driver
- */
-		if ((error = alloc_chrdev_region(&myGPIOK_Mm_number, 0 , MAX_NUM_OF_DEVICES, DRIVER_NAME)) != 0) {
-			printk(KERN_ERR "%s: alloc_chrdev_region() ha restituito %d\n", __func__, error);
-			return error;
-		}
-
 /** <h5>Device Class</h5>
  * Ai device-drivers viene associata una classe ed un device-name.
  * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
@@ -359,140 +335,14 @@ static int myGPIOK_probe(struct platform_device *op) {
  * @endcode
  *  - owner: puntatore al modulo che "possiede" la classe, THIS_MODULE
  *  - name: puntatore alla stringa identificativa (il nome) del device driver, DRIVER_NAME
- *
  */
 		if ((myGPIOK_class = class_create(THIS_MODULE, DRIVER_NAME) ) == NULL) {
 			printk(KERN_ERR "%s: class_create() ha restituito NULL\n", __func__);
-			unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
+			kfree(device_list);
+			device_list = NULL;
 			return -ENOMEM;
 		}
-/** <h5>Operatori</h5>
- * Essendo un device "visto" come un file, ogni device driver deve implementare tutte le
- * system-call previste per l'interfacciamento con un file. La corrispondenza tra la
- * system-call e la funzione fornita dal driver viene stabilita attraverso la struttura
- * file_operations.
- * La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a funzioni definite dal
- * driver che consentono di definire il comportamento degli operatori che agiscono su un file.
- *
- * @code
- * 				static struct file_operations myGPIO_fops = {
- * 					.owner		= THIS_MODULE,
- * 					.llseek		= driver_seek,
- * 					.read		= driver_read,
- * 					.write		= driver_write,
- * 					.poll		= driver_poll,
- * 					.open		= driver_open,
- * 					.release	= driver_release
- * 				};
- * @endcode
- *
- * Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno
- * specifico "operatore" su file, oppure impostata a NULL se l'operatore non e' supportato.
- * L'esatto comportamento del kernel, quando uno dei puntatori e' NULL, varia da funzione
- * a funzione.
- * La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare
- * su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente
- * necessari.
- *
- * - <i>struct module *owner</i> :<br>
- * 		il primo campo della struttura non e' un operatore, ma un puntatore al modulo che
- * 		"possiede" la struttura. Il campo ha lo scopo di evitare che il modulo venga rimosso
- * 		dal kernel quando uno degli operatori e' in uso. Viene inizializzato usando la macro
- * 		THIS_MODULE, definita in <linux/module.h>.
- *
- * - <i>loff_t (*llseek) (struct file *, loff_t, int)</i> :
- * 		il campo llseek e' usato per cambiare la posizione della "testina" di lettura/
- * 		scrittura in un file. La funzione restituisce la nuova posizione della testina.
- * 		loff_t e' un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
- * 		vengono segnalati con un valore di ritorno negativo. Se questo campo e' posto a
- * 		NULL, eventuali chiamate a seek modifigheranno la posizione della testina in un
- * 		modo impredicibile.
- *
- * - <i>ssize_t (*read) (struct file *, char _ _user *, size_t, loff_t *)</i> :<br>
- * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallira'
- * 		e non sara' possibile leggere dal device. La funzione restituisce il numero di byte
- * 		letti con successo ma, nel caso si verifichi un errore, restituisce un numero intero
- * 		negativo.
- *
- * - <i>ssize_t (*write) (struct file *, const char _ _user *, size_t, loff_t *)</i> :<br>
- * 		invia dati al device. Se NULL ogni chiamata alla system-call write causera' un errore.
- * 		Il valore di ritorno, se non negativo, rappresenta il numero di byte correttamente
- * 		scritti.
- *
- * - <i>unsigned int (*poll) (struct file *, struct poll_table_struct *)</i> :<br>
- * 		questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select, le quali
- * 		sono usate per capire se una operazione di lettura/scrittura du un device possano
- * 		risultare bloccanti o meno. La funzione dovrebbe restituire una maschera che indichi
- * 		se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che
- * 		il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino
- * 		possibili. Se viene lasciata NULL si intende che le operazioni di lettura/scrittura sul
- * 		device siano sempre non-bloccanti.
- *
- * - <i>int (*open) (struct inode *, struct file *)</i> :<br>
- * 		Anche se, di solito, e' la prima operazione che si effettua su un file, non e' strettamente
- * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andra' comunque
- * 		a buon fine, ma al driver non verra' inviata alcuna notifica.
- *
- * - <i>int (*release) (struct inode *, struct file *)</i> :<br>
- * 		questo operatore viene invocato quando il file viene rilasciato. Come open, puo' essere
- * 		lasciato NULL.
- *
- * L'inizializzazione di un device a caratteri passa anche attraverso la definizione di questo tipo di
- * operatori. Essi possono essere impostati attraverso l'uso della funzione
- * @code
- *	void cdev_init (struct cdev *cdev, const struct file_operations *fops);
- * @endcode
- * la quale prende, come parametri
- *  - cdev: puntatore a struttura cdev da inizializzare;
- *  - fops: puntatore a struttura file_operation con cui inizializzare il device.
- */
-		cdev_init (&myGPIOK_cdev, &myGPIO_fops);
-		myGPIOK_cdev.owner = THIS_MODULE;
 
-/** <h5>Creazione del device</h5>
- * Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione
- * puo' essere effettuata chiamando
- * @code
- * struct device * device_create( struct class *class, struct device *parent, dev_t devt, const char *fmt, ...)
- * @endcode
- *  - class: puntatore alla struttura class alla quale il device deve essere registrato
- *  - parent: puntatore ad eventuale device parent
- *  - devt: tmajor number
- *  - fmt: nome del device.
- *
- * La funzione pu' essere usata solo sulla classe dei device a caratteri. Crea un device all'interno del
- * filesystem, associandogli il major number preventivamente inizializzato. La funzione restituisce il puntatore
- * alla struttura device creata all'interno del filesystem. Si noti che il puntatre alla struttura classes DEVE
- * essere stato precedentemente creato attraverso una chiamata alla funzione <i>class_create()</i>.
- */
-		if ((myGPIOK_device = device_create(myGPIOK_class, NULL, myGPIOK_Mm_number, NULL, DRIVER_NAME)) == NULL) {
-			printk(KERN_ERR "%s: device_create() ha restituito NULL\n", __func__);
-			cdev_del(&myGPIOK_cdev);
-			class_destroy(myGPIOK_class);
-			unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
-			return -ENOMEM;
-		}
-	}
-
-/** <h5>Aggiunta del device</h5>
- * Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando
- * @code
- * int cdev_add (struct cdev *p, dev_t dev, unsigned count);
- * @endcode
- * La quale accetta come parametri
- *  - p: puntatore a struttura cdev structure per il device
- *  - dev: device number (precedentemente inizializzato usando la funzione <i>alloc_chrdev_region()</i>)
- *  - count: numero di minor-numbers richiesti per il device
- *
- * La funzione restituisce un numero negativo in caso di errore.
- *
- */
-
-	dev = MKDEV(MAJOR(myGPIOK_Mm_number), myGPIOK_list_device_count(device_list));
-
-	if ((error = cdev_add(&myGPIOK_cdev, dev, 1)) != 0) {
-		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
-		return error;
 	}
 
 	/* Allocazione dell'oggetto myGPIOK_t */
@@ -501,12 +351,24 @@ static int myGPIOK_probe(struct platform_device *op) {
 		return -ENOMEM;
 	}
 
-	if ((error = myGPIOK_Init(myGPIOK_ptr, &op->dev, op->id, dev, DRIVER_NAME, (irq_handler_t)myGPIOK_irq_handler, myGPIOK_USED_INT)) != 0) {
+	if ((error = myGPIOK_Init(	myGPIOK_ptr,
+								THIS_MODULE,
+								op,
+								myGPIOK_class,
+								DRIVER_NAME,
+								DRIVER_FNAME,
+								myGPIOK_list_device_count(device_list),
+								&myGPIOK_fops,
+								(irq_handler_t) myGPIOK_irq_handler,
+								myGPIOK_USED_INT)) != 0) {
 		printk(KERN_ERR "%s: myGPIOK_t_Init() ha restituito %d\n", __func__, error);
+		kfree(myGPIOK_ptr);
 		return error;
 	}
 
-	myGPIOK_list_add(device_list, op, myGPIOK_ptr);
+	myGPIOK_list_add(device_list, myGPIOK_ptr);
+
+	printk(KERN_INFO "\t%s => %s%d\n", op->name, DRIVER_NAME, myGPIOK_list_device_count(device_list)-1);
 
 	return error;
 }
@@ -535,10 +397,8 @@ static int myGPIOK_remove(struct platform_device *op) {
 
 	if (myGPIOK_list_device_count(device_list) == 0) {
 		myGPIOK_list_Destroy(device_list);
-		device_destroy(myGPIOK_class, myGPIOK_Mm_number);
-		cdev_del(&myGPIOK_cdev);
+		kfree(device_list);
 		class_destroy(myGPIOK_class);
-		unregister_chrdev_region(myGPIOK_Mm_number, MAX_NUM_OF_DEVICES);
 	}
 
 	return 0;
@@ -586,10 +446,13 @@ static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
  * @endcode
  * La macro prende in ingresso un puntatore ad un campo di tipo container_field, di una struttura
  * container_type, restituendo il puntatore alla struttura che la contiene.
+ * <br>
+ * Disponendo, in questo caso, della struttura myGPIOK_list_t, si fa uso di quest'ultima, e delle sue funzioni
+ * membro, per risalire al device a partire dal suo major e minor number.
+ * Il puntatore al particolare device myGPIOK_t sara' conservato all'interno del campo private_data della
+ * struttura file.
  */
 	printk(KERN_INFO "%s\n\tminor : %d", __func__, MINOR(inode->i_cdev->dev));
-
-
 
 	if ((myGPIOK_ptr = myGPIOK_list_find_by_minor(device_list, inode->i_cdev->dev)) == NULL) {
 		printk(KERN_INFO "%s: myGPIOK_list_find_by_minor() ha restituito NULL\n", __func__);
@@ -664,15 +527,9 @@ static loff_t myGPIOK_llseek (struct file *file_ptr, loff_t off, int whence) {
  */
 static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struct *wait) {
 	myGPIOK_t *myGPIOK_dev;
-	unsigned int mask = 0;
 	printk(KERN_INFO "Chiamata %s\n", __func__);
 	myGPIOK_dev = file_ptr->private_data;
-	poll_wait(file_ptr, &myGPIOK_dev->poll_queue,  wait);
-	spin_lock(&myGPIOK_dev->slock_int);
-	if(myGPIOK_dev->can_read)
-		mask = POLLIN | POLLRDNORM;
-	spin_unlock(&myGPIOK_dev->slock_int);
-	return mask;
+	return myGPIOK_GetPollMask(myGPIOK_dev, file_ptr, wait);
 }
 
 /**
@@ -688,15 +545,12 @@ static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struc
  */
 static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
 	myGPIOK_t *myGPIOK_dev_ptr = NULL;
-	unsigned long flags;
 	printk(KERN_INFO "Chiamata %s\n\tline: %d\n", __func__, irq);
 
-	myGPIOK_dev_ptr = device_list->device_list[0];
-
-	if (myGPIOK_list_find_irq_line(device_list, irq) == NULL)
+	if ((myGPIOK_dev_ptr = myGPIOK_list_find_irq_line(device_list, irq)) == NULL) {
 		printk(KERN_INFO "%s\n\tmyGPIOK_list_find_irq_line() restituisce NULL:\n", __func__);
-
-
+		return IRQ_NONE;
+	}
 /** <h5>Disabilitazione delle interruzioni della periferica</h5>
  * Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati.
  * Se si tratta di un GPIO Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal
@@ -714,46 +568,20 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
  * Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag
  * "interrupt occurred", in modo che i processi in attesa possano essere risvegliati in modo sicuro.
  * Per prevenire race condition, tale operazione viene effettuata mutua esclusione.
- * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
- * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
- * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
- * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
- * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
- * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
- * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
- * definiti in <linux/spinlock.h>.
- * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
- * @code
- * void spin_lock_irqsave(spinlock_t *lock, unsigned long flags);
- * @endcode
- * la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi
- * ripristinarlo quando lo spinlock viene rilasciato, usando
- * @code
- * void spin_unlock_irqrestore(spinlock_t *lock, unsigned long flags);
- * @endcode
  */
-	spin_lock_irqsave(&myGPIOK_dev_ptr->slock_int, flags);
-	myGPIOK_dev_ptr-> can_read = 1;
-	spin_unlock_irqrestore(&myGPIOK_dev_ptr->slock_int, flags);
+	myGPIOK_SetCanRead(myGPIOK_dev_ptr);
+
 /** <h5>Incremento del numero totale di interrupt</h5>
  * Dopo aver settato il flag, viene incrementato il valore degli interrupt totali.
  * Anche questa operazione viene effettuata in mutua esclusione.
  */
-	spin_lock_irqsave(&myGPIOK_dev_ptr->sl_total_irq, flags);
-	myGPIOK_dev_ptr->total_irq++;
-	spin_unlock_irqrestore(&myGPIOK_dev_ptr->sl_total_irq, flags);
+	myGPIOK_IncrementTotal(myGPIOK_dev_ptr);
 /** <h5>Wakeup dei processi sleeping</h5>
  * La ISR deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che
- * un particolare evento si manifestasse. La funzione
- * @code
- * void wake_up_interruptible(wait_queue_head_t *queue);
- * @endcode
- * risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno
- * effettuato una chiamata a wait_event_interruptible()).
+ * un particolare evento si manifestasse.
  * Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-condition.
  */
-	wake_up_interruptible(&myGPIOK_dev_ptr->read_queue);
-	wake_up_interruptible(&myGPIOK_dev_ptr->poll_queue);
+	myGPIOK_WakeUp(myGPIOK_dev_ptr);
 	return IRQ_HANDLED;
 }
 
@@ -838,36 +666,14 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * Quando tale uguaglianza non sara' piu' valida, perche' il valore di int_occurred viene settato dalla
  * funzione myGPIOK_irq_handler(), allora il processo verra' risvegliato.
  */
-		printk(KERN_INFO "%s : can_read %08X\n", __func__, myGPIOK_dev_ptr-> can_read);
-		wait_event_interruptible(myGPIOK_dev_ptr->read_queue, (myGPIOK_dev_ptr->can_read != 0));
-		printk(KERN_INFO "%s : can_read %08X\n", __func__, myGPIOK_dev_ptr-> can_read);
+		myGPIOK_TestCanReadAndSleep(myGPIOK_dev_ptr);
 /**<h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
  * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
  * esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata
  * per prevenire race-condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso
  * evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
- *
- * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
- * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
- * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
- * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
- * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
- * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
- * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
- * definiti in <linux/spinlock.h>.
- * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
- * @code
- * void spin_lock(spinlock_t *lock);
- * @endcode
- * per rilasciare uno spinlock, invece, verra' usata
- * @code
- * void spin_unlock(spinlock_t *lock);
- * @endcode
  */
-		spin_lock(&myGPIOK_dev_ptr->slock_int);
-		myGPIOK_dev_ptr-> can_read = 0;
-		spin_unlock(&myGPIOK_dev_ptr->slock_int);
-		printk(KERN_INFO "%s : can_read %08X\n", __func__, myGPIOK_dev_ptr-> can_read);
+		myGPIOK_ResetCanRead(myGPIOK_dev_ptr);
 	}
 	else {
 		printk(KERN_INFO "%s non e' bloccante\n", __func__);
@@ -892,7 +698,7 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * void iowrite32(u32 value, void *addr);
  * @endcode
  */
-	read_addr = myGPIOK_dev_ptr->vrtl_addr+*off;
+	read_addr = myGPIOK_GetDeviceAddress(myGPIOK_dev_ptr)+*off;
 	data_readed = ioread32(read_addr);
 /** <h5>Accesso alla memoria userspace</h5>
  * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
@@ -927,10 +733,6 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  */
 	if (copy_to_user(buf, &data_readed, count))
 		return -EFAULT;
-
-	printk(KERN_INFO "%s : address %08X\n", __func__, (uint32_t) read_addr);
-	printk(KERN_INFO "%s : read %08X\n", __func__, data_readed);
-	printk(KERN_INFO "%s : can_read %08X\n", __func__, myGPIOK_dev_ptr-> can_read);
 
 /**<h5>Debouncing</h5>
  * Sebbene normalmente non necessario, in questo caso si e' preferito inserire un hot-loop, in modo da attendere
@@ -1057,10 +859,8 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
  * void iowrite32(u32 value, void *addr);
  * @endcode
  */
-	write_addr = myGPIOK_dev_ptr->vrtl_addr+*off;
+	write_addr = myGPIOK_GetDeviceAddress(myGPIOK_dev_ptr)+*off;
 	iowrite32(data_to_write, write_addr);
-	printk(KERN_INFO "%s : address %08X\n", __func__, (uint32_t) write_addr);
-	printk(KERN_INFO "%s : write %08X\n", __func__, data_to_write);
 	return size;
 }
 
