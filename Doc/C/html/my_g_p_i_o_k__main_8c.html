@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Zynq-7000 Driver Pack: Riferimenti per il file Src/myGPIO/linux-driver/myGPIOK_main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Zynq-7000 Driver Pack
+   &#160;<span id="projectnumber">3.1</span>
+   </div>
+   <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="modules.html"><span>Moduli</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li><a href="examples.html"><span>Esempi</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('my_g_p_i_o_k__main_8c.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#func-members">Funzioni</a> &#124;
+<a href="#var-members">Variabili</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per il file myGPIOK_main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;linux/init.h&gt;</code><br />
+<code>#include &lt;linux/module.h&gt;</code><br />
+<code>#include &lt;linux/kernel.h&gt;</code><br />
+<code>#include &lt;linux/slab.h&gt;</code><br />
+<code>#include &lt;linux/fs.h&gt;</code><br />
+<code>#include &lt;linux/errno.h&gt;</code><br />
+<code>#include &lt;linux/types.h&gt;</code><br />
+<code>#include &lt;linux/proc_fs.h&gt;</code><br />
+<code>#include &lt;linux/fcntl.h&gt;</code><br />
+<code>#include &lt;linux/unistd.h&gt;</code><br />
+<code>#include &lt;linux/platform_device.h&gt;</code><br />
+<code>#include &lt;linux/of_device.h&gt;</code><br />
+<code>#include &lt;linux/of_platform.h&gt;</code><br />
+<code>#include &lt;linux/of_address.h&gt;</code><br />
+<code>#include &lt;linux/of_irq.h&gt;</code><br />
+<code>#include &lt;linux/interrupt.h&gt;</code><br />
+<code>#include &lt;linux/irqreturn.h&gt;</code><br />
+<code>#include &lt;asm/uaccess.h&gt;</code><br />
+<code>#include &lt;asm/io.h&gt;</code><br />
+<code>#include &lt;linux/sched.h&gt;</code><br />
+<code>#include &lt;linux/poll.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="my_g_p_i_o_k__t_8h_source.html">myGPIOK_t.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="my_g_p_i_o_k__list_8h_source.html">myGPIOK_list.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per myGPIOK_main.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="my_g_p_i_o_k__main_8c__incl.png" border="0" usemap="#_src_2my_g_p_i_o_2linux-driver_2my_g_p_i_o_k__main_8c" alt=""/></div>
+<map name="_src_2my_g_p_i_o_2linux-driver_2my_g_p_i_o_k__main_8c" id="_src_2my_g_p_i_o_2linux-driver_2my_g_p_i_o_k__main_8c">
+<area shape="rect" id="node23" href="my_g_p_i_o_k__t_8h.html" title="myGPIOK_t.h" alt="" coords="794,169,898,196"/><area shape="rect" id="node28" href="my_g_p_i_o_k__list_8h.html" title="myGPIOK_list.h" alt="" coords="730,95,847,121"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definizioni</h2></td></tr>
+<tr class="memitem:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a>&#160;&#160;&#160;&quot;myGPIOK&quot;</td></tr>
+<tr class="memdesc:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nome identificativo del device-driver. DEVE corrispondere al valore del campo "compatible" nel device tree source.  <a href="group___linux-_driver.html#ga25634d21648ca7fb7a2aca614bafaaeb">Continua...</a><br /></td></tr>
+<tr class="separator:ga25634d21648ca7fb7a2aca614bafaaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fa7cb23649a4090e79e2610b7ba0a93"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga4fa7cb23649a4090e79e2610b7ba0a93">DRIVER_FNAME</a>&#160;&#160;&#160;&quot;myGPIOK%d&quot;</td></tr>
+<tr class="memdesc:ga4fa7cb23649a4090e79e2610b7ba0a93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nome del file creato in /dev/ per ciascuno dei device.  <a href="group___linux-_driver.html#ga4fa7cb23649a4090e79e2610b7ba0a93">Continua...</a><br /></td></tr>
+<tr class="separator:ga4fa7cb23649a4090e79e2610b7ba0a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad32bf20eb64878cb958ca6ac9c96c21d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gad32bf20eb64878cb958ca6ac9c96c21d">MAX_NUM_OF_DEVICES</a>&#160;&#160;&#160;15</td></tr>
+<tr class="memdesc:gad32bf20eb64878cb958ca6ac9c96c21d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero massimo di device gestibili.  <a href="group___linux-_driver.html#gad32bf20eb64878cb958ca6ac9c96c21d">Continua...</a><br /></td></tr>
+<tr class="separator:gad32bf20eb64878cb958ca6ac9c96c21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78d3a23bb3381a43eaba8bbf8b1cc750"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga78d3a23bb3381a43eaba8bbf8b1cc750">myGPIOK_USED_INT</a>&#160;&#160;&#160;0xFFFFFFFFU</td></tr>
+<tr class="memdesc:ga78d3a23bb3381a43eaba8bbf8b1cc750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschea di abilitazione degli interrupt per i singoli pin.  <a href="group___linux-_driver.html#ga78d3a23bb3381a43eaba8bbf8b1cc750">Continua...</a><br /></td></tr>
+<tr class="separator:ga78d3a23bb3381a43eaba8bbf8b1cc750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:gad94b36675e7eb067ea3ce6ff9e244a44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gad94b36675e7eb067ea3ce6ff9e244a44">MODULE_LICENSE</a> (&quot;GPL&quot;)</td></tr>
+<tr class="separator:gad94b36675e7eb067ea3ce6ff9e244a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa528ef168ff30340d38c46a12fce906b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gaa528ef168ff30340d38c46a12fce906b">MODULE_AUTHOR</a> (&quot;Salvatore Barone &lt;salvator.barone@gmail.com&gt;&quot;)</td></tr>
+<tr class="separator:gaa528ef168ff30340d38c46a12fce906b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a0de0abbfec8f65abc50ccd3a549a4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga1a0de0abbfec8f65abc50ccd3a549a4d">MODULE_DESCRIPTION</a> (&quot;myGPIO device-driver in kernel mode&quot;)</td></tr>
+<tr class="separator:ga1a0de0abbfec8f65abc50ccd3a549a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d0a47b4ff404d7ced2610438ec9802e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga4d0a47b4ff404d7ced2610438ec9802e">MODULE_VERSION</a> (&quot;3.2&quot;)</td></tr>
+<tr class="separator:ga4d0a47b4ff404d7ced2610438ec9802e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1681c4acdb2692baf523dbf58f940399"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga1681c4acdb2692baf523dbf58f940399">MODULE_ALIAS</a> (<a class="el" href="group___linux-_driver.html#ga25634d21648ca7fb7a2aca614bafaaeb">DRIVER_NAME</a>)</td></tr>
+<tr class="separator:ga1681c4acdb2692baf523dbf58f940399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae40973a06d72f7c41a9af07513a62307"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gae40973a06d72f7c41a9af07513a62307">myGPIOK_probe</a> (struct platform_device *op)</td></tr>
+<tr class="memdesc:gae40973a06d72f7c41a9af07513a62307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viene chiamata quando il modulo viene inserito.  <a href="group___linux-_driver.html#gae40973a06d72f7c41a9af07513a62307">Continua...</a><br /></td></tr>
+<tr class="separator:gae40973a06d72f7c41a9af07513a62307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59fddfaa36dea357f4bbdfceb0f47f8c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga59fddfaa36dea357f4bbdfceb0f47f8c">myGPIOK_remove</a> (struct platform_device *op)</td></tr>
+<tr class="separator:ga59fddfaa36dea357f4bbdfceb0f47f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gad013759c18fbf6ea96005b9b3bfa5b4e">myGPIOK_open</a> (struct inode *inode, struct file *file_ptr)</td></tr>
+<tr class="memdesc:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata all'apertura del file corrispondente al device.  <a href="group___linux-_driver.html#gad013759c18fbf6ea96005b9b3bfa5b4e">Continua...</a><br /></td></tr>
+<tr class="separator:gad013759c18fbf6ea96005b9b3bfa5b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17ce7f574723246c790b70b06e3e7103"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga17ce7f574723246c790b70b06e3e7103">myGPIOK_release</a> (struct inode *inode, struct file *file_ptr)</td></tr>
+<tr class="memdesc:ga17ce7f574723246c790b70b06e3e7103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocata alla chiusura del file corrispondente al device.  <a href="group___linux-_driver.html#ga17ce7f574723246c790b70b06e3e7103">Continua...</a><br /></td></tr>
+<tr class="separator:ga17ce7f574723246c790b70b06e3e7103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66e7f726b72320a272b633ecbaecefff"><td class="memItemLeft" align="right" valign="top">static loff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga66e7f726b72320a272b633ecbaecefff">myGPIOK_llseek</a> (struct file *file_ptr, loff_t off, int whence)</td></tr>
+<tr class="memdesc:ga66e7f726b72320a272b633ecbaecefff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementa le system-call lseek() e llseek().  <a href="group___linux-_driver.html#ga66e7f726b72320a272b633ecbaecefff">Continua...</a><br /></td></tr>
+<tr class="separator:ga66e7f726b72320a272b633ecbaecefff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gaba935e8a8215c2ebce9a7147fd4f5147">myGPIOK_poll</a> (struct file *file_ptr, struct poll_table_struct *wait)</td></tr>
+<tr class="memdesc:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.  <a href="group___linux-_driver.html#gaba935e8a8215c2ebce9a7147fd4f5147">Continua...</a><br /></td></tr>
+<tr class="separator:gaba935e8a8215c2ebce9a7147fd4f5147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90ac339df9c02ae5f11a2a7727adc923"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga90ac339df9c02ae5f11a2a7727adc923">myGPIOK_read</a> (struct file *file_ptr, char *buf, size_t count, loff_t *off)</td></tr>
+<tr class="memdesc:ga90ac339df9c02ae5f11a2a7727adc923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legge dati dal device.  <a href="group___linux-_driver.html#ga90ac339df9c02ae5f11a2a7727adc923">Continua...</a><br /></td></tr>
+<tr class="separator:ga90ac339df9c02ae5f11a2a7727adc923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1eea0f6c86e8966ba9b701da57502aad"><td class="memItemLeft" align="right" valign="top">static ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga1eea0f6c86e8966ba9b701da57502aad">myGPIOK_write</a> (struct file *file_ptr, const char *buf, size_t size, loff_t *off)</td></tr>
+<tr class="memdesc:ga1eea0f6c86e8966ba9b701da57502aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invia dati al device.  <a href="group___linux-_driver.html#ga1eea0f6c86e8966ba9b701da57502aad">Continua...</a><br /></td></tr>
+<tr class="separator:ga1eea0f6c86e8966ba9b701da57502aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memItemLeft" align="right" valign="top">static irqreturn_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga2fc230a12a97aa63e43b2dc4aec73511">myGPIOK_irq_handler</a> (int irq, struct pt_regs *regs)</td></tr>
+<tr class="memdesc:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt-handler.  <a href="group___linux-_driver.html#ga2fc230a12a97aa63e43b2dc4aec73511">Continua...</a><br /></td></tr>
+<tr class="separator:ga2fc230a12a97aa63e43b2dc4aec73511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf33e020610cd80a1cfa2ed79b512b841"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gaf33e020610cd80a1cfa2ed79b512b841">MODULE_DEVICE_TABLE</a> (of, <a class="el" href="group___linux-_driver.html#gab59f49dc0fe8d885c73752b8a8163d0e">myGPIOK_match</a>)</td></tr>
+<tr class="memdesc:gaf33e020610cd80a1cfa2ed79b512b841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserisce una nuova entry nella tabella delle corrispondenze device - driver.  <a href="group___linux-_driver.html#gaf33e020610cd80a1cfa2ed79b512b841">Continua...</a><br /></td></tr>
+<tr class="separator:gaf33e020610cd80a1cfa2ed79b512b841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61e890be90fe5582db8048893ca0ebbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga61e890be90fe5582db8048893ca0ebbf">module_platform_driver</a> (<a class="el" href="group___linux-_driver.html#ga8dba1541b58fa63f8208232ffce4fc47">myGPIOK_driver</a>)</td></tr>
+<tr class="memdesc:ga61e890be90fe5582db8048893ca0ebbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">la macro <a class="el" href="group___linux-_driver.html#ga61e890be90fe5582db8048893ca0ebbf" title="la macro module_platform_driver() prende in input la struttura platform_driver ed implementa le funzi...">module_platform_driver()</a> prende in input la struttura platform_driver ed implementa le funzioni module_init() e module_close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.  <a href="group___linux-_driver.html#ga61e890be90fe5582db8048893ca0ebbf">Continua...</a><br /></td></tr>
+<tr class="separator:ga61e890be90fe5582db8048893ca0ebbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variabili</h2></td></tr>
+<tr class="memitem:ga1deed297d5c8afeb9703965d37d3be5b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structmy_g_p_i_o_k__list__t.html">myGPIOK_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga1deed297d5c8afeb9703965d37d3be5b">device_list</a> = NULL</td></tr>
+<tr class="memdesc:ga1deed297d5c8afeb9703965d37d3be5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array di puntatori a struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, contenente tutti i dati necessari al device driver.  <a href="group___linux-_driver.html#ga1deed297d5c8afeb9703965d37d3be5b">Continua...</a><br /></td></tr>
+<tr class="separator:ga1deed297d5c8afeb9703965d37d3be5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf8d1bce7d6389684a037e94381c275c"><td class="memItemLeft" align="right" valign="top">static struct class *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gaaf8d1bce7d6389684a037e94381c275c">myGPIOK_class</a> = NULL</td></tr>
+<tr class="memdesc:gaaf8d1bce7d6389684a037e94381c275c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe del device Ai device-drivers viene associata una classe ed un device-name. Per creare ed associare una classe ad un device driver si puo' usare la seguente.  <a href="group___linux-_driver.html#gaaf8d1bce7d6389684a037e94381c275c">Continua...</a><br /></td></tr>
+<tr class="separator:gaaf8d1bce7d6389684a037e94381c275c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab59f49dc0fe8d885c73752b8a8163d0e"><td class="memItemLeft" align="right" valign="top">static struct of_device_id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gab59f49dc0fe8d885c73752b8a8163d0e">myGPIOK_match</a> []</td></tr>
+<tr class="memdesc:gab59f49dc0fe8d885c73752b8a8163d0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifica il device all'interno del device tree.  <a href="group___linux-_driver.html#gab59f49dc0fe8d885c73752b8a8163d0e">Continua...</a><br /></td></tr>
+<tr class="separator:gab59f49dc0fe8d885c73752b8a8163d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8dba1541b58fa63f8208232ffce4fc47"><td class="memItemLeft" align="right" valign="top">static struct platform_driver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#ga8dba1541b58fa63f8208232ffce4fc47">myGPIOK_driver</a></td></tr>
+<tr class="memdesc:ga8dba1541b58fa63f8208232ffce4fc47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver.  <a href="group___linux-_driver.html#ga8dba1541b58fa63f8208232ffce4fc47">Continua...</a><br /></td></tr>
+<tr class="separator:ga8dba1541b58fa63f8208232ffce4fc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1963bc01fffdbb315a408a9210cbafc"><td class="memItemLeft" align="right" valign="top">static struct file_operations&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___linux-_driver.html#gad1963bc01fffdbb315a408a9210cbafc">myGPIOK_fops</a></td></tr>
+<tr class="memdesc:gad1963bc01fffdbb315a408a9210cbafc"><td class="mdescLeft">&#160;</td><td class="mdescRight">mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device.  <a href="group___linux-_driver.html#gad1963bc01fffdbb315a408a9210cbafc">Continua...</a><br /></td></tr>
+<tr class="separator:gad1963bc01fffdbb315a408a9210cbafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_bf0273017ee8b3ff348e0bb43011b9c4.html">myGPIO</a></li><li class="navelem"><a class="el" href="dir_252dbbbf886fe12151086aae4643102b.html">linux-driver</a></li><li class="navelem"><a class="el" href="my_g_p_i_o_k__main_8c.html">myGPIOK_main.c</a></li>
+    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -281,6 +281,70 @@ module_platform_driver(myGPIOK_driver);
  * system-call e la funzione fornita dal driver viene stabilita attraverso tale struttura.
  * La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a funzioni definite dal
  * driver che consentono di definire il comportamento degli operatori che agiscono su un file.
+ *
+La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a funzioni definite dal
+ * driver che consentono di definire il comportamento degli operatori che agiscono su un file.
+ * @code
+ * 				static struct file_operations myGPIO_fops = {
+ * 					.owner		= THIS_MODULE,
+ * 					.llseek		= driver_seek,
+ * 					.read		= driver_read,
+ * 					.write		= driver_write,
+ * 					.poll		= driver_poll,
+ * 					.open		= driver_open,
+ * 					.release	= driver_release
+ * 				};
+ * @endcode
+ * Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno
+ * specifico "operatore" su file, oppure impostata a NULL se l'operatore non e' supportato.
+ * L'esatto comportamento del kernel, quando uno dei puntatori e' NULL, varia da funzione
+ * a funzione.
+ * La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare
+ * su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente
+ * necessari.
+ *
+ * - <i>struct module *owner</i> :<br>
+ * 		il primo campo della struttura non e' un operatore, ma un puntatore al modulo che
+ * 		"possiede" la struttura. Il campo ha lo scopo di evitare che il modulo venga rimosso
+ * 		dal kernel quando uno degli operatori e' in uso. Viene inizializzato usando la macro
+ * 		THIS_MODULE, definita in <linux/module.h>.
+ *
+ * - <i>loff_t (*llseek) (struct file *, loff_t, int)</i> :
+ * 		il campo llseek e' usato per cambiare la posizione della "testina" di lettura/
+ * 		scrittura in un file. La funzione restituisce la nuova posizione della testina.
+ * 		loff_t e' un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
+ * 		vengono segnalati con un valore di ritorno negativo. Se questo campo e' posto a
+ * 		NULL, eventuali chiamate a seek modifigheranno la posizione della testina in un
+ * 		modo impredicibile.
+ *
+ * - <i>ssize_t (*read) (struct file *, char _ _user *, size_t, loff_t *)</i> :<br>
+ * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallira'
+ * 		e non sara' possibile leggere dal device. La funzione restituisce il numero di byte
+ * 		letti con successo ma, nel caso si verifichi un errore, restituisce un numero intero
+ * 		negativo.
+ *
+ * - <i>ssize_t (*write) (struct file *, const char _ _user *, size_t, loff_t *)</i> :<br>
+ * 		invia dati al device. Se NULL ogni chiamata alla system-call write causera' un errore.
+ * 		Il valore di ritorno, se non negativo, rappresenta il numero di byte correttamente
+ * 		scritti.
+ *
+ * - <i>unsigned int (*poll) (struct file *, struct poll_table_struct *)</i> :<br>
+ * 		questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select, le quali
+ * 		sono usate per capire se una operazione di lettura/scrittura du un device possano
+ * 		risultare bloccanti o meno. La funzione dovrebbe restituire una maschera che indichi
+ * 		se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che
+ * 		il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino
+ * 		possibili. Se viene lasciata NULL si intende che le operazioni di lettura/scrittura sul
+ * 		device siano sempre non-bloccanti.
+ *
+ * - <i>int (*open) (struct inode *, struct file *)</i> :<br>
+ * 		Anche se, di solito, e' la prima operazione che si effettua su un file, non e' strettamente
+ * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andra' comunque
+ * 		a buon fine, ma al driver non verra' inviata alcuna notifica.
+ *
+ * - <i>int (*release) (struct inode *, struct file *)</i> :<br>
+ * 		questo operatore viene invocato quando il file viene rilasciato. Come open, puo' essere
+ * 		lasciato NULL.
  */
 static struct file_operations myGPIOK_fops = {
 		.owner		= THIS_MODULE,

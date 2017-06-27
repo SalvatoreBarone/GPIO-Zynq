@@ -1,0 +1,93 @@
+\hypertarget{my_g_p_i_o_k__main_8c}{\section{Riferimenti per il file Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+main.c}
+\label{my_g_p_i_o_k__main_8c}\index{Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+main.\+c@{Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+main.\+c}}
+}
+{\ttfamily \#include $<$linux/init.\+h$>$}\\*
+{\ttfamily \#include $<$linux/module.\+h$>$}\\*
+{\ttfamily \#include $<$linux/kernel.\+h$>$}\\*
+{\ttfamily \#include $<$linux/slab.\+h$>$}\\*
+{\ttfamily \#include $<$linux/fs.\+h$>$}\\*
+{\ttfamily \#include $<$linux/errno.\+h$>$}\\*
+{\ttfamily \#include $<$linux/types.\+h$>$}\\*
+{\ttfamily \#include $<$linux/proc\+\_\+fs.\+h$>$}\\*
+{\ttfamily \#include $<$linux/fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$linux/unistd.\+h$>$}\\*
+{\ttfamily \#include $<$linux/platform\+\_\+device.\+h$>$}\\*
+{\ttfamily \#include $<$linux/of\+\_\+device.\+h$>$}\\*
+{\ttfamily \#include $<$linux/of\+\_\+platform.\+h$>$}\\*
+{\ttfamily \#include $<$linux/of\+\_\+address.\+h$>$}\\*
+{\ttfamily \#include $<$linux/of\+\_\+irq.\+h$>$}\\*
+{\ttfamily \#include $<$linux/interrupt.\+h$>$}\\*
+{\ttfamily \#include $<$linux/irqreturn.\+h$>$}\\*
+{\ttfamily \#include $<$asm/uaccess.\+h$>$}\\*
+{\ttfamily \#include $<$asm/io.\+h$>$}\\*
+{\ttfamily \#include $<$linux/sched.\+h$>$}\\*
+{\ttfamily \#include $<$linux/poll.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O\+K\+\_\+t.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O\+K\+\_\+list.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O\+K\+\_\+main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{my_g_p_i_o_k__main_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}
+\begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___linux-_driver_ga4fa7cb23649a4090e79e2610b7ba0a93}{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\%d\char`\"{}
+\begin{DoxyCompactList}\small\item\em Nome del file creato in /dev/ per ciascuno dei device. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}~15
+\begin{DoxyCompactList}\small\item\em Numero massimo di device gestibili. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}~0x\+F\+F\+F\+F\+F\+F\+F\+F\+U
+\begin{DoxyCompactList}\small\item\em Maschea di abilitazione degli interrupt per i singoli pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___linux-_driver_gad94b36675e7eb067ea3ce6ff9e244a44}{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E} (\char`\"{}G\+P\+L\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_gaa528ef168ff30340d38c46a12fce906b}{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R} (\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga1a0de0abbfec8f65abc50ccd3a549a4d}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N} (\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga4d0a47b4ff404d7ced2610438ec9802e}{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N} (\char`\"{}3.\+2\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga1681c4acdb2692baf523dbf58f940399}{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S} (\hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E})
+\item 
+static int \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe} (struct platform\+\_\+device $\ast$op)
+\begin{DoxyCompactList}\small\item\em Viene chiamata quando il modulo viene inserito. \end{DoxyCompactList}\item 
+static int \hyperlink{group___linux-_driver_ga59fddfaa36dea357f4bbdfceb0f47f8c}{my\+G\+P\+I\+O\+K\+\_\+remove} (struct platform\+\_\+device $\ast$op)
+\item 
+static int \hyperlink{group___linux-_driver_gad013759c18fbf6ea96005b9b3bfa5b4e}{my\+G\+P\+I\+O\+K\+\_\+open} (struct inode $\ast$inode, struct file $\ast$file\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Invocata all'apertura del file corrispondente al device. \end{DoxyCompactList}\item 
+static int \hyperlink{group___linux-_driver_ga17ce7f574723246c790b70b06e3e7103}{my\+G\+P\+I\+O\+K\+\_\+release} (struct inode $\ast$inode, struct file $\ast$file\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Invocata alla chiusura del file corrispondente al device. \end{DoxyCompactList}\item 
+static loff\+\_\+t \hyperlink{group___linux-_driver_ga66e7f726b72320a272b633ecbaecefff}{my\+G\+P\+I\+O\+K\+\_\+llseek} (struct file $\ast$file\+\_\+ptr, loff\+\_\+t off, int whence)
+\begin{DoxyCompactList}\small\item\em Implementa le system-\/call lseek() e llseek(). \end{DoxyCompactList}\item 
+static unsigned int \hyperlink{group___linux-_driver_gaba935e8a8215c2ebce9a7147fd4f5147}{my\+G\+P\+I\+O\+K\+\_\+poll} (struct file $\ast$file\+\_\+ptr, struct poll\+\_\+table\+\_\+struct $\ast$wait)
+\begin{DoxyCompactList}\small\item\em Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. \end{DoxyCompactList}\item 
+static ssize\+\_\+t \hyperlink{group___linux-_driver_ga90ac339df9c02ae5f11a2a7727adc923}{my\+G\+P\+I\+O\+K\+\_\+read} (struct file $\ast$file\+\_\+ptr, char $\ast$buf, size\+\_\+t count, loff\+\_\+t $\ast$off)
+\begin{DoxyCompactList}\small\item\em Legge dati dal device. \end{DoxyCompactList}\item 
+static ssize\+\_\+t \hyperlink{group___linux-_driver_ga1eea0f6c86e8966ba9b701da57502aad}{my\+G\+P\+I\+O\+K\+\_\+write} (struct file $\ast$file\+\_\+ptr, const char $\ast$buf, size\+\_\+t size, loff\+\_\+t $\ast$off)
+\begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
+static irqreturn\+\_\+t \hyperlink{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler} (int irq, struct pt\+\_\+regs $\ast$regs)
+\begin{DoxyCompactList}\small\item\em Interrupt-\/handler. \end{DoxyCompactList}\item 
+\hyperlink{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E} (of, \hyperlink{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{my\+G\+P\+I\+O\+K\+\_\+match})
+\begin{DoxyCompactList}\small\item\em Inserisce una nuova entry nella tabella delle corrispondenze device -\/ driver. \end{DoxyCompactList}\item 
+\hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver} (\hyperlink{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver})
+\begin{DoxyCompactList}\small\item\em la macro \hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver()} prende in input la struttura platform\+\_\+driver ed implementa le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variabili}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$ \hyperlink{group___linux-_driver_ga1deed297d5c8afeb9703965d37d3be5b}{device\+\_\+list} = N\+U\+L\+L
+\begin{DoxyCompactList}\small\item\em Array di puntatori a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. \end{DoxyCompactList}\item 
+static struct class $\ast$ \hyperlink{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}{my\+G\+P\+I\+O\+K\+\_\+class} = N\+U\+L\+L
+\begin{DoxyCompactList}\small\item\em Classe del device Ai device-\/drivers viene associata una classe ed un device-\/name. Per creare ed associare una classe ad un device driver si puo' usare la seguente. \end{DoxyCompactList}\item 
+static struct of\+\_\+device\+\_\+id \hyperlink{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{my\+G\+P\+I\+O\+K\+\_\+match} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Identifica il device all'interno del device tree. \end{DoxyCompactList}\item 
+static struct platform\+\_\+driver \hyperlink{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver}
+\begin{DoxyCompactList}\small\item\em Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. \end{DoxyCompactList}\item 
+static struct file\+\_\+operations \hyperlink{group___linux-_driver_gad1963bc01fffdbb315a408a9210cbafc}{my\+G\+P\+I\+O\+K\+\_\+fops}
+\begin{DoxyCompactList}\small\item\em mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device. \end{DoxyCompactList}\end{DoxyCompactItemize}

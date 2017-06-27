@@ -26,6 +26,7 @@
  * @{
  * @addtogroup DeviceList
  * @{
+ * @brief Definisce la struttura dati myGPIOK_list_t, la quale mantiene un riferimento agli oggetti myGPIOK_t gestiti dal driver
  */
 
 #ifndef __MYGPIOK_DEVICE_LIST__
@@ -34,12 +35,18 @@
 #include "myGPIOK_t.h"
 
 /**
- * @brief
+ * @brief Struttura dati per la gestione degli oggetti myGPIOK_t gestiti dal driver
+ *
+ * La struttura dati, sebbene non strettamente necessaria alla gestione dei diversi oggetti myGPIOK_t, ciascuno dei
+ * quali corrispondente ad un diverso device gestito dal driver myGPIOK, e' pensata per semplificare l'accesso a
+ * questi ultimi, tenendo un riferimento a tutti gli oggetti e le strutture dati coinvolte nel funzionamento del modulo
+ *  in un unico "posto", accessibile attraverso questa struttura dati.
  */
 typedef struct {
-	myGPIOK_t **device_list; /**< */
-	uint32_t list_size;		/**< */
-	uint32_t device_count;	/**< */
+	myGPIOK_t **device_list;	/**< 	array di puntatori a struttura myGPIOK_t, ciascuno dei quali si riferisce ad un device differente  */
+	uint32_t list_size;			/**<	dimensione dell'array, corrisponde al numero massimo di device gestibili, definito in fase di
+										inizializzazione */
+	uint32_t device_count;		/**< 	numero di device correntemente attivi e gestiti dal driver */
 } myGPIOK_list_t;
 
 extern int myGPIOK_list_Init(myGPIOK_list_t *list, uint32_t list_size);

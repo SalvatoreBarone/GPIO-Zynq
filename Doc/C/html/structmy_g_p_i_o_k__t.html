@@ -32,7 +32,7 @@
    <div id="projectname">Zynq-7000 Driver Pack
    &#160;<span id="projectnumber">3.1</span>
    </div>
-   <div id="projectbrief">C implementation of some Driver for Zynq-7000 Family</div>
+   <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
  </tr>
  </tbody>
@@ -108,19 +108,31 @@ $(document).ready(function(){initNavTree('structmy_g_p_i_o_k__t.html','');});
   <div class="summary">
 <a href="#pub-attribs">Campi</a>  </div>
   <div class="headertitle">
-<div class="title">Riferimenti per la struct myGPIOK_t<div class="ingroups"><a class="el" href="group__my_g_p_i_o.html">MyGPIO</a> &raquo; <a class="el" href="group___linux-_driver.html">Linux-Driver</a></div></div>  </div>
+<div class="title">Riferimenti per la struct myGPIOK_t<div class="ingroups"><a class="el" href="group__my_g_p_i_o.html">MyGPIO</a> &raquo; <a class="el" href="group___linux-_driver.html">Linux-Driver</a> &raquo; <a class="el" href="group__my_g_p_i_o_k__t.html">MyGPIOK_t</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Stuttura per l'astrazione di un device myGPIO in kernel-mode.  
  <a href="structmy_g_p_i_o_k__t.html#details">Continua...</a></p>
+
+<p><code>#include &lt;<a class="el" href="my_g_p_i_o_k__t_8h_source.html">myGPIOK_t.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Campi</h2></td></tr>
+<tr class="memitem:aeb60fb4e41b5f11f70ebe969361884f4"><td class="memItemLeft" align="right" valign="top">dev_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#aeb60fb4e41b5f11f70ebe969361884f4">Mm</a></td></tr>
+<tr class="separator:aeb60fb4e41b5f11f70ebe969361884f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a7801058bef8fbe4a2cec3c9579cd70"><td class="memItemLeft" align="right" valign="top">struct platform_device *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a3a7801058bef8fbe4a2cec3c9579cd70">op</a></td></tr>
+<tr class="separator:a3a7801058bef8fbe4a2cec3c9579cd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba682fe45d5a1501790dbdb1d99bd6a"><td class="memItemLeft" align="right" valign="top">struct cdev&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#acba682fe45d5a1501790dbdb1d99bd6a">cdev</a></td></tr>
 <tr class="separator:acba682fe45d5a1501790dbdb1d99bd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6a82c73e7a9d99293d9ce0b8837faf"><td class="memItemLeft" align="right" valign="top">struct device *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#acf6a82c73e7a9d99293d9ce0b8837faf">dev</a></td></tr>
+<tr class="separator:acf6a82c73e7a9d99293d9ce0b8837faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b6474dd18270738a5c4853fd93b5e70"><td class="memItemLeft" align="right" valign="top">struct class *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a9b6474dd18270738a5c4853fd93b5e70">class</a></td></tr>
+<tr class="separator:a9b6474dd18270738a5c4853fd93b5e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42a1593ebe61611c4e29413903a373a5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a42a1593ebe61611c4e29413903a373a5">irqNumber</a></td></tr>
 <tr class="separator:a42a1593ebe61611c4e29413903a373a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee102d0534084ca58a9cf9b8a3d9cc9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a8ee102d0534084ca58a9cf9b8a3d9cc9">irq_mask</a></td></tr>
+<tr class="separator:a8ee102d0534084ca58a9cf9b8a3d9cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a565a1848c3ae8026257a74cf169c6941"><td class="memItemLeft" align="right" valign="top">struct resource&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a565a1848c3ae8026257a74cf169c6941">rsrc</a></td></tr>
 <tr class="separator:a565a1848c3ae8026257a74cf169c6941"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18c4eb95350c67ccb239a8a39c43c09a"><td class="memItemLeft" align="right" valign="top">struct resource *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmy_g_p_i_o_k__t.html#a18c4eb95350c67ccb239a8a39c43c09a">mreg</a></td></tr>
@@ -168,7 +180,44 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Stuttura per l'astrazione di un device a caratteri, Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. In questo caso e' sufficiente allocare uno solo di questi oggetti. </p>
+<p>Stuttura per l'astrazione di un device a caratteri Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. In questo caso e' sufficiente allocare uno solo di questi oggetti. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9b6474dd18270738a5c4853fd93b5e70"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct class* class</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acf6a82c73e7a9d99293d9ce0b8837faf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct device* dev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8ee102d0534084ca58a9cf9b8a3d9cc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t irq_mask</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>maschera delle interruzioni interne per il device </p>
 
 </div>
 </div>
@@ -185,6 +234,19 @@ Campi</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aeb60fb4e41b5f11f70ebe969361884f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dev_t Mm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Major e minor number associati al device </p>
+
+</div>
+</div>
 <a class="anchor" id="a18c4eb95350c67ccb239a8a39c43c09a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -195,6 +257,19 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>puntatre alla regione di memoria cui il device e' mapapto </p>
+
+</div>
+</div>
+<a class="anchor" id="a3a7801058bef8fbe4a2cec3c9579cd70"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct platform_device* op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Puntatore a struttura platform_device cui l'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a> si riferisce </p>
 
 </div>
 </div>
@@ -272,8 +347,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int_occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un
-po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. </p>
+<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int_occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. </p>
 
 </div>
 </div>
@@ -304,7 +378,7 @@ po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli sp
 </div>
 </div>
 <hr/>La documentazione per questa struct è stata generata a partire dal seguente file:<ul>
-<li>Src/myGPIO/linux-driver/<a class="el" href="my_g_p_i_o_k_8c.html">myGPIOK.c</a></li>
+<li>Src/myGPIO/linux-driver/<a class="el" href="my_g_p_i_o_k__t_8h_source.html">myGPIOK_t.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -312,7 +386,7 @@ po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli sp
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structmy_g_p_i_o_k__t.html">myGPIOK_t</a></li>
-    <li class="footer">Generato Ven 23 Giu 2017 15:46:55 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

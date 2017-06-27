@@ -26,7 +26,7 @@
  * @{
  * @addtogroup myGPIOK_t
  * @{
- *
+ * @brief Definisce l'oggetto myGPIO_t, che rappresenta un device myGPIO a livello kernel
  */
 #ifndef __MYGPIOK_T__
 #define __MYGPIOK_T__

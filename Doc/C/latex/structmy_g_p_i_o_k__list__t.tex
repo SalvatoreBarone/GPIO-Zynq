@@ -1,0 +1,53 @@
+\hypertarget{structmy_g_p_i_o_k__list__t}{\section{Riferimenti per la struct my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}
+\label{structmy_g_p_i_o_k__list__t}\index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}}
+}
+
+
+Struttura dati per la gestione degli oggetti \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} gestiti dal driver.  
+
+
+
+
+{\ttfamily \#include $<$my\+G\+P\+I\+O\+K\+\_\+list.\+h$>$}
+
+
+
+Diagramma di collaborazione per my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{structmy_g_p_i_o_k__list__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Campi}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$$\ast$ \hyperlink{structmy_g_p_i_o_k__list__t_a99b54fb4cab6e0b7ea3bd94415bbcca0}{device\+\_\+list}
+\item 
+uint32\+\_\+t \hyperlink{structmy_g_p_i_o_k__list__t_aeff61809685e5df1b38aec1d871a49bb}{list\+\_\+size}
+\item 
+uint32\+\_\+t \hyperlink{structmy_g_p_i_o_k__list__t_a170d1d78f27f6ab4c8badaaa4b3f2305}{device\+\_\+count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Struttura dati per la gestione degli oggetti \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} gestiti dal driver. 
+
+La struttura dati, sebbene non strettamente necessaria alla gestione dei diversi oggetti \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, ciascuno dei quali corrispondente ad un diverso device gestito dal driver my\+G\+P\+I\+O\+K, e' pensata per semplificare l'accesso a questi ultimi, tenendo un riferimento a tutti gli oggetti e le strutture dati coinvolte nel funzionamento del modulo in un unico \char`\"{}posto\char`\"{}, accessibile attraverso questa struttura dati. 
+
+\subsection{Documentazione dei campi}
+\hypertarget{structmy_g_p_i_o_k__list__t_a170d1d78f27f6ab4c8badaaa4b3f2305}{\index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}!device\+\_\+count@{device\+\_\+count}}
+\index{device\+\_\+count@{device\+\_\+count}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}}
+\subsubsection[{device\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t device\+\_\+count}}\label{structmy_g_p_i_o_k__list__t_a170d1d78f27f6ab4c8badaaa4b3f2305}
+numero di device correntemente attivi e gestiti dal driver \hypertarget{structmy_g_p_i_o_k__list__t_a99b54fb4cab6e0b7ea3bd94415bbcca0}{\index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}!device\+\_\+list@{device\+\_\+list}}
+\index{device\+\_\+list@{device\+\_\+list}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}}
+\subsubsection[{device\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+K\+\_\+t}$\ast$$\ast$ device\+\_\+list}}\label{structmy_g_p_i_o_k__list__t_a99b54fb4cab6e0b7ea3bd94415bbcca0}
+array di puntatori a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, ciascuno dei quali si riferisce ad un device differente \hypertarget{structmy_g_p_i_o_k__list__t_aeff61809685e5df1b38aec1d871a49bb}{\index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}!list\+\_\+size@{list\+\_\+size}}
+\index{list\+\_\+size@{list\+\_\+size}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}}
+\subsubsection[{list\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t list\+\_\+size}}\label{structmy_g_p_i_o_k__list__t_aeff61809685e5df1b38aec1d871a49bb}
+dimensione dell'array, corrisponde al numero massimo di device gestibili, definito in fase di inizializzazione 
+
+La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+Src/my\+G\+P\+I\+O/linux-\/driver/\hyperlink{my_g_p_i_o_k__list_8h}{my\+G\+P\+I\+O\+K\+\_\+list.\+h}\end{DoxyCompactItemize}

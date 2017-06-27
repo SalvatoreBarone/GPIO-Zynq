@@ -33,16 +33,16 @@
 /**
  * @brief Inizializza una struttura myGPIOK_t e configura il device corrispondente
  *
- * @param [in,out]	myGPIOK_device
- * @param [in]		owner
- * @param [in]		op
- * @param [in]		class
- * @param [in]		driver_name
- * @param [in]		device_name
- * @param [in]		serial
- * @param [in]		f_ops
- * @param [in]		irq_handler
- * @param [in]		irq_mask
+ * @param [in]	myGPIOK_device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in]	owner puntatore a struttura struct module, proprietario del device (THIS_MODULE)
+ * @param [in]	op puntatore a struct platform_device, costituito dal parametro "op" con cui viene invocata probe() o la remove()
+ * @param [in]	class puntatore a struct class, classe del device, deve essere stata precedentemente creata con class_create()
+ * @param [in]	driver_name nome del driver
+ * @param [in]	device_name nome del device
+ * @param [in]	serial numero seriale del device
+ * @param [in]	f_ops puntatore a struttura struct file_operations, specifica le funzioni che agiscono sul device
+ * @param [in]	irq_handler puntatore irq_handler_t alla funzione che gestira' gli interrupt generati dal device
+ * @param [in]	irq_mask maschera delle interruzioni del device
  *
  * @retval "0" se non si e' verificato nessun errore
  *
@@ -64,7 +64,6 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 	sprintf(file_name, device_name, serial);
 	myGPIOK_device->op = op;
 	myGPIOK_device->class = class;
-
 /** <h5>Major-number e Minor-number</h5>
  * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
  * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
@@ -94,7 +93,6 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * file_operations.
  * La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a funzioni definite dal
  * driver che consentono di definire il comportamento degli operatori che agiscono su un file.
- *
  * @code
  * 				static struct file_operations myGPIO_fops = {
  * 					.owner		= THIS_MODULE,
@@ -106,7 +104,6 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * 					.release	= driver_release
  * 				};
  * @endcode
- *
  * Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno
  * specifico "operatore" su file, oppure impostata a NULL se l'operatore non e' supportato.
  * L'esatto comportamento del kernel, quando uno dei puntatori e' NULL, varia da funzione
@@ -301,7 +298,6 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 		goto irq_of_parse_and_map_error;
 	}
 	myGPIOK_device->irq_mask = irq_mask;
-
 /** <h5>Inizializzazione della wait-queue per la system-call read() e poll()</h5>
  * In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in
  * <linux/wait.h>.
@@ -363,6 +359,11 @@ no_error:
 	return error;
 }
 
+/**
+ * @brief Deinizializza un device, rimuovendo le strutture kernel allocate per il suo funzionamento
+ *
+ * @param [in] device puntatore a struttura myGPIOK_t, specifica il particolare device su cui agire
+ */
 void myGPIOK_Destroy(myGPIOK_t* device) {
 	#ifdef __XGPIO__
 	XGpio_Global_Interrupt(device, XGPIO_GIDS);
@@ -380,8 +381,8 @@ void myGPIOK_Destroy(myGPIOK_t* device) {
 }
 
 /**
- *
- * @param device
+ * @brief Set del flag "interrupt occurred" (canRead)
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Setting del valore del flag "interrupt occurred"</h5>
@@ -414,8 +415,10 @@ void myGPIOK_SetCanRead(myGPIOK_t* device) {
 }
 
 /**
- * @brief
- * @param device
+ * @brief Reset del flag "interrupt occurred" (canRead)
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
  * @details
  * <h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
  * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
@@ -448,8 +451,10 @@ void myGPIOK_ResetCanRead(myGPIOK_t* device) {
 }
 
 /**
- * @brief
- * @param device
+ * @brief Testa la condizione "interrupt occurred", mettendo in attesa il processo, se necessario
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
  * @details
  * <h5>Porre un processo nello stato sleeping</h5>
  * Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in
@@ -480,7 +485,7 @@ void myGPIOK_TestCanReadAndSleep(myGPIOK_t* device) {
 /**
  * @brief Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.
  *
- * @param [in]		device
+ * @param [in] 		device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
  * @param [inout]	file
  * @param [inout]	wait
  *
@@ -504,8 +509,10 @@ unsigned myGPIOK_GetPollMask(myGPIOK_t *device, struct file *file_ptr, struct po
 }
 
 /**
- * @brief
- * @param device
+ * @brief Incrementa il contatore degli interrupt per un particolare device
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
  * @details
  * <h5>Incremento del numero totale di interrupt</h5>
  * Dopo aver settato il flag, viene incrementato il valore degli interrupt totali.
@@ -519,8 +526,10 @@ void myGPIOK_IncrementTotal(myGPIOK_t* device) {
 }
 
 /**
- * @brief
- * @param device
+ * @brief Risveglia i process in attesa sulle code di read e poll.
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
  * @details
  * <h5>Wakeup dei processi sleeping</h5>
  * La ISR deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che
@@ -537,14 +546,19 @@ void myGPIOK_WakeUp(myGPIOK_t* device) {
 	wake_up_interruptible(&device->poll_queue);
 }
 
-
+/**
+ * @brief Restituisce l'indirizzo virtuale di memoria cui e' mappato un device
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ */
 void* myGPIOK_GetDeviceAddress(myGPIOK_t* device) {
 	return device->vrtl_addr;
 }
 
 /**
  * @brief Abilita gli interrupt globali;
- * @param [in] baseAddress indirizzo virtuale del device
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
  */
 void myGPIOK_GlobalInterruptEnable(myGPIOK_t* device) {
 	iowrite32(1, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
@@ -552,7 +566,8 @@ void myGPIOK_GlobalInterruptEnable(myGPIOK_t* device) {
 
 /**
  * @brief Disabilita gli interrupt globali;
- * @param [in] baseAddress indirizzo virtuale del device
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
  */
 void myGPIOK_GlobalInterruptDisable(myGPIOK_t* device) {
 	iowrite32(0, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
@@ -560,9 +575,9 @@ void myGPIOK_GlobalInterruptDisable(myGPIOK_t* device) {
 
 /**
  * @brief Abilita gli interrupt per i singoli pin del device.
- * @param [in] baseAddress indirizzo virtuale del device
- * @param [in] mask maschera di selezione degli interrupt da abilitare; quelli non selezionati non
- * vengono abilitati;
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] mask maschera di selezione degli interrupt da abilitare; quelli non selezionati non vengono abilitati;
  */
 void myGPIOK_PinInterruptEnable(myGPIOK_t* device, unsigned mask) {
 	unsigned reg_value = ioread32((device->vrtl_addr + myGPIOK_PIE_OFFSET));
@@ -572,9 +587,10 @@ void myGPIOK_PinInterruptEnable(myGPIOK_t* device, unsigned mask) {
 
 /**
  * @brief Disabilita gli interrupt per i singoli pin del device.
- * @param [in] baseAddress indirizzo virtuale del device
- * @param [in] mask maschera di selezione degli interrupt da disabilitare; quelli non selezionati non
- * vengono disabilitati;
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
+ * @param [in] mask maschera di selezione degli interrupt da disabilitare; quelli non selezionati non vengono disabilitati;
  */
 void myGPIOK_PinInterruptDisable(myGPIOK_t* device, unsigned mask) {
 	unsigned reg_value = ioread32((device->vrtl_addr + myGPIOK_PIE_OFFSET));
@@ -584,7 +600,9 @@ void myGPIOK_PinInterruptDisable(myGPIOK_t* device, unsigned mask) {
 
 /**
  * @brief Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;
- * @param [in] baseAddress indirizzo virtuale del device
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
  * @return maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti;
  */
 unsigned myGPIOK_PendingPinInterrupt(myGPIOK_t* device) {
@@ -593,9 +611,10 @@ unsigned myGPIOK_PendingPinInterrupt(myGPIOK_t* device) {
 
 /**
  * @brief Invia al device notifica di servizio di un interrupt;
- * @param [in] baseAddress indirizzo virtuale del device
- * @param [in] mask mask maschera di selezione degli interrupt da notificare; quelli non selezionati non
- * vengono notificati;
+ *
+ * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ *
+ * @param [in] mask mask maschera di selezione degli interrupt da notificare; quelli non selezionati non vengono notificati;
  */
 void myGPIOK_PinInterruptAck(myGPIOK_t* device, unsigned mask) {
 	iowrite32(mask, (device->vrtl_addr + myGPIOK_IACK_OFFSET));

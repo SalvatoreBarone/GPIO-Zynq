@@ -6,43 +6,44 @@
 Device-\/driver in kernel-\/mode per my\+G\+P\+I\+O.  
 
 
-Diagramma di collaborazione per Linux-\/\+Driver\+:\nopagebreak
+Diagramma di collaborazione per Linux-\/\+Driver\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=240pt]{group___linux-_driver}
+\includegraphics[width=346pt]{group___linux-_driver}
 \end{center}
 \end{figure}
-\subsection*{Strutture dati}
+\subsection*{Moduli}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}
-\begin{DoxyCompactList}\small\item\em Stuttura per l'astrazione di un device my\+G\+P\+I\+O in kernel-\/mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{group___device_list}{Device\+List}
+\begin{DoxyCompactList}\small\item\em Definisce la struttura dati \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, la quale mantiene un riferimento agli oggetti \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} gestiti dal driver. \end{DoxyCompactList}\item 
+\hyperlink{group__my_g_p_i_o_k__t}{My\+G\+P\+I\+O\+K\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Definisce l'oggetto \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che rappresenta un device my\+G\+P\+I\+O a livello kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group___linux-_driver_ga543e17293942b7cf7936a5e095ddc7ef}{my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x00\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_gac165a5d828f3df41e78bb02d4ef38327}{my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x04\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}write\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_gabdb25f3ecdfbf053f4ca207930a56599}{my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}~0x08\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}read\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_ga0da2526ca3cd1a94ebcecf96778ea2e5}{my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}~0x0\+C\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}gies\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_ga2ed7646e6f910f5803477e51b7fe26e3}{my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}~0x10\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}pie\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_ga37ee502d1ba364dfde9261c4f7a537a6}{my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}~0x14\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}irq\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_gac72408c288009c213c0231973b3fe761}{my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}~0x18\+U
-\begin{DoxyCompactList}\small\item\em Offset, rispetto all'indirizzo base, del registro \char`\"{}iack\char`\"{} per il device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}~0x\+F\+F\+F\+F\+F\+F\+F\+F\+U
-\begin{DoxyCompactList}\small\item\em Maschea di abilitazione degli interrupt per i singoli pin. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}
 \begin{DoxyCompactList}\small\item\em Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del campo \char`\"{}compatible\char`\"{} nel device tree source. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}~1
-\begin{DoxyCompactList}\small\item\em Numero di minor-\/number richiesti dal driver, corrispondera' al numero massimo di device gestibili. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \hyperlink{group___linux-_driver_ga4fa7cb23649a4090e79e2610b7ba0a93}{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E}~\char`\"{}my\+G\+P\+I\+O\+K\%d\char`\"{}
+\begin{DoxyCompactList}\small\item\em Nome del file creato in /dev/ per ciascuno dei device. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}~15
+\begin{DoxyCompactList}\small\item\em Numero massimo di device gestibili. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}~0x\+F\+F\+F\+F\+F\+F\+F\+F\+U
+\begin{DoxyCompactList}\small\item\em Maschea di abilitazione degli interrupt per i singoli pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___linux-_driver_gad94b36675e7eb067ea3ce6ff9e244a44}{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E} (\char`\"{}G\+P\+L\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_gaa528ef168ff30340d38c46a12fce906b}{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R} (\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga1a0de0abbfec8f65abc50ccd3a549a4d}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N} (\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga4d0a47b4ff404d7ced2610438ec9802e}{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N} (\char`\"{}3.\+2\char`\"{})
+\item 
+\hyperlink{group___linux-_driver_ga1681c4acdb2692baf523dbf58f940399}{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S} (\hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E})
 \item 
 static int \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe} (struct platform\+\_\+device $\ast$op)
 \begin{DoxyCompactList}\small\item\em Viene chiamata quando il modulo viene inserito. \end{DoxyCompactList}\item 
@@ -62,34 +63,52 @@ static ssize\+\_\+t \hyperlink{group___linux-_driver_ga1eea0f6c86e8966ba9b701da5
 \begin{DoxyCompactList}\small\item\em Invia dati al device. \end{DoxyCompactList}\item 
 static irqreturn\+\_\+t \hyperlink{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler} (int irq, struct pt\+\_\+regs $\ast$regs)
 \begin{DoxyCompactList}\small\item\em Interrupt-\/handler. \end{DoxyCompactList}\item 
-static void \hyperlink{group___linux-_driver_gabd22e9dc7675ba815f1dd8840b39b2bf}{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable} (void $\ast$base\+Address)
+\hyperlink{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E} (of, \hyperlink{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{my\+G\+P\+I\+O\+K\+\_\+match})
+\begin{DoxyCompactList}\small\item\em Inserisce una nuova entry nella tabella delle corrispondenze device -\/ driver. \end{DoxyCompactList}\item 
+\hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver} (\hyperlink{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver})
+\begin{DoxyCompactList}\small\item\em la macro \hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver()} prende in input la struttura platform\+\_\+driver ed implementa le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel. \end{DoxyCompactList}\item 
+int \hyperlink{group___linux-_driver_ga64afb2eff1f990814d792349842c522d}{my\+G\+P\+I\+O\+K\+\_\+\+Init} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$my\+G\+P\+I\+O\+K\+\_\+device, struct module $\ast$owner, struct platform\+\_\+device $\ast$op, struct class $\ast$class, const char $\ast$driver\+\_\+name, const char $\ast$device\+\_\+name, uint32\+\_\+t serial, struct file\+\_\+operations $\ast$f\+\_\+ops, irq\+\_\+handler\+\_\+t irq\+\_\+handler, uint32\+\_\+t irq\+\_\+mask)
+\begin{DoxyCompactList}\small\item\em Inizializza una struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} e configura il device corrispondente. \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_ga24255b79dd8549aa655cf28c1f9a65d5}{my\+G\+P\+I\+O\+K\+\_\+\+Destroy} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Deinizializza un device, rimuovendo le strutture kernel allocate per il suo funzionamento. \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_gad82c1051e6acb335b1b26ab0c459453b}{my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Set del flag \char`\"{}interrupt occurred\char`\"{} (can\+Read) \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_ga6dc0ec06b388522ffc524e5fd14d8b72}{my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Reset del flag \char`\"{}interrupt occurred\char`\"{} (can\+Read) \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_gaf1b6f35c097c46361d675a42f122828e}{my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Testa la condizione \char`\"{}interrupt occurred\char`\"{}, mettendo in attesa il processo, se necessario. \end{DoxyCompactList}\item 
+unsigned \hyperlink{group___linux-_driver_gae428f50a6da69e3cf89348b8ba9401b1}{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device, struct file $\ast$file\+\_\+ptr, struct poll\+\_\+table\+\_\+struct $\ast$wait)
+\begin{DoxyCompactList}\small\item\em Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_ga5a7df448de9de94620ce1baf7ec388c9}{my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Incrementa il contatore degli interrupt per un particolare device. \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_gae182aa943af08c102a05795ae8526192}{my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Risveglia i process in attesa sulle code di read e poll. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group___linux-_driver_ga565ffd4946b330b29e1166dfc9851b11}{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Restituisce l'indirizzo virtuale di memoria cui e' mappato un device. \end{DoxyCompactList}\item 
+void \hyperlink{group___linux-_driver_gaf8da20aabceb02b9ea8132228c973368}{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
 \begin{DoxyCompactList}\small\item\em Abilita gli interrupt globali;. \end{DoxyCompactList}\item 
-static void \hyperlink{group___linux-_driver_ga941f5d329dffbf6e45cecd70bbc72b63}{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable} (void $\ast$base\+Address)
+void \hyperlink{group___linux-_driver_gad9275880dc4941d3d0ae93c45bf4cf79}{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
 \begin{DoxyCompactList}\small\item\em Disabilita gli interrupt globali;. \end{DoxyCompactList}\item 
-static void \hyperlink{group___linux-_driver_ga15ddb23be51d3e2dbb00278af7e9ce31}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable} (void $\ast$base\+Address, unsigned mask)
+void \hyperlink{group___linux-_driver_gac63adbb81dcfa905341a9ea0bc6283b6}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device, unsigned mask)
 \begin{DoxyCompactList}\small\item\em Abilita gli interrupt per i singoli pin del device. \end{DoxyCompactList}\item 
-static void \hyperlink{group___linux-_driver_ga57efe4a8be5e162cfd2e98f61d195087}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable} (void $\ast$base\+Address, unsigned mask)
+void \hyperlink{group___linux-_driver_gad600864a578b08a526f8955d3e9f6ca0}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device, unsigned mask)
 \begin{DoxyCompactList}\small\item\em Disabilita gli interrupt per i singoli pin del device. \end{DoxyCompactList}\item 
-static unsigned \hyperlink{group___linux-_driver_ga6019e1ca45d7a093e1e7fc546b16f773}{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt} (void $\ast$base\+Address)
+unsigned \hyperlink{group___linux-_driver_ga3c78c03314722cfa7f32503ede4c29c4}{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
 \begin{DoxyCompactList}\small\item\em Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;. \end{DoxyCompactList}\item 
-static void \hyperlink{group___linux-_driver_ga105156c3db48f9dd40300218e7d8e144}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack} (void $\ast$base\+Address, unsigned mask)
+void \hyperlink{group___linux-_driver_ga3c0591dacf65607a7e31a0bf9c9011ae}{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack} (\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device, unsigned mask)
 \begin{DoxyCompactList}\small\item\em Invia al device notifica di servizio di un interrupt;. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variabili}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$ \hyperlink{group___linux-_driver_gae370dfc26b06b6cc24a7bcc152f4969e}{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr} = N\+U\+L\+L
-\begin{DoxyCompactList}\small\item\em Puntatore a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. \end{DoxyCompactList}\item 
-static dev\+\_\+t \hyperlink{group___linux-_driver_ga434e034e4625b1949f0c626823870a39}{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number}
-\begin{DoxyCompactList}\small\item\em Major e minor number per il device driver. \end{DoxyCompactList}\item 
+static \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$ \hyperlink{group___linux-_driver_ga1deed297d5c8afeb9703965d37d3be5b}{device\+\_\+list} = N\+U\+L\+L
+\begin{DoxyCompactList}\small\item\em Array di puntatori a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. \end{DoxyCompactList}\item 
 static struct class $\ast$ \hyperlink{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}{my\+G\+P\+I\+O\+K\+\_\+class} = N\+U\+L\+L
-\item 
-static struct device $\ast$ \hyperlink{group___linux-_driver_ga2d345c792760e3103059b6b6e0bfdaee}{my\+G\+P\+I\+O\+K\+\_\+device} = N\+U\+L\+L
-\item 
-static struct of\+\_\+device\+\_\+id \hyperlink{group___linux-_driver_ga91f28437e0a553effa546d16fa44f03a}{my\+G\+P\+I\+Ok\+\_\+match} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Classe del device Ai device-\/drivers viene associata una classe ed un device-\/name. Per creare ed associare una classe ad un device driver si puo' usare la seguente. \end{DoxyCompactList}\item 
+static struct of\+\_\+device\+\_\+id \hyperlink{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{my\+G\+P\+I\+O\+K\+\_\+match} \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em Identifica il device all'interno del device tree. \end{DoxyCompactList}\item 
 static struct platform\+\_\+driver \hyperlink{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{my\+G\+P\+I\+O\+K\+\_\+driver}
 \begin{DoxyCompactList}\small\item\em Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. \end{DoxyCompactList}\item 
-static struct file\+\_\+operations \hyperlink{group___linux-_driver_ga9f31111fdb3b4a5944e18d45045e0f01}{my\+G\+P\+I\+O\+\_\+fops}
+static struct file\+\_\+operations \hyperlink{group___linux-_driver_gad1963bc01fffdbb315a408a9210cbafc}{my\+G\+P\+I\+O\+K\+\_\+fops}
 \begin{DoxyCompactList}\small\item\em mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -146,7 +165,7 @@ Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme
 \end{DoxyCode}
 
 
-La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro module\+\_\+platform\+\_\+driver(), la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.
+La definizione di quali funzioni probe() e remove() chiamare quando viene caricato un driver viene effettuato attraverso la seguente struttura e la chiamata alla macro \hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver()}, la quale prende in input la struttura seguente ed implementa, al posto nostro, le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel.
 
 
 \begin{DoxyCode}
@@ -158,7 +177,7 @@ La definizione di quali funzioni probe() e remove() chiamare quando viene carica
     \},
 \};
 
-module\_platform\_driver(sample\_pldriver);
+\hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\_platform\_driver}(sample\_pldriver);
 \end{DoxyCode}
 
 
@@ -175,11 +194,11 @@ Usando la struttura
         \{\},
 \};
 
-MODULE\_DEVICE\_TABLE(of, device\_match);
+\hyperlink{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}{MODULE\_DEVICE\_TABLE}(of, device\_match);
 \end{DoxyCode}
 
 
-si identifica un particolare device. La macro M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E() viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform\+\_\+driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.
+si identifica un particolare device. La macro \hyperlink{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E()} viene usata per inserire una nuova entry nella tabella accennata precedentemente. Alla struttura platform\+\_\+driver possono essere aggiunte anche queste informazioni, per cui essa si presentera' come riportato di seguito.
 
 
 \begin{DoxyCode}
@@ -196,6 +215,13 @@ si identifica un particolare device. La macro M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I
  
 
 \subsection{Documentazione delle definizioni}
+\hypertarget{group___linux-_driver_ga4fa7cb23649a4090e79e2610b7ba0a93}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E@{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E}}
+\index{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E@{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+R\+I\+V\+E\+R\+\_\+\+F\+N\+A\+M\+E~\char`\"{}my\+G\+P\+I\+O\+K\%d\char`\"{}}}\label{group___linux-_driver_ga4fa7cb23649a4090e79e2610b7ba0a93}
+
+
+Nome del file creato in /dev/ per ciascuno dei device. 
+
 \hypertarget{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E@{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}}
 \index{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E@{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}!Linux-\/\+Driver@{Linux-\/\+Driver}}
 \subsubsection[{D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E~\char`\"{}my\+G\+P\+I\+O\+K\char`\"{}}}\label{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}
@@ -205,316 +231,140 @@ Nome identificativo del device-\/driver. D\+E\+V\+E corrispondere al valore del 
 
 \hypertarget{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S@{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}}
 \index{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S@{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S~1}}\label{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}
+\subsubsection[{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S~15}}\label{group___linux-_driver_gad32bf20eb64878cb958ca6ac9c96c21d}
 
 
-Numero di minor-\/number richiesti dal driver, corrispondera' al numero massimo di device gestibili. 
+Numero massimo di device gestibili. 
 
-\hypertarget{group___linux-_driver_ga0da2526ca3cd1a94ebcecf96778ea2e5}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+G\+I\+E\+S\+\_\+\+O\+F\+F\+S\+E\+T~0x0\+C\+U}}\label{group___linux-_driver_ga0da2526ca3cd1a94ebcecf96778ea2e5}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}gies\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_gac72408c288009c213c0231973b3fe761}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+I\+A\+C\+K\+\_\+\+O\+F\+F\+S\+E\+T~0x18\+U}}\label{group___linux-_driver_gac72408c288009c213c0231973b3fe761}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}iack\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_ga37ee502d1ba364dfde9261c4f7a537a6}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+I\+R\+Q\+\_\+\+O\+F\+F\+S\+E\+T~0x14\+U}}\label{group___linux-_driver_ga37ee502d1ba364dfde9261c4f7a537a6}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}irq\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_ga543e17293942b7cf7936a5e095ddc7ef}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+M\+O\+D\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x00\+U}}\label{group___linux-_driver_ga543e17293942b7cf7936a5e095ddc7ef}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_ga2ed7646e6f910f5803477e51b7fe26e3}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+P\+I\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x10\+U}}\label{group___linux-_driver_ga2ed7646e6f910f5803477e51b7fe26e3}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}pie\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_gabdb25f3ecdfbf053f4ca207930a56599}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T~0x08\+U}}\label{group___linux-_driver_gabdb25f3ecdfbf053f4ca207930a56599}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}read\char`\"{} per il device my\+G\+P\+I\+O. 
-
-\hypertarget{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T@{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}}
+In realta', il numero di device gestibili e' virtualmente illimitato. Il fattore limitante e' la memoria disponibile ed in numero di Major-\/minor number disponibili. M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+O\+F\+\_\+\+D\+E\+V\+I\+C\+E\+S incide sulla dimensione della struttura dati my\+G\+P\+I\+Ok\+\_\+list\+\_\+t che mantiene i riferimenti alle strutture di controllo dei diversi device. \hypertarget{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T@{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}}
 \index{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T@{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+U\+S\+E\+D\+\_\+\+I\+N\+T~0x\+F\+F\+F\+F\+F\+F\+F\+F\+U}}\label{group___linux-_driver_ga78d3a23bb3381a43eaba8bbf8b1cc750}
 
 
 Maschea di abilitazione degli interrupt per i singoli pin. 
 
-\hypertarget{group___linux-_driver_gac165a5d828f3df41e78bb02d4ef38327}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+K\+\_\+\+W\+R\+I\+T\+E\+\_\+\+O\+F\+F\+S\+E\+T~0x04\+U}}\label{group___linux-_driver_gac165a5d828f3df41e78bb02d4ef38327}
-
-
-Offset, rispetto all'indirizzo base, del registro \char`\"{}write\char`\"{} per il device my\+G\+P\+I\+O. 
-
 
 
 \subsection{Documentazione delle funzioni}
-\hypertarget{group___linux-_driver_ga941f5d329dffbf6e45cecd70bbc72b63}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}static void my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable (
+\hypertarget{group___linux-_driver_ga1681c4acdb2692baf523dbf58f940399}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S@{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S@{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+A\+L\+I\+A\+S (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address}
+\item[{{\bf D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E}}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga941f5d329dffbf6e45cecd70bbc72b63}
+)}}\label{group___linux-_driver_ga1681c4acdb2692baf523dbf58f940399}
+\hypertarget{group___linux-_driver_gaa528ef168ff30340d38c46a12fce906b}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R@{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R@{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+A\+U\+T\+H\+O\+R (
+\begin{DoxyParamCaption}
+\item[{\char`\"{}Salvatore Barone $<$salvator.\+barone@gmail.\+com$>$\char`\"{}}]{}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gaa528ef168ff30340d38c46a12fce906b}
+\hypertarget{group___linux-_driver_ga1a0de0abbfec8f65abc50ccd3a549a4d}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N (
+\begin{DoxyParamCaption}
+\item[{\char`\"{}my\+G\+P\+I\+O device-\/driver in kernel mode\char`\"{}}]{}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga1a0de0abbfec8f65abc50ccd3a549a4d}
+\hypertarget{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E@{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+T\+A\+B\+L\+E (
+\begin{DoxyParamCaption}
+\item[{of}]{, }
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+match}}]{}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gaf33e020610cd80a1cfa2ed79b512b841}
 
 
-Disabilita gli interrupt globali;. 
+Inserisce una nuova entry nella tabella delle corrispondenze device -\/ driver. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
+\mbox{\tt in,out}  & {\em of} & riferimento alla tabella \\
+\hline
+\mbox{\tt in}  & {\em my\+G\+P\+I\+O\+K\+\_\+match} & struttura of\+\_\+device\+\_\+id \\
 \hline
 \end{DoxyParams}
-\hypertarget{group___linux-_driver_gabd22e9dc7675ba815f1dd8840b39b2bf}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}static void my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable (
+\hypertarget{group___linux-_driver_gad94b36675e7eb067ea3ce6ff9e244a44}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E@{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+L\+I\+C\+E\+N\+S\+E (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address}
+\item[{\char`\"{}G\+P\+L\char`\"{}}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gabd22e9dc7675ba815f1dd8840b39b2bf}
+)}}\label{group___linux-_driver_gad94b36675e7eb067ea3ce6ff9e244a44}
+\hypertarget{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}}
+\index{module\+\_\+platform\+\_\+driver@{module\+\_\+platform\+\_\+driver}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{module\+\_\+platform\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}module\+\_\+platform\+\_\+driver (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+driver}}]{}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}
 
 
-Abilita gli interrupt globali;. 
+la macro \hyperlink{group___linux-_driver_ga61e890be90fe5582db8048893ca0ebbf}{module\+\_\+platform\+\_\+driver()} prende in input la struttura platform\+\_\+driver ed implementa le funzioni module\+\_\+init() e module\+\_\+close() standard, chiamate quando il modulo viene caricato o rimosso dal kernel. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
+\mbox{\tt in}  & {\em my\+G\+P\+I\+O\+K\+\_\+driver} & struttura platform\+\_\+driver associata al driver \\
 \hline
 \end{DoxyParams}
-\hypertarget{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler@{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}}
-\index{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler@{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static irqreturn\+\_\+t my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler (
+\hypertarget{group___linux-_driver_ga4d0a47b4ff404d7ced2610438ec9802e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}M\+O\+D\+U\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N (
 \begin{DoxyParamCaption}
-\item[{int}]{irq, }
-\item[{struct pt\+\_\+regs $\ast$}]{regs}
+\item[{\char`\"{}3.\+2\char`\"{}}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}
-
-
-Interrupt-\/handler. 
-
-
-\begin{DoxyParams}{Parametri}
-{\em irq} & \\
-\hline
-{\em regs} & \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valori di ritorno}
-{\em I\+R\+Q\+\_\+\+H\+A\+N\+D\+L\+E\+D} & dopo aver servito l'interruzione\\
-\hline
-\end{DoxyRetVals}
-Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica. Viene registrata dalla funzione \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()} affinche' venga richiamata al manifestarsi di un interrupt sulla linea cui e' connesso il device \subparagraph*{Disabilitazione delle interruzioni della periferica}
-
-Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati. Se si tratta di un G\+P\+I\+O Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal secondo canale. Se, invece, si tratta di un device G\+P\+I\+O custom my\+G\+P\+I\+O, vengono disabilitati solo gli interrupt globali.
-
-\subparagraph*{Setting del valore del flag \char`\"{}interrupt occurred\char`\"{}}
-
-Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag \char`\"{}interrupt occurred\char`\"{}, in modo che i processi in attesa possano essere risvegliati in modo sicuro. Per prevenire race condition, tale operazione viene effettuata mutua esclusione. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
-\begin{DoxyCode}
-1 void spin\_lock\_irqsave(spinlock\_t *lock, unsigned long flags);
-\end{DoxyCode}
- la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi ripristinarlo quando lo spinlock viene rilasciato, usando 
-\begin{DoxyCode}
-1 void spin\_unlock\_irqrestore(spinlock\_t *lock, unsigned long flags);
-\end{DoxyCode}
-
-
-\subparagraph*{Incremento del numero totale di interrupt}
-
-Dopo aver settato il flag, viene incrementato il valore degli interrupt totali. Anche questa operazione viene effettuata in mutua esclusione.
-
-\subparagraph*{Wakeup dei processi sleeping}
-
-La I\+S\+R deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che un particolare evento si manifestasse. La funzione 
-\begin{DoxyCode}
-1 void wake\_up\_interruptible(wait\_queue\_head\_t *queue);
-\end{DoxyCode}
- risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno effettuato una chiamata a wait\+\_\+event\+\_\+interruptible()). Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-\/condition.\hypertarget{group___linux-_driver_ga66e7f726b72320a272b633ecbaecefff}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}}
-\index{my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+llseek}]{\setlength{\rightskip}{0pt plus 5cm}static loff\+\_\+t my\+G\+P\+I\+O\+K\+\_\+llseek (
+)}}\label{group___linux-_driver_ga4d0a47b4ff404d7ced2610438ec9802e}
+\hypertarget{group___linux-_driver_ga24255b79dd8549aa655cf28c1f9a65d5}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Destroy@{my\+G\+P\+I\+O\+K\+\_\+\+Destroy}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Destroy@{my\+G\+P\+I\+O\+K\+\_\+\+Destroy}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Destroy (
 \begin{DoxyParamCaption}
-\item[{struct file $\ast$}]{file\+\_\+ptr, }
-\item[{loff\+\_\+t}]{off, }
-\item[{int}]{whence}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga66e7f726b72320a272b633ecbaecefff}
+)}}\label{group___linux-_driver_ga24255b79dd8549aa655cf28c1f9a65d5}
 
 
-Implementa le system-\/call lseek() e llseek(). 
-
-\begin{DoxyWarning}{Avvertimento}
-L'implementazione di read() e write() non sposta la testina di lettura/scrittura!
-\end{DoxyWarning}
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in,out}  & {\em file\+\_\+ptr} & \\
-\hline
-\mbox{\tt in}  & {\em off} & \\
-\hline
-\mbox{\tt in}  & {\em whence} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-Nuova posizione della \char`\"{}testina\char`\"{} di lettura/scrittura 
-\end{DoxyReturn}
-\hypertarget{group___linux-_driver_gad013759c18fbf6ea96005b9b3bfa5b4e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}}
-\index{my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+open}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+open (
-\begin{DoxyParamCaption}
-\item[{struct inode $\ast$}]{inode, }
-\item[{struct file $\ast$}]{file\+\_\+ptr}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gad013759c18fbf6ea96005b9b3bfa5b4e}
-
-
-Invocata all'apertura del file corrispondente al device. 
+Deinizializza un device, rimuovendo le strutture kernel allocate per il suo funzionamento. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em inode} & \\
-\hline
-\mbox{\tt in,out}  & {\em file} & \\
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, specifica il particolare device su cui agire \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{Valori di ritorno}
-{\em 0} & se non si verifica nessun errore\\
-\hline
-\end{DoxyRetVals}
-\subparagraph*{Il metodo open()}
-
-Il metodo open di un device driver viene fornito per effettuare ogni inizializzazione necessaria ad operazioni successive. Effettua le seguenti operazioni\+:
-\begin{DoxyItemize}
-\item verifica che non si siano manifestati errori;
-\item inizializza il device
-\item aggiorna il puntatore f\+\_\+op, se necessario;
-\item alloca e popola ogni struttura dati necessaria, ponendola successivamente nel campo private\+\_\+data della struttura dati file.
-\end{DoxyItemize}
-
-In primo luogo e' necessario identificare il device che sta per essere aperto. Tenendo presente che il prototipo di qualunque metodo open e'
-
-
-\begin{DoxyCode}
-1 int (*open)(struct inode *inode, struct file *filp);
-\end{DoxyCode}
- \paragraph*{Identificare il particolare device associato al file}
-
-Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i\+\_\+cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container\+\_\+if() definita in $<$linux/kernel.\+h$>$. 
-\begin{DoxyCode}
-1 container\_of(pointer, container\_type, container\_field);
-\end{DoxyCode}
- La macro prende in ingresso un puntatore ad un campo di tipo container\+\_\+field, di una struttura container\+\_\+type, restituendo il puntatore alla struttura che la contiene.\hypertarget{group___linux-_driver_ga6019e1ca45d7a093e1e7fc546b16f773}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt (
+\hypertarget{group___linux-_driver_ga565ffd4946b330b29e1166dfc9851b11}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address@{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address@{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ my\+G\+P\+I\+O\+K\+\_\+\+Get\+Device\+Address (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga6019e1ca45d7a093e1e7fc546b16f773}
+)}}\label{group___linux-_driver_ga565ffd4946b330b29e1166dfc9851b11}
 
 
-Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;. 
+Restituisce l'indirizzo virtuale di memoria cui e' mappato un device. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Restituisce}
-maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti; 
-\end{DoxyReturn}
-\hypertarget{group___linux-_driver_ga105156c3db48f9dd40300218e7d8e144}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}]{\setlength{\rightskip}{0pt plus 5cm}static void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack (
+\hypertarget{group___linux-_driver_gae428f50a6da69e3cf89348b8ba9401b1}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask@{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask@{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask}]{\setlength{\rightskip}{0pt plus 5cm}unsigned my\+G\+P\+I\+O\+K\+\_\+\+Get\+Poll\+Mask (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address, }
-\item[{unsigned}]{mask}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga105156c3db48f9dd40300218e7d8e144}
-
-
-Invia al device notifica di servizio di un interrupt;. 
-
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
-\hline
-\mbox{\tt in}  & {\em mask} & mask maschera di selezione degli interrupt da notificare; quelli non selezionati non vengono notificati; \\
-\hline
-\end{DoxyParams}
-\hypertarget{group___linux-_driver_ga57efe4a8be5e162cfd2e98f61d195087}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}static void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address, }
-\item[{unsigned}]{mask}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga57efe4a8be5e162cfd2e98f61d195087}
-
-
-Disabilita gli interrupt per i singoli pin del device. 
-
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
-\hline
-\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da disabilitare; quelli non selezionati non vengono disabilitati; \\
-\hline
-\end{DoxyParams}
-\hypertarget{group___linux-_driver_ga15ddb23be51d3e2dbb00278af7e9ce31}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}static void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{base\+Address, }
-\item[{unsigned}]{mask}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga15ddb23be51d3e2dbb00278af7e9ce31}
-
-
-Abilita gli interrupt per i singoli pin del device. 
-
-
-\begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em base\+Address} & indirizzo virtuale del device \\
-\hline
-\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da abilitare; quelli non selezionati non vengono abilitati; \\
-\hline
-\end{DoxyParams}
-\hypertarget{group___linux-_driver_gaba935e8a8215c2ebce9a7147fd4f5147}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}}
-\index{my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+poll}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned int my\+G\+P\+I\+O\+K\+\_\+poll (
-\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device, }
 \item[{struct file $\ast$}]{file\+\_\+ptr, }
 \item[{struct poll\+\_\+table\+\_\+struct $\ast$}]{wait}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gaba935e8a8215c2ebce9a7147fd4f5147}
+)}}\label{group___linux-_driver_gae428f50a6da69e3cf89348b8ba9401b1}
 
 
 Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. 
 
 
 \begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
+\hline
 \mbox{\tt in,out}  & {\em file} & \\
 \hline
 \mbox{\tt in,out}  & {\em wait} & \\
@@ -523,36 +373,107 @@ Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti.
 \begin{DoxyReturn}{Restituisce}
 restituisce una maschera di bit che indica se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
 \end{DoxyReturn}
-Questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno. \hypertarget{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}}
-\index{my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+probe}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+probe (
+Questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno. \hypertarget{group___linux-_driver_gad9275880dc4941d3d0ae93c45bf4cf79}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Disable (
 \begin{DoxyParamCaption}
-\item[{struct platform\+\_\+device $\ast$}]{op}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}
+)}}\label{group___linux-_driver_gad9275880dc4941d3d0ae93c45bf4cf79}
 
 
-Viene chiamata quando il modulo viene inserito. 
+Disabilita gli interrupt globali;. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in,out}  & {\em op} & \\
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___linux-_driver_gaf8da20aabceb02b9ea8132228c973368}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Global\+Interrupt\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gaf8da20aabceb02b9ea8132228c973368}
+
+
+Abilita gli interrupt globali;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___linux-_driver_ga5a7df448de9de94620ce1baf7ec388c9}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total@{my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total@{my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Increment\+Total (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga5a7df448de9de94620ce1baf7ec388c9}
+
+
+Incrementa il contatore degli interrupt per un particolare device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\subparagraph*{Incremento del numero totale di interrupt}
+
+Dopo aver settato il flag, viene incrementato il valore degli interrupt totali. Anche questa operazione viene effettuata in mutua esclusione. \hypertarget{group___linux-_driver_ga64afb2eff1f990814d792349842c522d}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Init@{my\+G\+P\+I\+O\+K\+\_\+\+Init}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Init@{my\+G\+P\+I\+O\+K\+\_\+\+Init}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Init}]{\setlength{\rightskip}{0pt plus 5cm}int my\+G\+P\+I\+O\+K\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{my\+G\+P\+I\+O\+K\+\_\+device, }
+\item[{struct module $\ast$}]{owner, }
+\item[{struct platform\+\_\+device $\ast$}]{op, }
+\item[{struct class $\ast$}]{class, }
+\item[{const char $\ast$}]{driver\+\_\+name, }
+\item[{const char $\ast$}]{device\+\_\+name, }
+\item[{uint32\+\_\+t}]{serial, }
+\item[{struct file\+\_\+operations $\ast$}]{f\+\_\+ops, }
+\item[{irq\+\_\+handler\+\_\+t}]{irq\+\_\+handler, }
+\item[{uint32\+\_\+t}]{irq\+\_\+mask}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga64afb2eff1f990814d792349842c522d}
+
+
+Inizializza una struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} e configura il device corrispondente. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em my\+G\+P\+I\+O\+K\+\_\+device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
+\hline
+\mbox{\tt in}  & {\em owner} & puntatore a struttura struct module, proprietario del device (T\+H\+I\+S\+\_\+\+M\+O\+D\+U\+L\+E) \\
+\hline
+\mbox{\tt in}  & {\em op} & puntatore a struct platform\+\_\+device, costituito dal parametro \char`\"{}op\char`\"{} con cui viene invocata probe() o la remove() \\
+\hline
+\mbox{\tt in}  & {\em class} & puntatore a struct class, classe del device, deve essere stata precedentemente creata con class\+\_\+create() \\
+\hline
+\mbox{\tt in}  & {\em driver\+\_\+name} & nome del driver \\
+\hline
+\mbox{\tt in}  & {\em device\+\_\+name} & nome del device \\
+\hline
+\mbox{\tt in}  & {\em serial} & numero seriale del device \\
+\hline
+\mbox{\tt in}  & {\em f\+\_\+ops} & puntatore a struttura struct file\+\_\+operations, specifica le funzioni che agiscono sul device \\
+\hline
+\mbox{\tt in}  & {\em irq\+\_\+handler} & puntatore irq\+\_\+handler\+\_\+t alla funzione che gestira' gli interrupt generati dal device \\
+\hline
+\mbox{\tt in}  & {\em irq\+\_\+mask} & maschera delle interruzioni del device\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em 0} & nel caso in cui non si sia verificato nessun errore; \\
-\hline
-{\em -\/\+E\+N\+O\+M\+E\+M} & nel caso in cui non sia possibile allocare memoria; \\
-\hline
-{\em $<$0} & per altri errori\\
+{\em 0} & se non si e' verificato nessun errore \\
 \hline
 \end{DoxyRetVals}
-\paragraph*{Inizializzazione del driver}
+\subparagraph*{Major-\/number e Minor-\/number}
 
-Il device G\+P\+I\+O viene gestito come un character-\/device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere $<$linux/cdev.\+h$>$, che definisce tale struttura e le relative funzioni. \subparagraph*{Major-\/number e Minor-\/number}
-
-Ai device drivers sono associati un major-\/number ed un minor-\/number. Il major-\/number viene usato dal kernel per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver. Il driver scritto per G\+P\+I\+O non usera' minor-\/number. La registrazione di un device driver puo' essere effettuata chiamando {\bfseries alloc\+\_\+chrdev\+\_\+region()}, la quale alloca un char-\/device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori, 0 altrimenti. 
+Ai device drivers sono associati un major-\/number ed un minor-\/number. Il major-\/number viene usato dal kernel per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver. Questo driver, cosi' come molti altri, usa il Major ed il minor number per distinguere le diverse istanze di device my\+G\+P\+I\+O che usano il device-\/driver my\+G\+P\+I\+O\+K. La registrazione di un device driver puo' essere effettuata chiamando {\bfseries alloc\+\_\+chrdev\+\_\+region()}, la quale alloca un char-\/device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori, 0 altrimenti. 
 \begin{DoxyCode}
 1 int alloc\_chrdev\_region (dev\_t * dev, unsigned baseminor, unsigned count, const char *name);
 \end{DoxyCode}
@@ -561,26 +482,12 @@ Ai device drivers sono associati un major-\/number ed un minor-\/number. Il majo
 \item dev\+: major e minor number
 \item baseminor\+: primo dei minor number richiesti
 \item count\+: numero di minornumber richiesti
-\item name\+: nome del device driver
-\end{DoxyItemize}
-
-\subparagraph*{Device Class}
-
-Ai device-\/drivers viene associata una classe ed un device-\/name. Per creare ed associare una classe ad un device driver si puo' usare la seguente. 
-\begin{DoxyCode}
-1 struct class * class\_create(struct module * owner, const char * name);
-\end{DoxyCode}
-
-\begin{DoxyItemize}
-\item owner\+: puntatore al modulo che \char`\"{}possiede\char`\"{} la classe, T\+H\+I\+S\+\_\+\+M\+O\+D\+U\+L\+E
-\item name\+: puntatore alla stringa identificativa (il nome) del device driver, D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E
+\item name\+: nome del device
 \end{DoxyItemize}
 
 \subparagraph*{Operatori}
 
-Essendo un device \char`\"{}visto\char`\"{} come un file, ogni device driver deve implementare tutte le system-\/call previste per l'interfacciamento con un file. La corrispondenza tra la system-\/call e la funzione fornita dal driver viene stabilita attraverso la struttura file\+\_\+operations. La struttura dati file\+\_\+operations, definita in $<$linux/fs.\+h$>$ mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file.
-
-
+Essendo un device \char`\"{}visto\char`\"{} come un file, ogni device driver deve implementare tutte le system-\/call previste per l'interfacciamento con un file. La corrispondenza tra la system-\/call e la funzione fornita dal driver viene stabilita attraverso la struttura file\+\_\+operations. La struttura dati file\+\_\+operations, definita in $<$linux/fs.\+h$>$ mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file. 
 \begin{DoxyCode}
 1 static struct file\_operations myGPIO\_fops = \{
 2     .owner      = THIS\_MODULE,
@@ -592,9 +499,7 @@ Essendo un device \char`\"{}visto\char`\"{} come un file, ogni device driver dev
 8     .release    = driver\_release
 9 \};
 \end{DoxyCode}
-
-
-Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno specifico \char`\"{}operatore\char`\"{} su file, oppure impostata a N\+U\+L\+L se l'operatore non e' supportato. L'esatto comportamento del kernel, quando uno dei puntatori e' N\+U\+L\+L, varia da funzione a funzione. La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente necessari.
+ Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno specifico \char`\"{}operatore\char`\"{} su file, oppure impostata a N\+U\+L\+L se l'operatore non e' supportato. L'esatto comportamento del kernel, quando uno dei puntatori e' N\+U\+L\+L, varia da funzione a funzione. La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente necessari.
 
 
 \begin{DoxyItemize}
@@ -623,21 +528,6 @@ L'inizializzazione di un device a caratteri passa anche attraverso la definizion
 \item fops\+: puntatore a struttura file\+\_\+operation con cui inizializzare il device.
 \end{DoxyItemize}
 
-\subparagraph*{Aggiunta del device}
-
-Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando 
-\begin{DoxyCode}
-1 int cdev\_add (struct cdev *p, dev\_t dev, unsigned count);
-\end{DoxyCode}
- La quale accetta come parametri
-\begin{DoxyItemize}
-\item p\+: puntatore a struttura cdev structure per il device
-\item dev\+: device number (precedentemente inizializzato usando la funzione {\itshape alloc\+\_\+chrdev\+\_\+region()})
-\item count\+: numero di minor-\/numbers richiesti per il device
-\end{DoxyItemize}
-
-La funzione restituisce un numero negativo in caso di errore.
-
 \subparagraph*{Creazione del device}
 
 Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione puo' essere effettuata chiamando 
@@ -654,6 +544,21 @@ Il passo successivo e' la registrazione del device e la sua aggiunta al filesyst
 \end{DoxyItemize}
 
 La funzione pu' essere usata solo sulla classe dei device a caratteri. Crea un device all'interno del filesystem, associandogli il major number preventivamente inizializzato. La funzione restituisce il puntatore alla struttura device creata all'interno del filesystem. Si noti che il puntatre alla struttura classes D\+E\+V\+E essere stato precedentemente creato attraverso una chiamata alla funzione {\itshape class\+\_\+create()}.
+
+\subparagraph*{Aggiunta del device}
+
+Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando 
+\begin{DoxyCode}
+1 int cdev\_add (struct cdev *p, dev\_t dev, unsigned count);
+\end{DoxyCode}
+ La quale accetta come parametri
+\begin{DoxyItemize}
+\item p\+: puntatore a struttura cdev structure per il device
+\item dev\+: device number (precedentemente inizializzato usando la funzione {\itshape alloc\+\_\+chrdev\+\_\+region()})
+\item count\+: numero di minor-\/numbers richiesti per il device
+\end{DoxyItemize}
+
+La funzione restituisce un numero negativo in caso di errore.
 
 \subparagraph*{Accedere al segmento di memoria a cui la periferica e' mappata}
 
@@ -734,7 +639,255 @@ I semafori sono uno strumento potentissimo per per l'implementazione di sezioni 
 
 \subparagraph*{Abilitazione degli interrupt del device}
 
-A seconda del valore C\+F\+L\+A\+G\+S\+\_\+my\+G\+P\+I\+O\+K.\+o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del G\+P\+I\+O Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device G\+P\+I\+O custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.\hypertarget{group___linux-_driver_ga90ac339df9c02ae5f11a2a7727adc923}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}}
+A seconda del valore C\+F\+L\+A\+G\+S\+\_\+my\+G\+P\+I\+O\+K.\+o (si veda il Makefile a corredo), vengono abilitati gli interrupt della periferica. Se si tratta del G\+P\+I\+O Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale due. Se si tratta del device G\+P\+I\+O custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo gli interrupt globali.\hypertarget{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler@{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}}
+\index{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler@{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static irqreturn\+\_\+t my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{int}]{irq, }
+\item[{struct pt\+\_\+regs $\ast$}]{regs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}
+
+
+Interrupt-\/handler. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em irq} & \\
+\hline
+{\em regs} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em I\+R\+Q\+\_\+\+H\+A\+N\+D\+L\+E\+D} & dopo aver servito l'interruzione\\
+\hline
+\end{DoxyRetVals}
+Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica. Viene registrata dalla funzione \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()} affinche' venga richiamata al manifestarsi di un interrupt sulla linea cui e' connesso il device \subparagraph*{Disabilitazione delle interruzioni della periferica}
+
+Prima di servire l'interruzione, gli interrupt della periferica vengono disabilitati. Se si tratta di un G\+P\+I\+O Xilinx, vengono disabilitati sia gli interrupt globali che quelli generati dal secondo canale. Se, invece, si tratta di un device G\+P\+I\+O custom my\+G\+P\+I\+O, vengono disabilitati solo gli interrupt globali.
+
+\subparagraph*{Setting del valore del flag \char`\"{}interrupt occurred\char`\"{}}
+
+Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag \char`\"{}interrupt occurred\char`\"{}, in modo che i processi in attesa possano essere risvegliati in modo sicuro. Per prevenire race condition, tale operazione viene effettuata mutua esclusione.
+
+\subparagraph*{Incremento del numero totale di interrupt}
+
+Dopo aver settato il flag, viene incrementato il valore degli interrupt totali. Anche questa operazione viene effettuata in mutua esclusione.
+
+\subparagraph*{Wakeup dei processi sleeping}
+
+La I\+S\+R deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che un particolare evento si manifestasse. Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-\/condition.\hypertarget{group___linux-_driver_ga66e7f726b72320a272b633ecbaecefff}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}}
+\index{my\+G\+P\+I\+O\+K\+\_\+llseek@{my\+G\+P\+I\+O\+K\+\_\+llseek}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+llseek}]{\setlength{\rightskip}{0pt plus 5cm}static loff\+\_\+t my\+G\+P\+I\+O\+K\+\_\+llseek (
+\begin{DoxyParamCaption}
+\item[{struct file $\ast$}]{file\+\_\+ptr, }
+\item[{loff\+\_\+t}]{off, }
+\item[{int}]{whence}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga66e7f726b72320a272b633ecbaecefff}
+
+
+Implementa le system-\/call lseek() e llseek(). 
+
+\begin{DoxyWarning}{Avvertimento}
+L'implementazione di read() e write() non sposta la testina di lettura/scrittura!
+\end{DoxyWarning}
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em file\+\_\+ptr} & \\
+\hline
+\mbox{\tt in}  & {\em off} & \\
+\hline
+\mbox{\tt in}  & {\em whence} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Nuova posizione della \char`\"{}testina\char`\"{} di lettura/scrittura 
+\end{DoxyReturn}
+\hypertarget{group___linux-_driver_gad013759c18fbf6ea96005b9b3bfa5b4e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}}
+\index{my\+G\+P\+I\+O\+K\+\_\+open@{my\+G\+P\+I\+O\+K\+\_\+open}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+open}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+open (
+\begin{DoxyParamCaption}
+\item[{struct inode $\ast$}]{inode, }
+\item[{struct file $\ast$}]{file\+\_\+ptr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gad013759c18fbf6ea96005b9b3bfa5b4e}
+
+
+Invocata all'apertura del file corrispondente al device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em inode} & \\
+\hline
+\mbox{\tt in,out}  & {\em file} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & se non si verifica nessun errore\\
+\hline
+\end{DoxyRetVals}
+\subparagraph*{Il metodo open()}
+
+Il metodo open di un device driver viene fornito per effettuare ogni inizializzazione necessaria ad operazioni successive. Effettua le seguenti operazioni\+:
+\begin{DoxyItemize}
+\item verifica che non si siano manifestati errori;
+\item inizializza il device
+\item aggiorna il puntatore f\+\_\+op, se necessario;
+\item alloca e popola ogni struttura dati necessaria, ponendola successivamente nel campo private\+\_\+data della struttura dati file.
+\end{DoxyItemize}
+
+In primo luogo e' necessario identificare il device che sta per essere aperto. Tenendo presente che il prototipo di qualunque metodo open e'
+
+
+\begin{DoxyCode}
+1 int (*open)(struct inode *inode, struct file *filp);
+\end{DoxyCode}
+ \paragraph*{Identificare il particolare device associato al file}
+
+Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i\+\_\+cdev, il quale contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e' che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo caso della struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}. Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la macro container\+\_\+if() definita in $<$linux/kernel.\+h$>$. 
+\begin{DoxyCode}
+1 container\_of(pointer, container\_type, container\_field);
+\end{DoxyCode}
+ La macro prende in ingresso un puntatore ad un campo di tipo container\+\_\+field, di una struttura container\+\_\+type, restituendo il puntatore alla struttura che la contiene. ~\newline
+ Disponendo, in questo caso, della struttura \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, si fa uso di quest'ultima, e delle sue funzioni membro, per risalire al device a partire dal suo major e minor number. Il puntatore al particolare device \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} sara' conservato all'interno del campo private\+\_\+data della struttura file.\hypertarget{group___linux-_driver_ga3c78c03314722cfa7f32503ede4c29c4}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}unsigned my\+G\+P\+I\+O\+K\+\_\+\+Pending\+Pin\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga3c78c03314722cfa7f32503ede4c29c4}
+
+
+Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti; 
+\end{DoxyReturn}
+\hypertarget{group___linux-_driver_ga3c0591dacf65607a7e31a0bf9c9011ae}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Ack (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device, }
+\item[{unsigned}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga3c0591dacf65607a7e31a0bf9c9011ae}
+
+
+Invia al device notifica di servizio di un interrupt;. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\mbox{\tt in}  & {\em mask} & mask maschera di selezione degli interrupt da notificare; quelli non selezionati non vengono notificati; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___linux-_driver_gad600864a578b08a526f8955d3e9f6ca0}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Disable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device, }
+\item[{unsigned}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gad600864a578b08a526f8955d3e9f6ca0}
+
+
+Disabilita gli interrupt per i singoli pin del device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da disabilitare; quelli non selezionati non vengono disabilitati; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___linux-_driver_gac63adbb81dcfa905341a9ea0bc6283b6}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable@{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Pin\+Interrupt\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device, }
+\item[{unsigned}]{mask}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gac63adbb81dcfa905341a9ea0bc6283b6}
+
+
+Abilita gli interrupt per i singoli pin del device. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare \\
+\hline
+\mbox{\tt in}  & {\em mask} & maschera di selezione degli interrupt da abilitare; quelli non selezionati non vengono abilitati; \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___linux-_driver_gaba935e8a8215c2ebce9a7147fd4f5147}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}}
+\index{my\+G\+P\+I\+O\+K\+\_\+poll@{my\+G\+P\+I\+O\+K\+\_\+poll}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+poll}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned int my\+G\+P\+I\+O\+K\+\_\+poll (
+\begin{DoxyParamCaption}
+\item[{struct file $\ast$}]{file\+\_\+ptr, }
+\item[{struct poll\+\_\+table\+\_\+struct $\ast$}]{wait}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gaba935e8a8215c2ebce9a7147fd4f5147}
+
+
+Verifica che le operazioni di lettura/scrittura risultino non-\/bloccanti. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em file} & \\
+\hline
+\mbox{\tt in,out}  & {\em wait} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+restituisce una maschera di bit che indica se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
+\end{DoxyReturn}
+Questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno. \hypertarget{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}}
+\index{my\+G\+P\+I\+O\+K\+\_\+probe@{my\+G\+P\+I\+O\+K\+\_\+probe}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+probe}]{\setlength{\rightskip}{0pt plus 5cm}static int my\+G\+P\+I\+O\+K\+\_\+probe (
+\begin{DoxyParamCaption}
+\item[{struct platform\+\_\+device $\ast$}]{op}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}
+
+
+Viene chiamata quando il modulo viene inserito. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in,out}  & {\em op} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Valori di ritorno}
+{\em 0} & nel caso in cui non si sia verificato nessun errore; \\
+\hline
+{\em -\/\+E\+N\+O\+M\+E\+M} & nel caso in cui non sia possibile allocare memoria; \\
+\hline
+{\em $<$0} & per altri errori\\
+\hline
+\end{DoxyRetVals}
+\paragraph*{Inizializzazione del driver}
+
+Il device my\+G\+P\+I\+O viene gestito come un character-\/device, ossia un device su cui e' possibile leggere e/o scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. Per farlo e' necessario includere $<$linux/cdev.\+h$>$, che definisce tale struttura e le relative funzioni. \subparagraph*{Device Class}
+
+Ai device-\/drivers viene associata una classe ed un device-\/name. Per creare ed associare una classe ad un device driver si puo' usare la seguente. 
+\begin{DoxyCode}
+1 struct class * class\_create(struct module * owner, const char * name);
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item owner\+: puntatore al modulo che \char`\"{}possiede\char`\"{} la classe, T\+H\+I\+S\+\_\+\+M\+O\+D\+U\+L\+E
+\item name\+: puntatore alla stringa identificativa (il nome) del device driver, D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E
+\end{DoxyItemize}\hypertarget{group___linux-_driver_ga90ac339df9c02ae5f11a2a7727adc923}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}}
 \index{my\+G\+P\+I\+O\+K\+\_\+read@{my\+G\+P\+I\+O\+K\+\_\+read}!Linux-\/\+Driver@{Linux-\/\+Driver}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}static ssize\+\_\+t my\+G\+P\+I\+O\+K\+\_\+read (
 \begin{DoxyParamCaption}
@@ -793,16 +946,6 @@ La condizione sulla quale i processi vengono bloccati riguarda il flag \char`\"{
 \subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() bloccanti}
 
 Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata per prevenire race-\/condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
-
-I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
-\begin{DoxyCode}
-1 void spin\_lock(spinlock\_t *lock);
-\end{DoxyCode}
- per rilasciare uno spinlock, invece, verra' usata 
-\begin{DoxyCode}
-1 void spin\_unlock(spinlock\_t *lock);
-\end{DoxyCode}
-
 
 \subparagraph*{Accesso ai registri del device}
 
@@ -893,7 +1036,107 @@ Viene chiamata automaticamente alla rimozione del mosulo.
 {\em 0} & se non si verifica nessun errore\\
 \hline
 \end{DoxyRetVals}
-Dealloca tutta la memoria utilizzata dal driver, de-\/inizializzando il device e disattivando gli interrupt per il device, effettuando tutte le operazioni inverse della funzione \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()}. \hypertarget{group___linux-_driver_ga1eea0f6c86e8966ba9b701da57502aad}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}}
+Dealloca tutta la memoria utilizzata dal driver, de-\/inizializzando il device e disattivando gli interrupt per il device, effettuando tutte le operazioni inverse della funzione \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{my\+G\+P\+I\+O\+K\+\_\+probe()}. \hypertarget{group___linux-_driver_ga6dc0ec06b388522ffc524e5fd14d8b72}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read@{my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read@{my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Reset\+Can\+Read (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_ga6dc0ec06b388522ffc524e5fd14d8b72}
+
+
+Reset del flag \char`\"{}interrupt occurred\char`\"{} (can\+Read) 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\subparagraph*{Reset del flag \char`\"{}interrupt occurred\char`\"{} per read() bloccanti}
+
+Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata per prevenire race-\/condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
+
+I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
+\begin{DoxyCode}
+1 void spin\_lock(spinlock\_t *lock);
+\end{DoxyCode}
+ per rilasciare uno spinlock, invece, verra' usata 
+\begin{DoxyCode}
+1 void spin\_unlock(spinlock\_t *lock);
+\end{DoxyCode}
+ \hypertarget{group___linux-_driver_gad82c1051e6acb335b1b26ab0c459453b}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read@{my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read@{my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Set\+Can\+Read (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gad82c1051e6acb335b1b26ab0c459453b}
+
+
+Set del flag \char`\"{}interrupt occurred\char`\"{} (can\+Read) 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\subparagraph*{Setting del valore del flag \char`\"{}interrupt occurred\char`\"{}}
+
+Dopo aver disabilitato gli interrupt della periferica, occorre settare in modo appropriato il flag \char`\"{}interrupt occurred\char`\"{}, in modo che i processi in attesa possano essere risvegliati in modo sicuro. Per prevenire race condition, tale operazione viene effettuata mutua esclusione. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' \char`\"{}un po'\char`\"{} piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione 
+\begin{DoxyCode}
+1 void spin\_lock\_irqsave(spinlock\_t *lock, unsigned long flags);
+\end{DoxyCode}
+ la quale disabilita gli interrupt sul processore locale prima di acquisire lo spinlock, per poi ripristinarlo quando lo spinlock viene rilasciato, usando 
+\begin{DoxyCode}
+1 void spin\_unlock\_irqrestore(spinlock\_t *lock, unsigned long flags);
+\end{DoxyCode}
+ \hypertarget{group___linux-_driver_gaf1b6f35c097c46361d675a42f122828e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep@{my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep@{my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Test\+Can\+Read\+And\+Sleep (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gaf1b6f35c097c46361d675a42f122828e}
+
+
+Testa la condizione \char`\"{}interrupt occurred\char`\"{}, mettendo in attesa il processo, se necessario. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\subparagraph*{Porre un processo nello stato sleeping}
+
+Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera, per cui essa va nuovamente testata. Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait\+\_\+event(), o una delle sue varianti\+: essa combina la gestione della messa in sleeping del processo ed il check della condizione che il processo si aspetta diventi vera. 
+\begin{DoxyCode}
+1 wait\_event\_interruptible(queue, condition);
+\end{DoxyCode}
+ Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait\+\_\+event\+\_\+interruptible() puo' essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero, indica che il processo e' stato risvegliato da un segnale.
+
+La condizione sulla quale i processi vengono bloccati riguarda il flag \char`\"{}interrupt occurred\char`\"{}. Fin quando questo flag, posto in and con la maschera M\+Y\+G\+P\+I\+O\+K\+\_\+\+S\+R\+E\+A\+D, e' zero, il processo deve restare bloccato, per cui i processi che effettuano read() bloccante restano bloccati finche' int\+\_\+occurred \& M\+Y\+G\+P\+I\+O\+\_\+\+S\+R\+E\+A\+D == 0. Quando tale uguaglianza non sara' piu' valida, perche' il valore di int\+\_\+occurred viene settato dalla funzione \hyperlink{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()}, allora il processo verra' risvegliato. \hypertarget{group___linux-_driver_gae182aa943af08c102a05795ae8526192}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up@{my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up}}
+\index{my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up@{my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up}]{\setlength{\rightskip}{0pt plus 5cm}void my\+G\+P\+I\+O\+K\+\_\+\+Wake\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf my\+G\+P\+I\+O\+K\+\_\+t} $\ast$}]{device}
+\end{DoxyParamCaption}
+)}}\label{group___linux-_driver_gae182aa943af08c102a05795ae8526192}
+
+
+Risveglia i process in attesa sulle code di read e poll. 
+
+
+\begin{DoxyParams}[1]{Parametri}
+\mbox{\tt in}  & {\em device} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che si riferisce al device su cui operare\\
+\hline
+\end{DoxyParams}
+\subparagraph*{Wakeup dei processi sleeping}
+
+La I\+S\+R deve chiamare esplicitamente wakeup() per risvegliare i processi messi in sleeping in attesa che un particolare evento si manifestasse. La funzione 
+\begin{DoxyCode}
+1 void wake\_up\_interruptible(wait\_queue\_head\_t *queue);
+\end{DoxyCode}
+ risveglia tutti i processi posti in una determinata coda (risvegliando solo quelli che, in precedenza, hanno effettuato una chiamata a wait\+\_\+event\+\_\+interruptible()). Se due processi vengono risvegliati contemporaneamente potrebbero originarsi race-\/condition. \hypertarget{group___linux-_driver_ga1eea0f6c86e8966ba9b701da57502aad}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}}
 \index{my\+G\+P\+I\+O\+K\+\_\+write@{my\+G\+P\+I\+O\+K\+\_\+write}!Linux-\/\+Driver@{Linux-\/\+Driver}}
 \subsubsection[{my\+G\+P\+I\+O\+K\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}static ssize\+\_\+t my\+G\+P\+I\+O\+K\+\_\+write (
 \begin{DoxyParamCaption}
@@ -982,9 +1225,50 @@ Per scrivere nella memoria vengono usate le seguenti\+:
 
 
 \subsection{Documentazione delle variabili}
-\hypertarget{group___linux-_driver_ga9f31111fdb3b4a5944e18d45045e0f01}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+\_\+fops@{my\+G\+P\+I\+O\+\_\+fops}}
-\index{my\+G\+P\+I\+O\+\_\+fops@{my\+G\+P\+I\+O\+\_\+fops}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+\_\+fops}]{\setlength{\rightskip}{0pt plus 5cm}struct file\+\_\+operations my\+G\+P\+I\+O\+\_\+fops\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga9f31111fdb3b4a5944e18d45045e0f01}
+\hypertarget{group___linux-_driver_ga1deed297d5c8afeb9703965d37d3be5b}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!device\+\_\+list@{device\+\_\+list}}
+\index{device\+\_\+list@{device\+\_\+list}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{device\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}$\ast$ device\+\_\+list = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga1deed297d5c8afeb9703965d37d3be5b}
+
+
+Array di puntatori a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. 
+
+\hypertarget{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+class@{my\+G\+P\+I\+O\+K\+\_\+class}}
+\index{my\+G\+P\+I\+O\+K\+\_\+class@{my\+G\+P\+I\+O\+K\+\_\+class}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}struct class$\ast$ my\+G\+P\+I\+O\+K\+\_\+class = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}
+
+
+Classe del device Ai device-\/drivers viene associata una classe ed un device-\/name. Per creare ed associare una classe ad un device driver si puo' usare la seguente. 
+
+
+\begin{DoxyCode}
+1 struct class * class\_create(struct module * owner, const char * name);
+\end{DoxyCode}
+ Parametri\+:
+\begin{DoxyItemize}
+\item owner\+: puntatore al modulo che \char`\"{}possiede\char`\"{} la classe, T\+H\+I\+S\+\_\+\+M\+O\+D\+U\+L\+E
+\item name\+: puntatore alla stringa identificativa (il nome) del device driver, D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+M\+E 
+\end{DoxyItemize}\hypertarget{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+driver@{my\+G\+P\+I\+O\+K\+\_\+driver}}
+\index{my\+G\+P\+I\+O\+K\+\_\+driver@{my\+G\+P\+I\+O\+K\+\_\+driver}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}struct platform\+\_\+driver my\+G\+P\+I\+O\+K\+\_\+driver\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}
+{\bfseries Valore iniziale\+:}
+\begin{DoxyCode}
+= \{
+        .probe = \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{myGPIOK\_probe},
+        .remove = \hyperlink{group___linux-_driver_ga59fddfaa36dea357f4bbdfceb0f47f8c}{myGPIOK\_remove},
+        .driver = \{
+                .name = \hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{DRIVER\_NAME},
+                .owner = THIS\_MODULE,
+                .of\_match\_table = \hyperlink{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{myGPIOK\_match},
+        \},
+\}
+\end{DoxyCode}
+
+
+Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. 
+
+\hypertarget{group___linux-_driver_gad1963bc01fffdbb315a408a9210cbafc}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+fops@{my\+G\+P\+I\+O\+K\+\_\+fops}}
+\index{my\+G\+P\+I\+O\+K\+\_\+fops@{my\+G\+P\+I\+O\+K\+\_\+fops}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+fops}]{\setlength{\rightskip}{0pt plus 5cm}struct file\+\_\+operations my\+G\+P\+I\+O\+K\+\_\+fops\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gad1963bc01fffdbb315a408a9210cbafc}
 {\bfseries Valore iniziale\+:}
 \begin{DoxyCode}
 = \{
@@ -1001,41 +1285,40 @@ Per scrivere nella memoria vengono usate le seguenti\+:
 
 mantiene puntatori a funzioni che definiscono il gli operatori che agiscono su un file/device. 
 
-Essendo un device \char`\"{}visto\char`\"{} come un file, ogni device driver deve implementare tutte le system-\/call previste per l'interfacciamento con un file. La corrispondenza tra la system-\/call e la funzione fornita dal driver viene stabilita attraverso tale struttura. La struttura dati file\+\_\+operations, definita in $<$linux/fs.\+h$>$ mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file. \hypertarget{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+class@{my\+G\+P\+I\+O\+K\+\_\+class}}
-\index{my\+G\+P\+I\+O\+K\+\_\+class@{my\+G\+P\+I\+O\+K\+\_\+class}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}struct class$\ast$ my\+G\+P\+I\+O\+K\+\_\+class = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gaaf8d1bce7d6389684a037e94381c275c}
-\hypertarget{group___linux-_driver_gae370dfc26b06b6cc24a7bcc152f4969e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr@{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr}}
-\index{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr@{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+K\+\_\+t}$\ast$ my\+G\+P\+I\+O\+K\+\_\+dev\+\_\+ptr = N\+U\+L\+L}}\label{group___linux-_driver_gae370dfc26b06b6cc24a7bcc152f4969e}
+Essendo un device \char`\"{}visto\char`\"{} come un file, ogni device driver deve implementare tutte le system-\/call previste per l'interfacciamento con un file. La corrispondenza tra la system-\/call e la funzione fornita dal driver viene stabilita attraverso tale struttura. La struttura dati file\+\_\+operations, definita in $<$linux/fs.\+h$>$ mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file.
 
-
-Puntatore a struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, contenente tutti i dati necessari al device driver. 
-
-\hypertarget{group___linux-_driver_ga2d345c792760e3103059b6b6e0bfdaee}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+device@{my\+G\+P\+I\+O\+K\+\_\+device}}
-\index{my\+G\+P\+I\+O\+K\+\_\+device@{my\+G\+P\+I\+O\+K\+\_\+device}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+device}]{\setlength{\rightskip}{0pt plus 5cm}struct device$\ast$ my\+G\+P\+I\+O\+K\+\_\+device = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga2d345c792760e3103059b6b6e0bfdaee}
-\hypertarget{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+driver@{my\+G\+P\+I\+O\+K\+\_\+driver}}
-\index{my\+G\+P\+I\+O\+K\+\_\+driver@{my\+G\+P\+I\+O\+K\+\_\+driver}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+driver}]{\setlength{\rightskip}{0pt plus 5cm}struct platform\+\_\+driver my\+G\+P\+I\+O\+K\+\_\+driver\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga8dba1541b58fa63f8208232ffce4fc47}
-{\bfseries Valore iniziale\+:}
+La struttura dati file\+\_\+operations, definita in $<$linux/fs.\+h$>$ mantiene puntatori a funzioni definite dal driver che consentono di definire il comportamento degli operatori che agiscono su un file. 
 \begin{DoxyCode}
-= \{
-        .probe = \hyperlink{group___linux-_driver_gae40973a06d72f7c41a9af07513a62307}{myGPIOK\_probe},
-        .remove = \hyperlink{group___linux-_driver_ga59fddfaa36dea357f4bbdfceb0f47f8c}{myGPIOK\_remove},
-        .driver = \{
-                .name = \hyperlink{group___linux-_driver_ga25634d21648ca7fb7a2aca614bafaaeb}{DRIVER\_NAME},
-                .owner = THIS\_MODULE,
-                .of\_match\_table = \hyperlink{group___linux-_driver_ga91f28437e0a553effa546d16fa44f03a}{myGPIOk\_match},
-        \},
-\}
+1 static struct file\_operations myGPIO\_fops = \{
+2     .owner      = THIS\_MODULE,
+3     .llseek     = driver\_seek,
+4     .read       = driver\_read,
+5     .write      = driver\_write,
+6     .poll       = driver\_poll,
+7     .open       = driver\_open,
+8     .release    = driver\_release
+9 \};
 \end{DoxyCode}
+ Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno specifico \char`\"{}operatore\char`\"{} su file, oppure impostata a N\+U\+L\+L se l'operatore non e' supportato. L'esatto comportamento del kernel, quando uno dei puntatori e' N\+U\+L\+L, varia da funzione a funzione. La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente necessari.
 
 
-Definisce quali funzioni probe() e remove() chiamare quando viene caricato un driver. 
-
-\hypertarget{group___linux-_driver_ga91f28437e0a553effa546d16fa44f03a}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+Ok\+\_\+match@{my\+G\+P\+I\+Ok\+\_\+match}}
-\index{my\+G\+P\+I\+Ok\+\_\+match@{my\+G\+P\+I\+Ok\+\_\+match}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+Ok\+\_\+match}]{\setlength{\rightskip}{0pt plus 5cm}struct of\+\_\+device\+\_\+id my\+G\+P\+I\+Ok\+\_\+match\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga91f28437e0a553effa546d16fa44f03a}
+\begin{DoxyItemize}
+\item {\itshape struct module $\ast$owner} \+:~\newline
+ il primo campo della struttura non e' un operatore, ma un puntatore al modulo che \char`\"{}possiede\char`\"{} la struttura. Il campo ha lo scopo di evitare che il modulo venga rimosso dal kernel quando uno degli operatori e' in uso. Viene inizializzato usando la macro T\+H\+I\+S\+\_\+\+M\+O\+D\+U\+L\+E, definita in $<$linux/module.\+h$>$.
+\item {\itshape loff\+\_\+t ($\ast$llseek) (struct file $\ast$, loff\+\_\+t, int)} \+: il campo llseek e' usato per cambiare la posizione della \char`\"{}testina\char`\"{} di lettura/ scrittura in un file. La funzione restituisce la nuova posizione della testina. loff\+\_\+t e' un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori vengono segnalati con un valore di ritorno negativo. Se questo campo e' posto a N\+U\+L\+L, eventuali chiamate a seek modifigheranno la posizione della testina in un modo impredicibile.
+\item {\itshape ssize\+\_\+t ($\ast$read) (struct file $\ast$, char \+\_\+ \+\_\+user $\ast$, size\+\_\+t, loff\+\_\+t $\ast$)} \+:~\newline
+ usata per leggere dati dal device. Se lasciato a N\+U\+L\+L, ogni chiamata a read fallira' e non sara' possibile leggere dal device. La funzione restituisce il numero di byte letti con successo ma, nel caso si verifichi un errore, restituisce un numero intero negativo.
+\item {\itshape ssize\+\_\+t ($\ast$write) (struct file $\ast$, const char \+\_\+ \+\_\+user $\ast$, size\+\_\+t, loff\+\_\+t $\ast$)} \+:~\newline
+ invia dati al device. Se N\+U\+L\+L ogni chiamata alla system-\/call write causera' un errore. Il valore di ritorno, se non negativo, rappresenta il numero di byte correttamente scritti.
+\item {\itshape unsigned int ($\ast$poll) (struct file $\ast$, struct poll\+\_\+table\+\_\+struct $\ast$)} \+:~\newline
+ questo metodo e' il back-\/end di tre diverse system-\/calls\+: poll, epoll e select, le quali sono usate per capire se una operazione di lettura/scrittura du un device possano risultare bloccanti o meno. La funzione dovrebbe restituire una maschera che indichi se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che il kernel possa bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili. Se viene lasciata N\+U\+L\+L si intende che le operazioni di lettura/scrittura sul device siano sempre non-\/bloccanti.
+\item {\itshape int ($\ast$open) (struct inode $\ast$, struct file $\ast$)} \+:~\newline
+ Anche se, di solito, e' la prima operazione che si effettua su un file, non e' strettamente necessaria la sua implementazione. Se lasciata N\+U\+L\+L, l'apertura del device andra' comunque a buon fine, ma al driver non verra' inviata alcuna notifica.
+\item {\itshape int ($\ast$release) (struct inode $\ast$, struct file $\ast$)} \+:~\newline
+ questo operatore viene invocato quando il file viene rilasciato. Come open, puo' essere lasciato N\+U\+L\+L. 
+\end{DoxyItemize}\hypertarget{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+match@{my\+G\+P\+I\+O\+K\+\_\+match}}
+\index{my\+G\+P\+I\+O\+K\+\_\+match@{my\+G\+P\+I\+O\+K\+\_\+match}!Linux-\/\+Driver@{Linux-\/\+Driver}}
+\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+match}]{\setlength{\rightskip}{0pt plus 5cm}struct of\+\_\+device\+\_\+id my\+G\+P\+I\+O\+K\+\_\+match\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_gab59f49dc0fe8d885c73752b8a8163d0e}
 {\bfseries Valore iniziale\+:}
 \begin{DoxyCode}
 = \{
@@ -1047,10 +1330,4 @@ Definisce quali funzioni probe() e remove() chiamare quando viene caricato un dr
 
 Identifica il device all'interno del device tree. 
 
-Tutti i device-\/driver devono esporre un I\+D. A tempo di compilazione, il processo di build estrae queste informazioni dai driver per la preparazione di una tabella. Quando si \char`\"{}inserisce\char`\"{} il device, la tabella viene riferita dal kernel e, se viene trovata una entry corrispondente al driver per quel device, il driver viene caricato ed inizializzato. \hypertarget{group___linux-_driver_ga434e034e4625b1949f0c626823870a39}{\index{Linux-\/\+Driver@{Linux-\/\+Driver}!my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number@{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number}}
-\index{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number@{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number}!Linux-\/\+Driver@{Linux-\/\+Driver}}
-\subsubsection[{my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number}]{\setlength{\rightskip}{0pt plus 5cm}dev\+\_\+t my\+G\+P\+I\+O\+K\+\_\+\+Mm\+\_\+number\hspace{0.3cm}{\ttfamily [static]}}}\label{group___linux-_driver_ga434e034e4625b1949f0c626823870a39}
-
-
-Major e minor number per il device driver. 
-
+Tutti i device-\/driver devono esporre un I\+D. A tempo di compilazione, il processo di build estrae queste informazioni dai driver per la preparazione di una tabella. Quando si \char`\"{}inserisce\char`\"{} il device, la tabella viene riferita dal kernel e, se viene trovata una entry corrispondente al driver per quel device, il driver viene caricato ed inizializzato. 

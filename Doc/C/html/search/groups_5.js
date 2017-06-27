@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zybo',['Zybo',['../group___zybo.html',1,'']]]
+  ['switch',['Switch',['../group___switch.html',1,'']]]
 ];

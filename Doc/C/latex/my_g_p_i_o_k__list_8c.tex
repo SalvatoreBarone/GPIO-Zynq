@@ -1,0 +1,49 @@
+\hypertarget{my_g_p_i_o_k__list_8c}{\section{Riferimenti per il file Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+list.c}
+\label{my_g_p_i_o_k__list_8c}\index{Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+list.\+c@{Src/my\+G\+P\+I\+O/linux-\/driver/my\+G\+P\+I\+O\+K\+\_\+list.\+c}}
+}
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O\+K\+\_\+list.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$linux/slab.\+h$>$}\\*
+Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O\+K\+\_\+list.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{my_g_p_i_o_k__list_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___device_list_ga1051095fc78c8ba7cf0b20a20fa253d2}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Init} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list, uint32\+\_\+t list\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Inizializza una struttura dati \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}. \end{DoxyCompactList}\item 
+void \hyperlink{group___device_list_ga416dfff8f4bf6034c87d60968056c621}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Destroy} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Dealloca gli oggetti internamente gestiti da un oggetto \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, liberando la memoria. \end{DoxyCompactList}\item 
+int \hyperlink{group___device_list_gac5048cf2dbbbce3c39485e15595e88c9}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+add} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list, \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$device)
+\begin{DoxyCompactList}\small\item\em Aggiunge un riferimento ad un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} alla lista. \end{DoxyCompactList}\item 
+\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$ \hyperlink{group___device_list_ga616aa45c32b2ff391fc2b89930d1141b}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+op} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list, struct platform\+\_\+device $\ast$op)
+\begin{DoxyCompactList}\small\item\em Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} all'interno della lista. \end{DoxyCompactList}\item 
+\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$ \hyperlink{group___device_list_gaf50b0da291040e8da5050194a4979849}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+minor} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list, dev\+\_\+t dev)
+\begin{DoxyCompactList}\small\item\em Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} all'interno della lista. \end{DoxyCompactList}\item 
+\hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} $\ast$ \hyperlink{group___device_list_ga0bb70e18f51367d95fa28f723679ac30}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+irq\+\_\+line} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list, int irq\+\_\+line)
+\begin{DoxyCompactList}\small\item\em Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} all'interno della lista. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{group___device_list_ga731d5b5cbb96c6c5ef53936c23cdc58a}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+device\+\_\+count} (\hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Restituisce il numero di device correntemente inseriti nella lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+24 06 2017
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+
+You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 
