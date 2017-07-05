@@ -20,13 +20,19 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Uso del driver myGPIO con interruzioni bare-metal su Zynq-7020
+ * @brief Uso del driver myGPIO con interruzioni bare-metal su Zynq-7000
  *
  * @details
  * <h3>Configurazione hardware</h3>
  * L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-core Zynq7000 processing
  * sysyem, sono presenti tre diversi device myGPIO, uno connesso ai led (base address 0x43c00000), uno
  * connesso ai button (base address 0x43c10000) ed uno connesso agli switch (base address 0x43c20000).
+ * Lo schema viene riportato di seguito:
+ * @htmlonly
+ * <div align='center'>
+ * <img src="../../schemes/interrupt_bare.png"/>
+ * </div>
+ * @endhtmlonly
  *
  * <h4>ISR per la gestione di interrupt provenienti dal gpio connesso agli switch</h4>
  * @code
@@ -195,7 +201,7 @@ void gpio_init(void);
 // isr per button e switch
 // devono necessariamente avere questa firma: restituire void e possedere un solo parametro puntatore
 // a void. In questo caso non viene utilizzato (tutte le variabili sono globali), ma tale puntatore
-// puo' essere usato per scambiare dati di ingresso/uscita alle isr
+// può essere usato per scambiare dati di ingresso/uscita alle isr
 void btn_isr(void*); // isr per i button
 void swc_isr(void*); // isr per gli switch
 

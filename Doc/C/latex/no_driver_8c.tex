@@ -49,28 +49,31 @@ Effettua operazioni su un device.
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em vrt\+\_\+gpio\+\_\+addr} & indirizzo di memoria del device gpio \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\mbox{\tt in}  & {\em op\+\_\+mode} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
 \hline
-\mbox{\tt in}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\mbox{\tt in}  & {\em mode\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro mode \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\mbox{\tt in}  & {\em op\+\_\+write} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su write \\
 \hline
-\mbox{\tt in}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\mbox{\tt in}  & {\em write\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro write \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\mbox{\tt in}  & {\em op\+\_\+read} & sarà impostato ad 1 se l'utente intende effettuare lettura da read\\
 \hline
 \end{DoxyParams}
-La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il G\+P\+I\+O Xilinx che con il G\+P\+I\+O custom my\+G\+P\+I\+O. E' possibile utilizzare il primo definendo la macro {\bfseries X\+I\+L\+\_\+\+G\+P\+I\+O}. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. \subparagraph*{Impostazione della modalita' di funzionamento}
+La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. è stata scritta per funzionare sia con il G\+P\+I\+O Xilinx che con il G\+P\+I\+O custom my\+G\+P\+I\+O. è possibile utilizzare il primo definendo la macro {\bfseries X\+I\+L\+\_\+\+G\+P\+I\+O}. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. \subparagraph*{Impostazione della modalità di funzionamento}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di impostazione della modalita' di funzionamento del G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro M\+O\+D\+E del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Mode() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza.
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di impostazione della modalità di funzionamento del G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro M\+O\+D\+E del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Mode() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza.
 
 \subparagraph*{Operazione di scrittura}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di scrittura del valore dei pin del device G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro W\+R\+I\+T\+E del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Value() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza.
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di scrittura del valore dei pin del device G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro W\+R\+I\+T\+E del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Value() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza.
 
 \subparagraph*{Operazione di lettura}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di lettura del valore dei pin del device G\+P\+I\+O vengono effettuate leggendo direttamente dal registro R\+E\+A\+D del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+get\+Read() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza. La lettura e' non bloccante\+: viene semplicemente letto il valore contenuto nel registro perche' tale modalita' di interazione non permette l'implementazione di un meccanismo di lettura basato su interruzioni.\hypertarget{no_driver_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{no\+Driver.\+c@{no\+Driver.\+c}!howto@{howto}}
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di lettura del valore dei pin del device G\+P\+I\+O vengono effettuate leggendo direttamente dal registro R\+E\+A\+D del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+get\+Read() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza. La lettura è non bloccante\+: viene semplicemente letto il valore contenuto nel registro perché tale modalità di interazione non permette l'implementazione di un meccanismo di lettura basato su interruzioni.\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{no_driver_8c-example}{no\+Driver.\+c}.\end{Desc}
+\hypertarget{no_driver_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{no\+Driver.\+c@{no\+Driver.\+c}!howto@{howto}}
 \index{howto@{howto}!no\+Driver.\+c@{no\+Driver.\+c}}
 \subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
 \begin{DoxyParamCaption}
@@ -81,6 +84,9 @@ Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni d
 
 Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
 
+\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{no_driver_8c-example}{no\+Driver.\+c}.\end{Desc}
 \hypertarget{no_driver_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{no\+Driver.\+c@{no\+Driver.\+c}!main@{main}}
 \index{main@{main}!no\+Driver.\+c@{no\+Driver.\+c}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
@@ -97,7 +103,7 @@ funzione \hyperlink{no_driver_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()}.
 
 Il parsing dei parametri passati al programma all'atto della sua invocazione viene effettuato dalla funzione \hyperlink{no_driver_8c_a218f8a9dfc36572bfe2230c5e2d2c776}{parse\+\_\+args()}. Si rimanda alla sua documentazione per i dettagli sui parametri riconosciuti.
 
-Se non viene specificato l'indirizzo fisico del device al quale accedere e' impossibile continuare. Per questo motivo, in questo caso, il programma viene terminato.
+Se non viene specificato l'indirizzo fisico del device al quale accedere è impossibile continuare. Per questo motivo, in questo caso, il programma viene terminato.
 
 \subparagraph*{Apertura di /dev/mem}
 
@@ -112,7 +118,7 @@ In questo specifico esempio l'interfacciamento avviene da user-\/space, agendo d
 
 \subparagraph*{Calcolo dell'indirizzo virtuale del device.}
 
-Linux implementa la segregazione della memoria. Vale a dire che un processo puo' accedere solo agli indirizzo di memoria (virtuali) appartenenti al suo address-\/space. Se e' necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping di quell'indirizzo nell'address space del processo. Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare il mapping, apparterra' ad una specifica pagina di memoria. Per sapere a quale pagina appartenga l'idirizzo, e' necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente la dimensione delle pagine e' una potenza del due. Si supponga che l'indirizzo di cui si vuole fare il mapping e' {\bfseries 0x43\+C002\+F0} e che la dimensione delle pagine sia 16\+K\+B. Scrivendo la dimensione delle pagine in esadecimale ~\newline
+Linux implementa la segregazione della memoria. Vale a dire che un processo può accedere solo agli indirizzo di memoria (virtuali) appartenenti al suo address-\/space. Se è necessario effettuare un accesso ad un indirizzo specifico, bisogna effettuare il mapping di quell'indirizzo nell'address space del processo. Linux implementa la paginazione della memoria, quindi l'indirizzo del quale si desidera effettuare il mapping, apparterrà ad una specifica pagina di memoria. Per sapere a quale pagina appartenga l'idirizzo, è necessario conoscere quale sia la dimensione delle pagine di memoria. Tipicamente la dimensione delle pagine è una potenza del due. Si supponga che l'indirizzo di cui si vuole fare il mapping è {\bfseries 0x43\+C002\+F0} e che la dimensione delle pagine sia 16\+K\+B. Scrivendo la dimensione delle pagine in esadecimale ~\newline
  \begin{center}{\bfseries 0x00002000}\end{center} ~\newline
  sottraendo 1 ~\newline
  \begin{center}{\bfseries 0x00001\+F\+F\+F}\end{center} ~\newline
@@ -120,27 +126,27 @@ Linux implementa la segregazione della memoria. Vale a dire che un processo puo'
  \begin{center}{\bfseries 0x\+F\+F\+F\+F\+E000}\end{center} ~\newline
  si ottiene una maschera che, posta in and con un indirizzo, restituisce l'indirizzo della pagina di memoria a cui l'indirizzo appartiene. In questo caso ~\newline
  \begin{center}{\bfseries 0x43\+C002\+F0 \& 0x\+F\+F\+F\+F\+E000 = 0x43\+C00000}\end{center} ~\newline
- L'indirizzo della pagina potra' essere usato per il mapping, ma per accedere allo specifico indirizzo e' necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver effettuato il mapping, si potra' accedere allo stesso a partire dall'indirizzo virtuale della pagina stessa.
+ L'indirizzo della pagina potrà essere usato per il mapping, ma per accedere allo specifico indirizzo è necessario calcolarne l'offset, sottraengogli l'indirizzo della pagina. In questo modo, dopo aver effettuato il mapping, si potrà accedere allo stesso a partire dall'indirizzo virtuale della pagina stessa.
 
 \subparagraph*{Conversione dell'indirizzo fisico in indirizzo virtuale}
 
-La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o un qualsiasi altro memory-\/object, restituendo un indirizzo virtuale valido, attraverso il quale e' possibile accedere al blocco di memoria fisico. 
+La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o un qualsiasi altro memory-\/object, restituendo un indirizzo virtuale valido, attraverso il quale è possibile accedere al blocco di memoria fisico. 
 \begin{DoxyCode}
 1 #include <sys/mman.h>
 2 void *mmap(void *addr, size\_t len, int prot, int flags, int fildes, off\_t off);
 \end{DoxyCode}
- Per semplicita' supponiamo che la chiamata alla funzione sia la seguente\+: \begin{center}pa=mmap(addr, len, prot, flags, fildes, off);\end{center}  la semantica dei diversi parametri e'\+:
+ Per semplicità supponiamo che la chiamata alla funzione sia la seguente\+: \begin{center}pa=mmap(addr, len, prot, flags, fildes, off);\end{center}  la semantica dei diversi parametri è\+:
 \begin{DoxyItemize}
 \item pa\+: indirizzo virtuale dell'address-\/space locale del processo, a cui viene eseguito il map; se il mapping ha successo viene restituito qualcosa di diverso da M\+A\+P\+\_\+\+F\+A\+I\+L\+E\+D;
 \item addr\+:
 \item len\+: lunghezza, in byte, del blocco mappato; in questo caso viene usato il valore restituito da sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
 \item prot\+: specifica i permessi di accesso al blocco di memoria del quale si sta facendo il mapping;
 \begin{DoxyItemize}
-\item P\+R\+O\+T\+\_\+\+R\+E\+A\+D indica che il blocco puo' essere letto;
-\item P\+R\+O\+T\+\_\+\+W\+R\+I\+T\+E indica che il blocco puo' essere scritto;
-\item P\+R\+O\+T\+\_\+\+N\+O\+N\+E sta ad indicare che il blocco non puo' essere acceduto;
+\item P\+R\+O\+T\+\_\+\+R\+E\+A\+D indica che il blocco può essere letto;
+\item P\+R\+O\+T\+\_\+\+W\+R\+I\+T\+E indica che il blocco può essere scritto;
+\item P\+R\+O\+T\+\_\+\+N\+O\+N\+E sta ad indicare che il blocco non può essere acceduto;
 \end{DoxyItemize}
-\item flags\+:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il mapping; il valore del flag puo' essere uno dei seguenti\+:
+\item flags\+:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il mapping; il valore del flag può essere uno dei seguenti\+:
 \begin{DoxyItemize}
 \item M\+A\+P\+\_\+\+S\+H\+A\+R\+E\+D\+: modifiche al blocco sono condivise con chiunque altri lo stia usando;
 \item M\+A\+P\+\_\+\+P\+R\+I\+V\+A\+T\+E\+: le modifiche sono primate;
@@ -148,14 +154,14 @@ La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo
 \end{DoxyItemize}
 \begin{DoxyItemize}
 \item filedes\+: descrittore del file /dev/mem
-\item off\+: indirizzo fisico del blocco che si intente mappare; e' necessario che sia allineato alla dimensione della pagina di memoria, cosi' come restituito dalla funzione sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
+\item off\+: indirizzo fisico del blocco che si intente mappare; è necessario che sia allineato alla dimensione della pagina di memoria, così come restituito dalla funzione sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
 \end{DoxyItemize}
 
 In questo caso la chiamata a mmap avviene con i seguenti parametri\+: 
 \begin{DoxyCode}
 1 uint32\_t page\_size = sysconf(\_SC\_PAGESIZE);     // dimensione della pagina
 2 uint32\_t page\_mask = ~(page\_size-1);            // maschera di conversione indirizzo -> indirizzo pagina
-3 uint32\_t page\_addr = gpio\_addr & page\_mask;     // indirizzo della "pagina fisica" a cui e' mappato il
+3 uint32\_t page\_addr = gpio\_addr & page\_mask;     // indirizzo della "pagina fisica" a cui è mappato il
        device
 4 uint32\_t offset = gpio\_addr - page\_addr;        // offset del device rispetto all'indirizzo della pagina
 5 void* vrt\_page\_addr = mmap(NULL, page\_size, PROT\_READ | PROT\_WRITE, MAP\_SHARED, descriptor, page\_addr) +
@@ -165,7 +171,10 @@ In questo caso la chiamata a mmap avviene con i seguenti parametri\+:
 
 \subparagraph*{Operazioni sul device}
 
-Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate dalla funzione \hyperlink{no_driver_8c_a879d8b839631449ecb5bc4d0721432b6}{gpio\+\_\+op()}. Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().\hypertarget{no_driver_8c_a218f8a9dfc36572bfe2230c5e2d2c776}{\index{no\+Driver.\+c@{no\+Driver.\+c}!parse\+\_\+args@{parse\+\_\+args}}
+Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate dalla funzione \hyperlink{no_driver_8c_a879d8b839631449ecb5bc4d0721432b6}{gpio\+\_\+op()}. Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{no_driver_8c-example}{no\+Driver.\+c}.\end{Desc}
+\hypertarget{no_driver_8c_a218f8a9dfc36572bfe2230c5e2d2c776}{\index{no\+Driver.\+c@{no\+Driver.\+c}!parse\+\_\+args@{parse\+\_\+args}}
 \index{parse\+\_\+args@{parse\+\_\+args}!no\+Driver.\+c@{no\+Driver.\+c}}
 \subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
 \begin{DoxyParamCaption}
@@ -189,17 +198,17 @@ Effettua il parsing dei parametri passati al programma.
 \hline
 \mbox{\tt in}  & {\em argv} & \\
 \hline
-\mbox{\tt out}  & {\em gpio\+\_\+address} & conterra' l'indirizzo di memoria del device gpio \\
+\mbox{\tt out}  & {\em gpio\+\_\+address} & conterrà l'indirizzo di memoria del device gpio \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\mbox{\tt out}  & {\em op\+\_\+mode} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
 \hline
-\mbox{\tt out}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\mbox{\tt out}  & {\em mode\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro mode \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\mbox{\tt out}  & {\em op\+\_\+write} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su write \\
 \hline
-\mbox{\tt out}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\mbox{\tt out}  & {\em write\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro write \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\mbox{\tt out}  & {\em op\+\_\+read} & sarà impostato ad 1 se l'utente intende effettuare lettura da read\\
 \hline
 \end{DoxyParams}
 
@@ -216,14 +225,16 @@ Il parsing viene effettuato usando la funzione getopt().
 1 #include <unistd.h>
 2 int getopt(int argc, char * const argv[], const char *optstring);
 \end{DoxyCode}
- Essa prende in input i parametri argc ed argv passati alla funzione \hyperlink{no_driver_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()} quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-\/', getopt() la considera una opzione. Il carattere immediatamente successivo il '-\/' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -\/1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da '\+:' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.
+ Essa prende in input i parametri argc ed argv passati alla funzione \hyperlink{no_driver_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()} quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-\/', getopt() la considera una opzione. Il carattere immediatamente successivo il '-\/' identifica la particolare opzione. La funzione può essere chiamata ripetutamente, fino a quando non restituisce -\/1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione è seguita da '\+:' vuol dire che essa è seguita da un argomento. Tale argomento può essere ottenuto mediante la variabile globale optarg.
 
 \subparagraph*{Parametri riconosciuti}
 
 La funzione riconosce i parametri\+:
 \begin{DoxyItemize}
-\item 'a' \+: seguito dall'indirizzo fisico della periferica con la quale interagire, il quale puo' essere indicato in esadecimale;
-\item 'w' \+: operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro W\+R\+I\+T\+E;
-\item 'm' \+: impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro M\+O\+D\+E;
-\item 'r' \+: operazione di lettura, primo di argomento; la lettura viene effettuata dal registro R\+E\+A\+D ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.
-\end{DoxyItemize}
+\item 'à \+: seguito dall'indirizzo fisico della periferica con la quale interagire, il quale può essere indicato in esadecimale;
+\item 'w' \+: operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verrà effettuata sul registro W\+R\+I\+T\+E;
+\item 'm' \+: impostazione modalità, seguito dalla modalità col quale impostare il device; la scrittura verrà effettuata sul registro M\+O\+D\+E;
+\item 'r' \+: operazione di lettura, primo di argomento; la lettura viene effettuata dal registro R\+E\+A\+D ed è non bloccante, nel senso che viene semplicemente letto il contenuto del registro.
+\end{DoxyItemize}\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{no_driver_8c-example}{no\+Driver.\+c}.\end{Desc}

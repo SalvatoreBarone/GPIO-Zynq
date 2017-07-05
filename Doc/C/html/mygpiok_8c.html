@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -165,7 +165,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a10">mygpiok.c</a>, <a class="el" href="no_driver_8c-example.html#a5">noDriver.c</a>, e <a class="el" href="uio_8c-example.html#a5">uio.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="ad32c3a5b42163e171daccde5b5d5de02"></a>
@@ -177,7 +178,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a12">mygpiok.c</a>, <a class="el" href="no_driver_8c-example.html#a13">noDriver.c</a>, e <a class="el" href="uio_8c-example.html#a12">uio.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a77d96306ed0e813f93c4c3f98b970b86"></a>
@@ -189,7 +191,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a11">mygpiok.c</a>, <a class="el" href="no_driver_8c-example.html#a9">noDriver.c</a>, e <a class="el" href="uio_8c-example.html#a9">uio.c</a>.</dd>
+</dl>
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
@@ -214,15 +217,16 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il GPIO Xilinx che con il GPIO custom myGPIO. E' possibile utilizzare il primo definendo la macro <b>XIL_GPIO</b>. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. <br />
- Nel caso un cui si usi un driver ad-hoc, e' possibile usare le funzioni read() e write() per interagire con il device, leggendo il valore dei registri o scrivendolo. Il driver myGPIOK mette a disposizione anche la funzione seek() che permette di scegliere quale registro leggere o scrivere. </p>
-<h4>Impostazione della modalita' di funzionamento</h4>
-<p>Per impostare la modalita' di funzionamento e' necessario scrivere sul registro MODE. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la "testina di scrittura" sul registro MODE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
+<p>La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. è stata scritta per funzionare sia con il GPIO Xilinx che con il GPIO custom myGPIO. è possibile utilizzare il primo definendo la macro <b>XIL_GPIO</b>. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. <br />
+ Nel caso un cui si usi un driver ad-hoc, è possibile usare le funzioni read() e write() per interagire con il device, leggendo il valore dei registri o scrivendolo. Il driver myGPIOK mette a disposizione anche la funzione seek() che permette di scegliere quale registro leggere o scrivere. </p>
+<h4>Impostazione della modalità di funzionamento</h4>
+<p>Per impostare la modalità di funzionamento è necessario scrivere sul registro MODE. L'offset di tale registro è determinato in base al particolare device che si stà utilizzando. Dopo aver spostato la "testina di scrittura" sul registro MODE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). è possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
 <h4>Operazione di scrittura</h4>
-<p>Per impostare il valore dei pin del device e' necessario scrivere sul registro WRITE. L'offset di tale registro e' determinato in base al particolare device che si sta' utilizzando. Dopo aver spostato la "testina di scrittura" sul registro WRITE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). E' possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
+<p>Per impostare il valore dei pin del device è necessario scrivere sul registro WRITE. L'offset di tale registro è determinato in base al particolare device che si stà utilizzando. Dopo aver spostato la "testina di scrittura" sul registro WRITE usando la funzione seek(), viene effettuata la scrittura su di esso usando la funzione write(). è possibile, definendo la macro <b>USE_PWRITE</b>, usare la funzione pwrite(), che combina le due operazioni.</p>
 <h4>Operazione di lettura con interrupt</h4>
-<p>La lettura dei pin del device avviene mediante la chiamata alla funzione read(), dopo aver spostato la "testina di lettura" sul registro READ. L'offset di tale registro, come nei due casi precedenti, viene determinato in base al particolare device che si sta usando. E' possibile, definendo la macro <b>USE_PREAD</b>, usare la funzione pread(), che combina le operazioni di seek() e read(). Il driver myGPIOK implementa un meccanismo di lettura bloccante: qualora non ci siano dati disponibili, il processo che chiama read() viene sospeso e messo in attesa che i dati siano disponibili. Quando arriva una interruzione dal device, il driver myGPIOK lo gestisce e risveglia i processi che erano stati messi precedentemente in attesa. Si legga la documentazione del driver myGPIOK per i dettagli.</p>
-
+<p>La lettura dei pin del device avviene mediante la chiamata alla funzione read(), dopo aver spostato la "testina di lettura" sul registro READ. L'offset di tale registro, come nei due casi precedenti, viene determinato in base al particolare device che si sta usando. è possibile, definendo la macro <b>USE_PREAD</b>, usare la funzione pread(), che combina le operazioni di seek() e read(). Il driver myGPIOK implementa un meccanismo di lettura bloccante: qualora non ci siano dati disponibili, il processo che chiama read() viene sospeso e messo in attesa che i dati siano disponibili. Quando arriva una interruzione dal device, il driver myGPIOK lo gestisce e risveglia i processi che erano stati messi precedentemente in attesa. Si legga la documentazione del driver myGPIOK per i dettagli.</p>
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a9">mygpiok.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a05909651fa170a63e98e3f8e13451b7b"></a>
@@ -240,7 +244,8 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. </p>
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a0">mygpiok.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
@@ -266,7 +271,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a13">mygpiok.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a65d977fb03a14dedd76e1515d6d24ff4"></a>
@@ -304,7 +310,7 @@ Funzioni</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td></td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>puntatore a struttura <a class="el" href="structparam__t.html" title="La struttura raccoglie tutti i parametri di esecuzione del programma. ">param_t</a>, conterra' i vari parametri di esecuzione del programma.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>puntatore a struttura <a class="el" href="structparam__t.html" title="La struttura raccoglie tutti i parametri di esecuzione del programma. ">param_t</a>, conterrà i vari parametri di esecuzione del programma.</td></tr>
   </table>
   </dd>
 </dl>
@@ -318,16 +324,17 @@ Funzioni</h2></td></tr>
 <h4>Parsing dei parametri del programma.</h4>
 <p>Il parsing viene effettuato usando la funzione getopt(). </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#include &lt;unistd.h&gt;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int getopt(int argc, char * const argv[], const char *optstring);</div>
-</div><!-- fragment --><p> Essa prende in input i parametri argc ed argv passati alla funzione <a class="el" href="mygpiok_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a> quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-', getopt() la considera una opzione. Il carattere immediatamente successivo il '-' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da ':' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.</p>
+</div><!-- fragment --><p> Essa prende in input i parametri argc ed argv passati alla funzione <a class="el" href="mygpiok_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a> quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-', getopt() la considera una opzione. Il carattere immediatamente successivo il '-' identifica la particolare opzione. La funzione può essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione è seguita da ':' vuol dire che essa è seguita da un argomento. Tale argomento può essere ottenuto mediante la variabile globale optarg.</p>
 <h4>Parametri riconosciuti</h4>
 <p>La funzione riconosce i parametri:</p><ul>
 <li>'d' : seguito dal percorso del device /dev/myGPIOK col quale interagire</li>
-<li>'w' : operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro WRITE;</li>
-<li>'m' : impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro MODE;</li>
-<li>'r' : operazione di lettura, primo di argomento; la lettura viene effettuata dal registro READ ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.</li>
+<li>'w' : operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verrà effettuata sul registro WRITE;</li>
+<li>'m' : impostazione modalità, seguito dalla modalità col quale impostare il device; la scrittura verrà effettuata sul registro MODE;</li>
+<li>'r' : operazione di lettura, primo di argomento; la lettura viene effettuata dal registro READ ed è non bloccante, nel senso che viene semplicemente letto il contenuto del registro.</li>
 </ul>
-<p>Se non viene specificato il device myGPIOK col quale interagire e' impossibile continuare. Per questo motivo, in questo caso, la funzione restituisce -1, per cui il programma viene terminato.</p>
-
+<p>Se non viene specificato il device myGPIOK col quale interagire è impossibile continuare. Per questo motivo, in questo caso, la funzione restituisce -1, per cui il programma viene terminato.</p>
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="mygpiok_8c-example.html#a2">mygpiok.c</a>.</dd>
+</dl>
 </div>
 </div>
 </div><!-- contents -->
@@ -336,7 +343,7 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_1b70f4f506dadebaa011ded43b066ccb.html">Examples</a></li><li class="navelem"><a class="el" href="mygpiok_8c.html">mygpiok.c</a></li>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

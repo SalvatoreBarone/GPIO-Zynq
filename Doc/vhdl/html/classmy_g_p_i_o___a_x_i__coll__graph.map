@@ -1,4 +1,4 @@
 <map id="myGPIO_AXI" name="myGPIO_AXI">
-<area shape="rect" id="node2" href="$class_g_p_i_oarray.html" title="array di celle GPIO, pilotabili singolarmente " alt="" coords="15,80,99,107"/>
-<area shape="rect" id="node3" href="$class_g_p_i_osingle.html" title="cella base GPIO " alt="" coords="12,5,101,32"/>
+<area shape="rect" id="node2" href="$class_g_p_i_oarray.html" title="Array di celle GPIO, pilotabili singolarmente. " alt="" coords="15,80,99,107"/>
+<area shape="rect" id="node3" href="$class_g_p_i_osingle.html" title="Cella base GPIO. " alt="" coords="12,5,101,32"/>
 </map>

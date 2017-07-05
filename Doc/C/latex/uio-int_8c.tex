@@ -53,44 +53,47 @@ Effettua operazioni su un device.
 \hline
 \mbox{\tt in}  & {\em uio\+\_\+descriptor} & descrittore del file /dev/uio\+X usato \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\mbox{\tt in}  & {\em op\+\_\+mode} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
 \hline
-\mbox{\tt in}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\mbox{\tt in}  & {\em mode\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro mode \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\mbox{\tt in}  & {\em op\+\_\+write} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su write \\
 \hline
-\mbox{\tt in}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\mbox{\tt in}  & {\em write\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro write \\
 \hline
-\mbox{\tt in}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\mbox{\tt in}  & {\em op\+\_\+read} & sarà impostato ad 1 se l'utente intende effettuare lettura da read\\
 \hline
 \end{DoxyParams}
-La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. E' stata scritta per funzionare sia con il G\+P\+I\+O Xilinx che con il G\+P\+I\+O custom my\+G\+P\+I\+O. E' possibile utilizzare il primo definendo la macro {\bfseries X\+I\+L\+\_\+\+G\+P\+I\+O}. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. \subparagraph*{Impostazione della modalita' di funzionamento}
+La funzione viene invocata dopo che sia stato eseguito il parsing dei parametri passati al programma quando esso viene invocato. è stata scritta per funzionare sia con il G\+P\+I\+O Xilinx che con il G\+P\+I\+O custom my\+G\+P\+I\+O. è possibile utilizzare il primo definendo la macro {\bfseries X\+I\+L\+\_\+\+G\+P\+I\+O}. Effettua, sul device, le operazioni impostate, in accordo con i parametri passati al programma alla sua invocazione. \subparagraph*{Impostazione della modalità di funzionamento}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di impostazione della modalita' di funzionamento del G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro M\+O\+D\+E del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Mode() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza.
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di impostazione della modalità di funzionamento del G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro M\+O\+D\+E del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Mode() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza.
 
 \subparagraph*{Operazione di scrittura}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di scrittura del valore dei pin del device G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro W\+R\+I\+T\+E del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Value() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza.
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di scrittura del valore dei pin del device G\+P\+I\+O vengono effettuate scrivendo direttamente sul registro W\+R\+I\+T\+E del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+set\+Value() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza.
 
 \subparagraph*{Operazione di lettura con interrupt}
 
-Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di lettura del valore dei pin del device G\+P\+I\+O vengono effettuate leggendo direttamente dal registro R\+E\+A\+D del device. In caso contrario si e' preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+get\+Read() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'e' differenza. {\bfseries La lettura avviene usando il meccanismo delle interruzioni}
+Nel caso in cui si stia operando su un device G\+P\+I\+O Xilinx, le operazioni di lettura del valore dei pin del device G\+P\+I\+O vengono effettuate leggendo direttamente dal registro R\+E\+A\+D del device. In caso contrario si è preferito utilizzare la funzioni my\+G\+P\+I\+O\+\_\+get\+Read() (Si veda il modulo my\+G\+P\+I\+O). Funzionalmente non c'è differenza. {\bfseries La lettura avviene usando il meccanismo delle interruzioni}
 
-N\+O\+T\+A\+: la parte di codice per il G\+P\+I\+O Xilinx e' stata scritta per hardware configurato in modo che il channel 1 del gpio fosse connessi esclusivamente ai led,mentre switch e button fossero connessi al channel 2 dello stesso G\+P\+I\+O. Il channel 1 ha dimensione 4 bit, mentre il channel 2 e' da 8 bit.
+N\+O\+T\+A\+: la parte di codice per il G\+P\+I\+O Xilinx è stata scritta per hardware configurato in modo che il channel 1 del gpio fosse connessi esclusivamente ai led,mentre switch e button fossero connessi al channel 2 dello stesso G\+P\+I\+O. Il channel 1 ha dimensione 4 bit, mentre il channel 2 è da 8 bit.
 
 \subparagraph*{Attesa dell'arrivo di una interruzione}
 
-Gli interrupt sono gestiti effettuando una lettura bloccante su /dev/uio\+X. Una read() su /dev/uio\+X fa in modo che il processo venga sospeso ed inserito nella cosa dei processi in attesa di un evento su quel file. Appena l'interrupt si manifesta, il processo viene posto nella cosa dei processi pronti. La funzione read() consente di ottenere anche il numero totale di interrupt manifestatisi su quella particolare periferica. La read() restituisce il numero di interrupt che si sono manifestati. Quando un device possiede piu' di una sorgente di interrupt interna, ma non possiede maschere I\+R\+Q differenti o registri di stato differenti, potrebbe essere impossibile, per un programma in userspace, determinare quale sia la sorgente di interrupt se l'handler implementato nel kernel le disabilita scrivendo nei registri.
+Gli interrupt sono gestiti effettuando una lettura bloccante su /dev/uio\+X. Una read() su /dev/uio\+X fa in modo che il processo venga sospeso ed inserito nella cosa dei processi in attesa di un evento su quel file. Appena l'interrupt si manifesta, il processo viene posto nella cosa dei processi pronti. La funzione read() consente di ottenere anche il numero totale di interrupt manifestatisi su quella particolare periferica. La read() restituisce il numero di interrupt che si sono manifestati. Quando un device possiede più di una sorgente di interrupt interna, ma non possiede maschere I\+R\+Q differenti o registri di stato differenti, potrebbe essere impossibile, per un programma in userspace, determinare quale sia la sorgente di interrupt se l'handler implementato nel kernel le disabilita scrivendo nei registri.
 
 ~\newline
- In questo caso e' stato ritenuto opportuno, a titolo di esempio, mostrare come sia possibile bloccare il programma, dopo aver \char`\"{}servito\char`\"{} l'interruzione scatenata alla pressione di un tasto, fino a quando il tasto (o i tasti) premuti non siano riportati alla posizione di riposo. Lo stato del registro R\+E\+A\+D della periferica viene ripetutamente letto all'interno di un hot-\/loop, fino a quando non assume valore nullo. In tal caso si ha la certezza che i button o gli switch, in questo caso, siano stati riportati alla posizione di riposo. Si tenga presente che il device G\+P\+I\+O Xilinx generata una interruzione sia alla pressione che al rilascio di uno dei button o di uno degli switch
+ In questo caso è stato ritenuto opportuno, a titolo di esempio, mostrare come sia possibile bloccare il programma, dopo aver \char`\"{}servito\char`\"{} l'interruzione scatenata alla pressione di un tasto, fino a quando il tasto (o i tasti) premuti non siano riportati alla posizione di riposo. Lo stato del registro R\+E\+A\+D della periferica viene ripetutamente letto all'interno di un hot-\/loop, fino a quando non assume valore nullo. In tal caso si ha la certezza che i button o gli switch, in questo caso, siano stati riportati alla posizione di riposo. Si tenga presente che il device G\+P\+I\+O Xilinx generata una interruzione sia alla pressione che al rilascio di uno dei button o di uno degli switch
 
 ~\newline
- Dopo che button e switch siano stati riportati alla posizione di riposo, viene inviato l'ack al device, per segnalargli che l'interrupt e' stato servito.
+ Dopo che button e switch siano stati riportati alla posizione di riposo, viene inviato l'ack al device, per segnalargli che l'interrupt è stato servito.
 
 \subparagraph*{Riabilitare gli interrupt U\+I\+O}
 
-Per lasciare inalterati i registri della periferica il kernel deve disabilitare completamente le interruzioni per la linea di interrupt cui la periferica e' connessa, in modo che il programma userspace possa determinare la causa scatenante l'interruzione. Una volta terminate le operazioni, però, il programma userspace non puo' riabilitare le interruzioni, motivo per cui il driver implementa anche una funzione write(). La funzione write(), chiamata su /dev/uio\+X, consente di riabilitare le interruzioni per quella specifica periferica, scrivendo 1.\hypertarget{uio-int_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{uio-\/int.\+c@{uio-\/int.\+c}!howto@{howto}}
+Per lasciare inalterati i registri della periferica il kernel deve disabilitare completamente le interruzioni per la linea di interrupt cui la periferica è connessa, in modo che il programma userspace possa determinare la causa scatenante l'interruzione. Una volta terminate le operazioni, però, il programma userspace non può riabilitare le interruzioni, motivo per cui il driver implementa anche una funzione write(). La funzione write(), chiamata su /dev/uio\+X, consente di riabilitare le interruzioni per quella specifica periferica, scrivendo 1.\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{uio-int_8c-example}{uio-\/int.\+c}.\end{Desc}
+\hypertarget{uio-int_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{uio-\/int.\+c@{uio-\/int.\+c}!howto@{howto}}
 \index{howto@{howto}!uio-\/int.\+c@{uio-\/int.\+c}}
 \subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
 \begin{DoxyParamCaption}
@@ -101,6 +104,9 @@ Per lasciare inalterati i registri della periferica il kernel deve disabilitare 
 
 Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma. 
 
+\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{uio-int_8c-example}{uio-\/int.\+c}.\end{Desc}
 \hypertarget{uio-int_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{uio-\/int.\+c@{uio-\/int.\+c}!main@{main}}
 \index{main@{main}!uio-\/int.\+c@{uio-\/int.\+c}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
@@ -117,13 +123,13 @@ funzione \hyperlink{uio-int_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()}.
 
 Il parsing dei parametri passati al programma all'atto della sua invocazione viene effettuato dalla funzione \hyperlink{uio-int_8c_ab6b18eb1bf7bc996599c06dc6dad8f53}{parse\+\_\+args()}. Si rimanda alla sua documentazione per i dettagli sui parametri riconosciuti.
 
-Se non viene specificato il device U\+I\+O col quale interagire e' impossibile continuare. Per questo motivo, in questo caso, il programma viene terminato.
+Se non viene specificato il device U\+I\+O col quale interagire è impossibile continuare. Per questo motivo, in questo caso, il programma viene terminato.
 
 \subparagraph*{Accesso ad un device /dev/uio\+X}
 
-Il driver generic-\/\+U\+I\+O e' il driver generico per eccellenza. Ad ogni periferica compatibile con U\+I\+O e' associato un file diverso in /dev/uio\+X attraverso il quale e' possibile raggiungere il device. Tale file sara' /dev/uio0 per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e cosi' via. on for subsequent devices. Tale file puo' essere usato per accedere allo spazio degli indirizzi del device usando mmap().
+Il driver generic-\/\+U\+I\+O è il driver generico per eccellenza. Ad ogni periferica compatibile con U\+I\+O è associato un file diverso in /dev/uio\+X attraverso il quale è possibile raggiungere il device. Tale file sarà /dev/uio0 per il primo device, /dev/uio1 per il secondo, /dev/uio2 per il terzo e così via. on for subsequent devices. Tale file può essere usato per accedere allo spazio degli indirizzi del device usando mmap().
 
-In questo caso, rispetto all'esempio no\+Driver, accedere al device e' estremamente piu' semplice. Se il device e' compatibile con il driver U\+I\+O, e' possibile \char`\"{}aprire\char`\"{} un file in /dev/uio\+X, effettuare il mapping, connettendo il device allo spazio di indirizzamento del processo, senza la necessita' di conoscere l'indirizzo fisico della periferica col quale di intende comunicare.
+In questo caso, rispetto all'esempio no\+Driver, accedere al device è estremamente più semplice. Se il device è compatibile con il driver U\+I\+O, è possibile \char`\"{}aprire\char`\"{} un file in /dev/uio\+X, effettuare il mapping, connettendo il device allo spazio di indirizzamento del processo, senza la necessità di conoscere l'indirizzo fisico della periferica col quale di intende comunicare.
 
 L'accesso al device /dev/uio\+X viene ottenuto mediante la system-\/call open()\+: 
 \begin{DoxyCode}
@@ -135,23 +141,23 @@ L'accesso al device /dev/uio\+X viene ottenuto mediante la system-\/call open()\
 
 \subparagraph*{Mapping un device /dev/uio\+X}
 
-La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o un qualsiasi altro memory-\/object, restituendo un indirizzo virtuale valido, attraverso il quale e' possibile accedere al blocco di memoria fisico. 
+La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo virtuale appartenente allo spazio di indirizzamento del processo viene effettuato tramite la chiamata alla funzione mmap(), la quale stabilisce un mapping tra lo spazio di indirizzamento di un processo ed un file, una porzione di memoria condivisa o un qualsiasi altro memory-\/object, restituendo un indirizzo virtuale valido, attraverso il quale è possibile accedere al blocco di memoria fisico. 
 \begin{DoxyCode}
 1 #include <sys/mman.h>
 2 void *mmap(void *addr, size\_t len, int prot, int flags, int fildes, off\_t off);
 \end{DoxyCode}
- Per semplicita' supponiamo che la chiamata alla funzione sia la seguente\+: \begin{center}pa=mmap(addr, len, prot, flags, fildes, off);\end{center}  la semantica dei diversi parametri e'\+:
+ Per semplicità supponiamo che la chiamata alla funzione sia la seguente\+: \begin{center}pa=mmap(addr, len, prot, flags, fildes, off);\end{center}  la semantica dei diversi parametri è\+:
 \begin{DoxyItemize}
 \item pa\+: indirizzo virtuale dell'address-\/space locale del processo, a cui viene eseguito il map; se il mapping ha successo viene restituito qualcosa di diverso da M\+A\+P\+\_\+\+F\+A\+I\+L\+E\+D;
 \item addr\+:
 \item len\+: lunghezza, in byte, del blocco mappato; in questo caso viene usato il valore restituito da sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
 \item prot\+: specifica i permessi di accesso al blocco di memoria del quale si sta facendo il mapping;
 \begin{DoxyItemize}
-\item P\+R\+O\+T\+\_\+\+R\+E\+A\+D indica che il blocco puo' essere letto;
-\item P\+R\+O\+T\+\_\+\+W\+R\+I\+T\+E indica che il blocco puo' essere scritto;
-\item P\+R\+O\+T\+\_\+\+N\+O\+N\+E sta ad indicare che il blocco non puo' essere acceduto;
+\item P\+R\+O\+T\+\_\+\+R\+E\+A\+D indica che il blocco può essere letto;
+\item P\+R\+O\+T\+\_\+\+W\+R\+I\+T\+E indica che il blocco può essere scritto;
+\item P\+R\+O\+T\+\_\+\+N\+O\+N\+E sta ad indicare che il blocco non può essere acceduto;
 \end{DoxyItemize}
-\item flags\+:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il mapping; il valore del flag puo' essere uno dei seguenti\+:
+\item flags\+:fornisce informazioni aggiuntive circa la gestione del blocco di dati di cui si sta facendo il mapping; il valore del flag può essere uno dei seguenti\+:
 \begin{DoxyItemize}
 \item M\+A\+P\+\_\+\+S\+H\+A\+R\+E\+D\+: modifiche al blocco sono condivise con chiunque altri lo stia usando;
 \item M\+A\+P\+\_\+\+P\+R\+I\+V\+A\+T\+E\+: le modifiche sono primate;
@@ -159,7 +165,7 @@ La \char`\"{}conversione\char`\"{} dell'indirizzo fisico del device in indirizzo
 \end{DoxyItemize}
 \begin{DoxyItemize}
 \item filedes\+: descrittore del file /dev/mem
-\item off\+: indirizzo fisico del blocco che si intente mappare; e' necessario che sia allineato alla dimensione della pagina di memoria, cosi' come restituito dalla funzione sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
+\item off\+: indirizzo fisico del blocco che si intente mappare; è necessario che sia allineato alla dimensione della pagina di memoria, così come restituito dalla funzione sysconf(\+\_\+\+S\+C\+\_\+\+P\+A\+G\+E\+S\+I\+Z\+E);
 \end{DoxyItemize}
 
 In questo caso la chiamata a mmap avviene con i seguenti parametri\+: 
@@ -173,7 +179,10 @@ Rispetto al \char`\"{}driver\char`\"{} nodriver, la chiamata differisce per un s
 
 \subparagraph*{Operazioni sul device}
 
-Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate dalla funzione \hyperlink{uio-int_8c_a78b676750c5d08c316cad35ec3963c53}{gpio\+\_\+op()}. Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().\hypertarget{uio-int_8c_ab6b18eb1bf7bc996599c06dc6dad8f53}{\index{uio-\/int.\+c@{uio-\/int.\+c}!parse\+\_\+args@{parse\+\_\+args}}
+Una volta effettuato il mapping, le operazioni preventivate con l'invocazione del programma vengono effettuate dalla funzione \hyperlink{uio-int_8c_a78b676750c5d08c316cad35ec3963c53}{gpio\+\_\+op()}. Si rimanda alla sua documentazione per i dettagli sulle operazioni effettuate().\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{uio-int_8c-example}{uio-\/int.\+c}.\end{Desc}
+\hypertarget{uio-int_8c_ab6b18eb1bf7bc996599c06dc6dad8f53}{\index{uio-\/int.\+c@{uio-\/int.\+c}!parse\+\_\+args@{parse\+\_\+args}}
 \index{parse\+\_\+args@{parse\+\_\+args}!uio-\/int.\+c@{uio-\/int.\+c}}
 \subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
 \begin{DoxyParamCaption}
@@ -199,15 +208,15 @@ Effettua il parsing dei parametri passati al programma.
 \hline
 \mbox{\tt out}  & {\em uio\+\_\+file} & file uio da usare \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+mode} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
+\mbox{\tt out}  & {\em op\+\_\+mode} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su mode \\
 \hline
-\mbox{\tt out}  & {\em mode\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro mode \\
+\mbox{\tt out}  & {\em mode\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro mode \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+write} & sara' impostato ad 1 se l'utente intende effettuare scrittuara su write \\
+\mbox{\tt out}  & {\em op\+\_\+write} & sarà impostato ad 1 se l'utente intende effettuare scrittuara su write \\
 \hline
-\mbox{\tt out}  & {\em write\+\_\+value} & conterra' il valore che l'utente intende scrivere nel registro write \\
+\mbox{\tt out}  & {\em write\+\_\+value} & conterrà il valore che l'utente intende scrivere nel registro write \\
 \hline
-\mbox{\tt out}  & {\em op\+\_\+read} & sara' impostato ad 1 se l'utente intende effettuare lettura da read\\
+\mbox{\tt out}  & {\em op\+\_\+read} & sarà impostato ad 1 se l'utente intende effettuare lettura da read\\
 \hline
 \end{DoxyParams}
 
@@ -224,14 +233,16 @@ Il parsing viene effettuato usando la funzione getopt().
 1 #include <unistd.h>
 2 int getopt(int argc, char * const argv[], const char *optstring);
 \end{DoxyCode}
- Essa prende in input i parametri argc ed argv passati alla funzione \hyperlink{uio-int_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()} quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-\/', getopt() la considera una opzione. Il carattere immediatamente successivo il '-\/' identifica la particolare opzione. La funzione puo' essere chiamata ripetutamente, fino a quando non restituisce -\/1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione e' seguita da '\+:' vuol dire che essa e' seguita da un argomento. Tale argomento puo' essere ottenuto mediante la variabile globale optarg.
+ Essa prende in input i parametri argc ed argv passati alla funzione \hyperlink{uio-int_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main()} quando il programma viene invocato. Quando una delle stringhe che compongono argv comincia con il carattere '-\/', getopt() la considera una opzione. Il carattere immediatamente successivo il '-\/' identifica la particolare opzione. La funzione può essere chiamata ripetutamente, fino a quando non restituisce -\/1, ad indicare che sono stati analizzati tutti i parametri passati al programma. Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta al prossimo parametro contenuto in argv. La stringa optstring indica quali sono le opzioni considerate. Se una opzione è seguita da '\+:' vuol dire che essa è seguita da un argomento. Tale argomento può essere ottenuto mediante la variabile globale optarg.
 
 \subparagraph*{Parametri riconosciuti}
 
 La funzione riconosce i parametri\+:
 \begin{DoxyItemize}
 \item 'd' \+: seguito dal percordo del device /dev/uio\+X col quale interagire
-\item 'w' \+: operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verra' effettuata sul registro W\+R\+I\+T\+E;
-\item 'm' \+: impostazione modalita', seguito dalla modalita' col quale impostare il device; la scrittura verra' effettuata sul registro M\+O\+D\+E;
-\item 'r' \+: operazione di lettura, primo di argomento; la lettura viene effettuata dal registro R\+E\+A\+D ed e' non bloccante, nel senso che viene semplicemente letto il contenuto del registro.
-\end{DoxyItemize}
+\item 'w' \+: operazione di scrittura, seguito dal valore che si intende scrivere, in esadecimale; la scrittura verrà effettuata sul registro W\+R\+I\+T\+E;
+\item 'm' \+: impostazione modalità, seguito dalla modalità col quale impostare il device; la scrittura verrà effettuata sul registro M\+O\+D\+E;
+\item 'r' \+: operazione di lettura, primo di argomento; la lettura viene effettuata dal registro R\+E\+A\+D ed è non bloccante, nel senso che viene semplicemente letto il contenuto del registro.
+\end{DoxyItemize}\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{uio-int_8c-example}{uio-\/int.\+c}.\end{Desc}

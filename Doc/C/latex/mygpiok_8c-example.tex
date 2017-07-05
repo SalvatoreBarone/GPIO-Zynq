@@ -20,9 +20,137 @@ You should have received a copy of the G\+N\+U General Public License along with
 In questo specifico esempio l'interfacciamento avviene da user-\/space, interagendo attraverso il driver my\+G\+P\+I\+O\+K.
 
 \begin{DoxyWarning}{Avvertimento}
-Se nel device tree source non viene indicato \begin{center}compatible = \char`\"{}my\+G\+P\+I\+O\+K\char`\"{};\end{center}  tra i driver compatibili con il device, il driver my\+G\+P\+I\+O\+K non viene correttamente istanziato ed il programma userspace non funzionera'.
+Se nel device tree source non viene indicato \begin{center}compatible = \char`\"{}my\+G\+P\+I\+O\+K\char`\"{};\end{center}  tra i driver compatibili con il device, il driver my\+G\+P\+I\+O\+K non viene correttamente istanziato ed il programma userspace non funzionerà.
 \end{DoxyWarning}
 
 \begin{DoxyCodeInclude}
+
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <unistd.h>}
+\textcolor{preprocessor}{#include <fcntl.h>}
+
+\textcolor{preprocessor}{#include "\hyperlink{my_g_p_i_o_8h}{myGPIO.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{xil__gpio_8h}{xil\_gpio.h}"}
+
+
+\textcolor{preprocessor}{#ifdef \_\_XIL\_GPIO\_\_}
+\textcolor{preprocessor}{#define MODE\_OFFSET     GPIO\_TRI\_OFFSET}
+\textcolor{preprocessor}{#define WRITE\_OFFSET    GPIO\_DATA\_OFFSET}
+\textcolor{preprocessor}{#define READ\_OFFSET     GPIO\_READ\_OFFSET}
+\textcolor{preprocessor}{#else}
+\textcolor{preprocessor}{#define MODE\_OFFSET     myGPIO\_MODE\_OFFSET}
+\textcolor{preprocessor}{#define WRITE\_OFFSET    myGPIO\_WRITE\_OFFSET}
+\textcolor{preprocessor}{#define READ\_OFFSET     myGPIO\_READ\_OFFSET}
+\textcolor{preprocessor}{#endif}
+
+\textcolor{keywordtype}{void} \hyperlink{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}(\textcolor{keywordtype}{void}) \{
+    printf(\textcolor{stringliteral}{"Uso:\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"gpio -d /dev/device -w|m <hex-value> -r\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"\(\backslash\)t-m <hex-value>: scrive nel registro \(\backslash\)"mode\(\backslash\)"\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"\(\backslash\)t-w <hex-value>: scrive nel registro \(\backslash\)"write\(\backslash\)"\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"\(\backslash\)t-r: legge il valore del registro \(\backslash\)"read\(\backslash\)"\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"I parametri possono anche essere usati assieme.\(\backslash\)n"});
+\}
+
+\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+    \textcolor{keywordtype}{int}         dev\_descr;      
+    uint8\_t     op\_mode;        
+    uint32\_t    mode\_value;     
+    uint8\_t     op\_write;       
+    uint32\_t    write\_value;    
+    uint8\_t     op\_read;        
+\} \hyperlink{structparam__t}{param\_t};
+
+\textcolor{keywordtype}{int} \hyperlink{mygpiok_8c_a65d977fb03a14dedd76e1515d6d24ff4}{parse\_args}(   \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv, \hyperlink{structparam__t}{param\_t}   *param) \{
+    \textcolor{keywordtype}{int} par;
+    \textcolor{keywordtype}{char}* devfile = NULL;
+    \textcolor{keywordflow}{while}((par = getopt(argc, argv, \textcolor{stringliteral}{"d:w:m:r"})) != -1) \{
+        \textcolor{keywordflow}{switch} (par) \{
+        \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'} :
+            devfile = optarg;
+            \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} \textcolor{charliteral}{'w'} :
+            param->\hyperlink{structparam__t_a09e0cff25312ab7f748a3063c038a2d9}{write\_value} = strtoul(optarg, NULL, 0);
+            param->\hyperlink{structparam__t_a67752de733f167918a4e966354183a69}{op\_write} = 1;
+            \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'} :
+            param->\hyperlink{structparam__t_a007b34e09ccda08824bc74ab9d86c5a8}{mode\_value} = strtoul(optarg, NULL, 0);
+            param->\hyperlink{structparam__t_aec948fb30e99b1eda7e3d9ff741d417a}{op\_mode} = 1;
+            \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'} :
+            param->\hyperlink{structparam__t_ae66d5c3154a115636a63227b7489a6eb}{op\_read} = 1;
+            \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{default} :
+            printf(\textcolor{stringliteral}{"%c: parametro sconosciuto.\(\backslash\)n"}, par);
+            \hyperlink{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}();
+            \textcolor{keywordflow}{return} -1;
+        \}
+    \}
+    \textcolor{keywordflow}{if} (devfile == NULL) \{
+        printf (\textcolor{stringliteral}{"è necessario specificare il device col quale interagire!\(\backslash\)n"});
+        \hyperlink{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}();
+        \textcolor{keywordflow}{return} -1;
+    \}
+    param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr} = open(devfile, O\_RDWR);
+    \textcolor{keywordflow}{if} (param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr} < 1) \{
+        perror(devfile);
+        \textcolor{keywordflow}{return} -1;
+    \}
+    \textcolor{keywordflow}{return} 0;
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{mygpiok_8c_a63fab82d87963c07f9557a5f5d5d3e86}{gpio\_op} (\hyperlink{structparam__t}{param\_t} *param) \{
+
+    \textcolor{keywordflow}{if} (param->\hyperlink{structparam__t_aec948fb30e99b1eda7e3d9ff741d417a}{op\_mode} == 1) \{
+        printf(\textcolor{stringliteral}{"Scrittura sul registro mode: %08x\(\backslash\)n"}, param->\hyperlink{structparam__t_a007b34e09ccda08824bc74ab9d86c5a8}{mode\_value});
+\textcolor{preprocessor}{#ifndef \_\_USE\_PWRITE\_\_}
+        lseek(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, \hyperlink{mygpiok_8c_a7a63b24ca5489eb3206598e3d90fe19c}{MODE\_OFFSET}, SEEK\_SET);
+        write(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &(param->\hyperlink{structparam__t_a007b34e09ccda08824bc74ab9d86c5a8}{mode\_value}), \textcolor{keyword}{sizeof}(uint32\_t));
+\textcolor{preprocessor}{#else}
+        pwrite(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &(param->\hyperlink{structparam__t_a007b34e09ccda08824bc74ab9d86c5a8}{mode\_value}), \textcolor{keyword}{sizeof}(uint32\_t), 
+      \hyperlink{mygpiok_8c_a7a63b24ca5489eb3206598e3d90fe19c}{MODE\_OFFSET});
+\textcolor{preprocessor}{#endif}
+    \}
+    \textcolor{keywordflow}{if} (param->\hyperlink{structparam__t_a67752de733f167918a4e966354183a69}{op\_write} == 1) \{
+        printf(\textcolor{stringliteral}{"Scrittura sul registro write: %08x\(\backslash\)n"}, param->\hyperlink{structparam__t_a09e0cff25312ab7f748a3063c038a2d9}{write\_value});
+\textcolor{preprocessor}{#ifndef \_\_USE\_PWRITE\_\_}
+        lseek(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, \hyperlink{mygpiok_8c_a77d96306ed0e813f93c4c3f98b970b86}{WRITE\_OFFSET}, SEEK\_SET);
+        write(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &(param->\hyperlink{structparam__t_a09e0cff25312ab7f748a3063c038a2d9}{write\_value}), \textcolor{keyword}{sizeof}(uint32\_t));
+\textcolor{preprocessor}{#else}
+        pwrite(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &(param->\hyperlink{structparam__t_a007b34e09ccda08824bc74ab9d86c5a8}{mode\_value}), \textcolor{keyword}{sizeof}(uint32\_t), 
+      \hyperlink{mygpiok_8c_a77d96306ed0e813f93c4c3f98b970b86}{WRITE\_OFFSET});
+\textcolor{preprocessor}{#endif}
+    \}
+    \textcolor{keywordflow}{if} (param->\hyperlink{structparam__t_ae66d5c3154a115636a63227b7489a6eb}{op\_read} == 1) \{
+        uint32\_t read\_value = 0;
+\textcolor{preprocessor}{#ifndef \_\_USE\_PREAD\_\_}
+        lseek(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, \hyperlink{mygpiok_8c_ad32c3a5b42163e171daccde5b5d5de02}{READ\_OFFSET}, SEEK\_SET);
+        read(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &read\_value, \textcolor{keyword}{sizeof}(uint32\_t));
+\textcolor{preprocessor}{#else}
+        pread(param->\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr}, &read\_value, \textcolor{keyword}{sizeof}(uint32\_t), 
+      \hyperlink{mygpiok_8c_ad32c3a5b42163e171daccde5b5d5de02}{READ\_OFFSET});
+\textcolor{preprocessor}{#endif}
+        printf(\textcolor{stringliteral}{"Lettura dal registro read: %08x\(\backslash\)n"}, read\_value);
+    \}
+\}
+
+
+\textcolor{keywordtype}{int} \hyperlink{mygpiok_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv) \{
+    \hyperlink{structparam__t}{param\_t} param;
+
+    printf(\textcolor{stringliteral}{"%s build %d\(\backslash\)n"}, argv[0], BUILD);
+
+    \textcolor{keywordflow}{if} (\hyperlink{mygpiok_8c_a65d977fb03a14dedd76e1515d6d24ff4}{parse\_args}(argc, argv, &param) == -1)
+        \textcolor{keywordflow}{return} -1;
+
+    \hyperlink{mygpiok_8c_a63fab82d87963c07f9557a5f5d5d3e86}{gpio\_op}(&param);
+
+    close(param.\hyperlink{structparam__t_a52701f5f8091598d5c5ac1bb80cd2070}{dev\_descr});
+
+    \textcolor{keywordflow}{return} 0;
+\}
+
+
 \end{DoxyCodeInclude}
  

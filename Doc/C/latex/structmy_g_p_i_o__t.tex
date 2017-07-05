@@ -34,7 +34,10 @@ uint8\+\_\+t \hyperlink{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}{i
 \subsection{Descrizione dettagliata}
 Struttura che astrae un device my\+G\+P\+I\+O. 
 
-Comprende l'indirizzo di memoria a cui il device e' mappato e gli offset dei registri attraverso i quali e' possibile interagire con il device stesso. La struttura e' pensata, com'e' ovvio, per consentire l'uso di più device G\+P\+I\+O nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver, e' totalmente trasparente a chi la utilizza, nel senso che non e' strettamente necessario conoscerne i dettagli per poter utilizzare il driver. 
+Comprende l'indirizzo di memoria a cui il device è mappato e gli offset dei registri attraverso i quali è possibile interagire con il device stesso. La struttura è pensata, com'è ovvio, per consentire l'uso di più device G\+P\+I\+O nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver, è totalmente trasparente a chi la utilizza, nel senso che non è strettamente necessario conoscerne i dettagli per poter utilizzare il driver. \begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{bsp_example_8c-example}{bsp\+\_\+example.\+c}, \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}, \hyperlink{no_driver_8c-example}{no\+Driver.\+c}, \hyperlink{uio-int_8c-example}{uio-\/int.\+c}, e \hyperlink{uio_8c-example}{uio.\+c}.\end{Desc}
+
 
 \subsection{Documentazione dei campi}
 \hypertarget{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!base\+\_\+address@{base\+\_\+address}}

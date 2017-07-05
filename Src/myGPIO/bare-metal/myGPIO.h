@@ -1,7 +1,7 @@
 /**
  * @file myGPIO.h
- * @author: Salvatore Barone <salvator.barone@gmail.com>
- * @date: 12 05 2017
+ * @author Salvatore Barone <salvator.barone@gmail.com>
+ * @date 12 05 2017
  *
  * @copyright
  * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>
@@ -39,11 +39,11 @@
 /**
  * @brief Struttura che astrae un device myGPIO.
  * 
- * Comprende l'indirizzo di memoria a cui il device e' mappato e gli offset dei registri attraverso
- * i quali e' possibile interagire con il device stesso. La struttura e' pensata, com'e' ovvio, per consentire
+ * Comprende l'indirizzo di memoria a cui il device è mappato e gli offset dei registri attraverso
+ * i quali è possibile interagire con il device stesso. La struttura è pensata, com'è ovvio, per consentire
  * l'uso di più device GPIO nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo
  * di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver,
- * e' totalmente trasparente a chi la utilizza, nel senso che non e' strettamente necessario conoscerne i
+ * è totalmente trasparente a chi la utilizza, nel senso che non è strettamente necessario conoscerne i
  * dettagli per poter utilizzare il driver. 
  */
 typedef struct {
@@ -107,15 +107,15 @@ typedef enum {
 
 /**
  * @brief Metodo alternativo per la specifica di uno dei pin di un device myGPIO
- * @param[in] i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo)
+ * @param[in] i indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit più significativo)
  * @return maschera di selezione del pin i-esimo
  */
 #define myGPIO_pin(i) ((uint32_t)(1<<(i)))
 
-//! @brief myGPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device myGPIO
+//! @brief myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO
 typedef enum {
-	myGPIO_read, //!< myGPIO_read  modalita' lettura
-	myGPIO_write //!< myGPIO_write modalita' scrittura
+	myGPIO_read, //!< myGPIO_read  modalità lettura
+	myGPIO_write //!< myGPIO_write modalità scrittura
 } myGPIO_mode;
 
 //! @brief myGPIO_value, valore di un myGPIO
@@ -131,7 +131,7 @@ typedef enum {
  * effettuando diversi test sui parametri di inizializzazione e restituendo un codice di errore.
  *
  * @param[inout]	gpio			puntatore a myGPIO_t, che astrae un device myGPIO;
- * @param[in]		base_address	indirizzo di memoria a cui e' mappato il device myGPIO;
+ * @param[in]		base_address	indirizzo di memoria a cui è mappato il device myGPIO;
  * @code
  * myGPIO_t gpio;
  * myGPIO_init(&gpio, BASE_ADDRESS);
@@ -142,7 +142,7 @@ typedef enum {
 void myGPIO_Init(myGPIO_t* gpio, uint32_t base_address);
 				
 /**
- * @brief Permette di settare la modalita' lettura/scrittura dei pin di un device myGPIO;
+ * @brief Permette di settare la modalità lettura/scrittura dei pin di un device myGPIO;
  *
  * @code
  * // setta i pin 0 ed 1 di un device myGPIO come pin di uscita, gli altri restano invariati
@@ -154,7 +154,7 @@ void myGPIO_Init(myGPIO_t* gpio, uint32_t base_address);
  *
  * @param[in]	gpio	puntatore a myGPIO_t, che astrae un device myGPIO;
  * @param[in]	mask	maschera dei pin su cui agire;
- * @param[in]	mode	modalita' di funzionamento dei pin;
+ * @param[in]	mode	modalità di funzionamento dei pin;
  *
  * @warning Usa la macro assert per verificare che gpio non sia un puntatore nullo
  */
@@ -202,7 +202,7 @@ void myGPIO_Toggle(myGPIO_t* gpio, myGPIO_mask mask);
  * myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0);
  *
  * // legge il valore del pin 0, 3 e 5 di un device myGPIO.
- * // Verra' restituita la OR tra i valori dei pin
+ * // Verrà restituita la OR tra i valori dei pin
  * myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0 | myGPIO_pin3 | myGPIO_pin5);
  * @endcode
  *
@@ -210,7 +210,7 @@ void myGPIO_Toggle(myGPIO_t* gpio, myGPIO_mask mask);
  * @param[in] mask	maschera dei pin su cui agire;
  *
  * @return	restituisce la OR dei pin letti
- * @retval myGPIO_set se uno dei pin letti e' myGPIO_set,
+ * @retval myGPIO_set se uno dei pin letti è myGPIO_set,
  * @retval myGPIO_reset se TUTTI i pin sono myGPIO_reset
  *
  * @warning Usa la macro assert per verificare che gpio non sia un puntatore nullo
@@ -253,16 +253,16 @@ void myGPIO_GlobalInterruptDisable(myGPIO_t *gpio);
 /**
  * @brief Consente di verificare se gli interrupt globali siano abilitati.
  * @param [in] gpio puntatore a myGPIO_t, che astrae un device myGPIO;
- * @retval myGPIO_set se il bit 0 del registro GIES e' settato, ad indicare che gli interrupt sono abilitati
- * @retval myGPIO_reset se il bit 0 del registro GIES e' resettato, ad indicare che gli interrupt non sono abilitati
+ * @retval myGPIO_set se il bit 0 del registro GIES è settato, ad indicare che gli interrupt sono abilitati
+ * @retval myGPIO_reset se il bit 0 del registro GIES è resettato, ad indicare che gli interrupt non sono abilitati
  */
 myGPIO_value myGPIO_IsGlobalInterruptEnabled(myGPIO_t *gpio);
 
 /**
  * @brief Consente di verificare se esistano interrupt non ancora serviti.
  * @param [in] gpio puntatore a myGPIO_t, che astrae un device myGPIO;
- * @retval myGPIO_set se il bit 1 del registro GIES e' settato, ad indicare che esistono interrupt pending
- * @retval myGPIO_reset se il bit 1 del registro GIES e' resettato, ad indicare che non esistono interrupt pending
+ * @retval myGPIO_set se il bit 1 del registro GIES è settato, ad indicare che esistono interrupt pending
+ * @retval myGPIO_reset se il bit 1 del registro GIES è resettato, ad indicare che non esistono interrupt pending
  */
 myGPIO_value myGPIO_PendingInterrupt(myGPIO_t *gpio);
 

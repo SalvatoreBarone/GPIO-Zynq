@@ -60,23 +60,23 @@ typedef enum {
  * @brief Status di attivo/inattivo dei PushButton
  */
 typedef enum {
-	ZyboButton_off,	//!< ZyboButton_off, corrisponde al valore logico '0', indica che un pushbutton e' inattivo;
-	ZyboButton_on  	//!< ZyboButton_on, corrisponde al valore logico '1', indica che un pushbutton e' attivo;
+	ZyboButton_off,	//!< ZyboButton_off, corrisponde al valore logico '0', indica che un pushbutton è inattivo;
+	ZyboButton_on  	//!< ZyboButton_on, corrisponde al valore logico '1', indica che un pushbutton è attivo;
 } ZyboButton_status_t;
 
 /**
  * @brief Struttura opaca che astrae l'insieme dei button presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	myGPIO_t		*gpio;			/**< puntatore a struttura myGPIO_t, che astrae il particolare GPIO usato per la lettura dello
+	myGPIO_t		*gpio;			/**< puntatore a struttura myGPIO_t, che astrae il particolare myGPIO usato per la lettura dello
 									stato dei button presenti sulla board */
-	myGPIO_mask 	Button3_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 3
+	myGPIO_mask 	Button3_pin;	/**< maschera di selezione per il particolare bit del device myGPIO connesso al button numero 3
 									 della board Zybo*/
-	myGPIO_mask 	Button2_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 2
+	myGPIO_mask 	Button2_pin;	/**< maschera di selezione per il particolare bit del device myGPIO connesso al button numero 2
 									 della board Zybo*/
-	myGPIO_mask 	Button1_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 1
+	myGPIO_mask 	Button1_pin;	/**< maschera di selezione per il particolare bit del device myGPIO connesso al button numero 1
 									 della board Zybo*/
-	myGPIO_mask 	Button0_pin;	/**< maschera di selezione per il particolare bit del device GPIO connesso al button numero 0
+	myGPIO_mask 	Button0_pin;	/**< maschera di selezione per il particolare bit del device myGPIO connesso al button numero 0
 									 della board Zybo*/
 } ZyboButton_t;
 
@@ -85,13 +85,13 @@ typedef struct {
  *
  * @param[inout] buttons		puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board
  * 								Digilent Zybo;
- * @param[in] gpio     			puntatore a struttura myGPIO_t, che astrae un device GPIO; non viene inizializzato dalla funziona,
- * 								sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di
+ * @param[in] gpio     			puntatore a struttura myGPIO_t, che astrae un device myGPIO; non viene inizializzato dalla funziona,
+ * 								sarà necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di
  * 								seguito
- * @param[in] Button3_pin		pin del device GPIO a cui e' associato il button 3 della board Digilent Zybo;
- * @param[in] Button2_pin		pin del device GPIO a cui e' associato il button 2 della board Digilent Zybo;
- * @param[in] Button1_pin		pin del device GPIO a cui e' associato il button 1 della board Digilent Zybo;
- * @param[in] Button0_pin		pin del device GPIO a cui e' associato il button 0 della board Digilent Zybo;
+ * @param[in] Button3_pin		pin del device myGPIO a cui è associato il button 3 della board Digilent Zybo;
+ * @param[in] Button2_pin		pin del device myGPIO a cui è associato il button 2 della board Digilent Zybo;
+ * @param[in] Button1_pin		pin del device myGPIO a cui è associato il button 1 della board Digilent Zybo;
+ * @param[in] Button0_pin		pin del device myGPIO a cui è associato il button 0 della board Digilent Zybo;
  *
  * @code
  * myGPIO_t gpioButton;
@@ -114,14 +114,14 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
 
 /**
  * @brief Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato
- * empiricamente. Puo' essere modificato a piacimento cambiando il valore alla macro seguente.
+ * empiricamente. Può essere modificato a piacimento cambiando il valore alla macro seguente.
  */
 #define ZyboButton_DebounceWait 50
 
 /**
- * @brief Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;
+ * @brief Permettere di mettere il programma in attesa attiva finché i button restano inattivi;
  *
- * @warning La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della
+ * @warning La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della
  * macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.
  *
  * @param[in] buttons	puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
@@ -142,9 +142,9 @@ void ZyboButton_init(	ZyboButton_t	*buttons,
 void ZyboButton_waitWhileIdle(ZyboButton_t *buttons);
 
 /**
- * @brief Permettere di mettere il programma in attesa attiva finche' i button restano attivi;
+ * @brief Permettere di mettere il programma in attesa attiva finché i button restano attivi;
  *
- * @warning La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della
+ * @warning La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della
  * macro ZyboButton_DebounceWait. Per l'attesa viene usata la funzione usleep() di stdlib.
  *
  * @param[in] buttons	puntatore a struttura ZyboButton_t, che astrae l'insieme dei button presenti sulla board Digilent Zybo;
@@ -172,12 +172,12 @@ void ZyboButton_waitWhileBusy(ZyboButton_t *buttons);
  * @param[in] mask   	maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione
  *
  * @return status status dei button
- * @retval ZyboButton_on se uno dei button selezionati e' attivo;
+ * @retval ZyboButton_on se uno dei button selezionati è attivo;
  * @retval ZyboButton_off altrimenti
  *
  * @code
  * ZyboButton_status_t button_status = ZyboButton_getStatus(&buttons, ZyboButton3);				// leggo lo stato ddi button 3
- * ZyboLed_status_t led_status = (button_status == ZyboButton_on ? ZyboLed_on : ZyboLed_off);	// se lo stato e' attivo accendo il led 3
+ * ZyboLed_status_t led_status = (button_status == ZyboButton_on ? ZyboLed_on : ZyboLed_off);	// se lo stato è attivo accendo il led 3
  * ZyboLed_setStatus(&leds, ZyboLed3, led_status);												// accendo/spengo led 3
  * @endcode
  *

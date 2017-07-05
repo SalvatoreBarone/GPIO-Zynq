@@ -130,28 +130,28 @@ Status di accensione/spegnimento dei led.
 
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}. 
 
-Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo G\+P\+I\+O ed un puntatore ad una struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che lo astrae. Tale struttura non viene inizializzata dalla funzione Zybo\+Led\+\_\+init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device G\+P\+I\+O a cui i led sono connessi.
+Inizializza un oggetto di tipo \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo my\+G\+P\+I\+O ed un puntatore ad una struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che lo astrae. Tale struttura non viene inizializzata dalla funzione Zybo\+Led\+\_\+init, per cui sarà necessario inizializzarlo preventivamente. La funzione, però, si assume l'onere di configurare i pin del device my\+G\+P\+I\+O a cui i led sono connessi.
 
 
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em leds} & puntatore a struttura \hyperlink{struct_zybo_led__t}{Zybo\+Led\+\_\+t}, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; la struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; la struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} non viene inizializzata dalla funzione, per cui sarà necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. \\
 \hline
-\mbox{\tt in}  & {\em Led3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led3\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il Led3 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Led2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led2\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il Led2 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Led1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Led1\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il Led1 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Led0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il Led0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Led0\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il Led0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
 1 myGPIO\_t gpioLed;
 2 GPIO\_init(&gpioLed, XPAR\_MYGPIO\_0\_S00\_AXI\_BASEADDR, 4, 0, 4, 8);                // inizializzazione del
-       device GPIO
+       device myGPIO
 3 ZyboLed\_t leds;
 4 ZyboLed\_init(&leds, &gpioLed, GPIO\_pin3, GPIO\_pin2, GPIO\_pin1, GPIO\_pin0);  // inzializzazione della
        struttura ZyboLed\_t

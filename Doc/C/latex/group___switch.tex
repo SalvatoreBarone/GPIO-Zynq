@@ -105,9 +105,9 @@ Status di attivo/inattivo degli switch.
 \begin{description}
 \index{Zybo\+Switch\+\_\+off@{Zybo\+Switch\+\_\+off}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch\+\_\+off@{Zybo\+Switch\+\_\+off}}\item[{\em 
 \hypertarget{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}{Zybo\+Switch\+\_\+off}\label{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755}
-}]Zybo\+Switch\+\_\+off, corrisponde al valore logico '0', indica che lo switch e' inattivo;. \index{Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}}\item[{\em 
+}]Zybo\+Switch\+\_\+off, corrisponde al valore logico '0', indica che lo switch è inattivo;. \index{Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}!Switch@{Switch}}\index{Switch@{Switch}!Zybo\+Switch\+\_\+on@{Zybo\+Switch\+\_\+on}}\item[{\em 
 \hypertarget{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{Zybo\+Switch\+\_\+on}\label{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}
-}]Zybo\+Switch\+\_\+on, corrisponde al valore logico '1', indica che lo switch e' attivo;. \end{description}
+}]Zybo\+Switch\+\_\+on, corrisponde al valore logico '1', indica che lo switch è attivo;. \end{description}
 \end{Desc}
 
 
@@ -136,7 +136,7 @@ status status degli switch
 \end{DoxyReturn}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em Zybo\+Switch\+\_\+on} & se uno degli switch selezionati e' attivo; \\
+{\em Zybo\+Switch\+\_\+on} & se uno degli switch selezionati è attivo; \\
 \hline
 {\em Zybo\+Switch\+\_\+off} & altrimenti\\
 \hline
@@ -146,7 +146,7 @@ status status degli switch
 1 ZyboSwitch\_status\_t switch\_status = ZyboSwitch\_getStatus(&switches, ZyboSwitch3);           // leggo lo
        stato dello switch 3
 2 ZyboLed\_status\_t led\_status = (switch\_status == ZyboSwitch\_on ? ZyboLed\_on : ZyboLed\_off);  // se lo switch
-       3 e' attivo accendo il led 3
+       3 è attivo accendo il led 3
 3 ZyboLed\_setStatus(&leds, ZyboLed3, led\_status);                                             //
        accendo/spengo led 3
 \end{DoxyCode}
@@ -179,15 +179,15 @@ Inizializza un oggetto di tipo \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em switches} & puntatore a struttura \hyperlink{struct_zybo_switch__t}{Zybo\+Switch\+\_\+t}, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
 \hline
-\mbox{\tt in}  & {\em Switch3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch3\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato lo switch 3 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Switch2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch2\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato lo switch 2 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Switch1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Switch1\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato lo switch 1 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Switch0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato lo switch 0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Switch0\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato lo switch 0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 

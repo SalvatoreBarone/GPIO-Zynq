@@ -24,7 +24,7 @@ struct \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}
 \#define \hyperlink{group___button_ga5f85cbc14732f1d83faa75500b67defa}{Zybo\+Button}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
 \begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei button presenti sulla board Digilent Zybo. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}{Zybo\+Button\+\_\+\+Debounce\+Wait}~50
-\begin{DoxyCompactList}\small\item\em Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Puo' essere modificato a piacimento cambiando il valore alla macro seguente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Può essere modificato a piacimento cambiando il valore alla macro seguente. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
 \item 
@@ -44,9 +44,9 @@ enum \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\
 void \hyperlink{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{Zybo\+Button\+\_\+init} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button3\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button2\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button1\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}. \end{DoxyCompactList}\item 
 void \hyperlink{group___button_gaca30e81084e746785e395f79e9678e9a}{Zybo\+Button\+\_\+wait\+While\+Idle} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
-\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finché i button restano inattivi;. \end{DoxyCompactList}\item 
 void \hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{Zybo\+Button\+\_\+wait\+While\+Busy} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
-\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finche' i button restano attivi;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finché i button restano attivi;. \end{DoxyCompactList}\item 
 \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\+\_\+status\+\_\+t} \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{Zybo\+Button\+\_\+get\+Status} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons, \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t} mask)
 \begin{DoxyCompactList}\small\item\em Permette la lettura dello stato dei button presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -81,7 +81,7 @@ maschera di selezione del button i-\/esimo
 \subsubsection[{Zybo\+Button\+\_\+\+Debounce\+Wait}]{\setlength{\rightskip}{0pt plus 5cm}\#define Zybo\+Button\+\_\+\+Debounce\+Wait~50}}\label{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}
 
 
-Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Puo' essere modificato a piacimento cambiando il valore alla macro seguente. 
+Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Può essere modificato a piacimento cambiando il valore alla macro seguente. 
 
 
 
@@ -118,9 +118,9 @@ Status di attivo/inattivo dei Push\+Button.
 \begin{description}
 \index{Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}}\item[{\em 
 \hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}{Zybo\+Button\+\_\+off}\label{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}
-}]Zybo\+Button\+\_\+off, corrisponde al valore logico '0', indica che un pushbutton e' inattivo;. \index{Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}}\item[{\em 
+}]Zybo\+Button\+\_\+off, corrisponde al valore logico '0', indica che un pushbutton è inattivo;. \index{Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}}\item[{\em 
 \hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}{Zybo\+Button\+\_\+on}\label{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}
-}]Zybo\+Button\+\_\+on, corrisponde al valore logico '1', indica che un pushbutton e' attivo;. \end{description}
+}]Zybo\+Button\+\_\+on, corrisponde al valore logico '1', indica che un pushbutton è attivo;. \end{description}
 \end{Desc}
 
 
@@ -149,7 +149,7 @@ status status dei button
 \end{DoxyReturn}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em Zybo\+Button\+\_\+on} & se uno dei button selezionati e' attivo; \\
+{\em Zybo\+Button\+\_\+on} & se uno dei button selezionati è attivo; \\
 \hline
 {\em Zybo\+Button\+\_\+off} & altrimenti\\
 \hline
@@ -159,7 +159,7 @@ status status dei button
 1 ZyboButton\_status\_t button\_status = ZyboButton\_getStatus(&buttons, ZyboButton3);                // leggo lo
        stato ddi button 3
 2 ZyboLed\_status\_t led\_status = (button\_status == ZyboButton\_on ? ZyboLed\_on : ZyboLed\_off);  // se lo stato
-       e' attivo accendo il led 3
+       è attivo accendo il led 3
 3 ZyboLed\_setStatus(&leds, ZyboLed3, led\_status);                                             //
        accendo/spengo led 3
 \end{DoxyCode}
@@ -192,15 +192,15 @@ Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device G\+P\+I\+O; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
 \hline
-\mbox{\tt in}  & {\em Button3\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button3\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 3 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button2\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button2\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 2 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button1\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button1\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 1 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button0\+\_\+pin} & pin del device G\+P\+I\+O a cui e' associato il button 0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Button0\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
@@ -229,10 +229,10 @@ Usa la macro assert per verificare che\+:
 )}}\label{group___button_ga3840edf011b5bad6302b7efc9c6326fe}
 
 
-Permettere di mettere il programma in attesa attiva finche' i button restano attivi;. 
+Permettere di mettere il programma in attesa attiva finché i button restano attivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
+La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
 \begin{DoxyParams}[1]{Parametri}
@@ -270,10 +270,10 @@ Usa la macro assert per verificare che\+:
 )}}\label{group___button_gaca30e81084e746785e395f79e9678e9a}
 
 
-Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;. 
+Permettere di mettere il programma in attesa attiva finché i button restano inattivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalita' di debouncing. Il tempo di attesa e' determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
+La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
 \begin{DoxyParams}[1]{Parametri}

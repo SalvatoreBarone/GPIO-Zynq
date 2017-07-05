@@ -23,7 +23,7 @@
 #include <assert.h>
 #include <stdlib.h>
 
-// Le macro seguenti definiscono i comandi che e' possibile inviare al display
+// Le macro seguenti definiscono i comandi che è possibile inviare al display
 #define HD44780_clear			0x01
 #define HD44780_home			0x02
 #define HD44780_row1			0x80
@@ -271,19 +271,19 @@ void HD44780_printBinary64(HD44780_LCD_t *lcd, uint64_t b) {
 void HD44780_printHex8(HD44780_LCD_t *lcd, uint8_t b) {
 	int i;
 	for (i = 7; i != -1; i-=4)
-		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'A'));
+		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'a'));
 }
 
 void HD44780_printHex32(HD44780_LCD_t *lcd, uint32_t w) {
 	int i;
 	for (i = 31; i != -1; i-=4)
-		HD44780_Printc(lcd, ((w>>i)&0xF) + (((w>>i)&0xF) < 10 ? '0' : 'A'));
+		HD44780_Printc(lcd, ((w>>i)&0xF) + (((w>>i)&0xF) < 10 ? '0' : 'a'));
 }
 
 void HD44780_printHex64(HD44780_LCD_t *lcd, uint64_t b) {
 	int i;
 	for (i = 63; i != -1; i-=4)
-		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'A'));
+		HD44780_Printc(lcd, ((b>>i)&0xF) + (((b>>i)&0xF) < 10 ? '0' : 'a'));
 }
 
 void HD44780_Clear(HD44780_LCD_t* lcd) {

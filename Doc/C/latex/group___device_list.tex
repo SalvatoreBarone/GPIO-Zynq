@@ -6,8 +6,7 @@
 Definisce la struttura dati \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, la quale mantiene un riferimento agli oggetti \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} gestiti dal driver.  
 
 
-Diagramma di collaborazione per Device\+List\+:
-\nopagebreak
+Diagramma di collaborazione per Device\+List\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -65,13 +64,13 @@ Aggiunge un riferimento ad un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em -\/1} & se lo spazio si e' esaurito \\
+{\em -\/1} & se lo spazio si è esaurito \\
 \hline
 {\em 0} & se non si manifesta nessun errore\\
 \hline
 \end{DoxyRetVals}
 \begin{DoxyWarning}{Avvertimento}
-La funzione si limita ad aggiungere l'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} alla lista, senza effettuare alcun tipo di controllo su di esso. Non viene verificato, ad esempio, se il device che si intende aggiungere sia effettivamente gia' presente in lista o se si tratti di un puntatore nullo. 
+La funzione si limita ad aggiungere l'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} alla lista, senza effettuare alcun tipo di controllo su di esso. Non viene verificato, ad esempio, se il device che si intende aggiungere sia effettivamente già presente in lista o se si tratti di un puntatore nullo. 
 \end{DoxyWarning}
 \hypertarget{group___device_list_ga416dfff8f4bf6034c87d60968056c621}{\index{Device\+List@{Device\+List}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Destroy@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Destroy}}
 \index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Destroy@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Destroy}!Device\+List@{Device\+List}}
@@ -128,7 +127,7 @@ Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} a
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se e' presente nella lista, N\+U\+L\+L altrimenti 
+indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se è presente nella lista, N\+U\+L\+L altrimenti 
 \end{DoxyReturn}
 \hypertarget{group___device_list_ga616aa45c32b2ff391fc2b89930d1141b}{\index{Device\+List@{Device\+List}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+op@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+op}}
 \index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+op@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+by\+\_\+op}!Device\+List@{Device\+List}}
@@ -150,7 +149,7 @@ Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} a
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se e' presente nella lista, N\+U\+L\+L altrimenti 
+indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se è presente nella lista, N\+U\+L\+L altrimenti 
 \end{DoxyReturn}
 \hypertarget{group___device_list_ga0bb70e18f51367d95fa28f723679ac30}{\index{Device\+List@{Device\+List}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+irq\+\_\+line@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+irq\+\_\+line}}
 \index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+irq\+\_\+line@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+find\+\_\+irq\+\_\+line}!Device\+List@{Device\+List}}
@@ -168,11 +167,11 @@ Ricerca un oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} a
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em list} & puntatore a \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, lista in cui effettuare la ricerca \\
 \hline
- & {\em \mbox{[}in\mbox{[}} & irq\+\_\+line linea di interruzione alla quale il device e' connesso, parametro di invocazione della I\+S\+R \\
+ & {\em \mbox{[}in\mbox{[}} & irq\+\_\+line linea di interruzione alla quale il device è connesso, parametro di invocazione della I\+S\+R \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
-indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se e' presente nella lista, N\+U\+L\+L altrimenti 
+indirizzo dell'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t}, se è presente nella lista, N\+U\+L\+L altrimenti 
 \end{DoxyReturn}
 \hypertarget{group___device_list_ga1051095fc78c8ba7cf0b20a20fa253d2}{\index{Device\+List@{Device\+List}!my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Init@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Init}}
 \index{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Init@{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+\+Init}!Device\+List@{Device\+List}}
@@ -190,7 +189,7 @@ Inizializza una struttura dati \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in}  & {\em list} & puntatore a \hyperlink{structmy_g_p_i_o_k__list__t}{my\+G\+P\+I\+O\+K\+\_\+list\+\_\+t}, lista da inizializzare \\
 \hline
-\mbox{\tt in}  & {\em list\+\_\+size} & numero massimo di device che la struttra dati potra' gestire \\
+\mbox{\tt in}  & {\em list\+\_\+size} & numero massimo di device che la struttra dati potrà gestire \\
 \hline
 \end{DoxyParams}
 

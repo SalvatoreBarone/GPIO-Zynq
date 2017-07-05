@@ -13,7 +13,7 @@ Questo grafo mostra quali altri file includono direttamente o indirettamente que
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=344pt]{_zybo_button_8h__dep__incl}
+\includegraphics[width=350pt]{_zybo_button_8h__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Strutture dati}
@@ -27,7 +27,7 @@ struct \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}
 \#define \hyperlink{group___button_ga5f85cbc14732f1d83faa75500b67defa}{Zybo\+Button}(i)~((uint32\+\_\+t)(1$<$$<$(i)))
 \begin{DoxyCompactList}\small\item\em Metodo alternativo per la specifica di uno dei button presenti sulla board Digilent Zybo. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}{Zybo\+Button\+\_\+\+Debounce\+Wait}~50
-\begin{DoxyCompactList}\small\item\em Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Puo' essere modificato a piacimento cambiando il valore alla macro seguente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Può essere modificato a piacimento cambiando il valore alla macro seguente. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,9 +47,9 @@ enum \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\
 void \hyperlink{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{Zybo\+Button\+\_\+init} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button3\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button2\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button1\+\_\+pin, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Button0\+\_\+pin)
 \begin{DoxyCompactList}\small\item\em Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}. \end{DoxyCompactList}\item 
 void \hyperlink{group___button_gaca30e81084e746785e395f79e9678e9a}{Zybo\+Button\+\_\+wait\+While\+Idle} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
-\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finche' i button restano inattivi;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finché i button restano inattivi;. \end{DoxyCompactList}\item 
 void \hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{Zybo\+Button\+\_\+wait\+While\+Busy} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons)
-\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finche' i button restano attivi;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permettere di mettere il programma in attesa attiva finché i button restano attivi;. \end{DoxyCompactList}\item 
 \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\+\_\+status\+\_\+t} \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{Zybo\+Button\+\_\+get\+Status} (\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$buttons, \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t} mask)
 \begin{DoxyCompactList}\small\item\em Permette la lettura dello stato dei button presenti sulla board. \end{DoxyCompactList}\end{DoxyCompactItemize}
 

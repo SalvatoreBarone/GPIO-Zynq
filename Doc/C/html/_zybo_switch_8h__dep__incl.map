@@ -1,4 +1,5 @@
 <map id="Src/myGPIO/bare&#45;metal/ZyboBSP/ZyboSwitch.h" name="Src/myGPIO/bare&#45;metal/ZyboBSP/ZyboSwitch.h">
-<area shape="rect" id="node2" href="$_zybo_8h.html" title="Src/myGPIO/bare&#45;metal\l/ZyboBSP/Zybo.h" alt="" coords="5,95,168,136"/>
-<area shape="rect" id="node3" href="$_zybo_switch_8c.html" title="Src/myGPIO/bare&#45;metal\l/ZyboBSP/ZyboSwitch.c" alt="" coords="193,95,359,136"/>
+<area shape="rect" id="node2" href="$bsp__example_8c.html" title="Src/Examples/bsp_example.c" alt="" coords="5,102,201,129"/>
+<area shape="rect" id="node3" href="$_zybo_8h.html" title="Src/myGPIO/bare&#45;metal\l/ZyboBSP/Zybo.h" alt="" coords="226,95,389,136"/>
+<area shape="rect" id="node4" href="$_zybo_switch_8c.html" title="Src/myGPIO/bare&#45;metal\l/ZyboBSP/ZyboSwitch.c" alt="" coords="413,95,580,136"/>
 </map>

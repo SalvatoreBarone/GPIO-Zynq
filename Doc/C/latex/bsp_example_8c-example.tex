@@ -1,0 +1,90 @@
+\hypertarget{bsp_example_8c-example}{\section{bsp\+\_\+example.\+c}
+}
+Uso del driver my\+G\+P\+I\+O bare-\/metal per il pilotaggio dei Led, lettura di switch e button, pilotaggio di un display Hitachihd44780. \begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+12 05 2017
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+
+You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A.
+
+
+\begin{DoxyCodeInclude}
+
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include "xparameters.h"}
+\textcolor{preprocessor}{#include "\hyperlink{my_g_p_i_o_8h}{myGPIO.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{_zybo_led_8h}{ZyboLed.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{_zybo_switch_8h}{ZyboSwitch.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{_zybo_button_8h}{ZyboButton.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{hd44780_8h}{hd44780.h}"}
+
+\textcolor{keywordtype}{int} \hyperlink{bsp__example_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}()
+\{
+    \hyperlink{structmy_g_p_i_o__t}{myGPIO\_t} gpioLed;
+    \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{myGPIO\_Init}(&gpioLed, XPAR\_MYGPIO\_0\_S00\_AXI\_BASEADDR);
+    \hyperlink{struct_zybo_led__t}{ZyboLed\_t} boardLed;
+    \hyperlink{group___led_ga51bccd37e6ae8cd32e2c50c60a5e83cc}{ZyboLed\_init}(&boardLed, &gpioLed, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{myGPIO\_pin3}, 
+      \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{myGPIO\_pin2}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{myGPIO\_pin1}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{myGPIO\_pin0});
+
+    \hyperlink{structmy_g_p_i_o__t}{myGPIO\_t} gpioSwitch;
+    \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{myGPIO\_Init}(&gpioSwitch, XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR);
+    \hyperlink{struct_zybo_switch__t}{ZyboSwitch\_t} boardSwitch;
+    \hyperlink{group___switch_ga59108e526347f01f584bf1d6308a126f}{ZyboSwitch\_init}(&boardSwitch, &gpioSwitch, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{myGPIO\_pin3}, 
+      \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{myGPIO\_pin2}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{myGPIO\_pin1}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{myGPIO\_pin0});
+
+    \hyperlink{structmy_g_p_i_o__t}{myGPIO\_t} gpioButton;
+    \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{myGPIO\_Init}(&gpioButton, XPAR\_MYGPIO\_2\_S00\_AXI\_BASEADDR);
+    \hyperlink{struct_zybo_button__t}{ZyboButton\_t} boardButton;
+    \hyperlink{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{ZyboButton\_init}(&boardButton, &gpioButton, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{myGPIO\_pin3}, 
+      \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{myGPIO\_pin2}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{myGPIO\_pin1}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{myGPIO\_pin0});
+
+    \hyperlink{structmy_g_p_i_o__t}{myGPIO\_t} gpioDisplay;
+    \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{myGPIO\_Init}(&gpioDisplay, XPAR\_MYGPIO\_3\_S00\_AXI\_BASEADDR);
+
+    \hyperlink{struct_h_d44780___l_c_d__t}{HD44780\_LCD\_t} lcd;
+\textcolor{comment}{// Si decommenti le seguenti linee se si desidera interfacciarsi in modalità 8-bit    }
+\textcolor{comment}{//    HD44780\_Init8(&lcd, &gpioDisplay,     myGPIO\_pin10, myGPIO\_pin9, myGPIO\_pin8}
+\textcolor{comment}{//                                      myGPIO\_pin0, myGPIO\_pin1, myGPIO\_pin2, myGPIO\_pin3,}
+\textcolor{comment}{//                                      myGPIO\_pin4, myGPIO\_pin5, myGPIO\_pin6, myGPIO\_pin7);}
+
+    \hyperlink{group___h_d44780_ga0c08f9e41d770ebfa4af385a56b47b81}{HD44780\_Init4}(&lcd, &gpioDisplay,  \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341}{myGPIO\_pin10}, 
+      \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9}{myGPIO\_pin9}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e}{myGPIO\_pin8},
+                                        \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9}{myGPIO\_pin0}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be}{myGPIO\_pin1}, 
+      \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783}{myGPIO\_pin2}, \hyperlink{group__bare-metal_gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5}{myGPIO\_pin3});
+    \hyperlink{group___h_d44780_ga38cac13d7a66f068be54f79a716ff7d4}{HD44780\_Clear}(&lcd);
+    \hyperlink{group___h_d44780_ga3aedff8e2040e62db569fde955d3987b}{HD44780\_Print}(&lcd, \textcolor{stringliteral}{"Hello world!"});
+
+    \hyperlink{group___led_gad11701cccac394f7e1f90de8f85695f3}{ZyboLed\_mask\_t} led\_mask[] = \{\hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3ae1a1e8fa0bf803793ff27004884b85fe}{ZyboLed0}, \hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3ad71c06f65dfffcf825d48f287718d9be}{ZyboLed1}, 
+      \hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3a4fa521f6fce7c4ba77d1d8144e71cdfc}{ZyboLed2}, \hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3adc5edc2adfd899da9f149cb61364b141}{ZyboLed3}\};
+    \hyperlink{group___switch_ga2e0602a824354f25c395f938caba3703}{ZyboSwitch\_mask\_t} switch\_mask[] = \{\hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a84350e8b6e7a7e2cabf22fc7a1a5c651}{ZyboSwitch0}, 
+      \hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a694a25c87b1ec597d2a6032bf5d34b0f}{ZyboSwitch1}, \hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703aac2f5ebb28eb3bd93fcdf8019b6a3e9e}{ZyboSwitch2}, \hyperlink{group___switch_gga2e0602a824354f25c395f938caba3703a73ccea5ad8c919fe962e9a67a3733ee3}{ZyboSwitch3}\};
+    \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{ZyboButton\_mask\_t} button\_mask[] = \{\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{ZyboButton0}, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{ZyboButton1}, \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{ZyboButton2}, \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{ZyboButton3}\};
+    \textcolor{keywordflow}{for} (;;) \{
+        \textcolor{keywordtype}{int} i;
+        \textcolor{keywordflow}{for} (i=0; i<4; i++) \{
+            \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button\_status = 
+      \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&boardButton, button\_mask[i]);
+            \hyperlink{group___switch_ga4ba6b49b2f47ebb464aefcea7e23e04a}{ZyboSwitch\_status\_t} switch\_status = 
+      \hyperlink{group___switch_gafac8daf9a9a585f8f20ef2a6fa883a1f}{ZyboSwitch\_getStatus}(&boardSwitch, switch\_mask[i]);
+            \hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{ZyboLed\_status\_t} led\_status = (button\_status == 
+      \hyperlink{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}{ZyboButton\_on} || switch\_status == \hyperlink{group___switch_gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8}{ZyboSwitch\_on} ? 
+      \hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12aafcf0ae16a6edec807c06bb0a99f7e8b}{ZyboLed\_on} : \hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12a9679f1c302afdb51915a2331b4ec92f3}{ZyboLed\_off});
+            \hyperlink{group___led_gacf5c2b0328c4bdf2d796397fc4510c69}{ZyboLed\_setStatus}(&boardLed, led\_mask[i], led\_status);
+        \}
+    \}
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -184,12 +184,12 @@ Funzioni</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Valori di ritorno</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">-1</td><td>se lo spazio si e' esaurito </td></tr>
+    <tr><td class="paramname">-1</td><td>se lo spazio si è esaurito </td></tr>
     <tr><td class="paramname">0</td><td>se non si manifesta nessun errore</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione si limita ad aggiungere l'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a> alla lista, senza effettuare alcun tipo di controllo su di esso. Non viene verificato, ad esempio, se il device che si intende aggiungere sia effettivamente gia' presente in lista o se si tratti di un puntatore nullo. </dd></dl>
+<dl class="section warning"><dt>Avvertimento</dt><dd>La funzione si limita ad aggiungere l'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a> alla lista, senza effettuare alcun tipo di controllo su di esso. Non viene verificato, ad esempio, se il device che si intende aggiungere sia effettivamente già presente in lista o se si tratti di un puntatore nullo. </dd></dl>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se e' presente nella lista, NULL altrimenti </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se è presente nella lista, NULL altrimenti </dd></dl>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se e' presente nella lista, NULL altrimenti </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se è presente nella lista, NULL altrimenti </dd></dl>
 
 </div>
 </div>
@@ -342,11 +342,11 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">list</td><td>puntatore a <a class="el" href="structmy_g_p_i_o_k__list__t.html" title="Struttura dati per la gestione degli oggetti myGPIOK_t gestiti dal driver. ">myGPIOK_list_t</a>, lista in cui effettuare la ricerca </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">[in[</td><td>irq_line linea di interruzione alla quale il device e' connesso, parametro di invocazione della ISR </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">[in[</td><td>irq_line linea di interruzione alla quale il device è connesso, parametro di invocazione della ISR </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se e' presente nella lista, NULL altrimenti </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>indirizzo dell'oggetto <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a>, se è presente nella lista, NULL altrimenti </dd></dl>
 
 </div>
 </div>
@@ -378,7 +378,7 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">list</td><td>puntatore a <a class="el" href="structmy_g_p_i_o_k__list__t.html" title="Struttura dati per la gestione degli oggetti myGPIOK_t gestiti dal driver. ">myGPIOK_list_t</a>, lista da inizializzare </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">list_size</td><td>numero massimo di device che la struttra dati potra' gestire </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">list_size</td><td>numero massimo di device che la struttra dati potrà gestire </td></tr>
   </table>
   </dd>
 </dl>
@@ -397,7 +397,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

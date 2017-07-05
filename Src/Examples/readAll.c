@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 		return -1;
 
 	if (gpio_addr == 0) {
-		printf("E' necessario specificare l'indirizzo di memoria del device.\n");
+		printf("è necessario specificare l'indirizzo di memoria del device.\n");
 		howto();
 		return -1;
 	}
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
 
 	uint32_t page_size = sysconf(_SC_PAGESIZE);		// dimensione della pagina
 	uint32_t page_mask = ~(page_size-1);			// maschera di conversione indirizzo -> indirizzo pagina
-	uint32_t page_addr = gpio_addr & page_mask;		// indirizzo della "pagina fisica" a cui e' mappato il device
+	uint32_t page_addr = gpio_addr & page_mask;		// indirizzo della "pagina fisica" a cui è mappato il device
 	uint32_t offset = gpio_addr - page_addr;		// offset del device rispetto all'indirizzo della pagina
 	// conversione dell'indirizzo fisico in indirizzo virtuale
 	void* vrt_page_addr = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, descriptor, page_addr);

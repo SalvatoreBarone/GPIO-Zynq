@@ -29,15 +29,27 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
---! @brief array di celle GPIO, pilotabili singolarmente
+--! @brief Array di celle GPIO, pilotabili singolarmente
 entity GPIOarray is
-	Generic (	GPIO_width 		: 		natural := 4);								--! parallelismo dell'array, di default pari a 4 celle.
-    Port 	(	GPIO_enable		: in 	std_logic_vector (GPIO_width-1 downto 0);	--! segnale di abilitazione, permette di pilotare la linea 
-    																				--! "GPIO_inout".
-																					--!	Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro.
-           		GPIO_write 		: in 	std_logic_vector (GPIO_width-1 downto 0);	--! segnale di input, diretto verso l'esterno del device.
-           		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);	--! segnale bidirezionale diretto verso l'esterno del device.
-           		GPIO_read 		: out 	std_logic_vector (GPIO_width-1 downto 0));	--! segnale di output, diretto verso l'interno del device.
+	Generic (	GPIO_width 		: 		natural := 4); --! 
+	--!	numero di istanze GPIO create, di default pari a 4 celle.
+    Port 	(	GPIO_enable		: in 	std_logic_vector (GPIO_width-1 downto 0);	--! 
+    --! segnale di abilitazione, permette di pilotare la linea "GPIO_inout".
+	--!	Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo
+	--! la scrittura del valore del pin.
+           		GPIO_write 		: in 	std_logic_vector (GPIO_width-1 downto 0);	--! 
+    --! segnale di input, diretto verso l'esterno del device.
+    --! Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo
+	--! la scrittura del valore del pin.
+           		GPIO_inout	 	: inout std_logic_vector (GPIO_width-1 downto 0);	--!
+    --! segnale bidirezionale diretto verso l'esterno del device. Può essere usato per leggere/scrivere
+    --! segnali digitali da/verso l'esterno del device.
+           		GPIO_read 		: out 	std_logic_vector (GPIO_width-1 downto 0));	--! 
+    --! segnale di output, diretto verso l'esterno del device.
+    --! Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo
+	--! la scrittura del valore del pin, per cui questo segnale assume esattamente il valore con cui viene
+	--! impostato il segnale GPIO_write(i). Se GPIO_enable(i)=0, il valore del segnale può essere forzato dall'
+	--! esterno del device.
 end GPIOarray;
 
 

@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">myGPIO
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">VHDL implementation of a GPIO device</div>
   </td>
@@ -115,21 +115,21 @@ $(document).ready(function(){initNavTree('class_g_p_i_oarray.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>array di celle GPIO, pilotabili singolarmente  
+<p>Array di celle GPIO, pilotabili singolarmente.  
  <a href="class_g_p_i_oarray.html#details">Continua...</a></p>
 <div class="dynheader">
 Diagramma delle classi per GPIOarray</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_p_i_oarray__inherit__graph.png" border="0" usemap="#_g_p_i_oarray_inherit__map" alt="Inheritance graph"/></div>
 <map name="_g_p_i_oarray_inherit__map" id="_g_p_i_oarray_inherit__map">
-<area shape="rect" id="node3" href="classmy_g_p_i_o___a_x_i.html" title="Periferica AXI4 Lite che implementa una GPIO pilotabile da processing&#45;system. " alt="" coords="5,155,108,181"/><area shape="rect" id="node2" href="class_g_p_i_osingle.html" title="cella base GPIO " alt="" coords="12,5,101,32"/></map>
+<area shape="rect" id="node3" href="classmy_g_p_i_o___a_x_i.html" title="Periferica AXI4 Lite che implementa una GPIO pilotabile da processing&#45;system. " alt="" coords="5,155,108,181"/><area shape="rect" id="node2" href="class_g_p_i_osingle.html" title="Cella base GPIO. " alt="" coords="12,5,101,32"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legenda</a>]</span></center></div>
 <div class="dynheader">
 Diagramma di collaborazione per GPIOarray:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_p_i_oarray__coll__graph.png" border="0" usemap="#_g_p_i_oarray_coll__map" alt="Collaboration graph"/></div>
 <map name="_g_p_i_oarray_coll__map" id="_g_p_i_oarray_coll__map">
-<area shape="rect" id="node2" href="class_g_p_i_osingle.html" title="cella base GPIO " alt="" coords="5,5,95,32"/></map>
+<area shape="rect" id="node2" href="class_g_p_i_osingle.html" title="Cella base GPIO. " alt="" coords="5,5,95,32"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -151,27 +151,27 @@ Use Clauses</h2></td></tr>
 Generics</h2></td></tr>
  <tr class="memitem:ga0b52ca75e9a6093b2b60d5e851803069"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0b52ca75e9a6093b2b60d5e851803069"></a>
 <a class="el" href="group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069">GPIO_width</a> &#160;</td><td class="memItemRight" valign="bottom"><b><b><span class="vhdlchar">natural</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar">:</span><span class="vhdlchar">=</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span> <span class="vhdldigit">4</span> <span class="vhdlchar"> </span></b></b></td></tr>
-<tr class="memdesc:ga0b52ca75e9a6093b2b60d5e851803069"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallelismo dell'array, di default pari a 4 celle. <br /></td></tr>
+<tr class="memdesc:ga0b52ca75e9a6093b2b60d5e851803069"><td class="mdescLeft">&#160;</td><td class="mdescRight">numero di istanze GPIO create, di default pari a 4 celle. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="Ports"></a>
 Ports</h2></td></tr>
  <tr class="memitem:ga11dd30ea6a502615af8dccf7a8bc78fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga11dd30ea6a502615af8dccf7a8bc78fe"></a>
 <a class="el" href="group___g_p_i_o-array.html#ga11dd30ea6a502615af8dccf7a8bc78fe">GPIO_enable</a> &#160;</td><td class="memItemRight" valign="bottom"> <b><b><span class="vhdlchar">in</span><span class="vhdlchar"> </span></b></b> <b><span class="vhdlchar">std_logic_vector</span><span class="vhdlchar"> </span><span class="vhdlchar">(</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><b><a class="el" href="group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069">GPIO_width</a></b> <span class="vhdlchar">-</span><span class="vhdlchar"> </span> <span class="vhdldigit">1</span> <span class="vhdlchar"> </span><span class="vhdlchar">downto</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span> <span class="vhdldigit">0</span> <span class="vhdlchar"> </span><span class="vhdlchar">)</span><span class="vhdlchar"> </span></b></td></tr>
-<tr class="memdesc:ga11dd30ea6a502615af8dccf7a8bc78fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di abilitazione, permette di pilotare la linea "GPIO_inout". Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro. <br /></td></tr>
+<tr class="memdesc:ga11dd30ea6a502615af8dccf7a8bc78fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di abilitazione, permette di pilotare la linea "GPIO_inout". Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo la scrittura del valore del pin. <br /></td></tr>
 <tr class="memitem:ga15a2a96cc1645c826c8ac6469f70c5c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga15a2a96cc1645c826c8ac6469f70c5c0"></a>
 <a class="el" href="group___g_p_i_o-array.html#ga15a2a96cc1645c826c8ac6469f70c5c0">GPIO_write</a> &#160;</td><td class="memItemRight" valign="bottom"> <b><b><span class="vhdlchar">in</span><span class="vhdlchar"> </span></b></b> <b><span class="vhdlchar">std_logic_vector</span><span class="vhdlchar"> </span><span class="vhdlchar">(</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><b><a class="el" href="group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069">GPIO_width</a></b> <span class="vhdlchar">-</span><span class="vhdlchar"> </span> <span class="vhdldigit">1</span> <span class="vhdlchar"> </span><span class="vhdlchar">downto</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span> <span class="vhdldigit">0</span> <span class="vhdlchar"> </span><span class="vhdlchar">)</span><span class="vhdlchar"> </span></b></td></tr>
-<tr class="memdesc:ga15a2a96cc1645c826c8ac6469f70c5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di input, diretto verso l'esterno del device. <br /></td></tr>
+<tr class="memdesc:ga15a2a96cc1645c826c8ac6469f70c5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di input, diretto verso l'esterno del device. Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo la scrittura del valore del pin. <br /></td></tr>
 <tr class="memitem:ga8829699d739ef35a4c5da396ffd38387"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8829699d739ef35a4c5da396ffd38387"></a>
 <a class="el" href="group___g_p_i_o-array.html#ga8829699d739ef35a4c5da396ffd38387">GPIO_inout</a> &#160;</td><td class="memItemRight" valign="bottom"> <b><b><span class="vhdlchar">inout</span><span class="vhdlchar"> </span></b></b> <b><span class="vhdlchar">std_logic_vector</span><span class="vhdlchar"> </span><span class="vhdlchar">(</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><b><a class="el" href="group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069">GPIO_width</a></b> <span class="vhdlchar">-</span><span class="vhdlchar"> </span> <span class="vhdldigit">1</span> <span class="vhdlchar"> </span><span class="vhdlchar">downto</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span> <span class="vhdldigit">0</span> <span class="vhdlchar"> </span><span class="vhdlchar">)</span><span class="vhdlchar"> </span></b></td></tr>
-<tr class="memdesc:ga8829699d739ef35a4c5da396ffd38387"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale bidirezionale diretto verso l'esterno del device. <br /></td></tr>
+<tr class="memdesc:ga8829699d739ef35a4c5da396ffd38387"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale bidirezionale diretto verso l'esterno del device. Può essere usato per leggere/scrivere segnali digitali da/verso l'esterno del device. <br /></td></tr>
 <tr class="memitem:gafbe6792efd02cef42af7717592c1b04a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafbe6792efd02cef42af7717592c1b04a"></a>
 <a class="el" href="group___g_p_i_o-array.html#gafbe6792efd02cef42af7717592c1b04a">GPIO_read</a> &#160;</td><td class="memItemRight" valign="bottom"> <b><b><span class="vhdlchar">out</span><span class="vhdlchar"> </span></b></b> <b><span class="vhdlchar">std_logic_vector</span><span class="vhdlchar"> </span><span class="vhdlchar">(</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><span class="vhdlchar"> </span><b><a class="el" href="group___g_p_i_o-array.html#ga0b52ca75e9a6093b2b60d5e851803069">GPIO_width</a></b> <span class="vhdlchar">-</span><span class="vhdlchar"> </span> <span class="vhdldigit">1</span> <span class="vhdlchar"> </span><span class="vhdlchar">downto</span><span class="vhdlchar"> </span><span class="vhdlchar"> </span> <span class="vhdldigit">0</span> <span class="vhdlchar"> </span><span class="vhdlchar">)</span><span class="vhdlchar"> </span></b></td></tr>
-<tr class="memdesc:gafbe6792efd02cef42af7717592c1b04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di output, diretto verso l'interno del device. <br /></td></tr>
+<tr class="memdesc:gafbe6792efd02cef42af7717592c1b04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">segnale di output, diretto verso l'esterno del device. Quando GPIO_enable(i)=1, la linea GPIO_inout(i) e quella GPIO_write(i) sono connesse tra loro, consentendo la scrittura del valore del pin, per cui questo segnale assume esattamente il valore con cui viene impostato il segnale GPIO_write(i). Se GPIO_enable(i)=0, il valore del segnale può essere forzato dall' esterno del device. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
-<div class="textblock"><p>array di celle GPIO, pilotabili singolarmente </p>
+<div class="textblock"><p>Array di celle GPIO, pilotabili singolarmente. </p>
 </div><hr/>La documentazione per questa classe è stata generata a partire dal seguente file:<ul>
-<li><a class="el" href="_g_p_i_oarray_8vhd.html">GPIOarray.vhd</a></li>
+<li>Src/myGPIO/VHDL/<a class="el" href="_g_p_i_oarray_8vhd.html">GPIOarray.vhd</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -179,7 +179,7 @@ Ports</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_g_p_i_oarray.html">GPIOarray</a></li>
-    <li class="footer">Generato Gio 22 Giu 2017 15:40:44 per myGPIO da
+    <li class="footer">Generato Mer 5 Lug 2017 11:53:34 per myGPIO da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

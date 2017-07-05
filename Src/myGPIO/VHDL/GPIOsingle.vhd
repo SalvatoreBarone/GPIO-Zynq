@@ -28,14 +28,24 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
---! @brief  cella base GPIO
+--! @brief  Cella base GPIO
 entity GPIOsingle is
-    Port (	GPIO_enable		: in 	std_logic;	--! segnale di abilitazione, permette di pilotare la linea
-												--! "GPIO_inout". Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono
-												--! connesse tra loro.
-        	GPIO_write 		: in 	std_logic;	--! segnale di input, diretto verso l'esterno del device.
-        	GPIO_inout 		: inout std_logic;	--! segnale bidirezionale diretto verso l'esterno del device.
-        	GPIO_read 		: out 	std_logic);	--! segnale di output, diretto verso l'interno del device.
+    Port (	GPIO_enable		: in 	std_logic;	--! 
+    --! segnale di abilitazione, permette di pilotare la linea "GPIO_inout".
+	--!	Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro, consentendo
+	--! la scrittura del valore del segnale GPIO_inout
+        	GPIO_write 		: in 	std_logic;	--! 
+    --! segnale di input, diretto verso l'esterno del device GPIOsingle.
+    --! Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro, consentendo
+	--! la scrittura del valore del pin GPIO_inout.
+        	GPIO_inout 		: inout std_logic;	--!
+    --! segnale bidirezionale diretto verso l'esterno del device. Può essere usato per leggere/scrivere
+    --! segnali digitali da/verso l'esterno del device GPIOsingle
+        	GPIO_read 		: out 	std_logic);	--! 
+    --! segnale di output, diretto verso l'esterno del device.
+    --! Quando GPIO_enable=1, la linea GPIO_inout e quella GPIO_write sono connesse tra loro, consentendo
+	--! la scrittura del valore dei pin, per cui questo segnale assume esattamente il valore con cui viene
+	--! impostato il segnale GPIO_write
 end GPIOsingle;
 
 architecture Structural of GPIOsingle is

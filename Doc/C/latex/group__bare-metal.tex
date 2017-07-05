@@ -17,7 +17,7 @@ Diagramma di collaborazione per Bare-\/metal\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{group___h_d44780}{H\+D44780}
-\begin{DoxyCompactList}\small\item\em driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O bare-\/metal \end{DoxyCompactList}\item 
 \hyperlink{group___zybo}{Zybo}
 \end{DoxyCompactItemize}
 \subsection*{Strutture dati}
@@ -97,7 +97,7 @@ enum \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+
 enum \hyperlink{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} \{ \hyperlink{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}{my\+G\+P\+I\+O\+\_\+read}, 
 \hyperlink{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}{my\+G\+P\+I\+O\+\_\+write}
  \}
-\begin{DoxyCompactList}\small\item\em my\+G\+P\+I\+O\+\_\+mode, modalita' di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em my\+G\+P\+I\+O\+\_\+mode, modalità di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O \end{DoxyCompactList}\item 
 enum \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \{ \hyperlink{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674}{my\+G\+P\+I\+O\+\_\+reset}, 
 \hyperlink{group__bare-metal_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149}{my\+G\+P\+I\+O\+\_\+set}
  \}
@@ -108,7 +108,7 @@ enum \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+
 void \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{my\+G\+P\+I\+O\+\_\+\+Init} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, uint32\+\_\+t base\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Inizializza un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}{my\+G\+P\+I\+O\+\_\+\+Set\+Mode} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} mode)
-\begin{DoxyCompactList}\small\item\em Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permette di settare la modalità lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga9d9ce9d2db7d77a588da4a3749f2f24d}{my\+G\+P\+I\+O\+\_\+\+Set\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} value)
 \begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga449b2af7cc20d24e6f6e017cf792ce03}{my\+G\+P\+I\+O\+\_\+\+Toggle} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
@@ -191,12 +191,15 @@ Metodo alternativo per la specifica di uno dei pin di un device my\+G\+P\+I\+O.
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em i} & indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo) \\
+\mbox{\tt in}  & {\em i} & indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit più significativo) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
 maschera di selezione del pin i-\/esimo 
 \end{DoxyReturn}
+\begin{Desc}
+\item[Esempi\+: ]\par
+\hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
 \hypertarget{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}}
 \index{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T@{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}!Bare-\/metal@{Bare-\/metal}}
 \subsubsection[{my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define my\+G\+P\+I\+O\+\_\+\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T~0x08\+U}}\label{group__bare-metal_ga584d2dfece76e5762030d918d80592cc}
@@ -303,16 +306,16 @@ Maschere di selezione dei pin di un device my\+G\+P\+I\+O.
 \subsubsection[{my\+G\+P\+I\+O\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf my\+G\+P\+I\+O\+\_\+mode}}}\label{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}
 
 
-my\+G\+P\+I\+O\+\_\+mode, modalita' di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O 
+my\+G\+P\+I\+O\+\_\+mode, modalità di funzionamento (lettura/scrittura) di un device my\+G\+P\+I\+O 
 
 \begin{Desc}
 \item[Valori del tipo enumerato]\par
 \begin{description}
 \index{my\+G\+P\+I\+O\+\_\+read@{my\+G\+P\+I\+O\+\_\+read}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+read@{my\+G\+P\+I\+O\+\_\+read}}\item[{\em 
 \hypertarget{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}{my\+G\+P\+I\+O\+\_\+read}\label{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d}
-}]my\+G\+P\+I\+O\+\_\+read modalita' lettura \index{my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}}\item[{\em 
+}]my\+G\+P\+I\+O\+\_\+read modalità lettura \index{my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}!Bare-\/metal@{Bare-\/metal}}\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+write@{my\+G\+P\+I\+O\+\_\+write}}\item[{\em 
 \hypertarget{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}{my\+G\+P\+I\+O\+\_\+write}\label{group__bare-metal_gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6}
-}]my\+G\+P\+I\+O\+\_\+write modalita' scrittura \end{description}
+}]my\+G\+P\+I\+O\+\_\+write modalità scrittura \end{description}
 \end{Desc}
 \hypertarget{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+value@{my\+G\+P\+I\+O\+\_\+value}}
 \index{my\+G\+P\+I\+O\+\_\+value@{my\+G\+P\+I\+O\+\_\+value}!Bare-\/metal@{Bare-\/metal}}
@@ -399,7 +402,7 @@ Permette di leggere il valore dei pin di un device my\+G\+P\+I\+O;.
 2 myGPIO\_value value = gpio\_getValue(gpio, myGPIO\_pin0);
 3 
 4 // legge il valore del pin 0, 3 e 5 di un device myGPIO.
-5 // Verra' restituita la OR tra i valori dei pin
+5 // Verrà restituita la OR tra i valori dei pin
 6 myGPIO\_value value = gpio\_getValue(gpio, myGPIO\_pin0 | myGPIO\_pin3 | myGPIO\_pin5);
 \end{DoxyCode}
 
@@ -416,7 +419,7 @@ restituisce la O\+R dei pin letti
 \end{DoxyReturn}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em my\+G\+P\+I\+O\+\_\+set} & se uno dei pin letti e' my\+G\+P\+I\+O\+\_\+set, \\
+{\em my\+G\+P\+I\+O\+\_\+set} & se uno dei pin letti è my\+G\+P\+I\+O\+\_\+set, \\
 \hline
 {\em my\+G\+P\+I\+O\+\_\+reset} & se T\+U\+T\+T\+I i pin sono my\+G\+P\+I\+O\+\_\+reset\\
 \hline
@@ -474,7 +477,7 @@ Inizializza una struttura di tipo \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em gpio} & puntatore a \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; \\
 \hline
-\mbox{\tt in}  & {\em base\+\_\+address} & indirizzo di memoria a cui e' mappato il device my\+G\+P\+I\+O; 
+\mbox{\tt in}  & {\em base\+\_\+address} & indirizzo di memoria a cui è mappato il device my\+G\+P\+I\+O; 
 \begin{DoxyCode}
 1 myGPIO\_t gpio;
 2 myGPIO\_init(&gpio, BASE\_ADDRESS);
@@ -503,9 +506,9 @@ Consente di verificare se gli interrupt globali siano abilitati.
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 0 del registro G\+I\+E\+S e' settato, ad indicare che gli interrupt sono abilitati \\
+{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 0 del registro G\+I\+E\+S è settato, ad indicare che gli interrupt sono abilitati \\
 \hline
-{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 0 del registro G\+I\+E\+S e' resettato, ad indicare che gli interrupt non sono abilitati \\
+{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 0 del registro G\+I\+E\+S è resettato, ad indicare che gli interrupt non sono abilitati \\
 \hline
 \end{DoxyRetVals}
 \hypertarget{group__bare-metal_ga386cea84aca8c6bb731b4b46fcbf9199}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Interrupt}}
@@ -526,9 +529,9 @@ Consente di verificare se esistano interrupt non ancora serviti.
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{Valori di ritorno}
-{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 1 del registro G\+I\+E\+S e' settato, ad indicare che esistono interrupt pending \\
+{\em my\+G\+P\+I\+O\+\_\+set} & se il bit 1 del registro G\+I\+E\+S è settato, ad indicare che esistono interrupt pending \\
 \hline
-{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 1 del registro G\+I\+E\+S e' resettato, ad indicare che non esistono interrupt pending \\
+{\em my\+G\+P\+I\+O\+\_\+reset} & se il bit 1 del registro G\+I\+E\+S è resettato, ad indicare che non esistono interrupt pending \\
 \hline
 \end{DoxyRetVals}
 \hypertarget{group__bare-metal_ga6115bde39f860d4e76e7d8f421ce222c}{\index{Bare-\/metal@{Bare-\/metal}!my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt@{my\+G\+P\+I\+O\+\_\+\+Pending\+Pin\+Interrupt}}
@@ -618,7 +621,7 @@ Abilita gli interrupt per i singoli pin del device.
 )}}\label{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}
 
 
-Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. 
+Permette di settare la modalità lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. 
 
 
 \begin{DoxyCode}
@@ -636,7 +639,7 @@ Permette di settare la modalita' lettura/scrittura dei pin di un device my\+G\+P
 \hline
 \mbox{\tt in}  & {\em mask} & maschera dei pin su cui agire; \\
 \hline
-\mbox{\tt in}  & {\em mode} & modalita' di funzionamento dei pin;\\
+\mbox{\tt in}  & {\em mode} & modalità di funzionamento dei pin;\\
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Avvertimento}

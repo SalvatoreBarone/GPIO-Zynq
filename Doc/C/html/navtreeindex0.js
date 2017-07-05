@@ -16,6 +16,9 @@ var NAVTREEINDEX0 =
 "_zybo_switch_8h.html":[2,0,0,1,0,1,6],
 "_zybo_switch_8h_source.html":[2,0,0,1,0,1,6],
 "annotated.html":[1,0],
+"bsp__example_8c.html":[2,0,0,0,0],
+"bsp__example_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[2,0,0,0,0,0],
+"bsp_example_8c-example.html":[3,0],
 "classes.html":[1,1],
 "dir_07fcadccbe83e9c782d897d16ab73824.html":[2,0,0,1,0,0],
 "dir_1b70f4f506dadebaa011ded43b066ccb.html":[2,0,0,0],
@@ -183,9 +186,9 @@ var NAVTREEINDEX0 =
 "group___led.html#ga3dcb274f22e577705c49944b8d1f4b12":[2,0,0,1,0,1,4,2],
 "group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d":[0,0,0,1,1,1],
 "group___led.html#ga50ab39fed34dc3aaf53cdfd67d8ba25d":[2,0,0,1,0,1,4,0],
+"group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc":[0,0,0,1,1,4],
 "group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc":[2,0,0,1,0,1,3,1],
 "group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc":[2,0,0,1,0,1,4,3],
-"group___led.html#ga51bccd37e6ae8cd32e2c50c60a5e83cc":[0,0,0,1,1,4],
 "group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69":[0,0,0,1,1,5],
 "group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69":[2,0,0,1,0,1,3,2],
 "group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69":[2,0,0,1,0,1,4,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "group___linux-_driver.html#ga78d3a23bb3381a43eaba8bbf8b1cc750":[0,0,1,5],
 "group___linux-_driver.html#ga8dba1541b58fa63f8208232ffce4fc47":[0,0,1,39],
 "group___linux-_driver.html#ga8dba1541b58fa63f8208232ffce4fc47":[2,0,0,1,1,2,22],
-"group___linux-_driver.html#ga90ac339df9c02ae5f11a2a7727adc923":[0,0,1,29],
-"group___linux-_driver.html#ga90ac339df9c02ae5f11a2a7727adc923":[2,0,0,1,1,2,16],
-"group___linux-_driver.html#gaa528ef168ff30340d38c46a12fce906b":[2,0,0,1,1,2,5],
-"group___linux-_driver.html#gaa528ef168ff30340d38c46a12fce906b":[0,0,1,7]
+"group___linux-_driver.html#ga90ac339df9c02ae5f11a2a7727adc923":[0,0,1,29]
 };

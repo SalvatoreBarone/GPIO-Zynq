@@ -19,6 +19,57 @@ La documentazione si trova nella cartella <b>Doc</b>. All'interno di essa sono p
 
 <b>Il progetto e' in continua evoluzione ed e' aggiornato molto frequentemente.</b>
 
-# To-Do
-1. Aggiunta delle funzionalita' che permettano di usare la stessa istanza del driver kernel-mode con istanze myGPIO diverse
- 
+# Contenuto 
+Src/
+├── Examples
+│   ├── bsp_example.c			Esempio d'uso del driver bare-metal myGPIO, BSP e driver per display lcd Hitachi HD44780
+│   ├── interrupt_bare.c		Esempio d'uso del driver bare-metal myGPIO con interruzioni
+│   ├── Makefile
+│   ├── mygpiok.c				Programma userspace che fa uso del driver myGPIO in kernel-mode
+│   ├── noDriver.c				Programma userspace che interagisce con device myGPIO attraverso /dev/mem
+│   ├── readAll.c
+│   ├── uio.c					Programma userspace che interagisce con device myGPIO attraverso driver UIO
+│   ├── uio-int.c				Programma userspace che interagisce con device myGPIO attraverso driver UIO con interruzioni
+│   ├── xil_gpio.c
+│   └── xil_gpio.h
+└── myGPIO
+    ├── bare-metal				Driver bare-metal per device myGPIO
+    │   ├── HD44780				Driver bare-metal per display lcd Hitachi HD44780, usa il driver myGPIO
+    │   │   ├── hd44780.c
+    │   │   └── hd44780.h
+    │   ├── myGPIO.c
+    │   ├── myGPIO.h
+    │   └── ZyboBSP				BSP per Digilent Zybo che usa driver myGPIO
+    │       ├── ZyboButton.c
+    │       ├── ZyboButton.h
+    │       ├── Zybo.h
+    │       ├── ZyboLed.c
+    │       ├── ZyboLed.h
+    │       ├── ZyboSwitch.c
+    │       └── ZyboSwitch.h
+    ├── linux-driver			Driver Linux (modulo kernel) per device myGPIO
+    │   ├── configure.sh
+    │   ├── Makefile
+    │   ├── myGPIOK_list.c
+    │   ├── myGPIOK_list.h
+    │   ├── myGPIOK_main.c
+    │   ├── myGPIOK_t.c
+    │   └── myGPIOK_t.h
+    └── VHDL					Implementazione VHDL del device myGPIO
+        ├── GPIOarray.vhd
+        ├── GPIOsingle.vhd
+        ├── myGPIO_AXI.vhd
+        └── myGPIO.vhd
+
+Doc/
+│	device.pdf					Documentazione pdf dell'implementazione VHDL del device myGPIO
+│	driver.pdf					Documentazione pdf dei driver in C, sia sia bare-metal che Linux, con esempi
+├── C 							Documentazione dei driver in C, sia bare-metal che Linux, con esempi, in html e latex
+│   ├── html
+│   │   └── index.html			Indice della documentazione (HTML)
+│   └── latex			
+├── schemes						Schemi a blocchi usati nella documentazione
+└── vhdl						Documentazione interna dell'implementazione VHDL del device myGPIO
+    ├── html
+    │   └── index.html			Indice della documentazione (HTML)
+    └── latex

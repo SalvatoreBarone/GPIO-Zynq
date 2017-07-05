@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -287,20 +287,20 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>. </p>
-<p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> che lo astrae. Tale struttura non viene inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.</p>
+<p>Inizializza un oggetto di tipo <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo. Per il pilotaggio viene usato il modulo myGPIO ed un puntatore ad una struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> che lo astrae. Tale struttura non viene inizializzata dalla funzione ZyboLed_init, per cui sarà necessario inizializzarlo preventivamente. La funzione, però, si assume l'onere di configurare i pin del device myGPIO a cui i led sono connessi.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">leds</td><td>puntatore a struttura <a class="el" href="struct_zybo_led__t.html" title="Struttura opaca che astrae l&#39;insieme dei Led presenti sulla board Digilent Zybo;. ...">ZyboLed_t</a>, che astrae l'insieme dei Led presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device GPIO; la struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> non viene inizializzata dalla funzione, per cui sara' necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Led3_pin</td><td>pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Led2_pin</td><td>pin del device GPIO a cui e' associato il Led2 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Led1_pin</td><td>pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Led0_pin</td><td>pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; la struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a> non viene inizializzata dalla funzione, per cui sarà necessario farlo preventivamente; si faccia riferimento all'esempio riportato di seguito. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Led3_pin</td><td>pin del device myGPIO a cui è associato il Led3 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Led2_pin</td><td>pin del device myGPIO a cui è associato il Led2 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Led1_pin</td><td>pin del device myGPIO a cui è associato il Led1 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Led0_pin</td><td>pin del device myGPIO a cui è associato il Led0 della board Digilent Zybo;</td></tr>
   </table>
   </dd>
 </dl>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioLed;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);                // inizializzazione del device GPIO</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);                // inizializzazione del device myGPIO</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboLed_t leds;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboLed_init(&amp;leds, &amp;gpioLed, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);  // inzializzazione della struttura ZyboLed_t</div>
 </div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
@@ -411,7 +411,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

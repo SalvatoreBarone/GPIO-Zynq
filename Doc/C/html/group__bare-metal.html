@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -116,14 +116,14 @@ Diagramma di collaborazione per Bare-metal:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__bare-metal.png" border="0" alt="" usemap="#group____bare-metal"/>
 <map name="group____bare-metal" id="group____bare-metal">
-<area shape="rect" id="node1" href="group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/><area shape="rect" id="node3" href="group___h_d44780.html" title="driver per display Hitachi hd44780 basato su driver myGPIO " alt="" coords="260,5,337,32"/><area shape="rect" id="node4" href="group___zybo.html" title="Zybo" alt="" coords="273,56,324,83"/></map>
+<area shape="rect" id="node1" href="group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/><area shape="rect" id="node3" href="group___h_d44780.html" title="driver per display Hitachi hd44780 basato su driver myGPIO bare&#45;metal " alt="" coords="260,5,337,32"/><area shape="rect" id="node4" href="group___zybo.html" title="Zybo" alt="" coords="273,56,324,83"/></map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
 Moduli</h2></td></tr>
 <tr class="memitem:group___h_d44780"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html">HD44780</a></td></tr>
-<tr class="memdesc:group___h_d44780"><td class="mdescLeft">&#160;</td><td class="mdescRight">driver per display Hitachi hd44780 basato su driver myGPIO <br /></td></tr>
+<tr class="memdesc:group___h_d44780"><td class="mdescLeft">&#160;</td><td class="mdescRight">driver per display Hitachi hd44780 basato su driver myGPIO bare-metal <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___zybo"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___zybo.html">Zybo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,7 +215,7 @@ Tipi enumerati (enum)</h2></td></tr>
 <tr class="memitem:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">myGPIO_mode</a> { <a class="el" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d">myGPIO_read</a>, 
 <a class="el" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6">myGPIO_write</a>
  }</td></tr>
-<tr class="memdesc:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device myGPIO  <a href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO  <a href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">Continua...</a><br /></td></tr>
 <tr class="separator:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> { <a class="el" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>, 
 <a class="el" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>
@@ -229,7 +229,7 @@ Funzioni</h2></td></tr>
 <tr class="memdesc:ga588201358d1633c53535b288c9198531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza un device myGPIO.  <a href="#ga588201358d1633c53535b288c9198531">Continua...</a><br /></td></tr>
 <tr class="separator:ga588201358d1633c53535b288c9198531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga43e82eb0febd452635a438fbd9cb853b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#ga43e82eb0febd452635a438fbd9cb853b">myGPIO_SetMode</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask, <a class="el" href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">myGPIO_mode</a> mode)</td></tr>
-<tr class="memdesc:ga43e82eb0febd452635a438fbd9cb853b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare la modalita' lettura/scrittura dei pin di un device myGPIO;.  <a href="#ga43e82eb0febd452635a438fbd9cb853b">Continua...</a><br /></td></tr>
+<tr class="memdesc:ga43e82eb0febd452635a438fbd9cb853b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare la modalità lettura/scrittura dei pin di un device myGPIO;.  <a href="#ga43e82eb0febd452635a438fbd9cb853b">Continua...</a><br /></td></tr>
 <tr class="separator:ga43e82eb0febd452635a438fbd9cb853b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9d9ce9d2db7d77a588da4a3749f2f24d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#ga9d9ce9d2db7d77a588da4a3749f2f24d">myGPIO_SetValue</a> (<a class="el" href="structmy_g_p_i_o__t.html">myGPIO_t</a> *gpio, <a class="el" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask, <a class="el" href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> value)</td></tr>
 <tr class="memdesc:ga9d9ce9d2db7d77a588da4a3749f2f24d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permette di settare il valore dei pin di un device myGPIO, se configurati come output.  <a href="#ga9d9ce9d2db7d77a588da4a3749f2f24d">Continua...</a><br /></td></tr>
@@ -361,12 +361,13 @@ Funzioni</h2></td></tr>
 <p>Metodo alternativo per la specifica di uno dei pin di un device myGPIO. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit piu' significativo) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>indice del bit da selezionare, da 0 (bit meno significativo) a 31 (bit più significativo) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>maschera di selezione del pin i-esimo </dd></dl>
-
+<dl><dt><b>Esempi: </b></dt><dd><a class="el" href="interrupt_bare_8c-example.html#a33">interrupt_bare.c</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="ga584d2dfece76e5762030d918d80592cc"></a>
@@ -532,13 +533,13 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>myGPIO_mode, modalita' di funzionamento (lettura/scrittura) di un device myGPIO </p>
+<p>myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO </p>
 <table class="fieldtable">
 <tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d"></a>myGPIO_read&#160;</td><td class="fielddoc">
-<p>myGPIO_read modalita' lettura </p>
+<p>myGPIO_read modalità lettura </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6"></a>myGPIO_write&#160;</td><td class="fielddoc">
-<p>myGPIO_write modalita' scrittura </p>
+<p>myGPIO_write modalità scrittura </p>
 </td></tr>
 </table>
 
@@ -653,7 +654,7 @@ Funzioni</h2></td></tr>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;// legge il valore del pin 0, 3 e 5 di un device myGPIO.</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;// Verra&#39; restituita la OR tra i valori dei pin</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;// Verrà restituita la OR tra i valori dei pin</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0 | myGPIO_pin3 | myGPIO_pin5);</div>
 </div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
@@ -665,7 +666,7 @@ Funzioni</h2></td></tr>
 <dl class="section return"><dt>Restituisce</dt><dd>restituisce la OR dei pin letti </dd></dl>
 <dl class="retval"><dt>Valori di ritorno</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">myGPIO_set</td><td>se uno dei pin letti e' myGPIO_set, </td></tr>
+    <tr><td class="paramname">myGPIO_set</td><td>se uno dei pin letti è myGPIO_set, </td></tr>
     <tr><td class="paramname">myGPIO_reset</td><td>se TUTTI i pin sono myGPIO_reset</td></tr>
   </table>
   </dd>
@@ -751,7 +752,7 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">base_address</td><td>indirizzo di memoria a cui e' mappato il device myGPIO; <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpio;</div>
+    <tr><td class="paramdir">[in]</td><td class="paramname">base_address</td><td>indirizzo di memoria a cui è mappato il device myGPIO; <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpio;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_init(&amp;gpio, BASE_ADDRESS);</div>
 </div><!-- fragment --></td></tr>
   </table>
@@ -784,8 +785,8 @@ Funzioni</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Valori di ritorno</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">myGPIO_set</td><td>se il bit 0 del registro GIES e' settato, ad indicare che gli interrupt sono abilitati </td></tr>
-    <tr><td class="paramname">myGPIO_reset</td><td>se il bit 0 del registro GIES e' resettato, ad indicare che gli interrupt non sono abilitati </td></tr>
+    <tr><td class="paramname">myGPIO_set</td><td>se il bit 0 del registro GIES è settato, ad indicare che gli interrupt sono abilitati </td></tr>
+    <tr><td class="paramname">myGPIO_reset</td><td>se il bit 0 del registro GIES è resettato, ad indicare che gli interrupt non sono abilitati </td></tr>
   </table>
   </dd>
 </dl>
@@ -815,8 +816,8 @@ Funzioni</h2></td></tr>
 </dl>
 <dl class="retval"><dt>Valori di ritorno</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">myGPIO_set</td><td>se il bit 1 del registro GIES e' settato, ad indicare che esistono interrupt pending </td></tr>
-    <tr><td class="paramname">myGPIO_reset</td><td>se il bit 1 del registro GIES e' resettato, ad indicare che non esistono interrupt pending </td></tr>
+    <tr><td class="paramname">myGPIO_set</td><td>se il bit 1 del registro GIES è settato, ad indicare che esistono interrupt pending </td></tr>
+    <tr><td class="paramname">myGPIO_reset</td><td>se il bit 1 del registro GIES è resettato, ad indicare che non esistono interrupt pending </td></tr>
   </table>
   </dd>
 </dl>
@@ -983,7 +984,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Permette di settare la modalita' lettura/scrittura dei pin di un device myGPIO;. </p>
+<p>Permette di settare la modalità lettura/scrittura dei pin di un device myGPIO;. </p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// setta i pin 0 ed 1 di un device myGPIO come pin di uscita, gli altri restano invariati</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_setMode(gpio, myGPIO_pin0 | myGPIO_pin1, myGPIO_write);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
@@ -993,7 +994,7 @@ Funzioni</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera dei pin su cui agire; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>modalita' di funzionamento dei pin;</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>modalità di funzionamento dei pin;</td></tr>
   </table>
   </dd>
 </dl>
@@ -1092,7 +1093,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

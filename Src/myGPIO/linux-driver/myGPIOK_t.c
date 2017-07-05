@@ -33,7 +33,7 @@
 /**
  * @brief Inizializza una struttura myGPIOK_t e configura il device corrispondente
  *
- * @param [in]	myGPIOK_device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in]	myGPIOK_device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  * @param [in]	owner puntatore a struttura struct module, proprietario del device (THIS_MODULE)
  * @param [in]	op puntatore a struct platform_device, costituito dal parametro "op" con cui viene invocata probe() o la remove()
  * @param [in]	class puntatore a struct class, classe del device, deve essere stata precedentemente creata con class_create()
@@ -41,10 +41,10 @@
  * @param [in]	device_name nome del device
  * @param [in]	serial numero seriale del device
  * @param [in]	f_ops puntatore a struttura struct file_operations, specifica le funzioni che agiscono sul device
- * @param [in]	irq_handler puntatore irq_handler_t alla funzione che gestira' gli interrupt generati dal device
+ * @param [in]	irq_handler puntatore irq_handler_t alla funzione che gestirà gli interrupt generati dal device
  * @param [in]	irq_mask maschera delle interruzioni del device
  *
- * @retval "0" se non si e' verificato nessun errore
+ * @retval "0" se non si è verificato nessun errore
  *
  * @details
  */
@@ -68,9 +68,9 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * Ai device drivers sono associati un major-number ed un minor-number. Il major-number viene usato dal kernel
  * per identificare il driver corretto corrispondente ad uno specifico device, quando si effettuano operazioni
  * su di esso. Il ruolo del minor number dipende dal device e viene gestito internamente dal driver.
- * Questo driver, cosi' come molti altri, usa il Major ed il minor number per distinguere le diverse istanze di
+ * Questo driver, così come molti altri, usa il Major ed il minor number per distinguere le diverse istanze di
  * device myGPIO che usano il device-driver myGPIOK.
- * La registrazione di un device driver puo' essere effettuata chiamando <b>alloc_chrdev_region()</b>, la quale
+ * La registrazione di un device driver può essere effettuata chiamando <b>alloc_chrdev_region()</b>, la quale
  * alloca un char-device numbers. Il major number viene scelto dinamicamente e restituito dalla funzione
  * attraverso il parametro dev. La funzione restituisce un valore negativo nel caso in cui si verifichino errori,
  * 0 altrimenti.
@@ -105,40 +105,40 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * 				};
  * @endcode
  * Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno
- * specifico "operatore" su file, oppure impostata a NULL se l'operatore non e' supportato.
- * L'esatto comportamento del kernel, quando uno dei puntatori e' NULL, varia da funzione
+ * specifico "operatore" su file, oppure impostata a NULL se l'operatore non è supportato.
+ * L'esatto comportamento del kernel, quando uno dei puntatori è NULL, varia da funzione
  * a funzione.
- * La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare
- * su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente
+ * La lista seguente introduce tutti gli operatori che un'applicazione può invocare
+ * su un device. La lista è stata mantenuta snella, includendo solo i campi strettamente
  * necessari.
  *
  * - <i>struct module *owner</i> :<br>
- * 		il primo campo della struttura non e' un operatore, ma un puntatore al modulo che
+ * 		il primo campo della struttura non è un operatore, ma un puntatore al modulo che
  * 		"possiede" la struttura. Il campo ha lo scopo di evitare che il modulo venga rimosso
- * 		dal kernel quando uno degli operatori e' in uso. Viene inizializzato usando la macro
+ * 		dal kernel quando uno degli operatori è in uso. Viene inizializzato usando la macro
  * 		THIS_MODULE, definita in <linux/module.h>.
  *
  * - <i>loff_t (*llseek) (struct file *, loff_t, int)</i> :
- * 		il campo llseek e' usato per cambiare la posizione della "testina" di lettura/
+ * 		il campo llseek è usato per cambiare la posizione della "testina" di lettura/
  * 		scrittura in un file. La funzione restituisce la nuova posizione della testina.
- * 		loff_t e' un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
- * 		vengono segnalati con un valore di ritorno negativo. Se questo campo e' posto a
+ * 		loff_t è un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
+ * 		vengono segnalati con un valore di ritorno negativo. Se questo campo è posto a
  * 		NULL, eventuali chiamate a seek modifigheranno la posizione della testina in un
  * 		modo impredicibile.
  *
  * - <i>ssize_t (*read) (struct file *, char _ _user *, size_t, loff_t *)</i> :<br>
- * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallira'
- * 		e non sara' possibile leggere dal device. La funzione restituisce il numero di byte
+ * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallirà
+ * 		e non sarà possibile leggere dal device. La funzione restituisce il numero di byte
  * 		letti con successo ma, nel caso si verifichi un errore, restituisce un numero intero
  * 		negativo.
  *
  * - <i>ssize_t (*write) (struct file *, const char _ _user *, size_t, loff_t *)</i> :<br>
- * 		invia dati al device. Se NULL ogni chiamata alla system-call write causera' un errore.
+ * 		invia dati al device. Se NULL ogni chiamata alla system-call write causerà un errore.
  * 		Il valore di ritorno, se non negativo, rappresenta il numero di byte correttamente
  * 		scritti.
  *
  * - <i>unsigned int (*poll) (struct file *, struct poll_table_struct *)</i> :<br>
- * 		questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select, le quali
+ * 		questo metodo è il back-end di tre diverse system-calls: poll, epoll e select, le quali
  * 		sono usate per capire se una operazione di lettura/scrittura du un device possano
  * 		risultare bloccanti o meno. La funzione dovrebbe restituire una maschera che indichi
  * 		se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che
@@ -147,12 +147,12 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * 		device siano sempre non-bloccanti.
  *
  * - <i>int (*open) (struct inode *, struct file *)</i> :<br>
- * 		Anche se, di solito, e' la prima operazione che si effettua su un file, non e' strettamente
- * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andra' comunque
- * 		a buon fine, ma al driver non verra' inviata alcuna notifica.
+ * 		Anche se, di solito, è la prima operazione che si effettua su un file, non è strettamente
+ * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andrà comunque
+ * 		a buon fine, ma al driver non verrà inviata alcuna notifica.
  *
  * - <i>int (*release) (struct inode *, struct file *)</i> :<br>
- * 		questo operatore viene invocato quando il file viene rilasciato. Come open, puo' essere
+ * 		questo operatore viene invocato quando il file viene rilasciato. Come open, può essere
  * 		lasciato NULL.
  *
  * L'inizializzazione di un device a caratteri passa anche attraverso la definizione di questo tipo di
@@ -167,8 +167,8 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 	cdev_init (&myGPIOK_device->cdev, f_ops);
 	myGPIOK_device->cdev.owner = owner;
 /** <h5>Creazione del device</h5>
- * Il passo successivo e' la registrazione del device e la sua aggiunta al filesystem. Tale operazione
- * puo' essere effettuata chiamando
+ * Il passo successivo è la registrazione del device e la sua aggiunta al filesystem. Tale operazione
+ * può essere effettuata chiamando
  * @code
  * struct device * device_create( struct class *class, struct device *parent, dev_t devt, const char *fmt, ...)
  * @endcode
@@ -177,7 +177,7 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  *  - devt: tmajor number
  *  - fmt: nome del device.
  *
- * La funzione pu' essere usata solo sulla classe dei device a caratteri. Crea un device all'interno del
+ * La funzione pù essere usata solo sulla classe dei device a caratteri. Crea un device all'interno del
  * filesystem, associandogli il major number preventivamente inizializzato. La funzione restituisce il puntatore
  * alla struttura device creata all'interno del filesystem. Si noti che il puntatre alla struttura classes DEVE
  * essere stato precedentemente creato attraverso una chiamata alla funzione <i>class_create()</i>.
@@ -188,7 +188,7 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 		goto device_create_error;
 	}
 /** <h5>Aggiunta del device</h5>
- * Il driver, a questo punto, e' pronto per essere aggiunto. E' possibile aggiungere il driver usando
+ * Il driver, a questo punto, è pronto per essere aggiunto. è possibile aggiungere il driver usando
  * @code
  * int cdev_add (struct cdev *p, dev_t dev, unsigned count);
  * @endcode
@@ -204,22 +204,22 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 		printk(KERN_ERR "%s: cdev_add() ha restituito %d\n", __func__, error);
 		goto cdev_add_error;
 	}
-/** <h5>Accedere al segmento di memoria a cui la periferica e' mappata</h5>
- * Un driver, tipicamente, prende possesso del segmento di memoria cui e' mappato il device con la funzione
- * di probe. Il problema e' che il device e' mappato ad un indirizzo di memoria fisico ed il Kernel, così
+/** <h5>Accedere al segmento di memoria a cui la periferica è mappata</h5>
+ * Un driver, tipicamente, prende possesso del segmento di memoria cui è mappato il device con la funzione
+ * di probe. Il problema è che il device è mappato ad un indirizzo di memoria fisico ed il Kernel, così
  * come qualsiasi altro programma, lavora su indirizzi di memoria virtuali. La funzione
  *
  * @code
  * int of_address_to_resource(struct device_node *node, int index, struct resource *r);
  * @endcode
  *
- * popola una struttura resource con l'indirizzo di memoria cui e' mapato il device usando le informazioni
+ * popola una struttura resource con l'indirizzo di memoria cui è mapato il device usando le informazioni
  * contenute all'interno del device tree. Ad esempio, se il device tree contiene
  * @code
  * reg = <0x41200000 0x10000>;
  * @endcode
- * signidifa che l'indirizzo fisico associato al device e' l'indirizzo 0x41200000, che al device sono riservati
- * 0x10000 bytes. of_address_to_resource() settera' res.start = 0x41200000 e res.end = 0x4120ffff.
+ * signidifa che l'indirizzo fisico associato al device è l'indirizzo 0x41200000, che al device sono riservati
+ * 0x10000 bytes. of_address_to_resource() setterà res.start = 0x41200000 e res.end = 0x4120ffff.
  */
 	dev = &op->dev;
 	if ((error = of_address_to_resource(dev->of_node, 0, &myGPIOK_device->rsrc)) != 0) {
@@ -243,8 +243,8 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 		goto request_mem_region_error;
 	}
 /** <h5>Remapping</h5>
- * L'allocazione dello spazio di memoria non e' l'unico step da eseguire prima che tale memoria possa essere
- * usata. E' necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la
+ * L'allocazione dello spazio di memoria non è l'unico step da eseguire prima che tale memoria possa essere
+ * usata. è necessario fare in modo che sia resa accessibile al kernel attraverso un mapping, usando la
  * funzione.
  * @code
  * void *ioremap(unsigned long phys_addr, unsigned long size);
@@ -262,7 +262,7 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * @code
  * struct irqreturn_t (*irq_handler_t)(int irq, struct pt_regs * regs);
  * @endcode
- * Il modulo definisce la funzione myGPIOK_irq_handler(). L'handler puo' essere registrato usando
+ * Il modulo definisce la funzione myGPIOK_irq_handler(). L'handler può essere registrato usando
  * @code
  * int request_irq(	unsigned int irqNumber,
  * 					irqreturn_t (*handler)(int, void *, struct pt_regs *),
@@ -270,23 +270,23 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * 					const char *devname,
  * 					void *dev_id);
  * @endcode
- * IL parametro irqNumber puo' essere determinato automaticamente usando la funzione
+ * IL parametro irqNumber può essere determinato automaticamente usando la funzione
  * @code
  * unsigned int irq_of_parse_and_map(struct device_node *node, int index);
  * @endcode
  * La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del
- * device tree e restituisce un irq number cosi' come de lo aspetta request_irq() (cioe' compaci con
- * l'enumerazione in /proc/interrupts). Il secondo argomento della funzione e', tipicamente, zero, ad
- * indicare che, all'interno del device tree, verra' preso in considerazione soltanto il primo degli
+ * device tree e restituisce un irq number così come de lo aspetta request_irq() (cioè compaci con
+ * l'enumerazione in /proc/interrupts). Il secondo argomento della funzione è, tipicamente, zero, ad
+ * indicare che, all'interno del device tree, verrà preso in considerazione soltanto il primo degli
  * interrupt specificate.
  * Il device tree, nella sezione dedicata al gpio,reca
  * @code
  * interrupts = <0 29 4>;
  * @endcode
- * Il primo numero (0) e' un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral
- * interrupt). Un valore diverso da zero indica che la linea e' SPI.
+ * Il primo numero (0) è un flag che indica se l'interrupt sia connesso ad una line SPI (shared peripheral
+ * interrupt). Un valore diverso da zero indica che la linea è SPI.
  * Il secondo numero si riferisce all'interrupt number. Per farla breve, quando si definisce la parte hardware,
- * in questo specifico esempio il device GPIO e' connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29.
+ * in questo specifico esempio il device GPIO è connesso alla linea 61 del GIC. Sottraendo 32 si orriene 29.
  * Il terzo numero si riferisce alla tipologia dell'interrupt. Sono possibili tre valori:
  *  - 0 : power-up default
  *  - 1 : rising-edge
@@ -313,11 +313,11 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 /** <h5>Inizializzazione degli spinlock</h5>
  * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
  * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
- * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
- * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
- * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
- * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
- * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * anche in codice non interrompibile, come può esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di
+ * vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l'implementazione
+ * è "un pò" più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono
  * definiti in <linux/spinlock.h>.
  * L'inizializzazione di uno spinlock avviene usando la funzione
  * @code
@@ -331,7 +331,7 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
 /** <h5>Abilitazione degli interrupt del device</h5>
  * A seconda del valore CFLAGS_myGPIOK.o (si veda il Makefile a corredo), vengono abilitati gli interrupt della
  * periferica. Se si tratta del GPIO Xilinx vengono abilitati gli interrupt globali e gli interrupt sul canale
- * due. Se si tratta del device GPIO custom, essendo esso parecchio piu' semplice, e' necessario abilitare solo
+ * due. Se si tratta del device GPIO custom, essendo esso parecchio più semplice, è necessario abilitare solo
  * gli interrupt globali.
  */
 #ifdef __XGPIO__
@@ -382,7 +382,7 @@ void myGPIOK_Destroy(myGPIOK_t* device) {
 
 /**
  * @brief Set del flag "interrupt occurred" (canRead)
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Setting del valore del flag "interrupt occurred"</h5>
@@ -391,11 +391,11 @@ void myGPIOK_Destroy(myGPIOK_t* device) {
  * Per prevenire race condition, tale operazione viene effettuata mutua esclusione.
  * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
  * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
- * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
- * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
- * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
- * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
- * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * anche in codice non interrompibile, come può esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di
+ * vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l'implementazione
+ * è "un pò" più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono
  * definiti in <linux/spinlock.h>.
  * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
  * @code
@@ -417,28 +417,28 @@ void myGPIOK_SetCanRead(myGPIOK_t* device) {
 /**
  * @brief Reset del flag "interrupt occurred" (canRead)
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
- * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
- * esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata
- * per prevenire race-condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso
+ * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa è tale che
+ * esso può continuare la sua esecuzione, è necessario resettare tale flag. Questa operazione va effettuata
+ * per prevenire race-condition dovute al risveglio di più processi in attesa del manifestarsi dello stesso
  * evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
  *
  * I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono
  * essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati
- * anche in codice non interrompibile, come puo' esserlo un modulo kernel.
- * Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal
- * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di
- * vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione
- * e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono
+ * anche in codice non interrompibile, come può esserlo un modulo kernel.
+ * Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-loop dal
+ * quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di
+ * vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l'implementazione
+ * è "un pò" più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono
  * definiti in <linux/spinlock.h>.
  * Esistono diversi modi per acquisire uno spinlock. Nel seguito viene usata la funzione
  * @code
  * void spin_lock(spinlock_t *lock);
  * @endcode
- * per rilasciare uno spinlock, invece, verra' usata
+ * per rilasciare uno spinlock, invece, verrà usata
  * @code
  * void spin_unlock(spinlock_t *lock);
  * @endcode
@@ -453,30 +453,30 @@ void myGPIOK_ResetCanRead(myGPIOK_t* device) {
 /**
  * @brief Testa la condizione "interrupt occurred", mettendo in attesa il processo, se necessario
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Porre un processo nello stato sleeping</h5>
  * Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in
- * futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera,
+ * futuro. Al risveglio, però, non c'è nessuna garanzia che quella particolare condizione sia ancora vera,
  * per cui essa va nuovamente testata.
- * Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait_event(), o una
+ * Il modo più semplice per potte un processo nello stato sleeping è chiamare la macro wait_event(), o una
  * delle sue varianti: essa combina la gestione della messa in sleeping del processo ed il check della
  * condizione che il processo si aspetta diventi vera.
  * @code
  * wait_event_interruptible(queue, condition);
  * @endcode
- * Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la
+ * Il parametro queue è la coda di attesa mentre condition è la condizione che, valutata true, causa la
  * messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping
- * che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() puo'
+ * che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() può
  * essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero,
- * indica che il processo e' stato risvegliato da un segnale.
+ * indica che il processo è stato risvegliato da un segnale.
  *
  * La condizione sulla quale i processi vengono bloccati riguarda il flag "interrupt occurred". Fin quando
- * questo flag, posto in and con la maschera MYGPIOK_SREAD, e' zero, il processo deve restare bloccato, per
- * cui i processi che effettuano read() bloccante restano bloccati finche' int_occurred & MYGPIO_SREAD == 0.
- * Quando tale uguaglianza non sara' piu' valida, perche' il valore di int_occurred viene settato dalla
- * funzione myGPIOK_irq_handler(), allora il processo verra' risvegliato.
+ * questo flag, posto in and con la maschera MYGPIOK_SREAD, è zero, il processo deve restare bloccato, per
+ * cui i processi che effettuano read() bloccante restano bloccati finché int_occurred & MYGPIO_SREAD == 0.
+ * Quando tale uguaglianza non sarà più valida, perché il valore di int_occurred viene settato dalla
+ * funzione myGPIOK_irq_handler(), allora il processo verrà risvegliato.
  */
 void myGPIOK_TestCanReadAndSleep(myGPIOK_t* device) {
 	wait_event_interruptible(device->read_queue, (device->can_read != 0));
@@ -485,7 +485,7 @@ void myGPIOK_TestCanReadAndSleep(myGPIOK_t* device) {
 /**
  * @brief Verifica che le operazioni di lettura/scrittura risultino non-bloccanti.
  *
- * @param [in] 		device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] 		device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  * @param [inout]	file
  * @param [inout]	wait
  *
@@ -494,7 +494,7 @@ void myGPIOK_TestCanReadAndSleep(myGPIOK_t* device) {
  * bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
  *
  * @details
- * Questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select,
+ * Questo metodo è il back-end di tre diverse system-calls: poll, epoll e select,
  * le quali	sono usate per capire se una operazione di lettura/scrittura du un device
  * possano risultare bloccanti o meno.
  */
@@ -511,7 +511,7 @@ unsigned myGPIOK_GetPollMask(myGPIOK_t *device, struct file *file_ptr, struct po
 /**
  * @brief Incrementa il contatore degli interrupt per un particolare device
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Incremento del numero totale di interrupt</h5>
@@ -528,7 +528,7 @@ void myGPIOK_IncrementTotal(myGPIOK_t* device) {
 /**
  * @brief Risveglia i process in attesa sulle code di read e poll.
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @details
  * <h5>Wakeup dei processi sleeping</h5>
@@ -547,9 +547,9 @@ void myGPIOK_WakeUp(myGPIOK_t* device) {
 }
 
 /**
- * @brief Restituisce l'indirizzo virtuale di memoria cui e' mappato un device
+ * @brief Restituisce l'indirizzo virtuale di memoria cui è mappato un device
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  */
 void* myGPIOK_GetDeviceAddress(myGPIOK_t* device) {
 	return device->vrtl_addr;
@@ -558,7 +558,7 @@ void* myGPIOK_GetDeviceAddress(myGPIOK_t* device) {
 /**
  * @brief Abilita gli interrupt globali;
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  */
 void myGPIOK_GlobalInterruptEnable(myGPIOK_t* device) {
 	iowrite32(1, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
@@ -567,7 +567,7 @@ void myGPIOK_GlobalInterruptEnable(myGPIOK_t* device) {
 /**
  * @brief Disabilita gli interrupt globali;
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  */
 void myGPIOK_GlobalInterruptDisable(myGPIOK_t* device) {
 	iowrite32(0, (device->vrtl_addr + myGPIOK_GIES_OFFSET));
@@ -576,7 +576,7 @@ void myGPIOK_GlobalInterruptDisable(myGPIOK_t* device) {
 /**
  * @brief Abilita gli interrupt per i singoli pin del device.
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  * @param [in] mask maschera di selezione degli interrupt da abilitare; quelli non selezionati non vengono abilitati;
  */
 void myGPIOK_PinInterruptEnable(myGPIOK_t* device, unsigned mask) {
@@ -588,7 +588,7 @@ void myGPIOK_PinInterruptEnable(myGPIOK_t* device, unsigned mask) {
 /**
  * @brief Disabilita gli interrupt per i singoli pin del device.
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @param [in] mask maschera di selezione degli interrupt da disabilitare; quelli non selezionati non vengono disabilitati;
  */
@@ -601,7 +601,7 @@ void myGPIOK_PinInterruptDisable(myGPIOK_t* device, unsigned mask) {
 /**
  * @brief Consente di ottenere una maschera che indichi quali interrupt non siano stati ancora serviti;
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @return maschera che riporta i pin per i quali gli interrupt non sono stati ancora serviti;
  */
@@ -612,7 +612,7 @@ unsigned myGPIOK_PendingPinInterrupt(myGPIOK_t* device) {
 /**
  * @brief Invia al device notifica di servizio di un interrupt;
  *
- * @param [in] device puntatore a struttura myGPIO_t, che si riferisce al device su cui operare
+ * @param [in] device puntatore a struttura myGPIOK_t, che si riferisce al device su cui operare
  *
  * @param [in] mask mask maschera di selezione degli interrupt da notificare; quelli non selezionati non vengono notificati;
  */

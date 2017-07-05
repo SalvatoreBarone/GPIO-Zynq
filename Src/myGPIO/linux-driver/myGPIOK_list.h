@@ -38,7 +38,7 @@
  * @brief Struttura dati per la gestione degli oggetti myGPIOK_t gestiti dal driver
  *
  * La struttura dati, sebbene non strettamente necessaria alla gestione dei diversi oggetti myGPIOK_t, ciascuno dei
- * quali corrispondente ad un diverso device gestito dal driver myGPIOK, e' pensata per semplificare l'accesso a
+ * quali corrispondente ad un diverso device gestito dal driver myGPIOK, è pensata per semplificare l'accesso a
  * questi ultimi, tenendo un riferimento a tutti gli oggetti e le strutture dati coinvolte nel funzionamento del modulo
  *  in un unico "posto", accessibile attraverso questa struttura dati.
  */

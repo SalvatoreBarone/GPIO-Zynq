@@ -66,15 +66,15 @@ typedef enum {
  * @brief Struttura opaca che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
  */
 typedef struct {
-	myGPIO_t		*gpio;		/**<	puntatore a struttura myGPIO_t, che astrae il particolare GPIO usato per il pilotaggio dei led
+	myGPIO_t		*gpio;		/**<	puntatore a struttura myGPIO_t, che astrae il particolare myGPIO usato per il pilotaggio dei led
 									presenti sulla board */
-	myGPIO_mask 	Led3_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led3_pin;	/**<	maschera di selezione per il particolare bit del device myGPIO usato per il pilotaggio del led
 									numero 3 della board Zybo */
-	myGPIO_mask 	Led2_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led2_pin;	/**<	maschera di selezione per il particolare bit del device myGPIO usato per il pilotaggio del led
 									numero 2 della board Zybo */
-	myGPIO_mask 	Led1_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led1_pin;	/**<	maschera di selezione per il particolare bit del device myGPIO usato per il pilotaggio del led
 									numero 1 della board Zybo */
-	myGPIO_mask 	Led0_pin;	/**<	maschera di selezione per il particolare bit del device GPIO usato per il pilotaggio del led
+	myGPIO_mask 	Led0_pin;	/**<	maschera di selezione per il particolare bit del device myGPIO usato per il pilotaggio del led
 									numero 0 della board Zybo */
 } ZyboLed_t;
 
@@ -82,22 +82,22 @@ typedef struct {
  * @brief Inizializza un oggetto di tipo ZyboLed_t.
  *
  * Inizializza un oggetto di tipo ZyboLed_t, che astrae e consente di pilotare i led presenti sulla board Digilent Zybo.
- * Per il pilotaggio viene usato il modulo GPIO ed un puntatore ad una struttura myGPIO_t che lo astrae. Tale struttura non viene
- * inizializzata dalla funzione ZyboLed_init, per cui sara' necessario inizializzarlo preventivamente. La funzione, pero', si
- * assume l'onere di configurare i pin del device GPIO a cui i led sono connessi.
+ * Per il pilotaggio viene usato il modulo myGPIO ed un puntatore ad una struttura myGPIO_t che lo astrae. Tale struttura non viene
+ * inizializzata dalla funzione ZyboLed_init, per cui sarà necessario inizializzarlo preventivamente. La funzione, però, si
+ * assume l'onere di configurare i pin del device myGPIO a cui i led sono connessi.
  *
  * @param[inout]	leds    	puntatore a struttura ZyboLed_t, che astrae l'insieme dei Led presenti sulla board Digilent Zybo;
- * @param[in]		gpio    	puntatore a struttura myGPIO_t, che astrae un device GPIO; la struttura myGPIO_t non viene
- * 								inizializzata dalla funzione, per cui sara' necessario farlo preventivamente;
+ * @param[in]		gpio    	puntatore a struttura myGPIO_t, che astrae un device myGPIO; la struttura myGPIO_t non viene
+ * 								inizializzata dalla funzione, per cui sarà necessario farlo preventivamente;
  * 								si faccia riferimento all'esempio riportato di seguito.
- * @param[in]		Led3_pin	pin del device GPIO a cui e' associato il Led3 della board Digilent Zybo;
- * @param[in]		Led2_pin	pin del device GPIO a cui e' associato il Led2 della board Digilent Zybo;
- * @param[in]		Led1_pin	pin del device GPIO a cui e' associato il Led1 della board Digilent Zybo;
- * @param[in]		Led0_pin	pin del device GPIO a cui e' associato il Led0 della board Digilent Zybo;
+ * @param[in]		Led3_pin	pin del device myGPIO a cui è associato il Led3 della board Digilent Zybo;
+ * @param[in]		Led2_pin	pin del device myGPIO a cui è associato il Led2 della board Digilent Zybo;
+ * @param[in]		Led1_pin	pin del device myGPIO a cui è associato il Led1 della board Digilent Zybo;
+ * @param[in]		Led0_pin	pin del device myGPIO a cui è associato il Led0 della board Digilent Zybo;
  *
  * @code
  * myGPIO_t gpioLed;
- * GPIO_init(&gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);				// inizializzazione del device GPIO
+ * GPIO_init(&gpioLed, XPAR_MYGPIO_0_S00_AXI_BASEADDR, 4, 0, 4, 8);				// inizializzazione del device myGPIO
  * ZyboLed_t leds;
  * ZyboLed_init(&leds, &gpioLed, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);	// inzializzazione della struttura ZyboLed_t
  * @endcode

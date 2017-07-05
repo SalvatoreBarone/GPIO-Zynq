@@ -35,16 +35,16 @@ use ieee.numeric_std.all;
 --! @details
 --!
 --! <h4>Registri interni del device</h4>
---! Il device possiede i registri indicati di seguito. Per oognuno di essi viene indicata la modalita' di
+--! Il device possiede i registri indicati di seguito. Per oognuno di essi viene indicata la modalità di
 --! accesso (R sola lettura, W sola scrittura, R/W lettura scrittura), e l'offset, rispetto all'indirizzo
---! base del device, col quale e' possibile indirizzarli.
+--! base del device, col quale è possibile indirizzarli.
 --!
 --!  - MODE (R/W, offset +0x0): consente di impostare i singoli pin del device come ingressi o uscite; solo i
 --!    GPIO_width bit meno significativi del registro hanno significato, agire sui restanti bit non produce
 --!    nessun effetto; Il valore che i singoli pin possono
---!    assumere e':
+--!    assumere è:
 --!			- '1': il pin viene configurato come pin di uscita;
---!			- 'o': il pin viene configurato come pin di ingresso;
+--!			- 'ò: il pin viene configurato come pin di ingresso;
 --!			.
 --!  - WRITE (R/W, offset +0x4): consente di imporre un valore ai pin del device, qualora essi siano configurati
 --!    come uscite; solo i GPIO_width bit meno significativi del hanno significato, agire sui restanti bit non produce
@@ -55,26 +55,26 @@ use ieee.numeric_std.all;
 --!    zero;
 --!  - GIES (Global Interrupt Enable/Status, R/W, offset 0xC): Consente di abilitare/disabilitare gli interrupt
 --!    globali della periferica; solo due dei bit sono significativi:
---!	   		- IE (bit 0): interrupt enable, abilita gli interrupt, puo' essere scritto e letto; se posto ad '1'
---!			  la periferica potra' generare interrupt quando uno dei pin impostati come ingresso assume
---!			  valore '1' (ed il corrispondente bit in PIE e' impostato ad '1'); se posto a '0' il device
---!			  non generera' mai interruzioni;
+--!	   		- IE (bit 0): interrupt enable, abilita gli interrupt, può essere scritto e letto; se posto ad '1'
+--!			  la periferica potrà generare interrupt quando uno dei pin impostati come ingresso assume
+--!			  valore '1' (ed il corrispondente bit in PIE è impostato ad '1'); se posto a '0' il device
+--!			  non genererà mai interruzioni;
 --!			- IS (bit 1): interrupt status, settato internamente ad '1' nel caso in cui la periferica abbia
 --!			  generato interrupt; replica del segnale "interrupt" diretto verso il processing-system.
 --!  - PIE (Pin Interrupt Enable, R/W, offset 0x10): consente di abilitare/disabilitare gli interrupt per i
---!	   singoli pin. Con GIES(0)='1' e MODE(n)='0' (cioe' se gli interrupt globali sono abilitati e il pin
---!	   n-esimo e' configurato come input), se PIE(n)='1' allora il device generera' un interrupt verso il
---!	   processing-system quando il pin n-esimo assumera' valore '1', mentre, se PIE(n)='0' non verra'
+--!	   singoli pin. Con GIES(0)='1' e MODE(n)='0' (cioè se gli interrupt globali sono abilitati e il pin
+--!	   n-esimo è configurato come input), se PIE(n)='1' allora il device genererà un interrupt verso il
+--!	   processing-system quando il pin n-esimo assumerà valore '1', mentre, se PIE(n)='0' non verrà
 --!	   generata una interruzione;
---!  - IRQ (Interrupt Request, R, offset 0x14): IRQ(n)='1' indica che la sorgente di interruzione e' il bit
+--!  - IRQ (Interrupt Request, R, offset 0x14): IRQ(n)='1' indica che la sorgente di interruzione è il bit
 --!    n-esimo; la or-reduce di tale registro costituisce il segnale "interrupt" diretto verso il processing
 --!    system;
---!  - IACK (Interrupt Ack, W, offset 0x18): imponento IACK(n)='1' e' possibile segnalare al device che
---!    l'interruzione generata dal in n-esimo e' stata servita; il bit IRQ(n) verra' resettato automaticamente. 
+--!  - IACK (Interrupt Ack, W, offset 0x18): imponento IACK(n)='1' è possibile segnalare al device che
+--!    l'interruzione generata dal in n-esimo è stata servita; il bit IRQ(n) verrà resettato automaticamente. 
 --!
 --!
 --! <h4>Process di scrittura dei registri della periferica</h4>
---! Il process che implementa la logica di scrittura dei registri e' stato modificato in modo da ottenere
+--! Il process che implementa la logica di scrittura dei registri è stato modificato in modo da ottenere
 --! il seguente indirizzamento:
 --! <table>
 --! <tr><th>Indirizzo</th><th>Offset</th><th>Registro</th></tr>
@@ -86,17 +86,17 @@ use ieee.numeric_std.all;
 --! <tr><td>b"10100"</td><td>0x14</td><td>IRQ(***)</td></tr>
 --! <tr><td>b"11000"</td><td>0x18</td><td>IACK(****)</td></tr>
 --! </table>
---! (*) Il registro READ e' a sola lettura: le scritture su questo registro non producono effetti;
---!  la scrittura, infatti, avviene su slv_reg2, che e' inutilizzato;<br>
+--! (*) Il registro READ è a sola lettura: le scritture su questo registro non producono effetti;
+--!  la scrittura, infatti, avviene su slv_reg2, che è inutilizzato;<br>
 --! (**) La scrittura ha effetto solo sul bit zero del registro;<br>
---! (***) Il registro IRQ e' a sola lettura: le scritture su questo registro non producono effetti;
---!  la scrittura, infatti, avviene su slv_reg5, che e' inutilizzato;<br>
---! (****) La scrittura su IACK e' fittizzia, nel senso che appena si smette di indirizzare il registro,
+--! (***) Il registro IRQ è a sola lettura: le scritture su questo registro non producono effetti;
+--!  la scrittura, infatti, avviene su slv_reg5, che è inutilizzato;<br>
+--! (****) La scrittura su IACK è fittizzia, nel senso che appena si smette di indirizzare il registro,
 --! esso assume valore zero;<br>
 --!
 --!
 --! <h4>Process di lettura dei registri della periferica</h4>
---! Il process che implementa la logica di lettura dei registri e' stato modificato in modo da ottenere
+--! Il process che implementa la logica di lettura dei registri è stato modificato in modo da ottenere
 --! il seguente indirizzamento:
 --! <table>
 --! <tr><th>Indirizzo</th><th>Offset</th><th>Registro</th></tr>
@@ -108,19 +108,19 @@ use ieee.numeric_std.all;
 --! <tr><td>b"10100"</td><td>0x14</td><td>IRQ</td></tr>
 --! <tr><td>b"11000"</td><td>0x18</td><td>IACK(***)</td></tr>
 --! </table>
---! (*) Il registro READ e' direttamente connesso alla porta GPIO_inout<br>
---! (**) Il bit 2 di GIES e' il flag "interrupt", che vale '1' nel caso in cui la periferica abbia generato
+--! (*) Il registro READ è direttamente connesso alla porta GPIO_inout<br>
+--! (**) Il bit 2 di GIES è il flag "interrupt", che vale '1' nel caso in cui la periferica abbia generato
 --! interrupt ancora non gestiti.<br>
---! (***) Viene letto sempre zero, dal momento che la scrittura su tale registro e' fittizzia.
+--! (***) Viene letto sempre zero, dal momento che la scrittura su tale registro è fittizzia.
 --!
 --!
 --! <h4>Process di scrittura su IRQ</h4>	
---! La logica di scrittura su IRQ e' semplice (non viene scritto come un normale registro, ma pilotato
+--! La logica di scrittura su IRQ è semplice (non viene scritto come un normale registro, ma pilotato
 --! internamente dalla periferica):
---! se uno dei bit di GPIO_inout_masked e' '1', (la or-reduce e' 1) allora il valore del segnale GPIO_inout_masked
+--! se uno dei bit di GPIO_inout_masked è '1', (la or-reduce è 1) allora il valore del segnale GPIO_inout_masked
 --! viene posto in bitwise-or con il valore attuale del registro IRQ, in modo da non resettare i bit di quest'
 --! ultimo che siano stati settati a seguito di una interruzione non ancora servita
---! se uno dei bit di IACK e' '1' (la or-reduce e' '1'), allora il nuovo valore del registro IRQ viene ottenuto
+--! se uno dei bit di IACK è '1' (la or-reduce è '1'), allora il nuovo valore del registro IRQ viene ottenuto
 --!   - mascherando IACK con l'attuale valore di IRQ, in modo da non effettuare il set di bit resettati
 --!   - ponendo in XOR la maschera precedente con il valore attuale del registro	
 
@@ -144,7 +144,7 @@ entity myGPIO is
 		
 		interrupt : out std_logic; --!							
 		--! segnale di interrupt a livelli diretto verso il processing - system. Se le interruzioni sono
-		--! abilitate ed uno dei pin del device e' settato come input ed e' abilitato a generare interruzioni,
+		--! abilitate ed uno dei pin del device è settato come input ed è abilitato a generare interruzioni,
 		--! diventa '1' appena tale pin assume valore '1', e mantiene tale valore fino a quando tutte le
 		--! interruzioni non siano state servite.
 		

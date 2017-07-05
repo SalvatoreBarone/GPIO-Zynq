@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -225,10 +225,10 @@ Funzioni</h2></td></tr>
 <p>Status di attivo/inattivo degli switch. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga4ba6b49b2f47ebb464aefcea7e23e04aa1d686faf83e8606e68eec0b7e525a755"></a>ZyboSwitch_off&#160;</td><td class="fielddoc">
-<p>ZyboSwitch_off, corrisponde al valore logico '0', indica che lo switch e' inattivo;. </p>
+<p>ZyboSwitch_off, corrisponde al valore logico '0', indica che lo switch è inattivo;. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="gga4ba6b49b2f47ebb464aefcea7e23e04aafba009508b8822de867af69034e3e4f8"></a>ZyboSwitch_on&#160;</td><td class="fielddoc">
-<p>ZyboSwitch_on, corrisponde al valore logico '1', indica che lo switch e' attivo;. </p>
+<p>ZyboSwitch_on, corrisponde al valore logico '1', indica che lo switch è attivo;. </p>
 </td></tr>
 </table>
 
@@ -270,13 +270,13 @@ Funzioni</h2></td></tr>
 <dl class="section return"><dt>Restituisce</dt><dd>status status degli switch </dd></dl>
 <dl class="retval"><dt>Valori di ritorno</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">ZyboSwitch_on</td><td>se uno degli switch selezionati e' attivo; </td></tr>
+    <tr><td class="paramname">ZyboSwitch_on</td><td>se uno degli switch selezionati è attivo; </td></tr>
     <tr><td class="paramname">ZyboSwitch_off</td><td>altrimenti</td></tr>
   </table>
   </dd>
 </dl>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ZyboSwitch_status_t switch_status = ZyboSwitch_getStatus(&amp;switches, ZyboSwitch3);           // leggo lo stato dello switch 3</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboLed_status_t led_status = (switch_status == ZyboSwitch_on ? ZyboLed_on : ZyboLed_off);  // se lo switch 3 e&#39; attivo accendo il led 3</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboLed_status_t led_status = (switch_status == ZyboSwitch_on ? ZyboLed_on : ZyboLed_off);  // se lo switch 3 è attivo accendo il led 3</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboLed_setStatus(&amp;leds, ZyboLed3, led_status);                                             // accendo/spengo led 3</div>
 </div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
 <li>switches non sia un puntatore nullo;</li>
@@ -338,11 +338,11 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">switches</td><td>puntatore a struttura <a class="el" href="struct_zybo_switch__t.html" title="Struttura opaca che astrae l&#39;insieme degli switch presenti sulla board Digilent Zybo;. ">ZyboSwitch_t</a>, che astrae l'insieme degli switch presenti sulla board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device GPIO; non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Switch3_pin</td><td>pin del device GPIO a cui e' associato lo switch 3 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Switch2_pin</td><td>pin del device GPIO a cui e' associato lo switch 2 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Switch1_pin</td><td>pin del device GPIO a cui e' associato lo switch 1 della board Digilent Zybo; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">Switch0_pin</td><td>pin del device GPIO a cui e' associato lo switch 0 della board Digilent Zybo;</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch3_pin</td><td>pin del device myGPIO a cui è associato lo switch 3 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch2_pin</td><td>pin del device myGPIO a cui è associato lo switch 2 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch1_pin</td><td>pin del device myGPIO a cui è associato lo switch 1 della board Digilent Zybo; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">Switch0_pin</td><td>pin del device myGPIO a cui è associato lo switch 0 della board Digilent Zybo;</td></tr>
   </table>
   </dd>
 </dl>
@@ -364,7 +364,7 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

@@ -1,7 +1,7 @@
 /**
  * @file myGPIO.c
- * @author: Salvatore Barone <salvator.barone@gmail.com>
- * @date: 12 05 2017
+ * @author Salvatore Barone <salvator.barone@gmail.com>
+ * @date 12 05 2017
  *
  * @copyright
  * Copyright 2017 Salvatore Barone <salvator.barone@gmail.com>

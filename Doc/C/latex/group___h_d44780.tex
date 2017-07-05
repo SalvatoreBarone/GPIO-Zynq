@@ -3,7 +3,7 @@
 }
 
 
-driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O  
+driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O bare-\/metal  
 
 
 Diagramma di collaborazione per H\+D44780\+:\nopagebreak
@@ -17,14 +17,14 @@ Diagramma di collaborazione per H\+D44780\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t}
-\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae un device Display L\+C\+D con cntroller Hitachi H\+D44780, o compatibile. Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni H\+D44780\+\_\+\+Init8 e\+H\+D44780\+\_\+\+Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-\/terminated di caratteri. Si veda la documentazione delle funzioni H\+D44780\+\_\+\+Printc e H\+D44780\+\_\+\+Print. Inoltre sono presenti diverse funzioni di utilita' generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae un device Display L\+C\+D con cntroller Hitachi H\+D44780, o compatibile. Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo è pensato per permettere la gestione di più display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi. Il modulo permette di utilizzare sia l'interfacciamento ad otto bit che quello a quattro bit, inizializzando il device opportunamente, attraverso l'uso delle funzioni H\+D44780\+\_\+\+Init8 e\+H\+D44780\+\_\+\+Init4. Il modulo fornisce anche semplici funzioni per la stampa di un carattere o di una stringa null-\/terminated di caratteri. Si veda la documentazione delle funzioni \hyperlink{group___h_d44780_ga57b8c6ca0b3c12e5f7273b3c373a6f17}{H\+D44780\+\_\+\+Printc()} e \hyperlink{group___h_d44780_ga3aedff8e2040e62db569fde955d3987b}{H\+D44780\+\_\+\+Print()}. Inoltre sono presenti diverse funzioni di utilità generica, come quelle per la pulizia del display, per lo spostamento del cursore di un posto in avanti o indietro, alla riga in basso o in alto. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{group___h_d44780_gaaaea8b73e24f7658da4118f6b01b45f0}{H\+D44780\+\_\+\+Interface\+Mode\+\_\+t} \{ \hyperlink{group___h_d44780_ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6}{H\+D44780\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+4bit}, 
 \hyperlink{group___h_d44780_ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5}{H\+D44780\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+8bit}
  \}
-\begin{DoxyCompactList}\small\item\em Modalita' di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Modalità di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit. \end{DoxyCompactList}\item 
 enum \hyperlink{group___h_d44780_gaf46f4db4f981d3a1088804a6d6980d30}{H\+D44780\+\_\+\+Direction\+\_\+t} \{ \hyperlink{group___h_d44780_ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292}{H\+D44780\+\_\+\+Cursor\+Left}, 
 \hyperlink{group___h_d44780_ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399}{H\+D44780\+\_\+\+Cursor\+Right}
  \}
@@ -35,23 +35,23 @@ enum \hyperlink{group___h_d44780_gaf46f4db4f981d3a1088804a6d6980d30}{H\+D44780\+
 void \hyperlink{group___h_d44780_gad212907e20316f4fc0e93d7c7a8f338e}{H\+D44780\+\_\+\+Init8} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+S, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+W, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} E, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data7, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data6, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data5, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data4, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data3, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data2, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data1, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data0)
 \begin{DoxyCompactList}\small\item\em Inizializza un display lcd H\+D44780 con interfacciamento ad 8 bit. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga0c08f9e41d770ebfa4af385a56b47b81}{H\+D44780\+\_\+\+Init4} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+S, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} R\+W, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} E, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data7, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data6, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data5, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} Data4)
-\begin{DoxyCompactList}\small\item\em Inizializza un oggetto display lcd H\+D44780 affinche' si utilizzi l'interfaccia a 4 bit. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inizializza un oggetto display lcd H\+D44780 affinché si utilizzi l'interfaccia a 4 bit. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga57b8c6ca0b3c12e5f7273b3c373a6f17}{H\+D44780\+\_\+\+Printc} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, char c)
 \begin{DoxyCompactList}\small\item\em Stampa un carattere. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga3aedff8e2040e62db569fde955d3987b}{H\+D44780\+\_\+\+Print} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, const char $\ast$s)
 \begin{DoxyCompactList}\small\item\em Stampa una stringa null-\/terminated di caratteri. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga2a5d4d528175321c46c790b581959e63}{H\+D44780\+\_\+print\+Binary8} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint8\+\_\+t b)
-\begin{DoxyCompactList}\small\item\em Stampa un byte in binario. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa un byte in binario. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga95cceef2401c5519295e5a83c6688b5c}{H\+D44780\+\_\+print\+Binary32} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint32\+\_\+t w)
-\begin{DoxyCompactList}\small\item\em Stampa una word di 32 bit in binario. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa una word di 32 bit in binario. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga0f99bc5458acb172d0f3bfeb94f90e2a}{H\+D44780\+\_\+print\+Binary64} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint64\+\_\+t b)
-\begin{DoxyCompactList}\small\item\em Stampa un blocco di 64 bit in binario. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa un blocco di 64 bit in binario. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_gad967bd458b4d2bd358a93cbb7144addd}{H\+D44780\+\_\+print\+Hex8} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint8\+\_\+t b)
-\begin{DoxyCompactList}\small\item\em Stampa un byte in esadecimale. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa un byte in esadecimale. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_gaa82a2a27a3008f55c969a2d390c50497}{H\+D44780\+\_\+print\+Hex32} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint32\+\_\+t w)
-\begin{DoxyCompactList}\small\item\em Stampa una word di 32 bit in esadecimale. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa una word di 32 bit in esadecimale. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga7a4b110e7da806f8c01e01d184d3a19a}{H\+D44780\+\_\+print\+Hex64} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd, uint64\+\_\+t b)
-\begin{DoxyCompactList}\small\item\em Stampa un blocco di 64 bit in esadecimale. (bit piu' significativo a sinistra) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Stampa un blocco di 64 bit in esadecimale. (bit più significativo a sinistra) \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga38cac13d7a66f068be54f79a716ff7d4}{H\+D44780\+\_\+\+Clear} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd)
 \begin{DoxyCompactList}\small\item\em Pulisce il display e sposta il cursore all'inizio della prima riga. \end{DoxyCompactList}\item 
 void \hyperlink{group___h_d44780_ga68e3712332aa9482d4bdaa4991a92127}{H\+D44780\+\_\+\+Home} (\hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} $\ast$lcd)
@@ -73,10 +73,10 @@ void \hyperlink{group___h_d44780_ga92eb58cb7d73c9a87b7087a9c56f73d5}{H\+D44780\+
 
 
 \subsection{Descrizione dettagliata}
-driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O 
+driver per display Hitachi hd44780 basato su driver my\+G\+P\+I\+O bare-\/metal 
 
-Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo e' pensato per permettere la gestione di piu' display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi.~\newline
- La struttura \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} specifica quali siano i pin del microcontrollore che pilotano un determinato segnale del device. Ciascuno dei pin, cosi' come previsto dalla libreria S\+T\+M\+Cube, e' identificato attraverso una coppia porta-\/pin (ad esempio la coppia G\+P\+I\+O\+D-\/\+G\+P\+I\+O\+\_\+\+P\+I\+N\+\_\+9 si riferisce al pin 9 della porta D, quindi P\+D9). L'assegnazione segnale-\/coppia, quindi l' inizializzazione della struttura \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} relativa ad un device lcd, D\+E\+V\+E essere effettuata tassativamente utilizzando le funzioni~\newline
+Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} rappresenta un device lcd H\+D44780. Il modulo è pensato per permettere la gestione di più display da parte dello stesso processore, agendo su oggetti \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} diversi.~\newline
+ La struttura \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} specifica quali siano i pin del microcontrollore che pilotano un determinato segnale del device. L'assegnazione segnale-\/coppia, quindi l' inizializzazione della struttura \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} relativa ad un device lcd, D\+E\+V\+E essere effettuata tassativamente utilizzando le funzioni~\newline
 
 \begin{DoxyItemize}
 \item \hyperlink{group___h_d44780_ga0c08f9e41d770ebfa4af385a56b47b81}{H\+D44780\+\_\+\+Init4()}
@@ -85,9 +85,9 @@ Un oggetto di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\
 \end{DoxyItemize}
 
 le quali provvedono anche ad effettuare un test di connessione volto ad individuare eventuali segnali erroneamente associati.~\newline
- Tali funzioni restituiscono un codice di errore, il quale puo' essere utilizzato per identificare la problematica sorta durante l'inizializzazione e provvedere alla sua gestione. Per i dettagli si rimanda alla documentazione delle specifiche funzioni.~\newline
- ~\newline
- Oltre alle funzioni di inizializzazione, il modulo fornisce anche funzioni basilari per la stampa su display lcd di
+
+
+Oltre alle funzioni di inizializzazione, il modulo fornisce anche funzioni basilari per la stampa su display lcd di
 \begin{DoxyItemize}
 \item caratteri, con la funzione \hyperlink{group___h_d44780_ga57b8c6ca0b3c12e5f7273b3c373a6f17}{H\+D44780\+\_\+\+Printc()}
 \item stringhe null-\/terminated di caratteri, con la funzione \hyperlink{group___h_d44780_ga3aedff8e2040e62db569fde955d3987b}{H\+D44780\+\_\+\+Print()}~\newline
@@ -105,10 +105,8 @@ Sono disponibili, inoltre, anche funzioni specifiche per inviare comandi al devi
 \item \hyperlink{group___h_d44780_ga56421dc398825188aa10257063a3ee4b}{H\+D44780\+\_\+\+Cursor\+Off()}
 \item \hyperlink{group___h_d44780_ga3a381cb44df5d76d79be5ed71a52bae6}{H\+D44780\+\_\+\+Cursor\+On()}
 \item \hyperlink{group___h_d44780_ga92eb58cb7d73c9a87b7087a9c56f73d5}{H\+D44780\+\_\+\+Cursor\+Blink()}~\newline
-
+ 
 \end{DoxyItemize}
-
-Per ulteriori dettagli si rimanda alla documentazione delle specifiche funzioni ed alla documentazione esterna che accompagna il modulo, reperibile nella cartella Doc. 
 
 \subsection{Documentazione dei tipi enumerati}
 \hypertarget{group___h_d44780_gaf46f4db4f981d3a1088804a6d6980d30}{\index{H\+D44780@{H\+D44780}!H\+D44780\+\_\+\+Direction\+\_\+t@{H\+D44780\+\_\+\+Direction\+\_\+t}}
@@ -132,7 +130,7 @@ Direzioni di spostamento del cursore, usata dalla funzione \hyperlink{group___h_
 \subsubsection[{H\+D44780\+\_\+\+Interface\+Mode\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+D44780\+\_\+\+Interface\+Mode\+\_\+t}}}\label{group___h_d44780_gaaaea8b73e24f7658da4118f6b01b45f0}
 
 
-Modalita' di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit. 
+Modalità di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit. 
 
 \begin{Desc}
 \item[Valori del tipo enumerato]\par
@@ -259,12 +257,12 @@ Sposta il cursore all'inizio della prima riga.
 )}}\label{group___h_d44780_ga0c08f9e41d770ebfa4af385a56b47b81}
 
 
-Inizializza un oggetto display lcd H\+D44780 affinche' si utilizzi l'interfaccia a 4 bit. 
+Inizializza un oggetto display lcd H\+D44780 affinché si utilizzi l'interfaccia a 4 bit. 
 
-Inizializza un oggetto \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} verificando la validita' delle coppie porta-\/pin per l' interfacciamento, configurando i pin G\+P\+I\+O e inizializzando il device.
+Inizializza un oggetto \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} verificando la validità delle coppie porta-\/pin per l' interfacciamento, configurando i pin my\+G\+P\+I\+O e inizializzando il device.
 
 \begin{DoxyWarning}{Avvertimento}
-Se i pin associati ai segnali di pilotaggio del device non sono correttamente configurati come pin di output, il dispositivo non funzionera' correttamente.
+Se i pin associati ai segnali di pilotaggio del device non sono correttamente configurati come pin di output, il dispositivo non funzionerà correttamente.
 
 Non modificare i campi della struttura \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} dopo che essa sia stata inizializzata.
 
@@ -274,21 +272,21 @@ La struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, a cui fa ri
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em lcd} & puntatore a struttura di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} che descrive un display H\+D44780 da inizializzare; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore alla struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che astrae il device G\+P\+I\+O a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; \\
+\mbox{\tt in}  & {\em gpio} & puntatore alla struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che astrae il device my\+G\+P\+I\+O a cui il display è connesso. Non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; \\
 \hline
-\mbox{\tt in}  & {\em R\+S} & pin del device G\+P\+I\+O a cui e' associato il segnale R\+S (data/command) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em R\+S} & pin del device my\+G\+P\+I\+O a cui è associato il segnale R\+S (data/command) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em R\+W} & pin del device G\+P\+I\+O a cui e' associato il segnale R\+W (read/write) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em R\+W} & pin del device my\+G\+P\+I\+O a cui è associato il segnale R\+W (read/write) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em E} & pin del device G\+P\+I\+O a cui e' associato il segnale E (Enable) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em E} & pin del device my\+G\+P\+I\+O a cui è associato il segnale E (Enable) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data7} & pin del device G\+P\+I\+O a cui e' associato il segnale Data7 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data7} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data7 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data6} & pin del device G\+P\+I\+O a cui e' associato il segnale Data6 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data6} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data6 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data5} & pin del device G\+P\+I\+O a cui e' associato il segnale Data5 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data5} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data5 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data4} & pin del device G\+P\+I\+O a cui e' associato il segnale Data4 del display L\+C\+D;\\
+\mbox{\tt in}  & {\em Data4} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data4 del display L\+C\+D;\\
 \hline
 \end{DoxyParams}
 
@@ -326,7 +324,7 @@ La struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, a cui fa ri
 Inizializza un display lcd H\+D44780 con interfacciamento ad 8 bit. 
 
 \begin{DoxyWarning}{Avvertimento}
-Se i pin associati ai segnali di pilotaggio del device non sono correttamente configurati come pin di output, il dispositivo non funzionera' correttamente.
+Se i pin associati ai segnali di pilotaggio del device non sono correttamente configurati come pin di output, il dispositivo non funzionerà correttamente.
 
 Non modificare i campi della struttura dopo che essa sia stata inizializzata.
 
@@ -336,35 +334,35 @@ La struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, a cui fa ri
 \begin{DoxyParams}[1]{Parametri}
 \mbox{\tt in,out}  & {\em lcd} & puntatore a struttura di tipo \hyperlink{struct_h_d44780___l_c_d__t}{H\+D44780\+\_\+\+L\+C\+D\+\_\+t} che descrive un display H\+D44780 da inizializzare; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore alla struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che astrae il device G\+P\+I\+O a cui il display e' connesso. Non viene inizializzato dalla funziona, sara' necessario inizializzarlo preventivamente; \\
+\mbox{\tt in}  & {\em gpio} & puntatore alla struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} che astrae il device my\+G\+P\+I\+O a cui il display è connesso. Non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; \\
 \hline
-\mbox{\tt in}  & {\em R\+S} & pin del device G\+P\+I\+O a cui e' associato il segnale R\+S (data/command) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em R\+S} & pin del device my\+G\+P\+I\+O a cui è associato il segnale R\+S (data/command) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em R\+W} & pin del device G\+P\+I\+O a cui e' associato il segnale R\+W (read/write) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em R\+W} & pin del device my\+G\+P\+I\+O a cui è associato il segnale R\+W (read/write) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em E} & pin del device G\+P\+I\+O a cui e' associato il segnale E (Enable) del display L\+C\+D; \\
+\mbox{\tt in}  & {\em E} & pin del device my\+G\+P\+I\+O a cui è associato il segnale E (Enable) del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data7} & pin del device G\+P\+I\+O a cui e' associato il segnale Data7 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data7} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data7 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data6} & pin del device G\+P\+I\+O a cui e' associato il segnale Data6 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data6} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data6 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data5} & pin del device G\+P\+I\+O a cui e' associato il segnale Data5 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data5} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data5 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data4} & pin del device G\+P\+I\+O a cui e' associato il segnale Data4 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data4} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data4 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data3} & pin del device G\+P\+I\+O a cui e' associato il segnale Data3 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data3} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data3 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data2} & pin del device G\+P\+I\+O a cui e' associato il segnale Data2 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data2} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data2 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data1} & pin del device G\+P\+I\+O a cui e' associato il segnale Data1 del display L\+C\+D; \\
+\mbox{\tt in}  & {\em Data1} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data1 del display L\+C\+D; \\
 \hline
-\mbox{\tt in}  & {\em Data0} & pin del device G\+P\+I\+O a cui e' associato il segnale Data0 del display L\+C\+D;\\
+\mbox{\tt in}  & {\em Data0} & pin del device my\+G\+P\+I\+O a cui è associato il segnale Data0 del display L\+C\+D;\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
 1 myGPIO\_t gpioDisplay;
-2 GPIO\_init(&gpioDisplay, XPAR\_MYGPIO\_3\_S00\_AXI\_BASEADDR, 11, 0, 4, 8);
+2 myGPIO\_Init(&gpioDisplay, XPAR\_MYGPIO\_3\_S00\_AXI\_BASEADDR);
 3 HD44780\_LCD\_t lcd;
 4 HD44780\_Init8(&lcd, &gpioDisplay,   GPIO\_pin10, GPIO\_pin9, GPIO\_pin8,
 5                                         GPIO\_pin0, GPIO\_pin1, GPIO\_pin2, GPIO\_pin3,
@@ -488,10 +486,10 @@ La funzione può essere utilizzata per stampare anche numeri interi e floating p
 3 ...
 4 char str[20];
 5 int parte\_intera, parte\_decimale, moltiplicatore = 1000;
-6 // se si desiderano piu' di tre cifre decimali basta aumentare la potenza del
+6 // se si desiderano più di tre cifre decimali basta aumentare la potenza del
 7 // moltiplicatore
 8 // es. cinque cifre decimali ==> moltiplicatore = 100000
-9 // si sconsiglia di stampare piu' di quattro cifre decimali per non causare overflow
+9 // si sconsiglia di stampare più di quattro cifre decimali per non causare overflow
 10 // nelle istruzioni che seguono
 11 parte\_intera = (int) float\_number;
 12 parte\_decimale = (int)(float\_number * moltiplicatore) - (parte\_intera * moltiplicatore);
@@ -508,7 +506,7 @@ La funzione può essere utilizzata per stampare anche numeri interi e floating p
 )}}\label{group___h_d44780_ga95cceef2401c5519295e5a83c6688b5c}
 
 
-Stampa una word di 32 bit in binario. (bit piu' significativo a sinistra) 
+Stampa una word di 32 bit in binario. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}
@@ -527,7 +525,7 @@ Stampa una word di 32 bit in binario. (bit piu' significativo a sinistra)
 )}}\label{group___h_d44780_ga0f99bc5458acb172d0f3bfeb94f90e2a}
 
 
-Stampa un blocco di 64 bit in binario. (bit piu' significativo a sinistra) 
+Stampa un blocco di 64 bit in binario. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}
@@ -546,7 +544,7 @@ Stampa un blocco di 64 bit in binario. (bit piu' significativo a sinistra)
 )}}\label{group___h_d44780_ga2a5d4d528175321c46c790b581959e63}
 
 
-Stampa un byte in binario. (bit piu' significativo a sinistra) 
+Stampa un byte in binario. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}
@@ -584,7 +582,7 @@ Stampa un carattere.
 )}}\label{group___h_d44780_gaa82a2a27a3008f55c969a2d390c50497}
 
 
-Stampa una word di 32 bit in esadecimale. (bit piu' significativo a sinistra) 
+Stampa una word di 32 bit in esadecimale. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}
@@ -603,7 +601,7 @@ Stampa una word di 32 bit in esadecimale. (bit piu' significativo a sinistra)
 )}}\label{group___h_d44780_ga7a4b110e7da806f8c01e01d184d3a19a}
 
 
-Stampa un blocco di 64 bit in esadecimale. (bit piu' significativo a sinistra) 
+Stampa un blocco di 64 bit in esadecimale. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}
@@ -622,7 +620,7 @@ Stampa un blocco di 64 bit in esadecimale. (bit piu' significativo a sinistra)
 )}}\label{group___h_d44780_gad967bd458b4d2bd358a93cbb7144addd}
 
 
-Stampa un byte in esadecimale. (bit piu' significativo a sinistra) 
+Stampa un byte in esadecimale. (bit più significativo a sinistra) 
 
 
 \begin{DoxyParams}[1]{Parametri}

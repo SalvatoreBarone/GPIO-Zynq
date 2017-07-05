@@ -30,7 +30,7 @@
  * @warning Se nel device tree source non viene indicato
  * <center>compatible = "myGPIOK";</center>
  * tra i driver compatibili con il device, il driver myGPIOK non viene correttamente istanziato ed il
- * programma userspace non funzionera'.
+ * programma userspace non funzionerà.
  *
  * @details
  *
@@ -46,7 +46,7 @@
  *  - myGPIOK_poll() : implementa il back-end di tre diverse system-calls (poll, epoll e select)
  *  - myGPIOK_read() : implementa la system call read.
  *
- * Nel seguito viene presentato un breve escursus su tutto cio' che c'e' da sapere per comprendere come
+ * Nel seguito viene presentato un breve escursus su tutto ciò che c'è da sapere per comprendere come
  * funziona un device-driver e come poterne scrivere uno.
  * Dopo aver letto il seguito, si consiglia, in ordine, di leggere, in ordine, la documentazione della
  * struttura myGPIOK-t, poi quella delle funzioni
@@ -60,20 +60,20 @@
  * <h3>Platform-device</h3>
  * I device driver, anche se sono moduli kernel, non si scrivono come normali moduli Kernel.
  * I "platform-device" sono device che non possono annunciarsi al software (non possono dire "Hey,
- * sono qui'!" al sistema operativo), quindi sono intrinsecamente "non-scopribili", nel senso che
- * il sistema, al boot, deve sapere che ci sono, ma non e' in grado di scoprirli. A differenza dei
+ * sono quì!" al sistema operativo), quindi sono intrinsecamente "non-scopribili", nel senso che
+ * il sistema, al boot, deve sapere che ci sono, ma non è in grado di scoprirli. A differenza dei
  * device PCI o USB, che non sono platform-device, un device I²C non viene enumerato a livello
- * hardware, per cui e' necessario che il sistema operativo sappia, a tempo di "compilazione", cioe'
+ * hardware, per cui è necessario che il sistema operativo sappia, a tempo di "compilazione", cioè
  * prima del boot - quale device sia connesso al bus I²C.
  * I non-discoverable devices stanno proliferando molto velocemente nel mondo embedded, per cui il
- * Kernel Linux offre ancora la possibilita' di specificare quale hardware sia presente nel sistema.
+ * Kernel Linux offre ancora la possibilità di specificare quale hardware sia presente nel sistema.
  * Bisogna distinguere in:
  *  - Platform Driver
  *  - Platform Device
  *
  * Per quanto riguarda la parte driver, il kernel Linux kernel definisce un insieme di operazioni
  * standard che possono essere effettuate su un platform-device.
- * Un riferimento pue' essere http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173.
+ * Un riferimento puè essere http://lxr.free-electrons.com/source/include/linux/platform_device.h#L173.
  * Le callbacks probe() e remove() costituiscono l'insieme minimo di operazioni che devono essere
  * implementate. Tali funzioni devono avere gli stessi parametri delle due seguenti, ma possono avere
  * nome qualsiasi.
@@ -107,8 +107,8 @@
  *
  * Si noti DRIVER_NAME: deve essere identica alla stringa indicata, nel device-tree, al campo "compatible".
  *
- * Affinche' il driver possa essere caricato a caldo, e' necessario aggiungere alla struttura di cui sopra
- * qualche informazione in piu'.
+ * Affinché il driver possa essere caricato a caldo, è necessario aggiungere alla struttura di cui sopra
+ * qualche informazione in più.
  * Tutti i device-driver devono esporre un ID. A tempo di compilazione, il processo di build estrae queste
  * informazioni dai driver per la preparazione di una tabella. Quando si "inserisce" il device, la tabella
  * viene riferita dal kernel e, se viene trovata una entry corrispondente al driver per quel device, il
@@ -127,7 +127,7 @@
  *
  * si identifica un particolare device. La macro MODULE_DEVICE_TABLE() viene usata per inserire una nuova
  * entry nella tabella accennata precedentemente. Alla struttura platform_driver possono essere aggiunte
- * anche queste informazioni, per cui essa si presentera' come riportato di seguito.
+ * anche queste informazioni, per cui essa si presenterà come riportato di seguito.
  *
  * @code
  * 		static struct platform_driver sample_pldriver = {
@@ -191,7 +191,7 @@ MODULE_ALIAS(DRIVER_NAME);
 /**
  * @brief Numero massimo di device gestibili
  *
- * In realta', il numero di device gestibili e' virtualmente illimitato. Il fattore limitante e' la memoria
+ * In realtà, il numero di device gestibili è virtualmente illimitato. Il fattore limitante è la memoria
  * disponibile ed in numero di Major-minor number disponibili.
  * MAX_NUM_OF_DEVICES incide sulla dimensione della struttura dati myGPIOk_list_t che mantiene i riferimenti
  * alle strutture di controllo dei diversi device.
@@ -221,7 +221,7 @@ static myGPIOK_list_t *device_list = NULL;
 /**
  * @brief Classe del device
  * Ai device-drivers viene associata una classe ed un device-name.
- * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
+ * Per creare ed associare una classe ad un device driver si può usare la seguente.
  * @code
  * struct class * class_create(struct module * owner, const char * name);
  * @endcode
@@ -296,40 +296,40 @@ La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a
  * 				};
  * @endcode
  * Ogni campo della struttura deve puntare ad una funzione del driver che implementa uno
- * specifico "operatore" su file, oppure impostata a NULL se l'operatore non e' supportato.
- * L'esatto comportamento del kernel, quando uno dei puntatori e' NULL, varia da funzione
+ * specifico "operatore" su file, oppure impostata a NULL se l'operatore non è supportato.
+ * L'esatto comportamento del kernel, quando uno dei puntatori è NULL, varia da funzione
  * a funzione.
- * La lista seguente introduce tutti gli operatori che un'applicazione puo' invocare
- * su un device. La lista e' stata mantenuta snella, includendo solo i campi strettamente
+ * La lista seguente introduce tutti gli operatori che un'applicazione può invocare
+ * su un device. La lista è stata mantenuta snella, includendo solo i campi strettamente
  * necessari.
  *
  * - <i>struct module *owner</i> :<br>
- * 		il primo campo della struttura non e' un operatore, ma un puntatore al modulo che
+ * 		il primo campo della struttura non è un operatore, ma un puntatore al modulo che
  * 		"possiede" la struttura. Il campo ha lo scopo di evitare che il modulo venga rimosso
- * 		dal kernel quando uno degli operatori e' in uso. Viene inizializzato usando la macro
+ * 		dal kernel quando uno degli operatori è in uso. Viene inizializzato usando la macro
  * 		THIS_MODULE, definita in <linux/module.h>.
  *
  * - <i>loff_t (*llseek) (struct file *, loff_t, int)</i> :
- * 		il campo llseek e' usato per cambiare la posizione della "testina" di lettura/
+ * 		il campo llseek è usato per cambiare la posizione della "testina" di lettura/
  * 		scrittura in un file. La funzione restituisce la nuova posizione della testina.
- * 		loff_t e' un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
- * 		vengono segnalati con un valore di ritorno negativo. Se questo campo e' posto a
+ * 		loff_t è un intero a 64 bit (anche su architetture a 32 bit). Eventuali errori
+ * 		vengono segnalati con un valore di ritorno negativo. Se questo campo è posto a
  * 		NULL, eventuali chiamate a seek modifigheranno la posizione della testina in un
  * 		modo impredicibile.
  *
  * - <i>ssize_t (*read) (struct file *, char _ _user *, size_t, loff_t *)</i> :<br>
- * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallira'
- * 		e non sara' possibile leggere dal device. La funzione restituisce il numero di byte
+ * 		usata per leggere dati dal device. Se lasciato a NULL, ogni chiamata a read fallirà
+ * 		e non sarà possibile leggere dal device. La funzione restituisce il numero di byte
  * 		letti con successo ma, nel caso si verifichi un errore, restituisce un numero intero
  * 		negativo.
  *
  * - <i>ssize_t (*write) (struct file *, const char _ _user *, size_t, loff_t *)</i> :<br>
- * 		invia dati al device. Se NULL ogni chiamata alla system-call write causera' un errore.
+ * 		invia dati al device. Se NULL ogni chiamata alla system-call write causerà un errore.
  * 		Il valore di ritorno, se non negativo, rappresenta il numero di byte correttamente
  * 		scritti.
  *
  * - <i>unsigned int (*poll) (struct file *, struct poll_table_struct *)</i> :<br>
- * 		questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select, le quali
+ * 		questo metodo è il back-end di tre diverse system-calls: poll, epoll e select, le quali
  * 		sono usate per capire se una operazione di lettura/scrittura du un device possano
  * 		risultare bloccanti o meno. La funzione dovrebbe restituire una maschera che indichi
  * 		se sia possibile effettuare operazioni di lettura/scrittura non bloccanti, in modo che
@@ -338,12 +338,12 @@ La struttura dati file_operations, definita in <linux/fs.h> mantiene puntatori a
  * 		device siano sempre non-bloccanti.
  *
  * - <i>int (*open) (struct inode *, struct file *)</i> :<br>
- * 		Anche se, di solito, e' la prima operazione che si effettua su un file, non e' strettamente
- * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andra' comunque
- * 		a buon fine, ma al driver non verra' inviata alcuna notifica.
+ * 		Anche se, di solito, è la prima operazione che si effettua su un file, non è strettamente
+ * 		necessaria la sua implementazione. Se lasciata NULL, l'apertura del device andrà comunque
+ * 		a buon fine, ma al driver non verrà inviata alcuna notifica.
  *
  * - <i>int (*release) (struct inode *, struct file *)</i> :<br>
- * 		questo operatore viene invocato quando il file viene rilasciato. Come open, puo' essere
+ * 		questo operatore viene invocato quando il file viene rilasciato. Come open, può essere
  * 		lasciato NULL.
  */
 static struct file_operations myGPIOK_fops = {
@@ -367,10 +367,10 @@ static struct file_operations myGPIOK_fops = {
  *
  * @details
  * <h3>Inizializzazione del driver</h3>
- * Il device myGPIO viene gestito come un character-device, ossia un device su cui e' possibile leggere e/o
+ * Il device myGPIO viene gestito come un character-device, ossia un device su cui è possibile leggere e/o
  * scrivere byte. Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima
  * che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o
- * piu', oggetti cdev. Per farlo e' necessario includere <linux/cdev.h>, che definisce tale struttura e le
+ * più, oggetti cdev. Per farlo è necessario includere <linux/cdev.h>, che definisce tale struttura e le
  * relative funzioni.
  */
 static int myGPIOK_probe(struct platform_device *op) {
@@ -393,7 +393,7 @@ static int myGPIOK_probe(struct platform_device *op) {
 		}
 /** <h5>Device Class</h5>
  * Ai device-drivers viene associata una classe ed un device-name.
- * Per creare ed associare una classe ad un device driver si puo' usare la seguente.
+ * Per creare ed associare una classe ad un device driver si può usare la seguente.
  * @code
  * struct class * class_create(struct module * owner, const char * name);
  * @endcode
@@ -486,8 +486,8 @@ static int myGPIOK_remove(struct platform_device *op) {
  *  - alloca e popola ogni struttura dati necessaria, ponendola successivamente nel campo private_data
  *    della struttura dati file.
  *
- * In primo luogo e' necessario identificare il device che sta per essere aperto. Tenendo presente che
- * il prototipo di qualunque metodo open e'
+ * In primo luogo è necessario identificare il device che sta per essere aperto. Tenendo presente che
+ * il prototipo di qualunque metodo open è
  *
  * @code
  * int (*open)(struct inode *inode, struct file *filp);
@@ -500,7 +500,7 @@ static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
 /**
  * <h3>Identificare il particolare device associato al file</h3>
  * Il parametro inode contiene tutte le informazioni necessarie all'interno del campo i_cdev, il quale
- * contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema e'
+ * contiene la struttura cdev inizializzata precedentemente dalla funzione di probe(). Il problema è
  * che non abbiamo bisogno della sola struttura cdev, ma della struttura che la contiene, in questo
  * caso della struttura myGPIOK_t.
  * Fortunatamente i programmatori del kernel hanno reso la vita semplice agli altri, predisponendo la
@@ -513,7 +513,7 @@ static int myGPIOK_open(struct inode *inode, struct file *file_ptr) {
  * <br>
  * Disponendo, in questo caso, della struttura myGPIOK_list_t, si fa uso di quest'ultima, e delle sue funzioni
  * membro, per risalire al device a partire dal suo major e minor number.
- * Il puntatore al particolare device myGPIOK_t sara' conservato all'interno del campo private_data della
+ * Il puntatore al particolare device myGPIOK_t sarà conservato all'interno del campo private_data della
  * struttura file.
  */
 	printk(KERN_INFO "%s\n\tminor : %d", __func__, MINOR(inode->i_cdev->dev));
@@ -585,7 +585,7 @@ static loff_t myGPIOK_llseek (struct file *file_ptr, loff_t off, int whence) {
  * bloccare il processo e risvegliarlo solo quando tali operazioni diventino possibili.
  *
  * @details
- * Questo metodo e' il back-end di tre diverse system-calls: poll, epoll e select,
+ * Questo metodo è il back-end di tre diverse system-calls: poll, epoll e select,
  * le quali	sono usate per capire se una operazione di lettura/scrittura du un device
  * possano risultare bloccanti o meno.
  */
@@ -604,8 +604,8 @@ static unsigned int myGPIOK_poll (struct file *file_ptr, struct poll_table_struc
  *
  * @details
  * Gestisce il manifestarsi di un evento interrompente proveniente dalla periferica.
- * Viene registrata dalla funzione myGPIOK_probe() affinche' venga richiamata al manifestarsi di un interrupt
- * sulla linea cui e' connesso il device
+ * Viene registrata dalla funzione myGPIOK_probe() affinché venga richiamata al manifestarsi di un interrupt
+ * sulla linea cui è connesso il device
  */
 static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
 	myGPIOK_t *myGPIOK_dev_ptr = NULL;
@@ -665,32 +665,32 @@ static irqreturn_t myGPIOK_irq_handler(int irq, struct pt_regs * regs) {
  * @details
  * <h3>Operazioni di lettura e scrittura</h3>
  * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
- * prototipo e' molto simile.
+ * prototipo è molto simile.
  * @code
  * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
  * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
  * @endcode
- * Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
- * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
- * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
+ * Per entrambi i metodi filep è il puntatore al file che rapresenta il device, count è la dimensione dei
+ * dati da trasferire, buff è il puntatore al buffer contenente i dati (da scrivere per la write() o letti
+ * per la read()). Infine offp è il puntatore ad un oggetto "long offset type" che indica la posizione
  * alla quale si sta effettuando l'accesso.
  *
  * <h5>I/O bloccante</h5>
- * Nel paragrafo precedente e' stato ignorato un problema importante: come comportarsi quando il driver
- * non e' in grado di servire immegiatamente una richiesta? Una chiamata a read() potrebbe arrivare quando
+ * Nel paragrafo precedente è stato ignorato un problema importante: come comportarsi quando il driver
+ * non è in grado di servire immegiatamente una richiesta? Una chiamata a read() potrebbe arrivare quando
  * i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe
- * avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso
- * potrebbe essere pieno). Il processo chiamante e' totalmente all'oscuro di queste dinamiche, anzi potrebbe
+ * avvenire quando il device non è in grado di accettare altri dati (perché il suo buffer di ingresso
+ * potrebbe essere pieno). Il processo chiamante è totalmente all'oscuro di queste dinamiche, anzi potrebbe
  * non avere la minima conoscenza delle dinamiche interne del device: chiama le funzioni read() o write()
- * e si aspetta che facciano cio' che devono fare, per cui, nell'impossibilita' di servire la richiesta, il
- * driver bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non puo' essere
+ * e si aspetta che facciano ciò che devono fare, per cui, nell'impossibilità di servire la richiesta, il
+ * driver bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non può essere
  * servita.
- * Il codice (la ISR) che dovra' risvegliare il processo quado potra' servire la sua richiesta, deve essere
+ * Il codice (la ISR) che dovrà risvegliare il processo quado potrà servire la sua richiesta, deve essere
  * a conoscenza dell'evento "risvegliante" e deve essere in grado di "trovare" i processi in attesa per
  * quel particolare evento. Per questo motivo, tutti i processi in attesa di un particolare evento vengono
  * posti all'interno della stessa wait queue.
  * Il codice della ISR deve effettuare una chiamata a wakeup() per risvegliare i processi in attesa di un
- * evento quando questo si e' manifestato. Si veda la documentazione della funzione myGPIOK_irq_handler()
+ * evento quando questo si è manifestato. Si veda la documentazione della funzione myGPIOK_irq_handler()
  * per dettagli ulteriori.
  */
 static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, loff_t *off) {
@@ -704,56 +704,56 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
 /** <h5>I/O non-bloccante</h5>
  * Esistono casi in cui il processo chiamante non vuole essere bloccato in attesa di un evento. Questa evenienza
  * viene esplicitamente indicata attraverso il flag O_NONBLOCK flag in filp->f_flags. Il flag viene definito in
- * <linux/fcntl.h> il quale e' incluso in<linux/fs.h>.
+ * <linux/fcntl.h> il quale è incluso in<linux/fs.h>.
  */
 	if ((file_ptr->f_flags & O_NONBLOCK) == 0) {
-		printk(KERN_INFO "%s e' bloccante\n", __func__);
+		printk(KERN_INFO "%s è bloccante\n", __func__);
 /** <h5>Porre un processo nello stato sleeping</h5>
  * Quando un processo viene messo nello stato sleep, lo si fa aspettandosi che una condizione diventi vera in
- * futuro. Al risveglio, pero', non c'e' nessuna garanzia che quella particolare condizione sia ancora vera,
+ * futuro. Al risveglio, però, non c'è nessuna garanzia che quella particolare condizione sia ancora vera,
  * per cui essa va nuovamente testata.
- * Il modo piu' semplice per potte un processo nello stato sleeping e' chiamare la macro wait_event(), o una
+ * Il modo più semplice per potte un processo nello stato sleeping è chiamare la macro wait_event(), o una
  * delle sue varianti: essa combina la gestione della messa in sleeping del processo ed il check della
  * condizione che il processo si aspetta diventi vera.
  * @code
  * wait_event_interruptible(queue, condition);
  * @endcode
- * Il parametro queue e' la coda di attesa mentre condition e' la condizione che, valutata true, causa la
+ * Il parametro queue è la coda di attesa mentre condition è la condizione che, valutata true, causa la
  * messa in sleep del processo. La condizione viene valutata sia prima che il processo sia messo in sleeping
- * che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() puo'
+ * che al suo risveglio. Lo sleep in cui il processo viene messo chiamando wait_event_interruptible() può
  * essere interrotto anche da un segnale, per cui la macro restituisce un intero che, se diverso da zero,
- * indica che il processo e' stato risvegliato da un segnale.
+ * indica che il processo è stato risvegliato da un segnale.
  *
  * La condizione sulla quale i processi vengono bloccati riguarda il flag "interrupt occurred". Fin quando
- * questo flag, posto in and con la maschera MYGPIOK_SREAD, e' zero, il processo deve restare bloccato, per
- * cui i processi che effettuano read() bloccante restano bloccati finche' int_occurred & MYGPIO_SREAD == 0.
- * Quando tale uguaglianza non sara' piu' valida, perche' il valore di int_occurred viene settato dalla
- * funzione myGPIOK_irq_handler(), allora il processo verra' risvegliato.
+ * questo flag, posto in and con la maschera MYGPIOK_SREAD, è zero, il processo deve restare bloccato, per
+ * cui i processi che effettuano read() bloccante restano bloccati finché int_occurred & MYGPIO_SREAD == 0.
+ * Quando tale uguaglianza non sarà più valida, perché il valore di int_occurred viene settato dalla
+ * funzione myGPIOK_irq_handler(), allora il processo verrà risvegliato.
  */
 		myGPIOK_TestCanReadAndSleep(myGPIOK_dev_ptr);
 /**<h5>Reset del flag "interrupt occurred" per read() bloccanti</h5>
- * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa e' tale che
- * esso puo' continuare la sua esecuzione, e' necessario resettare tale flag. Questa operazione va effettuata
- * per prevenire race-condition dovute al risveglio di piu' processi in attesa del manifestarsi dello stesso
+ * Nel momento in cui il processo viene risvegliato e la condizione della quale era in attesa è tale che
+ * esso può continuare la sua esecuzione, è necessario resettare tale flag. Questa operazione va effettuata
+ * per prevenire race-condition dovute al risveglio di più processi in attesa del manifestarsi dello stesso
  * evento. Il reset del flag va, pertanto, effettuato in mutua esclusione.
  */
 		myGPIOK_ResetCanRead(myGPIOK_dev_ptr);
 	}
 	else {
-		printk(KERN_INFO "%s non e' bloccante\n", __func__);
+		printk(KERN_INFO "%s non è bloccante\n", __func__);
 	}
 /** <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
- * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
- * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
+ * accedere alla memoria. Questo modo di procedere non è portabile ed è prono ad errori. Il modo corretto
+ * di accedere alla memoria è attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
  * Per leggere dalla memoria vengono usate le seguenti:
  * @code
  * unsigned int ioread8(void *addr);
  * unsigned int ioread16(void *addr);
  * unsigned int ioread32(void *addr);
  * @endcode
- * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
- * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
+ * addr è l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
+ * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni è quello letto dalla particolare
  * locazione di memoria a cui viene effettuato accesso.
  * Per scrivere nella memoria vengono usate le seguenti:
  * @code
@@ -765,17 +765,17 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
 	read_addr = myGPIOK_GetDeviceAddress(myGPIOK_dev_ptr)+*off;
 	data_readed = ioread32(read_addr);
 /** <h5>Accesso alla memoria userspace</h5>
- * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
- * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
+ * Buff è un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
+ * il modulo kernel. Il modulo, quindi, non può accedere direttamente ad esso, dereferenziandolo, per
  * diverse ragioni, tra le quali:
- *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
+ *  - a seconda dell'architettura sulla quale il driver è in esecuzione e di come il kernel è stato
  *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
- *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
+ *  - la memoria user-space è paginata e potrebbe non essere presente in RAM quando la system-call viene
  *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
  *    terminazione del processo che ha effettuato la system-call;
  *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
  *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
- *    programma userspace puo' modificare la memoria senza costrizioni.
+ *    programma userspace può modificare la memoria senza costrizioni.
  *
  * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
  * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
@@ -792,21 +792,21 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * successo.
  *
  * <h5>Piccola nota sull'endianess</h5>
- * Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante
+ * Il processore Zynq è little endian. Per questo motivo è possibile convertire char* in uint32_t* mediante
  * un semplice casting, senza invertire manualmente l'ordine dei byte.
  */
 	if (copy_to_user(buf, &data_readed, count))
 		return -EFAULT;
 
 /**<h5>Debouncing</h5>
- * Sebbene normalmente non necessario, in questo caso si e' preferito inserire un hot-loop, in modo da attendere
+ * Sebbene normalmente non necessario, in questo caso si è preferito inserire un hot-loop, in modo da attendere
  * che il device di input venga riportato allo stato di riposo prima di continuare l'esecuzione della funzione.
  * Questo piccolo espediente serve a fare in modo che, nel nostro caso, non vengano generate interruzioni spurie.
  * Il ciclo va rimosso in qualsiasi applicazione che non riguardi la pressione di un tasto.
  */
 	while (ioread32(read_addr) != 0);
 /** <h5>Ack degli interrupt della periferica</h5>
- * Viene inviato l'Ack alla periferica, per segnalargli che l'interrupt e' stato servito, solo dopo che la lettura
+ * Viene inviato l'Ack alla periferica, per segnalargli che l'interrupt è stato servito, solo dopo che la lettura
  * sia stata effettuata.
  */
 #ifdef __XGPIO__
@@ -844,16 +844,16 @@ static ssize_t myGPIOK_read (struct file *file_ptr, char *buf, size_t count, lof
  * @details
  * <h3>Operazioni di lettura e scrittura</h3>
  * I metodi read() e write() effettuano operazioni simili, ossia copiare dati da/verso il device. Il loro
- * prototipo e' molto simile.
+ * prototipo è molto simile.
  *
  * @code
  * ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
  * ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
  * @endcode
  *
- * Per entrambi i metodi filep e' il puntatore al file che rapresenta il device, count e' la dimensione dei
- * dati da trasferire, buff e' il puntatore al buffer contenente i dati (da scrivere per la write() o letti
- * per la read()). Infine offp e' il puntatore ad un oggetto "long offset type" che indica la posizione
+ * Per entrambi i metodi filep è il puntatore al file che rapresenta il device, count è la dimensione dei
+ * dati da trasferire, buff è il puntatore al buffer contenente i dati (da scrivere per la write() o letti
+ * per la read()). Infine offp è il puntatore ad un oggetto "long offset type" che indica la posizione
  * alla quale si sta effettuando l'accesso.
  *
  */
@@ -866,17 +866,17 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
 	if (*off > myGPIOK_dev_ptr->rsrc_size)
 		return -EFAULT;
 /** <h5>Accesso alla memoria userspace</h5>
- * Buff e' un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
- * il modulo kernel. Il modulo, quindi, non puo' accedere direttamente ad esso, dereferenziandolo, per
+ * Buff è un puntatore appartenente allo spazio di indirizzamento del programma user-space che utilizza
+ * il modulo kernel. Il modulo, quindi, non può accedere direttamente ad esso, dereferenziandolo, per
  * diverse ragioni, tra le quali:
- *  - a seconda dell'architettura sulla quale il driver e' in esecuzione e di come il kernel e' stato
+ *  - a seconda dell'architettura sulla quale il driver è in esecuzione e di come il kernel è stato
  *    configurato, il puntatore userspace potrebbe non essere valido mentre il modulo kernel viene eseguito;
- *  - la memoria user-space e' paginata e potrebbe non essere presente in RAM quando la system-call viene
+ *  - la memoria user-space è paginata e potrebbe non essere presente in RAM quando la system-call viene
  *    effettuata, per cui dereferenziando il puntatore potrebbe originarsi un page-fault con conseguente
  *    terminazione del processo che ha effettuato la system-call;
  *  - il puntatore in questione potrebbe essere stato fornito da un programma user-space buggato o malizioso,
  *    motivo per cui dereferenziandolo verrebbe a crearsi un punto di accesso attraverso il quale il
- *    programma userspace puo' modificare la memoria senza costrizioni.
+ *    programma userspace può modificare la memoria senza costrizioni.
  *
  * Ovviamente il driver deve essere in grado di poter accedere al buffer userspace, per cui tale accesso
  * va fatto solo ed esclusivamente attraverso delle funzioni fornite dal kernel stesso, e definite in
@@ -893,15 +893,15 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
  * successo.
  *
  * <h5>Piccola nota sull'endianess</h5>
- * Il processore Zynq e' little endian. Per questo motivo e' possibile convertire char* in uint32_t* mediante
+ * Il processore Zynq è little endian. Per questo motivo è possibile convertire char* in uint32_t* mediante
  * un semplice casting, senza invertire manualmente l'ordine dei byte.
  */
 	if (copy_from_user(&data_to_write, buf, size))
 		return -EFAULT;
 /** <h5>Accesso ai registri del device</h5>
  * Si potrebbe senrire la tentazione di usare il puntatore restituito da ioremap() dereferenziandolo per
- * accedere alla memoria. Questo modo di procedere non e' portabile ed e' prono ad errori. Il modo corretto
- * di accedere alla memoria e' attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
+ * accedere alla memoria. Questo modo di procedere non è portabile ed è prono ad errori. Il modo corretto
+ * di accedere alla memoria è attraverso l'uso delle funzioni per il memory-mapped I/O, definite in <asm/io.h>.
  *
  * Per leggere dalla memoria vengono usate le seguenti:
  *
@@ -911,8 +911,8 @@ static ssize_t myGPIOK_write (struct file *file_ptr, const char *buf, size_t siz
  * unsigned int ioread32(void *addr);
  * @endcode
  *
- * addr e' l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
- * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni e' quello letto dalla particolare
+ * addr è l'indirizzo di memoria virtuale del device, ottenuto mediante chiamata a ioremap(), a cui viene,
+ * eventualmente, aggiunto un offset. Il valore restituito dalle funzioni è quello letto dalla particolare
  * locazione di memoria a cui viene effettuato accesso.
  *
  * Per scrivere nella memoria vengono usate le seguenti:

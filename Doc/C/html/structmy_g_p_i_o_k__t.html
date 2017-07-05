@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
-   &#160;<span id="projectnumber">3.1</span>
+   &#160;<span id="projectnumber">3.2</span>
    </div>
    <div id="projectbrief">Implementazione C di device-driver per Xilinx Zynq-7000</div>
   </td>
@@ -156,7 +156,7 @@ Campi</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Stuttura per l'astrazione di un device myGPIO in kernel-mode. </p>
-<p>E' buona abitudine, se non quasi indispensabile, definire una struttura dati nella quale contenere tutto cio' che e' legato al device o al driver. In questo modulo viene usata la struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a> per contenere tutto cio' che e' necessario al funzionamento del driver. </p>
+<p>è buona abitudine, se non quasi indispensabile, definire una struttura dati nella quale contenere tutto ciò che è legato al device o al driver. In questo modulo viene usata la struttura <a class="el" href="structmy_g_p_i_o_k__t.html" title="Stuttura per l&#39;astrazione di un device myGPIO in kernel-mode. ">myGPIOK_t</a> per contenere tutto ciò che è necessario al funzionamento del driver. </p>
 </div><h2 class="groupheader">Documentazione dei campi</h2>
 <a class="anchor" id="a2b8d3d6037e2d2fdadbd7c2fd995f0a1"></a>
 <div class="memitem">
@@ -167,7 +167,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Flag "puoi leggere" Il valore viene settato dalla funzione <a class="el" href="group___linux-_driver.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a> al manifestarsi di un interrupt, prima di risvegliare i processi in attesa di un interrupt. I processi che effettuano read() bloccante restano bloccati finoche' int_occurred = 0 </p>
+<p>Flag "puoi leggere" Il valore viene settato dalla funzione <a class="el" href="group___linux-_driver.html#ga2fc230a12a97aa63e43b2dc4aec73511" title="Interrupt-handler. ">myGPIOK_irq_handler()</a> al manifestarsi di un interrupt, prima di risvegliare i processi in attesa di un interrupt. I processi che effettuano read() bloccante restano bloccati finoché int_occurred = 0 </p>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Stuttura per l'astrazione di un device a caratteri Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o piu', oggetti cdev. In questo caso e' sufficiente allocare uno solo di questi oggetti. </p>
+<p>Stuttura per l'astrazione di un device a caratteri Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o più, oggetti cdev. In questo caso è sufficiente allocare uno solo di questi oggetti. </p>
 
 </div>
 </div>
@@ -230,7 +230,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>interrupt-number a cui il device e' connesso. Restituito dalla chiamata alla funzione irq_of_parse_and_map() </p>
+<p>interrupt-number a cui il device è connesso. Restituito dalla chiamata alla funzione irq_of_parse_and_map() </p>
 
 </div>
 </div>
@@ -256,7 +256,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>puntatre alla regione di memoria cui il device e' mapapto </p>
+<p>puntatre alla regione di memoria cui il device è mapapto </p>
 
 </div>
 </div>
@@ -295,7 +295,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>wait queue per la system-call read() Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non e' in grado di accettare altri dati (perche' il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante non ha la minima conoscenza delle dinamiche interne del device, per cui, nell'impossibilita' di servire la richiesta, il driver deve bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non puo' essere servita. Tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in &lt;linux/wait.h&gt;. </p>
+<p>wait queue per la system-call read() Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non è in grado di accettare altri dati (perché il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante non ha la minima conoscenza delle dinamiche interne del device, per cui, nell'impossibilità di servire la richiesta, il driver deve bloccare il processo e metterlo tra i processi "sleeping", fin quando la richiesta non può essere servita. Tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. In linux una wait queue viene implementata da una struttura dati wait_queue_head_t, definita in &lt;linux/wait.h&gt;. </p>
 
 </div>
 </div>
@@ -308,7 +308,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa e' mappata. In particolare i campi "start" ed "end" contengono, rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device e' mappato. </p>
+<p>Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa è mappata. In particolare i campi "start" ed "end" contengono, rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device è mappato. </p>
 
 </div>
 </div>
@@ -347,7 +347,7 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int_occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come puo' esserlo un modulo kernel. Sostanzialmente se uno spinlock e' gia' stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, e' di vitale importanza che la sezione critica sia quanto piu' piccola possibile. Ovviamente l'implementazione e' "un po'" piu' complessa di come e' stata descritta, ma il concetto e' questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. </p>
+<p>Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int_occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come può esserlo un modulo kernel. Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l'implementazione è "un pò" più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono definiti in &lt;linux/spinlock.h&gt;. </p>
 
 </div>
 </div>
@@ -386,7 +386,7 @@ Campi</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structmy_g_p_i_o_k__t.html">myGPIOK_t</a></li>
-    <li class="footer">Generato Mar 27 Giu 2017 08:13:30 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
