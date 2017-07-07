@@ -1,4 +1,4 @@
---! @file muGPIO_AXI.vhd
+--! @file myGPIO_AXI.vhd
 --! @author Salvatore Barone <salvator.barone@gmail.com>
 --! @date 22 06 2017
 --! 
