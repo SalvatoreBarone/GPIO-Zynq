@@ -270,10 +270,15 @@ int myGPIOK_Init(	myGPIOK_t* myGPIOK_device,
  * 					const char *devname,
  * 					void *dev_id);
  * @endcode
- * IL parametro irqNumber può essere determinato automaticamente usando la funzione
+ * Il parametro irqNumber può essere determinato automaticamente usando la funzione
  * @code
  * unsigned int irq_of_parse_and_map(struct device_node *node, int index);
  * @endcode
+ * Il parametro (*handler) è il puntatore alla funzione interrupt-handler, mentre il parametro irq flags
+ * è una maschera di bit, il cui valore può essere impostato con uno dei flag IRQF_ definiti in
+ * <linux/interrupt.h>. In questo caso nessuno di tali flag viene usato, motivo per cui il parametro viene
+ * posto a zero.
+ *
  * La funzione irq_of_parse_and_map() effettua un looks-up nella specifica degli interrupt all'interno del
  * device tree e restituisce un irq number così come de lo aspetta request_irq() (cioè compaci con
  * l'enumerazione in /proc/interrupts). Il secondo argomento della funzione è, tipicamente, zero, ad
