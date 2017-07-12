@@ -22,7 +22,7 @@ La documentazione si trova nella cartella <b>Doc</b>. All'interno di essa sono p
 # Contenuto 
 Src/<br>
 ├── Examples<br>
-│   ├── bsp_example.c			Esempio d'uso del driver bare-metal myGPIO, BSP e driver per display lcd Hitachi HD44780<br>
+│   ├── bsp_example.c&#09;&#09;&#09;Esempio d'uso del driver bare-metal myGPIO, BSP e driver per display lcd Hitachi HD44780<br>
 │   ├── interrupt_bare.c		Esempio d'uso del driver bare-metal myGPIO con interruzioni<br>
 │   ├── Makefile<br>
 │   ├── mygpiok.c				Programma userspace che fa uso del driver myGPIO in kernel-mode<br>
