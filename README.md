@@ -20,9 +20,9 @@ La documentazione si trova nella cartella <b>Doc</b>. All'interno di essa sono p
 <b>Il progetto e' in continua evoluzione ed e' aggiornato molto frequentemente.</b>
 
 # Contenuto 
-Src/<br>
-├── Examples<br>
-│   ├── bsp_example.c: Esempio d'uso del driver bare-metal myGPIO, BSP e driver per display lcd Hitachi HD44780;<br>
+* Src/
+	* Examples: esempi;
+		* bsp_example.c: Esempio d'uso del driver bare-metal myGPIO, BSP e driver per display lcd Hitachi HD44780;<br>
 │   ├── interrupt_bare.c: Esempio d'uso del driver bare-metal myGPIO con interruzioni;<br>
 │   ├── Makefile: Makefile che consente di compilare tutti gli esempi che seguono;<br>
 │   ├── mygpiok.c: Programma userspace che fa uso del driver myGPIO in kernel-mode;<br>
@@ -50,8 +50,8 @@ Src/<br>
     ├── linux-driver: Driver Linux (modulo kernel) per device myGPIO<br>
     │   ├── configure.sh: script di configurazione per la compilazione, va modificato opportunamente;<br>
     │   ├── Makefile: permette la compilazione del modulo kernel;<br>
-    │   ├── myGPIOK_list.c: implementazione della struttura dati myGPIOK_list_t (mantiene un riferimento agli oggetti myGPIOK_t gestiti)<br>
-    │   ├── myGPIOK_list.h: definizione della struttura dati myGPIOK_list_t (mantiene un riferimento agli oggetti myGPIOK_t gestiti)<br>
+    │   ├── myGPIOK_list.c: implementazione della struttura dati myGPIOK_list_t (mantiene un riferimento agli oggetti myGPIOK_t)<br>
+    │   ├── myGPIOK_list.h: definizione della struttura dati myGPIOK_list_t (mantiene un riferimento agli oggetti myGPIOK_t)<br>
     │   ├── myGPIOK_main.c: implementazione delle funzioni principali del driver kernel;<br>
     │   ├── myGPIOK_t.c: implementazione della struttura myGPIOK_t, che rappresenta un device myGPIO a livello kernel<br>
     │   └── myGPIOK_t.h: definizione della struttura myGPIOK_t, che rappresenta un device myGPIO a livello kernel<br>
