@@ -1,5 +1,5 @@
 /**
- * @example uio.c
+ * @file uio.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 13 06 2017
  *
@@ -20,10 +20,10 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Questo è un programma di esempio per l'interfacciamento con una periferica myGPIO.
- *
- * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
- * driver uio.
+ * @example uio.c
+ * Il file uio.c è un programma di esempio per l'interfacciamento con una periferica myGPIO. L'esempio
+ * mostra come possa, un programma userspace in esecuzione su sistema operativo Linux, interfacciarsi
+ * con un device myGPIO, interagendo con esso attraverso il driver UIO.
  *
  * @warning Se nel device tree source non viene indicato
  * <center>compatible = "generic-uio";</center>

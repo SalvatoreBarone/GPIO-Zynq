@@ -1,21 +1,5 @@
-\hypertarget{read_all_8c-example}{\section{read\+All.\+c}
-}
-Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem \begin{DoxyAuthor}{Autore}
-Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Data}
-19 06 2017
-\end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
-\end{DoxyCopyright}
-This file is part of Zynq7000\+Driver\+Pack
-
-Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
-
-Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
-
-You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A.
+\hypertarget{read_all_8c-example}{}\section{read\+All.\+c}
+Il file \hyperlink{read_all_8c}{read\+All.\+c} contiene un programma di test/debug che è possibile eseguire in un sistema operativo Linux. L\textquotesingle{}esempio costituisce un programma user-\/space che non fa altro che leggere tutti i registri di un device, senza mediazione di altri driver, usando il device-\/file /dev/mem.
 
 
 \begin{DoxyCodeInclude}
@@ -45,7 +29,7 @@ You should have received a copy of the G\+N\+U General Public License along with
         \textcolor{keywordflow}{case} \textcolor{charliteral}{'o'} :
             *max\_offset = strtoul(optarg, NULL, 0);
             \textcolor{keywordflow}{break};
-        \textcolor{keywordflow}{default} :
+        default :
             printf(\textcolor{stringliteral}{"%c: parametro sconosciuto.\(\backslash\)n"}, par);
             \hyperlink{read_all_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}();
             \textcolor{keywordflow}{return} -1;

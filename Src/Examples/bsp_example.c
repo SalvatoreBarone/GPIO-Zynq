@@ -1,5 +1,5 @@
 /**
- * @example bsp_example.c
+ * @file bsp_example.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 12 05 2017
  *
@@ -20,8 +20,10 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Uso del driver myGPIO bare-metal per il pilotaggio dei Led, lettura di switch e button,
- * pilotaggio di un display Hitachihd44780.
+ * @example bsp_example.c
+ * Il file bsp_example.c contiene un esempio d'uso del driver myGPIO bare-metal e del BSP per la board
+ * Digilent Zybo. L'esempio mostra come possano essere pilotati i Led, come possa esssere effettuata
+ * la lettura di switch e button, come possa essere connesso e pilotato un display Hitachihd44780.
  */
 #include <stdio.h>
 #include "xparameters.h"

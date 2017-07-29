@@ -3,23 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.8"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Zynq-7000 Driver Pack: Bare-metal</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
-  $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,7 +27,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
    &#160;<span id="projectnumber">3.2</span>
    </div>
@@ -39,35 +38,19 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generato da Doxygen 1.8.8 -->
+<!-- Generato da Doxygen 1.8.13 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
-      <li><a href="modules.html"><span>Moduli</span></a></li>
-      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
-      <li><a href="files.html"><span>File</span></a></li>
-      <li><a href="examples.html"><span>Esempi</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -88,7 +71,7 @@ $(document).ready(function(){initNavTree('group__bare-metal.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -116,7 +99,10 @@ Diagramma di collaborazione per Bare-metal:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__bare-metal.png" border="0" alt="" usemap="#group____bare-metal"/>
 <map name="group____bare-metal" id="group____bare-metal">
-<area shape="rect" id="node1" href="group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/><area shape="rect" id="node3" href="group___h_d44780.html" title="driver per display Hitachi hd44780 basato su driver myGPIO bare&#45;metal " alt="" coords="260,5,337,32"/><area shape="rect" id="node4" href="group___zybo.html" title="Zybo" alt="" coords="273,56,324,83"/></map>
+<area shape="rect" id="node1" href="group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/>
+<area shape="rect" id="node3" href="group___h_d44780.html" title="driver per display Hitachi hd44780 basato su driver myGPIO bare&#45;metal " alt="" coords="260,5,337,32"/>
+<area shape="rect" id="node4" href="group___zybo.html" title="Zybo" alt="" coords="273,56,324,83"/>
+</map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -209,18 +195,18 @@ Tipi enumerati (enum)</h2></td></tr>
 <a class="el" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b">myGPIO_byte2</a> = 0x00ff0000U, 
 <a class="el" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129">myGPIO_byte3</a> = 0xff000000U
 <br />
- }</td></tr>
-<tr class="memdesc:ga402a0d20afc0cb7c25554b8b023f4253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione dei pin di un device myGPIO.  <a href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:ga402a0d20afc0cb7c25554b8b023f4253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione dei pin di un device myGPIO.  <a href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ga402a0d20afc0cb7c25554b8b023f4253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">myGPIO_mode</a> { <a class="el" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d">myGPIO_read</a>, 
 <a class="el" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6">myGPIO_write</a>
- }</td></tr>
-<tr class="memdesc:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO  <a href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO  <a href="group__bare-metal.html#ga76b849f0e0c05e7f9161bdb33396f2b1">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ga76b849f0e0c05e7f9161bdb33396f2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> { <a class="el" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>, 
 <a class="el" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>
- }</td></tr>
-<tr class="memdesc:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_value, valore di un myGPIO  <a href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="mdescLeft">&#160;</td><td class="mdescRight">myGPIO_value, valore di un myGPIO  <a href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:gaf634fe4a0e1eab8da5000b72d6ad362b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -274,7 +260,9 @@ Funzioni</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <p>device-driver OO-like bare-metal per device myGPIO </p>
 <h2 class="groupheader">Documentazione delle definizioni</h2>
-<a class="anchor" id="gad251e4d87d464525d4a2858977468994"></a>
+<a id="gad251e4d87d464525d4a2858977468994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad251e4d87d464525d4a2858977468994">&#9670;&nbsp;</a></span>myGPIO_GIES_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -288,7 +276,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gadfca866ac50c2dae09c3c46ad80670fc"></a>
+<a id="gadfca866ac50c2dae09c3c46ad80670fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadfca866ac50c2dae09c3c46ad80670fc">&#9670;&nbsp;</a></span>myGPIO_IACK_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -302,7 +292,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga31a7c2a9de5c63576f2f5aa061b936c5"></a>
+<a id="ga31a7c2a9de5c63576f2f5aa061b936c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31a7c2a9de5c63576f2f5aa061b936c5">&#9670;&nbsp;</a></span>myGPIO_IRQ_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -316,7 +308,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga81a662103d6ed053978c0a9b4c273065"></a>
+<a id="ga81a662103d6ed053978c0a9b4c273065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81a662103d6ed053978c0a9b4c273065">&#9670;&nbsp;</a></span>myGPIO_MODE_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -330,7 +324,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gaece3c1c9f504249d6b8ab060d8bb2738"></a>
+<a id="gaece3c1c9f504249d6b8ab060d8bb2738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaece3c1c9f504249d6b8ab060d8bb2738">&#9670;&nbsp;</a></span>myGPIO_PIE_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -344,7 +340,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gabbe2491a3b71c292521025b7b382b971"></a>
+<a id="gabbe2491a3b71c292521025b7b382b971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabbe2491a3b71c292521025b7b382b971">&#9670;&nbsp;</a></span>myGPIO_pin</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -370,7 +368,9 @@ Funzioni</h2></td></tr>
 </dl>
 </div>
 </div>
-<a class="anchor" id="ga584d2dfece76e5762030d918d80592cc"></a>
+<a id="ga584d2dfece76e5762030d918d80592cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga584d2dfece76e5762030d918d80592cc">&#9670;&nbsp;</a></span>myGPIO_READ_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -384,7 +384,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga2e45778b6ca9ce6f5768b3f7a4557ce1"></a>
+<a id="ga2e45778b6ca9ce6f5768b3f7a4557ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e45778b6ca9ce6f5768b3f7a4557ce1">&#9670;&nbsp;</a></span>myGPIO_WRITE_OFFSET</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -399,7 +401,9 @@ Funzioni</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentazione dei tipi enumerati</h2>
-<a class="anchor" id="ga402a0d20afc0cb7c25554b8b023f4253"></a>
+<a id="ga402a0d20afc0cb7c25554b8b023f4253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga402a0d20afc0cb7c25554b8b023f4253">&#9670;&nbsp;</a></span>myGPIO_mask</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -411,119 +415,85 @@ Funzioni</h2></td></tr>
 
 <p>Maschere di selezione dei pin di un device myGPIO. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9"></a>myGPIO_pin0&#160;</td><td class="fielddoc">
-<p>myGPIO pin0 maschera di selezione del pin 0 di un device myGPIO </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9"></a>myGPIO_pin0&#160;</td><td class="fielddoc"><p>myGPIO pin0 maschera di selezione del pin 0 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be"></a>myGPIO_pin1&#160;</td><td class="fielddoc">
-<p>myGPIO pin1 maschera di selezione del pin 1 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be"></a>myGPIO_pin1&#160;</td><td class="fielddoc"><p>myGPIO pin1 maschera di selezione del pin 1 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783"></a>myGPIO_pin2&#160;</td><td class="fielddoc">
-<p>myGPIO pin2 maschera di selezione del pin 2 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a1fb3f52d920ac8ba17b74dd73c27d783"></a>myGPIO_pin2&#160;</td><td class="fielddoc"><p>myGPIO pin2 maschera di selezione del pin 2 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5"></a>myGPIO_pin3&#160;</td><td class="fielddoc">
-<p>myGPIO pin3 maschera di selezione del pin 3 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5"></a>myGPIO_pin3&#160;</td><td class="fielddoc"><p>myGPIO pin3 maschera di selezione del pin 3 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637"></a>myGPIO_pin4&#160;</td><td class="fielddoc">
-<p>myGPIO pin4 maschera di selezione del pin 4 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a0a446f53dee6f6f4ccb9a1d1f947b637"></a>myGPIO_pin4&#160;</td><td class="fielddoc"><p>myGPIO pin4 maschera di selezione del pin 4 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2"></a>myGPIO_pin5&#160;</td><td class="fielddoc">
-<p>myGPIO pin5 maschera di selezione del pin 5 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2"></a>myGPIO_pin5&#160;</td><td class="fielddoc"><p>myGPIO pin5 maschera di selezione del pin 5 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b"></a>myGPIO_pin6&#160;</td><td class="fielddoc">
-<p>myGPIO pin6 maschera di selezione del pin 6 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a39a529f8c0a4f302029f54daa815471b"></a>myGPIO_pin6&#160;</td><td class="fielddoc"><p>myGPIO pin6 maschera di selezione del pin 6 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b"></a>myGPIO_pin7&#160;</td><td class="fielddoc">
-<p>myGPIO pin7 maschera di selezione del pin 7 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253af4e88b077442e4c0f459e1e4aa60626b"></a>myGPIO_pin7&#160;</td><td class="fielddoc"><p>myGPIO pin7 maschera di selezione del pin 7 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e"></a>myGPIO_pin8&#160;</td><td class="fielddoc">
-<p>myGPIO pin8 maschera di selezione del pin 8 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a615159bcf4e347dc2b60f2545fae5f9e"></a>myGPIO_pin8&#160;</td><td class="fielddoc"><p>myGPIO pin8 maschera di selezione del pin 8 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9"></a>myGPIO_pin9&#160;</td><td class="fielddoc">
-<p>myGPIO pin9 maschera di selezione del pin 9 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a8d721236fb936126a08c12b87696f6e9"></a>myGPIO_pin9&#160;</td><td class="fielddoc"><p>myGPIO pin9 maschera di selezione del pin 9 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341"></a>myGPIO_pin10&#160;</td><td class="fielddoc">
-<p>myGPIO pin10 maschera di selezione del pin 10 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253ae3067b7b3b1a2e171ecd74b6abd48341"></a>myGPIO_pin10&#160;</td><td class="fielddoc"><p>myGPIO pin10 maschera di selezione del pin 10 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a"></a>myGPIO_pin11&#160;</td><td class="fielddoc">
-<p>myGPIO pin11 maschera di selezione del pin 11 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253ae5c2e65508bfd452100d9da331d6220a"></a>myGPIO_pin11&#160;</td><td class="fielddoc"><p>myGPIO pin11 maschera di selezione del pin 11 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5"></a>myGPIO_pin12&#160;</td><td class="fielddoc">
-<p>myGPIO pin12 maschera di selezione del pin 12 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253afa75e3c1c019048c8553cb733c5137b5"></a>myGPIO_pin12&#160;</td><td class="fielddoc"><p>myGPIO pin12 maschera di selezione del pin 12 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c"></a>myGPIO_pin13&#160;</td><td class="fielddoc">
-<p>myGPIO pin13 maschera di selezione del pin 13 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a243381a796f0936a576f184dd115b37c"></a>myGPIO_pin13&#160;</td><td class="fielddoc"><p>myGPIO pin13 maschera di selezione del pin 13 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd"></a>myGPIO_pin14&#160;</td><td class="fielddoc">
-<p>myGPIO pin14 maschera di selezione del pin 14 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253aed4915d6b3eab49cc1ba971b9f439fdd"></a>myGPIO_pin14&#160;</td><td class="fielddoc"><p>myGPIO pin14 maschera di selezione del pin 14 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee"></a>myGPIO_pin15&#160;</td><td class="fielddoc">
-<p>myGPIO pin15 maschera di selezione del pin 15 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a46c427ea97182a77e8c975d3429a64ee"></a>myGPIO_pin15&#160;</td><td class="fielddoc"><p>myGPIO pin15 maschera di selezione del pin 15 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67"></a>myGPIO_pin16&#160;</td><td class="fielddoc">
-<p>myGPIO pin16 maschera di selezione del pin 16 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a5a27c4d87207b2eba865876854f1ba67"></a>myGPIO_pin16&#160;</td><td class="fielddoc"><p>myGPIO pin16 maschera di selezione del pin 16 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779"></a>myGPIO_pin17&#160;</td><td class="fielddoc">
-<p>myGPIO pin17 maschera di selezione del pin 17 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253ab0541af31059bdc8dca44d5dafa7e779"></a>myGPIO_pin17&#160;</td><td class="fielddoc"><p>myGPIO pin17 maschera di selezione del pin 17 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99"></a>myGPIO_pin18&#160;</td><td class="fielddoc">
-<p>myGPIO pin18 maschera di selezione del pin 18 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a7a51a492e3cb580581a2c8eb439edd99"></a>myGPIO_pin18&#160;</td><td class="fielddoc"><p>myGPIO pin18 maschera di selezione del pin 18 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309"></a>myGPIO_pin19&#160;</td><td class="fielddoc">
-<p>myGPIO pin19 maschera di selezione del pin 19 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309"></a>myGPIO_pin19&#160;</td><td class="fielddoc"><p>myGPIO pin19 maschera di selezione del pin 19 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711"></a>myGPIO_pin20&#160;</td><td class="fielddoc">
-<p>myGPIO pin20 maschera di selezione del pin 20 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711"></a>myGPIO_pin20&#160;</td><td class="fielddoc"><p>myGPIO pin20 maschera di selezione del pin 20 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5"></a>myGPIO_pin21&#160;</td><td class="fielddoc">
-<p>myGPIO pin21 maschera di selezione del pin 21 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5"></a>myGPIO_pin21&#160;</td><td class="fielddoc"><p>myGPIO pin21 maschera di selezione del pin 21 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c"></a>myGPIO_pin22&#160;</td><td class="fielddoc">
-<p>myGPIO pin22 maschera di selezione del pin 22 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253acf80113da8d789f7da9f9edc4ab6003c"></a>myGPIO_pin22&#160;</td><td class="fielddoc"><p>myGPIO pin22 maschera di selezione del pin 22 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830"></a>myGPIO_pin23&#160;</td><td class="fielddoc">
-<p>myGPIO pin23 maschera di selezione del pin 23 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253ad64e03b703608de173ab5950b5121830"></a>myGPIO_pin23&#160;</td><td class="fielddoc"><p>myGPIO pin23 maschera di selezione del pin 23 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110"></a>myGPIO_pin24&#160;</td><td class="fielddoc">
-<p>myGPIO pin24 maschera di selezione del pin 24 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a5bb93f546327123f81b06ed0dfcdf110"></a>myGPIO_pin24&#160;</td><td class="fielddoc"><p>myGPIO pin24 maschera di selezione del pin 24 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56"></a>myGPIO_pin25&#160;</td><td class="fielddoc">
-<p>myGPIO pin25 maschera di selezione del pin 25 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a0b27a7e78aff5836f33085f3b4539f56"></a>myGPIO_pin25&#160;</td><td class="fielddoc"><p>myGPIO pin25 maschera di selezione del pin 25 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af"></a>myGPIO_pin26&#160;</td><td class="fielddoc">
-<p>myGPIO pin26 maschera di selezione del pin 26 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253aaa07c24140250dcbc695206793efa8af"></a>myGPIO_pin26&#160;</td><td class="fielddoc"><p>myGPIO pin26 maschera di selezione del pin 26 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f"></a>myGPIO_pin27&#160;</td><td class="fielddoc">
-<p>myGPIO pin27 maschera di selezione del pin 27 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a1dd5e99eba6237aeb30b2194c553c37f"></a>myGPIO_pin27&#160;</td><td class="fielddoc"><p>myGPIO pin27 maschera di selezione del pin 27 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632"></a>myGPIO_pin28&#160;</td><td class="fielddoc">
-<p>myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a2076590efec8bcf9ef3285798753e632"></a>myGPIO_pin28&#160;</td><td class="fielddoc"><p>myGPIO pin28 maschera di selezione del pin 28 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084"></a>myGPIO_pin29&#160;</td><td class="fielddoc">
-<p>myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253abfe9540fa3946a35e20f7f68cb1b8084"></a>myGPIO_pin29&#160;</td><td class="fielddoc"><p>myGPIO pin29 maschera di selezione del pin 29 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8"></a>myGPIO_pin30&#160;</td><td class="fielddoc">
-<p>myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a59993a30c537c116eddb42d10778f4f8"></a>myGPIO_pin30&#160;</td><td class="fielddoc"><p>myGPIO pin30 maschera di selezione del pin 30 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225"></a>myGPIO_pin31&#160;</td><td class="fielddoc">
-<p>myGPIO pin31 maschera di selezione del pin 31 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a9a55b7c245bd9aad750b7891d27e9225"></a>myGPIO_pin31&#160;</td><td class="fielddoc"><p>myGPIO pin31 maschera di selezione del pin 31 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d"></a>myGPIO_byte0&#160;</td><td class="fielddoc">
-<p>myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a0347b1742eef6b2575a7d409c7fb5c3d"></a>myGPIO_byte0&#160;</td><td class="fielddoc"><p>myGPIO byte0 maschera di selezione deI pin 0-7 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0"></a>myGPIO_byte1&#160;</td><td class="fielddoc">
-<p>myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253ae5aec65fa20f554b893e419fc2755fd0"></a>myGPIO_byte1&#160;</td><td class="fielddoc"><p>myGPIO byte1 maschera di selezione deI pin 8-15 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b"></a>myGPIO_byte2&#160;</td><td class="fielddoc">
-<p>myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253af4892f7db28c64a7cf2a7236c88b742b"></a>myGPIO_byte2&#160;</td><td class="fielddoc"><p>myGPIO byte2 maschera di selezione deI pin 16-23 di un device myGPIO </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129"></a>myGPIO_byte3&#160;</td><td class="fielddoc">
-<p>myGPIO byte3 maschera di selezione deI pin 24-31 di un device myGPIO </p>
+<tr><td class="fieldname"><a id="gga402a0d20afc0cb7c25554b8b023f4253a1ceefb9d65397352e986c573984d0129"></a>myGPIO_byte3&#160;</td><td class="fielddoc"><p>myGPIO byte3 maschera di selezione deI pin 24-31 di un device myGPIO </p>
 </td></tr>
 </table>
 
 </div>
 </div>
-<a class="anchor" id="ga76b849f0e0c05e7f9161bdb33396f2b1"></a>
+<a id="ga76b849f0e0c05e7f9161bdb33396f2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga76b849f0e0c05e7f9161bdb33396f2b1">&#9670;&nbsp;</a></span>myGPIO_mode</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -535,17 +505,17 @@ Funzioni</h2></td></tr>
 
 <p>myGPIO_mode, modalità di funzionamento (lettura/scrittura) di un device myGPIO </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d"></a>myGPIO_read&#160;</td><td class="fielddoc">
-<p>myGPIO_read modalità lettura </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d"></a>myGPIO_read&#160;</td><td class="fielddoc"><p>myGPIO_read modalità lettura </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6"></a>myGPIO_write&#160;</td><td class="fielddoc">
-<p>myGPIO_write modalità scrittura </p>
+<tr><td class="fieldname"><a id="gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6"></a>myGPIO_write&#160;</td><td class="fielddoc"><p>myGPIO_write modalità scrittura </p>
 </td></tr>
 </table>
 
 </div>
 </div>
-<a class="anchor" id="gaf634fe4a0e1eab8da5000b72d6ad362b"></a>
+<a id="gaf634fe4a0e1eab8da5000b72d6ad362b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf634fe4a0e1eab8da5000b72d6ad362b">&#9670;&nbsp;</a></span>myGPIO_value</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -557,18 +527,18 @@ Funzioni</h2></td></tr>
 
 <p>myGPIO_value, valore di un myGPIO </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674"></a>myGPIO_reset&#160;</td><td class="fielddoc">
-<p>myGPIO_reset, corrisponde al valore logico '0' </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674"></a>myGPIO_reset&#160;</td><td class="fielddoc"><p>myGPIO_reset, corrisponde al valore logico '0' </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149"></a>myGPIO_set&#160;</td><td class="fielddoc">
-<p>myGPIO_set, corrisponde al valore logico '1' </p>
+<tr><td class="fieldname"><a id="ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149"></a>myGPIO_set&#160;</td><td class="fielddoc"><p>myGPIO_set, corrisponde al valore logico '1' </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
-<a class="anchor" id="ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c"></a>
+<a id="ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80ef1cf3e9bd8bfd4d849a0f3b8e7b2c">&#9670;&nbsp;</a></span>myGPIO_EnabledPinInterrupt()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -593,7 +563,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gac35776cd6652f7b932a132f3f6959a11"></a>
+<a id="gac35776cd6652f7b932a132f3f6959a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac35776cd6652f7b932a132f3f6959a11">&#9670;&nbsp;</a></span>myGPIO_GetRead()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -615,17 +587,12 @@ Funzioni</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Restituisce</dt><dd>maschera dei pin settati di un device myGPIO</dd></dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_mask mask = myGPIO_read(&amp;gpio);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;if (mask &amp; myGPIO_pin3) {</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        ...</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;}</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;else {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        ...</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;}</div>
-</div><!-- fragment --> 
+<div class="fragment"><div class="line"><a class="code" href="group__bare-metal.html#ga402a0d20afc0cb7c25554b8b023f4253">myGPIO_mask</a> mask = <a class="code" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d">myGPIO_read</a>(&amp;gpio);</div><div class="line"><span class="keywordflow">if</span> (mask &amp; <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a4514d64390392b626aa4dbfaac8dc1e5">myGPIO_pin3</a>) {</div><div class="line">        ...</div><div class="line">}</div><div class="line"><span class="keywordflow">else</span> {</div><div class="line">        ...</div><div class="line">}</div></div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="ga2a20e519816733b90204b975edc4e212"></a>
+<a id="ga2a20e519816733b90204b975edc4e212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2a20e519816733b90204b975edc4e212">&#9670;&nbsp;</a></span>myGPIO_GetValue()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -650,13 +617,7 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permette di leggere il valore dei pin di un device myGPIO;. </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// legge il valore del pin 0 di un device myGPIO.</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;// legge il valore del pin 0, 3 e 5 di un device myGPIO.</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;// Verrà restituita la OR tra i valori dei pin</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;myGPIO_value value = gpio_getValue(gpio, myGPIO_pin0 | myGPIO_pin3 | myGPIO_pin5);</div>
-</div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// legge il valore del pin 0 di un device myGPIO.</span></div><div class="line"><a class="code" href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> value = gpio_getValue(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a>);</div><div class="line"></div><div class="line"><span class="comment">// legge il valore del pin 0, 3 e 5 di un device myGPIO.</span></div><div class="line"><span class="comment">// Verrà restituita la OR tra i valori dei pin</span></div><div class="line"><a class="code" href="group__bare-metal.html#gaf634fe4a0e1eab8da5000b72d6ad362b">myGPIO_value</a> value = gpio_getValue(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | myGPIO_pin3 | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a04a111036a27e9b97f0950f6d37b04d2">myGPIO_pin5</a>);</div></div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera dei pin su cui agire;</td></tr>
@@ -675,7 +636,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gaacca2871ac57a166e62bf431a2da7548"></a>
+<a id="gaacca2871ac57a166e62bf431a2da7548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaacca2871ac57a166e62bf431a2da7548">&#9670;&nbsp;</a></span>myGPIO_GlobalInterruptDisable()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -699,7 +662,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gada93ef6a9818e634f0a233ce14582216"></a>
+<a id="gada93ef6a9818e634f0a233ce14582216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gada93ef6a9818e634f0a233ce14582216">&#9670;&nbsp;</a></span>myGPIO_GlobalInterruptEnable()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -723,7 +688,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga588201358d1633c53535b288c9198531"></a>
+<a id="ga588201358d1633c53535b288c9198531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga588201358d1633c53535b288c9198531">&#9670;&nbsp;</a></span>myGPIO_Init()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -752,9 +719,7 @@ Funzioni</h2></td></tr>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">base_address</td><td>indirizzo di memoria a cui è mappato il device myGPIO; <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpio;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_init(&amp;gpio, BASE_ADDRESS);</div>
-</div><!-- fragment --></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">base_address</td><td>indirizzo di memoria a cui è mappato il device myGPIO; <div class="fragment"><div class="line"><a class="code" href="structmy_g_p_i_o__t.html">myGPIO_t</a> gpio;</div><div class="line">myGPIO_init(&amp;gpio, BASE_ADDRESS);</div></div><!-- fragment --></td></tr>
   </table>
   </dd>
 </dl>
@@ -762,7 +727,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga0a753db3d02ad08014e4b7304e0f1829"></a>
+<a id="ga0a753db3d02ad08014e4b7304e0f1829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a753db3d02ad08014e4b7304e0f1829">&#9670;&nbsp;</a></span>myGPIO_IsGlobalInterruptEnabled()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -793,7 +760,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga386cea84aca8c6bb731b4b46fcbf9199"></a>
+<a id="ga386cea84aca8c6bb731b4b46fcbf9199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga386cea84aca8c6bb731b4b46fcbf9199">&#9670;&nbsp;</a></span>myGPIO_PendingInterrupt()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -824,7 +793,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga6115bde39f860d4e76e7d8f421ce222c"></a>
+<a id="ga6115bde39f860d4e76e7d8f421ce222c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6115bde39f860d4e76e7d8f421ce222c">&#9670;&nbsp;</a></span>myGPIO_PendingPinInterrupt()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -849,7 +820,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gab6ad3dda867515825890c97dbf6f55db"></a>
+<a id="gab6ad3dda867515825890c97dbf6f55db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab6ad3dda867515825890c97dbf6f55db">&#9670;&nbsp;</a></span>myGPIO_PinInterruptAck()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -884,7 +857,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga37d3df33ac50387d6f2e1fb5e2b13e49"></a>
+<a id="ga37d3df33ac50387d6f2e1fb5e2b13e49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37d3df33ac50387d6f2e1fb5e2b13e49">&#9670;&nbsp;</a></span>myGPIO_PinInterruptDisable()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -919,7 +894,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga116e3a1077a317e9e42ded6dd4df64af"></a>
+<a id="ga116e3a1077a317e9e42ded6dd4df64af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga116e3a1077a317e9e42ded6dd4df64af">&#9670;&nbsp;</a></span>myGPIO_PinInterruptEnable()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -954,7 +931,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga43e82eb0febd452635a438fbd9cb853b"></a>
+<a id="ga43e82eb0febd452635a438fbd9cb853b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43e82eb0febd452635a438fbd9cb853b">&#9670;&nbsp;</a></span>myGPIO_SetMode()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -985,12 +964,7 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permette di settare la modalità lettura/scrittura dei pin di un device myGPIO;. </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// setta i pin 0 ed 1 di un device myGPIO come pin di uscita, gli altri restano invariati</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_setMode(gpio, myGPIO_pin0 | myGPIO_pin1, myGPIO_write);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;// setta i pin 19, 20 e 21 di un device myGPIO come pin di ingresso, gli altri restano invariati</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;myGPIO_setMode(gpio, myGPIO_pin19 | myGPIO_pin20 | myGPIO_pin21, myGPIO_read);</div>
-</div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// setta i pin 0 ed 1 di un device myGPIO come pin di uscita, gli altri restano invariati</span></div><div class="line">myGPIO_setMode(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a>, <a class="code" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a2d66976280eb7595a42c631683bdfad6">myGPIO_write</a>);</div><div class="line"></div><div class="line"><span class="comment">// setta i pin 19, 20 e 21 di un device myGPIO come pin di ingresso, gli altri restano invariati</span></div><div class="line">myGPIO_setMode(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309">myGPIO_pin19</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711">myGPIO_pin20</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5">myGPIO_pin21</a>, <a class="code" href="group__bare-metal.html#gga76b849f0e0c05e7f9161bdb33396f2b1a1e6dc78e7641e878cadc842d39605d5d">myGPIO_read</a>);</div></div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera dei pin su cui agire; </td></tr>
@@ -1002,7 +976,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga9d9ce9d2db7d77a588da4a3749f2f24d"></a>
+<a id="ga9d9ce9d2db7d77a588da4a3749f2f24d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d9ce9d2db7d77a588da4a3749f2f24d">&#9670;&nbsp;</a></span>myGPIO_SetValue()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1033,12 +1009,7 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permette di settare il valore dei pin di un device myGPIO, se configurati come output. </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// setta i pin 0 ed 1 di un device myGPIO a livello logico &#39;1&#39;, gli altri restano invariati</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_setValue(gpio, myGPIO_pin0 | myGPIO_pin1, myGPIO_set);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;// setta i pin 19, 20 e 21 di un device myGPIO a livello logico &#39;0&#39;, gli altri restano invariati</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;myGPIO_setValue(gpio, myGPIO_pin19 | myGPIO_pin20 | myGPIO_pin21, myGPIO_reset);</div>
-</div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// setta i pin 0 ed 1 di un device myGPIO a livello logico &#39;1&#39;, gli altri restano invariati</span></div><div class="line">myGPIO_setValue(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a>, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>);</div><div class="line"></div><div class="line"><span class="comment">// setta i pin 19, 20 e 21 di un device myGPIO a livello logico &#39;0&#39;, gli altri restano invariati</span></div><div class="line">myGPIO_setValue(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a9118ae2775e93bd4522660e81a2d5309">myGPIO_pin19</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a7940782a16f88dbbb3a4037c2bef1711">myGPIO_pin20</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1da616a8cf4396927db1e5a336fb6dc5">myGPIO_pin21</a>, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>);</div></div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera dei pin su cui agire; </td></tr>
@@ -1050,7 +1021,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga449b2af7cc20d24e6f6e017cf792ce03"></a>
+<a id="ga449b2af7cc20d24e6f6e017cf792ce03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga449b2af7cc20d24e6f6e017cf792ce03">&#9670;&nbsp;</a></span>myGPIO_Toggle()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1075,9 +1048,7 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Permette di invertire il valore dei pin di un device myGPIO, se configurati come output. </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// inverte i pin 0 ed 1 di un device myGPIO a livello logico &#39;1&#39;, gli altri restano invariati</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_toggle(gpio, myGPIO_pin0 | myGPIO_pin1);</div>
-</div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// inverte i pin 0 ed 1 di un device myGPIO a livello logico &#39;1&#39;, gli altri restano invariati</span></div><div class="line">myGPIO_toggle(gpio, <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a6db6fa7be955ae379f543d96122e23a9">myGPIO_pin0</a> | <a class="code" href="group__bare-metal.html#gga402a0d20afc0cb7c25554b8b023f4253a1de6bdcc01efca2c39f584f5a20293be">myGPIO_pin1</a>);</div></div><!-- fragment --><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpio</td><td>puntatore a <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che astrae un device myGPIO. ">myGPIO_t</a>, che astrae un device myGPIO; </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>maschera dei pin su cui agire;</td></tr>
@@ -1093,9 +1064,9 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 29 Lug 2017 11:19:44 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
 </div>
 </body>

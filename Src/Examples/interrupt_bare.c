@@ -1,5 +1,5 @@
 /**
- * @example interrupt_bare.c
+ * @file interrupt_bare.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 23 06 2017
  *
@@ -20,19 +20,20 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Uso del driver myGPIO con interruzioni bare-metal su Zynq-7000
+ * @example interrupt_bare.c
  *
- * @details
+ * Il file interrupt_bare.c contiene un esempio d'uso del driver myGPIO bare-metal con interruzioni.
+ * L'esempio mostra come impostare il GIC affinché venga generata una interruzione, come debba essere
+ * servita, segnalando il completamento del servizio sia al GIC che al device myGPIO che ha generato
+ * l'interruzione.
+ *
  * <h3>Configurazione hardware</h3>
  * L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-core Zynq7000 processing
  * sysyem, sono presenti tre diversi device myGPIO, uno connesso ai led (base address 0x43c00000), uno
  * connesso ai button (base address 0x43c10000) ed uno connesso agli switch (base address 0x43c20000).
  * Lo schema viene riportato di seguito:
- * @htmlonly
- * <div align='center'>
- * <img src="../../schemes/interrupt_bare.png"/>
- * </div>
- * @endhtmlonly
+ * @image html interrupt_bare.png
+ * @image latex interrupt_bare.png
  *
  * <h4>ISR per la gestione di interrupt provenienti dal gpio connesso agli switch</h4>
  * @code
@@ -52,6 +53,7 @@ void swc_isr(void* data) {
 	myGPIO_GlobalInterruptEnable(&swc_gpio);
 }
  * @endcode
+ *
  * La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica,
  * leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente allo
  * switch arrivo e riabilitare l'interrupt della periferica.
@@ -74,6 +76,7 @@ void btn_isr(void* data) {
 	myGPIO_GlobalInterruptEnable(&btn_gpio);
 }
  * @endcode
+ *
  * La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica,
  * leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente al
  * button premuto e riabilitare l'interrupt della periferica.

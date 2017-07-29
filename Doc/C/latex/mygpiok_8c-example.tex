@@ -1,26 +1,8 @@
-\hypertarget{mygpiok_8c-example}{\section{mygpiok.\+c}
-}
-Programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O attraverso un driver kernel.\begin{DoxyAuthor}{Autore}
-Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Data}
-16 06 2017
-\end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
-\end{DoxyCopyright}
-This file is part of Zynq7000\+Driver\+Pack
-
-Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
-
-Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
-
-You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A.
-
-In questo specifico esempio l'interfacciamento avviene da user-\/space, interagendo attraverso il driver my\+G\+P\+I\+O\+K.
+\hypertarget{mygpiok_8c-example}{}\section{mygpiok.\+c}
+Il file \hyperlink{mygpiok_8c}{mygpiok.\+c} contiene un programma di esempio che usa, in modo totalmente trasparente, il modulo kernel my\+G\+P\+I\+OK, che implementa un driver l\textquotesingle{}interfacciamento con una periferica my\+G\+P\+IO. Il programma contenuto in \hyperlink{mygpiok_8c}{mygpiok.\+c} è un programma userspace che mostra come possa, un programma userspace in esecuzione su sistema operativo Linux, interagire con un device my\+G\+P\+IO attraverso i modulo kernel my\+G\+P\+I\+OK, che deve essere compilato e inserito nel kernel. Si veda la documentazione interna al file \hyperlink{mygpiok_8c}{mygpiok.\+c} per ulteriori dettagli.
 
 \begin{DoxyWarning}{Avvertimento}
-Se nel device tree source non viene indicato \begin{center}compatible = \char`\"{}my\+G\+P\+I\+O\+K\char`\"{};\end{center}  tra i driver compatibili con il device, il driver my\+G\+P\+I\+O\+K non viene correttamente istanziato ed il programma userspace non funzionerà.
+Se nel device tree source non viene indicato \begin{center}compatible = \char`\"{}my\+G\+P\+I\+O\+K\char`\"{};\end{center}  tra i driver compatibili con il device, il driver my\+G\+P\+I\+OK non viene correttamente istanziato ed il programma userspace non funzionerà.
 \end{DoxyWarning}
 
 \begin{DoxyCodeInclude}
@@ -81,7 +63,7 @@ Se nel device tree source non viene indicato \begin{center}compatible = \char`\"
         \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'} :
             param->\hyperlink{structparam__t_ae66d5c3154a115636a63227b7489a6eb}{op\_read} = 1;
             \textcolor{keywordflow}{break};
-        \textcolor{keywordflow}{default} :
+        default :
             printf(\textcolor{stringliteral}{"%c: parametro sconosciuto.\(\backslash\)n"}, par);
             \hyperlink{mygpiok_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}();
             \textcolor{keywordflow}{return} -1;

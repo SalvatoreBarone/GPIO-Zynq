@@ -1,5 +1,5 @@
 /**
- * @example uio-int.c
+ * @file uio-int.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 14 06 2017
  *
@@ -20,10 +20,12 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Questo è un programma di esempio per l'interfacciamento con una periferica myGPIO.
- *
- * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
- * driver uio. <b>Utilizza gli interrupt per la lettura</b>.
+ * @example uio-int.c
+ * Il file uio-int.c è un programma di esempio per l'interfacciamento con una periferica myGPIO. L'esempio
+ * mostra come possa, un programma userspace in esecuzione su sistema operativo Linux, interfacciarsi
+ * con un device myGPIO, interagendo con esso attraverso il driver UIO. Questo specifico esempio mostra
+ * come utilizzare gli interrupt, gestiti dal driver UIO, per effettuare la lettura dopo che il device
+ * myGPIO abbia generato interruzione.
  *
  * @warning Se nel device tree source non viene indicato
  * <center>compatible = "generic-uio";</center>

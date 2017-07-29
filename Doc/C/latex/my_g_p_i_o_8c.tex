@@ -1,9 +1,8 @@
-\hypertarget{my_g_p_i_o_8c}{\section{Riferimenti per il file Src/my\+G\+P\+I\+O/bare-\/metal/my\+G\+P\+I\+O.c}
+\hypertarget{my_g_p_i_o_8c}{}\section{Riferimenti per il file Src/my\+G\+P\+I\+O/bare-\/metal/my\+G\+P\+IO.c}
 \label{my_g_p_i_o_8c}\index{Src/my\+G\+P\+I\+O/bare-\/metal/my\+G\+P\+I\+O.\+c@{Src/my\+G\+P\+I\+O/bare-\/metal/my\+G\+P\+I\+O.\+c}}
-}
-{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\\*
-{\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include $<$assert.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
 Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -15,17 +14,17 @@ Grafo delle dipendenze di inclusione per my\+G\+P\+I\+O.\+c\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{group__bare-metal_ga588201358d1633c53535b288c9198531}{my\+G\+P\+I\+O\+\_\+\+Init} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, uint32\+\_\+t base\+\_\+address)
-\begin{DoxyCompactList}\small\item\em Inizializza un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inizializza un device my\+G\+P\+IO. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga43e82eb0febd452635a438fbd9cb853b}{my\+G\+P\+I\+O\+\_\+\+Set\+Mode} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_ga76b849f0e0c05e7f9161bdb33396f2b1}{my\+G\+P\+I\+O\+\_\+mode} mode)
-\begin{DoxyCompactList}\small\item\em Permette di settare la modalità lettura/scrittura dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permette di settare la modalità lettura/scrittura dei pin di un device my\+G\+P\+IO;. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga9d9ce9d2db7d77a588da4a3749f2f24d}{my\+G\+P\+I\+O\+\_\+\+Set\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask, \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} value)
-\begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permette di settare il valore dei pin di un device my\+G\+P\+IO, se configurati come output. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_ga449b2af7cc20d24e6f6e017cf792ce03}{my\+G\+P\+I\+O\+\_\+\+Toggle} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
-\begin{DoxyCompactList}\small\item\em Permette di invertire il valore dei pin di un device my\+G\+P\+I\+O, se configurati come output. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permette di invertire il valore dei pin di un device my\+G\+P\+IO, se configurati come output. \end{DoxyCompactList}\item 
 \hyperlink{group__bare-metal_gaf634fe4a0e1eab8da5000b72d6ad362b}{my\+G\+P\+I\+O\+\_\+value} \hyperlink{group__bare-metal_ga2a20e519816733b90204b975edc4e212}{my\+G\+P\+I\+O\+\_\+\+Get\+Value} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio, \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} mask)
-\begin{DoxyCompactList}\small\item\em Permette di leggere il valore dei pin di un device my\+G\+P\+I\+O;. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Permette di leggere il valore dei pin di un device my\+G\+P\+IO;. \end{DoxyCompactList}\item 
 \hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask} \hyperlink{group__bare-metal_gac35776cd6652f7b932a132f3f6959a11}{my\+G\+P\+I\+O\+\_\+\+Get\+Read} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
-\begin{DoxyCompactList}\small\item\em Restituisce la maschera dei pin settati di un device my\+G\+P\+I\+O. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Restituisce la maschera dei pin settati di un device my\+G\+P\+IO. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Enable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
 \begin{DoxyCompactList}\small\item\em Abilita gli interrupt globali;. \end{DoxyCompactList}\item 
 void \hyperlink{group__bare-metal_gaacca2871ac57a166e62bf431a2da7548}{my\+G\+P\+I\+O\+\_\+\+Global\+Interrupt\+Disable} (\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$gpio)
@@ -58,8 +57,8 @@ Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salv
 \end{DoxyCopyright}
 This file is part of Zynq7000\+Driver\+Pack
 
-Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
 
-Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
 
-You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A. 
+You should have received a copy of the G\+NU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-\/1301, U\+SA. 

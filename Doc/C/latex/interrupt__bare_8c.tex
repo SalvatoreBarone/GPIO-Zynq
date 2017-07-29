@@ -1,9 +1,8 @@
-\hypertarget{interrupt__bare_8c}{\section{Riferimenti per il file Src/\+Examples/interrupt\+\_\+bare.c}
+\hypertarget{interrupt__bare_8c}{}\section{Riferimenti per il file Src/\+Examples/interrupt\+\_\+bare.c}
 \label{interrupt__bare_8c}\index{Src/\+Examples/interrupt\+\_\+bare.\+c@{Src/\+Examples/interrupt\+\_\+bare.\+c}}
-}
-{\ttfamily \#include \char`\"{}xparameters.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}xscugic.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}xparameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}xscugic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}my\+G\+P\+I\+O.\+h\char`\"{}}\newline
 Grafo delle dipendenze di inclusione per interrupt\+\_\+bare.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -14,19 +13,19 @@ Grafo delle dipendenze di inclusione per interrupt\+\_\+bare.\+c\+:\nopagebreak
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}{led\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R
+\#define \hyperlink{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}{led\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR
 \item 
-\#define \hyperlink{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}{btn\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R
+\#define \hyperlink{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}{btn\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR
 \item 
-\#define \hyperlink{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}{swc\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R
+\#define \hyperlink{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}{swc\+\_\+base\+\_\+addr}~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR
 \item 
-\#define \hyperlink{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}{led\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R
+\#define \hyperlink{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}{led\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR
 \item 
-\#define \hyperlink{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}{btn\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R
+\#define \hyperlink{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}{btn\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR
 \item 
-\#define \hyperlink{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}{swc\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R
+\#define \hyperlink{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}{swc\+\_\+irq\+\_\+line}~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR
 \item 
-\#define \hyperlink{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}{gic\+\_\+id}~X\+P\+A\+R\+\_\+\+S\+C\+U\+G\+I\+C\+\_\+0\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+I\+D
+\#define \hyperlink{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}{gic\+\_\+id}~X\+P\+A\+R\+\_\+\+S\+C\+U\+G\+I\+C\+\_\+0\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID
 \end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
@@ -50,127 +49,173 @@ int \hyperlink{interrupt__bare_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
 \item 
 \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} \hyperlink{interrupt__bare_8c_ac2f1233c00752afeb2ecfd305c5fe36a}{swc\+\_\+gpio}
 \item 
-X\+Scu\+Gic \hyperlink{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}{G\+I\+C}
+X\+Scu\+Gic \hyperlink{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}{G\+IC}
 \end{DoxyCompactItemize}
 
 
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+23 06 2017
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-\/1301, U\+SA. 
+
 \subsection{Documentazione delle definizioni}
-\hypertarget{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+base\+\_\+addr@{btn\+\_\+base\+\_\+addr}}
+\mbox{\Hypertarget{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}\label{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+base\+\_\+addr@{btn\+\_\+base\+\_\+addr}}
 \index{btn\+\_\+base\+\_\+addr@{btn\+\_\+base\+\_\+addr}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{btn\+\_\+base\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}\#define btn\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R}}\label{interrupt__bare_8c_aedc39629300adb6d9f8b1359eb2f7024}
+\subsubsection{\texorpdfstring{btn\+\_\+base\+\_\+addr}{btn\_base\_addr}}
+{\footnotesize\ttfamily \#define btn\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+irq\+\_\+line@{btn\+\_\+irq\+\_\+line}}
+\mbox{\Hypertarget{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}\label{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+irq\+\_\+line@{btn\+\_\+irq\+\_\+line}}
 \index{btn\+\_\+irq\+\_\+line@{btn\+\_\+irq\+\_\+line}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{btn\+\_\+irq\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}\#define btn\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R}}\label{interrupt__bare_8c_ab5602e3672ec6d03f39d2229dbcb9f74}
+\subsubsection{\texorpdfstring{btn\+\_\+irq\+\_\+line}{btn\_irq\_line}}
+{\footnotesize\ttfamily \#define btn\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+1\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!gic\+\_\+id@{gic\+\_\+id}}
+\mbox{\Hypertarget{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}\label{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!gic\+\_\+id@{gic\+\_\+id}}
 \index{gic\+\_\+id@{gic\+\_\+id}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{gic\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}\#define gic\+\_\+id~X\+P\+A\+R\+\_\+\+S\+C\+U\+G\+I\+C\+\_\+0\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+I\+D}}\label{interrupt__bare_8c_a22782ed5aaa2e8d89334d159d14753b5}
+\subsubsection{\texorpdfstring{gic\+\_\+id}{gic\_id}}
+{\footnotesize\ttfamily \#define gic\+\_\+id~X\+P\+A\+R\+\_\+\+S\+C\+U\+G\+I\+C\+\_\+0\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+base\+\_\+addr@{led\+\_\+base\+\_\+addr}}
+\mbox{\Hypertarget{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}\label{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+base\+\_\+addr@{led\+\_\+base\+\_\+addr}}
 \index{led\+\_\+base\+\_\+addr@{led\+\_\+base\+\_\+addr}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{led\+\_\+base\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}\#define led\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R}}\label{interrupt__bare_8c_a145e4211eed7013a18d03ed032f0f229}
+\subsubsection{\texorpdfstring{led\+\_\+base\+\_\+addr}{led\_base\_addr}}
+{\footnotesize\ttfamily \#define led\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+irq\+\_\+line@{led\+\_\+irq\+\_\+line}}
+\mbox{\Hypertarget{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}\label{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+irq\+\_\+line@{led\+\_\+irq\+\_\+line}}
 \index{led\+\_\+irq\+\_\+line@{led\+\_\+irq\+\_\+line}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{led\+\_\+irq\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}\#define led\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R}}\label{interrupt__bare_8c_a8d6cec3bea27d442869c2a25cb8cd41b}
-\hypertarget{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+base\+\_\+addr@{swc\+\_\+base\+\_\+addr}}
+\subsubsection{\texorpdfstring{led\+\_\+irq\+\_\+line}{led\_irq\_line}}
+{\footnotesize\ttfamily \#define led\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+0\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR}
+
+\mbox{\Hypertarget{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}\label{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+base\+\_\+addr@{swc\+\_\+base\+\_\+addr}}
 \index{swc\+\_\+base\+\_\+addr@{swc\+\_\+base\+\_\+addr}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{swc\+\_\+base\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}\#define swc\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+D\+R}}\label{interrupt__bare_8c_a0f79b2ec9c50221371b1a5c027654774}
+\subsubsection{\texorpdfstring{swc\+\_\+base\+\_\+addr}{swc\_base\_addr}}
+{\footnotesize\ttfamily \#define swc\+\_\+base\+\_\+addr~X\+P\+A\+R\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+S00\+\_\+\+A\+X\+I\+\_\+\+B\+A\+S\+E\+A\+D\+DR}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+irq\+\_\+line@{swc\+\_\+irq\+\_\+line}}
+\mbox{\Hypertarget{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}\label{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+irq\+\_\+line@{swc\+\_\+irq\+\_\+line}}
 \index{swc\+\_\+irq\+\_\+line@{swc\+\_\+irq\+\_\+line}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{swc\+\_\+irq\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}\#define swc\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+T\+R}}\label{interrupt__bare_8c_a48d05dc71b54a160af13c8e31e9000b1}
+\subsubsection{\texorpdfstring{swc\+\_\+irq\+\_\+line}{swc\_irq\_line}}
+{\footnotesize\ttfamily \#define swc\+\_\+irq\+\_\+line~X\+P\+A\+R\+\_\+\+F\+A\+B\+R\+I\+C\+\_\+\+M\+Y\+G\+P\+I\+O\+\_\+2\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I\+N\+TR}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
 
 
 \subsection{Documentazione delle funzioni}
-\hypertarget{interrupt__bare_8c_aa4eac585cb67311e3e5fd374d6b09ad4}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+isr@{btn\+\_\+isr}}
+\mbox{\Hypertarget{interrupt__bare_8c_aa4eac585cb67311e3e5fd374d6b09ad4}\label{interrupt__bare_8c_aa4eac585cb67311e3e5fd374d6b09ad4}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+isr@{btn\+\_\+isr}}
 \index{btn\+\_\+isr@{btn\+\_\+isr}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{btn\+\_\+isr}]{\setlength{\rightskip}{0pt plus 5cm}void btn\+\_\+isr (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}}\label{interrupt__bare_8c_aa4eac585cb67311e3e5fd374d6b09ad4}
+\subsubsection{\texorpdfstring{btn\+\_\+isr()}{btn\_isr()}}
+{\footnotesize\ttfamily void btn\+\_\+isr (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_afdbe206b3c49f019757ab09b3cf52b9c}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!gpio\+\_\+init@{gpio\+\_\+init}}
+\mbox{\Hypertarget{interrupt__bare_8c_afdbe206b3c49f019757ab09b3cf52b9c}\label{interrupt__bare_8c_afdbe206b3c49f019757ab09b3cf52b9c}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!gpio\+\_\+init@{gpio\+\_\+init}}
 \index{gpio\+\_\+init@{gpio\+\_\+init}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{gpio\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void gpio\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{interrupt__bare_8c_afdbe206b3c49f019757ab09b3cf52b9c}
+\subsubsection{\texorpdfstring{gpio\+\_\+init()}{gpio\_init()}}
+{\footnotesize\ttfamily void gpio\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ad4c208e7b28dadf641bc3ec5b290d87d}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!int\+\_\+config@{int\+\_\+config}}
+\mbox{\Hypertarget{interrupt__bare_8c_ad4c208e7b28dadf641bc3ec5b290d87d}\label{interrupt__bare_8c_ad4c208e7b28dadf641bc3ec5b290d87d}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!int\+\_\+config@{int\+\_\+config}}
 \index{int\+\_\+config@{int\+\_\+config}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{int\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}int int\+\_\+config (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{interrupt__bare_8c_ad4c208e7b28dadf641bc3ec5b290d87d}
+\subsubsection{\texorpdfstring{int\+\_\+config()}{int\_config()}}
+{\footnotesize\ttfamily int int\+\_\+config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!main@{main}}
+\mbox{\Hypertarget{interrupt__bare_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{interrupt__bare_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!main@{main}}
 \index{main@{main}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{interrupt__bare_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ad05dc46b6c6da383d687c5116864b4ed}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+isr@{swc\+\_\+isr}}
+\mbox{\Hypertarget{interrupt__bare_8c_ad05dc46b6c6da383d687c5116864b4ed}\label{interrupt__bare_8c_ad05dc46b6c6da383d687c5116864b4ed}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+isr@{swc\+\_\+isr}}
 \index{swc\+\_\+isr@{swc\+\_\+isr}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{swc\+\_\+isr}]{\setlength{\rightskip}{0pt plus 5cm}void swc\+\_\+isr (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}}\label{interrupt__bare_8c_ad05dc46b6c6da383d687c5116864b4ed}
+\subsubsection{\texorpdfstring{swc\+\_\+isr()}{swc\_isr()}}
+{\footnotesize\ttfamily void swc\+\_\+isr (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
 
 
 \subsection{Documentazione delle variabili}
-\hypertarget{interrupt__bare_8c_ac77d5df697b8a0d64704dee5f1433832}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+gpio@{btn\+\_\+gpio}}
+\mbox{\Hypertarget{interrupt__bare_8c_ac77d5df697b8a0d64704dee5f1433832}\label{interrupt__bare_8c_ac77d5df697b8a0d64704dee5f1433832}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!btn\+\_\+gpio@{btn\+\_\+gpio}}
 \index{btn\+\_\+gpio@{btn\+\_\+gpio}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{btn\+\_\+gpio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+t} btn\+\_\+gpio}}\label{interrupt__bare_8c_ac77d5df697b8a0d64704dee5f1433832}
+\subsubsection{\texorpdfstring{btn\+\_\+gpio}{btn\_gpio}}
+{\footnotesize\ttfamily \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} btn\+\_\+gpio}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!G\+I\+C@{G\+I\+C}}
-\index{G\+I\+C@{G\+I\+C}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{G\+I\+C}]{\setlength{\rightskip}{0pt plus 5cm}X\+Scu\+Gic G\+I\+C}}\label{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}
+\mbox{\Hypertarget{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}\label{interrupt__bare_8c_a0ad1175dbe99ac3f36c814258ec4f8c6}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!G\+IC@{G\+IC}}
+\index{G\+IC@{G\+IC}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
+\subsubsection{\texorpdfstring{G\+IC}{GIC}}
+{\footnotesize\ttfamily X\+Scu\+Gic G\+IC}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ac523aaaf082570c199faf2a98e03c219}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+gpio@{led\+\_\+gpio}}
+\mbox{\Hypertarget{interrupt__bare_8c_ac523aaaf082570c199faf2a98e03c219}\label{interrupt__bare_8c_ac523aaaf082570c199faf2a98e03c219}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!led\+\_\+gpio@{led\+\_\+gpio}}
 \index{led\+\_\+gpio@{led\+\_\+gpio}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{led\+\_\+gpio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+t} led\+\_\+gpio}}\label{interrupt__bare_8c_ac523aaaf082570c199faf2a98e03c219}
+\subsubsection{\texorpdfstring{led\+\_\+gpio}{led\_gpio}}
+{\footnotesize\ttfamily \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} led\+\_\+gpio}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}
-\hypertarget{interrupt__bare_8c_ac2f1233c00752afeb2ecfd305c5fe36a}{\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+gpio@{swc\+\_\+gpio}}
+\mbox{\Hypertarget{interrupt__bare_8c_ac2f1233c00752afeb2ecfd305c5fe36a}\label{interrupt__bare_8c_ac2f1233c00752afeb2ecfd305c5fe36a}} 
+\index{interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}!swc\+\_\+gpio@{swc\+\_\+gpio}}
 \index{swc\+\_\+gpio@{swc\+\_\+gpio}!interrupt\+\_\+bare.\+c@{interrupt\+\_\+bare.\+c}}
-\subsubsection[{swc\+\_\+gpio}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my\+G\+P\+I\+O\+\_\+t} swc\+\_\+gpio}}\label{interrupt__bare_8c_ac2f1233c00752afeb2ecfd305c5fe36a}
+\subsubsection{\texorpdfstring{swc\+\_\+gpio}{swc\_gpio}}
+{\footnotesize\ttfamily \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} swc\+\_\+gpio}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}.\end{Desc}

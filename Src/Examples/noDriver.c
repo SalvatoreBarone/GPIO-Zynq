@@ -1,5 +1,5 @@
 /**
- * @example noDriver.c
+ * @file noDriver.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 12 06 2017
  *
@@ -20,11 +20,11 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Questo è un programma di esempio per l'interfacciamento con una periferica myGPIO.
- *
- * In questo specifico esempio l'interfacciamento avviene da user-space, agendo direttamente sui registri
- * di memoria, senza mediazione di altri driver, usando il device-file /dev/mem.
- *
+ * @example noDriver.c
+ * Il file noDriver.c contiene un programma di esempio per l'interfacciamento con una periferica myGPIO.
+ * L'esempio mostra come possa, un programma userspace in esecuzione su sistema operativo Linux,
+ * interfacciarsi con un device myGPIO agendo direttamente sui registri di memoria, senza mediazione di
+ * altri driver, usando il device-file /dev/mem.
  */
 
 #include <inttypes.h>

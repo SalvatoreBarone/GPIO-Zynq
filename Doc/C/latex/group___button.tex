@@ -1,6 +1,5 @@
-\hypertarget{group___button}{\section{Button}
+\hypertarget{group___button}{}\section{Button}
 \label{group___button}\index{Button@{Button}}
-}
 
 
 supporto per gestione dei button su board Digilent Zybo  
@@ -17,7 +16,7 @@ Diagramma di collaborazione per Button\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}
-\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae l'insieme dei button presenti sulla board Digilent Zybo;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Struttura opaca che astrae l\textquotesingle{}insieme dei button presenti sulla board Digilent Zybo;. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,16 +27,16 @@ struct \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}
 \subsection*{Tipi enumerati (enum)}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t} \{ \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{Zybo\+Button3} = 0x8\+U, 
-\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{Zybo\+Button2} = 0x4\+U, 
-\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{Zybo\+Button1} = 0x2\+U, 
-\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{Zybo\+Button0} = 0x1\+U
- \}
-\begin{DoxyCompactList}\small\item\em Maschere di selezione dei Push\+Button. \end{DoxyCompactList}\item 
+enum \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t} \{ \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{Zybo\+Button3} = 0x8U, 
+\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{Zybo\+Button2} = 0x4U, 
+\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{Zybo\+Button1} = 0x2U, 
+\hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{Zybo\+Button0} = 0x1U
+ \}\begin{DoxyCompactList}\small\item\em Maschere di selezione dei Push\+Button. \end{DoxyCompactList}
+\item 
 enum \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\+\_\+status\+\_\+t} \{ \hyperlink{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}{Zybo\+Button\+\_\+off}, 
 \hyperlink{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}{Zybo\+Button\+\_\+on}
- \}
-\begin{DoxyCompactList}\small\item\em Status di attivo/inattivo dei Push\+Button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+ \}\begin{DoxyCompactList}\small\item\em Status di attivo/inattivo dei Push\+Button. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -57,13 +56,12 @@ supporto per gestione dei button su board Digilent Zybo
 
 
 \subsection{Documentazione delle definizioni}
-\hypertarget{group___button_ga5f85cbc14732f1d83faa75500b67defa}{\index{Button@{Button}!Zybo\+Button@{Zybo\+Button}}
+\mbox{\Hypertarget{group___button_ga5f85cbc14732f1d83faa75500b67defa}\label{group___button_ga5f85cbc14732f1d83faa75500b67defa}} 
+\index{Button@{Button}!Zybo\+Button@{Zybo\+Button}}
 \index{Zybo\+Button@{Zybo\+Button}!Button@{Button}}
-\subsubsection[{Zybo\+Button}]{\setlength{\rightskip}{0pt plus 5cm}\#define Zybo\+Button(
-\begin{DoxyParamCaption}
-\item[{}]{i}
-\end{DoxyParamCaption}
-)~((uint32\+\_\+t)(1$<$$<$(i)))}}\label{group___button_ga5f85cbc14732f1d83faa75500b67defa}
+\subsubsection{\texorpdfstring{Zybo\+Button}{ZyboButton}}
+{\footnotesize\ttfamily \#define Zybo\+Button(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~((uint32\+\_\+t)(1$<$$<$(i)))}
+
 
 
 Metodo alternativo per la specifica di uno dei button presenti sulla board Digilent Zybo. 
@@ -76,9 +74,12 @@ Metodo alternativo per la specifica di uno dei button presenti sulla board Digil
 \begin{DoxyReturn}{Restituisce}
 maschera di selezione del button i-\/esimo 
 \end{DoxyReturn}
-\hypertarget{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}{\index{Button@{Button}!Zybo\+Button\+\_\+\+Debounce\+Wait@{Zybo\+Button\+\_\+\+Debounce\+Wait}}
+\mbox{\Hypertarget{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}\label{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+\+Debounce\+Wait@{Zybo\+Button\+\_\+\+Debounce\+Wait}}
 \index{Zybo\+Button\+\_\+\+Debounce\+Wait@{Zybo\+Button\+\_\+\+Debounce\+Wait}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+\+Debounce\+Wait}]{\setlength{\rightskip}{0pt plus 5cm}\#define Zybo\+Button\+\_\+\+Debounce\+Wait~50}}\label{group___button_ga8960eefa6a431f50d4fe2a2f8063da3f}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+\+Debounce\+Wait}{ZyboButton\_DebounceWait}}
+{\footnotesize\ttfamily \#define Zybo\+Button\+\_\+\+Debounce\+Wait~50}
+
 
 
 Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. Il valore di default è 50, determinato empiricamente. Può essere modificato a piacimento cambiando il valore alla macro seguente. 
@@ -86,60 +87,70 @@ Tempo di attesa (in millisecondi) usato per prevenire il fenomeno del bouncing. 
 
 
 \subsection{Documentazione dei tipi enumerati}
-\hypertarget{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{\index{Button@{Button}!Zybo\+Button\+\_\+mask\+\_\+t@{Zybo\+Button\+\_\+mask\+\_\+t}}
+\mbox{\Hypertarget{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}\label{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+mask\+\_\+t@{Zybo\+Button\+\_\+mask\+\_\+t}}
 \index{Zybo\+Button\+\_\+mask\+\_\+t@{Zybo\+Button\+\_\+mask\+\_\+t}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+mask\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Zybo\+Button\+\_\+mask\+\_\+t}}}\label{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+mask\+\_\+t}{ZyboButton\_mask\_t}}
+{\footnotesize\ttfamily enum \hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t}}
+
 
 
 Maschere di selezione dei Push\+Button. 
 
-\begin{Desc}
-\item[Valori del tipo enumerato]\par
-\begin{description}
-\index{Zybo\+Button3@{Zybo\+Button3}!Button@{Button}}\index{Button@{Button}!Zybo\+Button3@{Zybo\+Button3}}\item[{\em 
-\hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{Zybo\+Button3}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}
-}]Zybo\+Button3, seleziona il button 3 sulla board Digilent Zybo;. \index{Zybo\+Button2@{Zybo\+Button2}!Button@{Button}}\index{Button@{Button}!Zybo\+Button2@{Zybo\+Button2}}\item[{\em 
-\hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{Zybo\+Button2}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}
-}]Zybo\+Button2, seleziona il button 2 sulla board Digilent Zybo;. \index{Zybo\+Button1@{Zybo\+Button1}!Button@{Button}}\index{Button@{Button}!Zybo\+Button1@{Zybo\+Button1}}\item[{\em 
-\hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{Zybo\+Button1}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}
-}]Zybo\+Button1, seleziona il button 1 sulla board Digilent Zybo;. \index{Zybo\+Button0@{Zybo\+Button0}!Button@{Button}}\index{Button@{Button}!Zybo\+Button0@{Zybo\+Button0}}\item[{\em 
-\hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{Zybo\+Button0}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}
-}]Zybo\+Button0, seleziona il button 0 sulla board Digilent Zybo;. \end{description}
-\end{Desc}
-\hypertarget{group___button_ga85c290bfa232cab213e69200bf78e06a}{\index{Button@{Button}!Zybo\+Button\+\_\+status\+\_\+t@{Zybo\+Button\+\_\+status\+\_\+t}}
+\begin{DoxyEnumFields}{Valori del tipo enumerato}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button3@{Zybo\+Button3}!Button@{Button}}\index{Button@{Button}!Zybo\+Button3@{Zybo\+Button3}}}\mbox{\Hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}} 
+Zybo\+Button3&Zybo\+Button3, seleziona il button 3 sulla board Digilent Zybo;. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button2@{Zybo\+Button2}!Button@{Button}}\index{Button@{Button}!Zybo\+Button2@{Zybo\+Button2}}}\mbox{\Hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}} 
+Zybo\+Button2&Zybo\+Button2, seleziona il button 2 sulla board Digilent Zybo;. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button1@{Zybo\+Button1}!Button@{Button}}\index{Button@{Button}!Zybo\+Button1@{Zybo\+Button1}}}\mbox{\Hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}} 
+Zybo\+Button1&Zybo\+Button1, seleziona il button 1 sulla board Digilent Zybo;. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button0@{Zybo\+Button0}!Button@{Button}}\index{Button@{Button}!Zybo\+Button0@{Zybo\+Button0}}}\mbox{\Hypertarget{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}\label{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}} 
+Zybo\+Button0&Zybo\+Button0, seleziona il button 0 sulla board Digilent Zybo;. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group___button_ga85c290bfa232cab213e69200bf78e06a}\label{group___button_ga85c290bfa232cab213e69200bf78e06a}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+status\+\_\+t@{Zybo\+Button\+\_\+status\+\_\+t}}
 \index{Zybo\+Button\+\_\+status\+\_\+t@{Zybo\+Button\+\_\+status\+\_\+t}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+status\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Zybo\+Button\+\_\+status\+\_\+t}}}\label{group___button_ga85c290bfa232cab213e69200bf78e06a}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+status\+\_\+t}{ZyboButton\_status\_t}}
+{\footnotesize\ttfamily enum \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\+\_\+status\+\_\+t}}
+
 
 
 Status di attivo/inattivo dei Push\+Button. 
 
-\begin{Desc}
-\item[Valori del tipo enumerato]\par
-\begin{description}
-\index{Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}}\item[{\em 
-\hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}{Zybo\+Button\+\_\+off}\label{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}
-}]Zybo\+Button\+\_\+off, corrisponde al valore logico '0', indica che un pushbutton è inattivo;. \index{Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}}\item[{\em 
-\hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}{Zybo\+Button\+\_\+on}\label{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}
-}]Zybo\+Button\+\_\+on, corrisponde al valore logico '1', indica che un pushbutton è attivo;. \end{description}
-\end{Desc}
+\begin{DoxyEnumFields}{Valori del tipo enumerato}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+off@{Zybo\+Button\+\_\+off}}}\mbox{\Hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}\label{group___button_gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399}} 
+Zybo\+Button\+\_\+off&Zybo\+Button\+\_\+off, corrisponde al valore logico \textquotesingle{}0\textquotesingle{}, indica che un pushbutton è inattivo;. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}!Button@{Button}}\index{Button@{Button}!Zybo\+Button\+\_\+on@{Zybo\+Button\+\_\+on}}}\mbox{\Hypertarget{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}\label{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}} 
+Zybo\+Button\+\_\+on&Zybo\+Button\+\_\+on, corrisponde al valore logico \textquotesingle{}1\textquotesingle{}, indica che un pushbutton è attivo;. \\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \subsection{Documentazione delle funzioni}
-\hypertarget{group___button_ga75407539e8ba0ad3ea142496219cd083}{\index{Button@{Button}!Zybo\+Button\+\_\+get\+Status@{Zybo\+Button\+\_\+get\+Status}}
+\mbox{\Hypertarget{group___button_ga75407539e8ba0ad3ea142496219cd083}\label{group___button_ga75407539e8ba0ad3ea142496219cd083}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+get\+Status@{Zybo\+Button\+\_\+get\+Status}}
 \index{Zybo\+Button\+\_\+get\+Status@{Zybo\+Button\+\_\+get\+Status}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+get\+Status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Zybo\+Button\+\_\+status\+\_\+t} Zybo\+Button\+\_\+get\+Status (
-\begin{DoxyParamCaption}
-\item[{{\bf Zybo\+Button\+\_\+t} $\ast$}]{buttons, }
-\item[{{\bf Zybo\+Button\+\_\+mask\+\_\+t}}]{mask}
-\end{DoxyParamCaption}
-)}}\label{group___button_ga75407539e8ba0ad3ea142496219cd083}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+get\+Status()}{ZyboButton\_getStatus()}}
+{\footnotesize\ttfamily \hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{Zybo\+Button\+\_\+status\+\_\+t} Zybo\+Button\+\_\+get\+Status (\begin{DoxyParamCaption}\item[{\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$}]{buttons,  }\item[{\hyperlink{group___button_ga4d26a5f6cad606de534ba034e0ba42dd}{Zybo\+Button\+\_\+mask\+\_\+t}}]{mask }\end{DoxyParamCaption})}
+
 
 
 Permette la lettura dello stato dei button presenti sulla board. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l\textquotesingle{}insieme dei button presenti sulla board Digilent Zybo; \\
 \hline
 \mbox{\tt in}  & {\em mask} & maschera di selezione dei button, quelli non selezionati non vengono tenuti in considerazione\\
 \hline
@@ -156,12 +167,12 @@ status status dei button
 \end{DoxyRetVals}
 
 \begin{DoxyCode}
-1 ZyboButton\_status\_t button\_status = ZyboButton\_getStatus(&buttons, ZyboButton3);                // leggo lo
-       stato ddi button 3
-2 ZyboLed\_status\_t led\_status = (button\_status == ZyboButton\_on ? ZyboLed\_on : ZyboLed\_off);  // se lo stato
-       è attivo accendo il led 3
-3 ZyboLed\_setStatus(&leds, ZyboLed3, led\_status);                                             //
-       accendo/spengo led 3
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{ZyboButton3});                \textcolor{comment}{// leggo lo stato ddi button 3}
+\hyperlink{group___led_ga3dcb274f22e577705c49944b8d1f4b12}{ZyboLed\_status\_t} led\_status = (button\_status == \hyperlink{group___button_gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe}{ZyboButton\_on} ? 
+      \hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12aafcf0ae16a6edec807c06bb0a99f7e8b}{ZyboLed\_on} : \hyperlink{group___led_gga3dcb274f22e577705c49944b8d1f4b12a9679f1c302afdb51915a2331b4ec92f3}{ZyboLed\_off});  \textcolor{comment}{// se lo stato è attivo accendo il led 3}
+\hyperlink{group___led_gacf5c2b0328c4bdf2d796397fc4510c69}{ZyboLed\_setStatus}(&leds, \hyperlink{group___led_ggad11701cccac394f7e1f90de8f85695f3adc5edc2adfd899da9f149cb61364b141}{ZyboLed3}, led\_status);                                   
+                \textcolor{comment}{// accendo/spengo led 3}
 \end{DoxyCode}
 
 
@@ -172,43 +183,37 @@ Usa la macro assert per verificare che\+:
 \item buttons-\/$>$gpio non sia un puntatore nullo 
 \end{DoxyItemize}
 \end{DoxyWarning}
-\hypertarget{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{\index{Button@{Button}!Zybo\+Button\+\_\+init@{Zybo\+Button\+\_\+init}}
+\mbox{\Hypertarget{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}\label{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+init@{Zybo\+Button\+\_\+init}}
 \index{Zybo\+Button\+\_\+init@{Zybo\+Button\+\_\+init}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void Zybo\+Button\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{{\bf Zybo\+Button\+\_\+t} $\ast$}]{buttons, }
-\item[{{\bf my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio, }
-\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Button3\+\_\+pin, }
-\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Button2\+\_\+pin, }
-\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Button1\+\_\+pin, }
-\item[{{\bf my\+G\+P\+I\+O\+\_\+mask}}]{Button0\+\_\+pin}
-\end{DoxyParamCaption}
-)}}\label{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+init()}{ZyboButton\_init()}}
+{\footnotesize\ttfamily void Zybo\+Button\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$}]{buttons,  }\item[{\hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t} $\ast$}]{gpio,  }\item[{\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask}}]{Button3\+\_\+pin,  }\item[{\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask}}]{Button2\+\_\+pin,  }\item[{\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask}}]{Button1\+\_\+pin,  }\item[{\hyperlink{group__bare-metal_ga402a0d20afc0cb7c25554b8b023f4253}{my\+G\+P\+I\+O\+\_\+mask}}]{Button0\+\_\+pin }\end{DoxyParamCaption})}
+
 
 
 Inizializza un oggetto di tipo \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}. 
 
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in,out}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo; \\
+\mbox{\tt in,out}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l\textquotesingle{}insieme dei button presenti sulla board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+I\+O; non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; si faccia riferimento all'esempio riportato di seguito \\
+\mbox{\tt in}  & {\em gpio} & puntatore a struttura \hyperlink{structmy_g_p_i_o__t}{my\+G\+P\+I\+O\+\_\+t}, che astrae un device my\+G\+P\+IO; non viene inizializzato dalla funziona, sarà necessario inizializzarlo preventivamente; si faccia riferimento all\textquotesingle{}esempio riportato di seguito \\
 \hline
-\mbox{\tt in}  & {\em Button3\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 3 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button3\+\_\+pin} & pin del device my\+G\+P\+IO a cui è associato il button 3 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button2\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 2 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button2\+\_\+pin} & pin del device my\+G\+P\+IO a cui è associato il button 2 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button1\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 1 della board Digilent Zybo; \\
+\mbox{\tt in}  & {\em Button1\+\_\+pin} & pin del device my\+G\+P\+IO a cui è associato il button 1 della board Digilent Zybo; \\
 \hline
-\mbox{\tt in}  & {\em Button0\+\_\+pin} & pin del device my\+G\+P\+I\+O a cui è associato il button 0 della board Digilent Zybo;\\
+\mbox{\tt in}  & {\em Button0\+\_\+pin} & pin del device my\+G\+P\+IO a cui è associato il button 0 della board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
-1 myGPIO\_t gpioButton;
-2 GPIO\_init(&gpioButton, XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR, 4, 0, 4, 8);
-3 ZyboButton\_t buttons;
-4 ZyboButton\_init(&buttons, &gpioButton, GPIO\_pin3, GPIO\_pin2, GPIO\_pin1, GPIO\_pin0);
+\hyperlink{structmy_g_p_i_o__t}{myGPIO\_t} gpioButton;
+GPIO\_init(&gpioButton, XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR, 4, 0, 4, 8);
+\hyperlink{struct_zybo_button__t}{ZyboButton\_t} buttons;
+\hyperlink{group___button_gac5362bbb2d8845e2403e9cbe18cf3834}{ZyboButton\_init}(&buttons, &gpioButton, GPIO\_pin3, GPIO\_pin2, GPIO\_pin1, GPIO\_pin0);
 \end{DoxyCode}
 
 
@@ -220,37 +225,36 @@ Usa la macro assert per verificare che\+:
 \item Button\+N\+\_\+pin siano tutti pin differenti 
 \end{DoxyItemize}
 \end{DoxyWarning}
-\hypertarget{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{\index{Button@{Button}!Zybo\+Button\+\_\+wait\+While\+Busy@{Zybo\+Button\+\_\+wait\+While\+Busy}}
+\mbox{\Hypertarget{group___button_ga3840edf011b5bad6302b7efc9c6326fe}\label{group___button_ga3840edf011b5bad6302b7efc9c6326fe}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+wait\+While\+Busy@{Zybo\+Button\+\_\+wait\+While\+Busy}}
 \index{Zybo\+Button\+\_\+wait\+While\+Busy@{Zybo\+Button\+\_\+wait\+While\+Busy}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+wait\+While\+Busy}]{\setlength{\rightskip}{0pt plus 5cm}void Zybo\+Button\+\_\+wait\+While\+Busy (
-\begin{DoxyParamCaption}
-\item[{{\bf Zybo\+Button\+\_\+t} $\ast$}]{buttons}
-\end{DoxyParamCaption}
-)}}\label{group___button_ga3840edf011b5bad6302b7efc9c6326fe}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+wait\+While\+Busy()}{ZyboButton\_waitWhileBusy()}}
+{\footnotesize\ttfamily void Zybo\+Button\+\_\+wait\+While\+Busy (\begin{DoxyParamCaption}\item[{\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$}]{buttons }\end{DoxyParamCaption})}
+
 
 
 Permettere di mettere il programma in attesa attiva finché i button restano attivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
+La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l\textquotesingle{}attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l\textquotesingle{}insieme dei button presenti sulla board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
-1 ZyboButton\_waitWhileIdle(&buttons);
-2 ZyboButton\_status\_t button3\_status = ZyboButton\_getStatus(&buttons, ZyboButton3);               // leggo lo
-       stato ddi button 3
-3 ZyboButton\_status\_t button2\_status = ZyboButton\_getStatus(&buttons, ZyboButton2);               // leggo lo
-       stato ddi button 2
-4 ZyboButton\_status\_t button1\_status = ZyboButton\_getStatus(&buttons, ZyboButton1);               // leggo lo
-       stato ddi button 1
-5 ZyboButton\_status\_t button0\_status = ZyboButton\_getStatus(&buttons, ZyboButton0);               // leggo lo
-       stato ddi button 0
-6 ZyboButton\_waitWhileBusy(&buttons);
+\hyperlink{group___button_gaca30e81084e746785e395f79e9678e9a}{ZyboButton\_waitWhileIdle}(&buttons);
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button3\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{ZyboButton3});               \textcolor{comment}{// leggo lo stato ddi button 3}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button2\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{ZyboButton2});               \textcolor{comment}{// leggo lo stato ddi button 2}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button1\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{ZyboButton1});               \textcolor{comment}{// leggo lo stato ddi button 1}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button0\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{ZyboButton0});               \textcolor{comment}{// leggo lo stato ddi button 0}
+\hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{ZyboButton\_waitWhileBusy}(&buttons);
 \end{DoxyCode}
 
 
@@ -261,37 +265,36 @@ Usa la macro assert per verificare che\+:
 \item buttons-\/$>$gpio non sia un puntatore nullo 
 \end{DoxyItemize}
 \end{DoxyWarning}
-\hypertarget{group___button_gaca30e81084e746785e395f79e9678e9a}{\index{Button@{Button}!Zybo\+Button\+\_\+wait\+While\+Idle@{Zybo\+Button\+\_\+wait\+While\+Idle}}
+\mbox{\Hypertarget{group___button_gaca30e81084e746785e395f79e9678e9a}\label{group___button_gaca30e81084e746785e395f79e9678e9a}} 
+\index{Button@{Button}!Zybo\+Button\+\_\+wait\+While\+Idle@{Zybo\+Button\+\_\+wait\+While\+Idle}}
 \index{Zybo\+Button\+\_\+wait\+While\+Idle@{Zybo\+Button\+\_\+wait\+While\+Idle}!Button@{Button}}
-\subsubsection[{Zybo\+Button\+\_\+wait\+While\+Idle}]{\setlength{\rightskip}{0pt plus 5cm}void Zybo\+Button\+\_\+wait\+While\+Idle (
-\begin{DoxyParamCaption}
-\item[{{\bf Zybo\+Button\+\_\+t} $\ast$}]{buttons}
-\end{DoxyParamCaption}
-)}}\label{group___button_gaca30e81084e746785e395f79e9678e9a}
+\subsubsection{\texorpdfstring{Zybo\+Button\+\_\+wait\+While\+Idle()}{ZyboButton\_waitWhileIdle()}}
+{\footnotesize\ttfamily void Zybo\+Button\+\_\+wait\+While\+Idle (\begin{DoxyParamCaption}\item[{\hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t} $\ast$}]{buttons }\end{DoxyParamCaption})}
+
 
 
 Permettere di mettere il programma in attesa attiva finché i button restano inattivi;. 
 
 \begin{DoxyWarning}{Avvertimento}
-La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l'attesa viene usata la funzione usleep() di stdlib.
+La funzione integra le funzionalità di debouncing. Il tempo di attesa è determinato sulla base del valore della macro Zybo\+Button\+\_\+\+Debounce\+Wait. Per l\textquotesingle{}attesa viene usata la funzione usleep() di stdlib.
 \end{DoxyWarning}
 
 \begin{DoxyParams}[1]{Parametri}
-\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l'insieme dei button presenti sulla board Digilent Zybo;\\
+\mbox{\tt in}  & {\em buttons} & puntatore a struttura \hyperlink{struct_zybo_button__t}{Zybo\+Button\+\_\+t}, che astrae l\textquotesingle{}insieme dei button presenti sulla board Digilent Zybo;\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
-1 ZyboButton\_waitWhileIdle(&buttons);
-2 ZyboButton\_status\_t button3\_status = ZyboButton\_getStatus(&buttons, ZyboButton3);               // leggo lo
-       stato ddi button 3
-3 ZyboButton\_status\_t button2\_status = ZyboButton\_getStatus(&buttons, ZyboButton2);               // leggo lo
-       stato ddi button 2
-4 ZyboButton\_status\_t button1\_status = ZyboButton\_getStatus(&buttons, ZyboButton1);               // leggo lo
-       stato ddi button 1
-5 ZyboButton\_status\_t button0\_status = ZyboButton\_getStatus(&buttons, ZyboButton0);               // leggo lo
-       stato ddi button 0
-6 ZyboButton\_waitWhileBusy(&buttons);
+\hyperlink{group___button_gaca30e81084e746785e395f79e9678e9a}{ZyboButton\_waitWhileIdle}(&buttons);
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button3\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8}{ZyboButton3});               \textcolor{comment}{// leggo lo stato ddi button 3}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button2\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609}{ZyboButton2});               \textcolor{comment}{// leggo lo stato ddi button 2}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button1\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7}{ZyboButton1});               \textcolor{comment}{// leggo lo stato ddi button 1}
+\hyperlink{group___button_ga85c290bfa232cab213e69200bf78e06a}{ZyboButton\_status\_t} button0\_status = \hyperlink{group___button_ga75407539e8ba0ad3ea142496219cd083}{ZyboButton\_getStatus}(&buttons, 
+      \hyperlink{group___button_gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570}{ZyboButton0});               \textcolor{comment}{// leggo lo stato ddi button 0}
+\hyperlink{group___button_ga3840edf011b5bad6302b7efc9c6326fe}{ZyboButton\_waitWhileBusy}(&buttons);
 \end{DoxyCode}
 
 

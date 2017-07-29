@@ -1,5 +1,5 @@
 /**
- * @example readAll.c
+ * @file readAll.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 19 06 2017
  *
@@ -20,8 +20,10 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- *
- * @brief Programma di test/debug. Legge tutti i registri della periferica direttamente dal file /dev/mem
+ * @example readAll.c
+ * Il file readAll.c contiene un programma di test/debug che è possibile eseguire in un sistema operativo
+ * Linux. L'esempio costituisce un programma user-space che non fa altro che leggere tutti i registri di
+ * un device, senza mediazione di altri driver, usando il device-file /dev/mem.
  */
 
 #include <inttypes.h>

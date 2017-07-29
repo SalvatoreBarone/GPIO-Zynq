@@ -3,23 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.8"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Zynq-7000 Driver Pack: HD44780</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
-  $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,7 +27,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
    &#160;<span id="projectnumber">3.2</span>
    </div>
@@ -39,35 +38,19 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generato da Doxygen 1.8.8 -->
+<!-- Generato da Doxygen 1.8.13 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
-      <li><a href="modules.html"><span>Moduli</span></a></li>
-      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
-      <li><a href="files.html"><span>File</span></a></li>
-      <li><a href="examples.html"><span>Esempi</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -88,7 +71,7 @@ $(document).ready(function(){initNavTree('group___h_d44780.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -114,7 +97,8 @@ Diagramma di collaborazione per HD44780:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group___h_d44780.png" border="0" alt="" usemap="#group______h__d44780"/>
 <map name="group______h__d44780" id="group______h__d44780">
-<area shape="rect" id="node1" href="group__bare-metal.html" title="device&#45;driver OO&#45;like bare&#45;metal per device myGPIO " alt="" coords="5,5,91,32"/></map>
+<area shape="rect" id="node1" href="group__bare-metal.html" title="device&#45;driver OO&#45;like bare&#45;metal per device myGPIO " alt="" coords="5,5,91,32"/>
+</map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -128,13 +112,13 @@ Strutture dati</h2></td></tr>
 Tipi enumerati (enum)</h2></td></tr>
 <tr class="memitem:gaaaea8b73e24f7658da4118f6b01b45f0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">HD44780_InterfaceMode_t</a> { <a class="el" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6">HD44780_INTERFACE_4bit</a>, 
 <a class="el" href="group___h_d44780.html#ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5">HD44780_INTERFACE_8bit</a>
- }</td></tr>
-<tr class="memdesc:gaaaea8b73e24f7658da4118f6b01b45f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modalità di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit.  <a href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:gaaaea8b73e24f7658da4118f6b01b45f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modalità di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit.  <a href="group___h_d44780.html#gaaaea8b73e24f7658da4118f6b01b45f0">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:gaaaea8b73e24f7658da4118f6b01b45f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">HD44780_Direction_t</a> { <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292">HD44780_CursorLeft</a>, 
 <a class="el" href="group___h_d44780.html#ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399">HD44780_CursorRight</a>
- }</td></tr>
-<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a>  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:gaf46f4db4f981d3a1088804a6d6980d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a>  <a href="group___h_d44780.html#gaf46f4db4f981d3a1088804a6d6980d30">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:gaf46f4db4f981d3a1088804a6d6980d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -226,7 +210,9 @@ Funzioni</h2></td></tr>
  </li>
 </ul>
 <h2 class="groupheader">Documentazione dei tipi enumerati</h2>
-<a class="anchor" id="gaf46f4db4f981d3a1088804a6d6980d30"></a>
+<a id="gaf46f4db4f981d3a1088804a6d6980d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf46f4db4f981d3a1088804a6d6980d30">&#9670;&nbsp;</a></span>HD44780_Direction_t</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -238,17 +224,17 @@ Funzioni</h2></td></tr>
 
 <p>Direzioni di spostamento del cursore, usata dalla funzione <a class="el" href="group___h_d44780.html#gabcea9a03050c46530e39b7556c673baf" title="Sposta il cursore di una posizione a destra o sinistra. ">HD44780_MoveCursor()</a> </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292"></a>HD44780_CursorLeft&#160;</td><td class="fielddoc">
-<p>left sposta il cursore a sinistra </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="ggaf46f4db4f981d3a1088804a6d6980d30aa4d704398d4edd1e0dec8dbb55f90292"></a>HD44780_CursorLeft&#160;</td><td class="fielddoc"><p>left sposta il cursore a sinistra </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399"></a>HD44780_CursorRight&#160;</td><td class="fielddoc">
-<p>right sposta il cursore a destra </p>
+<tr><td class="fieldname"><a id="ggaf46f4db4f981d3a1088804a6d6980d30a26006ced693b6bab28c6e30bfdb8c399"></a>HD44780_CursorRight&#160;</td><td class="fielddoc"><p>right sposta il cursore a destra </p>
 </td></tr>
 </table>
 
 </div>
 </div>
-<a class="anchor" id="gaaaea8b73e24f7658da4118f6b01b45f0"></a>
+<a id="gaaaea8b73e24f7658da4118f6b01b45f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaaea8b73e24f7658da4118f6b01b45f0">&#9670;&nbsp;</a></span>HD44780_InterfaceMode_t</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -260,18 +246,18 @@ Funzioni</h2></td></tr>
 
 <p>Modalità di interfacciamento. Il modulo supporta sia interfacciamento a 4 bit che ad 8 bit. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6"></a>HD44780_INTERFACE_4bit&#160;</td><td class="fielddoc">
-<p>Interfacciamento a quattro bit </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="ggaaaea8b73e24f7658da4118f6b01b45f0a45bf6ce7ec7c951f692bdce9f0f485c6"></a>HD44780_INTERFACE_4bit&#160;</td><td class="fielddoc"><p>Interfacciamento a quattro bit </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5"></a>HD44780_INTERFACE_8bit&#160;</td><td class="fielddoc">
-<p>Interfacciamento ad otto bit </p>
+<tr><td class="fieldname"><a id="ggaaaea8b73e24f7658da4118f6b01b45f0a24da9b234f9358c14184fe21f3c47de5"></a>HD44780_INTERFACE_8bit&#160;</td><td class="fielddoc"><p>Interfacciamento ad otto bit </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
-<a class="anchor" id="ga38cac13d7a66f068be54f79a716ff7d4"></a>
+<a id="ga38cac13d7a66f068be54f79a716ff7d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga38cac13d7a66f068be54f79a716ff7d4">&#9670;&nbsp;</a></span>HD44780_Clear()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -295,7 +281,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga92eb58cb7d73c9a87b7087a9c56f73d5"></a>
+<a id="ga92eb58cb7d73c9a87b7087a9c56f73d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92eb58cb7d73c9a87b7087a9c56f73d5">&#9670;&nbsp;</a></span>HD44780_CursorBlink()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -319,7 +307,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga56421dc398825188aa10257063a3ee4b"></a>
+<a id="ga56421dc398825188aa10257063a3ee4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56421dc398825188aa10257063a3ee4b">&#9670;&nbsp;</a></span>HD44780_CursorOff()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -343,7 +333,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga3a381cb44df5d76d79be5ed71a52bae6"></a>
+<a id="ga3a381cb44df5d76d79be5ed71a52bae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3a381cb44df5d76d79be5ed71a52bae6">&#9670;&nbsp;</a></span>HD44780_CursorOn()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -367,7 +359,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga5cf07b2179272029410f9a81f56621ed"></a>
+<a id="ga5cf07b2179272029410f9a81f56621ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5cf07b2179272029410f9a81f56621ed">&#9670;&nbsp;</a></span>HD44780_DisplayOff()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -391,7 +385,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga68e3712332aa9482d4bdaa4991a92127"></a>
+<a id="ga68e3712332aa9482d4bdaa4991a92127"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga68e3712332aa9482d4bdaa4991a92127">&#9670;&nbsp;</a></span>HD44780_Home()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -415,7 +411,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga0c08f9e41d770ebfa4af385a56b47b81"></a>
+<a id="ga0c08f9e41d770ebfa4af385a56b47b81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c08f9e41d770ebfa4af385a56b47b81">&#9670;&nbsp;</a></span>HD44780_Init4()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -502,18 +500,12 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioDisplay;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;HD44780_LCD_t lcd;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;HD44780_Init4(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                                        GPIO_pin0, GPIO_pin1, GPIO_pin2, GPIO_pin3);</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;HD44780_Print(&amp;lcd, &quot;Ciao! Come va&quot;);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;HD44780_MoveToRow2(&amp;lcd);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;HD44780_Print(&amp;lcd, &quot;lo studio?&quot;);</div>
-</div><!-- fragment --> 
+<div class="fragment"><div class="line"><a class="code" href="structmy_g_p_i_o__t.html">myGPIO_t</a> gpioDisplay;</div><div class="line">GPIO_init(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR, 11, 0, 4, 8);</div><div class="line"><a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> lcd;</div><div class="line"><a class="code" href="group___h_d44780.html#ga0c08f9e41d770ebfa4af385a56b47b81">HD44780_Init4</a>(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div><div class="line">                                        GPIO_pin0, GPIO_pin1, GPIO_pin2, GPIO_pin3);</div><div class="line"><a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(&amp;lcd, <span class="stringliteral">&quot;Ciao! Come va&quot;</span>);</div><div class="line"><a class="code" href="group___h_d44780.html#ga713670d498b6f5d50a174df19081c515">HD44780_MoveToRow2</a>(&amp;lcd);</div><div class="line"><a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(&amp;lcd, <span class="stringliteral">&quot;lo studio?&quot;</span>);</div></div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="gad212907e20316f4fc0e93d7c7a8f338e"></a>
+<a id="gad212907e20316f4fc0e93d7c7a8f338e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad212907e20316f4fc0e93d7c7a8f338e">&#9670;&nbsp;</a></span>HD44780_Init8()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -627,19 +619,12 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioDisplay;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;myGPIO_Init(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;HD44780_LCD_t lcd;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;HD44780_Init8(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                                        GPIO_pin0, GPIO_pin1, GPIO_pin2, GPIO_pin3,</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;                                    GPIO_pin4, GPIO_pin5, GPIO_pin6, GPIO_pin7);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;HD44780_Print(&amp;lcd, &quot;Ciao! Come va&quot;);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;HD44780_MoveToRow2(&amp;lcd);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;HD44780_Print(&amp;lcd, &quot;lo studio?&quot;);</div>
-</div><!-- fragment --> 
+<div class="fragment"><div class="line"><a class="code" href="structmy_g_p_i_o__t.html">myGPIO_t</a> gpioDisplay;</div><div class="line"><a class="code" href="group__bare-metal.html#ga588201358d1633c53535b288c9198531">myGPIO_Init</a>(&amp;gpioDisplay, XPAR_MYGPIO_3_S00_AXI_BASEADDR);</div><div class="line"><a class="code" href="struct_h_d44780___l_c_d__t.html">HD44780_LCD_t</a> lcd;</div><div class="line"><a class="code" href="group___h_d44780.html#gad212907e20316f4fc0e93d7c7a8f338e">HD44780_Init8</a>(&amp;lcd, &amp;gpioDisplay,   GPIO_pin10, GPIO_pin9, GPIO_pin8,</div><div class="line">                                        GPIO_pin0, GPIO_pin1, GPIO_pin2, GPIO_pin3,</div><div class="line">                                    GPIO_pin4, GPIO_pin5, GPIO_pin6, GPIO_pin7);</div><div class="line"><a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(&amp;lcd, <span class="stringliteral">&quot;Ciao! Come va&quot;</span>);</div><div class="line"><a class="code" href="group___h_d44780.html#ga713670d498b6f5d50a174df19081c515">HD44780_MoveToRow2</a>(&amp;lcd);</div><div class="line"><a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(&amp;lcd, <span class="stringliteral">&quot;lo studio?&quot;</span>);</div></div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="gabcea9a03050c46530e39b7556c673baf"></a>
+<a id="gabcea9a03050c46530e39b7556c673baf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabcea9a03050c46530e39b7556c673baf">&#9670;&nbsp;</a></span>HD44780_MoveCursor()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -675,7 +660,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="gad90e2924a4e632ce42940323f8f49e37"></a>
+<a id="gad90e2924a4e632ce42940323f8f49e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad90e2924a4e632ce42940323f8f49e37">&#9670;&nbsp;</a></span>HD44780_MoveToRow1()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -699,7 +686,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga713670d498b6f5d50a174df19081c515"></a>
+<a id="ga713670d498b6f5d50a174df19081c515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga713670d498b6f5d50a174df19081c515">&#9670;&nbsp;</a></span>HD44780_MoveToRow2()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -723,7 +712,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga3aedff8e2040e62db569fde955d3987b"></a>
+<a id="ga3aedff8e2040e62db569fde955d3987b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3aedff8e2040e62db569fde955d3987b">&#9670;&nbsp;</a></span>HD44780_Print()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -756,42 +747,12 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// stampa di un intero</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#include &lt;stdlib.h&gt;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    ...</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;char str[10];   // assicurarsi di allocare sufficiente spazio per la stampa del numero</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;sprintf(str,&quot;%d&quot;, integer_number);</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;error = HD44780_Print(lcd, str);</div>
-</div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// stampa di un intero</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#include &lt;stdlib.h&gt;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;...</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;char str[10];</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;snprintf(str, 10,&quot;%d&quot;, integer_number);</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;error = HD44780_Print(lcd, str);</div>
-</div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// stampa di un float</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#include &lt;stdlib.h&gt;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;...</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;char str[20];   // assicurarsi di allocare sufficiente spazio per la stampa del numero</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;sprintf(str,&quot;%f&quot;, float_number);</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;error = HD44780_Print(lcd, str);</div>
-</div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// stampa di un float, nel caso in cui la soluzione precedente dovesse non funzionare</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#include &lt;stdlib.h&gt;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;...</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;char str[20];</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;int parte_intera, parte_decimale, moltiplicatore = 1000;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;// se si desiderano più di tre cifre decimali basta aumentare la potenza del</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;// moltiplicatore</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;// es. cinque cifre decimali ==&gt; moltiplicatore = 100000</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;// si sconsiglia di stampare più di quattro cifre decimali per non causare overflow</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;// nelle istruzioni che seguono</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;parte_intera = (int) float_number;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;parte_decimale = (int)(float_number * moltiplicatore) - (parte_intera * moltiplicatore);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;snprintf(str, 20,&quot;%d.%d&quot;, parte_intera, parte_decimale);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;error = HD44780_Print(lcd, str);</div>
-</div><!-- fragment --> 
+<div class="fragment"><div class="line"><span class="comment">// stampa di un intero</span></div><div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line">    ...</div><div class="line">char str[10];   <span class="comment">// assicurarsi di allocare sufficiente spazio per la stampa del numero</span></div><div class="line">sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, integer_number);</div><div class="line">error = <a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(lcd, str);</div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// stampa di un intero</span></div><div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line">...</div><div class="line">char str[10];</div><div class="line">snprintf(str, 10,<span class="stringliteral">&quot;%d&quot;</span>, integer_number);</div><div class="line">error = <a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(lcd, str);</div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// stampa di un float</span></div><div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line">...</div><div class="line">char str[20];   <span class="comment">// assicurarsi di allocare sufficiente spazio per la stampa del numero</span></div><div class="line">sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, float_number);</div><div class="line">error = <a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(lcd, str);</div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// stampa di un float, nel caso in cui la soluzione precedente dovesse non funzionare</span></div><div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line">...</div><div class="line">char str[20];</div><div class="line"><span class="keywordtype">int</span> parte_intera, parte_decimale, moltiplicatore = 1000;</div><div class="line"><span class="comment">// se si desiderano più di tre cifre decimali basta aumentare la potenza del</span></div><div class="line"><span class="comment">// moltiplicatore</span></div><div class="line"><span class="comment">// es. cinque cifre decimali ==&gt; moltiplicatore = 100000</span></div><div class="line"><span class="comment">// si sconsiglia di stampare più di quattro cifre decimali per non causare overflow</span></div><div class="line"><span class="comment">// nelle istruzioni che seguono</span></div><div class="line">parte_intera = (int) float_number;</div><div class="line">parte_decimale = (int)(float_number * moltiplicatore) - (parte_intera * moltiplicatore);</div><div class="line">snprintf(str, 20,<span class="stringliteral">&quot;%d.%d&quot;</span>, parte_intera, parte_decimale);</div><div class="line">error = <a class="code" href="group___h_d44780.html#ga3aedff8e2040e62db569fde955d3987b">HD44780_Print</a>(lcd, str);</div></div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="ga95cceef2401c5519295e5a83c6688b5c"></a>
+<a id="ga95cceef2401c5519295e5a83c6688b5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga95cceef2401c5519295e5a83c6688b5c">&#9670;&nbsp;</a></span>HD44780_printBinary32()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -826,7 +787,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga0f99bc5458acb172d0f3bfeb94f90e2a"></a>
+<a id="ga0f99bc5458acb172d0f3bfeb94f90e2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0f99bc5458acb172d0f3bfeb94f90e2a">&#9670;&nbsp;</a></span>HD44780_printBinary64()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -861,7 +824,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga2a5d4d528175321c46c790b581959e63"></a>
+<a id="ga2a5d4d528175321c46c790b581959e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2a5d4d528175321c46c790b581959e63">&#9670;&nbsp;</a></span>HD44780_printBinary8()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -896,7 +861,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga57b8c6ca0b3c12e5f7273b3c373a6f17"></a>
+<a id="ga57b8c6ca0b3c12e5f7273b3c373a6f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57b8c6ca0b3c12e5f7273b3c373a6f17">&#9670;&nbsp;</a></span>HD44780_Printc()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -931,7 +898,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="gaa82a2a27a3008f55c969a2d390c50497"></a>
+<a id="gaa82a2a27a3008f55c969a2d390c50497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa82a2a27a3008f55c969a2d390c50497">&#9670;&nbsp;</a></span>HD44780_printHex32()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -966,7 +935,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="ga7a4b110e7da806f8c01e01d184d3a19a"></a>
+<a id="ga7a4b110e7da806f8c01e01d184d3a19a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a4b110e7da806f8c01e01d184d3a19a">&#9670;&nbsp;</a></span>HD44780_printHex64()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1001,7 +972,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 
 </div>
 </div>
-<a class="anchor" id="gad967bd458b4d2bd358a93cbb7144addd"></a>
+<a id="gad967bd458b4d2bd358a93cbb7144addd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad967bd458b4d2bd358a93cbb7144addd">&#9670;&nbsp;</a></span>HD44780_printHex8()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1041,9 +1014,9 @@ La struttura <a class="el" href="structmy_g_p_i_o__t.html" title="Struttura che 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 29 Lug 2017 11:19:44 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
 </div>
 </body>

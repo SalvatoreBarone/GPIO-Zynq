@@ -3,23 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.8"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Zynq-7000 Driver Pack: Button</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
-  $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,7 +27,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
    &#160;<span id="projectnumber">3.2</span>
    </div>
@@ -39,35 +38,19 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generato da Doxygen 1.8.8 -->
+<!-- Generato da Doxygen 1.8.13 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
-      <li><a href="modules.html"><span>Moduli</span></a></li>
-      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
-      <li><a href="files.html"><span>File</span></a></li>
-      <li><a href="examples.html"><span>Esempi</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -88,7 +71,7 @@ $(document).ready(function(){initNavTree('group___button.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,7 +98,8 @@ Diagramma di collaborazione per Button:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group___button.png" border="0" alt="" usemap="#group______button"/>
 <map name="group______button" id="group______button">
-<area shape="rect" id="node2" href="group___zybo.html" title="Zybo" alt="" coords="5,5,56,32"/></map>
+<area shape="rect" id="node2" href="group___zybo.html" title="Zybo" alt="" coords="5,5,56,32"/>
+</map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
@@ -140,13 +124,13 @@ Tipi enumerati (enum)</h2></td></tr>
 <a class="el" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">ZyboButton2</a> = 0x4U, 
 <a class="el" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">ZyboButton1</a> = 0x2U, 
 <a class="el" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">ZyboButton0</a> = 0x1U
- }</td></tr>
-<tr class="memdesc:ga4d26a5f6cad606de534ba034e0ba42dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione dei PushButton.  <a href="group___button.html#ga4d26a5f6cad606de534ba034e0ba42dd">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:ga4d26a5f6cad606de534ba034e0ba42dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maschere di selezione dei PushButton.  <a href="group___button.html#ga4d26a5f6cad606de534ba034e0ba42dd">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ga4d26a5f6cad606de534ba034e0ba42dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga85c290bfa232cab213e69200bf78e06a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> { <a class="el" href="group___button.html#gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399">ZyboButton_off</a>, 
 <a class="el" href="group___button.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe">ZyboButton_on</a>
- }</td></tr>
-<tr class="memdesc:ga85c290bfa232cab213e69200bf78e06a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status di attivo/inattivo dei PushButton.  <a href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">Continua...</a><br /></td></tr>
+ }<tr class="memdesc:ga85c290bfa232cab213e69200bf78e06a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status di attivo/inattivo dei PushButton.  <a href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">Continua...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ga85c290bfa232cab213e69200bf78e06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -167,7 +151,9 @@ Funzioni</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <p>supporto per gestione dei button su board Digilent Zybo </p>
 <h2 class="groupheader">Documentazione delle definizioni</h2>
-<a class="anchor" id="ga5f85cbc14732f1d83faa75500b67defa"></a>
+<a id="ga5f85cbc14732f1d83faa75500b67defa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5f85cbc14732f1d83faa75500b67defa">&#9670;&nbsp;</a></span>ZyboButton</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -192,7 +178,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga8960eefa6a431f50d4fe2a2f8063da3f"></a>
+<a id="ga8960eefa6a431f50d4fe2a2f8063da3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8960eefa6a431f50d4fe2a2f8063da3f">&#9670;&nbsp;</a></span>ZyboButton_DebounceWait</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -207,7 +195,9 @@ Funzioni</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentazione dei tipi enumerati</h2>
-<a class="anchor" id="ga4d26a5f6cad606de534ba034e0ba42dd"></a>
+<a id="ga4d26a5f6cad606de534ba034e0ba42dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4d26a5f6cad606de534ba034e0ba42dd">&#9670;&nbsp;</a></span>ZyboButton_mask_t</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -219,23 +209,21 @@ Funzioni</h2></td></tr>
 
 <p>Maschere di selezione dei PushButton. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8"></a>ZyboButton3&#160;</td><td class="fielddoc">
-<p>ZyboButton3, seleziona il button 3 sulla board Digilent Zybo;. </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8"></a>ZyboButton3&#160;</td><td class="fielddoc"><p>ZyboButton3, seleziona il button 3 sulla board Digilent Zybo;. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609"></a>ZyboButton2&#160;</td><td class="fielddoc">
-<p>ZyboButton2, seleziona il button 2 sulla board Digilent Zybo;. </p>
+<tr><td class="fieldname"><a id="gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609"></a>ZyboButton2&#160;</td><td class="fielddoc"><p>ZyboButton2, seleziona il button 2 sulla board Digilent Zybo;. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7"></a>ZyboButton1&#160;</td><td class="fielddoc">
-<p>ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;. </p>
+<tr><td class="fieldname"><a id="gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7"></a>ZyboButton1&#160;</td><td class="fielddoc"><p>ZyboButton1, seleziona il button 1 sulla board Digilent Zybo;. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570"></a>ZyboButton0&#160;</td><td class="fielddoc">
-<p>ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;. </p>
+<tr><td class="fieldname"><a id="gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570"></a>ZyboButton0&#160;</td><td class="fielddoc"><p>ZyboButton0, seleziona il button 0 sulla board Digilent Zybo;. </p>
 </td></tr>
 </table>
 
 </div>
 </div>
-<a class="anchor" id="ga85c290bfa232cab213e69200bf78e06a"></a>
+<a id="ga85c290bfa232cab213e69200bf78e06a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga85c290bfa232cab213e69200bf78e06a">&#9670;&nbsp;</a></span>ZyboButton_status_t</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -247,18 +235,18 @@ Funzioni</h2></td></tr>
 
 <p>Status di attivo/inattivo dei PushButton. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a class="anchor" id="gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399"></a>ZyboButton_off&#160;</td><td class="fielddoc">
-<p>ZyboButton_off, corrisponde al valore logico '0', indica che un pushbutton è inattivo;. </p>
+<tr><th colspan="2">Valori del tipo enumerato</th></tr><tr><td class="fieldname"><a id="gga85c290bfa232cab213e69200bf78e06aacd110f28912806bcec929721e8737399"></a>ZyboButton_off&#160;</td><td class="fielddoc"><p>ZyboButton_off, corrisponde al valore logico '0', indica che un pushbutton è inattivo;. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe"></a>ZyboButton_on&#160;</td><td class="fielddoc">
-<p>ZyboButton_on, corrisponde al valore logico '1', indica che un pushbutton è attivo;. </p>
+<tr><td class="fieldname"><a id="gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe"></a>ZyboButton_on&#160;</td><td class="fielddoc"><p>ZyboButton_on, corrisponde al valore logico '1', indica che un pushbutton è attivo;. </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
-<a class="anchor" id="ga75407539e8ba0ad3ea142496219cd083"></a>
+<a id="ga75407539e8ba0ad3ea142496219cd083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga75407539e8ba0ad3ea142496219cd083">&#9670;&nbsp;</a></span>ZyboButton_getStatus()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -298,10 +286,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ZyboButton_status_t button_status = ZyboButton_getStatus(&amp;buttons, ZyboButton3);                // leggo lo stato ddi button 3</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboLed_status_t led_status = (button_status == ZyboButton_on ? ZyboLed_on : ZyboLed_off);  // se lo stato è attivo accendo il led 3</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboLed_setStatus(&amp;leds, ZyboLed3, led_status);                                             // accendo/spengo led 3</div>
-</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<div class="fragment"><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">ZyboButton3</a>);                <span class="comment">// leggo lo stato ddi button 3</span></div><div class="line"><a class="code" href="group___led.html#ga3dcb274f22e577705c49944b8d1f4b12">ZyboLed_status_t</a> led_status = (button_status == <a class="code" href="group___button.html#gga85c290bfa232cab213e69200bf78e06aa49bf4a6902270f28bc6a1146fbd1b1fe">ZyboButton_on</a> ? <a class="code" href="group___led.html#gga3dcb274f22e577705c49944b8d1f4b12aafcf0ae16a6edec807c06bb0a99f7e8b">ZyboLed_on</a> : <a class="code" href="group___led.html#gga3dcb274f22e577705c49944b8d1f4b12a9679f1c302afdb51915a2331b4ec92f3">ZyboLed_off</a>);  <span class="comment">// se lo stato è attivo accendo il led 3</span></div><div class="line"><a class="code" href="group___led.html#gacf5c2b0328c4bdf2d796397fc4510c69">ZyboLed_setStatus</a>(&amp;leds, <a class="code" href="group___led.html#ggad11701cccac394f7e1f90de8f85695f3adc5edc2adfd899da9f149cb61364b141">ZyboLed3</a>, led_status);                                             <span class="comment">// accendo/spengo led 3</span></div></div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
 <li>buttons non sia un puntatore nullo;</li>
 <li>buttons-&gt;gpio non sia un puntatore nullo </li>
 </ul>
@@ -309,7 +294,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gac5362bbb2d8845e2403e9cbe18cf3834"></a>
+<a id="gac5362bbb2d8845e2403e9cbe18cf3834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5362bbb2d8845e2403e9cbe18cf3834">&#9670;&nbsp;</a></span>ZyboButton_init()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -369,11 +356,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;myGPIO_t gpioButton;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;GPIO_init(&amp;gpioButton, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboButton_t buttons;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboButton_init(&amp;buttons, &amp;gpioButton, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);</div>
-</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<div class="fragment"><div class="line"><a class="code" href="structmy_g_p_i_o__t.html">myGPIO_t</a> gpioButton;</div><div class="line">GPIO_init(&amp;gpioButton, XPAR_MYGPIO_1_S00_AXI_BASEADDR, 4, 0, 4, 8);</div><div class="line"><a class="code" href="struct_zybo_button__t.html">ZyboButton_t</a> buttons;</div><div class="line"><a class="code" href="group___button.html#gac5362bbb2d8845e2403e9cbe18cf3834">ZyboButton_init</a>(&amp;buttons, &amp;gpioButton, GPIO_pin3, GPIO_pin2, GPIO_pin1, GPIO_pin0);</div></div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
 <li>buttons non sia un puntatore nullo;</li>
 <li>gpio non sia un puntatore nullo</li>
 <li>ButtonN_pin siano tutti pin differenti </li>
@@ -382,7 +365,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga3840edf011b5bad6302b7efc9c6326fe"></a>
+<a id="ga3840edf011b5bad6302b7efc9c6326fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3840edf011b5bad6302b7efc9c6326fe">&#9670;&nbsp;</a></span>ZyboButton_waitWhileBusy()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -404,13 +389,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ZyboButton_waitWhileIdle(&amp;buttons);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboButton_status_t button3_status = ZyboButton_getStatus(&amp;buttons, ZyboButton3);               // leggo lo stato ddi button 3</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboButton_status_t button2_status = ZyboButton_getStatus(&amp;buttons, ZyboButton2);               // leggo lo stato ddi button 2</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboButton_status_t button1_status = ZyboButton_getStatus(&amp;buttons, ZyboButton1);               // leggo lo stato ddi button 1</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;ZyboButton_status_t button0_status = ZyboButton_getStatus(&amp;buttons, ZyboButton0);               // leggo lo stato ddi button 0</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;ZyboButton_waitWhileBusy(&amp;buttons);</div>
-</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<div class="fragment"><div class="line"><a class="code" href="group___button.html#gaca30e81084e746785e395f79e9678e9a">ZyboButton_waitWhileIdle</a>(&amp;buttons);</div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button3_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">ZyboButton3</a>);               <span class="comment">// leggo lo stato ddi button 3</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button2_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">ZyboButton2</a>);               <span class="comment">// leggo lo stato ddi button 2</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button1_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">ZyboButton1</a>);               <span class="comment">// leggo lo stato ddi button 1</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button0_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">ZyboButton0</a>);               <span class="comment">// leggo lo stato ddi button 0</span></div><div class="line"><a class="code" href="group___button.html#ga3840edf011b5bad6302b7efc9c6326fe">ZyboButton_waitWhileBusy</a>(&amp;buttons);</div></div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
 <li>buttons non sia un puntatore nullo;</li>
 <li>buttons-&gt;gpio non sia un puntatore nullo </li>
 </ul>
@@ -418,7 +397,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gaca30e81084e746785e395f79e9678e9a"></a>
+<a id="gaca30e81084e746785e395f79e9678e9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaca30e81084e746785e395f79e9678e9a">&#9670;&nbsp;</a></span>ZyboButton_waitWhileIdle()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -440,13 +421,7 @@ Funzioni</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;ZyboButton_waitWhileIdle(&amp;buttons);</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;ZyboButton_status_t button3_status = ZyboButton_getStatus(&amp;buttons, ZyboButton3);               // leggo lo stato ddi button 3</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;ZyboButton_status_t button2_status = ZyboButton_getStatus(&amp;buttons, ZyboButton2);               // leggo lo stato ddi button 2</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;ZyboButton_status_t button1_status = ZyboButton_getStatus(&amp;buttons, ZyboButton1);               // leggo lo stato ddi button 1</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;ZyboButton_status_t button0_status = ZyboButton_getStatus(&amp;buttons, ZyboButton0);               // leggo lo stato ddi button 0</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;ZyboButton_waitWhileBusy(&amp;buttons);</div>
-</div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
+<div class="fragment"><div class="line"><a class="code" href="group___button.html#gaca30e81084e746785e395f79e9678e9a">ZyboButton_waitWhileIdle</a>(&amp;buttons);</div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button3_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42ddaabede392be8cae14b8a070a804c754e8">ZyboButton3</a>);               <span class="comment">// leggo lo stato ddi button 3</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button2_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2aa888c8f01ac8a79013e5ebc9eef609">ZyboButton2</a>);               <span class="comment">// leggo lo stato ddi button 2</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button1_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda29c35ef3133898c050f675a60de66dd7">ZyboButton1</a>);               <span class="comment">// leggo lo stato ddi button 1</span></div><div class="line"><a class="code" href="group___button.html#ga85c290bfa232cab213e69200bf78e06a">ZyboButton_status_t</a> button0_status = <a class="code" href="group___button.html#ga75407539e8ba0ad3ea142496219cd083">ZyboButton_getStatus</a>(&amp;buttons, <a class="code" href="group___button.html#gga4d26a5f6cad606de534ba034e0ba42dda2f821ce9661687aefb0ec4de65911570">ZyboButton0</a>);               <span class="comment">// leggo lo stato ddi button 0</span></div><div class="line"><a class="code" href="group___button.html#ga3840edf011b5bad6302b7efc9c6326fe">ZyboButton_waitWhileBusy</a>(&amp;buttons);</div></div><!-- fragment --><dl class="section warning"><dt>Avvertimento</dt><dd>Usa la macro assert per verificare che:<ul>
 <li>buttons non sia un puntatore nullo;</li>
 <li>buttons-&gt;gpio non sia un puntatore nullo </li>
 </ul>
@@ -459,9 +434,9 @@ Funzioni</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 29 Lug 2017 11:19:44 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
 </div>
 </body>

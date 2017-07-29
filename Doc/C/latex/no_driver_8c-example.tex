@@ -1,23 +1,5 @@
-\hypertarget{no_driver_8c-example}{\section{no\+Driver.\+c}
-}
-Questo è un programma di esempio per l'interfacciamento con una periferica my\+G\+P\+I\+O.\begin{DoxyAuthor}{Autore}
-Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Data}
-12 06 2017
-\end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
-\end{DoxyCopyright}
-This file is part of Zynq7000\+Driver\+Pack
-
-Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
-
-Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
-
-You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A.
-
-In questo specifico esempio l'interfacciamento avviene da user-\/space, agendo direttamente sui registri di memoria, senza mediazione di altri driver, usando il device-\/file /dev/mem.
+\hypertarget{no_driver_8c-example}{}\section{no\+Driver.\+c}
+Il file \hyperlink{no_driver_8c}{no\+Driver.\+c} contiene un programma di esempio per l\textquotesingle{}interfacciamento con una periferica my\+G\+P\+IO. L\textquotesingle{}esempio mostra come possa, un programma userspace in esecuzione su sistema operativo Linux, interfacciarsi con un device my\+G\+P\+IO agendo direttamente sui registri di memoria, senza mediazione di altri driver, usando il device-\/file /dev/mem.
 
 
 \begin{DoxyCodeInclude}
@@ -66,7 +48,7 @@ In questo specifico esempio l'interfacciamento avviene da user-\/space, agendo d
         \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'} :
             *op\_read = 1;
             \textcolor{keywordflow}{break};
-        \textcolor{keywordflow}{default} :
+        default :
             printf(\textcolor{stringliteral}{"%c: parametro sconosciuto.\(\backslash\)n"}, par);
             \hyperlink{no_driver_8c_a05909651fa170a63e98e3f8e13451b7b}{howto}();
             \textcolor{keywordflow}{return} -1;

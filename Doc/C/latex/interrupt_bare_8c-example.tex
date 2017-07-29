@@ -1,27 +1,15 @@
-\hypertarget{interrupt_bare_8c-example}{\section{interrupt\+\_\+bare.\+c}
-}
-Uso del driver my\+G\+P\+I\+O con interruzioni bare-\/metal su Zynq-\/7000 \begin{DoxyAuthor}{Autore}
-Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Data}
-23 06 2017
-\end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
-\end{DoxyCopyright}
-This file is part of Zynq7000\+Driver\+Pack
-
-Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
-
-Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details.
-
-You should have received a copy of the G\+N\+U General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, M\+A 02110-\/1301, U\+S\+A.
+\hypertarget{interrupt_bare_8c-example}{}\section{interrupt\+\_\+bare.\+c}
+Il file \hyperlink{interrupt__bare_8c}{interrupt\+\_\+bare.\+c} contiene un esempio d\textquotesingle{}uso del driver my\+G\+P\+IO bare-\/metal con interruzioni. L\textquotesingle{}esempio mostra come impostare il G\+IC affinché venga generata una interruzione, come debba essere servita, segnalando il completamento del servizio sia al G\+IC che al device my\+G\+P\+IO che ha generato l\textquotesingle{}interruzione.
 
 \paragraph*{Configurazione hardware}
 
-L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/core Zynq7000 processing sysyem, sono presenti tre diversi device my\+G\+P\+I\+O, uno connesso ai led (base address 0x43c00000), uno connesso ai button (base address 0x43c10000) ed uno connesso agli switch (base address 0x43c20000). Lo schema viene riportato di seguito\+: 
+L\textquotesingle{}esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/core Zynq7000 processing sysyem, sono presenti tre diversi device my\+G\+P\+IO, uno connesso ai led (base address 0x43c00000), uno connesso ai button (base address 0x43c10000) ed uno connesso agli switch (base address 0x43c20000). Lo schema viene riportato di seguito\+:  
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{interrupt_bare.png}}
+\end{DoxyImageNoCaption}
 
-\subparagraph*{I\+S\+R per la gestione di interrupt provenienti dal gpio connesso agli switch}
+
+\subparagraph*{I\+SR per la gestione di interrupt provenienti dal gpio connesso agli switch}
 
 
 \begin{DoxyCode}
@@ -45,9 +33,11 @@ L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/
     \hyperlink{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}{myGPIO\_GlobalInterruptEnable}(&swc\_gpio);
 \}
 \end{DoxyCode}
- La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente allo switch arrivo e riabilitare l'interrupt della periferica.
 
-\subparagraph*{I\+S\+R per la gestione di interrupt provenienti dal gpio connesso ai button}
+
+La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente allo switch arrivo e riabilitare l\textquotesingle{}interrupt della periferica.
+
+\subparagraph*{I\+SR per la gestione di interrupt provenienti dal gpio connesso ai button}
 
 
 \begin{DoxyCode}
@@ -71,9 +61,11 @@ L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/
     \hyperlink{group__bare-metal_gada93ef6a9818e634f0a233ce14582216}{myGPIO\_GlobalInterruptEnable}(&btn\_gpio);
 \}
 \end{DoxyCode}
- La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente al button premuto e riabilitare l'interrupt della periferica.
 
-\subparagraph*{Configurazione del G\+I\+C e registrazione degli interrupt handler}
+
+La funzione di cui sopra non fa altro che disabilitare momentaneamente le interruzioni della periferica, leggere lo stato del registro “read”, resettare i led, per poi accendere solo quello corrispondente al button premuto e riabilitare l\textquotesingle{}interrupt della periferica.
+
+\subparagraph*{Configurazione del G\+IC e registrazione degli interrupt handler}
 
 
 \begin{DoxyCode}
@@ -124,7 +116,7 @@ L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/
     \textcolor{keywordflow}{return} 0;
 \}
 \end{DoxyCode}
- La funzione di configurazione delle interrupt e del G\+I\+C fa uso di alcune funzioni di libreria definite nell'header file \char`\"{}xscugic.\+h\char`\"{}, il quale implementa il driver della periferica G\+I\+C, e di alcune macro definite nel file \char`\"{}xparameters.\+h\char`\"{}. Solo per comodità le macro definite in xparameters.\+h sono state ridefinite come segue. 
+ La funzione di configurazione delle interrupt e del G\+IC fa uso di alcune funzioni di libreria definite nell\textquotesingle{}header file \char`\"{}xscugic.\+h\char`\"{}, il quale implementa il driver della periferica G\+IC, e di alcune macro definite nel file \char`\"{}xparameters.\+h\char`\"{}. Solo per comodità le macro definite in xparameters.\+h sono state ridefinite come segue. 
 \begin{DoxyCode}
 \textcolor{preprocessor}{#define led\_base\_addr XPAR\_MYGPIO\_0\_S00\_AXI\_BASEADDR}
 \textcolor{preprocessor}{#define btn\_base\_addr XPAR\_MYGPIO\_1\_S00\_AXI\_BASEADDR}
@@ -136,36 +128,36 @@ L'esempio fa riferimento ad una configurazione hardware in cui, oltre alla ip-\/
 \end{DoxyCode}
  Le funzioni di libreria usate sono riportate di seguito, assieme ad una breve descrizione tratta dalla documentazione interna.
 \begin{DoxyItemize}
-\item Xil\+\_\+\+Exception\+Init()\+: inizializza gli exception-\/handlers di tutti i processori. Per A\+R\+M Cortex A53, R5 ed A9 gli exception-\/handlers sono sono inizializzati staticamente, per cui questa funzione non fa niente. Viene mantenutaper prevenire errori in fase di compilazione e per garantire backward-\/compatibility.
-\item X\+Scu\+Gic\+\_\+\+Lookup\+Config()\+: looksup della configurazione di un device, basandosi sull'identificativo univoco dello stesso, dalla tabella contenente le configurazioni di tutti i device. Prende in ingresso un parametro Device\+Id e restituisce un puntatore a X\+Scu\+Gic, contenente la configurazione, o N\+U\+L\+L se il device non viene trovato.
+\item Xil\+\_\+\+Exception\+Init()\+: inizializza gli exception-\/handlers di tutti i processori. Per A\+RM Cortex A53, R5 ed A9 gli exception-\/handlers sono sono inizializzati staticamente, per cui questa funzione non fa niente. Viene mantenutaper prevenire errori in fase di compilazione e per garantire backward-\/compatibility.
+\item X\+Scu\+Gic\+\_\+\+Lookup\+Config()\+: looksup della configurazione di un device, basandosi sull\textquotesingle{}identificativo univoco dello stesso, dalla tabella contenente le configurazioni di tutti i device. Prende in ingresso un parametro Device\+Id e restituisce un puntatore a X\+Scu\+Gic, contenente la configurazione, o N\+U\+LL se il device non viene trovato.
 \item X\+Scu\+Gic\+\_\+\+Cfg\+Initialize()\+: inizializza e configura un interrupt-\/controller instance/driver. La procedura di inizializzazione prevede\+:
 \begin{DoxyItemize}
-\item l'inizializzazione dei campi di una struttura X\+Scu\+Gic;
+\item l\textquotesingle{}inizializzazione dei campi di una struttura X\+Scu\+Gic;
 \item la configurazione della Initial vector-\/table, con funzioni stub;
 \item disabilitazione di tutte le sorgenti di interruzione
 \end{DoxyItemize}Parametri\+:
 \begin{DoxyItemize}
 \item Instance\+Ptr\+: puntatore a struttura X\+Scu\+Gic;
 \item Config\+Ptr\+: puntatore alla configurazione del device, restituito dalla funzione X\+Scu\+Gic\+\_\+\+Lookup\+Config();
-\item Effective\+Addr\+: indirizzo base del device; Restituisce X\+S\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S se l'inizializzazione viene completata con successo.
+\item Effective\+Addr\+: indirizzo base del device; Restituisce X\+S\+T\+\_\+\+S\+U\+C\+C\+E\+SS se l\textquotesingle{}inizializzazione viene completata con successo.
 \end{DoxyItemize}
-\item Xil\+\_\+\+Exception\+Register\+Handler()\+: crea una connessione tra l'identificativo di una sorgente di eccezioni e l'handler associato, in modo che l'handler venga eseguito qualora si manifestasse una eccezione. Prende i seguenti parametri\+:
+\item Xil\+\_\+\+Exception\+Register\+Handler()\+: crea una connessione tra l\textquotesingle{}identificativo di una sorgente di eccezioni e l\textquotesingle{}handler associato, in modo che l\textquotesingle{}handler venga eseguito qualora si manifestasse una eccezione. Prende i seguenti parametri\+:
 \begin{DoxyItemize}
-\item exception\+\_\+id\+: I\+D della sorgente di eccezioni;
+\item exception\+\_\+id\+: ID della sorgente di eccezioni;
 \item Handler\+: puntatore alla funzione di servizio;
-\item Data\+: puntatore ai dati da passare all'handler;
+\item Data\+: puntatore ai dati da passare all\textquotesingle{}handler;
 \end{DoxyItemize}
-\item X\+Scu\+Gic\+\_\+\+Connect()\+: crea una connessione tra l'identificativo di una sorgente di interruzioni e l'handler associato, in modo che l'handler venga eseguito qualora si manifestasse una interruzione. Prende i seguenti parametri\+:
+\item X\+Scu\+Gic\+\_\+\+Connect()\+: crea una connessione tra l\textquotesingle{}identificativo di una sorgente di interruzioni e l\textquotesingle{}handler associato, in modo che l\textquotesingle{}handler venga eseguito qualora si manifestasse una interruzione. Prende i seguenti parametri\+:
 \begin{DoxyItemize}
 \item Instance\+Ptr\+: puntatore ad una istanza X\+Scu\+Gic;
-\item Int\+\_\+\+Id\+: I\+D della sorgente di interruzioni;
+\item Int\+\_\+\+Id\+: ID della sorgente di interruzioni;
 \item Handler\+: puntatore alla funzione di servizio;
 \item Call\+Back\+Ref\+: puntatore ai dati da passare alla isr;
-\end{DoxyItemize}Restituisce X\+S\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S se l'handler è stato connesso correttamente.
+\end{DoxyItemize}Restituisce X\+S\+T\+\_\+\+S\+U\+C\+C\+E\+SS se l\textquotesingle{}handler è stato connesso correttamente.
 \item X\+Scu\+Gic\+\_\+\+Enable()\+: abilita la sorgente di interruzioni Int\+\_\+\+Id. Se ci sono pending interrupt per tale linea, scateneranno una interruzione dopo la chiamata a questa funzione. Parametri\+:
 \begin{DoxyItemize}
 \item Instance\+Ptr\+: puntatore ad una istanza X\+Scu\+Gic;
-\item Int\+\_\+\+Id\+: I\+D della sorgente di interruzioni;
+\item Int\+\_\+\+Id\+: ID della sorgente di interruzioni;
 \end{DoxyItemize}
 \item Xil\+\_\+\+Exception\+Enable()\+: abilita le interruzioni.
 \end{DoxyItemize}

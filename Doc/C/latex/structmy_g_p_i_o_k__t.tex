@@ -1,9 +1,8 @@
-\hypertarget{structmy_g_p_i_o_k__t}{\section{Riferimenti per la struct my\+G\+P\+I\+O\+K\+\_\+t}
+\hypertarget{structmy_g_p_i_o_k__t}{}\section{Riferimenti per la struct my\+G\+P\+I\+O\+K\+\_\+t}
 \label{structmy_g_p_i_o_k__t}\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-}
 
 
-Stuttura per l'astrazione di un device my\+G\+P\+I\+O in kernel-\/mode.  
+Stuttura per l\textquotesingle{}astrazione di un device my\+G\+P\+IO in kernel-\/mode.  
 
 
 
@@ -50,62 +49,113 @@ spinlock\+\_\+t \hyperlink{structmy_g_p_i_o_k__t_ac41bbc7fe03ef25b7f468275fb565d
 
 
 \subsection{Descrizione dettagliata}
-Stuttura per l'astrazione di un device my\+G\+P\+I\+O in kernel-\/mode. 
+Stuttura per l\textquotesingle{}astrazione di un device my\+G\+P\+IO in kernel-\/mode. 
 
 è buona abitudine, se non quasi indispensabile, definire una struttura dati nella quale contenere tutto ciò che è legato al device o al driver. In questo modulo viene usata la struttura \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} per contenere tutto ciò che è necessario al funzionamento del driver. 
 
 \subsection{Documentazione dei campi}
-\hypertarget{structmy_g_p_i_o_k__t_a2b8d3d6037e2d2fdadbd7c2fd995f0a1}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!can\+\_\+read@{can\+\_\+read}}
+\mbox{\Hypertarget{structmy_g_p_i_o_k__t_a2b8d3d6037e2d2fdadbd7c2fd995f0a1}\label{structmy_g_p_i_o_k__t_a2b8d3d6037e2d2fdadbd7c2fd995f0a1}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!can\+\_\+read@{can\+\_\+read}}
 \index{can\+\_\+read@{can\+\_\+read}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{can\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t can\+\_\+read}}\label{structmy_g_p_i_o_k__t_a2b8d3d6037e2d2fdadbd7c2fd995f0a1}
-Flag \char`\"{}puoi leggere\char`\"{} Il valore viene settato dalla funzione \hyperlink{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()} al manifestarsi di un interrupt, prima di risvegliare i processi in attesa di un interrupt. I processi che effettuano read() bloccante restano bloccati finoché int\+\_\+occurred = 0 \hypertarget{structmy_g_p_i_o_k__t_acba682fe45d5a1501790dbdb1d99bd6a}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!cdev@{cdev}}
+\subsubsection{\texorpdfstring{can\+\_\+read}{can\_read}}
+{\footnotesize\ttfamily uint32\+\_\+t can\+\_\+read}
+
+Flag \char`\"{}puoi leggere\char`\"{} Il valore viene settato dalla funzione \hyperlink{group___linux-_driver_ga2fc230a12a97aa63e43b2dc4aec73511}{my\+G\+P\+I\+O\+K\+\_\+irq\+\_\+handler()} al manifestarsi di un interrupt, prima di risvegliare i processi in attesa di un interrupt. I processi che effettuano read() bloccante restano bloccati finoché int\+\_\+occurred = 0 \mbox{\Hypertarget{structmy_g_p_i_o_k__t_acba682fe45d5a1501790dbdb1d99bd6a}\label{structmy_g_p_i_o_k__t_acba682fe45d5a1501790dbdb1d99bd6a}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!cdev@{cdev}}
 \index{cdev@{cdev}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{cdev}]{\setlength{\rightskip}{0pt plus 5cm}struct cdev cdev}}\label{structmy_g_p_i_o_k__t_acba682fe45d5a1501790dbdb1d99bd6a}
-Stuttura per l'astrazione di un device a caratteri Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o più, oggetti cdev. In questo caso è sufficiente allocare uno solo di questi oggetti. \hypertarget{structmy_g_p_i_o_k__t_a9b6474dd18270738a5c4853fd93b5e70}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!class@{class}}
+\subsubsection{\texorpdfstring{cdev}{cdev}}
+{\footnotesize\ttfamily struct cdev cdev}
+
+Stuttura per l\textquotesingle{}astrazione di un device a caratteri Il kernel usa, internamente, una struttura cdev per rappresentare i device a caratteri. Prima che il kernel invochi le funzioni definite dal driver per il device, bisogna allocare e registrare uno, o più, oggetti cdev. In questo caso è sufficiente allocare uno solo di questi oggetti. \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a9b6474dd18270738a5c4853fd93b5e70}\label{structmy_g_p_i_o_k__t_a9b6474dd18270738a5c4853fd93b5e70}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!class@{class}}
 \index{class@{class}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{class}]{\setlength{\rightskip}{0pt plus 5cm}struct class$\ast$ class}}\label{structmy_g_p_i_o_k__t_a9b6474dd18270738a5c4853fd93b5e70}
-\hypertarget{structmy_g_p_i_o_k__t_acf6a82c73e7a9d99293d9ce0b8837faf}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!dev@{dev}}
+\subsubsection{\texorpdfstring{class}{class}}
+{\footnotesize\ttfamily struct class$\ast$ class}
+
+\mbox{\Hypertarget{structmy_g_p_i_o_k__t_acf6a82c73e7a9d99293d9ce0b8837faf}\label{structmy_g_p_i_o_k__t_acf6a82c73e7a9d99293d9ce0b8837faf}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!dev@{dev}}
 \index{dev@{dev}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{dev}]{\setlength{\rightskip}{0pt plus 5cm}struct device$\ast$ dev}}\label{structmy_g_p_i_o_k__t_acf6a82c73e7a9d99293d9ce0b8837faf}
-\hypertarget{structmy_g_p_i_o_k__t_a8ee102d0534084ca58a9cf9b8a3d9cc9}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!irq\+\_\+mask@{irq\+\_\+mask}}
+\subsubsection{\texorpdfstring{dev}{dev}}
+{\footnotesize\ttfamily struct device$\ast$ dev}
+
+\mbox{\Hypertarget{structmy_g_p_i_o_k__t_a8ee102d0534084ca58a9cf9b8a3d9cc9}\label{structmy_g_p_i_o_k__t_a8ee102d0534084ca58a9cf9b8a3d9cc9}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!irq\+\_\+mask@{irq\+\_\+mask}}
 \index{irq\+\_\+mask@{irq\+\_\+mask}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{irq\+\_\+mask}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t irq\+\_\+mask}}\label{structmy_g_p_i_o_k__t_a8ee102d0534084ca58a9cf9b8a3d9cc9}
-maschera delle interruzioni interne per il device \hypertarget{structmy_g_p_i_o_k__t_a42a1593ebe61611c4e29413903a373a5}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!irq\+Number@{irq\+Number}}
+\subsubsection{\texorpdfstring{irq\+\_\+mask}{irq\_mask}}
+{\footnotesize\ttfamily uint32\+\_\+t irq\+\_\+mask}
+
+maschera delle interruzioni interne per il device \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a42a1593ebe61611c4e29413903a373a5}\label{structmy_g_p_i_o_k__t_a42a1593ebe61611c4e29413903a373a5}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!irq\+Number@{irq\+Number}}
 \index{irq\+Number@{irq\+Number}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{irq\+Number}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t irq\+Number}}\label{structmy_g_p_i_o_k__t_a42a1593ebe61611c4e29413903a373a5}
-interrupt-\/number a cui il device è connesso. Restituito dalla chiamata alla funzione irq\+\_\+of\+\_\+parse\+\_\+and\+\_\+map() \hypertarget{structmy_g_p_i_o_k__t_aeb60fb4e41b5f11f70ebe969361884f4}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!Mm@{Mm}}
+\subsubsection{\texorpdfstring{irq\+Number}{irqNumber}}
+{\footnotesize\ttfamily uint32\+\_\+t irq\+Number}
+
+interrupt-\/number a cui il device è connesso. Restituito dalla chiamata alla funzione irq\+\_\+of\+\_\+parse\+\_\+and\+\_\+map() \mbox{\Hypertarget{structmy_g_p_i_o_k__t_aeb60fb4e41b5f11f70ebe969361884f4}\label{structmy_g_p_i_o_k__t_aeb60fb4e41b5f11f70ebe969361884f4}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!Mm@{Mm}}
 \index{Mm@{Mm}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{Mm}]{\setlength{\rightskip}{0pt plus 5cm}dev\+\_\+t Mm}}\label{structmy_g_p_i_o_k__t_aeb60fb4e41b5f11f70ebe969361884f4}
-Major e minor number associati al device \hypertarget{structmy_g_p_i_o_k__t_a18c4eb95350c67ccb239a8a39c43c09a}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!mreg@{mreg}}
+\subsubsection{\texorpdfstring{Mm}{Mm}}
+{\footnotesize\ttfamily dev\+\_\+t Mm}
+
+Major e minor number associati al device \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a18c4eb95350c67ccb239a8a39c43c09a}\label{structmy_g_p_i_o_k__t_a18c4eb95350c67ccb239a8a39c43c09a}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!mreg@{mreg}}
 \index{mreg@{mreg}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{mreg}]{\setlength{\rightskip}{0pt plus 5cm}struct resource$\ast$ mreg}}\label{structmy_g_p_i_o_k__t_a18c4eb95350c67ccb239a8a39c43c09a}
-puntatre alla regione di memoria cui il device è mapapto \hypertarget{structmy_g_p_i_o_k__t_a3a7801058bef8fbe4a2cec3c9579cd70}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!op@{op}}
+\subsubsection{\texorpdfstring{mreg}{mreg}}
+{\footnotesize\ttfamily struct resource$\ast$ mreg}
+
+puntatre alla regione di memoria cui il device è mapapto \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a3a7801058bef8fbe4a2cec3c9579cd70}\label{structmy_g_p_i_o_k__t_a3a7801058bef8fbe4a2cec3c9579cd70}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!op@{op}}
 \index{op@{op}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{op}]{\setlength{\rightskip}{0pt plus 5cm}struct platform\+\_\+device$\ast$ op}}\label{structmy_g_p_i_o_k__t_a3a7801058bef8fbe4a2cec3c9579cd70}
-Puntatore a struttura platform\+\_\+device cui l'oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} si riferisce \hypertarget{structmy_g_p_i_o_k__t_a2080617f88cafd765430573afe7701d1}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!poll\+\_\+queue@{poll\+\_\+queue}}
+\subsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily struct platform\+\_\+device$\ast$ op}
+
+Puntatore a struttura platform\+\_\+device cui l\textquotesingle{}oggetto \hyperlink{structmy_g_p_i_o_k__t}{my\+G\+P\+I\+O\+K\+\_\+t} si riferisce \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a2080617f88cafd765430573afe7701d1}\label{structmy_g_p_i_o_k__t_a2080617f88cafd765430573afe7701d1}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!poll\+\_\+queue@{poll\+\_\+queue}}
 \index{poll\+\_\+queue@{poll\+\_\+queue}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{poll\+\_\+queue}]{\setlength{\rightskip}{0pt plus 5cm}wait\+\_\+queue\+\_\+head\+\_\+t poll\+\_\+queue}}\label{structmy_g_p_i_o_k__t_a2080617f88cafd765430573afe7701d1}
-wait queue per la system-\/call poll() \hypertarget{structmy_g_p_i_o_k__t_a251570f8e6976ad87411093e330e7b4f}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!read\+\_\+queue@{read\+\_\+queue}}
+\subsubsection{\texorpdfstring{poll\+\_\+queue}{poll\_queue}}
+{\footnotesize\ttfamily wait\+\_\+queue\+\_\+head\+\_\+t poll\+\_\+queue}
+
+wait queue per la system-\/call poll() \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a251570f8e6976ad87411093e330e7b4f}\label{structmy_g_p_i_o_k__t_a251570f8e6976ad87411093e330e7b4f}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!read\+\_\+queue@{read\+\_\+queue}}
 \index{read\+\_\+queue@{read\+\_\+queue}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{read\+\_\+queue}]{\setlength{\rightskip}{0pt plus 5cm}wait\+\_\+queue\+\_\+head\+\_\+t read\+\_\+queue}}\label{structmy_g_p_i_o_k__t_a251570f8e6976ad87411093e330e7b4f}
-wait queue per la system-\/call read() Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non è in grado di accettare altri dati (perché il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante non ha la minima conoscenza delle dinamiche interne del device, per cui, nell'impossibilità di servire la richiesta, il driver deve bloccare il processo e metterlo tra i processi \char`\"{}sleeping\char`\"{}, fin quando la richiesta non può essere servita. Tutti i processi in attesa di un particolare evento vengono posti all'interno della stessa wait queue. In linux una wait queue viene implementata da una struttura dati wait\+\_\+queue\+\_\+head\+\_\+t, definita in $<$linux/wait.\+h$>$. \hypertarget{structmy_g_p_i_o_k__t_a565a1848c3ae8026257a74cf169c6941}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!rsrc@{rsrc}}
+\subsubsection{\texorpdfstring{read\+\_\+queue}{read\_queue}}
+{\footnotesize\ttfamily wait\+\_\+queue\+\_\+head\+\_\+t read\+\_\+queue}
+
+wait queue per la system-\/call read() Una chiamata a read() potrebbe arrivare quando i dati non sono disponibili, ma potrebbero esserlo in futuro, oppure, una chiamata a write() potrebbe avvenire quando il device non è in grado di accettare altri dati (perché il suo buffer di ingresso potrebbe essere pieno). Il processo chiamante non ha la minima conoscenza delle dinamiche interne del device, per cui, nell\textquotesingle{}impossibilità di servire la richiesta, il driver deve bloccare il processo e metterlo tra i processi \char`\"{}sleeping\char`\"{}, fin quando la richiesta non può essere servita. Tutti i processi in attesa di un particolare evento vengono posti all\textquotesingle{}interno della stessa wait queue. In linux una wait queue viene implementata da una struttura dati wait\+\_\+queue\+\_\+head\+\_\+t, definita in $<$linux/wait.\+h$>$. \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a565a1848c3ae8026257a74cf169c6941}\label{structmy_g_p_i_o_k__t_a565a1848c3ae8026257a74cf169c6941}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!rsrc@{rsrc}}
 \index{rsrc@{rsrc}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{rsrc}]{\setlength{\rightskip}{0pt plus 5cm}struct resource rsrc}}\label{structmy_g_p_i_o_k__t_a565a1848c3ae8026257a74cf169c6941}
-Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa è mappata. In particolare i campi \char`\"{}start\char`\"{} ed \char`\"{}end\char`\"{} contengono, rispettivamente, il primo e l'ultimo indirizzo fisico a cui il device è mappato. \hypertarget{structmy_g_p_i_o_k__t_a0f87b53dc5049a349ef01aa586c0b5dc}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!rsrc\+\_\+size@{rsrc\+\_\+size}}
+\subsubsection{\texorpdfstring{rsrc}{rsrc}}
+{\footnotesize\ttfamily struct resource rsrc}
+
+Struttura che astrae una risorsa device, dal punto di vista della memoria alla quale la risorsa è mappata. In particolare i campi \char`\"{}start\char`\"{} ed \char`\"{}end\char`\"{} contengono, rispettivamente, il primo e l\textquotesingle{}ultimo indirizzo fisico a cui il device è mappato. \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a0f87b53dc5049a349ef01aa586c0b5dc}\label{structmy_g_p_i_o_k__t_a0f87b53dc5049a349ef01aa586c0b5dc}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!rsrc\+\_\+size@{rsrc\+\_\+size}}
 \index{rsrc\+\_\+size@{rsrc\+\_\+size}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{rsrc\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t rsrc\+\_\+size}}\label{structmy_g_p_i_o_k__t_a0f87b53dc5049a349ef01aa586c0b5dc}
-rsrc.\+end -\/ rsrc.\+start numero di indirizzi associati alla periferica. occorre per effettuare il mapping indirizzo fisico -\/ indirizzo virtuale \hypertarget{structmy_g_p_i_o_k__t_ac41bbc7fe03ef25b7f468275fb565d78}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!sl\+\_\+total\+\_\+irq@{sl\+\_\+total\+\_\+irq}}
+\subsubsection{\texorpdfstring{rsrc\+\_\+size}{rsrc\_size}}
+{\footnotesize\ttfamily uint32\+\_\+t rsrc\+\_\+size}
+
+rsrc.\+end -\/ rsrc.\+start numero di indirizzi associati alla periferica. occorre per effettuare il mapping indirizzo fisico -\/ indirizzo virtuale \mbox{\Hypertarget{structmy_g_p_i_o_k__t_ac41bbc7fe03ef25b7f468275fb565d78}\label{structmy_g_p_i_o_k__t_ac41bbc7fe03ef25b7f468275fb565d78}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!sl\+\_\+total\+\_\+irq@{sl\+\_\+total\+\_\+irq}}
 \index{sl\+\_\+total\+\_\+irq@{sl\+\_\+total\+\_\+irq}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{sl\+\_\+total\+\_\+irq}]{\setlength{\rightskip}{0pt plus 5cm}spinlock\+\_\+t sl\+\_\+total\+\_\+irq}}\label{structmy_g_p_i_o_k__t_ac41bbc7fe03ef25b7f468275fb565d78}
-Spinlock usato per garantire l'accesso in mutua esclusione alla variabile total\+\_\+irq da parte delle funzioni del modulo \hypertarget{structmy_g_p_i_o_k__t_a1e1ddf972b4dc84dd331a0c72e5d9895}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!slock\+\_\+int@{slock\+\_\+int}}
+\subsubsection{\texorpdfstring{sl\+\_\+total\+\_\+irq}{sl\_total\_irq}}
+{\footnotesize\ttfamily spinlock\+\_\+t sl\+\_\+total\+\_\+irq}
+
+Spinlock usato per garantire l\textquotesingle{}accesso in mutua esclusione alla variabile total\+\_\+irq da parte delle funzioni del modulo \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a1e1ddf972b4dc84dd331a0c72e5d9895}\label{structmy_g_p_i_o_k__t_a1e1ddf972b4dc84dd331a0c72e5d9895}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!slock\+\_\+int@{slock\+\_\+int}}
 \index{slock\+\_\+int@{slock\+\_\+int}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{slock\+\_\+int}]{\setlength{\rightskip}{0pt plus 5cm}spinlock\+\_\+t slock\+\_\+int}}\label{structmy_g_p_i_o_k__t_a1e1ddf972b4dc84dd331a0c72e5d9895}
-Spinlock usato per garantire l'accesso in mutua esclusione alla variabile int\+\_\+occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l'implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come può esserlo un modulo kernel. Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l'implementazione è \char`\"{}un pò\char`\"{} più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. \hypertarget{structmy_g_p_i_o_k__t_a2da711ac290a9613b8d8af97f122b997}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!total\+\_\+irq@{total\+\_\+irq}}
+\subsubsection{\texorpdfstring{slock\+\_\+int}{slock\_int}}
+{\footnotesize\ttfamily spinlock\+\_\+t slock\+\_\+int}
+
+Spinlock usato per garantire l\textquotesingle{}accesso in mutua esclusione alla variabile int\+\_\+occurred da parte delle funzioni del modulo. I semafori sono uno strumento potentissimo per per l\textquotesingle{}implementazione di sezioni critiche, ma non possono essere usati in codice non interrompibile. Gli spilock sono come i semafori, ma possono essere usati anche in codice non interrompibile, come può esserlo un modulo kernel. Sostanzialmente se uno spinlock è già stato acquisito da qualcun altro, si entra in un hot-\/loop dal quale si esce solo quando chi possiede lo spinlock lo rilascia. Trattandosi di moduli kernel, è di vitale importanza che la sezione critica sia quanto più piccola possibile. Ovviamente l\textquotesingle{}implementazione è \char`\"{}un pò\char`\"{} più complessa di come è stata descritta, ma il concetto è questo. Gli spinlock sono definiti in $<$linux/spinlock.\+h$>$. \mbox{\Hypertarget{structmy_g_p_i_o_k__t_a2da711ac290a9613b8d8af97f122b997}\label{structmy_g_p_i_o_k__t_a2da711ac290a9613b8d8af97f122b997}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!total\+\_\+irq@{total\+\_\+irq}}
 \index{total\+\_\+irq@{total\+\_\+irq}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{total\+\_\+irq}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t total\+\_\+irq}}\label{structmy_g_p_i_o_k__t_a2da711ac290a9613b8d8af97f122b997}
-numero totale di interrupt manifestatesi \hypertarget{structmy_g_p_i_o_k__t_af5aef493b3c2bc9d1f036ce0acea9bba}{\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!vrtl\+\_\+addr@{vrtl\+\_\+addr}}
+\subsubsection{\texorpdfstring{total\+\_\+irq}{total\_irq}}
+{\footnotesize\ttfamily uint32\+\_\+t total\+\_\+irq}
+
+numero totale di interrupt manifestatesi \mbox{\Hypertarget{structmy_g_p_i_o_k__t_af5aef493b3c2bc9d1f036ce0acea9bba}\label{structmy_g_p_i_o_k__t_af5aef493b3c2bc9d1f036ce0acea9bba}} 
+\index{my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}!vrtl\+\_\+addr@{vrtl\+\_\+addr}}
 \index{vrtl\+\_\+addr@{vrtl\+\_\+addr}!my\+G\+P\+I\+O\+K\+\_\+t@{my\+G\+P\+I\+O\+K\+\_\+t}}
-\subsubsection[{vrtl\+\_\+addr}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ vrtl\+\_\+addr}}\label{structmy_g_p_i_o_k__t_af5aef493b3c2bc9d1f036ce0acea9bba}
+\subsubsection{\texorpdfstring{vrtl\+\_\+addr}{vrtl\_addr}}
+{\footnotesize\ttfamily void$\ast$ vrtl\+\_\+addr}
+
 indirizzo virtuale della periferica 
 
 La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}

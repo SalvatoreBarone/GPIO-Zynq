@@ -1,12 +1,11 @@
-\hypertarget{read_all_8c}{\section{Riferimenti per il file Src/\+Examples/read\+All.c}
+\hypertarget{read_all_8c}{}\section{Riferimenti per il file Src/\+Examples/read\+All.c}
 \label{read_all_8c}\index{Src/\+Examples/read\+All.\+c@{Src/\+Examples/read\+All.\+c}}
-}
-{\ttfamily \#include $<$inttypes.\+h$>$}\\*
-{\ttfamily \#include $<$stdio.\+h$>$}\\*
-{\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include $<$unistd.\+h$>$}\\*
-{\ttfamily \#include $<$sys/mman.\+h$>$}\\*
-{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
 Grafo delle dipendenze di inclusione per read\+All.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -25,38 +24,49 @@ int \hyperlink{read_all_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, c
 \end{DoxyCompactItemize}
 
 
+\subsection{Descrizione dettagliata}
+\begin{DoxyAuthor}{Autore}
+Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+19 06 2017
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Salvatore Barone \href{mailto:salvator.barone@gmail.com}{\tt salvator.\+barone@gmail.\+com}
+\end{DoxyCopyright}
+This file is part of Zynq7000\+Driver\+Pack
+
+Zynq7000\+Driver\+Pack is free software; you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation; either version 3 of the License, or any later version.
+
+Zynq7000\+Driver\+Pack is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-\/1301, U\+SA. 
+
 \subsection{Documentazione delle funzioni}
-\hypertarget{read_all_8c_a05909651fa170a63e98e3f8e13451b7b}{\index{read\+All.\+c@{read\+All.\+c}!howto@{howto}}
+\mbox{\Hypertarget{read_all_8c_a05909651fa170a63e98e3f8e13451b7b}\label{read_all_8c_a05909651fa170a63e98e3f8e13451b7b}} 
+\index{read\+All.\+c@{read\+All.\+c}!howto@{howto}}
 \index{howto@{howto}!read\+All.\+c@{read\+All.\+c}}
-\subsubsection[{howto}]{\setlength{\rightskip}{0pt plus 5cm}void howto (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{read_all_8c_a05909651fa170a63e98e3f8e13451b7b}
+\subsubsection{\texorpdfstring{howto()}{howto()}}
+{\footnotesize\ttfamily void howto (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{read_all_8c-example}{read\+All.\+c}.\end{Desc}
-\hypertarget{read_all_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{read\+All.\+c@{read\+All.\+c}!main@{main}}
+\mbox{\Hypertarget{read_all_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{read_all_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{read\+All.\+c@{read\+All.\+c}!main@{main}}
 \index{main@{main}!read\+All.\+c@{read\+All.\+c}}
-\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
-\begin{DoxyParamCaption}
-\item[{int}]{argc, }
-\item[{char $\ast$$\ast$}]{argv}
-\end{DoxyParamCaption}
-)}}\label{read_all_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{read_all_8c-example}{read\+All.\+c}.\end{Desc}
-\hypertarget{read_all_8c_a87c1177178432113628b0885b0cff1b2}{\index{read\+All.\+c@{read\+All.\+c}!parse\+\_\+args@{parse\+\_\+args}}
+\mbox{\Hypertarget{read_all_8c_a87c1177178432113628b0885b0cff1b2}\label{read_all_8c_a87c1177178432113628b0885b0cff1b2}} 
+\index{read\+All.\+c@{read\+All.\+c}!parse\+\_\+args@{parse\+\_\+args}}
 \index{parse\+\_\+args@{parse\+\_\+args}!read\+All.\+c@{read\+All.\+c}}
-\subsubsection[{parse\+\_\+args}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+\_\+args (
-\begin{DoxyParamCaption}
-\item[{int}]{argc, }
-\item[{char $\ast$$\ast$}]{argv, }
-\item[{uint32\+\_\+t $\ast$}]{gpio\+\_\+address, }
-\item[{uint32\+\_\+t $\ast$}]{max\+\_\+offset}
-\end{DoxyParamCaption}
-)}}\label{read_all_8c_a87c1177178432113628b0885b0cff1b2}
+\subsubsection{\texorpdfstring{parse\+\_\+args()}{parse\_args()}}
+{\footnotesize\ttfamily int parse\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{uint32\+\_\+t $\ast$}]{gpio\+\_\+address,  }\item[{uint32\+\_\+t $\ast$}]{max\+\_\+offset }\end{DoxyParamCaption})}
+
 \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{read_all_8c-example}{read\+All.\+c}.\end{Desc}

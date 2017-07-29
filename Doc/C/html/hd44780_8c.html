@@ -3,23 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.8"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Zynq-7000 Driver Pack: Riferimenti per il file Src/myGPIO/bare-metal/HD44780/hd44780.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
-  $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,7 +27,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Zynq-7000 Driver Pack
    &#160;<span id="projectnumber">3.2</span>
    </div>
@@ -39,41 +38,19 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generato da Doxygen 1.8.8 -->
+<!-- Generato da Doxygen 1.8.13 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
 </script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
-      <li><a href="modules.html"><span>Moduli</span></a></li>
-      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
-      <li class="current"><a href="files.html"><span>File</span></a></li>
-      <li><a href="examples.html"><span>Esempi</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
-      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
-    </ul>
-  </div>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -94,7 +71,7 @@ $(document).ready(function(){initNavTree('hd44780_8c.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tutto</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Strutture dati</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>File</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funzioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variabili</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Tipi enumerati (enum)</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valori del tipo enumerato</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definizioni</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Gruppi</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,7 +96,9 @@ Grafo delle dipendenze di inclusione per hd44780.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="hd44780_8c__incl.png" border="0" usemap="#_src_2my_g_p_i_o_2bare-metal_2_h_d44780_2hd44780_8c" alt=""/></div>
 <map name="_src_2my_g_p_i_o_2bare-metal_2_h_d44780_2hd44780_8c" id="_src_2my_g_p_i_o_2bare-metal_2_h_d44780_2hd44780_8c">
-<area shape="rect" id="node2" href="hd44780_8h.html" title="hd44780.h" alt="" coords="6,95,89,121"/><area shape="rect" id="node3" href="my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="5,169,89,196"/></map>
+<area shape="rect" id="node2" href="hd44780_8h.html" title="hd44780.h" alt="" coords="6,95,89,121"/>
+<area shape="rect" id="node3" href="my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="5,169,89,196"/>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -247,7 +226,9 @@ Funzioni</h2></td></tr>
 <p>Zynq7000DriverPack is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. </p>
 </div><h2 class="groupheader">Documentazione delle definizioni</h2>
-<a class="anchor" id="abc1164ac56b1a748e0ad8319be7dede8"></a>
+<a id="abc1164ac56b1a748e0ad8319be7dede8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc1164ac56b1a748e0ad8319be7dede8">&#9670;&nbsp;</a></span>HD44780_clear <span class="overload">[1/2]</span></h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -259,7 +240,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abc1164ac56b1a748e0ad8319be7dede8"></a>
+<a id="abc1164ac56b1a748e0ad8319be7dede8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc1164ac56b1a748e0ad8319be7dede8">&#9670;&nbsp;</a></span>HD44780_clear <span class="overload">[2/2]</span></h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -271,7 +254,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aee7a3931ecea03871d152b6f2fe237de"></a>
+<a id="aee7a3931ecea03871d152b6f2fe237de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7a3931ecea03871d152b6f2fe237de">&#9670;&nbsp;</a></span>HD44780_cursor_blink</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -283,7 +268,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad599eadde9b68b5c84f26575229383cc"></a>
+<a id="ad599eadde9b68b5c84f26575229383cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad599eadde9b68b5c84f26575229383cc">&#9670;&nbsp;</a></span>HD44780_cursor_l</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -295,7 +282,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a05c02e143086d4d3e16c651da46357e5"></a>
+<a id="a05c02e143086d4d3e16c651da46357e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c02e143086d4d3e16c651da46357e5">&#9670;&nbsp;</a></span>HD44780_cursor_off</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -307,7 +296,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3967b259a0236cb4ff71b58e9e99d871"></a>
+<a id="a3967b259a0236cb4ff71b58e9e99d871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3967b259a0236cb4ff71b58e9e99d871">&#9670;&nbsp;</a></span>HD44780_cursor_on</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -319,7 +310,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3e52e42643f6840db3e878e23a3f82d9"></a>
+<a id="a3e52e42643f6840db3e878e23a3f82d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e52e42643f6840db3e878e23a3f82d9">&#9670;&nbsp;</a></span>HD44780_cursor_r</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -331,7 +324,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a89582792c79342e5e196c3af6b58e813"></a>
+<a id="a89582792c79342e5e196c3af6b58e813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89582792c79342e5e196c3af6b58e813">&#9670;&nbsp;</a></span>HD44780_dec_no_shift</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -343,7 +338,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a46be67bdaf1d9806e6080fc8a302e9f4"></a>
+<a id="a46be67bdaf1d9806e6080fc8a302e9f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46be67bdaf1d9806e6080fc8a302e9f4">&#9670;&nbsp;</a></span>HD44780_dec_shift</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -355,7 +352,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab74128cead7d82100cff55cac513457a"></a>
+<a id="ab74128cead7d82100cff55cac513457a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab74128cead7d82100cff55cac513457a">&#9670;&nbsp;</a></span>HD44780_display_off</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -367,7 +366,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a04358db2424f9713cfb84a4fdef5b215"></a>
+<a id="a04358db2424f9713cfb84a4fdef5b215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04358db2424f9713cfb84a4fdef5b215">&#9670;&nbsp;</a></span>HD44780_home</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -379,7 +380,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7998cf2572859cfc7a96146f9d84a8e6"></a>
+<a id="a7998cf2572859cfc7a96146f9d84a8e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7998cf2572859cfc7a96146f9d84a8e6">&#9670;&nbsp;</a></span>HD44780_inc_no_shift</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -391,7 +394,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6c116ccd854428b9977ace77603e98f9"></a>
+<a id="a6c116ccd854428b9977ace77603e98f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c116ccd854428b9977ace77603e98f9">&#9670;&nbsp;</a></span>HD44780_inc_shift</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -403,7 +408,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab2681dc65568d9ec0818989aafe2eceb"></a>
+<a id="ab2681dc65568d9ec0818989aafe2eceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2681dc65568d9ec0818989aafe2eceb">&#9670;&nbsp;</a></span>HD44780_row1</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -415,7 +422,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7d9675a9d89c1228ada73be6239f7ef6"></a>
+<a id="a7d9675a9d89c1228ada73be6239f7ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d9675a9d89c1228ada73be6239f7ef6">&#9670;&nbsp;</a></span>HD44780_row2</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -427,7 +436,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5060e38ac985451fad57ed890aea1d77"></a>
+<a id="a5060e38ac985451fad57ed890aea1d77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5060e38ac985451fad57ed890aea1d77">&#9670;&nbsp;</a></span>lcd_command</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -443,7 +454,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afac15d58a1ee77e8a17bc57252468ea1"></a>
+<a id="afac15d58a1ee77e8a17bc57252468ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac15d58a1ee77e8a17bc57252468ea1">&#9670;&nbsp;</a></span>lcd_data</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -459,7 +472,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acd814f8ff18cac325b1f9f5957dd3846"></a>
+<a id="acd814f8ff18cac325b1f9f5957dd3846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd814f8ff18cac325b1f9f5957dd3846">&#9670;&nbsp;</a></span>lcd_enable</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -472,16 +487,14 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Valore:</b><div class="fragment"><div class="line">myGPIO_setValue(lcd-&gt;gpio, lcd-&gt;E, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>); <a class="code" href="hd44780_8c.html#a9f0a484de0de3ab1ddd77d5f716dea96">\</a></div>
-<div class="line"><a class="code" href="hd44780_8c.html#a9f0a484de0de3ab1ddd77d5f716dea96">							timer_wait_us</a>(100); \</div>
-<div class="line">                            myGPIO_setValue(lcd-&gt;gpio, lcd-&gt;E, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>)</div>
-<div class="ttc" id="group__bare-metal_html_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149"><div class="ttname"><a href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a></div><div class="ttdoc">myGPIO_set, corrisponde al valore logico &#39;1&#39; </div><div class="ttdef"><b>Definition:</b> myGPIO.h:124</div></div>
-<div class="ttc" id="hd44780_8c_html_a9f0a484de0de3ab1ddd77d5f716dea96"><div class="ttname"><a href="hd44780_8c.html#a9f0a484de0de3ab1ddd77d5f716dea96">timer_wait_us</a></div><div class="ttdeci">#define timer_wait_us(us)</div><div class="ttdef"><b>Definition:</b> hd44780.c:44</div></div>
-<div class="ttc" id="group__bare-metal_html_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674"><div class="ttname"><a href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a></div><div class="ttdoc">myGPIO_reset, corrisponde al valore logico &#39;0&#39; </div><div class="ttdef"><b>Definition:</b> myGPIO.h:123</div></div>
+<b>Valore:</b><div class="fragment"><div class="line">myGPIO_setValue(lcd-&gt;gpio, lcd-&gt;E, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a>); \</div><div class="line">                            timer_wait_us(100); \</div><div class="line">                            myGPIO_setValue(lcd-&gt;gpio, lcd-&gt;E, <a class="code" href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a>)</div><div class="ttc" id="group__bare-metal_html_ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149"><div class="ttname"><a href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba10d296f3711d01189cc6c2d87f7c9149">myGPIO_set</a></div><div class="ttdoc">myGPIO_set, corrisponde al valore logico &amp;#39;1&amp;#39; </div><div class="ttdef"><b>Definition:</b> myGPIO.h:124</div></div>
+<div class="ttc" id="group__bare-metal_html_ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674"><div class="ttname"><a href="group__bare-metal.html#ggaf634fe4a0e1eab8da5000b72d6ad362ba98cde80dbda025bd1ae7231c76b55674">myGPIO_reset</a></div><div class="ttdoc">myGPIO_reset, corrisponde al valore logico &amp;#39;0&amp;#39; </div><div class="ttdef"><b>Definition:</b> myGPIO.h:123</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ad7be3fdeebf9b76a774a6c1afa7fa3c8"></a>
+<a id="ad7be3fdeebf9b76a774a6c1afa7fa3c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7be3fdeebf9b76a774a6c1afa7fa3c8">&#9670;&nbsp;</a></span>lcd_read</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -497,7 +510,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7546bbb2f97e50a0469cf71934ac18e2"></a>
+<a id="a7546bbb2f97e50a0469cf71934ac18e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7546bbb2f97e50a0469cf71934ac18e2">&#9670;&nbsp;</a></span>lcd_write</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -513,7 +528,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5f45c877d1e8266f8a2c1d0b87746950"></a>
+<a id="a5f45c877d1e8266f8a2c1d0b87746950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f45c877d1e8266f8a2c1d0b87746950">&#9670;&nbsp;</a></span>timer_wait_ms</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -529,7 +546,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9f0a484de0de3ab1ddd77d5f716dea96"></a>
+<a id="a9f0a484de0de3ab1ddd77d5f716dea96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f0a484de0de3ab1ddd77d5f716dea96">&#9670;&nbsp;</a></span>timer_wait_us</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -546,7 +565,9 @@ Funzioni</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
-<a class="anchor" id="ad4120d3a2df038c193d043f386fdb221"></a>
+<a id="ad4120d3a2df038c193d043f386fdb221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4120d3a2df038c193d043f386fdb221">&#9670;&nbsp;</a></span>HD44780_ConfigurePin()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -562,7 +583,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acc20a0564ce460f33fc998f18dd9f345"></a>
+<a id="acc20a0564ce460f33fc998f18dd9f345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc20a0564ce460f33fc998f18dd9f345">&#9670;&nbsp;</a></span>HD44780_SetByte()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -588,7 +611,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad3c60edaac713488ecb9c7ed73854a3c"></a>
+<a id="ad3c60edaac713488ecb9c7ed73854a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c60edaac713488ecb9c7ed73854a3c">&#9670;&nbsp;</a></span>HD44780_ValidatePair()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -604,7 +629,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae12ebf4e3dd52b7d10f155e0dd1b4898"></a>
+<a id="ae12ebf4e3dd52b7d10f155e0dd1b4898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae12ebf4e3dd52b7d10f155e0dd1b4898">&#9670;&nbsp;</a></span>HD44780_WriteCommand()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -630,7 +657,9 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a39e7e22ae76f1eec9aaf0933af398f4b"></a>
+<a id="a39e7e22ae76f1eec9aaf0933af398f4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e7e22ae76f1eec9aaf0933af398f4b">&#9670;&nbsp;</a></span>HD44780_WriteData()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -662,9 +691,9 @@ Funzioni</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a class="el" href="dir_bf0273017ee8b3ff348e0bb43011b9c4.html">myGPIO</a></li><li class="navelem"><a class="el" href="dir_ec11a720d7131f6e3fe4df0100f84938.html">bare-metal</a></li><li class="navelem"><a class="el" href="dir_07fcadccbe83e9c782d897d16ab73824.html">HD44780</a></li><li class="navelem"><a class="el" href="hd44780_8c.html">hd44780.c</a></li>
-    <li class="footer">Generato Mer 5 Lug 2017 11:48:31 per Zynq-7000 Driver Pack da
+    <li class="footer">Generato Sab 29 Lug 2017 11:19:44 per Zynq-7000 Driver Pack da
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
 </div>
 </body>

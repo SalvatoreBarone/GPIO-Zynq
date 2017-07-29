@@ -1,5 +1,5 @@
 /**
- * @example mygpiok.c
+ * @file mygpiok.c
  * @author Salvatore Barone <salvator.barone@gmail.com>
  * @date 16 06 2017
  *
@@ -20,10 +20,13 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  * USA.
  *
- * @brief Programma di esempio per l'interfacciamento con una periferica myGPIO attraverso un driver kernel.
- *
- * In questo specifico esempio l'interfacciamento avviene da user-space, interagendo attraverso il
- * driver myGPIOK.
+ * @example mygpiok.c
+ * Il file mygpiok.c contiene un programma di esempio che usa, in modo totalmente trasparente, il
+ * modulo kernel myGPIOK, che implementa un driver l'interfacciamento con una periferica myGPIO.
+ * Il programma contenuto in mygpiok.c è un programma userspace che mostra come possa, un programma
+ * userspace in esecuzione su sistema operativo Linux, interagire con un device myGPIO attraverso i
+ * modulo kernel myGPIOK, che deve essere compilato e inserito nel kernel. Si veda la documentazione
+ * interna al file mygpiok.c per ulteriori dettagli.
  *
  * @warning Se nel device tree source non viene indicato
  * <center>compatible = "myGPIOK";</center>
@@ -89,7 +92,8 @@ typedef struct {
 int parse_args(	int argc, char **argv, param_t	*param) {
 	int par;
 	char* devfile = NULL;
-/** <h4>Parsing dei parametri del programma.</h4>
+/**
+ * <h4>Parsing dei parametri del programma.</h4>
  * Il parsing viene effettuato usando la funzione getopt().
  * @code
  * #include <unistd.h>
@@ -100,7 +104,7 @@ int parse_args(	int argc, char **argv, param_t	*param) {
  * Il carattere immediatamente successivo il '-' identifica la particolare opzione.
  * La funzione può essere chiamata ripetutamente, fino a quando non restituisce -1, ad indicare che sono stati
  * analizzati tutti i parametri passati al programma.
- * Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optind, che punta
+ * Quando getopt() trova un'opzione, restituisce quel carattere ed aggiorna la variabile globale optid, che punta
  * al prossimo parametro contenuto in argv.
  * La stringa optstring indica quali sono le opzioni considerate. Se una opzione è seguita da ':' vuol dire che
  * essa è seguita da un argomento. Tale argomento può essere ottenuto mediante la variabile globale optarg.
@@ -146,7 +150,7 @@ int parse_args(	int argc, char **argv, param_t	*param) {
 		howto();
 		return -1;
 	}
-/**<h4>Accesso ad un device tramite il driver myGPIOK</h4>
+/** <h4>Accesso ad un device tramite il driver myGPIOK</h4>
  * Ad ogni periferica compatibile con il driver myGPIOK è associato un file diverso in /dev/ attraverso il
  * quale è possibile interagire con il device. Rispetto al driver UIO, non è necessario effettuare nessuna
  * operazione di mapping, in quanto il driver myGPIOK tradurrà le sistem-call che normalmente verrevvero
@@ -190,7 +194,8 @@ int parse_args(	int argc, char **argv, param_t	*param) {
  */
 void gpio_op (param_t *param) {
 
-/** <h4>Impostazione della modalità di funzionamento</h4>
+/**
+ * <h4>Impostazione della modalità di funzionamento</h4>
  * Per impostare la modalità di funzionamento è necessario scrivere sul registro MODE. L'offset di tale
  * registro è determinato in base al particolare device che si stà utilizzando.
  * Dopo aver spostato la "testina di scrittura" sul registro MODE usando la funzione seek(), viene effettuata
@@ -206,7 +211,8 @@ void gpio_op (param_t *param) {
 		pwrite(param->dev_descr, &(param->mode_value), sizeof(uint32_t), MODE_OFFSET);
 #endif
 	}
-/** <h4>Operazione di scrittura</h4>
+/**
+ * <h4>Operazione di scrittura</h4>
  * Per impostare il valore dei pin del device è necessario scrivere sul registro WRITE. L'offset di tale
  * registro è determinato in base al particolare device che si stà utilizzando.
  * Dopo aver spostato la "testina di scrittura" sul registro WRITE usando la funzione seek(), viene effettuata
@@ -222,7 +228,8 @@ void gpio_op (param_t *param) {
 		pwrite(param->dev_descr, &(param->mode_value), sizeof(uint32_t), WRITE_OFFSET);
 #endif
 	}
-/** <h4>Operazione di lettura con interrupt</h4>
+/**
+ * <h4>Operazione di lettura con interrupt</h4>
  * La lettura dei pin del device avviene mediante la chiamata alla funzione read(), dopo aver spostato la
  * "testina di lettura" sul registro READ. L'offset di tale registro, come nei due casi precedenti, viene
  * determinato in base al particolare device che si sta usando.

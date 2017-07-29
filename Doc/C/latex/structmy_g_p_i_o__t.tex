@@ -1,9 +1,8 @@
-\hypertarget{structmy_g_p_i_o__t}{\section{Riferimenti per la struct my\+G\+P\+I\+O\+\_\+t}
+\hypertarget{structmy_g_p_i_o__t}{}\section{Riferimenti per la struct my\+G\+P\+I\+O\+\_\+t}
 \label{structmy_g_p_i_o__t}\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-}
 
 
-Struttura che astrae un device my\+G\+P\+I\+O.  
+Struttura che astrae un device my\+G\+P\+IO.  
 
 
 
@@ -32,39 +31,63 @@ uint8\+\_\+t \hyperlink{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}{i
 
 
 \subsection{Descrizione dettagliata}
-Struttura che astrae un device my\+G\+P\+I\+O. 
+Struttura che astrae un device my\+G\+P\+IO. 
 
-Comprende l'indirizzo di memoria a cui il device è mappato e gli offset dei registri attraverso i quali è possibile interagire con il device stesso. La struttura è pensata, com'è ovvio, per consentire l'uso di più device G\+P\+I\+O nello stesso programma, identificando ciascuno di essi attraverso l'indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell'implementazione del driver, è totalmente trasparente a chi la utilizza, nel senso che non è strettamente necessario conoscerne i dettagli per poter utilizzare il driver. \begin{Desc}
+Comprende l\textquotesingle{}indirizzo di memoria a cui il device è mappato e gli offset dei registri attraverso i quali è possibile interagire con il device stesso. La struttura è pensata, com\textquotesingle{}è ovvio, per consentire l\textquotesingle{}uso di più device G\+P\+IO nello stesso programma, identificando ciascuno di essi attraverso l\textquotesingle{}indirizzo di memoria al quale sono mappati. La struttura di cui sopra, nel resto dell\textquotesingle{}implementazione del driver, è totalmente trasparente a chi la utilizza, nel senso che non è strettamente necessario conoscerne i dettagli per poter utilizzare il driver. \begin{Desc}
 \item[Esempi\+: ]\par
 \hyperlink{bsp_example_8c-example}{bsp\+\_\+example.\+c}, \hyperlink{interrupt_bare_8c-example}{interrupt\+\_\+bare.\+c}, \hyperlink{no_driver_8c-example}{no\+Driver.\+c}, \hyperlink{uio-int_8c-example}{uio-\/int.\+c}, e \hyperlink{uio_8c-example}{uio.\+c}.\end{Desc}
 
 
 \subsection{Documentazione dei campi}
-\hypertarget{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!base\+\_\+address@{base\+\_\+address}}
+\mbox{\Hypertarget{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}\label{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!base\+\_\+address@{base\+\_\+address}}
 \index{base\+\_\+address@{base\+\_\+address}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{base\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t$\ast$ base\+\_\+address}}\label{structmy_g_p_i_o__t_a79c591d5fa42efdf86abd98347fece90}
-indirizzo base \hypertarget{structmy_g_p_i_o__t_a396df54cd6cf921c00ea28779db8de42}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!gies\+\_\+offset@{gies\+\_\+offset}}
+\subsubsection{\texorpdfstring{base\+\_\+address}{base\_address}}
+{\footnotesize\ttfamily uint32\+\_\+t$\ast$ base\+\_\+address}
+
+indirizzo base \mbox{\Hypertarget{structmy_g_p_i_o__t_a396df54cd6cf921c00ea28779db8de42}\label{structmy_g_p_i_o__t_a396df54cd6cf921c00ea28779db8de42}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!gies\+\_\+offset@{gies\+\_\+offset}}
 \index{gies\+\_\+offset@{gies\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{gies\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t gies\+\_\+offset}}\label{structmy_g_p_i_o__t_a396df54cd6cf921c00ea28779db8de42}
-offset, rispetto all'indirizzo base, del registro \char`\"{}gies\char`\"{} \hypertarget{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!iack\+\_\+offset@{iack\+\_\+offset}}
+\subsubsection{\texorpdfstring{gies\+\_\+offset}{gies\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t gies\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}gies\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}\label{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!iack\+\_\+offset@{iack\+\_\+offset}}
 \index{iack\+\_\+offset@{iack\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{iack\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t iack\+\_\+offset}}\label{structmy_g_p_i_o__t_a89b56f53628a6e25587385a964248793}
-offset, rispetto all'indirizzo base, del registro \char`\"{}iack\char`\"{} \hypertarget{structmy_g_p_i_o__t_a75a81dd8e3333cb69aa4938d82b5e433}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!irq\+\_\+offset@{irq\+\_\+offset}}
+\subsubsection{\texorpdfstring{iack\+\_\+offset}{iack\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t iack\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}iack\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_a75a81dd8e3333cb69aa4938d82b5e433}\label{structmy_g_p_i_o__t_a75a81dd8e3333cb69aa4938d82b5e433}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!irq\+\_\+offset@{irq\+\_\+offset}}
 \index{irq\+\_\+offset@{irq\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{irq\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t irq\+\_\+offset}}\label{structmy_g_p_i_o__t_a75a81dd8e3333cb69aa4938d82b5e433}
-offset, rispetto all'indirizzo base, del registro \char`\"{}irq\char`\"{} \hypertarget{structmy_g_p_i_o__t_ad21272e5293d7c1e7ccafe35a2e129d1}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!mode\+\_\+offset@{mode\+\_\+offset}}
+\subsubsection{\texorpdfstring{irq\+\_\+offset}{irq\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t irq\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}irq\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_ad21272e5293d7c1e7ccafe35a2e129d1}\label{structmy_g_p_i_o__t_ad21272e5293d7c1e7ccafe35a2e129d1}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!mode\+\_\+offset@{mode\+\_\+offset}}
 \index{mode\+\_\+offset@{mode\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{mode\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t mode\+\_\+offset}}\label{structmy_g_p_i_o__t_ad21272e5293d7c1e7ccafe35a2e129d1}
-offset, rispetto all'indirizzo base, del registro \char`\"{}mode\char`\"{} \hypertarget{structmy_g_p_i_o__t_ae5f1d610c87917b9dd6fbb5af534faf0}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!pie\+\_\+offset@{pie\+\_\+offset}}
+\subsubsection{\texorpdfstring{mode\+\_\+offset}{mode\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t mode\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}mode\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_ae5f1d610c87917b9dd6fbb5af534faf0}\label{structmy_g_p_i_o__t_ae5f1d610c87917b9dd6fbb5af534faf0}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!pie\+\_\+offset@{pie\+\_\+offset}}
 \index{pie\+\_\+offset@{pie\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{pie\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t pie\+\_\+offset}}\label{structmy_g_p_i_o__t_ae5f1d610c87917b9dd6fbb5af534faf0}
-offset, rispetto all'indirizzo base, del registro \char`\"{}pie\char`\"{} \hypertarget{structmy_g_p_i_o__t_ab65acde67dc46f1d163e2ee468420b48}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!read\+\_\+offset@{read\+\_\+offset}}
+\subsubsection{\texorpdfstring{pie\+\_\+offset}{pie\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t pie\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}pie\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_ab65acde67dc46f1d163e2ee468420b48}\label{structmy_g_p_i_o__t_ab65acde67dc46f1d163e2ee468420b48}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!read\+\_\+offset@{read\+\_\+offset}}
 \index{read\+\_\+offset@{read\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{read\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t read\+\_\+offset}}\label{structmy_g_p_i_o__t_ab65acde67dc46f1d163e2ee468420b48}
-offset, rispetto all'indirizzo base, del registro \char`\"{}read\char`\"{} \hypertarget{structmy_g_p_i_o__t_abb65e5db6d4ad365a7c48d00e4af1f78}{\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!write\+\_\+offset@{write\+\_\+offset}}
+\subsubsection{\texorpdfstring{read\+\_\+offset}{read\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t read\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}read\char`\"{} \mbox{\Hypertarget{structmy_g_p_i_o__t_abb65e5db6d4ad365a7c48d00e4af1f78}\label{structmy_g_p_i_o__t_abb65e5db6d4ad365a7c48d00e4af1f78}} 
+\index{my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}!write\+\_\+offset@{write\+\_\+offset}}
 \index{write\+\_\+offset@{write\+\_\+offset}!my\+G\+P\+I\+O\+\_\+t@{my\+G\+P\+I\+O\+\_\+t}}
-\subsubsection[{write\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t write\+\_\+offset}}\label{structmy_g_p_i_o__t_abb65e5db6d4ad365a7c48d00e4af1f78}
-offset, rispetto all'indirizzo base, del registro \char`\"{}write\char`\"{} 
+\subsubsection{\texorpdfstring{write\+\_\+offset}{write\_offset}}
+{\footnotesize\ttfamily uint8\+\_\+t write\+\_\+offset}
+
+offset, rispetto all\textquotesingle{}indirizzo base, del registro \char`\"{}write\char`\"{} 
 
 La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
 \item 
