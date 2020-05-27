@@ -1,11 +1,10 @@
 MYGPIO_SRC = ../myGPIO/bare-metal/
 XIL_GPIO_SRC = ./
-CC = gcc
 CC_OPZ = -Wall -Wextra -I$(MYGPIO_SRC) -I$(XIL_GPIO_SRC)
 DEFINE = -D__DEBUG__
-COMPILE = $(CC) $(CC_OPZ) $(DEFINE) -c $< -o $@
+COMPILE = ${CC} $(CC_OPZ) $(DEFINE) -c $< -o $@
 LINK_OPZ =
-LINK = $(CC) $(LINK_OPZ) $^ -o $@
+LINK = ${CC} $(LINK_OPZ) $^ -o $@
 BUILD_N := $(shell date +"%s")
 
 
