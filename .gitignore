@@ -1,2 +1,6 @@
 *.o
 Src/GPIO/test/test
+
+Doc/
+
+tags

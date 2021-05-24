@@ -1,5 +1,0 @@
-<map id="Grafico della gerarchia delle classi" name="Grafico della gerarchia delle classi">
-<area shape="rect" id="node1" href="$class_g_p_i_osingle.html" title="Cella base GPIO. " alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$class_g_p_i_oarray.html" title="Array di celle GPIO, pilotabili singolarmente. " alt="" coords="143,5,227,32"/>
-<area shape="rect" id="node3" href="$classmy_g_p_i_o___a_x_i.html" title="Periferica AXI4 Lite che implementa una GPIO pilotabile da processing&#45;system. " alt="" coords="275,5,377,32"/>
-</map>

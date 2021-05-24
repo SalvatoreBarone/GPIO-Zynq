@@ -1,6 +1,0 @@
-<map id="MyGPIO" name="MyGPIO">
-<area shape="rect" id="node2" href="$group___a_x_i-internal.html" title="AXI&#45;internal" alt="" coords="128,5,219,32"/>
-<area shape="rect" id="node3" href="$group___g_p_i_o-array.html" title="GPIO&#45;array" alt="" coords="129,56,217,83"/>
-<area shape="rect" id="node4" href="$group___a_x_i-device.html" title="AXI&#45;device" alt="" coords="130,107,217,133"/>
-<area shape="rect" id="node5" href="$group___g_p_i_o-single.html" title="GPIO&#45;single" alt="" coords="127,157,220,184"/>
-</map>

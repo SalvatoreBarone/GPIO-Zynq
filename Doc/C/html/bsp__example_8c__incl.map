@@ -1,7 +1,0 @@
-<map id="Src/Examples/bsp_example.c" name="Src/Examples/bsp_example.c">
-<area shape="rect" id="node4" href="$my_g_p_i_o_8h.html" title="myGPIO.h" alt="" coords="389,155,473,181"/>
-<area shape="rect" id="node6" href="$_zybo_led_8h.html" title="ZyboLed.h" alt="" coords="272,80,355,107"/>
-<area shape="rect" id="node7" href="$_zybo_switch_8h.html" title="ZyboSwitch.h" alt="" coords="379,80,482,107"/>
-<area shape="rect" id="node8" href="$_zybo_button_8h.html" title="ZyboButton.h" alt="" coords="506,80,606,107"/>
-<area shape="rect" id="node9" href="$hd44780_8h.html" title="hd44780.h" alt="" coords="629,80,712,107"/>
-</map>

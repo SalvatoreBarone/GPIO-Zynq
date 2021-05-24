@@ -1,5 +1,0 @@
-<map id="Linux&#45;Driver" name="Linux&#45;Driver">
-<area shape="rect" id="node3" href="$group___device_list.html" title="Definisce la struttura dati myGPIOK_list_t, la quale mantiene un riferimento agli oggetti myGPIOK_t g..." alt="" coords="271,5,355,32"/>
-<area shape="rect" id="node4" href="$group__my_g_p_i_o_k__t.html" title="Definisce l&#39;oggetto myGPIOK_t, che rappresenta un device myGPIO a livello kernel. ..." alt="" coords="267,56,360,83"/>
-<area shape="rect" id="node2" href="$group__my_g_p_i_o.html" title="MyGPIO" alt="" coords="5,31,79,57"/>
-</map>
