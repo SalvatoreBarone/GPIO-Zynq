@@ -37,20 +37,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <inttypes.h>
 
-#include "myGPIO.h"
-#include "xil_gpio.h"
-
-
-#ifdef __XIL_GPIO__
-#define MODE_OFFSET		GPIO_TRI_OFFSET
-#define WRITE_OFFSET	GPIO_DATA_OFFSET
-#define READ_OFFSET		GPIO_READ_OFFSET
-#else
-#define MODE_OFFSET		myGPIO_MODE_OFFSET
-#define WRITE_OFFSET	myGPIO_WRITE_OFFSET
-#define READ_OFFSET		myGPIO_READ_OFFSET
-#endif
+#define MODE_OFFSET	  0U
+#define WRITE_OFFSET	4U
+#define READ_OFFSET		8U
 
 /**
  * @brief Stampa un messaggio che fornisce indicazioni sull'utilizzo del programma
@@ -256,8 +247,6 @@ void gpio_op (param_t *param) {
 
 int main (int argc, char **argv) {
 	param_t param;
-
-	printf("%s build %d\n", argv[0], BUILD);
 
 	if (parse_args(argc, argv, &param) == -1)
 		return -1;
